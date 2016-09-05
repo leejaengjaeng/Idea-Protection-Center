@@ -1,0 +1,14 @@
+/bin/
+
+
+/.git/
+/APP_HOME_IS_UNDEFINED/
+/*.log/
+
+*.log
+/build/
+
+.classpath
+.project
+.gradle/
+.settings/
