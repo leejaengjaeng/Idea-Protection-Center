@@ -12,32 +12,32 @@
 <title>Insert title here</title>
 <script>
 function changeEmail(emailvalue){
-	if(value=="1"){
+	if(emailvalue=="1"){
 		document.getElementById("email2").style.visibility="visible";
-		document.getElementById("email2").value="";
+		document.signupform.email2.value="";
 	}
 	else{
 		document.getElementById("email2").style.visibility="hidden";
-		document.getElementById("email2").value=emailvalue;
+		document.signupform.email2.value=emailvalue;
 	}
 }
 function checkid(){
 	
-	var id = document.getElementById("id").value;
-	var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
-	var csrfToken = $("meta[name='_csrf']").attr("content"); 
-	var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
+	//var id = document.getElementById("id").value;
+	//var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+	//var csrfToken = $("meta[name='_csrf']").attr("content"); 
+	//var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
     var id = document.getElementById("id").value; 
     var data = {};
-	var headers = {};
-    data[csrfParameter] = csrfToken;
+	//var headers = {};
+    //data[csrfParameter] = csrfToken;
     data["id"] = id;
-    headers[csrfHeader] = csrfToken; 
+    //headers[csrfHeader] = csrfToken; 
 	$.ajax({
 	    url : "/signup/checkid",
 	    dataType : "json",
 	    type : "POST",
-	    headers: headers,
+	    //headers: headers,
 	    data : data,
 	    success: function(data) {
 	        alert("성공:"+data.KEY);
@@ -63,16 +63,50 @@ function checkid(){
 	 
 	}); 
 }
+function checkpwd(){
+	var pwd=document.getElementById("pw").value;
+	var repwd=document.getElementById("repw").value;
+	if(pwd==repwd){
+		document.getElementById("checkpassword").innerHTML="<b>비밀번호가 일치합니다</b>"
+	}
+	else{
+		document.getElementById("checkpassword").innerHTML="<b>비밀번호가 일치하지않습니다</b>"
+	}
+}
+function changerole(inputvalue){
+	document.getElementById("role").value=inputvalue;
+}
+function execute(){
+	var pwd=document.getElementById("password");
+	var repwd=document.getElementById("repassword");
+	var id=document.getElementById("id");
+	if(pwd.value!=repwd.value){
+		alert("비밀번호가 일치하지 않습니다.");
+		pwd.value="";
+		repwd.value="";
+		pwd.focus();
+		return false;
+	}
+	if(id.readOnly==false){
+		alert("아이디 중복확인을 해주세요");
+		return false;
+	}
+	return true;
+}
 </script>
 </head>
 <body>
-	<form action="/signup/inputsignup" method="POST">
-		아이디<input type="text" name="id" id="id"><button type="button" onclick="checkid()"></button><br/>
-		비밀번호<input type="text" name="pw" id="pw"><br/>
-		비밀번호 확인 <input type="text" id="repw"><br/>
-		이름<input name="name" id="name">
-		이메일<input type="text" name="email1" id="email1">@					
-		<select onChange=changeEmail(this.value)>
+	<form action="/signup/inputsignup" method="POST" name="signupform" onsubmit="return execute();">
+		회원구분<br/>
+		<button type="button" onclick="changerole('1');">발명자 회원</button><button type="button" onclick="changerole('2');">변리사</button><br/>
+		<input type="text" name="role" id="role" hidden>
+		아이디<input type="text" name="id" id="id"><button type="button" onclick="checkid()">중복확인</button><br/>
+		비밀번호<input type="password" name="pw" id="pw"><br/>
+		비밀번호 확인 <input type="password" id="repw" onKeyUp=checkpwd()><br/>
+		<div id="checkpassword" ></div>
+		이름<input name="name" id="name"><br/>
+		이메일<input type="text" name="email1" id="email1">
+		<select name="emailMiddle" onChange=changeEmail(this.value);>
 			<option value="" selected>이메일선택</option>
 			<option value="naver.com">@ naver.com</option>
 			<option value="hanmail.com">@ hanmail.com</option>
@@ -84,8 +118,8 @@ function checkid(){
 			<option value="korea.com">@ korea.com</option>
 			<option value="1">직접입력</option>
 		</select>
-		<input type="text" name="email2" id="email2" hidden>
-		<input type="submit" value="가입신청">
+		<input type="text" name="email2" id="email2" style="visibility:hidden"><br/>
+		<input type="submit" value="가입">
 	</form>
 </body>
 </html>
