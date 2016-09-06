@@ -25,11 +25,6 @@ public class UserAuthService implements UserDetailsService{
 	//Return Spring Security User for authentication
 	private User buildUserForAuth(userVo user, List<GrantedAuthority> auths)
 	{
-		System.out.println("loadUserByUsername : "+user.getId());
-		System.out.println("loadUserByUsername : "+user.getPw());
-		System.out.println("loadUserByUsername : "+auths.get(0));
-
-
 		return new User(user.getId(), user.getPw(), auths);
 	}
 	
