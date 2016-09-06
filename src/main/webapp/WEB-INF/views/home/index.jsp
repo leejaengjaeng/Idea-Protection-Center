@@ -15,13 +15,13 @@
         <div class="header_wrap">
             <ol>
                 <li>
-                    <button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#ccc;">
-                        íìê°ì
+                    <button onclick="location.href='signup/signupPage'" style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#ccc;">
+                        회원가입
                     </button>
                 </li>
                 <li>
-                    <button onclick="location.href='/signup/signupPage'" style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;">
-                        ë¡ê·¸ì¸
+                    <button onclick="location.href='login'" style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;">
+                        로그인
                     </button>
                 </li>
             </ol>
@@ -29,16 +29,16 @@
                 <img src="#" alt="Logo">
                 <ul>
                     <li>
-                        ìì´ëì´ ê¶ë¦¬íë³´ ìì¤í
+                        아이디어 권리확보 시스템
                     </li>
                     <li>
-                        ì´ì©ìë´
+                        이용안내
                     </li>
                     <li>
-                        1:1ì§ë¬¸íê¸°
+                        1:1질문하기
                     </li>
                     <li>
-                        ìì£¼íë ì§ë¬¸ëª¨ì
+                        자주하는 질문모음
                     </li>
                 </ul>
             </div>
@@ -66,128 +66,128 @@
                 <img src="#" alt="benner">
             </div>
             <div id="cont_title1">
-                <span id="t_span">ìì´ëì´ ì¶ìíê¸°</span><br>
-                <span>ìì´ëì´ ë³´í¸ì¼í°ìì ìì½ê³  ê°ë ¥íê² ìì´ëì´ë¥¼ ë³´í¸íì¸ì</span>
+                <span id="t_span">아이디어 출원하기</span><br>
+                <span>아이디어 보호센터에서 손쉽고 강력하게 아이디어를 보호하세요</span>
             </div>
             <div id="cont_block1">
                 <div class="block">
                    <div class="block_inside">
                        <img src="#" alt="img1">
-                       <h1><b>í¹í</b> ì¶ì</h1>      
-                       <span>198,000ì ì°ì  ì¶ì</span>                          
+                       <h1><b>특허</b> 출원</h1>      
+                       <span>198,000원 우선 출원</span>                          
                    </div>
-                   <button class="btn_go">ì¶ìíë¬ ê°ê¸° &gt;</button>           
+                   <button class="btn_go">출원하러 가기 &gt;</button>           
                 </div>
                 <div class="block" style="margin-left:20px;">                    
                     <div class="block_inside">
                         <img src="#" alt="img2">
-                        <h1><b style="color:#72d1f3;">ëìì¸ê¶</b> ì¶ì</h1>      
-                        <span>100,000ì ì°ì  ì¶ì</span>                          
+                        <h1><b style="color:#72d1f3;">디자인권</b> 출원</h1>      
+                        <span>100,000원 우선 출원</span>                          
                     </div>
-                    <button class="btn_go">ì¶ìíë¬ ê°ê¸° &gt;</button>   
+                    <button class="btn_go">출원하러 가기 &gt;</button>   
                 </div>  
                 <div class="block">
                    <div class="block_inside">
                        <img src="#" alt="img3">
-                       <h1><b style="color:#0066cc;">ìí</b> ì¶ì</h1>      
-                       <span>150,000ì ì°ì  ì¶ì</span>                          
+                       <h1><b style="color:#0066cc;">상표</b> 출원</h1>      
+                       <span>150,000원 우선 출원</span>                          
                    </div>
-                   <button class="btn_go">ì¶ìíë¬ ê°ê¸° &gt;</button>           
+                   <button class="btn_go">출원하러 가기 &gt;</button>           
                 </div>
                 <div class="block" style="margin-left:20px;">                    
                     <div class="block_inside">
                         <img src="#" alt="img4">
-                        <h1><b style="color:#45d7c2;">ì ìê¶</b> ì¶ì</h1>      
-                        <span>50,000ì ë±ë¡ ë³´ì¥</span>                          
+                        <h1><b style="color:#45d7c2;">저작권</b> 출원</h1>      
+                        <span>50,000원 등록 보장</span>                          
                     </div>
-                    <button class="btn_go">ì¶ìíë¬ ê°ê¸° &gt;</button>   
+                    <button class="btn_go">출원하러 가기 &gt;</button>   
                 </div>                
             </div>
             <div id="cont_title2">
-                <span id="notice">ê³µì§ì¬í­</span><br>
-                <span>ìì´ëì´ ë³´í¸ì¼í°ì ê³µì§ì¬í­ê³¼ ì ë¶ì§ìì¬ìì ëí ì ë³´ë¥¼ íì¸íì¸ì</span>
+                <span id="notice">공지사항</span><br>
+                <span>아이디어 보호센터의 공지사항과 정부지원사업에 대한 정보를 확인하세요</span>
             </div>                        
             <div id="table_notice">
                <table>
                     <tr>
                         <td style="text-align:left;">
-                            ìì´ëì´ ë³´í¸ì¼í°ìì ìì´ëì´ë¥¼ ë³´í¸íë ë°©ë²ìë´
+                            아이디어 보호센터에서 아이디어를 보호하는 방법안내
                         </td>
                         <td>2016.09.06</td>
                         <td>Admin</td>                                               
                     </tr>                    
                     <tr>
                         <td style="text-align:left;">
-                            ìì´ëì´ ë³´í¸ì¼í°ìì ìì´ëì´ë¥¼ ë³´í¸íë ë°©ë²ìë´
+                            아이디어 보호센터에서 아이디어를 보호하는 방법안내
                         </td>
                         <td>2016.09.06</td>
                         <td>Admin</td>                                               
                     </tr>
                     <tr>
                         <td style="text-align:left;">
-                            ìì´ëì´ ë³´í¸ì¼í°ìì ìì´ëì´ë¥¼ ë³´í¸íë ë°©ë²ìë´
+                            아이디어 보호센터에서 아이디어를 보호하는 방법안내
                         </td>
                         <td>2016.09.06</td>
                         <td>Admin</td>                                               
                     </tr>                    
                     <tr>
                         <td style="text-align:left;">
-                            ìì´ëì´ ë³´í¸ì¼í°ìì ìì´ëì´ë¥¼ ë³´í¸íë ë°©ë²ìë´
+                            아이디어 보호센터에서 아이디어를 보호하는 방법안내
                         </td>
                         <td>2016.09.06</td>
                         <td>Admin</td>                                               
                     </tr>
                     <tr>
                         <td style="text-align:left;">
-                            ìì´ëì´ ë³´í¸ì¼í°ìì ìì´ëì´ë¥¼ ë³´í¸íë ë°©ë²ìë´
+                            아이디어 보호센터에서 아이디어를 보호하는 방법안내
                         </td>
                         <td>2016.09.06</td>
                         <td>Admin</td>                                               
                     </tr>
                 </table>
                 <button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;">
-                        ëë³´ê¸°
+                        더보기
                 </button>
             </div>
             <div id="cont_title3">
-                <span id="onair_title">ì¤ìê° ìë¢°ì ë³´</span><br>
-                <span>ìì´ëì´ ë³´í¸ì¼í°ë ë°ëªê°ëë¤ì ì¬ë¬ ìì´ëì´ê° ì¶ìë  ì ìëë¡ íë ê°ë ¥í íí¸ëìëë¤.</span>
+                <span id="onair_title">실시간 의뢰정보</span><br>
+                <span>아이디어 보호센터는 발명가님들의 여러 아이디어가 출원될 수 있도록 하는 강력한 파트너입니다.</span>
             </div>
             <div id="onair">
                 <div id="onair_who">
                     <table>
                         <tr>                            
-                            <td style="text-align:left;">ê±¸ì´ë¤ëë ì½ë©ê¸°ê³</td>
+                            <td style="text-align:left;">걸어다니는 코딩기계</td>
                             <td>2016.09.06</td>
-                            <td>ê¹**ë</td>
+                            <td>김**님</td>
                         </tr>
                         <tr>                            
-                            <td style="text-align:left;">ê±¸ì´ë¤ëë ì½ë©ê¸°ê³</td>
+                            <td style="text-align:left;">걸어다니는 코딩기계</td>
                             <td>2016.09.06</td>
-                            <td>ê¹**ë</td>
+                            <td>김**님</td>
                         </tr>
                         <tr>                            
-                            <td style="text-align:left;">ê±¸ì´ë¤ëë ì½ë©ê¸°ê³</td>
+                            <td style="text-align:left;">걸어다니는 코딩기계</td>
                             <td>2016.09.06</td>
-                            <td>ê¹**ë</td>
+                            <td>김**님</td>
                         </tr>
                         <tr>                            
-                            <td style="text-align:left;">ê±¸ì´ë¤ëë ì½ë©ê¸°ê³</td>
+                            <td style="text-align:left;">걸어다니는 코딩기계</td>
                             <td>2016.09.06</td>
-                            <td>ê¹**ë</td>
+                            <td>김**님</td>
                         </tr>
                         <tr>                            
-                            <td style="text-align:left;">ê±¸ì´ë¤ëë ì½ë©ê¸°ê³</td>
+                            <td style="text-align:left;">걸어다니는 코딩기계</td>
                             <td>2016.09.06</td>
-                            <td>ê¹**ë</td>
+                            <td>김**님</td>
                         </tr>
                     </table>
                 </div>
                 <div id="onair_count">
                     <div id="center_box">
-                        <span>00ëªì ë°ëªê°ëì</span><br>
-                        <span>00ê°ì§ ìì´ëì´ì</span><br>
-                        <span>í¨ê» íê³  ììµëë¤</span><br>
+                        <span>00명의 발명가님의</span><br>
+                        <span>00가지 아이디어와</span><br>
+                        <span>함께 하고 있습니다</span><br>
                     </div>
                 </div>
             </div>
@@ -208,15 +208,15 @@
             <div id="footer_wrap">
                 <div id="footer_left">
                     <ul>                        
-                       <li><a href="#">ì´ì©ìë´</a> &nbsp;| </li> 
-                       <li><a href="#">ì¤ìë ê¸¸</a> &nbsp;| </li> 
-                       <li><a href="#">ìë´ìì½</a> &nbsp;| </li> 
-                       <li><a href="#">ìí¬ìµ ìë´</a></li> 
+                       <li><a href="#">이용안내</a> &nbsp;| </li> 
+                       <li><a href="#">오시는 길</a> &nbsp;| </li> 
+                       <li><a href="#">상담예약</a> &nbsp;| </li> 
+                       <li><a href="#">워크샵 안내</a></li> 
                     </ul><br>
                     <ul id="small_ul">                        
-                       <li><a href="#">ì´ì©ì½ê´</a> &nbsp;| </li> 
-                       <li><a href="#">ê°ì¸ì ë³´ ë³´í¸ë°©ì¹¨</a> &nbsp;| </li> 
-                       <li><a href="#">ì´ë©ì¼ ìì§ê±°ë¶</a></li> 
+                       <li><a href="#">이용약관</a> &nbsp;| </li> 
+                       <li><a href="#">개인정보 보호방침</a> &nbsp;| </li> 
+                       <li><a href="#">이메일 수집거부</a></li> 
                     </ul><br>
                     <span>
                         COPYRIGHT 2016 @ IDEAPROTECTIONCENTER ALL RIGHTS RESERVED
@@ -227,8 +227,8 @@
                 </div>
                 <div id = "footer_right">
                     <span>
-                        ê²½ê¸°ì°½ì¡°ê²½ì íì ì¼í° 5ì¸µ<br>
-                        ê²½ê¸°ë ì±ë¨ì ë¶ë¹êµ¬ ëìíêµë¡ 635ë²ê¸¸ 12<br>
+                        경기창조경제혁신센터 5층<br>
+                        경기도 성남시 분당구 대왕판교로 635번길 12<br>
                         Tel : 010-3302-7000<br>
                         mail : ideaconcert@naver.com
                     </span>
@@ -239,8 +239,7 @@
 <script>
     var now=0;
         
-		//íì¬ì²«ë²ì§¸ ì´ë¯¸ì§ì ëë¨¸ì§ë¥¼ ì¨ê¹
-
+		//현재첫번째 이미지의 나머지를 숨김
 		$(".imgs").eq(now).siblings(".imgs").hide();
 		start();
 		$(".remote").eq(now).css("background-color","#ccc");
@@ -258,7 +257,7 @@
 			clearInterval(time)	
 		}
 		
-		//ë²í¼
+		//버튼
 		function btn(type){
 			if($(".imgs").is(":animated")){return}else{
 			end();
@@ -279,7 +278,7 @@
 			start();
 			}
 		}
-		//ë°ì ìíë²í¼
+		//밑에 상태버튼
 		function pro(divno){
             if($(".imgs").is(":animated")){return}else{
                 end();

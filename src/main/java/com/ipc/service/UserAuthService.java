@@ -25,7 +25,12 @@ public class UserAuthService implements UserDetailsService{
 	//Return Spring Security User for authentication
 	private User buildUserForAuth(userVo user, List<GrantedAuthority> auths)
 	{
-		return new User(user.getId(),user.getPwd(),true,true,true,true,auths);
+		System.out.println("loadUserByUsername : "+user.getId());
+		System.out.println("loadUserByUsername : "+user.getPw());
+		System.out.println("loadUserByUsername : "+auths.get(0));
+
+
+		return new User(user.getId(), user.getPw(), auths);
 	}
 	
 	//Get authorities name and return spring security authorities type
@@ -41,7 +46,8 @@ public class UserAuthService implements UserDetailsService{
 	public User loadUserByUsername(String userid) throws UsernameNotFoundException 
 	{
 		userVo userVo = userDao.getUserById(userid);
-		
+
+
 		if(userVo == null)
 		{
 			throw new UsernameNotFoundException(userid);
