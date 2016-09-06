@@ -76,7 +76,9 @@ function checkpwd(){
 	}
 }
 function changerole(inputvalue){
+	
 	document.getElementById("role").value=inputvalue;
+	alert(document.getElementById("role").value);
 }
 function execute(){
 	var pwd=document.getElementById("password");
@@ -112,14 +114,14 @@ function execute(){
 		이메일<input type="text" name="email1" id="email1">
 		<select name="emailMiddle" onChange=changeEmail(this.value);>
 			<option value="" selected>이메일선택</option>
-			<option value="naver.com">@ naver.com</option>
-			<option value="hanmail.com">@ hanmail.com</option>
-			<option value="daum.net">@ daum.net</option>
-			<option value="nate.com">@ nate.com</option>
-			<option value="gmail.com">@ gmail.com</option>
-			<option value="hotmail.com">@ hotmail.com</option>
-			<option value="dreamwiz.com">@ dreamwiz.com</option>
-			<option value="korea.com">@ korea.com</option>
+			<option value="@naver.com">@ naver.com</option>
+			<option value="@hanmail.com">@ hanmail.com</option>
+			<option value="@daum.net">@ daum.net</option>
+			<option value="@nate.com">@ nate.com</option>
+			<option value="@gmail.com">@ gmail.com</option>
+			<option value="@hotmail.com">@ hotmail.com</option>
+			<option value="@dreamwiz.com">@ dreamwiz.com</option>
+			<option value="@korea.com">@ korea.com</option>
 			<option value="1">직접입력</option>
 		</select>
 		<input type="text" name="email2" id="email2" style="visibility:hidden"><br/>

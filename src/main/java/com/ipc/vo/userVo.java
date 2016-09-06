@@ -78,5 +78,6 @@ public class userVo {
 	public void setRole(String role) {
 		this.role = role;
 	}
+	
 
 }

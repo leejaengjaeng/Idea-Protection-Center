@@ -9,7 +9,7 @@
         SELECT * FROM user where uid = #{uid}
     </select>
     <insert id="makeuser" parameterType="Hashmap">
-    	insert into user(id,pw,phone,email,role,name) values (#{id},#{pw},#{phone},#{email},#{role},#{name})
+    	insert into user(id,pw,phone,email,role,name,is_member) values (#{id},#{pw},#{phone},#{email},#{role},#{name},#{is_member})
     </insert>
     <insert id="makelawyer" parameterType="String">
     	insert into patientent_lawyer(uid,license_scan_img,license_number) values (#{uid},#{license_scan_img},#{license_number})
@@ -17,6 +17,8 @@
     <select id = "checkid" parameterType="String" resultType="Integer">
     	SELECT count(*) FROM user WHERE id=#{id} limit 1
     </select>
-    
+    <update id="permit" parameterType="String">
+    	update user set is_member="TRUE" WHERE uid=#{uid} 
+    </update>
 </mapper>
 
