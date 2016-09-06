@@ -28,9 +28,10 @@ repositories {
 
 dependencies {
 	//Spring
-	compile('org.springframework.boot:spring-boot-starter')
+	compile('org.springframework.boot:spring-boot-starter-web')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
-<<<<<<< HEAD
+	
+	//jsp
 	compile('org.apache.tomcat.embed:tomcat-embed-jasper')
 	compile('javax.servlet:jstl:1.2')
 	
@@ -47,11 +48,9 @@ dependencies {
 	compile 'org.webjars.bower:jquery:3.1.0'
 	
 	//security
-	compile 'org.springframework.security:spring-security-web:4.1.2.RELEASE'
-	compile 'org.springframework.security:spring-security-config:4.1.2.RELEASE'
-	compile 'org.springframework.security:spring-security-taglibs:4.0.4.RELEASE'
-=======
->>>>>>> 3dc931e19bfb4950852a36ade855f2439b635d90
+	//compile 'org.springframework.security:spring-security-web:4.1.2.RELEASE'
+	//compile 'org.springframework.security:spring-security-config:4.1.2.RELEASE'
+	//compile 'org.springframework.security:spring-security-taglibs:4.0.4.RELEASE'
 	
 	//logback
 	compile('ch.qos.logback:logback-classic:1.1.2')
@@ -59,21 +58,23 @@ dependencies {
 	compile('org.slf4j:slf4j-api:1.7.6')
 	compile 'org.codehaus.janino:janino:2.7.7'
 	
-<<<<<<< HEAD
 	//fileupload
-	 compile group: 'org.projectlombok', name: 'lombok', version: '1.16.8'
+	compile group: 'org.projectlombok', name: 'lombok', version: '1.16.8'
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.4'
     compile group: 'commons-io', name: 'commons-io', version: '2.5'
+    
     //mail
     compile "org.springframework:spring-context-support"
     compile "com.sun.mail:javax.mail"
     compile("org.springframework.boot:spring-boot-starter-mail")
-    // https://mvnrepository.com/artifact/org.apache.commons/commons-email
-	compile group: 'org.apache.commons', name: 'commons-email', version: '1.1'
- 	// https://mvnrepository.com/artifact/org.json/json
-	compile group: 'org.json', name: 'json', version: '20160810'
- 	// https://mvnrepository.com/artifact/com.sun.mail/smtp
-compile group: 'com.sun.mail', name: 'smtp', version: '1.5.6'
-=======
->>>>>>> 3dc931e19bfb4950852a36ade855f2439b635d90
+    compile group: 'org.apache.commons', name: 'commons-email', version: '1.1'
+ 	compile group: 'org.json', name: 'json', version: '20160810'
+ 	compile group: 'com.sun.mail', name: 'smtp', version: '1.5.6'
+}
+
+eclipse {
+	classpath {
+		 containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
+		 containers 'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8'
+	}
 }
