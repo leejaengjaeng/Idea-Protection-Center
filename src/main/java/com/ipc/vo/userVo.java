@@ -11,6 +11,13 @@ public class userVo {
 	String addr3;
 	String email;
 	String role;
+	String is_member;
+	public String getIs_member() {
+		return is_member;
+	}
+	public void setIs_member(String is_member) {
+		this.is_member = is_member;
+	}
 	public int getUid() {
 		return uid;
 	}

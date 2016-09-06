@@ -67,7 +67,9 @@ public class SignUpController {
 	@RequestMapping(value="/permit",method=RequestMethod.GET)
 	public String permit(@RequestParam("uid") String uid,@RequestParam("key") String key){
 		userVo uv=usermapper.getUserByUid(uid);
-		uv.
+		if(uv.getIs_member()==key){
+			uv.setIs_member("TRUE");
+		}
 		return "/";
 	}
 }

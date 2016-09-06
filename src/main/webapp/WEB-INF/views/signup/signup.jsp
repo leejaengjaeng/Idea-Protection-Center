@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="_csrf" content="${_csrf.token}" />
+<meta name="_csrf_header" content="${_csrf.headerName}" />
 <link rel="stylesheet"
 	href="/webjars/bootstrap/3.3.7/dist/css/bootstrap.min.css">
 <script src="/webjars/jquery/3.1.0/dist/jquery.min.js"></script>
@@ -24,20 +26,20 @@ function changeEmail(emailvalue){
 function checkid(){
 	
 	//var id = document.getElementById("id").value;
-	//var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
-	//var csrfToken = $("meta[name='_csrf']").attr("content"); 
-	//var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
+	var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+	var csrfToken = $("meta[name='_csrf']").attr("content"); 
+	var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
     var id = document.getElementById("id").value; 
     var data = {};
-	//var headers = {};
-    //data[csrfParameter] = csrfToken;
+	var headers = {};
+    data[csrfParameter] = csrfToken;
     data["id"] = id;
-    //headers[csrfHeader] = csrfToken; 
+    headers[csrfHeader] = csrfToken; 
 	$.ajax({
 	    url : "/signup/checkid",
 	    dataType : "json",
 	    type : "POST",
-	    //headers: headers,
+	    headers: headers,
 	    data : data,
 	    success: function(data) {
 	        alert("성공:"+data.KEY);
@@ -97,6 +99,8 @@ function execute(){
 </head>
 <body>
 	<form action="/signup/inputsignup" method="POST" name="signupform" onsubmit="return execute();">
+		<input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}" />
+		
 		회원구분<br/>
 		<button type="button" onclick="changerole('1');">발명자 회원</button><button type="button" onclick="changerole('2');">변리사</button><br/>
 		<input type="text" name="role" id="role" hidden>
