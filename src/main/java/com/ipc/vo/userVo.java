@@ -12,6 +12,7 @@ public class userVo {
 	String email;
 	String role;
 	String is_member;
+
 	public String getIs_member() {
 		return is_member;
 	}

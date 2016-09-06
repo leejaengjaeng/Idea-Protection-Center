@@ -15,12 +15,12 @@
         <div class="header_wrap">
             <ol>
                 <li>
-                    <button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#ccc;">
-                        회원가입
+                    <button onclick="location.href='signup/signupPage'" style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#ccc;">
+                     회원가입
                     </button>
                 </li>
                 <li>
-                    <button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;">
+                    <button onclick="location.href='login'" style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;">
                         로그인
                     </button>
                 </li>
@@ -240,7 +240,10 @@
     var now=0;
         
 		//현재첫번째 이미지의 나머지를 숨김
+<<<<<<< HEAD:src/main/webapp/WEB-INF/views/home/index.jsp
+=======
 
+>>>>>>> 410ee18e5e9485043c05a67fca66b4bb5c21617c:src/main/webapp/WEB-INF/views/index.jsp
 		$(".imgs").eq(now).siblings(".imgs").hide();
 		start();
 		$(".remote").eq(now).css("background-color","#ccc");
