@@ -10,10 +10,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class MainController {
 	
 	@RequestMapping("/")
-	@ResponseBody
-	public String hi()
+	public String hello()
 	{
-		return "Hello it will be main Page";
+		return "index";
 	}
 	
 	@RequestMapping("/authError")
