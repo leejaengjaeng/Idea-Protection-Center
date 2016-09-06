@@ -15,4 +15,18 @@ public class MainController {
 	{
 		return "Hello it will be main Page";
 	}
+	
+	@RequestMapping("/authError")
+	@ResponseBody
+	public String no()
+	{
+		return "You can not see this";
+	}
+	
+	@RequestMapping("/admin")
+	@ResponseBody
+	public String admin()
+	{
+		return "test Admin";
+	}
 }

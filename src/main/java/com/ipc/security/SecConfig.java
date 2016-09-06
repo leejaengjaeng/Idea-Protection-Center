@@ -1,6 +1,5 @@
 package com.ipc.security;
 
-import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -13,14 +12,14 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 @EnableWebSecurity
 public class SecConfig extends WebSecurityConfigurerAdapter {
 	
-//	@Autowired
-//	@Qualifier("UserAuthService")
-//	private UserDetailsService UserAuthService;
+	@Autowired
+	@Qualifier("UserAuthService")
+	private UserDetailsService UserAuthService;
 	
 	
 	@Override
     public void configure(WebSecurity web) throws Exception {
-       //statoc files
+		//static files
 		web
             .ignoring()
             .antMatchers("/resources/**","/webjars/**");
@@ -31,8 +30,8 @@ public class SecConfig extends WebSecurityConfigurerAdapter {
 	{
 		http
 			.authorizeRequests()
-			.antMatchers("/","/**").permitAll()
 			.antMatchers("/admin","/adminMenu/**").hasRole("ADMIN")
+			.antMatchers("/","/**").permitAll()
 			.and()
 			.formLogin()
 				.loginPage("/login").permitAll() 
@@ -48,22 +47,9 @@ public class SecConfig extends WebSecurityConfigurerAdapter {
 				.accessDeniedPage("/authError");
 	}
 	
-	
-	
-	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception
 	{
-		//UserAuthService瑜� �궗�슜�빐�꽌 �씤利앺븯�뒗�벏
-		//auth.userDetailsService(UserAuthService);	
-		
-		/*.jdbcAuthentication()
-				.dataSource(dataSource)
-				.usersByUsernameQuery(
-						"select id,password from user where id=?"
-				)
-				.authoritiesByUsernameQuery(
-						"select id,role from user where id=?"
-				);
-		*/		
+		//authenticate with custom Service
+		auth.userDetailsService(UserAuthService);	
 	}
 }
