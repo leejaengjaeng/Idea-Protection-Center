@@ -227,9 +227,9 @@
 }
 #header_benner {
   width: 100%;
-  border: 2px solid #ccc;
   float: left;
-  height: 250px;
+  height: 350px;
+  overflow: hidden;
 }
 #wrap_form {
   width: 1000px;

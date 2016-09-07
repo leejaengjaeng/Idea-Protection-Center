@@ -34,5 +34,7 @@
             </ul>
         </div>
     </div>
-    <div id="header_benner"></div>
+    <div id="header_benner">
+    	<img src ="/resources/image/patent_apply_banner.jpg" alt="heelo">
+    </div>
 </header>
