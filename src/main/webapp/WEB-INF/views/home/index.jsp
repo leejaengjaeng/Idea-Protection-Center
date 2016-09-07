@@ -7,9 +7,14 @@
 <head>
     <meta charset="UTF-8">
     <title>IdeaProtect</title>
-    <link href="/resources/common/css/index.css" rel="stylesheet">
-    <link href="/resources/common/css/style.css" rel="stylesheet">
     <script src="/webjars/jquery/3.1.0/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="/resources/common/css/index.css">
+    <link rel="stylesheet" href="/resources/common/css/style.css">
+    <style>
+    	#header_benner{
+    		display: none;
+    	}
+    </style>
 </head>
 <body>
     <c:import url="/WEB-INF/views/import/header.jsp"/>
@@ -44,7 +49,7 @@
                    <div class="block_inside">
                        <img src="#" alt="img1">
                        <h1><b>특허</b> 출원</h1>      
-                       <span>198,000원 우선 출원</span>                          
+                       <span>198,000원 출원</span>                          
                    </div>
                    <button class="btn_go">출원하러 가기 &gt;</button>           
                 </div>
@@ -52,7 +57,7 @@
                     <div class="block_inside">
                         <img src="#" alt="img2">
                         <h1><b style="color:#72d1f3;">디자인권</b> 출원</h1>      
-                        <span>100,000원 우선 출원</span>                          
+                        <span>100,000원 출원</span>                          
                     </div>
                     <button class="btn_go">출원하러 가기 &gt;</button>   
                 </div>  
@@ -60,7 +65,7 @@
                    <div class="block_inside">
                        <img src="#" alt="img3">
                        <h1><b style="color:#0066cc;">상표</b> 출원</h1>      
-                       <span>150,000원 우선 출원</span>                          
+                       <span>150,000원 출원</span>                          
                    </div>
                    <button class="btn_go">출원하러 가기 &gt;</button>           
                 </div>

@@ -4,6 +4,7 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <header>
+<<<<<<< HEAD
 	<div class="header_wrap">
 		<ol>
 			<!-- 로그인 하지 않은 유저 -->
