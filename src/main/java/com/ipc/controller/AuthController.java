@@ -56,7 +56,6 @@ public class AuthController {
 			// currnetUser = null
 
 			session.setAttribute("currentUser", currentUser);
-
 			return "redirect:/";		
 		}
 		catch(Exception e)
