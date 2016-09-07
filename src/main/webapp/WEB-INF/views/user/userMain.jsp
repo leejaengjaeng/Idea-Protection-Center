@@ -19,7 +19,7 @@
         <nav>
             <div id="profile">
                 <img src="#" alt="profile">
-                <h4>OOO 회원님</h4>
+                <h4>${currentUser.getName() }</h4>
                 <span>ideaconcert</span>
             </div>
             <div id="profile_menu">
@@ -146,106 +146,17 @@
                         <th>출원일</th>
                         <th>비고</th>
                     </tr>
-                    <tr>
-                        <td style="background:#f1f1f1;">10</td>
-                        <td>16.09.07</td>
-                        <td>저작권</td>
-                        <td>발명가의 권리를 위한 아이디어 보호센터의...</td>
-                        <td>변리사 검토</td>
-                        <td>16.05.30</td>
-                        <td>D-100</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td style="background:#f1f1f1;">09</td>
-                        <td>16.09.07</td>
-                        <td>저작권</td>
-                        <td>발명가의 권리를 위한 아이디어 보호센터의...</td>
-                        <td>변리사 검토</td>
-                        <td>16.05.30</td>
-                        <td>D-100</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td style="background:#f1f1f1;">08</td>
-                        <td>16.09.07</td>
-                        <td>저작권</td>
-                        <td>발명가의 권리를 위한 아이디어 보호센터의...</td>
-                        <td>변리사 검토</td>
-                        <td>16.05.30</td>
-                        <td>D-100</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td style="background:#f1f1f1;">07</td>
-                        <td>16.09.07</td>
-                        <td>저작권</td>
-                        <td>발명가의 권리를 위한 아이디어 보호센터의...</td>
-                        <td>변리사 검토</td>
-                        <td>16.05.30</td>
-                        <td>D-100</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td style="background:#f1f1f1;">06</td>
-                        <td>16.09.07</td>
-                        <td>저작권</td>
-                        <td>발명가의 권리를 위한 아이디어 보호센터의...</td>
-                        <td>변리사 검토</td>
-                        <td>16.05.30</td>
-                        <td>D-100</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td style="background:#f1f1f1;">05</td>
-                        <td>16.09.07</td>
-                        <td>저작권</td>
-                        <td>발명가의 권리를 위한 아이디어 보호센터의...</td>
-                        <td>변리사 검토</td>
-                        <td>16.05.30</td>
-                        <td>D-100</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td style="background:#f1f1f1;">04</td>
-                        <td>16.09.07</td>
-                        <td>저작권</td>
-                        <td>발명가의 권리를 위한 아이디어 보호센터의...</td>
-                        <td>변리사 검토</td>
-                        <td>16.05.30</td>
-                        <td>D-100</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td style="background:#f1f1f1;">03</td>
-                        <td>16.09.07</td>
-                        <td>저작권</td>
-                        <td>발명가의 권리를 위한 아이디어 보호센터의...</td>
-                        <td>변리사 검토</td>
-                        <td>16.05.30</td>
-                        <td>D-100</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td style="background:#f1f1f1;">02</td>
-                        <td>16.09.07</td>
-                        <td>저작권</td>
-                        <td>발명가의 권리를 위한 아이디어 보호센터의...</td>
-                        <td>변리사 검토</td>
-                        <td>16.05.30</td>
-                        <td>D-100</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td style="background:#f1f1f1;">01</td>
-                        <td>16.09.07</td>
-                        <td>저작권</td>
-                        <td>발명가의 권리를 위한 아이디어 보호센터의...</td>
-                        <td>변리사 검토</td>
-                        <td>16.05.30</td>
-                        <td>D-100</td>
-                        <td>-</td>
-                    </tr>
+                   	<c:forEach var="process" items="${processList }">
+						<tr>
+							<td style="background:#f1f1f1;">0</td>
+	                        <td>${process.getRegistration_date() }</td>
+	                        <td>${process.getTypeOfInvent() }</td>
+	                        <td>${process.getTitle()}</td>
+	                        <td>${process.getR_condition() }</td>
+	                        <td>${process.getPre_apply_date() }</td>
+	                        <td>${process.getApply_date() }</td>
+						</tr>
+					</c:forEach>
                 </table>
                 <div id="paging_btn">
                     <span>

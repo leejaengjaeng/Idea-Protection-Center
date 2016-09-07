@@ -38,6 +38,7 @@ public class AuthController {
 	private static final String roleAdmin = "ROLE_ADMIN";
 	private static final String roleInventor = "ROLE_INVENTOR";
 	private static final String rolePatientntLawyer = "ROLE_PATIENTENTLAWYER";
+	private static final String roleGuest = "anonymousUser";
 	
 	
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
@@ -60,27 +61,15 @@ public class AuthController {
 	{
 		try{
 			String userId = SecurityContextHolder.getContext().getAuthentication().getName();		
-			System.out.println("userId : "+userId);
-			
 			userVo currentUser = userDao.getUserById(userId);
-			System.out.println("uid : "+currentUser.getUid());
-			
-			List<RegistrationPatentVo> processList = regDao.getProcessList(currentUser.getUid());
-			System.out.println("role: "+currentUser.getRole() );
-				
 			// 인증 정보가 없으면 userId = anonymousUser
 			// currnetUser = null
-			
-			session.setAttribute("currentUser", currentUser);
-			model.addAttribute("processList",processList);
-		
-			System.out.println(currentUser.getRole().equals(rolePatientntLawyer)+","+currentUser.getRole().equals(roleInventor));
-			if(currentUser.getRole().equals(roleInventor) || currentUser.getRole().equals(rolePatientntLawyer))
-				return "tmpMain";
+			if(currentUser == null)
+				return "redirect:/login";		
 			else
 			{
-				System.out.println(currentUser.getId()+": role-> "+currentUser.getRole());
-				return "redirect:/";		
+				session.setAttribute("currentUser", currentUser);
+				return "redirect:/mainPage";
 			}
 		}
 		catch(Exception e)
