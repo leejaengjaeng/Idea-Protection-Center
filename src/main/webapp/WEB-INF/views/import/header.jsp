@@ -9,12 +9,12 @@
 			<!-- 로그인 하지 않은 유저 -->
 			<sec:authorize access="isAnonymous()">
 				<li>
-					<button onclick="location.href='signup/signupPage'"
+					<button onclick="location.href='/signup/signupPage'"
 						style="box-shadow: inset 0 -4px rgba(0, 0, 0, .1); background: #ccc;">
 						회원가입</button>
 				</li>
 				<li>
-					<button onclick="location.href='login'"
+					<button onclick="location.href='/login'"
 						style="box-shadow: inset 0 -4px rgba(0, 0, 0, .1); background: #45d4fe;">
 						로그인</button>
 				</li>

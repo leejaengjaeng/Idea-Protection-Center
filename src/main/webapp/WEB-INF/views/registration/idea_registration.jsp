@@ -24,7 +24,7 @@
                 <h1><b>특허</b>등록</h1>                
             </article>                
             <article>
-            <form action="/registration/inputidea" method="POST">
+            <form action="/registration/inputidea" method="POST" enctype="multipart/form-data">
                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                             	<input type="text" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}" hidden> 
                 
@@ -69,16 +69,21 @@
                     <button type="button">작성예시 보기</button>
                     <textarea id="core_element" name="core_element"></textarea>
                 </div>
-                <div class="txt_box">
+                <div id="upimgdiv" class="txt_box">
                     <h2 style="width:100%">도면첨부</h2>
-                    <div class="demo" id="fir"></div>
-                    <div class="demo"></div>
-                    <div class="demo"></div>
-                    <div class="demo"></div>
+                    <input type="file" id="upimg" name="imgs" onclick="addfile()" accept="image/gif, image/jpeg, image/png">
+                    
                 </div>
+                <script>
+                function addfile(){
+                	$('#upimgdiv').append("<input type='file' name='imgs' onchange='addfile()' accept='image/gif, image/jpeg, image/png'>");
+                	//var targetdiv=document.getElementById("uploaddiv");
+                	//targetdiv.innerHTML+="<input type='file' name='imgs' onclick='addfile()' accept='image/gif, image/jpeg, image/png'>";
+                }
+                </script>
                 <div id="fin"> 
                     <button type="button">임시저장</button>
-                    <input type="submit">등록하기</button>
+                    <button type="submit">등록하기</button>
                 </div>
             </form>
             </article>

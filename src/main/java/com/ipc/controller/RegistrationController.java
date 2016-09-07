@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,8 +15,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ipc.dao.RegistrationDao;
+import com.ipc.dao.UserDao;
 import com.ipc.service.RegistrationService;
 import com.ipc.vo.RegistrationPatentVo;
 import com.ipc.vo.userVo;
@@ -27,14 +32,21 @@ public class RegistrationController {
 	HttpSession session;
 	@Autowired
 	RegistrationDao regismapper;
+	@Autowired
+	UserDao usermapper;
 	
 	@RequestMapping("/addidea")
 	public String addidea(){
 		return "registration/idea_registration";
 	}
-	
+	@RequestMapping("/inventor_main")
+	public String inventor_main(){
+		return "inventor/inventor_main";
+	}
 	@RequestMapping(value="/inputidea",method=RequestMethod.POST)
 	public String inputidea(HttpServletRequest request){
+		MultipartHttpServletRequest multipartRequest =  (MultipartHttpServletRequest)request;  //다중파일 업로드
+		List<MultipartFile> files = multipartRequest.getFiles("imgs");
 		String uid=request.getParameter("uid");
 		String typeOfInvent=request.getParameter("typeOfInvent");
 		String title=request.getParameter("title");
@@ -44,7 +56,7 @@ public class RegistrationController {
 		String effect=request.getParameter("effect");
 		String core_element=request.getParameter("core_element");
 		HashMap<String,String> map=new HashMap();
-		map.put("uid", uid);
+		map.put("uid", "1111");
 		map.put("typeOfInvent", typeOfInvent);
 		map.put("title", title);
 		map.put("summary", summary);
@@ -53,8 +65,12 @@ public class RegistrationController {
 		map.put("effect", effect);
 		map.put("core_element", core_element);
 		RegistrationService rs=new RegistrationService();
-		map.put("registrtaion_date",rs.getToday() );
+		map.put("registrtaion_date",rs.getToday(0) );
 		regismapper.makeidea(map);
+		//userVo uv=usermapper.getUserByUid(uid);
+		for(int i=0;i<files.size();i++){
+			rs.makeimageFile(files.get(0), "111"+rs.getToday(1)+i,"inventor\\" );
+		}
 		return "home/index";
 	}
 }
