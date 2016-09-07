@@ -76,9 +76,14 @@ function checkpwd(){
 	}
 }
 function changerole(inputvalue){
-	
 	document.getElementById("role").value=inputvalue;
-	alert(document.getElementById("role").value);
+	//alert(document.getElementById("role").value);
+	if(inputvalue=="1"){
+		document.getElementById("license_number").style.display="none";
+	}
+	else{
+		document.getElementById("license_number").style.display="block";
+	}
 }
 function execute(){
 	var pwd=document.getElementById("password");
@@ -95,6 +100,10 @@ function execute(){
 		alert("아이디 중복확인을 해주세요");
 		return false;
 	}
+	if(id.value==""){
+		alert("아이디를 입력하세요");
+		return false;
+	}
 	return true;
 }
 </script>
@@ -105,7 +114,8 @@ function execute(){
 		
 		회원구분<br/>
 		<button type="button" onclick="changerole('1');">발명자 회원</button><button type="button" onclick="changerole('2');">변리사</button><br/>
-		<input type="text" name="role" id="role" hidden>
+		<input type="text" name="license_number" id="license_number" style="display:none"><br/>
+		<input type="text" name="role" id="role" hidden><br/>
 		아이디<input type="text" name="id" id="id"><button type="button" onclick="checkid()">중복확인</button><br/>
 		비밀번호<input type="password" name="pw" id="pw"><br/>
 		비밀번호 확인 <input type="password" id="repw" onKeyUp=checkpwd()><br/>

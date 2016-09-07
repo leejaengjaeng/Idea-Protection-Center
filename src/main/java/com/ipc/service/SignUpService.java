@@ -19,7 +19,7 @@ public class SignUpService {
 	    sendemail.setSSL(true);   //모르겠음
 		sendemail.setTLS(true);
 		sendemail.setDebug(true);
-		String htmlmsg="<html>클릭하세요 -<a href='http://localhost:8088/signup/permit?uid="+uid+"&key="+key+"'><button>승인</button></a> </html>";
+		String htmlmsg="<html>인증을 실행하시려면 클릭하세요 -<a href='http://localhost:8088/signup/permit?uid="+uid+"&key="+key+"'><button>승인</button></a> </html>";
 		System.out.println(htmlmsg);
 		sendemail.setHtmlMsg(htmlmsg);
 		sendemail.send();
