@@ -25,26 +25,39 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 
-CREATE TABLE `idea_pc`.`process` (
-  `pid` INT NOT NULL AUTO_INCREMENT,
-  `start_date` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
-  `answer_date` DATETIME NULL,
-  `p_name` VARCHAR(45) NULL,
-  `answer_name` VARCHAR(45) NULL,
-  `category1` VARCHAR(45) NULL,
-  `answer_category1` VARCHAR(45) NULL,
-  `category2` VARCHAR(45) NULL,
-  `answer_category2` VARCHAR(45) NULL,
-  `meaning` VARCHAR(45) NULL,
-  `answer_meaning` VARCHAR(45) NULL,
-  `start_pid` VARCHAR(45) NULL,
-  PRIMARY KEY (`pid`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+CREATE TABLE `registration_patent` (
+  `rid` int(11) NOT NULL AUTO_INCREMENT,
+  `typeofinvent` varchar(45) DEFAULT NULL,
+  `title` varchar(45) DEFAULT NULL,
+  `summary` text,
+  `whyinvent` text,
+  `problem` text,
+  `solution` text,
+  `effect` text,
+  `core_element` text,
+  `uid` int(11) DEFAULT NULL,
+  `iscomplete` tinyint(4) DEFAULT '0',
+  `start_rid` int(11) DEFAULT NULL,
+  `re_typeofinvent` varchar(45) DEFAULT NULL,
+  `re_title` varchar(45) DEFAULT NULL,
+  `re_summary` text,
+  `re_whyinvent` text,
+  `re_problem` text,
+  `re_solution` text,
+  `re_effect` text,
+  `re_core_element` text,
+  `lid` int(11) DEFAULT NULL,
+  `condition` varchar(45) DEFAULT NULL,
+  `pre_apply_date` datetime DEFAULT NULL,
+  `apply_date` datetime DEFAULT NULL,
+  `registration_date` datetime DEFAULT NULL,
+  PRIMARY KEY (`rid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-CREATE TABLE `idea_pc`.`process_files` (
-  `pfid` INT NOT NULL AUTO_INCREMENT,
-  `start_pid` INT NULL,
-  `file_path` VARCHAR(100) NULL,
-  PRIMARY KEY (`pfid`));
+CREATE TABLE `registration_files` (
+  `rfid` int(11) NOT NULL AUTO_INCREMENT,
+  `start_rid` int(11) DEFAULT NULL,
+  `file_path` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`rfid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
