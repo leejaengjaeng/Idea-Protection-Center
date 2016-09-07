@@ -22,7 +22,8 @@
                 <h1><b>특허</b>등록</h1>                
             </article>                
             <article>
-            <form>
+            <form action="/registration/inputidea" type="POST">
+            <input type="text" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}"> 
                 <div class="txt_box">
                     <h2>발명분야</h2>
                     <button type="button">작성예시 보기</button>
