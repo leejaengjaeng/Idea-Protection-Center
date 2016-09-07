@@ -1,8 +1,11 @@
 package com.ipc.controller;
 
 
+import com.ipc.dao.RegistrationDao;
 import com.ipc.dao.UserDao;
 import com.ipc.vo.userVo;
+import com.ipc.vo.RegistrationPatentVo;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,6 +29,9 @@ public class AuthController {
 	
 	@Autowired
 	UserDao userDao;
+	@Autowired
+	RegistrationDao regDao;
+	
 	@Autowired
 	HttpSession session;
 	private static final String roleAdmin = "ROLE_ADMIN";
@@ -57,9 +63,11 @@ public class AuthController {
 			System.out.println("loginProcess : "+userId +","+currentUser);
 			// 인증 정보가 없으면 userId = anonymousUser
 			// currnetUser = null
-
+//			RegistrationPatentVo processList = regDao.;
+			
 			session.setAttribute("currentUser", currentUser);
-		//	model.addAttribute(attributeName, attributeValue);
+			
+			//model.addAttribute(attributeName, attributeValue);
 			
 			if(currentUser.getRole()==roleInventor || currentUser.getRole()==rolePatientntLawyer)
 				return "tmpMain";
