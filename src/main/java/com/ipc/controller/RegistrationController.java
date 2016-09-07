@@ -1,11 +1,17 @@
 package com.ipc.controller;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/registration")
 public class RegistrationController {
+	@Autowired
+	HttpSession session;
+	
 	@RequestMapping("/addidea")
 	public String addidea(){
 		return "registration/idea_registration";
@@ -13,11 +19,6 @@ public class RegistrationController {
 	
 	@RequestMapping("/inputidea")
 	public String inputidea(){
-		String a="aa";
-		StringBuffer b=new StringBuffer();
-		b.append("aa");
-		a=a+b;
-		System.out.println(a);
 		
 		return "/";
 	}
