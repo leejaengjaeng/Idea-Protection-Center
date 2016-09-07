@@ -315,3 +315,46 @@
 .on:focus {
   outline: none;
 }
+#log_form {
+  width: 100%;
+  float: left;
+}
+#log_form #log_form_wrap {
+  width: 1000px;
+  text-align: center;
+}
+#log_form #log_form_wrap h1 {
+  margin-top: 100px;
+  margin-bottom: 40px;
+  color: #585858;
+}
+#log_form #log_form_wrap table {
+  width: 50%;
+  margin-bottom: 100px;
+}
+#log_form #log_form_wrap table tr {
+  height: 60px;
+}
+#log_form #log_form_wrap table tr td {
+  font-size: 1.5rem;
+}
+#log_form #log_form_wrap table tr td input {
+  width: 100%;
+  height: 40px;
+  padding-left: 5px;
+  background: #f8f8f8;
+  border: 1px solid #ccc;
+}
+#log_form #log_form_wrap table tr td button {
+  width: 240px;
+  height: 40px;
+  background: none;
+  border: none;
+  color: white;
+}
+#log_form #log_form_wrap table tr td .join_btn {
+  width: 100%;
+  background: none;
+  border: 1px solid #57b6e2;
+  color: #57b6e2
+}
