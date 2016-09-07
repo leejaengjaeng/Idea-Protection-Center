@@ -230,6 +230,11 @@
   float: left;
   height: 350px;
   overflow: hidden;
+  border-bottom: 3px solid #1c4098;
+}
+#header_benner img {
+  height: 100%;
+  float: left;
 }
 #wrap_form {
   width: 1000px;

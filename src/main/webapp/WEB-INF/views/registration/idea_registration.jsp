@@ -17,6 +17,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<c:import url="/WEB-INF/views/import/header.jsp"/>
     <div class="wrap_comment">
         <section>            
             <article class="sub_head">                    
@@ -83,5 +84,6 @@
             </article>
         </section>
     </div>
+<c:import url="/WEB-INF/views/import/footer.jsp"/>
 </body>
 </html>

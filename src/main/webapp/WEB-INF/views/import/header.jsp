@@ -34,13 +34,16 @@
 			</sec:authorize>
 		</ol>
 		<div class="header_menu">
-			<img src="#" alt="Logo">
+			<img src="/resources/image/ideapc_logo.jpg" alt="Logo">
 			<ul>
 				<li>아이디어 권리확보 시스템</li>
 				<li>이용안내</li>
 				<li>1:1질문하기</li>
 				<li>자주하는 질문모음</li>
 			</ul>
-		</div>
+		</div>		
+	</div>
+	<div id="header_benner">
+		<img src="/resources/image/patent_apply_banner.jpg" alt="banner">
 	</div>
 </header>
