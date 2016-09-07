@@ -21,7 +21,7 @@
 			</sec:authorize>
 			<sec:authorize access="isAuthenticated()">
 				<li>
-					<button onclick="location.href='#'"
+					<button onclick="location.href='/mainPage'"
 						style="box-shadow: inset 0 -4px rgba(0, 0, 0, .1); background: #ccc;">
 						<c:out value="${sessionScope.currentUser.getName() }" />
 					</button>
