@@ -28,6 +28,10 @@ public class AuthController {
 	UserDao userDao;
 	@Autowired
 	HttpSession session;
+	private static final String roleAdmin = "ROLE_ADMIN";
+	private static final String roleInventor = "ROLE_INVENTOR";
+	private static final String rolePatientntLawyer = "ROLE_PATIENTENTLAWYER";
+	
 	
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	
@@ -51,12 +55,19 @@ public class AuthController {
 			String userId = SecurityContextHolder.getContext().getAuthentication().getName();		
 			userVo currentUser = userDao.getUserById(userId);
 			System.out.println("loginProcess : "+userId +","+currentUser);
-
 			// 인증 정보가 없으면 userId = anonymousUser
 			// currnetUser = null
 
 			session.setAttribute("currentUser", currentUser);
-			return "redirect:/";		
+		//	model.addAttribute(attributeName, attributeValue);
+			
+			if(currentUser.getRole()==roleInventor || currentUser.getRole()==rolePatientntLawyer)
+				return "tmpMain";
+			else
+			{
+				System.out.println(currentUser.getId()+": role-> "+currentUser.getRole());
+				return "redirect:/";		
+			}
 		}
 		catch(Exception e)
 		{

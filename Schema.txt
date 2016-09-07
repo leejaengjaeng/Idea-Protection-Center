@@ -58,6 +58,8 @@ CREATE TABLE `registration_patent` (
 CREATE TABLE `registration_files` (
   `rfid` int(11) NOT NULL AUTO_INCREMENT,
   `start_rid` int(11) DEFAULT NULL,
+  `rid` int(11) DEFAULT NULL,
   `file_path` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`rfid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
