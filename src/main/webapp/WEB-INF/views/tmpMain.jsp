@@ -11,7 +11,17 @@
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 </head>
 <body>
-	<c:import url="/WEB-INF/views/forms/loginForm.jsp"/>
+	<script>
+		console.log(${processList});
+	</script>
+	<h1>${currentUser.getId() }</h1>
+	<c:forEach var="process" items="${processList }">
+		${process.getTitle()}
+		${process.getRegistration_date() }
+		${process.getR_condition() }
+		${process.getStart_rid() }
+		${process.getTypeOfInvent() }		
+	</c:forEach>
 
 </body>
 </html>

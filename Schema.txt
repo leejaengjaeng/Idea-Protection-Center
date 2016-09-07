@@ -47,10 +47,10 @@ CREATE TABLE `registration_patent` (
   `re_effect` text,
   `re_core_element` text,
   `lid` int(11) DEFAULT NULL,
-  `condition` varchar(45) DEFAULT NULL,
+  `r_condition` varchar(45) DEFAULT NULL,
   `pre_apply_date` datetime DEFAULT NULL,
   `apply_date` datetime DEFAULT NULL,
-  `registration_date` datetime DEFAULT NULL,
+  `registration_date` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`rid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

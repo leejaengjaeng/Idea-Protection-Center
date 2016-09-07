@@ -4,7 +4,6 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <header>
-<<<<<<< HEAD
 	<div class="header_wrap">
 		<ol>
 			<!-- 로그인 하지 않은 유저 -->
@@ -24,7 +23,7 @@
 				<li>
 					<button onclick="location.href='#'"
 						style="box-shadow: inset 0 -4px rgba(0, 0, 0, .1); background: #ccc;">
-						<c:out value="${sessionScope.currentUser.getId() }" />
+						<c:out value="${sessionScope.currentUser.getName() }" />
 					</button>
 				</li>
 				<li>

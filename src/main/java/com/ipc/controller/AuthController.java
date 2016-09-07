@@ -6,6 +6,7 @@ import com.ipc.dao.UserDao;
 import com.ipc.vo.userVo;
 import com.ipc.vo.RegistrationPatentVo;
 
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -59,17 +60,22 @@ public class AuthController {
 	{
 		try{
 			String userId = SecurityContextHolder.getContext().getAuthentication().getName();		
+			System.out.println("userId : "+userId);
+			
 			userVo currentUser = userDao.getUserById(userId);
-			System.out.println("loginProcess : "+userId +","+currentUser);
+			System.out.println("uid : "+currentUser.getUid());
+			
+			List<RegistrationPatentVo> processList = regDao.getProcessList(currentUser.getUid());
+			System.out.println("role: "+currentUser.getRole() );
+				
 			// 인증 정보가 없으면 userId = anonymousUser
 			// currnetUser = null
-//			RegistrationPatentVo processList = regDao.;
 			
 			session.setAttribute("currentUser", currentUser);
-			
-			//model.addAttribute(attributeName, attributeValue);
-			
-			if(currentUser.getRole()==roleInventor || currentUser.getRole()==rolePatientntLawyer)
+			model.addAttribute("processList",processList);
+		
+			System.out.println(currentUser.getRole().equals(rolePatientntLawyer)+","+currentUser.getRole().equals(roleInventor));
+			if(currentUser.getRole().equals(roleInventor) || currentUser.getRole().equals(rolePatientntLawyer))
 				return "tmpMain";
 			else
 			{
