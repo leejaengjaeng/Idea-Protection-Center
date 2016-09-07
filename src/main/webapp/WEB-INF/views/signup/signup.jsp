@@ -11,7 +11,12 @@
 	href="/webjars/bootstrap/3.3.7/dist/css/bootstrap.min.css">
 <script src="/webjars/jquery/3.1.0/dist/jquery.min.js"></script>
 <script src="/webjars/bootstrap/3.3.7/dist/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/resources/common/css/index.css">
+<link rel="stylesheet" href="/resources/common/css/style.css">
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <title>Insert title here</title>
+
+
 <script>
 function changeEmail(emailvalue){
 	if(emailvalue=="1"){
@@ -77,6 +82,13 @@ function checkpwd(){
 }
 function changerole(inputvalue){
 	document.getElementById("role").value=inputvalue;
+	//alert(document.getElementById("role").value);
+	if(inputvalue=="1"){
+		document.getElementById("license_number").style.display="none";
+	}
+	else{
+		document.getElementById("license_number").style.display="block";
+	}
 }
 function execute(){
 	var pwd=document.getElementById("password");
@@ -93,17 +105,23 @@ function execute(){
 		alert("아이디 중복확인을 해주세요");
 		return false;
 	}
+	if(id.value==""){
+		alert("아이디를 입력하세요");
+		return false;
+	}
 	return true;
 }
 </script>
 </head>
 <body>
+	<c:import url="/WEB-INF/views/import/header.jsp"/>
 	<form action="/signup/inputsignup" method="POST" name="signupform" onsubmit="return execute();">
 		<input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}" />
 		
 		회원구분<br/>
 		<button type="button" onclick="changerole('1');">발명자 회원</button><button type="button" onclick="changerole('2');">변리사</button><br/>
-		<input type="text" name="role" id="role" hidden>
+		<input type="text" name="license_number" id="license_number" style="display:none"><br/>
+		<input type="text" name="role" id="role" hidden><br/>
 		아이디<input type="text" name="id" id="id"><button type="button" onclick="checkid()">중복확인</button><br/>
 		비밀번호<input type="password" name="pw" id="pw"><br/>
 		비밀번호 확인 <input type="password" id="repw" onKeyUp=checkpwd()><br/>
@@ -112,18 +130,19 @@ function execute(){
 		이메일<input type="text" name="email1" id="email1">
 		<select name="emailMiddle" onChange=changeEmail(this.value);>
 			<option value="" selected>이메일선택</option>
-			<option value="naver.com">@ naver.com</option>
-			<option value="hanmail.com">@ hanmail.com</option>
-			<option value="daum.net">@ daum.net</option>
-			<option value="nate.com">@ nate.com</option>
-			<option value="gmail.com">@ gmail.com</option>
-			<option value="hotmail.com">@ hotmail.com</option>
-			<option value="dreamwiz.com">@ dreamwiz.com</option>
-			<option value="korea.com">@ korea.com</option>
+			<option value="@naver.com">@ naver.com</option>
+			<option value="@hanmail.com">@ hanmail.com</option>
+			<option value="@daum.net">@ daum.net</option>
+			<option value="@nate.com">@ nate.com</option>
+			<option value="@gmail.com">@ gmail.com</option>
+			<option value="@hotmail.com">@ hotmail.com</option>
+			<option value="@dreamwiz.com">@ dreamwiz.com</option>
+			<option value="@korea.com">@ korea.com</option>
 			<option value="1">직접입력</option>
 		</select>
 		<input type="text" name="email2" id="email2" style="visibility:hidden"><br/>
 		<input type="submit" value="가입">
 	</form>
+	<c:import url="/WEB-INF/views/import/footer.jsp"/>
 </body>
 </html>
