@@ -111,38 +111,75 @@ function execute(){
 	}
 	return true;
 }
+
 </script>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/import/header.jsp"/>
-	<form action="/signup/inputsignup" method="POST" name="signupform" onsubmit="return execute();">
-		<input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}" />
-		
-		회원구분<br/>
-		<button type="button" onclick="changerole('1');">발명자 회원</button><button type="button" onclick="changerole('2');">변리사</button><br/>
-		<input type="text" name="license_number" id="license_number" style="display:none"><br/>
-		<input type="text" name="role" id="role" hidden><br/>
-		아이디<input type="text" name="id" id="id"><button type="button" onclick="checkid()">중복확인</button><br/>
-		비밀번호<input type="password" name="pw" id="pw"><br/>
-		비밀번호 확인 <input type="password" id="repw" onKeyUp=checkpwd()><br/>
-		<div id="checkpassword" ></div>
-		이름<input name="name" id="name"><br/>
-		이메일<input type="text" name="email1" id="email1">
-		<select name="emailMiddle" onChange=changeEmail(this.value);>
-			<option value="" selected>이메일선택</option>
-			<option value="@naver.com">@ naver.com</option>
-			<option value="@hanmail.com">@ hanmail.com</option>
-			<option value="@daum.net">@ daum.net</option>
-			<option value="@nate.com">@ nate.com</option>
-			<option value="@gmail.com">@ gmail.com</option>
-			<option value="@hotmail.com">@ hotmail.com</option>
-			<option value="@dreamwiz.com">@ dreamwiz.com</option>
-			<option value="@korea.com">@ korea.com</option>
-			<option value="1">직접입력</option>
-		</select>
-		<input type="text" name="email2" id="email2" style="visibility:hidden"><br/>
-		<input type="submit" value="가입">
-	</form>
+	<div id="wrap_form">
+		<h1>회원가입</h1>
+		<form action="/signup/inputsignup" method="POST" name="signupform" onsubmit="return execute();">
+			<button type="button" class="hill on" data-no="0">발명자 회원</button>
+			<button type="button" class="hill" data-no="1">변리사</button>					
+			<table>
+				<tr>
+					<td>아이디</td>
+					<td><input type="text" name="id" id="id"><button type="button" onclick="checkid()">중복확인</button></td>
+				</tr>
+				<tr>
+					<td>비밀번호</td>
+					<td><input type="password" name="pw" id="pw"></td>
+				</tr>
+				<tr>
+					<td>비밀번호 확인</td>
+					<td><input type="password" id="repw" onKeyUp=checkpwd()></td>
+				</tr>
+				<tr>
+					<td>이름</td>
+					<td><input name="name" id="name"></td>
+				</tr>
+				<tr>
+					<td>이메일</td>
+					<td>
+						<input type="text" name="email1" id="email1">
+						<select name="emailMiddle" onChange=changeEmail(this.value);>
+							<option value="" selected>이메일선택</option>
+							<option value="@naver.com">@ naver.com</option>
+							<option value="@hanmail.com">@ hanmail.com</option>
+							<option value="@daum.net">@ daum.net</option>
+							<option value="@nate.com">@ nate.com</option>
+							<option value="@gmail.com">@ gmail.com</option>
+							<option value="@hotmail.com">@ hotmail.com</option>
+							<option value="@dreamwiz.com">@ dreamwiz.com</option>
+							<option value="@korea.com">@ korea.com</option>
+							<option value="1">직접입력</option>							
+						</select>
+						<input type="text" name="email2" id="email2" style="visibility:hidden">
+					</td>
+				</tr>				
+				<tr id="hide">
+					<td>변리사 번호</td>
+					<td><input type="text" name="license_number" id="license_number"></td>
+				</tr>				
+			</table>
+			<input type="submit" value="가입" id="submit">
+		</form>
+	</div>
 	<c:import url="/WEB-INF/views/import/footer.jsp"/>
+<script>
+$(".hill").click(function(){	
+	$(this).addClass("on");
+	$(this).siblings().removeClass("on");
+	
+	
+	if($(this).data('no') == 1){		
+		$("#hide").css("display","table-row");
+	}else{		
+		$("#hide").css("display","none");
+	}
+	
+	
+});
+</script>
 </body>
 </html>

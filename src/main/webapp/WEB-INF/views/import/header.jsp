@@ -11,7 +11,7 @@
                 </button>
             </li>
             <li>
-                <button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;">
+                <button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;" onclick="location.href='/login'">
                     로그인
                 </button>
             </li>
@@ -34,4 +34,5 @@
             </ul>
         </div>
     </div>
+    <div id="header_benner"></div>
 </header>
