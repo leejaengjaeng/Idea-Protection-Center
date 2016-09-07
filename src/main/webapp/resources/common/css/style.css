@@ -43,15 +43,18 @@
   margin-bottom: 100px;
 }
 .wrap_comment section .sub_head {
-  width: 100%;
+  width: 750px;
   float: left;
+  margin-top: 50px;
 }
 .wrap_comment section article {
-  width: 800px;
+  width: 750px;
   float: left;
+  margin-top: 0;
+  margin-left: 50px;
 }
 .wrap_comment section article h1 {
-  width: 800px;
+  width: 750px;
   font-size: 1.6rem;
   color: #444444;
   border-bottom: 2px solid #f1f1f1;
@@ -65,7 +68,7 @@
 .wrap_comment section article .txt_box {
   width: 100%;
   float: left;
-  margin-top: 70px;
+  margin-top: 50px;
 }
 .wrap_comment section article .txt_box .box_before1 {
   width: 100%;
@@ -378,4 +381,64 @@
   background: none;
   border: 1px solid #ccc;
   color: #57b6e2;
+}
+section nav {
+  width: 200px;
+  min-height: 200px;
+  float: left;
+  text-align: center;
+  margin-top: 55px;
+}
+section nav #profile {
+  width: 100%;
+  float: left;
+  border-bottom: 2px solid #e1e1e1;
+}
+section nav #profile img {
+  width: 160px;
+  height: 200px;
+  margin-top: 20px;
+}
+section nav #profile h4 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+section nav #profile span {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  color: #57b6e2;
+}
+section nav #profile_menu {
+  width: 100%;
+  text-align: left;
+  float: left;
+  border-bottom: 2px solid #e1e1e1;
+}
+section nav #profile_menu ul li {
+  list-style: none;
+  height: 40px;
+  padding-top: 10px;
+  padding-left: 30px;
+  transition: .25s;
+  -webkit-transition: .25s;
+  -moz-transition: .25s;
+  cursor: pointer;
+}
+section nav #profile_menu ul li:hover {
+  background: #f9f9f9;
+}
+section nav #nav_benner {
+  width: 100%;
+  float: left;
+  padding-top: 10px;
+}
+section nav #nav_benner ul li {
+  list-style: none;
+  margin-top: 10px;
+}
+section nav #nav_benner ul li img {
+  width: 100%;
+  height: 100px;
+  border: 1px solid #ccc;
 }

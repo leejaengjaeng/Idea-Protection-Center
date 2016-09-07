@@ -46,20 +46,22 @@
 }
 .wrap_comment{
     width: 1000px;  
-    
     section{
         width: 100%;
         float: left;
         margin-bottom: 100px;
         .sub_head{
-            width: 100%;
-            float: left;            
+            width: 750px;
+            float: left;    
+            margin-top: 50px;
         }
         article{ 
-            width: 800px;
-            float: left;
+            width: 750px;
+            float: left;      
+            margin-top: 0;
+            margin-left: 50px;
             h1{
-                width: 800px;
+                width: 750px;
                 font-size: 1.6rem;
                 color: #444444;
                 border-bottom: 2px solid #f1f1f1;
@@ -73,7 +75,7 @@
             .txt_box{
                 width: 100%;
                 float: left;
-                margin-top: 70px;
+                margin-top: 50px;
                 .box_before1{
                     width:100%;
                     padding-left: 10px;
@@ -394,3 +396,69 @@
     }
 }
 
+section{
+     nav{
+            width: 200px;
+            min-height: 200px;            
+            float: left;
+            text-align: center;
+            margin-top: 55px;
+            #profile{
+                width: 100%;
+                float: left;
+                border-bottom: 2px solid #e1e1e1;
+                img{
+                    width: 160px;
+                    height: 200px;
+                    margin-top: 20px;
+                }
+                h4{
+                    margin-top: 15px;
+                    margin-bottom: 15px;
+                }
+                span{
+                    display: block;
+                    font-size: 0.9rem;
+                    margin-bottom: 20px;
+                    color: #57b6e2;
+                }
+            }
+            #profile_menu{
+                width: 100%;
+                text-align: left;                
+                float: left;
+                border-bottom: 2px solid #e1e1e1;
+                ul{
+                    li{
+                        list-style: none;
+                        height: 40px;
+                        padding-top: 10px;
+                        padding-left: 30px;
+                        transition: .25s;
+                        -webkit-transition: .25s;
+                        -moz-transition: .25s;
+                        cursor: pointer;
+                    }
+                    li:hover{
+                        background: #f9f9f9;
+                    }
+                }
+            }
+            #nav_benner{
+                width: 100%;
+                float: left;
+                padding-top: 10px;                
+                ul{
+                    li{
+                        list-style: none;
+                        margin-top: 10px;
+                        img{
+                            width: 100%;
+                            height: 100px;
+                            border: 1px solid #ccc;
+                        }
+                    }
+                }
+            }
+        }
+}

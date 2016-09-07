@@ -213,7 +213,7 @@
 		}
 		//밑에 상태버튼
 		function pro(divno){
-            if($(".imgs").is(":animated")){return}else{
+            if($(".imgs").is(":animated") || now == divno){return}else{
                 end();
                 $(".imgs").eq(now).fadeOut(1000);
                 $(".imgs").eq(now=divno).fadeIn(1000);
