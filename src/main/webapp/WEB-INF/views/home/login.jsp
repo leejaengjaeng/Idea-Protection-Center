@@ -11,7 +11,8 @@
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 </head>
 <body>
+	<c:import url="/WEB-INF/views/import/header.jsp"/>	
 	<c:import url="/WEB-INF/views/forms/loginForm.jsp"/>
-
+	<c:import url="/WEB-INF/views/import/footer.jsp"/>
 </body>
 </html>

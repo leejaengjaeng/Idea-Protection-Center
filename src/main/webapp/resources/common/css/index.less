@@ -34,9 +34,7 @@ header{
             width: 100%;
             float: left;            
             img{
-                height: 70px;
-                width: 240px;
-                border: 1px solid #ccc;
+                height: 70px;                                
                 float: left;     
                 margin-bottom: 10px;
             }
@@ -47,9 +45,11 @@ header{
                 li{
                     list-style: none;
                     float: left;                 
-                    font-size: 0.9em;
+                    font-size: 1em;
                     margin-left: 50px;
                     cursor: pointer;
+                    font-weight: bold;
+                    color: #666;
                 }
             }
         }
@@ -127,13 +127,18 @@ article{
     section{
         width: 800px;
         #benner_1{
+            overflow: hidden;
             width: 100%;                        
             float: left;
+            height: 250px;
+            position: relative;
+            overflow: hidden;
             img{
+                position: absolute;
                 border: 1px solid #ccc;
-                width: 100%;
-                height: 250px;
+                height: 100%;            
                 float: left;
+                left: -30%;
             }            
         }
         #cont_title1{
@@ -180,11 +185,12 @@ article{
                 margin-top: 25px;
                 .block_inside{
                     width: 100%;
-                    padding: 15px;
+                    padding: 15px;                    
                     float: left;
                     img{
                         width: 100%;
-                        height:   200px;
+                        height: 200px;
+                        border: 1px solid #72d1f3;
                     } 
                     h1{
                         font-size: 1.8rem;

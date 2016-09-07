@@ -43,24 +43,27 @@ public class SignUpController {
 		SignUpService ss = new SignUpService();
 		StringBuffer key=ss.makekey();
 		map.put("is_member", key.toString());
-		usermapper.makeuser(map);
+		
 		System.out.println("key is "+key.toString());
-		userVo uv2=usermapper.getUserById(uv.getId());
-		System.out.println("uid is "+uv2.getUid());
+		HashMap<String,String> map2=new HashMap<String,String>();
 		if(request.getParameter("role").equals("1")){
 			System.out.println("role is 1");
-			map.put("role", "1");
+			map.put("role", "ROLE_INVENTOR");
 		}
 		else{
 			System.out.println("role is 2");
-			map.put("role", "2");
-			HashMap<String,String> map2=new HashMap<String,String>();
+			map.put("role", "ROLE_PATIENTENTLAWYER");
+		}
+		usermapper.makeuser(map);
+		userVo uv2=usermapper.getUserById(uv.getId());
+		if(request.getParameter("role").equals("2")){
 			map2.put("uid", Integer.toString(uv2.getUid()));
 			map2.put("license_number", request.getParameter("license_number"));
 			usermapper.makelawyer(map2);
 		}
+		System.out.println("uid is "+uv2.getUid());
 		ss.sendhtmlmail(uv2.getUid(),key.toString(),uv2.getEmail());
-		return "/";
+		return "home/index";
 	}
 	@RequestMapping(value="/checkid",method=RequestMethod.POST)
 	@ResponseBody
@@ -86,10 +89,10 @@ public class SignUpController {
 		else{
 			System.out.println("FALSE");
 		}
-		return "/";
+		return "home/index";
 	}
 	@RequestMapping(value="/compeletesignup")
 	public String compeletesignup(){
-		return "/";
+		return "home/index";
 	}
 }

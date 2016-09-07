@@ -83,12 +83,7 @@ function checkpwd(){
 function changerole(inputvalue){
 	document.getElementById("role").value=inputvalue;
 	//alert(document.getElementById("role").value);
-	if(inputvalue=="1"){
-		document.getElementById("license_number").style.display="none";
-	}
-	else{
-		document.getElementById("license_number").style.display="block";
-	}
+	
 }
 function execute(){
 	var pwd=document.getElementById("password");
@@ -119,8 +114,10 @@ function execute(){
 	<div id="wrap_form">
 		<h1>회원가입</h1>
 		<form action="/signup/inputsignup" method="POST" name="signupform" onsubmit="return execute();">
-			<button type="button" class="hill on" data-no="0">발명자 회원</button>
-			<button type="button" class="hill" data-no="1">변리사</button>					
+			<input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}" />
+			<button type="button" class="hill on" data-no="0" onclick='changerole("1")'>발명자 회원</button>
+			<button type="button" class="hill" data-no="1" onclick='changerole("2")'>변리사</button>			
+			<input type="text" id="role" name="role" value="1" hidden>		
 			<table>
 				<tr>
 					<td>아이디</td>
@@ -128,11 +125,11 @@ function execute(){
 				</tr>
 				<tr>
 					<td>비밀번호</td>
-					<td><input type="password" name="pw" id="pw"></td>
+					<td><input type="password" name="pw" id="pw"><div id="checkpassword"></div></td>
 				</tr>
 				<tr>
 					<td>비밀번호 확인</td>
-					<td><input type="password" id="repw" onKeyUp=checkpwd()></td>
+					<td><input type="password" id="repw" onKeyUp='checkpwd()'></td>
 				</tr>
 				<tr>
 					<td>이름</td>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,14 +17,17 @@
 <title>Insert title here</title>
 </head>
 <body>
+<c:import url="/WEB-INF/views/import/header.jsp"/>
     <div class="wrap_comment">
         <section>            
             <article class="sub_head">                    
                 <h1><b>특허</b>등록</h1>                
             </article>                
             <article>
-            <form action="/registration/inputidea" type="POST">
-            <input type="text" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}"> 
+            <form action="/registration/inputidea" method="POST">
+               	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                            	<input type="text" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}" hidden> 
+                
                 <div class="txt_box">
                     <h2>발명분야</h2>
                     <button type="button">작성예시 보기</button>
@@ -80,5 +84,6 @@
             </article>
         </section>
     </div>
+<c:import url="/WEB-INF/views/import/footer.jsp"/>
 </body>
 </html>

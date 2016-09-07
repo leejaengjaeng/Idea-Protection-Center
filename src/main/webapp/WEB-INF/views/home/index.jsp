@@ -38,7 +38,7 @@
     <article>
         <section>
             <div id="benner_1">
-                <img src="#" alt="benner">
+                <img src="/resources/image/patent_apply_banner.jpg" alt="benner">
             </div>
             <div id="cont_title1">
                 <span id="t_span">아이디어 출원하기</span><br>
@@ -47,7 +47,7 @@
             <div id="cont_block1">
                 <div class="block">
                    <div class="block_inside">
-                       <img src="#" alt="img1">
+                       <img src="/resources/image/index_patent_1.jpg" alt="img1">
                        <h1><b>특허</b> 출원</h1>      
                        <span>198,000원 출원</span>                          
                    </div>
@@ -55,7 +55,7 @@
                 </div>
                 <div class="block" style="margin-left:20px;">                    
                     <div class="block_inside">
-                        <img src="#" alt="img2">
+                        <img src="/resources/image/index_patent_3.jpg" alt="img2">
                         <h1><b style="color:#72d1f3;">디자인권</b> 출원</h1>      
                         <span>100,000원 출원</span>                          
                     </div>
@@ -63,7 +63,7 @@
                 </div>  
                 <div class="block">
                    <div class="block_inside">
-                       <img src="#" alt="img3">
+                       <img src="/resources/image/index_patent_2.jpg" alt="img3">
                        <h1><b style="color:#0066cc;">상표</b> 출원</h1>      
                        <span>150,000원 출원</span>                          
                    </div>
@@ -71,7 +71,7 @@
                 </div>
                 <div class="block" style="margin-left:20px;">                    
                     <div class="block_inside">
-                        <img src="#" alt="img4">
+                        <img src="/resources/image/index_patent_4.jpg" alt="img4">
                         <h1><b style="color:#45d7c2;">저작권</b> 출원</h1>      
                         <span>50,000원 등록 보장</span>                          
                     </div>
