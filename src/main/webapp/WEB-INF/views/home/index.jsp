@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>IdeaProtect</title>
+    <script src="/webjars/jquery/3.1.0/dist/jquery.min.js"></script>
     <link rel="stylesheet" href="/resources/common/css/index.css">
     <link rel="stylesheet" href="/resources/common/css/style.css">
-    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
     <style>
     	#header_benner{
     		display: none;
@@ -16,7 +17,8 @@
     </style>
 </head>
 <body>
-<c:import url="/WEB-INF/views/import/header.jsp"/>
+    <c:import url="/WEB-INF/views/import/header.jsp"/>
+       
     <div class="ani">
         <div class="imgs" id="fir_slide"></div>
         <div class="imgs" id="sec_slide"></div>

@@ -31,13 +31,13 @@ public class SecConfig extends WebSecurityConfigurerAdapter {
 		http
 			.authorizeRequests()
 			.antMatchers("/admin","/adminMenu/**").hasRole("ADMIN")
-			.antMatchers("/","/**","/signup/**").permitAll()
+			.antMatchers("/","/**","/signup/**","/signup/inputsignup").permitAll()
 			.and()
 			.formLogin()
 				.loginPage("/login").permitAll() 
 				.loginProcessingUrl("/login.do")
 				.usernameParameter("id")
-				.passwordParameter("password")	
+				.passwordParameter("pw")	
 				.successForwardUrl("/loginProcess.do")
 				.and()
 			.logout()
@@ -50,6 +50,10 @@ public class SecConfig extends WebSecurityConfigurerAdapter {
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception
 	{
 		//authenticate with custom Service
+		/*
+		 *  login.do로 접근한 id ,pw로 만든 security의 User 객체와 
+		 *  UserAuthService로 만든 DB에서 가지고온 User 객체를 비교해서 로그인
+		 */
 		auth.userDetailsService(UserAuthService);	
 	}
 }
