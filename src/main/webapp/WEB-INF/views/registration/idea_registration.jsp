@@ -23,8 +23,9 @@
             </article>                
             <article>
             <form action="/registration/inputidea" method="POST">
-            	<input type="text" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}" hidden> 
                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                            	<input type="text" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}" hidden> 
+                
                 <div class="txt_box">
                     <h2>발명분야</h2>
                     <button type="button">작성예시 보기</button>
