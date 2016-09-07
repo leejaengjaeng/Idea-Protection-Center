@@ -31,7 +31,7 @@ public class SecConfig extends WebSecurityConfigurerAdapter {
 		http
 			.authorizeRequests()
 			.antMatchers("/admin","/adminMenu/**").hasRole("ADMIN")
-			.antMatchers("/","/**","/signup/**").permitAll()
+			.antMatchers("/","/**","/signup/**","/signup/inputsignup").permitAll()
 			.and()
 			.formLogin()
 				.loginPage("/login").permitAll() 
