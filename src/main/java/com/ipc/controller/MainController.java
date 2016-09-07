@@ -1,7 +1,10 @@
 package com.ipc.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -9,18 +12,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class MainController {
 	
-	@RequestMapping("/")
-	@ResponseBody
-	public String hi()
-	{
-		return "Hello it will be main Page";
-	}
 	
-	@RequestMapping("/authError")
-	@ResponseBody
-	public String no()
+	@RequestMapping("/")
+	public String hello()
 	{
-		return "You can not see this";
+		return "home/index";
 	}
 	
 	@RequestMapping("/admin")

@@ -1,5 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>IdeaProtect</title>
@@ -8,39 +11,7 @@
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 </head>
 <body>
-    <header>
-        <div class="header_wrap">
-            <ol>
-                <li>
-                    <button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#ccc;">
-                        회원가입
-                    </button>
-                </li>
-                <li>
-                    <button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;">
-                        로그인
-                    </button>
-                </li>
-            </ol>
-            <div class="header_menu">
-                <img src="#" alt="Logo">
-                <ul>
-                    <li>
-                        아이디어 권리확보 시스템
-                    </li>
-                    <li>
-                        이용안내
-                    </li>
-                    <li>
-                        1:1질문하기
-                    </li>
-                    <li>
-                        자주하는 질문모음
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </header>
+<c:import url="/WEB-INF/views/import/header.jsp"/>
     <div class="ani">
         <div class="imgs" id="fir_slide"></div>
         <div class="imgs" id="sec_slide"></div>
@@ -189,55 +160,12 @@
                 </div>
             </div>
         </section>
-    </article> 
-    <footer>
-        <div id="footer_benner">
-            <div id="footer_benner_wrap">
-                <img src="#" alt="benner1">
-                <img src="#" alt="benner2">
-                <img src="#" alt="benner3">
-                <img src="#" alt="benner4">
-                <img src="#" alt="benner5">
-                <img src="#" alt="benner6">
-            </div>            
-        </div>
-        <div id="footer_fill">
-            <div id="footer_wrap">
-                <div id="footer_left">
-                    <ul>                        
-                       <li><a href="#">이용안내</a> &nbsp;| </li> 
-                       <li><a href="#">오시는 길</a> &nbsp;| </li> 
-                       <li><a href="#">상담예약</a> &nbsp;| </li> 
-                       <li><a href="#">워크샵 안내</a></li> 
-                    </ul><br>
-                    <ul id="small_ul">                        
-                       <li><a href="#">이용약관</a> &nbsp;| </li> 
-                       <li><a href="#">개인정보 보호방침</a> &nbsp;| </li> 
-                       <li><a href="#">이메일 수집거부</a></li> 
-                    </ul><br>
-                    <span>
-                        COPYRIGHT 2016 @ IDEAPROTECTIONCENTER ALL RIGHTS RESERVED
-                    </span>                   
-                </div>
-                <div id = "footer_center">
-                    <img src="#" alt="Logo">
-                </div>
-                <div id = "footer_right">
-                    <span>
-                        경기창조경제혁신센터 5층<br>
-                        경기도 성남시 분당구 대왕판교로 635번길 12<br>
-                        Tel : 010-3302-7000<br>
-                        mail : ideaconcert@naver.com
-                    </span>
-                </div>
-            </div>            
-        </div>
-    </footer>   
+    </article>
+    <c:import url="/WEB-INF/views/import/footer.jsp"/>       
 <script>
     var now=0;
         
 		//현재첫번째 이미지의 나머지를 숨김
-
 		$(".imgs").eq(now).siblings(".imgs").hide();
 		start();
 		$(".remote").eq(now).css("background-color","#ccc");

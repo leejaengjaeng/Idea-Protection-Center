@@ -3,7 +3,7 @@ package com.ipc.vo;
 public class userVo {
 	int uid;
 	String id;
-	String pwd;
+	String pw;
 	String name;
 	String phone;
 	String addr1;
@@ -11,6 +11,14 @@ public class userVo {
 	String addr3;
 	String email;
 	String role;
+	String is_member;
+
+	public String getIs_member() {
+		return is_member;
+	}
+	public void setIs_member(String is_member) {
+		this.is_member = is_member;
+	}
 	public int getUid() {
 		return uid;
 	}
@@ -23,11 +31,11 @@ public class userVo {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getPwd() {
-		return pwd;
+	public String getPw() {
+		return pw;
 	}
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
+	public void setPw(String pwd) {
+		this.pw = pwd;
 	}
 	public String getName() {
 		return name;
@@ -71,5 +79,6 @@ public class userVo {
 	public void setRole(String role) {
 		this.role = role;
 	}
+	
 
 }

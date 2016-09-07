@@ -5,25 +5,32 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="_csrf" content="${_csrf.token}" />
+<meta name="_csrf_header" content="${_csrf.headerName}" />
 <link rel="stylesheet"
 	href="/webjars/bootstrap/3.3.7/dist/css/bootstrap.min.css">
 <script src="/webjars/jquery/3.1.0/dist/jquery.min.js"></script>
 <script src="/webjars/bootstrap/3.3.7/dist/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/resources/common/css/index.css">
+<link rel="stylesheet" href="/resources/common/css/style.css">
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <title>Insert title here</title>
+
+
 <script>
 function changeEmail(emailvalue){
-	if(value=="1"){
+	if(emailvalue=="1"){
 		document.getElementById("email2").style.visibility="visible";
-		document.getElementById("email2").value="";
+		document.signupform.email2.value="";
 	}
 	else{
 		document.getElementById("email2").style.visibility="hidden";
-		document.getElementById("email2").value=emailvalue;
+		document.signupform.email2.value=emailvalue;
 	}
 }
 function checkid(){
 	
-	var id = document.getElementById("id").value;
+	//var id = document.getElementById("id").value;
 	var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
 	var csrfToken = $("meta[name='_csrf']").attr("content"); 
 	var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
@@ -63,29 +70,79 @@ function checkid(){
 	 
 	}); 
 }
+function checkpwd(){
+	var pwd=document.getElementById("pw").value;
+	var repwd=document.getElementById("repw").value;
+	if(pwd==repwd){
+		document.getElementById("checkpassword").innerHTML="<b>비밀번호가 일치합니다</b>"
+	}
+	else{
+		document.getElementById("checkpassword").innerHTML="<b>비밀번호가 일치하지않습니다</b>"
+	}
+}
+function changerole(inputvalue){
+	document.getElementById("role").value=inputvalue;
+	//alert(document.getElementById("role").value);
+	if(inputvalue=="1"){
+		document.getElementById("license_number").style.display="none";
+	}
+	else{
+		document.getElementById("license_number").style.display="block";
+	}
+}
+function execute(){
+	var pwd=document.getElementById("password");
+	var repwd=document.getElementById("repassword");
+	var id=document.getElementById("id");
+	if(pwd.value!=repwd.value){
+		alert("비밀번호가 일치하지 않습니다.");
+		pwd.value="";
+		repwd.value="";
+		pwd.focus();
+		return false;
+	}
+	if(id.readOnly==false){
+		alert("아이디 중복확인을 해주세요");
+		return false;
+	}
+	if(id.value==""){
+		alert("아이디를 입력하세요");
+		return false;
+	}
+	return true;
+}
 </script>
 </head>
 <body>
-	<form action="/signup/inputsignup" method="POST">
-		아이디<input type="text" name="id" id="id"><button type="button" onclick="checkid()"></button><br/>
-		비밀번호<input type="text" name="pw" id="pw"><br/>
-		비밀번호 확인 <input type="text" id="repw"><br/>
-		이름<input name="name" id="name">
-		이메일<input type="text" name="email1" id="email1">@					
-		<select onChange=changeEmail(this.value)>
+	<c:import url="/WEB-INF/views/import/header.jsp"/>
+	<form action="/signup/inputsignup" method="POST" name="signupform" onsubmit="return execute();">
+		<input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}" />
+		
+		회원구분<br/>
+		<button type="button" onclick="changerole('1');">발명자 회원</button><button type="button" onclick="changerole('2');">변리사</button><br/>
+		<input type="text" name="license_number" id="license_number" style="display:none"><br/>
+		<input type="text" name="role" id="role" hidden><br/>
+		아이디<input type="text" name="id" id="id"><button type="button" onclick="checkid()">중복확인</button><br/>
+		비밀번호<input type="password" name="pw" id="pw"><br/>
+		비밀번호 확인 <input type="password" id="repw" onKeyUp=checkpwd()><br/>
+		<div id="checkpassword" ></div>
+		이름<input name="name" id="name"><br/>
+		이메일<input type="text" name="email1" id="email1">
+		<select name="emailMiddle" onChange=changeEmail(this.value);>
 			<option value="" selected>이메일선택</option>
-			<option value="naver.com">@ naver.com</option>
-			<option value="hanmail.com">@ hanmail.com</option>
-			<option value="daum.net">@ daum.net</option>
-			<option value="nate.com">@ nate.com</option>
-			<option value="gmail.com">@ gmail.com</option>
-			<option value="hotmail.com">@ hotmail.com</option>
-			<option value="dreamwiz.com">@ dreamwiz.com</option>
-			<option value="korea.com">@ korea.com</option>
+			<option value="@naver.com">@ naver.com</option>
+			<option value="@hanmail.com">@ hanmail.com</option>
+			<option value="@daum.net">@ daum.net</option>
+			<option value="@nate.com">@ nate.com</option>
+			<option value="@gmail.com">@ gmail.com</option>
+			<option value="@hotmail.com">@ hotmail.com</option>
+			<option value="@dreamwiz.com">@ dreamwiz.com</option>
+			<option value="@korea.com">@ korea.com</option>
 			<option value="1">직접입력</option>
 		</select>
-		<input type="text" name="email2" id="email2" hidden>
-		<input type="submit" value="가입신청">
+		<input type="text" name="email2" id="email2" style="visibility:hidden"><br/>
+		<input type="submit" value="가입">
 	</form>
+	<c:import url="/WEB-INF/views/import/footer.jsp"/>
 </body>
 </html>

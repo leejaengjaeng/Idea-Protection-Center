@@ -15,7 +15,7 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 public class IdeaProtectionCenterApplication {
 
 	public static void main(String[] args) {
+		//헬로헬로
 		SpringApplication.run(IdeaProtectionCenterApplication.class, args);
-		System.out.println("fuck");
 	}
 }
