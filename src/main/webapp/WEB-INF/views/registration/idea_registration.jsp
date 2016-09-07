@@ -22,46 +22,47 @@
                 <h1><b>특허</b>등록</h1>                
             </article>                
             <article>
+            <form>
                 <div class="txt_box">
                     <h2>발명분야</h2>
-                    <button>작성예시 보기</button>
-                    <input type="text" id="idea_kind">
+                    <button type="button">작성예시 보기</button>
+                    <input type="text" id="typeOfInvent" name="typeOfInvent">
                 </div>
                 <div class="hr"></div>
                  <div class="txt_box">
                     <h2>제목</h2>
-                    <button>작성예시 보기</button>
-                    <input type="text" id="idea_title">
+                    <button type="button">작성예시 보기</button>
+                    <input type="text" id="title" name="title">
                 </div>
                 <div class="txt_box">
                     <h2>요약</h2>
-                    <button>작성예시 보기</button>
-                    <textarea id="small_cont"></textarea>
+                    <button type="button">작성예시 보기</button>
+                    <textarea id="summary" name="summary"></textarea>
                 </div>
                 <div class="txt_box">
                     <h2>필요이유</h2>
-                    <button>작성예시 보기</button>
-                    <textarea id="why_cont"></textarea>
+                    <button type="button">작성예시 보기</button>
+                    <textarea id="whyInvent" name="whyInvent"></textarea>
                 </div>
                 <div class="txt_box">
                     <h2>기존제품설명 및 문제점</h2>
-                    <button>작성예시 보기</button>
-                    <textarea id="col_cont"></textarea>
+                    <button type="button">작성예시 보기</button>
+                    <textarea id="problem" name="problem"></textarea>
                 </div>
                 <div class="txt_box">
                     <h2>문제해결방법</h2>
-                    <button>작성예시 보기</button>
-                    <textarea id="wel_cont"></textarea>
+                    <button type="button">작성예시 보기</button>
+                    <textarea id="solution" name="solution"></textarea>
                 </div>
                 <div class="txt_box">
                     <h2>발명의 효과</h2>
-                    <button>작성예시 보기</button>
-                    <textarea id="bal_cont"></textarea>
+                    <button type="button">작성예시 보기</button>
+                    <textarea id="effect" name="effect"></textarea>
                 </div>
                 <div class="txt_box">
                     <h2>핵심구성요소</h2>
-                    <button>작성예시 보기</button>
-                    <textarea id="imp_cont"></textarea>
+                    <button type="button">작성예시 보기</button>
+                    <textarea id="core_element" name="core_element"></textarea>
                 </div>
                 <div class="txt_box">
                     <h2 style="width:100%">도면첨부</h2>
@@ -71,9 +72,10 @@
                     <div class="demo"></div>
                 </div>
                 <div id="fin"> 
-                    <button>임시저장</button>
-                    <button id="agree">등록하기</button>
+                    <button type="button">임시저장</button>
+                    <input type="submit">등록하기</button>
                 </div>
+            </form>
             </article>
         </section>
     </div>

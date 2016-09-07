@@ -10,4 +10,15 @@ public class RegistrationController {
 	public String addidea(){
 		return "registration/idea_registration";
 	}
+	
+	@RequestMapping("/inputidea")
+	public String inputidea(){
+		String a="aa";
+		StringBuffer b=new StringBuffer();
+		b.append("aa");
+		a=a+b;
+		System.out.println(a);
+		
+		return "/";
+	}
 }
