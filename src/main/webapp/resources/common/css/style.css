@@ -104,6 +104,40 @@
   width: 100%;
   float: left;
   margin-top: 50px;
+  position: relative;
+}
+.wrap_comment section article .txt_box .hiding_box {
+  width: 250px;
+  position: absolute;
+  right: -270px;
+  top: 0;
+  background: #fff;
+  display: none;
+}
+.wrap_comment section article .txt_box .hiding_box .hiding_box_header {
+  width: 100%;
+  float: left;
+  background: #0fa4d4;
+  color: white;
+  padding: 10px;
+}
+.wrap_comment section article .txt_box .hiding_box .hiding_box_header h3 {
+  display: block;
+  float: left;
+}
+.wrap_comment section article .txt_box .hiding_box .hiding_box_header img {
+  height: 21px;
+  float: right;
+}
+.wrap_comment section article .txt_box .hiding_box .hiding_box_content {
+  width: 100%;
+  float: left;
+  border: 1px solid #ccc;
+  padding: 10px;
+  color: #777;
+}
+.wrap_comment section article .txt_box .hiding_box .hiding_box_content span {
+  font-size: 0.7rem;
 }
 .wrap_comment section article .txt_box .box_before1 {
   width: 100%;
@@ -160,9 +194,9 @@
   padding-left: 10px;
   border-radius: 4px;
   height: 35px;
-  border: 1px solid #ccc;
+  border: 1px solid #45d4ef;
   margin-top: 10px;
-  background: #f1f1f1;
+  background: #fff;
 }
 .wrap_comment section article .txt_box textarea {
   width: 100%;
@@ -178,10 +212,11 @@
 .wrap_comment section article .txt_box #demo_box {
   width: 100%;
   float: left;
+  margin-top: 15px;
 }
 .wrap_comment section article .txt_box #demo_box .demo {
-  width: 188px;
-  height: 188px;
+  width: 175px;
+  height: 175px;
   float: left;
   background: #f1f1f1;
   margin-top: 15px;

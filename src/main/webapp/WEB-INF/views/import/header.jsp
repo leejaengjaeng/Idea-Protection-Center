@@ -9,7 +9,7 @@
 			<!-- 로그인 하지 않은 유저 -->
 			<sec:authorize access="isAnonymous()">
 				<li>
-					<button onclick="location.href='signup/signupPage'"
+					<button onclick="location.href='/signup/signupPage'"
 						style="box-shadow: inset 0 -4px rgba(0, 0, 0, .1); background: #ccc;">
 						회원가입</button>
 				</li>
@@ -34,7 +34,7 @@
 			</sec:authorize>
 		</ol>
 		<div class="header_menu">
-			<img src="/resources/image/ideapc_logo.jpg" alt="Logo" onclick="location.href='/'" style="cursor: pointer;">
+			<img src="/resources/image/ideapc_logo.jpg" alt="Logo" onclick="location.href='/'" style="cursor: pointer;" draggable="false">
 			<ul>
 				<li>아이디어 권리확보 시스템</li>
 				<li>이용안내</li>
