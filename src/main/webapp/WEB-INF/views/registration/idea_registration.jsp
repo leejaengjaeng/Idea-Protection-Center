@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="/resources/common/css/style.css">
 <title>Insert title here</title>
 </head>
-<body>
+<body onload='checkTemp();'>
 <c:import url="/WEB-INF/views/import/header.jsp"/>
     <div class="wrap_comment">
         <section>            
@@ -26,7 +26,7 @@
             <article>
             <form action="/registration/inputidea" method="POST" enctype="multipart/form-data">
                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                            	<input type="text" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}" hidden> 
+                <input type="text" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}" hidden> 
                 
                 <div class="txt_box">
                     <h2>발명분야</h2>
@@ -90,6 +90,7 @@
                 	var solution=document.getElementById("solution").value;
                 	var effect=document.getElementById("effect").value;
                 	var core_element=document.getElementById("core_element").value;
+                	var uid=document.getElementById("uid").value;
                 	
                 	var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
                 	var csrfToken = $("meta[name='_csrf']").attr("content"); 
@@ -106,6 +107,7 @@
                     data["solution"] = solution;
                     data["effect"] = effect;
                     data["core_element"] = core_element;
+                    data["uid"]=uid;
                     headers[csrfHeader] = csrfToken;
                     $.ajax({
                 	    url : "/registration/tempsave",
@@ -122,6 +124,17 @@
                 	    }
                 	 
                 	}); 
+                }
+                function checkTemp(){
+                	if(${isTemp}=="1"){
+                		var q=confirm("임시저장된 아이디어가 있습니다. 불러올까요?");
+                		if(q==true){
+                			
+                		}
+                	}
+                	else{
+                		
+                	}
                 }
                 </script>
                 <div id="fin"> 

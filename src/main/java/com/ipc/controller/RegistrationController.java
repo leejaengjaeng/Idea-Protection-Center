@@ -12,6 +12,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,7 +38,15 @@ public class RegistrationController {
 	UserDao usermapper;
 	
 	@RequestMapping("/addidea")
-	public String addidea(){
+	public String addidea(Model model,HttpSession session, HttpServletRequest request){
+		userVo uv=(userVo) request.getSession().getAttribute("currentUser");
+		if(regismapper.countTempIdea(uv.getUid())!=0){
+			model.addAttribute("isTemp", "1");
+		}
+		else{
+			model.addAttribute("isTemp", "0");
+		}
+			
 		return "registration/idea_registration";
 	}
 	@RequestMapping("/inventor_main")
@@ -57,7 +66,7 @@ public class RegistrationController {
 		String effect=request.getParameter("effect");
 		String core_element=request.getParameter("core_element");
 		HashMap<String,String> map=new HashMap();
-		map.put("uid", "1111");
+		map.put("uid", uid);
 		map.put("typeOfInvent", typeOfInvent);
 		map.put("title", title);
 		map.put("summary", summary);
@@ -68,6 +77,7 @@ public class RegistrationController {
 		RegistrationService rs=new RegistrationService();
 		map.put("registrtaion_date",rs.getToday(0) );
 		regismapper.makeidea(map);
+		
 		//userVo uv=usermapper.getUserByUid(uid);
 		for(int i=0;i<files.size();i++){
 			rs.makeimageFile(files.get(0), "111"+rs.getToday(1)+i,"inventor\\" );
@@ -78,10 +88,36 @@ public class RegistrationController {
 	@RequestMapping(value="/tempsave",method=RequestMethod.POST)
 	@ResponseBody
 	public HashMap <String,Object> tempsave(HttpServletRequest request,@RequestParam HashMap<String, Object> param){
-		System.out.println(param.get("summary").toString());
-		HashMap<String, Object> hashmap = new HashMap<String, Object>();
-		hashmap.put("aa", "aa");
-		return hashmap;
+		String typeOfInvent= param.get("typeOfInvent").toString();
+		String title = param.get("title").toString();
+		String whyInvent= param.get("whyInvent").toString();
+		String summary=param.get("summary").toString();
+		String problem= param.get("problem").toString();
+		String solution= param.get("solution").toString();
+		String effect= param.get("effect").toString();
+		String core_element= param.get("core_element").toString();
+		String uid=param.get("uid").toString();
+		
+		HashMap<String, String> hashmap = new HashMap<String, String>();
+		hashmap.put("typeOfInvent", typeOfInvent);
+		hashmap.put("title", title);
+		hashmap.put("whyInvent", whyInvent);
+		hashmap.put("solution", solution);
+		hashmap.put("effect", effect);
+		hashmap.put("summary", summary);
+		hashmap.put("problem", problem);
+		hashmap.put("core_element", core_element);
+		hashmap.put("uid", uid);
+		int rv = regismapper.countTempIdea(Integer.parseInt(uid));
+		if(rv!=0){
+			regismapper.updatetempidea(hashmap);
+		}
+		else{
+			regismapper.maketempidea(hashmap);
+		}
+		HashMap<String, Object> hashmap2 = new HashMap<String, Object>();
+		hashmap2.put("aa", "aa");
+		return hashmap2;
 		
 	}
 }

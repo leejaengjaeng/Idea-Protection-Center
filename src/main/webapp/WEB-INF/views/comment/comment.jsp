@@ -1,20 +1,81 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>  
-    <link href="common/css/style.css" rel="stylesheet">
+    <link href="/resources/common/css/style.css" rel="stylesheet">
+    <link href="/resources/common/css/index.css" rel="stylesheet">
 </head>
 <body>
-    <div class="wrap_comment">
+    <c:import url="/WEB-INF/views/import/header.jsp"/>
+    <div class="wrap_comment">       
         <section>            
+           <nav>
+                <div id="profile">
+                    <img src="#" alt="profile">
+                    <h4>OOO 회원님</h4>
+                    <span>ideaconcert</span>
+                </div>
+                <div id="profile_menu">
+                    <ul>
+                        <li>아이디어 진행내역</li>
+                        <li>회원정보수정</li>                                                
+                    </ul>
+                </div>
+                <div id="nav_benner">
+                    <ul>
+                        <li>
+                            <img src="#" alt="benner1">
+                        </li>
+                        <li>
+                            <img src="#" alt="benner2">
+                        </li>
+                        <li>
+                            <img src="#" alt="benner3">
+                        </li>
+                        <li>
+                            <img src="#" alt="benner4">
+                        </li>
+                    </ul>
+                </div>
+            </nav>            
             <article class="sub_head">                    
-                <h1><b>1차</b> 코멘트</h1>                
+                <h1><b>2차</b> 코멘트</h1>                
+                <img src="/resources/image/cmt.png" alt="cmt" style="width:100%; float:left;">
             </article>                
+            <article class="modify_log">                    
+                <h1>아이디어수정내역</h1>   
+                <table>
+                    <tr>
+                        <td class="title_td">4차 전문가 검토 및 4차 수정안</td>
+                        <td class="date_td">2016.09.08</td>
+                    </tr>
+                    <tr>
+                        <td class="title_td">3차 전문가 검토 및 3차 수정안</td>
+                        <td class="date_td">2016.09.08</td>
+                    </tr> 
+                    <tr>
+                        <td class="title_td">2차 전문가 검토 및 2차 수정안</td>
+                        <td class="date_td">2016.09.08</td>
+                    </tr> 
+                    <tr>
+                        <td class="title_td">1차 전문가 검토 및 1차 수정안</td>
+                        <td class="date_td">2016.09.08</td>
+                    </tr>
+                    <tr>
+                        <td class="title_td">아이디어 등록(초안)</td>
+                        <td class="date_td">2016.09.08</td>
+                    </tr>                      
+                </table>                             
+            </article>  
             <article>
                 <div class="txt_box">
                     <h2>발명분야</h2>   
+                    <button>작성 예시</button>
                     <div class="before_cmt">
                         <p>Before Comment...</p>
                     </div>             
@@ -23,9 +84,10 @@
                     </div>
                     <div class="box_comment1">
                         <div class="img_comt">
-                            <img src="image/comment.png" alt="cmt_img">
+                            <img src="/resources/image/comment.png" alt="cmt_img">
                         </div> 
                         <div class="comment1_txt">
+                            <img src="/resources/image/arr.png">
                             <textarea placeholder="Comment..."></textarea>
                         </div>
                     </div>
@@ -33,6 +95,7 @@
                 <div class="hr"></div>
                  <div class="txt_box">
                     <h2>제목</h2>
+                    <button>작성 예시</button>
                     <div class="before_cmt">
                         <p>Before Comment...</p>
                     </div>
@@ -41,9 +104,10 @@
                     </div>
                     <div class="box_comment1">
                         <div class="img_comt">
-                            <img src="image/comment.png" alt="cmt_img">
+                            <img src="/resources/image/comment.png" alt="cmt_img">
                         </div> 
                         <div class="comment1_txt">
+                            <img src="/resources/image/arr.png">
                             <textarea placeholder="Comment..."></textarea>
                         </div>
                     </div>
@@ -51,6 +115,7 @@
                 <div class="hr"></div>
                 <div class="txt_box">
                     <h2>요약</h2>
+                    <button>작성 예시</button>
                     <div class="before_cmt">
                         <p>Before Comment...</p>
                     </div>                    
@@ -59,15 +124,17 @@
                     </div>
                     <div class="box_comment1">
                         <div class="img_comt">
-                            <img src="image/comment.png" alt="cmt_img">
+                            <img src="/resources/image/comment.png" alt="cmt_img">
                         </div> 
                         <div class="comment1_txt">
+                            <img src="/resources/image/arr.png">
                             <textarea placeholder="Comment..."></textarea>
                         </div>
                     </div>
                 </div>
                 <div class="txt_box">
                     <h2>필요이유</h2>
+                    <button>작성 예시</button>
                     <div class="before_cmt">
                         <p>Before Comment...</p>
                     </div>
@@ -76,9 +143,10 @@
                     </div>
                     <div class="box_comment1">
                         <div class="img_comt">
-                            <img src="image/comment.png" alt="cmt_img">
+                            <img src="/resources/image/comment.png" alt="cmt_img">
                         </div> 
                         <div class="comment1_txt">
+                            <img src="/resources/image/arr.png">
                             <textarea placeholder="Comment..."></textarea>
                         </div>
                     </div>
@@ -86,6 +154,7 @@
                 <div class="hr"></div>
                 <div class="txt_box">
                     <h2>기존제품설명 및 문제점</h2>
+                    <button>작성 예시</button>
                     <div class="before_cmt">
                         <p>Before Comment...</p>
                     </div>
@@ -94,9 +163,10 @@
                     </div>
                     <div class="box_comment1">
                         <div class="img_comt">
-                            <img src="image/comment.png" alt="cmt_img">
+                            <img src="/resources/image/comment.png" alt="cmt_img">
                         </div> 
                         <div class="comment1_txt">
+                            <img src="/resources/image/arr.png">
                             <textarea placeholder="Comment..."></textarea>
                         </div>
                     </div>
@@ -104,6 +174,7 @@
                 <div class="hr"></div>
                 <div class="txt_box">
                     <h2>문제해결방법</h2>
+                    <button>작성 예시</button>
                     <div class="before_cmt">
                         <p>Before Comment...</p>
                     </div>
@@ -112,9 +183,10 @@
                     </div>
                     <div class="box_comment1">
                         <div class="img_comt">
-                            <img src="image/comment.png" alt="cmt_img">
+                            <img src="/resources/image/comment.png" alt="cmt_img">
                         </div> 
                         <div class="comment1_txt">
+                            <img src="/resources/image/arr.png">
                             <textarea placeholder="Comment..."></textarea>
                         </div>
                     </div>
@@ -122,6 +194,7 @@
                 <div class="hr"></div>
                 <div class="txt_box">
                     <h2>발명의 효과</h2>
+                    <button>작성 예시</button>
                     <div class="before_cmt">
                         <p>Before Comment...</p>
                     </div>
@@ -130,9 +203,10 @@
                     </div>
                     <div class="box_comment1">
                         <div class="img_comt">
-                            <img src="image/comment.png" alt="cmt_img">
+                            <img src="/resources/image/comment.png" alt="cmt_img">
                         </div> 
                         <div class="comment1_txt">
+                           <img src="/resources/image/arr.png">
                             <textarea placeholder="Comment..."></textarea>
                         </div>
                     </div>
@@ -140,17 +214,19 @@
                 <div class="hr"></div>
                 <div class="txt_box">
                     <h2>핵심구성요소</h2>
+                    <button>작성 예시</button>
                     <div class="before_cmt">
                         <p>Before Comment...</p>
                     </div>
                     <div class="box_before1_b">                        
                         <p>Temp Text<br><br><br><br><br><br><br><br><br><br><br><br></p>
                     </div>
-                    <div class="box_comment1">
+                    <div class="box_comment1">                    
                         <div class="img_comt">
-                            <img src="image/comment.png" alt="cmt_img">
+                            <img src="/resources/image/comment.png" alt="cmt_img">
                         </div> 
                         <div class="comment1_txt">
+                            <img src="/resources/image/arr.png">
                             <textarea placeholder="Comment..."></textarea>
                         </div>
                     </div>
@@ -158,20 +234,24 @@
                 <div class="hr"></div>
                 <div class="txt_box">
                     <h2 style="width:100%">도면첨부</h2>
+                    <button>작성 예시</button>
                     <div class="before_cmt">
                         <p>Before Comment...</p>
                     </div>
                     <div id="demo_box">
-                        <div class="demo" id="fir"></div>
                         <div class="demo"></div>
                         <div class="demo"></div>
-                        <div class="demo"></div>                    
+                        <div class="demo"></div>
+                        <div class="demo"></div>
+                        <div class="demo"></div>
+                        <div class="demo"></div>                                            
                     </div>
                     <div class="box_comment1">
                         <div class="img_comt">
-                            <img src="image/comment.png" alt="cmt_img">
+                            <img src="/resources/image/comment.png" alt="cmt_img">
                         </div> 
                         <div class="comment1_txt">
+                            <img src="/resources/image/arr.png">
                             <textarea placeholder="Comment..."></textarea>
                         </div>
                     </div>
@@ -184,5 +264,6 @@
             </article>
         </section>
     </div>
+    <c:import url="/WEB-INF/views/import/footer.jsp"/>   
 </body>
 </html>
