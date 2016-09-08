@@ -5,7 +5,10 @@
 	<insert id="makeidea" parameterType="Hashmap">
 		insert into registration_patent(typeofinvent,title,summary,whyinvent,problem,solution,effect,core_element,registration_date,uid,iscomplete) values (#{typeofinvent},#{title},#{summary},#{whyinvent},#{problem},#{solution},#{effect},#{core_element},#{registrtaion_date},#{uid},"0")
 	</insert>
-	<select id="getProcessList" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
-		select registration_date, title, r_condition, start_rid, typeofinvent, apply_date, pre_apply_date from registration_patent where uid=#{uid} and rid=start_rid
+	<select id="getInventorProcessList" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
+		select rid, registration_date, title, r_condition, start_rid, typeofinvent, apply_date, pre_apply_date from registration_patent where uid=#{uid} and rid=start_rid
+	</select>
+	<select id="getPlProcessList" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
+		select rid, registration_date, title, r_condition, start_rid, typeofinvent, apply_date, pre_apply_date from registration_patent where lid=#{lid} and rid=start_rid
 	</select>
 </mapper>

@@ -10,6 +10,7 @@ import com.ipc.vo.RegistrationPatentVo;
 @Mapper
 public interface RegistrationDao {
 	public void makeidea(HashMap<String,String> map);
-	public List<RegistrationPatentVo> getProcessList(int uid);
+	public List<RegistrationPatentVo>getInventorProcessList(int uid);
+	public List<RegistrationPatentVo>getPlProcessList(int lid);
 	
 }

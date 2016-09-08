@@ -45,14 +45,26 @@ public class MainController {
 			userVo currentUser = (userVo) session.getAttribute("currentUser");
 			if(currentUser != null)
 			{
-				List<RegistrationPatentVo> processList = regDao.getProcessList(currentUser.getUid());
-				if(currentUser.getRole().equals(roleInventor) || currentUser.getRole().equals(rolePatientntLawyer))
+				List<RegistrationPatentVo> processList;
+				
+				if(currentUser.getRole().equals(roleInventor))
 				{
-					model.addAttribute("processList",processList);
-					return "user/userMain";
-				}		
-				else 
-					return "redirect:/";				
+					processList = regDao.getInventorProcessList(currentUser.getUid());			
+				}
+				else if(currentUser.getRole().equals(rolePatientntLawyer))
+				{
+					processList = regDao.getPlProcessList(currentUser.getUid());			
+				}
+				// 발명가나 변리사가 아니면 리다이렉트
+				// If not only Inventor but patientLawyer, Redirecting to root path
+				else
+				{
+					return "redirect:/";			
+				}
+
+				model.addAttribute("processList",processList);
+				return "user/userMain";
+
 			}
 			else
 				return "redirect:/login";				
@@ -70,5 +82,6 @@ public class MainController {
 	{
 		return "test Admin";
 	}
+
 	
 }
