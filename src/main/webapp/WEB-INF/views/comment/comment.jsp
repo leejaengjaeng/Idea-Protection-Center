@@ -1,11 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>  
-    <link href="common/css/style.css" rel="stylesheet">
-    <link href="common/css/index.css" rel="stylesheet">
+    <link href="/resources/common/css/style.css" rel="stylesheet">
+    <link href="/resources/common/css/index.css" rel="stylesheet">
 </head>
 <body>
     <c:import url="/WEB-INF/views/import/header.jsp"/>
@@ -42,7 +44,7 @@
             </nav>            
             <article class="sub_head">                    
                 <h1><b>2차</b> 코멘트</h1>                
-                <img src="/resources/image/cmt.png" alt="img4">
+                <img src="/resources/image/cmt.png" alt="cmt" style="width:100%; float:left;">
             </article>                
             <article class="modify_log">                    
                 <h1>아이디어수정내역</h1>   
@@ -81,7 +83,7 @@
                     </div>
                     <div class="box_comment1">
                         <div class="img_comt">
-                           <img src="/resources//resources/image/comment.png" alt="img4">
+                            <img src="/resources/image/comment.png" alt="cmt_img">
                         </div> 
                         <div class="comment1_txt">
                             <img src="/resources/image/arr.png">

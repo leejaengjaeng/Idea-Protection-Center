@@ -11,6 +11,18 @@
 <link rel="stylesheet" href="/resources/common/css/index.css">
 <link rel="stylesheet" href="/resources/common/css/style.css">
 <link rel="stylesheet" href="/resources/common/css/inventor.css">
+
+<script>
+	$('.ideaList').click(function()
+	{
+		console.log($(this));
+
+		alert($(this).children('input'));
+		console.log($(this).children('input').attr('value'));
+		console.log($(this).children('input').value);
+		
+	});
+</script>
 </head>
 <body>
 <c:import url="/WEB-INF/views/import/header.jsp"/>
@@ -147,7 +159,8 @@
                         <th>비고</th>
                     </tr>
                    	<c:forEach var="process" items="${processList }">
-						<tr>
+						<tr class="ideaList">
+							<input type="hidden" value=${process.getRid() }/>
 							<td style="background:#f1f1f1;">0</td>
 	                        <td>${process.getRegistration_date() }</td>
 	                        <td>${process.getTypeOfInvent() }</td>
