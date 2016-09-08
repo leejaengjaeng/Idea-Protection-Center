@@ -202,7 +202,7 @@
 					$(".remote").eq(now).siblings(".remote").css("background-color","#fff");
 				break;
 				case"left":
-					$(".imgs").eq(now).fadeOut(2000);
+					$(".imgs").eq(now).fadeOut(1000);
 					$(".imgs").eq(now=now==0?3:now-1).fadeIn(1000);
 					$(".remote").eq(now).css("background-color","#ccc");
 					$(".remote").eq(now).siblings(".remote").css("background-color","#fff");

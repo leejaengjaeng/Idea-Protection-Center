@@ -12,7 +12,7 @@
 <script src="/webjars/jquery/3.1.0/dist/jquery.min.js"></script>
 <script src="/webjars/bootstrap/3.3.7/dist/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="/resources/common/css/index.css">
-<link rel="stylesheet" href="/resources/common/css/style.css">
+<link rel="stylesheet" href="/resources/common/css/style.css"> 
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <title>Insert title here</title>
 
@@ -175,7 +175,13 @@ $(".hill").click(function(){
 		$("#hide").css("display","none");
 	}
 	
-	
+});
+$("#repw").keyup(function(){
+	if($(this).val() == ""){
+		$("#checkpassword").css("display","none");
+	}else{
+		$("#checkpassword").css("display","block");
+	}
 });
 </script>
 </body>
