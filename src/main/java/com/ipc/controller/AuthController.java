@@ -1,8 +1,12 @@
 package com.ipc.controller;
 
 
+import com.ipc.dao.RegistrationDao;
 import com.ipc.dao.UserDao;
 import com.ipc.vo.userVo;
+import com.ipc.vo.RegistrationPatentVo;
+
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,7 +31,15 @@ public class AuthController {
 	@Autowired
 	UserDao userDao;
 	@Autowired
+	RegistrationDao regDao;
+	
+	@Autowired
 	HttpSession session;
+	private static final String roleAdmin = "ROLE_ADMIN";
+	private static final String roleInventor = "ROLE_INVENTOR";
+	private static final String rolePatientntLawyer = "ROLE_PATIENTENTLAWYER";
+	private static final String roleGuest = "anonymousUser";
+	
 	
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	
@@ -50,13 +62,15 @@ public class AuthController {
 		try{
 			String userId = SecurityContextHolder.getContext().getAuthentication().getName();		
 			userVo currentUser = userDao.getUserById(userId);
-			System.out.println("loginProcess : "+userId +","+currentUser);
-
 			// 인증 정보가 없으면 userId = anonymousUser
 			// currnetUser = null
-
-			session.setAttribute("currentUser", currentUser);
-			return "redirect:/";		
+			if(currentUser == null)
+				return "redirect:/login";		
+			else
+			{
+				session.setAttribute("currentUser", currentUser);
+				return "redirect:/mainPage";
+			}
 		}
 		catch(Exception e)
 		{

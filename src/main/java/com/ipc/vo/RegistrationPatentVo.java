@@ -22,7 +22,7 @@ public class RegistrationPatentVo {
 	String re_effect;
 	String re_core_element;
 	int lid;
-	String condition;
+	String r_condition;
 	String pre_apply_date;
 	String apply_date;
 	String registration_date;
@@ -152,11 +152,12 @@ public class RegistrationPatentVo {
 	public void setLid(int lid) {
 		this.lid = lid;
 	}
-	public String getCondition() {
-		return condition;
+
+	public String getR_condition() {
+		return r_condition;
 	}
-	public void setCondition(String condition) {
-		this.condition = condition;
+	public void setR_condition(String r_condition) {
+		this.r_condition = r_condition;
 	}
 	public String getPre_apply_date() {
 		return pre_apply_date;

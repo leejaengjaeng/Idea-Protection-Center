@@ -47,10 +47,10 @@ CREATE TABLE `registration_patent` (
   `re_effect` text,
   `re_core_element` text,
   `lid` int(11) DEFAULT NULL,
-  `condition` varchar(45) DEFAULT NULL,
+  `r_condition` varchar(45) DEFAULT NULL,
   `pre_apply_date` datetime DEFAULT NULL,
   `apply_date` datetime DEFAULT NULL,
-  `registration_date` datetime DEFAULT NULL,
+  `registration_date` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`rid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -58,6 +58,8 @@ CREATE TABLE `registration_patent` (
 CREATE TABLE `registration_files` (
   `rfid` int(11) NOT NULL AUTO_INCREMENT,
   `start_rid` int(11) DEFAULT NULL,
+  `rid` int(11) DEFAULT NULL,
   `file_path` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`rfid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
