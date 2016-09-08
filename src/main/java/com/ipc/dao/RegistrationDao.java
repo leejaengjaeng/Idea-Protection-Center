@@ -11,5 +11,5 @@ import com.ipc.vo.RegistrationPatentVo;
 public interface RegistrationDao {
 	public void makeidea(HashMap<String,String> map);
 	public List<RegistrationPatentVo> getProcessList(int uid);
-	
+	public void maketempidea(HashMap<String,String> map);
 }

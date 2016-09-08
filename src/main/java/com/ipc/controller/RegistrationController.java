@@ -16,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -72,5 +73,15 @@ public class RegistrationController {
 			rs.makeimageFile(files.get(0), "111"+rs.getToday(1)+i,"inventor\\" );
 		}
 		return "home/index";
+	}
+	
+	@RequestMapping(value="/tempsave",method=RequestMethod.POST)
+	@ResponseBody
+	public HashMap <String,Object> tempsave(HttpServletRequest request,@RequestParam HashMap<String, Object> param){
+		System.out.println(param.get("summary").toString());
+		HashMap<String, Object> hashmap = new HashMap<String, Object>();
+		hashmap.put("aa", "aa");
+		return hashmap;
+		
 	}
 }
