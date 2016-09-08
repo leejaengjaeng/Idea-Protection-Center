@@ -1,9 +1,11 @@
 package com.ipc.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.mail.EmailException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ipc.dao.RegistrationDao;
+import com.ipc.service.SignUpService;
 import com.ipc.vo.RegistrationPatentVo;
 import com.ipc.vo.userVo;
 
@@ -30,7 +33,6 @@ public class MainController {
 	private static final String roleInventor = "ROLE_INVENTOR";
 	private static final String rolePatientntLawyer = "ROLE_PATIENTENTLAWYER";
 	private static final String roleGuest = "anonymousUser";
-	
 	@RequestMapping("/")
 	public String hello()
 	{
