@@ -11,8 +11,8 @@
 	<select id="getPlProcessList" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
 		select rid, registration_date, title, r_condition, start_rid, typeofinvent, apply_date, pre_apply_date from registration_patent where lid=#{lid} and rid=start_rid
 	</select>
-	<select id="getAssociatedMembers" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
-		select uid,lid from registration_patent where rid=#{start_rid} and start_rid=rid
+	<select id="getAssociatedMembersByRid" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
+		select uid,lid from registration_patent where rid=#{rid}
 	</select>
 	<select id="getAssociatedProcessList" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
 		select rid, registration_date from registration_patent where start_rid = #{start_rid}

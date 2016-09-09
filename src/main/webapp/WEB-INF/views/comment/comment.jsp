@@ -1,33 +1,59 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>Idea Protection Center</title>
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>  
     <link href="/resources/common/css/style.css" rel="stylesheet">
     <link href="/resources/common/css/index.css" rel="stylesheet">
 <script>
-	$(document).ready(function()
+$(document).ready(function()
+{
+	if("${user}" == "pl")
 	{
-		if("${user}" == "pl")
-		{
-			var hideEl = document.getElementsByClassName('before_cmt')
-			for(var i =0; i <hideEl.length ; i++)
-				hideEl[i].style.display="none";
-		}
-		else if("${user}" == "inventor")
-		{
-			var hideEl = document.getElementsByClassName('box_comment1')
-			for(var i =0; i <hideEl.length ; i++)
-				hideEl[i].style.display="none";
-		}
-		else
-		{
-			//redirect 시키기?
-		}	
-	});
+		var hideEl = document.getElementsByClassName('before_cmt')
+		for(var i =0; i <hideEl.length ; i++)
+			hideEl[i].style.display="none";
+	}
+	else if("${user}" == "inventor")
+	{
+		var hideEl = document.getElementsByClassName('box_comment1')
+		for(var i =0; i <hideEl.length ; i++)
+			hideEl[i].style.display="none";
+	}
+	else
+	{
+		//redirect 시키기?
+	}	
+	
+	$('#IdeaModifyList').on("click","tr",function()
+	{
+		var rid = $(this).children('input').attr('value');
+		$.ajax({
+			url : "/detailByRid/"+rid,
+			type:"GET",
+			success:function(result)
+			{
+				$('#RegTypeOfInvent').children().text(result.typeOfInvent);
+				$('#RegTitle').children().text(result.title);
+				$('#RegSummary').children().text(result.summary);
+				$('#RegWhyInvent').children().text(result.whyInvent);
+				$('#RegProblem').children().text(result.problem);
+				$('#RegSolution').children().text(result.solution);
+				$('#RegEffect').children().text(result.effect);
+				$('#RegCore_Element').children().text(result.core_element);
+				
+			},
+			error: function(request,status,error)
+			{
+			       //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			}
+		});	
+	})
+});
 </script>
 </head>
 <body>
@@ -38,7 +64,7 @@
                 <div id="profile">
                     <img src="#" alt="profile">
                     <h4>${sessionScope.currentUser.getName()} 회원님</h4>
-                    <span>ideaconcert</span>
+                    <span>${sessionScope.currentUser.getId()}</span>
                 </div>
                 <div id="profile_menu">
                     <ul>
@@ -69,7 +95,7 @@
             </article>                
             <article class="modify_log">                    
                 <h1>아이디어수정내역</h1>   
-                <table>
+                <table id="IdeaModifyList">
                     <c:forEach items="${processList}" var="list" varStatus="status">
 						<tr>
 							<input type="hidden" value="${list.getRid()}"/>
@@ -91,7 +117,7 @@
                     <div class="before_cmt">
                         <p>Before Comment...</p>
                     </div>             
-                    <div class="box_before1">                        
+                    <div id="RegtypeOfInvent" class="box_before1">                        
                         <span>${item.getTypeOfInvent() }</span>
                     </div>
                     <div class="box_comment1">
@@ -111,7 +137,7 @@
                     <div class="before_cmt">
                         <p>Before Comment...</p>
                     </div>
-                    <div class="box_before1">                        
+                    <div id="RegTitle" class="box_before1">                        
                         <span>${item.getTitle() }</span>
                     </div>
                     <div class="box_comment1">
@@ -131,7 +157,7 @@
                     <div class="before_cmt">
                         <p>Before Comment...</p>
                     </div>                    
-                    <div class="box_before1_b">                        
+                    <div id="RegSummary" class="box_before1_b">                        
                         <p>${item.getSummary() }</p>
                     </div>
                     <div class="box_comment1">
@@ -150,7 +176,7 @@
                     <div class="before_cmt">
                         <p>Before Comment...</p>
                     </div>
-                    <div class="box_before1_b">                        
+                    <div id="RegWhyInvent" class="box_before1_b">                        
                         <p>${item.getWhyInvent() }</p>
                     </div>
                     <div class="box_comment1">
@@ -170,7 +196,7 @@
                     <div class="before_cmt">
                         <p>Before Comment...</p>
                     </div>
-                    <div class="box_before1_b">                        
+                    <div id="RegProblem" class="box_before1_b">                        
                         <p>${item.getProblem() }</p>
                     </div>
                     <div class="box_comment1">
@@ -190,7 +216,7 @@
                     <div class="before_cmt">
                         <p>Before Comment...</p>
                     </div>
-                    <div class="box_before1_b">                        
+                    <div id="RegSolution" class="box_before1_b">                        
                         <p>${item.getSolution() }</p>
                     </div>
                     <div class="box_comment1">
@@ -210,7 +236,7 @@
                     <div class="before_cmt">
                         <p>Before Comment...</p>
                     </div>
-                    <div class="box_before1_b">                        
+                    <div id="RegEffect" class="box_before1_b">                        
                         <p>${item.getEffect() }</p>
                     </div>
                     <div class="box_comment1">
@@ -230,7 +256,7 @@
                     <div class="before_cmt">
                         <p>Before Comment...</p>
                     </div>
-                    <div class="box_before1_b">                        
+                    <div id="RegCore_Element" class="box_before1_b">                        
                         <p>${item.getCore_element() }</p>
                     </div>
                     <div class="box_comment1">                    
