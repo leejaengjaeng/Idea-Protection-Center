@@ -42,6 +42,7 @@ public class RegistrationController {
 		userVo uv=(userVo) request.getSession().getAttribute("currentUser");
 		if(regismapper.countTempIdea(uv.getUid())!=0){
 			model.addAttribute("isTemp", "1");
+			
 		}
 		else{
 			model.addAttribute("isTemp", "0");
@@ -97,7 +98,7 @@ public class RegistrationController {
 		String effect= param.get("effect").toString();
 		String core_element= param.get("core_element").toString();
 		String uid=param.get("uid").toString();
-		
+		System.out.println("title : "+title);
 		HashMap<String, String> hashmap = new HashMap<String, String>();
 		hashmap.put("typeOfInvent", typeOfInvent);
 		hashmap.put("title", title);
@@ -109,6 +110,7 @@ public class RegistrationController {
 		hashmap.put("core_element", core_element);
 		hashmap.put("uid", uid);
 		int rv = regismapper.countTempIdea(Integer.parseInt(uid));
+		System.out.println("rv: "+rv);
 		if(rv!=0){
 			regismapper.updatetempidea(hashmap);
 		}
@@ -119,5 +121,23 @@ public class RegistrationController {
 		hashmap2.put("aa", "aa");
 		return hashmap2;
 		
+	}
+	
+	@RequestMapping(value="/loadTempIdea")
+	@ResponseBody
+	public HashMap<String,String> loadTempIdea(HttpServletRequest request){
+		String uid=request.getParameter("uid");
+		RegistrationPatentVo rv=regismapper.gettempidea(Integer.parseInt(uid));
+		HashMap<String, String> hashmap = new HashMap<String, String>();
+		hashmap.put("typeOfInvent", rv.getTypeOfInvent());
+		hashmap.put("title", rv.getTitle());
+		hashmap.put("whyInvent", rv.getWhyInvent());
+		hashmap.put("solution", rv.getSolution());
+		hashmap.put("effect", rv.getEffect());
+		hashmap.put("summary", rv.getSummary());
+		hashmap.put("problem", rv.getProblem());
+		hashmap.put("core_element", rv.getCore_element());
+		
+		return hashmap;
 	}
 }

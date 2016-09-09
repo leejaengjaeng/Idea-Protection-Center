@@ -12,6 +12,7 @@ public interface RegistrationDao {
 	public void makeidea(HashMap<String,String> map);
 	public void maketempidea(HashMap<String,String> map);
 	public void updatetempidea(HashMap<String,String> map);
+	public RegistrationPatentVo gettempidea(int uid);
 	public List<RegistrationPatentVo>getInventorProcessList(int uid);
 
 	public int countTempIdea(int uid);

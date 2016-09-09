@@ -35,5 +35,7 @@
 	<select id="getPlProcessByRid" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
 		select rid, prev_rid, typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element, re_typeofinvent, re_title, re_summary, re_whyinvent, re_problem, re_solution, re_effect, re_core_element from registration_patent where rid=#{rid}
 	</select>
-	
+	<select id="gettempidea" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
+		select rid, typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element, re_typeofinvent, re_title, re_summary, re_whyinvent, re_problem, re_solution, re_effect, re_core_element from registration_patent where uid=#{uid} AND iscomplete=1
+	</select>
 </mapper>

@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="/resources/common/css/style.css">
 <title>Insert title here</title>
 </head>
-<body onload='checkTemp();'>
+<body onload='return checkTemp();'>
 <c:import url="/WEB-INF/views/import/header.jsp"/>
     <div class="wrap_comment">
         <section>            
@@ -169,14 +169,14 @@
                 }
                 
                 function tempsave(){
-                	var typeOfInvent=document.getElementById("typeOfInvent").value;
-                	var title=document.getElementById("title").value;
-                	var summary=document.getElementById("summary").value;
-                	var whyInvent=document.getElementById("whyInvent").value;
-                	var problem=document.getElementById("problem").value;
-                	var solution=document.getElementById("solution").value;
-                	var effect=document.getElementById("effect").value;
-                	var core_element=document.getElementById("core_element").value;
+                	var typeOfInvent=document.getElementById("idea_kind").value;
+                	var title=document.getElementById("idea_title").value;
+                	var summary=document.getElementById("small_cont").value;
+                	var whyInvent=document.getElementById("why_cont").value;
+                	var problem=document.getElementById("col_cont").value;
+                	var solution=document.getElementById("wel_cont").value;
+                	var effect=document.getElementById("bal_cont").value;
+                	var core_element=document.getElementById("imp_cont").value;
                 	var uid=document.getElementById("uid").value;
                 	
                 	var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
@@ -216,12 +216,43 @@
                 	if(${isTemp}=="1"){
                 		var q=confirm("임시저장된 아이디어가 있습니다. 불러올까요?");
                 		if(q==true){
-                			
+                			loadTempIdea(${sessionScope.currentUser.getUid()});
                 		}
                 	}
                 	else{
                 		
                 	}
+                }
+                function loadTempIdea(uid){
+                	var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+                	var csrfToken = $("meta[name='_csrf']").attr("content"); 
+                	var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
+                	var data = {};
+                	var headers = {};
+                	
+                	data[csrfParameter] = csrfToken;
+                	 data["uid"]=uid;
+                     headers[csrfHeader] = csrfToken;
+                     $.ajax({
+                 	    url : "/registration/loadTempIdea",
+                 	    dataType : "json",
+                 	    type : "POST",
+                 	    headers: headers,
+                 	    data : data,
+                 	    success: function(data) {
+                 	    	document.getElementById("idea_kind").value=data.typeOfInvent;
+                        	document.getElementById("idea_title").value=data.title;
+                        	document.getElementById("small_cont").value=data.whyInvent;
+                        	document.getElementById("why_cont").value=data.solution;
+                        	document.getElementById("col_cont").value=data.effect;
+                        	document.getElementById("wel_cont").value=data.summary;
+                        	document.getElementById("bal_cont").value=data.problem;
+                        	document.getElementById("imp_cont").value=data.core_element;
+                 	    },
+                 	    error:function(request,status,error){
+                 	        alert("code:"+request.status+"\n"+"error:"+error);
+                 	    }
+                 	}); 
                 }
                 </script>
                 <div id="fin"> 
