@@ -15,8 +15,88 @@
 <link rel="stylesheet" href="/resources/common/css/index.css">
 <link rel="stylesheet" href="/resources/common/css/style.css">
 <title>Insert title here</title>
+<style>
+html,body{
+    height: 100% !important;
+    
+}
+.black_wall{
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    position: absolute;
+}    
+    .popup{
+        width: 400px;
+        height: 200px;
+        background:#fff;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        -moz-transform: translate(-50%,-50%);
+        -webkit-transform: translate(-50%,-50%);
+        box-shadow: 0 0 10px 0 #000;        
+    }
+    .pop_header{
+        width: 100%;
+        float: left;
+        background: #696969;
+        color: white;
+        padding: 10px;    
+        box-shadow:0 0 5px 0 #000;
+    }
+    .pop_header>h2{
+        display: block;
+        float: left;
+        font-size: 1rem;
+        margin: 5px;
+    }
+    .pop_header>img{
+        width: 25px;
+        float: right;
+    }
+    .pop_cont{
+        width: 100%;
+        float: left;
+        text-align: center;
+        padding: 20px;
+        padding-top: 30px;
+    }
+    .pop_cont>span{
+        color: #595959;
+        font-size: 0.9;
+        display: inline-block;
+        width: 100%;
+    }
+    .pop_cont button{
+        width: 100px; 
+        height: 35px;    
+        margin:25px 5px 0 5px;
+        background: none;
+        border: none;
+        box-shadow: inset 0 -4px rgba(0, 0, 0, .1);
+        color: white;
+    }
+    .popup_close{
+        cursor: pointer;
+    }
+</style>
 </head>
 <body onload='return checkTemp();'>
+<div class="black_wall"></div>
+<div class="popup">
+   	<div class="pop_header">            
+       	<h2 style="color:#f9f9f9">아이디어 보호센터</h2>
+       	<img src="close.png" alt="close" class="popup_close">
+    </div>
+    <div class="pop_cont">            
+       	<span>임시저장된 아이디어가 있습니다.</span>
+       	<button style="background:#45d4fe;" onclick="loadTempIdea()">불러오기</button>
+       	<button style="background:#e9e9e9; color:#333;" onclick="removeTempIdea()">삭제하기</button>
+    </div>
+</div>
+
 <c:import url="/WEB-INF/views/import/header.jsp"/>
     <div class="wrap_comment">
         <section>            
@@ -32,7 +112,7 @@
                 <div class="txt_box">
                     <h2>발명분야</h2>
                     <button>작성예시 보기</button>
-                    <input type="text" id="idea_kind">
+                    <input type="text" id="idea_kind" name="typeOfInvent" required>
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
@@ -47,7 +127,7 @@
                  <div class="txt_box">
                     <h2>제목</h2>
                     <button>작성예시 보기</button>
-                    <input type="text" id="idea_title">
+                    <input type="text" id="idea_title" name="title" required>
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
@@ -62,7 +142,7 @@
                 <div class="txt_box">
                     <h2>요약</h2>
                     <button>작성예시 보기</button>
-                    <textarea id="small_cont"></textarea>
+                    <textarea id="small_cont" name="summary" required></textarea>
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
@@ -77,7 +157,7 @@
                 <div class="txt_box">
                     <h2>필요이유</h2>
                     <button>작성예시 보기</button>
-                    <textarea id="why_cont"></textarea>
+                    <textarea id="why_cont" name="whyInvent" required></textarea>
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
@@ -92,7 +172,7 @@
                 <div class="txt_box">
                     <h2>기존제품설명 및 문제점</h2>
                     <button>작성예시 보기</button>
-                    <textarea id="col_cont"></textarea>
+                    <textarea id="col_cont" name="problem"  required></textarea>
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
@@ -107,7 +187,7 @@
                 <div class="txt_box">
                     <h2>문제해결방법</h2>
                     <button>작성예시 보기</button>
-                    <textarea id="wel_cont"></textarea>
+                    <textarea id="wel_cont" name="solution" required></textarea>
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
@@ -122,7 +202,7 @@
                 <div class="txt_box">
                     <h2>발명의 효과</h2>
                     <button>작성예시 보기</button>
-                    <textarea id="bal_cont"></textarea>
+                    <textarea id="bal_cont" name="effect" required></textarea>
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
@@ -137,7 +217,7 @@
                 <div class="txt_box">
                     <h2>핵심구성요소</h2>
                     <button>작성예시 보기</button>
-                    <textarea id="imp_cont"></textarea>
+                    <textarea id="imp_cont" name="core_element" required></textarea>
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
@@ -150,7 +230,7 @@
                 </div>
                 <div id="upimgdiv" class="txt_box">
                     <h2 style="width:100%">도면첨부</h2>
-                    <li><input type="file" id="upimg" name="imgs" onchange="addfile()" accept="image/gif, image/jpeg, image/png"><button type="button">제거</button></li>
+                    <li><input multiple="multiple" type="file" id="upimg" name="imgs" onchange="addfile()" accept="image/gif, image/jpeg, image/png"><button type="button">제거</button></li>
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
@@ -162,11 +242,11 @@
                     </div>                    
                 </div>
                 <script>
-                function addfile(){
-                	$('#upimgdiv').append("<input type='file' name='imgs' onchange='addfile()' accept='image/gif, image/jpeg, image/png'>");
+               // function addfile(){
+                //	$('#upimgdiv').append("<input type='file' name='imgs' onchange='addfile()' accept='image/gif, image/jpeg, image/png'>");
                 	//var targetdiv=document.getElementById("uploaddiv");
                 	//targetdiv.innerHTML+="<input type='file' name='imgs' oncellchange='addfile()' accept='image/gif, image/jpeg, image/png'>";
-                }
+                //}
                 
                 function tempsave(){
                 	var typeOfInvent=document.getElementById("idea_kind").value;
@@ -213,17 +293,20 @@
                 	}); 
                 }
                 function checkTemp(){
+                	
+                	$(".popup, .black_wall").fadeOut();
                 	if(${isTemp}=="1"){
-                		var q=confirm("임시저장된 아이디어가 있습니다. 불러올까요?");
-                		if(q==true){
-                			loadTempIdea(${sessionScope.currentUser.getUid()});
-                		}
+                		 $(".popup, .black_wall").fadeIn();
+                		//var q=confirm("임시저장된 아이디어가 있습니다. 불러올까요?");
+                		//if(q==true){
+                		//	loadTempIdea(${sessionScope.currentUser.getUid()});
+                		//}
                 	}
                 	else{
                 		
                 	}
                 }
-                function loadTempIdea(uid){
+                function loadTempIdea(){
                 	var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
                 	var csrfToken = $("meta[name='_csrf']").attr("content"); 
                 	var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
@@ -231,7 +314,7 @@
                 	var headers = {};
                 	
                 	data[csrfParameter] = csrfToken;
-                	 data["uid"]=uid;
+                	 data["uid"]=${sessionScope.currentUser.getUid()};
                      headers[csrfHeader] = csrfToken;
                      $.ajax({
                  	    url : "/registration/loadTempIdea",
@@ -252,7 +335,35 @@
                  	    error:function(request,status,error){
                  	        alert("code:"+request.status+"\n"+"error:"+error);
                  	    }
+                 	   
                  	}); 
+                     $(".popup, .black_wall").fadeOut();
+                }
+                $(".popup_close").click(function(){
+                    $(".popup, .black_wall").fadeOut(); 
+                });
+                function removeTempIdea(){
+                	var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+                	var csrfToken = $("meta[name='_csrf']").attr("content"); 
+                	var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
+                	var data = {};
+                	var headers = {};
+                	
+                	data[csrfParameter] = csrfToken;
+                	 data["uid"]=${sessionScope.currentUser.getUid()};
+                     headers[csrfHeader] = csrfToken;
+                     $.ajax({
+                 	    url : "/registration/removeTempIdea",
+                 	    dataType : "json",
+                 	    type : "POST",
+                 	    headers: headers,
+                 	    data : data,
+                 	    success: function(data) {
+                 	    	
+                 	    },
+                     error:function(request,status,error){
+              	        alert("code:"+request.status+"\n"+"error:"+error);
+              	    }
                 }
                 </script>
                 <div id="fin"> 

@@ -13,7 +13,7 @@ public interface RegistrationDao {
 	public void maketempidea(HashMap<String,String> map);
 	public void updatetempidea(HashMap<String,String> map);
 	public RegistrationPatentVo gettempidea(int uid);
-	public List<RegistrationPatentVo>getInventorProcessList(int uid);
+	public List<RegistrationPatentVo> getInventorProcessList(int uid);
 
 	public int countTempIdea(int uid);
 
@@ -24,4 +24,5 @@ public interface RegistrationDao {
 	public RegistrationPatentVo getInventorProcessByRid(int rid);
 	public RegistrationPatentVo getPrevCommentByPrevRid(int prev_rid);
 	public RegistrationPatentVo getPlProcessByRid(int rid);
+	public void removeTempIdea(int uid);
 }
