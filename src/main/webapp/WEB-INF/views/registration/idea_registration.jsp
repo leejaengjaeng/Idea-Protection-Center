@@ -18,7 +18,7 @@
 <style>
 html,body{
     height: 100% !important;
-    overflow: hidden !important;
+    
 }
 .black_wall{
     width: 100%;
@@ -92,10 +92,11 @@ html,body{
     </div>
     <div class="pop_cont">            
        	<span>임시저장된 아이디어가 있습니다.</span>
-       	<button style="background:#45d4fe;">불러오기</button>
-       	<button style="background:#e9e9e9; color:#333;">삭제하기</button>
+       	<button style="background:#45d4fe;" onclick="loadTempIdea()">불러오기</button>
+       	<button style="background:#e9e9e9; color:#333;" onclick="removeTempIdea()">삭제하기</button>
     </div>
 </div>
+
 <c:import url="/WEB-INF/views/import/header.jsp"/>
     <div class="wrap_comment">
         <section>            
@@ -292,17 +293,20 @@ html,body{
                 	}); 
                 }
                 function checkTemp(){
+                	
+                	
                 	if(${isTemp}=="1"){
-                		var q=confirm("임시저장된 아이디어가 있습니다. 불러올까요?");
-                		if(q==true){
-                			loadTempIdea(${sessionScope.currentUser.getUid()});
-                		}
+                		 $(".popup, .black_wall").fadeIn();
+                		//var q=confirm("임시저장된 아이디어가 있습니다. 불러올까요?");
+                		//if(q==true){
+                		//	loadTempIdea(${sessionScope.currentUser.getUid()});
+                		//}
                 	}
                 	else{
                 		
                 	}
                 }
-                function loadTempIdea(uid){
+                function loadTempIdea(){
                 	var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
                 	var csrfToken = $("meta[name='_csrf']").attr("content"); 
                 	var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
@@ -310,7 +314,7 @@ html,body{
                 	var headers = {};
                 	
                 	data[csrfParameter] = csrfToken;
-                	 data["uid"]=uid;
+                	 data["uid"]=${sessionScope.currentUser.getUid()};
                      headers[csrfHeader] = csrfToken;
                      $.ajax({
                  	    url : "/registration/loadTempIdea",
@@ -331,11 +335,36 @@ html,body{
                  	    error:function(request,status,error){
                  	        alert("code:"+request.status+"\n"+"error:"+error);
                  	    }
+                 	   
                  	}); 
+                     $(".popup, .black_wall").fadeOut();
                 }
                 $(".popup_close").click(function(){
                     $(".popup, .black_wall").fadeOut(); 
                 });
+                function removeTempIdea(){
+                	var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+                	var csrfToken = $("meta[name='_csrf']").attr("content"); 
+                	var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
+                	var data = {};
+                	var headers = {};
+                	
+                	data[csrfParameter] = csrfToken;
+                	 data["uid"]=${sessionScope.currentUser.getUid()};
+                     headers[csrfHeader] = csrfToken;
+                     $.ajax({
+                 	    url : "/registration/removeTempIdea",
+                 	    dataType : "json",
+                 	    type : "POST",
+                 	    headers: headers,
+                 	    data : data,
+                 	    success: function(data) {
+                 	    	
+                 	    },
+                     error:function(request,status,error){
+              	        alert("code:"+request.status+"\n"+"error:"+error);
+              	    }
+                }
                 </script>
                 <div id="fin"> 
                     <button type ="button" onclick="tempsave();">임시저장</button>

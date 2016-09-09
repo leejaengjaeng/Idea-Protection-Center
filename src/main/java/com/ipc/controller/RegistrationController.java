@@ -126,10 +126,12 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 		
 	}
 	
-	@RequestMapping(value="/loadTempIdea")
+	@RequestMapping(value="/loadTempIdea",method=RequestMethod.POST)
 	@ResponseBody
 	public HashMap<String,String> loadTempIdea(HttpServletRequest request){
+		
 		String uid=request.getParameter("uid");
+		System.out.println(uid);
 		RegistrationPatentVo rv=regismapper.gettempidea(Integer.parseInt(uid));
 		HashMap<String, String> hashmap = new HashMap<String, String>();
 		hashmap.put("typeOfInvent", rv.getTypeOfInvent());
@@ -142,5 +144,12 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 		hashmap.put("core_element", rv.getCore_element());
 		
 		return hashmap;
+	}
+	@RequestMapping(value="/removeTempIdea",method=RequestMethod.POST)
+	@ResponseBody
+	public HashMap<String,String> removeTempIdea(HttpServletRequest request){
+		String uid=request.getParameter("uid");
+		regismapper.removeTempIdea(Integer.parseInt(uid));
+		return null;
 	}
 }
