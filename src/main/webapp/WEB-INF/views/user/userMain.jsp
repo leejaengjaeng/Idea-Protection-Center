@@ -47,16 +47,16 @@ $(document).ready(function()
             <div id="nav_benner">
                 <ul>
                     <li>
-                        <img src="#" alt="benner1">
+                        <img src="/resources/image/index_patent_1.jpg" alt="benner1">
                     </li>
                     <li>
-                        <img src="#" alt="benner2">
+                        <img src="/resources/image/index_patent_2.jpg" alt="benner2">
                     </li>
                     <li>
-                        <img src="#" alt="benner3">
+                        <img src="/resources/image/index_patent_3.jpg" alt="benner3">
                     </li>
                     <li>
-                        <img src="#" alt="benner4">
+                        <img src="/resources/image/index_patent_4.jpg" alt="benner4">
                     </li>
                 </ul>
             </div>
@@ -65,9 +65,9 @@ $(document).ready(function()
             <section id="msg_section">
                 <div id="now_count">
                     <h2>
-                        현재까지 진행중인<br>
-                        아이디어 00건,<br>
-                        완료 00건이 있습니다.
+			                    현재까지 진행중인<br>
+			                    아이디어 00건,<br>
+			                    완료 00건이 있습니다.
                     </h2>
                 </div>
                 <div id="now_msg">
