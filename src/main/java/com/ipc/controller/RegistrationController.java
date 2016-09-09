@@ -58,6 +58,7 @@ public class RegistrationController {
 	public String inputidea(HttpServletRequest request){
 		MultipartHttpServletRequest multipartRequest =  (MultipartHttpServletRequest)request;  //다중파일 업로드
 		List<MultipartFile> files = multipartRequest.getFiles("imgs");
+		System.out.println(files.size());
 		String uid=request.getParameter("uid");
 		String typeOfInvent=request.getParameter("typeOfInvent");
 		String title=request.getParameter("title");
@@ -66,6 +67,7 @@ public class RegistrationController {
 		String solution=request.getParameter("solution");
 		String effect=request.getParameter("effect");
 		String core_element=request.getParameter("core_element");
+		String problem = request.getParameter("problem");
 		HashMap<String,String> map=new HashMap();
 		map.put("uid", uid);
 		map.put("typeOfInvent", typeOfInvent);
@@ -75,13 +77,14 @@ public class RegistrationController {
 		map.put("solution", solution);
 		map.put("effect", effect);
 		map.put("core_element", core_element);
+		map.put("problem",problem);
 		RegistrationService rs=new RegistrationService();
 		map.put("registrtaion_date",rs.getToday(0) );
 		regismapper.makeidea(map);
 		
 		//userVo uv=usermapper.getUserByUid(uid);
 		for(int i=0;i<files.size();i++){
-			rs.makeimageFile(files.get(0), "111"+rs.getToday(1)+i,"inventor\\" );
+			rs.makeimageFile(files.get(i), rs.getToday(1)+i,"inventor\\");
 		}
 		return "home/index";
 	}

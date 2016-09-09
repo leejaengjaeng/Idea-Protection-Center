@@ -6,10 +6,10 @@
 		insert into registration_patent(typeofinvent,title,summary,whyinvent,problem,solution,effect,core_element,registration_date,uid,iscomplete) values (#{typeofinvent},#{title},#{summary},#{whyinvent},#{problem},#{solution},#{effect},#{core_element},#{registrtaion_date},#{uid},"0")
 	</insert>
 	<select id="getInventorProcessList" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
-		select rid, iscomplete,registration_date, title, r_condition, start_rid, typeofinvent, apply_date, pre_apply_date from registration_patent where uid=#{uid} and rid=start_rid
+		select rid, iscomplete,registration_date, title, r_condition, start_rid, typeofinvent, apply_date, pre_apply_date from registration_patent where uid=#{uid} and rid=start_rid and AND iscomplete=0
 	</select>
 	<select id="getPlProcessList" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
-		select rid, iscomplete,registration_date, title, r_condition, start_rid, typeofinvent, apply_date, pre_apply_date from registration_patent where lid=#{lid} and rid=start_rid
+		select rid, iscomplete,registration_date, title, r_condition, start_rid, typeofinvent, apply_date, pre_apply_date from registration_patent where lid=#{lid} and rid=start_rid AND iscomplete=0
 	</select>
 	<update id="updatetempidea" parameterType="Hashmap">
 		update registration_patent set typeOfInvent=#{typeOfInvent}, title=#{title}, whyInvent=#{whyInvent}, summary=#{summary}, problem=#{problem}, solution=#{solution}, effect=#{effect}, core_element=#{core_element} WHERE uid=#{uid} AND iscomplete=1
@@ -21,19 +21,19 @@
 		select count(*) from registration_patent where uid=#{uid} AND iscomplete=1
 	</select>
 	<select id="getAssociatedMembers" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
-		select uid,lid from registration_patent where rid=#{start_rid} and start_rid=rid
+		select uid,lid from registration_patent where rid=#{start_rid} and start_rid=rid AND iscomplete=0
 	</select>
 	<select id="getAssociatedProcessList" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
-		select rid, registration_date from registration_patent where start_rid = #{start_rid}
+		select rid, registration_date from registration_patent where start_rid = #{start_rid} AND iscomplete=0
 	</select>
 	<select id="getInventorProcessByRid" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
-		select rid, prev_rid, typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element from registration_patent where rid=#{rid}
+		select rid, prev_rid, typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element from registration_patent where rid=#{rid} AND iscomplete=0
 	</select>
 	<select id="getPrevCommentByPrevRid" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
-		select re_typeofinvent, re_title, re_summary, re_whyinvent, re_problem, re_solution, re_effect, re_core_element from registration_patent where rid=#{prev_rid}
+		select re_typeofinvent, re_title, re_summary, re_whyinvent, re_problem, re_solution, re_effect, re_core_element from registration_patent where rid=#{prev_rid} AND iscomplete=0
 	</select>
 	<select id="getPlProcessByRid" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
-		select rid, prev_rid, typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element, re_typeofinvent, re_title, re_summary, re_whyinvent, re_problem, re_solution, re_effect, re_core_element from registration_patent where rid=#{rid}
+		select rid, prev_rid, typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element, re_typeofinvent, re_title, re_summary, re_whyinvent, re_problem, re_solution, re_effect, re_core_element from registration_patent where rid=#{rid} AND iscomplete=0
 	</select>
 	<select id="gettempidea" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
 		select rid, typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element, re_typeofinvent, re_title, re_summary, re_whyinvent, re_problem, re_solution, re_effect, re_core_element from registration_patent where uid=#{uid} AND iscomplete=1

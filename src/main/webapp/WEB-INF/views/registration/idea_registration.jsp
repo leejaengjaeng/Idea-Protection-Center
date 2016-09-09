@@ -32,7 +32,7 @@
                 <div class="txt_box">
                     <h2>발명분야</h2>
                     <button>작성예시 보기</button>
-                    <input type="text" id="idea_kind">
+                    <input type="text" id="idea_kind" name="typeOfInvent" required>
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
@@ -47,7 +47,7 @@
                  <div class="txt_box">
                     <h2>제목</h2>
                     <button>작성예시 보기</button>
-                    <input type="text" id="idea_title">
+                    <input type="text" id="idea_title" name="title" required>
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
@@ -62,7 +62,7 @@
                 <div class="txt_box">
                     <h2>요약</h2>
                     <button>작성예시 보기</button>
-                    <textarea id="small_cont"></textarea>
+                    <textarea id="small_cont" name="summary" required></textarea>
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
@@ -77,7 +77,7 @@
                 <div class="txt_box">
                     <h2>필요이유</h2>
                     <button>작성예시 보기</button>
-                    <textarea id="why_cont"></textarea>
+                    <textarea id="why_cont" name="whyInvent" required></textarea>
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
@@ -92,7 +92,7 @@
                 <div class="txt_box">
                     <h2>기존제품설명 및 문제점</h2>
                     <button>작성예시 보기</button>
-                    <textarea id="col_cont"></textarea>
+                    <textarea id="col_cont" name="problem"  required></textarea>
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
@@ -107,7 +107,7 @@
                 <div class="txt_box">
                     <h2>문제해결방법</h2>
                     <button>작성예시 보기</button>
-                    <textarea id="wel_cont"></textarea>
+                    <textarea id="wel_cont" name="solution" required></textarea>
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
@@ -122,7 +122,7 @@
                 <div class="txt_box">
                     <h2>발명의 효과</h2>
                     <button>작성예시 보기</button>
-                    <textarea id="bal_cont"></textarea>
+                    <textarea id="bal_cont" name="effect" required></textarea>
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
@@ -137,7 +137,7 @@
                 <div class="txt_box">
                     <h2>핵심구성요소</h2>
                     <button>작성예시 보기</button>
-                    <textarea id="imp_cont"></textarea>
+                    <textarea id="imp_cont" name="core_element" required></textarea>
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
@@ -150,7 +150,7 @@
                 </div>
                 <div id="upimgdiv" class="txt_box">
                     <h2 style="width:100%">도면첨부</h2>
-                    <li><input type="file" id="upimg" name="imgs" onchange="addfile()" accept="image/gif, image/jpeg, image/png"><button type="button">제거</button></li>
+                    <li><input multiple="multiple" type="file" id="upimg" name="imgs" onchange="addfile()" accept="image/gif, image/jpeg, image/png"><button type="button">제거</button></li>
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
@@ -162,11 +162,11 @@
                     </div>                    
                 </div>
                 <script>
-                function addfile(){
-                	$('#upimgdiv').append("<input type='file' name='imgs' onchange='addfile()' accept='image/gif, image/jpeg, image/png'>");
+               // function addfile(){
+                //	$('#upimgdiv').append("<input type='file' name='imgs' onchange='addfile()' accept='image/gif, image/jpeg, image/png'>");
                 	//var targetdiv=document.getElementById("uploaddiv");
                 	//targetdiv.innerHTML+="<input type='file' name='imgs' oncellchange='addfile()' accept='image/gif, image/jpeg, image/png'>";
-                }
+                //}
                 
                 function tempsave(){
                 	var typeOfInvent=document.getElementById("idea_kind").value;
