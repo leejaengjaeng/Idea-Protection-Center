@@ -8,6 +8,27 @@
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>  
     <link href="/resources/common/css/style.css" rel="stylesheet">
     <link href="/resources/common/css/index.css" rel="stylesheet">
+<script>
+	$(document).ready(function()
+	{
+		if("${user}" == "pl")
+		{
+			var hideEl = document.getElementsByClassName('before_cmt')
+			for(var i =0; i <hideEl.length ; i++)
+				hideEl[i].style.display="none";
+		}
+		else if("${user}" == "inventor")
+		{
+			var hideEl = document.getElementsByClassName('box_comment1')
+			for(var i =0; i <hideEl.length ; i++)
+				hideEl[i].style.display="none";
+		}
+		else
+		{
+			//redirect 시키기?
+		}	
+	});
+</script>
 </head>
 <body>
     <c:import url="/WEB-INF/views/import/header.jsp"/>
@@ -16,7 +37,7 @@
            <nav>
                 <div id="profile">
                     <img src="#" alt="profile">
-                    <h4>OOO 회원님</h4>
+                    <h4>${sessionScope.currentUser.getName()} 회원님</h4>
                     <span>ideaconcert</span>
                 </div>
                 <div id="profile_menu">
@@ -43,32 +64,24 @@
                 </div>
             </nav>            
             <article class="sub_head">                    
-                <h1><b>2차</b> 코멘트</h1>                
+                <h1><b>아이디어</b> 초안</h1>                
                 <img src="/resources/image/cmt.png" alt="cmt" style="width:100%; float:left;">
             </article>                
             <article class="modify_log">                    
                 <h1>아이디어수정내역</h1>   
                 <table>
-                    <tr>
-                        <td class="title_td">4차 전문가 검토 및 4차 수정안</td>
-                        <td class="date_td">2016.09.08</td>
-                    </tr>
-                    <tr>
-                        <td class="title_td">3차 전문가 검토 및 3차 수정안</td>
-                        <td class="date_td">2016.09.08</td>
-                    </tr> 
-                    <tr>
-                        <td class="title_td">2차 전문가 검토 및 2차 수정안</td>
-                        <td class="date_td">2016.09.08</td>
-                    </tr> 
-                    <tr>
-                        <td class="title_td">1차 전문가 검토 및 1차 수정안</td>
-                        <td class="date_td">2016.09.08</td>
-                    </tr>
-                    <tr>
-                        <td class="title_td">아이디어 등록(초안)</td>
-                        <td class="date_td">2016.09.08</td>
-                    </tr>                      
+                    <c:forEach items="${processList}" var="list" varStatus="status">
+						<tr>
+							<input type="hidden" value="${list.getRid()}"/>
+							<c:if test="${status.index == 0}">
+								<td class="title_td">아이디어 등록(초안)</td>
+							</c:if>
+							<c:if test="${status.index > 0}">
+								<td class="title_td">${status.index}차 전문가 검토 및 수정안</td>
+	                        </c:if>
+	                        <td class="date_td">${list.getRegistration_date()}</td>
+	                    </tr>                    
+					</c:forEach>
                 </table>                             
             </article>  
             <article>
@@ -79,7 +92,7 @@
                         <p>Before Comment...</p>
                     </div>             
                     <div class="box_before1">                        
-                        <span>Temp Text</span>
+                        <span>${item.getTypeOfInvent() }</span>
                     </div>
                     <div class="box_comment1">
                         <div class="img_comt">
@@ -99,7 +112,7 @@
                         <p>Before Comment...</p>
                     </div>
                     <div class="box_before1">                        
-                        <span>Temp Text</span>
+                        <span>${item.getTitle() }</span>
                     </div>
                     <div class="box_comment1">
                         <div class="img_comt">
@@ -119,7 +132,7 @@
                         <p>Before Comment...</p>
                     </div>                    
                     <div class="box_before1_b">                        
-                        <p>Temp Text</p>
+                        <p>${item.getSummary() }</p>
                     </div>
                     <div class="box_comment1">
                         <div class="img_comt">
@@ -138,7 +151,7 @@
                         <p>Before Comment...</p>
                     </div>
                     <div class="box_before1_b">                        
-                        <p>Temp Text</p>
+                        <p>${item.getWhyInvent() }</p>
                     </div>
                     <div class="box_comment1">
                         <div class="img_comt">
@@ -158,7 +171,7 @@
                         <p>Before Comment...</p>
                     </div>
                     <div class="box_before1_b">                        
-                        <p>Temp Text</p>
+                        <p>${item.getProblem() }</p>
                     </div>
                     <div class="box_comment1">
                         <div class="img_comt">
@@ -178,7 +191,7 @@
                         <p>Before Comment...</p>
                     </div>
                     <div class="box_before1_b">                        
-                        <p>Temp Text</p>
+                        <p>${item.getSolution() }</p>
                     </div>
                     <div class="box_comment1">
                         <div class="img_comt">
@@ -198,7 +211,7 @@
                         <p>Before Comment...</p>
                     </div>
                     <div class="box_before1_b">                        
-                        <p>Temp Text</p>
+                        <p>${item.getEffect() }</p>
                     </div>
                     <div class="box_comment1">
                         <div class="img_comt">
@@ -218,7 +231,7 @@
                         <p>Before Comment...</p>
                     </div>
                     <div class="box_before1_b">                        
-                        <p>Temp Text<br><br><br><br><br><br><br><br><br><br><br><br></p>
+                        <p>${item.getCore_element() }</p>
                     </div>
                     <div class="box_comment1">                    
                         <div class="img_comt">

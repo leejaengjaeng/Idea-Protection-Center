@@ -69,6 +69,7 @@ public class AuthController {
 			else
 			{
 				session.setAttribute("currentUser", currentUser);
+				System.out.println(currentUser.getName());
 				return "redirect:/mainPage";
 			}
 		}

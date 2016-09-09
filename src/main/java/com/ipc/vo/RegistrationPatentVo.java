@@ -26,6 +26,8 @@ public class RegistrationPatentVo {
 	String pre_apply_date;
 	String apply_date;
 	String registration_date;
+	int prev_rid;
+	
 	public int getRid() {
 		return rid;
 	}
@@ -176,5 +178,11 @@ public class RegistrationPatentVo {
 	}
 	public void setRegistration_date(String registration_date) {
 		this.registration_date = registration_date;
+	}
+	public int getPrev_rid() {
+		return prev_rid;
+	}
+	public void setPrev_rid(int prev_rid) {
+		this.prev_rid = prev_rid;
 	}
 }

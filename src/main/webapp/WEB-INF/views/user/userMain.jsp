@@ -13,15 +13,15 @@
 <link rel="stylesheet" href="/resources/common/css/inventor.css">
 
 <script>
-	$('.ideaList').click(function()
+//js파일 밖으로 빼기 
+$(document).ready(function()
+{
+	$('.ideaList').on("click",(function()
 	{
-		console.log($(this));
-
-		alert($(this).children('input'));
-		console.log($(this).children('input').attr('value'));
-		console.log($(this).children('input').value);
-		
-	});
+		var r = $(this).children('input').attr('value');
+		location.href="/detail/"+r;
+	}));
+});
 </script>
 </head>
 <body>
@@ -160,7 +160,7 @@
                     </tr>
                    	<c:forEach var="process" items="${processList }">
 						<tr class="ideaList">
-							<input type="hidden" value=${process.getRid() }/>
+							<input type="hidden" value="${process.getRid()}"/>
 							<td style="background:#f1f1f1;">0</td>
 	                        <td>${process.getRegistration_date() }</td>
 	                        <td>${process.getTypeOfInvent() }</td>
