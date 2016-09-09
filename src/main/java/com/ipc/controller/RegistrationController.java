@@ -68,7 +68,7 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 		int uid=rv.getUid();
 		userVo uv=usermapper.getUserByUid(Integer.toString(uid));
 		for(int i=0;i<files.size();i++){
-			rs.makeimageFile(files.get(i), rs.getToday(1)+i,"inventor\\",uv.getId());
+			rs.makeimageFile(files.get(i), rs.getToday(1)+i,uv.getId());
 		}
 		return "home/index";
 	}
