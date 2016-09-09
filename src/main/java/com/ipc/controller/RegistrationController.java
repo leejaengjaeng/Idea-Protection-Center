@@ -40,6 +40,7 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 	@RequestMapping("/addidea")
 	public String addidea(Model model,HttpSession session, HttpServletRequest request){
 		userVo uv=(userVo) request.getSession().getAttribute("currentUser");
+		System.out.println(uv.getUid());
 		if(regismapper.countTempIdea(uv.getUid())!=0){
 			model.addAttribute("isTemp", "1");
 			
@@ -142,7 +143,8 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 		hashmap.put("summary", rv.getSummary());
 		hashmap.put("problem", rv.getProblem());
 		hashmap.put("core_element", rv.getCore_element());
-		
+		System.out.println(rv.getTypeOfInvent());
+		System.out.println(rv.getSummary());
 		return hashmap;
 	}
 	@RequestMapping(value="/removeTempIdea",method=RequestMethod.POST)
@@ -150,6 +152,8 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 	public HashMap<String,String> removeTempIdea(HttpServletRequest request){
 		String uid=request.getParameter("uid");
 		regismapper.removeTempIdea(Integer.parseInt(uid));
-		return null;
+		HashMap<String, String> hashmap = new HashMap<String, String>();
+		hashmap.put("aa","aa");
+		return hashmap;
 	}
 }
