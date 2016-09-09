@@ -17,14 +17,13 @@
 <title>Insert title here</title>
 <style>
 body{
-    height: 100% !important;    
-    
+    height: 100% !important;        
 }
 .black_wall{
     width: 100%;
     height: 100%;
     background: rgba(0,0,0,0.7);
-    position: fixed;    
+    position:fixed;    
     z-index:98;
 }    
     .popup{
