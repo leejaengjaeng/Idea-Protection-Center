@@ -45,7 +45,7 @@ $(document).ready(function()
                 </ul>
             </div>
             <div id="nav_benner">
-                <ul>
+                <ul style="padding-left:0;">
                     <li>
                         <img src="/resources/image/index_patent_1.jpg" alt="benner1">
                     </li>

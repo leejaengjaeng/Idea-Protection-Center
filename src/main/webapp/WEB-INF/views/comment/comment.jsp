@@ -143,8 +143,8 @@ $(document).ready(function()
 					</c:forEach>
                 </table>                             
             </article>  
-            <article>
-            <!--<form id="commentForm">-->
+            <article style="width: 100%;">
+            <form id="commentForm">
                 <div class="txt_box">
                     <h2>발명분야</h2>   
                     <button>작성 예시</button>
@@ -152,7 +152,7 @@ $(document).ready(function()
                         <textarea name="BeforeCommentTypeOfInvent"  disabled="disabled" class="disabled"/> ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅁㄴㅇㅁㄴㅇㅁㄴㅇazscasdasdas</textarea>
                     </div>             
                     <div id="RegtypeOfInvent" class="box_before1">                        
-                        <input type="text" name="RegtypeOfInvent" value="${item.getTypeOfInvent() }" disabled="disabled" class="disabled" />
+                        <input type="text" name="RegtypeOfInvent" value="${item.getTypeOfInvent() }" />
                   <!--  <span>${item.getTypeOfInvent() }</span> -->
                     </div>
                     <div class="box_comment1">
@@ -406,7 +406,7 @@ $(document).ready(function()
                     <button id="tmpSave">임시저장</button>
                     <button id="agree">코멘트작성</button>                    
                 </div>
-            <!-- </form> -->
+            </form>
             </article>
         </section>
     </div>
