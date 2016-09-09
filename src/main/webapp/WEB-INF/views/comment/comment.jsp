@@ -143,8 +143,8 @@ $(document).ready(function()
 					</c:forEach>
                 </table>                             
             </article>  
-            <article>
-            <!--<form id="commentForm">-->
+            <article style="width: 100%;">
+            <form id="commentForm">
                 <div class="txt_box">
                     <h2>발명분야</h2>   
                     <button>작성 예시</button>
@@ -406,7 +406,7 @@ $(document).ready(function()
                     <button id="tmpSave">임시저장</button>
                     <button id="agree">코멘트작성</button>                    
                 </div>
-            <!-- </form> -->
+            </form>
             </article>
         </section>
     </div>
