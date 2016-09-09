@@ -232,7 +232,7 @@ body{
                 </div>
                 <div id="upimgdiv" class="txt_box">
                     <h2 style="width:100%">도면첨부</h2>
-                    <li><input type="file" id="upimg" name="imgs" onchange="addfile()" accept="image/gif, image/jpeg, image/png"><button type="button">제거</button></li>
+                    <input type="file" id="upimg" name="imgs" onchange="addfile()" accept="image/gif, image/jpeg, image/png" style="padding-top:5px;"><button style="margin-top:5px;">제거</button>
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
@@ -294,7 +294,7 @@ body{
                 	 
                 	}); 
                 }
-               /* function checkTemp(){
+                function checkTemp(){
                 	if(${isTemp}=="1"){
                 		var q=confirm("임시저장된 아이디어가 있습니다. 불러올까요?");
                 		if(q==true){
@@ -304,7 +304,7 @@ body{
                 	else{
                 		
                 	}
-                }*/
+                }
                 function loadTempIdea(uid){
                 	var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
                 	var csrfToken = $("meta[name='_csrf']").attr("content"); 
@@ -337,8 +337,7 @@ body{
                  	}); 
                 }
                 $(".popup_close").click(function(){
-                    $(".popup, .black_wall").fadeOut();
-                    $("html,body").css("overflow","scroll-y");
+                    $(".popup, .black_wall").fadeOut();                    
                 });
                 </script>
                 <div id="fin"> 
