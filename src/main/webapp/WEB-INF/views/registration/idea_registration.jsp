@@ -17,8 +17,7 @@
 <title>Insert title here</title>
 <style>
 html,body{
-    height: 100% !important;
-    overflow: hidden !important;
+    height: 100% !important;    
 }
 .black_wall{
     width: 100%;
