@@ -17,7 +17,12 @@
 <title>Insert title here</title>
 <style>
 html,body{
+<<<<<<< HEAD
+    height: 100% !important;
+    
+=======
     height: 100% !important;    
+>>>>>>> 03d1d79d174e79fe3bdae8166cc5d6feb158a0c7
 }
 .black_wall{
     width: 100%;
@@ -95,10 +100,11 @@ html,body{
     </div>
     <div class="pop_cont">            
        	<span>임시저장된 아이디어가 있습니다.</span>
-       	<button style="background:#45d4fe;">불러오기</button>
-       	<button style="background:#e9e9e9; color:#333;">삭제하기</button>
+       	<button style="background:#45d4fe;" onclick="loadTempIdea()">불러오기</button>
+       	<button style="background:#e9e9e9; color:#333;" onclick="removeTempIdea()">삭제하기</button>
     </div>
 </div>
+
 <c:import url="/WEB-INF/views/import/header.jsp"/>
     <div class="wrap_comment">
         <section>            
@@ -114,7 +120,7 @@ html,body{
                 <div class="txt_box">
                     <h2>발명분야</h2>
                     <button>작성예시 보기</button>
-                    <input type="text" id="idea_kind">
+                    <input type="text" id="idea_kind" name="typeOfInvent" required>
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
@@ -129,7 +135,7 @@ html,body{
                  <div class="txt_box">
                     <h2>제목</h2>
                     <button>작성예시 보기</button>
-                    <input type="text" id="idea_title">
+                    <input type="text" id="idea_title" name="title" required>
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
@@ -144,7 +150,7 @@ html,body{
                 <div class="txt_box">
                     <h2>요약</h2>
                     <button>작성예시 보기</button>
-                    <textarea id="small_cont"></textarea>
+                    <textarea id="small_cont" name="summary" required></textarea>
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
@@ -159,7 +165,7 @@ html,body{
                 <div class="txt_box">
                     <h2>필요이유</h2>
                     <button>작성예시 보기</button>
-                    <textarea id="why_cont"></textarea>
+                    <textarea id="why_cont" name="whyInvent" required></textarea>
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
@@ -174,7 +180,7 @@ html,body{
                 <div class="txt_box">
                     <h2>기존제품설명 및 문제점</h2>
                     <button>작성예시 보기</button>
-                    <textarea id="col_cont"></textarea>
+                    <textarea id="col_cont" name="problem"  required></textarea>
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
@@ -189,7 +195,7 @@ html,body{
                 <div class="txt_box">
                     <h2>문제해결방법</h2>
                     <button>작성예시 보기</button>
-                    <textarea id="wel_cont"></textarea>
+                    <textarea id="wel_cont" name="solution" required></textarea>
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
@@ -204,7 +210,7 @@ html,body{
                 <div class="txt_box">
                     <h2>발명의 효과</h2>
                     <button>작성예시 보기</button>
-                    <textarea id="bal_cont"></textarea>
+                    <textarea id="bal_cont" name="effect" required></textarea>
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
@@ -219,7 +225,7 @@ html,body{
                 <div class="txt_box">
                     <h2>핵심구성요소</h2>
                     <button>작성예시 보기</button>
-                    <textarea id="imp_cont"></textarea>
+                    <textarea id="imp_cont" name="core_element" required></textarea>
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
@@ -232,7 +238,7 @@ html,body{
                 </div>
                 <div id="upimgdiv" class="txt_box">
                     <h2 style="width:100%">도면첨부</h2>
-                    <li><input type="file" id="upimg" name="imgs" onchange="addfile()" accept="image/gif, image/jpeg, image/png"><button type="button">제거</button></li>
+                    <li><input multiple="multiple" type="file" id="upimg" name="imgs" onchange="addfile()" accept="image/gif, image/jpeg, image/png"><button type="button">제거</button></li>
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
@@ -244,11 +250,11 @@ html,body{
                     </div>                    
                 </div>
                 <script>
-                function addfile(){
-                	$('#upimgdiv').append("<input type='file' name='imgs' onchange='addfile()' accept='image/gif, image/jpeg, image/png'>");
+               // function addfile(){
+                //	$('#upimgdiv').append("<input type='file' name='imgs' onchange='addfile()' accept='image/gif, image/jpeg, image/png'>");
                 	//var targetdiv=document.getElementById("uploaddiv");
                 	//targetdiv.innerHTML+="<input type='file' name='imgs' oncellchange='addfile()' accept='image/gif, image/jpeg, image/png'>";
-                }
+                //}
                 
                 function tempsave(){
                 	var typeOfInvent=document.getElementById("idea_kind").value;
@@ -295,17 +301,20 @@ html,body{
                 	}); 
                 }
                 function checkTemp(){
+                	
+                	
                 	if(${isTemp}=="1"){
-                		var q=confirm("임시저장된 아이디어가 있습니다. 불러올까요?");
-                		if(q==true){
-                			loadTempIdea(${sessionScope.currentUser.getUid()});
-                		}
+                		 $(".popup, .black_wall").fadeIn();
+                		//var q=confirm("임시저장된 아이디어가 있습니다. 불러올까요?");
+                		//if(q==true){
+                		//	loadTempIdea(${sessionScope.currentUser.getUid()});
+                		//}
                 	}
                 	else{
                 		
                 	}
                 }
-                function loadTempIdea(uid){
+                function loadTempIdea(){
                 	var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
                 	var csrfToken = $("meta[name='_csrf']").attr("content"); 
                 	var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
@@ -313,7 +322,7 @@ html,body{
                 	var headers = {};
                 	
                 	data[csrfParameter] = csrfToken;
-                	 data["uid"]=uid;
+                	 data["uid"]=${sessionScope.currentUser.getUid()};
                      headers[csrfHeader] = csrfToken;
                      $.ajax({
                  	    url : "/registration/loadTempIdea",
@@ -334,12 +343,37 @@ html,body{
                  	    error:function(request,status,error){
                  	        alert("code:"+request.status+"\n"+"error:"+error);
                  	    }
+                 	   
                  	}); 
+                     $(".popup, .black_wall").fadeOut();
                 }
                 $(".popup_close").click(function(){
                     $(".popup, .black_wall").fadeOut();
                     $("body").css("overflow","scroll");
                 });
+                function removeTempIdea(){
+                	var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+                	var csrfToken = $("meta[name='_csrf']").attr("content"); 
+                	var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
+                	var data = {};
+                	var headers = {};
+                	
+                	data[csrfParameter] = csrfToken;
+                	 data["uid"]=${sessionScope.currentUser.getUid()};
+                     headers[csrfHeader] = csrfToken;
+                     $.ajax({
+                 	    url : "/registration/removeTempIdea",
+                 	    dataType : "json",
+                 	    type : "POST",
+                 	    headers: headers,
+                 	    data : data,
+                 	    success: function(data) {
+                 	    	
+                 	    },
+                     error:function(request,status,error){
+              	        alert("code:"+request.status+"\n"+"error:"+error);
+              	    }
+                }
                 </script>
                 <div id="fin"> 
                     <button type ="button" onclick="tempsave();">임시저장</button>
