@@ -20,8 +20,8 @@
 	<select id="countTempIdea" parameterType="Integer" resultType="Integer">
 		select count(*) from registration_patent where uid=#{uid} AND iscomplete=1
 	</select>
-	<select id="getAssociatedMembers" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
-		select uid,lid from registration_patent where rid=#{start_rid} and start_rid=rid
+	<select id="getAssociatedMembersByRid" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
+		select uid,lid from registration_patent where rid=#{rid}
 	</select>
 	<select id="getAssociatedProcessList" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
 		select rid, registration_date from registration_patent where start_rid = #{start_rid}

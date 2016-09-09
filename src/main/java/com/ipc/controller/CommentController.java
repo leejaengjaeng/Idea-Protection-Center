@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ipc.dao.RegistrationDao;
 import com.ipc.vo.RegistrationPatentVo;
@@ -38,14 +39,15 @@ public class CommentController {
 	public String detail(@PathVariable int start_rid,Model model)
 	{
 		//접근한 경로에 대한 권한 확인
-		List<RegistrationPatentVo> assosiatedMemberId= regDao.getAssociatedMembers(start_rid);		
+		RegistrationPatentVo assosiatedMemberId= regDao.getAssociatedMembersByRid(start_rid);		
+		System.out.println(assosiatedMemberId);
 
 		Object isAuthenticated = session.getAttribute("currentUser");
 
-		if(!assosiatedMemberId.isEmpty() && isAuthenticated != null )
+		if(assosiatedMemberId != null && isAuthenticated != null )
 		{
-			int inventorId = assosiatedMemberId.get(0).getUid();
-			int plId = assosiatedMemberId.get(0).getLid();
+			int inventorId = assosiatedMemberId.getUid();
+			int plId = assosiatedMemberId.getLid();
 			int userId = ((userVo)isAuthenticated).getUid();
 			
 			//발명가가 보는 경우
@@ -72,4 +74,39 @@ public class CommentController {
 		return "redirect:/authError";
 	}
 	
+	//Ajax용
+	@RequestMapping(value="/detailByRid/{rid}",method=RequestMethod.GET)
+	@ResponseBody
+	public RegistrationPatentVo detailByRid(@PathVariable int rid)
+	{
+		System.out.println("hihi");
+		//접근한 경로에 대한 권한 확인
+		RegistrationPatentVo assosiatedMemberId= regDao.getAssociatedMembersByRid(rid);		
+		Object isAuthenticated = session.getAttribute("currentUser");
+
+		if(assosiatedMemberId != null && isAuthenticated != null )
+		{
+			int inventorId = assosiatedMemberId.getUid();
+			int plId = assosiatedMemberId.getLid();
+			int userId = ((userVo)isAuthenticated).getUid();
+		
+			System.out.println("hihi2");
+			
+			//발명가가 보는 경우
+			if(inventorId==userId) 
+			{
+				RegistrationPatentVo item = regDao.getInventorProcessByRid(rid);
+				return item;
+			}
+			//변리사가 보는 경우
+			if(plId==userId)
+			{
+				RegistrationPatentVo item = regDao.getPlProcessByRid(rid);
+				return item;
+			}
+		}
+		System.out.println("hihi NUll");
+		
+		return null;
+	}
 }
