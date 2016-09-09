@@ -15,8 +15,87 @@
 <link rel="stylesheet" href="/resources/common/css/index.css">
 <link rel="stylesheet" href="/resources/common/css/style.css">
 <title>Insert title here</title>
+<style>
+html,body{
+    height: 100% !important;
+    overflow: hidden !important;
+}
+.black_wall{
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    position: absolute;
+}    
+    .popup{
+        width: 400px;
+        height: 200px;
+        background:#fff;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        -moz-transform: translate(-50%,-50%);
+        -webkit-transform: translate(-50%,-50%);
+        box-shadow: 0 0 10px 0 #000;        
+    }
+    .pop_header{
+        width: 100%;
+        float: left;
+        background: #696969;
+        color: white;
+        padding: 10px;    
+        box-shadow:0 0 5px 0 #000;
+    }
+    .pop_header>h2{
+        display: block;
+        float: left;
+        font-size: 1rem;
+        margin: 5px;
+    }
+    .pop_header>img{
+        width: 25px;
+        float: right;
+    }
+    .pop_cont{
+        width: 100%;
+        float: left;
+        text-align: center;
+        padding: 20px;
+        padding-top: 30px;
+    }
+    .pop_cont>span{
+        color: #595959;
+        font-size: 0.9;
+        display: inline-block;
+        width: 100%;
+    }
+    .pop_cont button{
+        width: 100px; 
+        height: 35px;    
+        margin:25px 5px 0 5px;
+        background: none;
+        border: none;
+        box-shadow: inset 0 -4px rgba(0, 0, 0, .1);
+        color: white;
+    }
+    .popup_close{
+        cursor: pointer;
+    }
+</style>
 </head>
 <body onload='return checkTemp();'>
+<div class="black_wall"></div>
+<div class="popup">
+   	<div class="pop_header">            
+       	<h2 style="color:#f9f9f9">아이디어 보호센터</h2>
+       	<img src="close.png" alt="close" class="popup_close">
+    </div>
+    <div class="pop_cont">            
+       	<span>임시저장된 아이디어가 있습니다.</span>
+       	<button style="background:#45d4fe;">불러오기</button>
+       	<button style="background:#e9e9e9; color:#333;">삭제하기</button>
+    </div>
+</div>
 <c:import url="/WEB-INF/views/import/header.jsp"/>
     <div class="wrap_comment">
         <section>            
@@ -254,6 +333,9 @@
                  	    }
                  	}); 
                 }
+                $(".popup_close").click(function(){
+                    $(".popup, .black_wall").fadeOut(); 
+                });
                 </script>
                 <div id="fin"> 
                     <button type ="button" onclick="tempsave();">임시저장</button>
