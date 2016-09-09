@@ -240,7 +240,7 @@ var showClickedList = function(rid)
 					</c:forEach>
                 </table>                             
             </article>  
-            <article>
+            <article style="width: 100%;>
                <input id="currentPosition" type="hidden" value="${item.getRid()}"/>
                <div class="txt_box">
                     <h2>발명분야</h2>   

@@ -127,6 +127,7 @@ public class CommentController {
 	public String tmpSave(RegistrationPatentVo regVo, HttpServletRequest req)
 	{
 		String role = req.getParameter("role");
+		
 		System.out.println(regVo.getTitle());
 		System.out.println(regVo.getTypeOfInvent());
 		

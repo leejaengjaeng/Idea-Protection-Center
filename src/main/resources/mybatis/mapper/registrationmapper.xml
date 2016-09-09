@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ipc.dao.RegistrationDao">
-	<insert id="makeidea" parameterType="Hashmap">
-		insert into registration_patent(typeofinvent,title,summary,whyinvent,problem,solution,effect,core_element,registration_date,uid,iscomplete) values (#{typeOfInvent},#{title},#{summary},#{whyInvent},#{problem},#{solution},#{effect},#{core_element},#{registrtaion_date},#{uid},"0")
+	<insert id="makeidea" parameterType="com.ipc.vo.RegistrationPatentVo" useGeneratedKeys="true" keyProperty="rid">
+		insert into registration_patent(typeofinvent,title,summary,whyinvent,problem,solution,effect,core_element,registration_date,uid,iscomplete) values (#{typeOfInvent},#{title},#{summary},#{whyInvent},#{problem},#{solution},#{effect},#{core_element},#{registration_date},#{uid},"0")
 	</insert>
 	
 	<select id="getInventorProcessList" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
@@ -22,7 +22,7 @@
 	</update>
 	
 	<insert id="maketempidea" parameterType="Hashmap">
-		insert into registration_patent(typeOfInvent,title,summary,whyInvent,problem,solution,effect,core_element,registration_date,uid,iscomplete) values (#{typeofinvent},#{title},#{summary},#{whyinvent},#{problem},#{solution},#{effect},#{core_element},#{registrtaion_date},#{uid},"1")
+		insert into registration_patent(typeOfInvent,title,summary,whyInvent,problem,solution,effect,core_element,registration_date,uid,iscomplete) values (#{typeOfInvent},#{title},#{summary},#{whyInvent},#{problem},#{solution},#{effect},#{core_element},#{registrtaion_date},#{uid},"1")
 	</insert>
 	<select id="countTempIdea" parameterType="Integer" resultType="Integer">
 		select count(*) from registration_patent where uid=#{uid} AND iscomplete=1
