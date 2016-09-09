@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ipc.dao.RegistrationDao">
-	<insert id="makeidea" parameterType="Hashmap">
+	<insert id="makeidea" parameterType="Hashmap" useGeneratedKeys="true" keyProperty="rid">
 		insert into registration_patent(typeofinvent,title,summary,whyinvent,problem,solution,effect,core_element,registration_date,uid,iscomplete) values (#{typeOfInvent},#{title},#{summary},#{whyInvent},#{problem},#{solution},#{effect},#{core_element},#{registrtaion_date},#{uid},"0")
 	</insert>
 	<select id="getInventorProcessList" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
