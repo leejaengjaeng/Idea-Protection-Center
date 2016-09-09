@@ -1,6 +1,8 @@
 package com.ipc.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -77,9 +79,8 @@ public class CommentController {
 	//Ajax용
 	@RequestMapping(value="/detailByRid/{rid}",method=RequestMethod.GET)
 	@ResponseBody
-	public RegistrationPatentVo detailByRid(@PathVariable int rid)
+	public Map detailByRid(@PathVariable int rid)
 	{
-		System.out.println("hihi");
 		//접근한 경로에 대한 권한 확인
 		RegistrationPatentVo assosiatedMemberId= regDao.getAssociatedMembersByRid(rid);		
 		Object isAuthenticated = session.getAttribute("currentUser");
@@ -90,22 +91,31 @@ public class CommentController {
 			int plId = assosiatedMemberId.getLid();
 			int userId = ((userVo)isAuthenticated).getUid();
 		
-			System.out.println("hihi2");
-			
+		
 			//발명가가 보는 경우
 			if(inventorId==userId) 
 			{
 				RegistrationPatentVo item = regDao.getInventorProcessByRid(rid);
-				return item;
+				RegistrationPatentVo beforeComment = regDao.getPrevCommentByPrevRid(item.getPrev_rid());
+				
+				Map<String,Object> retVal = new HashMap<String,Object>();
+				retVal.put("role", "inventor");
+				retVal.put("item",item);
+				retVal.put("beforeComment", beforeComment);
+				
+				return retVal;
 			}
 			//변리사가 보는 경우
 			if(plId==userId)
 			{
+				Map<String,Object> retVal = new HashMap<String,Object>();
 				RegistrationPatentVo item = regDao.getPlProcessByRid(rid);
-				return item;
+				
+				retVal.put("role", "pl");
+				retVal.put("item", item);
+				return retVal;
 			}
 		}
-		System.out.println("hihi NUll");
 		
 		return null;
 	}

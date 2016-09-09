@@ -26,7 +26,7 @@ $(document).ready(function()
 	}
 	else
 	{
-		//redirect 시키기?
+		location.href="/authError";
 	}	
 	
 	$('#IdeaModifyList').on("click","tr",function()
@@ -35,16 +35,49 @@ $(document).ready(function()
 		$.ajax({
 			url : "/detailByRid/"+rid,
 			type:"GET",
-			success:function(result)
+			success:function(retVal)
 			{
-				$('#RegTypeOfInvent').children().text(result.typeOfInvent);
-				$('#RegTitle').children().text(result.title);
-				$('#RegSummary').children().text(result.summary);
-				$('#RegWhyInvent').children().text(result.whyInvent);
-				$('#RegProblem').children().text(result.problem);
-				$('#RegSolution').children().text(result.solution);
-				$('#RegEffect').children().text(result.effect);
-				$('#RegCore_Element').children().text(result.core_element);
+				if(retVal != "")
+				{
+					var result = retVal.item;
+					$('#RegTypeOfInvent').children().text(result.typeOfInvent);
+					$('#RegTitle').children().text(result.title);
+					$('#RegSummary').children().text(result.summary);
+					$('#RegWhyInvent').children().text(result.whyInvent);
+					$('#RegProblem').children().text(result.problem);
+					$('#RegSolution').children().text(result.solution);
+					$('#RegEffect').children().text(result.effect);
+					$('#RegCore_Element').children().text(result.core_element);
+				
+					if(retVal.role == "inventor")
+					{
+						var comment = retVal.beforeComment;
+						if(comment == null)
+						{
+							$('#BeforeCommentTypeOfInvent').children().text("이전 코멘트");
+							$('#BeforeCommentTitle').children().text("이전 코멘트");
+							$('#BeforeCommentSummary').children().text("이전 코멘트");
+							$('#BeforeCommentWhyInvent').children().text("이전 코멘트");
+							$('#BeforeCommentProblem').children().text("이전 코멘트");
+							$('#BeforeCommentSolution').children().text("이전 코멘트");
+							$('#BeforeCommentEffect').children().text("이전 코멘트");
+							$('#BeforeCommentCore_Element').children().text("이전 코멘트");
+						}
+						else
+						{
+							$('#BeforeCommentTypeOfInvent').children().text(comment.re_typeOfInvent);
+							$('#BeforeCommentTitle').children().text(comment.re_title);
+							$('#BeforeCommentSummary').children().text(comment.re_summary);
+							$('#BeforeCommentWhyInvent').children().text(comment.re_whyInvent);
+							$('#BeforeCommentProblem').children().text(comment.re_problem);
+							$('#BeforeCommentSolution').children().text(comment.re_solution);
+							$('#BeforeCommentEffect').children().text(comment.re_effect);
+							$('#BeforeCommentCore_Element').children().text(comment.re_core_element);
+						}
+					}
+				}
+				else
+					alert('ajax Error');
 				
 			},
 			error: function(request,status,error)
@@ -111,22 +144,24 @@ $(document).ready(function()
                 </table>                             
             </article>  
             <article>
+            <form id="commentForm">
                 <div class="txt_box">
                     <h2>발명분야</h2>   
                     <button>작성 예시</button>
-                    <div class="before_cmt">
-                        <p>Before Comment...</p>
+                    <div id="BeforeCommentTypeOfInvent" class="before_cmt">
+                        <input type="text" name="BeforeCommentTypeOfInvent" value="이전 코멘트"/>
                     </div>             
                     <div id="RegtypeOfInvent" class="box_before1">                        
-                        <span>${item.getTypeOfInvent() }</span>
+                        <input type="text" name="RegtypeOfInvent" value="${item.getTypeOfInvent() }"/>
+                  <!--  <span>${item.getTypeOfInvent() }</span> -->
                     </div>
                     <div class="box_comment1">
                         <div class="img_comt">
                             <img src="/resources/image/comment.png" alt="cmt_img">
                         </div> 
-                        <div class="comment1_txt">
+                        <div id="AfterCommentTypeOfInvent" class="comment1_txt">
                             <img src="/resources/image/arr.png">
-                            <textarea placeholder="Comment..."></textarea>
+                            <textarea name="AfterCommentTypeOfInvent" placeholder="Comment..."></textarea>
                         </div>
                     </div>
                 </div>
@@ -134,19 +169,19 @@ $(document).ready(function()
                  <div class="txt_box">
                     <h2>제목</h2>
                     <button>작성 예시</button>
-                    <div class="before_cmt">
-                        <p>Before Comment...</p>
+                    <div id="BeforeCommentTitle" class="before_cmt">
+                        <input type="text" name="BeforeCommentTitle" value="이전 코멘트"/>
                     </div>
                     <div id="RegTitle" class="box_before1">                        
-                        <span>${item.getTitle() }</span>
+                        <input type="text" name="RegTitle" value="${item.getTitle() }"/>
                     </div>
                     <div class="box_comment1">
                         <div class="img_comt">
                             <img src="/resources/image/comment.png" alt="cmt_img">
                         </div> 
-                        <div class="comment1_txt">
+                        <div id="AfterCommentTitle" class="comment1_txt">
                             <img src="/resources/image/arr.png">
-                            <textarea placeholder="Comment..."></textarea>
+                            <textarea name="AfterCommentTitle" placeholder="Comment..."></textarea>
                         </div>
                     </div>
                 </div>
@@ -154,36 +189,36 @@ $(document).ready(function()
                 <div class="txt_box">
                     <h2>요약</h2>
                     <button>작성 예시</button>
-                    <div class="before_cmt">
-                        <p>Before Comment...</p>
+                    <div id="BeforeCommentSummary" class="before_cmt">
+                        <input type="text" name="BeforeCommentSummary" value="이전 코멘트"/>
                     </div>                    
-                    <div id="RegSummary" class="box_before1_b">                        
-                        <p>${item.getSummary() }</p>
+                    <div id="RegSummary" class="box_before1_b">   
+	                    <input type="text" name="RegSummary" value="${item.getSummary() }"/>                     
                     </div>
                     <div class="box_comment1">
                         <div class="img_comt">
                             <img src="/resources/image/comment.png" alt="cmt_img">
                         </div> 
-                        <div class="comment1_txt">
+                        <div id="AfterCommentSummary" class="comment1_txt">
                             <img src="/resources/image/arr.png">
-                            <textarea placeholder="Comment..."></textarea>
+                            <textarea name="AfterCommentSummary" placeholder="Comment..."></textarea>
                         </div>
                     </div>
                 </div>
                 <div class="txt_box">
                     <h2>필요이유</h2>
                     <button>작성 예시</button>
-                    <div class="before_cmt">
-                        <p>Before Comment...</p>
+                    <div id="BeforeCommentWhyInvent" class="before_cmt">
+                        <input type="text" name="BeforeCommentWhyInvent" value="이전 코멘트"/>
                     </div>
                     <div id="RegWhyInvent" class="box_before1_b">                        
-                        <p>${item.getWhyInvent() }</p>
-                    </div>
+                         <input type="text" name="RegWhyInvent" value="${item.getWhyInvent() }"/>                     
+                   </div>
                     <div class="box_comment1">
                         <div class="img_comt">
                             <img src="/resources/image/comment.png" alt="cmt_img">
                         </div> 
-                        <div class="comment1_txt">
+                        <div id="AfterCommentWhyInvent" class="comment1_txt">
                             <img src="/resources/image/arr.png">
                             <textarea placeholder="Comment..."></textarea>
                         </div>
@@ -193,19 +228,19 @@ $(document).ready(function()
                 <div class="txt_box">
                     <h2>기존제품설명 및 문제점</h2>
                     <button>작성 예시</button>
-                    <div class="before_cmt">
-                        <p>Before Comment...</p>
+                    <div id="BeforeCommentProblem" class="before_cmt">
+                    	<input type="text" name="BeforeCommentProblem" value="이전 코멘트"/>
                     </div>
                     <div id="RegProblem" class="box_before1_b">                        
-                        <p>${item.getProblem() }</p>
+                         <input type="text" name="RegProblem" value="${item.getProblem() }"/>
                     </div>
                     <div class="box_comment1">
                         <div class="img_comt">
                             <img src="/resources/image/comment.png" alt="cmt_img">
                         </div> 
-                        <div class="comment1_txt">
+                        <div id="AfterCommentProblem" class="comment1_txt">
                             <img src="/resources/image/arr.png">
-                            <textarea placeholder="Comment..."></textarea>
+                            <textarea name ="AfterCommentProblem" placeholder="Comment..."></textarea>
                         </div>
                     </div>
                 </div>
@@ -213,19 +248,19 @@ $(document).ready(function()
                 <div class="txt_box">
                     <h2>문제해결방법</h2>
                     <button>작성 예시</button>
-                    <div class="before_cmt">
-                        <p>Before Comment...</p>
+                    <div id="BeforeCommentSolution" class="before_cmt">
+                    	<input type="text" name="BeforeCommentSolution" value="이전 코멘트"/>
                     </div>
                     <div id="RegSolution" class="box_before1_b">                        
-                        <p>${item.getSolution() }</p>
+                    	<input type="text" name="RegSolution" value="${item.getSolution() }"/>
                     </div>
                     <div class="box_comment1">
                         <div class="img_comt">
                             <img src="/resources/image/comment.png" alt="cmt_img">
                         </div> 
-                        <div class="comment1_txt">
+                        <div id="AfterCommentSolution" class="comment1_txt">
                             <img src="/resources/image/arr.png">
-                            <textarea placeholder="Comment..."></textarea>
+                            <textarea name="AfterCommentSolution" placeholder="Comment..."></textarea>
                         </div>
                     </div>
                 </div>
@@ -233,19 +268,19 @@ $(document).ready(function()
                 <div class="txt_box">
                     <h2>발명의 효과</h2>
                     <button>작성 예시</button>
-                    <div class="before_cmt">
-                        <p>Before Comment...</p>
+                    <div id="BeforeCommentEffect" class="before_cmt">
+                   		<input type="text" name="BeforeCommentEffect" value="이전 코멘트"/>
                     </div>
                     <div id="RegEffect" class="box_before1_b">                        
-                        <p>${item.getEffect() }</p>
-                    </div>
+                    	<input type="text" name="RegEffect" value="${item.getEffect() }"/>
+					</div>
                     <div class="box_comment1">
                         <div class="img_comt">
                             <img src="/resources/image/comment.png" alt="cmt_img">
                         </div> 
-                        <div class="comment1_txt">
+                        <div id="AfterCommentEffect" class="comment1_txt">
                            <img src="/resources/image/arr.png">
-                            <textarea placeholder="Comment..."></textarea>
+                            <textarea name = "AfterCommentEffect" placeholder="Comment..."></textarea>
                         </div>
                     </div>
                 </div>
@@ -253,19 +288,19 @@ $(document).ready(function()
                 <div class="txt_box">
                     <h2>핵심구성요소</h2>
                     <button>작성 예시</button>
-                    <div class="before_cmt">
-                        <p>Before Comment...</p>
+                    <div id="BeforeCommentCore_Element" class="before_cmt">
+                    	<input type="text" name="BeforeCommentCore_Element" value="이전 코멘트"/>
                     </div>
                     <div id="RegCore_Element" class="box_before1_b">                        
-                        <p>${item.getCore_element() }</p>
-                    </div>
+                    	<input type="text" name="RegCore_Element" value="${item.getCore_element() }"/>
+					</div>
                     <div class="box_comment1">                    
                         <div class="img_comt">
                             <img src="/resources/image/comment.png" alt="cmt_img">
                         </div> 
-                        <div class="comment1_txt">
+                        <div id="AfterCommentCore_Element" class="comment1_txt">
                             <img src="/resources/image/arr.png">
-                            <textarea placeholder="Comment..."></textarea>
+                            <textarea name ="AfterCommentCore_Element" placeholder="Comment..."></textarea>
                         </div>
                     </div>
                 </div>
@@ -273,8 +308,8 @@ $(document).ready(function()
                 <div class="txt_box">
                     <h2 style="width:100%">도면첨부</h2>
                     <button>작성 예시</button>
-                    <div class="before_cmt">
-                        <p>Before Comment...</p>
+                    <div id="BeforeCommentFiles" class="before_cmt">
+                        <p>이전 코멘트</p>
                     </div>
                     <div id="demo_box">
                         <div class="demo"></div>
@@ -288,7 +323,7 @@ $(document).ready(function()
                         <div class="img_comt">
                             <img src="/resources/image/comment.png" alt="cmt_img">
                         </div> 
-                        <div class="comment1_txt">
+                        <div id="AfterCommentFiles" class="comment1_txt">
                             <img src="/resources/image/arr.png">
                             <textarea placeholder="Comment..."></textarea>
                         </div>
@@ -296,9 +331,10 @@ $(document).ready(function()
                 </div>     
                 <div class="hr"></div>           
                 <div id="fin"> 
-                    <button>임시저장</button>
+                    <button id="tmpSave">임시저장</button>
                     <button id="agree">코멘트작성</button>                    
                 </div>
+            </form>
             </article>
         </section>
     </div>
