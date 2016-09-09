@@ -152,7 +152,7 @@ $(document).ready(function()
                         <textarea name="BeforeCommentTypeOfInvent"  disabled="disabled" class="disabled"/> ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅁㄴㅇㅁㄴㅇㅁㄴㅇazscasdasdas</textarea>
                     </div>             
                     <div id="RegtypeOfInvent" class="box_before1">                        
-                        <input type="text" name="RegtypeOfInvent" value="${item.getTypeOfInvent() }" />
+                        <input type="text" name="RegtypeOfInvent" value="${item.getTypeOfInvent() }" disabled="disabled" class="disabled" />
                   <!--  <span>${item.getTypeOfInvent() }</span> -->
                     </div>
                     <div class="box_comment1">

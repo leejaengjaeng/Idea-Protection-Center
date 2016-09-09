@@ -374,7 +374,7 @@ body{
                 </script>
                 <div id="fin"> 
                     <button type ="button" onclick="tempsave();">임시저장</button>
-                    <input type="submit" value="제출">
+                    <input type="submit" value="제출" id="agree" style="width:140px; height:40px; border:none; box-shadow:inset 0 -4px rgba(0,0,0,.1); color:white; margin-left:10px;">
                 </div>
             </article>
         </section>

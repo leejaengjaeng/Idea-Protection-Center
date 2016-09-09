@@ -35,7 +35,7 @@ $(document).ready(function()
                 <span>ideaconcert</span>
             </div>
             <div id="profile_menu">
-                <ul>
+                <ul style="padding-left:0;">
                     <li>회원정보수정</li>
                     <li>1:1질문하기</li>
                     <li>아이디어 진행내역</li>

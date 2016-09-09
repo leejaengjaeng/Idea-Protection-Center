@@ -198,7 +198,6 @@
   height: 35px;
   border: 1px solid #45d4ef;
   margin-top: 10px;
-  background: #fff;
 }
 .wrap_comment section article .txt_box textarea {
   width: 100%;
@@ -496,7 +495,7 @@ section nav #profile_menu {
   border-bottom: 2px solid #e1e1e1;
 }
 section nav #profile_menu ul {
-  padding-left: 0;
+  padding-left: 0 !important;
 }
 section nav #profile_menu ul li {
   list-style: none;
