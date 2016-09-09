@@ -32,61 +32,75 @@ $(document).ready(function()
 	$('#IdeaModifyList').on("click","tr",function()
 	{
 		var rid = $(this).children('input').attr('value');
-		$.ajax({
-			url : "/detailByRid/"+rid,
-			type:"GET",
-			success:function(retVal)
+		showClickedList(rid);	
+	})
+	
+	$('#tmpSave').on("click",function()
+	{
+		alert('임시저장 구현중');
+	});
+	$('#agree').on("click",function()
+	{
+		alert('저장 구현중');
+	});
+});
+
+var showClickedList = function(rid)
+{
+	$.ajax({
+		url : "/detailByRid/"+rid,
+		type:"GET",
+		success:function(retVal)
+		{
+			
+			if(retVal != "")
 			{
-				if(retVal != "")
+				var result = retVal.item;
+				$('#RegTypeOfInvent').children('input').val(result.typeOfInvent);
+				$('#RegTitle').children('input').val(result.title);
+				$('#RegSummary').children().text(result.summary);
+				$('#RegWhyInvent').children().text(result.whyInvent);
+				$('#RegProblem').children().text(result.problem);
+				$('#RegSolution').children().text(result.solution);
+				$('#RegEffect').children().text(result.effect);
+				$('#RegCore_Element').children().text(result.core_element);
+			
+				if(retVal.role == "inventor")
 				{
-					var result = retVal.item;
-					$('#RegTypeOfInvent').children().text(result.typeOfInvent);
-					$('#RegTitle').children().text(result.title);
-					$('#RegSummary').children().text(result.summary);
-					$('#RegWhyInvent').children().text(result.whyInvent);
-					$('#RegProblem').children().text(result.problem);
-					$('#RegSolution').children().text(result.solution);
-					$('#RegEffect').children().text(result.effect);
-					$('#RegCore_Element').children().text(result.core_element);
-				
-					if(retVal.role == "inventor")
+					var comment = retVal.beforeComment;
+					if(comment == null)
 					{
-						var comment = retVal.beforeComment;
-						if(comment == null)
-						{
-							$('#BeforeCommentTypeOfInvent').children().text("이전 코멘트");
-							$('#BeforeCommentTitle').children().text("이전 코멘트");
-							$('#BeforeCommentSummary').children().text("이전 코멘트");
-							$('#BeforeCommentWhyInvent').children().text("이전 코멘트");
-							$('#BeforeCommentProblem').children().text("이전 코멘트");
-							$('#BeforeCommentSolution').children().text("이전 코멘트");
-							$('#BeforeCommentEffect').children().text("이전 코멘트");
-							$('#BeforeCommentCore_Element').children().text("이전 코멘트");
-						}
-						else
-						{
-							$('#BeforeCommentTypeOfInvent').children().text(comment.re_typeOfInvent);
-							$('#BeforeCommentTitle').children().text(comment.re_title);
-							$('#BeforeCommentSummary').children().text(comment.re_summary);
-							$('#BeforeCommentWhyInvent').children().text(comment.re_whyInvent);
-							$('#BeforeCommentProblem').children().text(comment.re_problem);
-							$('#BeforeCommentSolution').children().text(comment.re_solution);
-							$('#BeforeCommentEffect').children().text(comment.re_effect);
-							$('#BeforeCommentCore_Element').children().text(comment.re_core_element);
-						}
+						$('#BeforeCommentTypeOfInvent').children().text("이전 코멘트");
+						$('#BeforeCommentTitle').children().text("이전 코멘트");
+						$('#BeforeCommentSummary').children().text("이전 코멘트");
+						$('#BeforeCommentWhyInvent').children().text("이전 코멘트");
+						$('#BeforeCommentProblem').children().text("이전 코멘트");
+						$('#BeforeCommentSolution').children().text("이전 코멘트");
+						$('#BeforeCommentEffect').children().text("이전 코멘트");
+						$('#BeforeCommentCore_Element').children().text("이전 코멘트");
+					}
+					else
+					{
+						$('#BeforeCommentTypeOfInvent').children().text(comment.re_typeOfInvent);
+						$('#BeforeCommentTitle').children().text(comment.re_title);
+						$('#BeforeCommentSummary').children().text(comment.re_summary);
+						$('#BeforeCommentWhyInvent').children().text(comment.re_whyInvent);
+						$('#BeforeCommentProblem').children().text(comment.re_problem);
+						$('#BeforeCommentSolution').children().text(comment.re_solution);
+						$('#BeforeCommentEffect').children().text(comment.re_effect);
+						$('#BeforeCommentCore_Element').children().text(comment.re_core_element);
 					}
 				}
-				else
-					alert('ajax Error');
-				
-			},
-			error: function(request,status,error)
-			{
-			       //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 			}
-		});	
-	})
-});
+			else
+				alert('ajax Error');
+		},
+		error: function(request,status,error)
+		{
+		       //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		}
+	});	
+}
 </script>
 </head>
 <body>
