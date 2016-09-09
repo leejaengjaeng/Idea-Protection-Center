@@ -359,7 +359,7 @@ function closeload(){
                 </div>
                 <div id="upimgdiv" class="txt_box">
                     <h2 style="width:100%">도면첨부</h2>
-                    <!-- <input type="file" id="upimg" name="imgs" onchange="addfile()" accept="image/gif, image/jpeg, image/png" style="padding-top:5px;"><button style="margin-top:5px;">제거</button>-->
+                    <input type="file" id="upimg" name="imgs" onchange="addfile()" accept="image/gif, image/jpeg, image/png" style="padding-top:5px;"><button style="margin-top:5px;">제거</button>
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
