@@ -23,7 +23,8 @@ html,body{
     width: 100%;
     height: 100%;
     background: rgba(0,0,0,0.7);
-    position: absolute;
+    position: fixed;    
+    z-index:98;
 }    
     .popup{
         width: 400px;
@@ -35,7 +36,9 @@ html,body{
         transform: translate(-50%,-50%);
         -moz-transform: translate(-50%,-50%);
         -webkit-transform: translate(-50%,-50%);
-        box-shadow: 0 0 10px 0 #000;        
+        box-shadow: 0 0 10px 0 #000;                
+        position: fixed;        
+        z-index: 99;
     }
     .pop_header{
         width: 100%;
@@ -75,11 +78,12 @@ html,body{
         background: none;
         border: none;
         box-shadow: inset 0 -4px rgba(0, 0, 0, .1);
-        color: white;
+        color: white;        
     }
     .popup_close{
         cursor: pointer;
     }
+ 
 </style>
 </head>
 <body onload='return checkTemp();'>
@@ -333,7 +337,8 @@ html,body{
                  	}); 
                 }
                 $(".popup_close").click(function(){
-                    $(".popup, .black_wall").fadeOut(); 
+                    $(".popup, .black_wall").fadeOut();
+                    $("body").css("overflow","scroll");
                 });
                 </script>
                 <div id="fin"> 
