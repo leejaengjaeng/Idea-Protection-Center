@@ -29,7 +29,7 @@ import com.ipc.vo.userVo;
 
 @Controller
 @RequestMapping("/registration")
-public class RegistrationController {
+public class RegistrationController {	//localhost:8088/registration/inventor_main
 	@Autowired
 	HttpSession session;
 	@Autowired
