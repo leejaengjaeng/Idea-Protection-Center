@@ -17,8 +17,12 @@
 <title>Insert title here</title>
 <style>
 html,body{
+<<<<<<< HEAD
     height: 100% !important;
     
+=======
+    height: 100% !important;    
+>>>>>>> 03d1d79d174e79fe3bdae8166cc5d6feb158a0c7
 }
 .black_wall{
     width: 100%;
