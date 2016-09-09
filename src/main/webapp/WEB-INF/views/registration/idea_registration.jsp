@@ -17,12 +17,8 @@
 <title>Insert title here</title>
 <style>
 html,body{
-<<<<<<< HEAD
     height: 100% !important;
     
-=======
-    height: 100% !important;    
->>>>>>> 03d1d79d174e79fe3bdae8166cc5d6feb158a0c7
 }
 .black_wall{
     width: 100%;
@@ -302,7 +298,7 @@ html,body{
                 }
                 function checkTemp(){
                 	
-                	
+                	$(".popup, .black_wall").fadeOut();
                 	if(${isTemp}=="1"){
                 		 $(".popup, .black_wall").fadeIn();
                 		//var q=confirm("임시저장된 아이디어가 있습니다. 불러올까요?");
