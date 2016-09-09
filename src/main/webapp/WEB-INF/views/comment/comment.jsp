@@ -144,15 +144,15 @@ $(document).ready(function()
                 </table>                             
             </article>  
             <article>
-            <form id="commentForm">
+            <!--<form id="commentForm">-->
                 <div class="txt_box">
                     <h2>발명분야</h2>   
                     <button>작성 예시</button>
                     <div id="BeforeCommentTypeOfInvent" class="before_cmt">
-                        <input type="text" name="BeforeCommentTypeOfInvent" value="이전 코멘트"/>
+                        <textarea name="BeforeCommentTypeOfInvent"  disabled="disabled" class="disabled"/> ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅁㄴㅇㅁㄴㅇㅁㄴㅇazscasdasdas</textarea>
                     </div>             
                     <div id="RegtypeOfInvent" class="box_before1">                        
-                        <input type="text" name="RegtypeOfInvent" value="${item.getTypeOfInvent() }"/>
+                        <input type="text" name="RegtypeOfInvent" value="${item.getTypeOfInvent() }" />
                   <!--  <span>${item.getTypeOfInvent() }</span> -->
                     </div>
                     <div class="box_comment1">
@@ -170,7 +170,7 @@ $(document).ready(function()
                     <h2>제목</h2>
                     <button>작성 예시</button>
                     <div id="BeforeCommentTitle" class="before_cmt">
-                        <input type="text" name="BeforeCommentTitle" value="이전 코멘트"/>
+                        <textarea name="BeforeCommentTitle" disabled="disabled" class="disabled"/> ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅁㄴㅇㅁㄴㅇㅁㄴㅇazscasdasdas</textarea>
                     </div>
                     <div id="RegTitle" class="box_before1">                        
                         <input type="text" name="RegTitle" value="${item.getTitle() }"/>
@@ -184,16 +184,25 @@ $(document).ready(function()
                             <textarea name="AfterCommentTitle" placeholder="Comment..."></textarea>
                         </div>
                     </div>
+                    <div class="hiding_box">
+                        <div class="hiding_box_header">
+                            <h3>저작물 명칭</h3>
+                            <img src="/resources/image/close.png" alt="close" class="close_btn"> 
+                        </div>  
+                        <div class="hiding_box_content">
+                            <span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
+                        </div>                                                   
+                    </div>
                 </div>
                 <div class="hr"></div>
                 <div class="txt_box">
                     <h2>요약</h2>
                     <button>작성 예시</button>
                     <div id="BeforeCommentSummary" class="before_cmt">
-                        <input type="text" name="BeforeCommentSummary" value="이전 코멘트"/>
+                        <textarea name="BeforeCommentSummary" disabled="disabled" class="disabled"/> ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅁㄴㅇㅁㄴㅇㅁㄴㅇazscasdasdas</textarea>
                     </div>                    
                     <div id="RegSummary" class="box_before1_b">   
-	                    <input type="text" name="RegSummary" value="${item.getSummary() }"/>                     
+	                    <textarea name="RegSummary">${item.getSummary()}</textarea>                     
                     </div>
                     <div class="box_comment1">
                         <div class="img_comt">
@@ -204,15 +213,24 @@ $(document).ready(function()
                             <textarea name="AfterCommentSummary" placeholder="Comment..."></textarea>
                         </div>
                     </div>
+                    <div class="hiding_box">
+                        <div class="hiding_box_header">
+                            <h3>저작물 명칭</h3>
+                            <img src="/resources/image/close.png" alt="close" class="close_btn"> 
+                        </div>  
+                        <div class="hiding_box_content">
+                            <span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
+                        </div>                                                   
+                    </div>
                 </div>
                 <div class="txt_box">
                     <h2>필요이유</h2>
                     <button>작성 예시</button>
                     <div id="BeforeCommentWhyInvent" class="before_cmt">
-                        <input type="text" name="BeforeCommentWhyInvent" value="이전 코멘트"/>
+                        <textarea name="BeforeCommentWhyInvent" disabled="disabled" class="disabled"/> ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅁㄴㅇㅁㄴㅇㅁㄴㅇazscasdasdas</textarea>
                     </div>
                     <div id="RegWhyInvent" class="box_before1_b">                        
-                         <input type="text" name="RegWhyInvent" value="${item.getWhyInvent() }"/>                     
+                         <textarea name="RegSummary">${item.getSummary()}</textarea>                     
                    </div>
                     <div class="box_comment1">
                         <div class="img_comt">
@@ -223,16 +241,25 @@ $(document).ready(function()
                             <textarea placeholder="Comment..."></textarea>
                         </div>
                     </div>
+                    <div class="hiding_box">
+                        <div class="hiding_box_header">
+                            <h3>저작물 명칭</h3>
+                            <img src="/resources/image/close.png" alt="close" class="close_btn"> 
+                        </div>  
+                        <div class="hiding_box_content">
+                            <span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
+                        </div>                                                   
+                    </div>
                 </div>
                 <div class="hr"></div>
                 <div class="txt_box">
                     <h2>기존제품설명 및 문제점</h2>
                     <button>작성 예시</button>
                     <div id="BeforeCommentProblem" class="before_cmt">
-                    	<input type="text" name="BeforeCommentProblem" value="이전 코멘트"/>
+                    	<textarea name="BeforeCommentProblem" disabled="disabled" class="disabled"/> ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅁㄴㅇㅁㄴㅇㅁㄴㅇazscasdasdas</textarea>
                     </div>
                     <div id="RegProblem" class="box_before1_b">                        
-                         <input type="text" name="RegProblem" value="${item.getProblem() }"/>
+                         <textarea name="RegSummary">${item.getSummary()}</textarea>
                     </div>
                     <div class="box_comment1">
                         <div class="img_comt">
@@ -243,16 +270,25 @@ $(document).ready(function()
                             <textarea name ="AfterCommentProblem" placeholder="Comment..."></textarea>
                         </div>
                     </div>
+                    <div class="hiding_box">
+                        <div class="hiding_box_header">
+                            <h3>저작물 명칭</h3>
+                            <img src="/resources/image/close.png" alt="close" class="close_btn"> 
+                        </div>  
+                        <div class="hiding_box_content">
+                            <span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
+                        </div>                                                   
+                    </div>
                 </div>
                 <div class="hr"></div>
                 <div class="txt_box">
                     <h2>문제해결방법</h2>
                     <button>작성 예시</button>
                     <div id="BeforeCommentSolution" class="before_cmt">
-                    	<input type="text" name="BeforeCommentSolution" value="이전 코멘트"/>
+                    	<textarea name="BeforeCommentSolution" disabled="disabled" class="disabled"/> ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅁㄴㅇㅁㄴㅇㅁㄴㅇazscasdasdas</textarea>
                     </div>
                     <div id="RegSolution" class="box_before1_b">                        
-                    	<input type="text" name="RegSolution" value="${item.getSolution() }"/>
+                    	<textarea name="RegSummary">${item.getSummary()}</textarea>
                     </div>
                     <div class="box_comment1">
                         <div class="img_comt">
@@ -263,16 +299,25 @@ $(document).ready(function()
                             <textarea name="AfterCommentSolution" placeholder="Comment..."></textarea>
                         </div>
                     </div>
+                    <div class="hiding_box">
+                        <div class="hiding_box_header">
+                            <h3>저작물 명칭</h3>
+                            <img src="/resources/image/close.png" alt="close" class="close_btn"> 
+                        </div>  
+                        <div class="hiding_box_content">
+                            <span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
+                        </div>                                                   
+                    </div>
                 </div>
                 <div class="hr"></div>
                 <div class="txt_box">
                     <h2>발명의 효과</h2>
                     <button>작성 예시</button>
                     <div id="BeforeCommentEffect" class="before_cmt">
-                   		<input type="text" name="BeforeCommentEffect" value="이전 코멘트"/>
+                   		<textarea name="BeforeCommentEffect" disabled="disabled" class="disabled"/> ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅁㄴㅇㅁㄴㅇㅁㄴㅇazscasdasdas</textarea>
                     </div>
                     <div id="RegEffect" class="box_before1_b">                        
-                    	<input type="text" name="RegEffect" value="${item.getEffect() }"/>
+                    	<textarea name="RegSummary">${item.getSummary()}</textarea>
 					</div>
                     <div class="box_comment1">
                         <div class="img_comt">
@@ -283,16 +328,25 @@ $(document).ready(function()
                             <textarea name = "AfterCommentEffect" placeholder="Comment..."></textarea>
                         </div>
                     </div>
+                    <div class="hiding_box">
+                        <div class="hiding_box_header">
+                            <h3>저작물 명칭</h3>
+                            <img src="/resources/image/close.png" alt="close" class="close_btn"> 
+                        </div>  
+                        <div class="hiding_box_content">
+                            <span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
+                        </div>                                                   
+                    </div>
                 </div>
                 <div class="hr"></div>
                 <div class="txt_box">
                     <h2>핵심구성요소</h2>
                     <button>작성 예시</button>
                     <div id="BeforeCommentCore_Element" class="before_cmt">
-                    	<input type="text" name="BeforeCommentCore_Element" value="이전 코멘트"/>
+                    	<textarea name="BeforeCommentCore_Element" disabled="disabled" class="disabled"/> ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅁㄴㅇㅁㄴㅇㅁㄴㅇazscasdasdas</textarea>
                     </div>
                     <div id="RegCore_Element" class="box_before1_b">                        
-                    	<input type="text" name="RegCore_Element" value="${item.getCore_element() }"/>
+                    	<textarea name="RegSummary">${item.getSummary()}</textarea>
 					</div>
                     <div class="box_comment1">                    
                         <div class="img_comt">
@@ -303,13 +357,22 @@ $(document).ready(function()
                             <textarea name ="AfterCommentCore_Element" placeholder="Comment..."></textarea>
                         </div>
                     </div>
+                    <div class="hiding_box">
+                        <div class="hiding_box_header">
+                            <h3>저작물 명칭</h3>
+                            <img src="/resources/image/close.png" alt="close" class="close_btn"> 
+                        </div>  
+                        <div class="hiding_box_content">
+                            <span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
+                        </div>                                                   
+                    </div>
                 </div>
                 <div class="hr"></div>
                 <div class="txt_box">
                     <h2 style="width:100%">도면첨부</h2>
                     <button>작성 예시</button>
-                    <div id="BeforeCommentFiles" class="before_cmt">
-                        <p>이전 코멘트</p>
+                    <div id="BeforeCommentCore_Element" class="before_cmt">
+                    	<textarea name="BeforeCommentCore_Element" disabled="disabled" class="disabled"/> ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅁㄴㅇㅁㄴㅇㅁㄴㅇazscasdasdas</textarea>
                     </div>
                     <div id="demo_box">
                         <div class="demo"></div>
@@ -328,16 +391,33 @@ $(document).ready(function()
                             <textarea placeholder="Comment..."></textarea>
                         </div>
                     </div>
+                    <div class="hiding_box">
+                        <div class="hiding_box_header">
+                            <h3>저작물 명칭</h3>
+                            <img src="/resources/image/close.png" alt="close" class="close_btn"> 
+                        </div>  
+                        <div class="hiding_box_content">
+                            <span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
+                        </div>                                                   
+                    </div>
                 </div>     
                 <div class="hr"></div>           
                 <div id="fin"> 
                     <button id="tmpSave">임시저장</button>
                     <button id="agree">코멘트작성</button>                    
                 </div>
-            </form>
+            <!-- </form> -->
             </article>
         </section>
     </div>
-    <c:import url="/WEB-INF/views/import/footer.jsp"/>   
+    <c:import url="/WEB-INF/views/import/footer.jsp"/>
+<script>
+    $(".txt_box > button").click(function(){
+        $(this).nextAll(".hiding_box").fadeIn();
+    });
+    $(".close_btn").click(function(){
+        $(this).parents(".hiding_box").fadeOut();
+    });
+</script>
 </body>
 </html>
