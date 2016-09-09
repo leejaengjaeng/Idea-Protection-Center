@@ -25,4 +25,6 @@ public interface RegistrationDao {
 	public RegistrationPatentVo getPrevCommentByPrevRid(int prev_rid);
 	public RegistrationPatentVo getPlProcessByRid(int rid);
 	public void removeTempIdea(int uid);
+	
+	public void tmpInventorSave (RegistrationPatentVo rvo);
 }

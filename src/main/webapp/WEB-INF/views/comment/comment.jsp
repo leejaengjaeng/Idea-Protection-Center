@@ -5,6 +5,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="_csrf" content="${_csrf.token}" />
+	<meta name="_csrf_header" content="${_csrf.headerName}" />
     <title>Idea Protection Center</title>
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>  
     <link href="/resources/common/css/style.css" rel="stylesheet">
@@ -12,6 +14,7 @@
 <script>
 $(document).ready(function()
 {
+	//권한에 따라 보여주기
 	if("${user}" == "pl")
 	{
 		var hideEl = document.getElementsByClassName('before_cmt')
@@ -29,15 +32,25 @@ $(document).ready(function()
 		location.href="/authError";
 	}	
 	
+	//진행내역에 따라 내용 바꿔주기
 	$('#IdeaModifyList').on("click","tr",function()
 	{
 		var rid = $(this).children('input').attr('value');
 		showClickedList(rid);	
 	})
-	
+
+	//예시 
+    $(".txt_box > button").click(function(){
+        $(this).nextAll(".hiding_box").fadeIn();
+    });
+    $(".close_btn").click(function(){
+        $(this).parents(".hiding_box").fadeOut();
+    });
+
+	//폼 버튼 이벤트 
 	$('#tmpSave').on("click",function()
 	{
-		alert('임시저장 구현중');
+		tmpSave();
 	});
 	$('#agree').on("click",function()
 	{
@@ -45,6 +58,75 @@ $(document).ready(function()
 	});
 });
 
+//임시 저장
+var tmpSave = function()
+{
+	
+	var csrfToken = $("meta[name='_csrf']").attr("content"); 
+	var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+	var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
+	var data = {};
+	var headers = {};
+
+	data[csrfParameter] = csrfToken;
+    headers[csrfHeader] = csrfToken;
+    
+    
+	//발명가인 경우 
+	if("${user}"=="inventor")
+	{
+		data['role'] = "inventor";
+		data['rid'] = $('#currentPosition').val();
+		data['typeOfInvent'] = $('#RegtypeOfInvent').children("input").val();
+		data['title'] = $('#RegTitle').children("input").val();
+		data['summary'] = $('#RegSummary').children("textarea").val();
+		data['whyInvent'] = $('#RegWhyInvent').children("textarea").val();
+		data['problem'] = $('#RegProblem').children("textarea").val();
+		data['solution'] = $('#RegSolution').children("textarea").val();
+		data['effect'] = $('#RegEffect').children("textarea").val();
+		data['core_element'] = $("#RegCore_Element").children("textarea").val();
+	}
+	//변리사인 경우
+	else if("${user}"=="pl")
+	{
+		data['role'] = "pl";
+		data['rid'] = $('#currentPosition').val();
+		data['re_typeOfInvent'] = $('#AfterCommentTypeOfInvent').children("input").val();
+		data['re_title'] = $('#AfterCommentTitle').children("input").val();
+		data['re_summary'] = $('#AfterCommentSummary').children("textarea").val();
+		data['re_whyInvent'] = $('#AfterCommentWhyInvent').children("textarea").val();
+		data['re_problem'] = $('#AfterCommentProblem').children("textarea").val();
+		data['re_solution'] = $('#AfterCommentSolution').children("textarea").val();
+		data['re_effect'] = $('#AfterCommentEffect').children("textarea").val();
+		data['re_core_element'] = $('#AfterCommentCore_Element').children("textarea").val();
+	}
+	else
+	{
+		data['role'] = "error";
+	}
+	
+	console.log(data);
+
+    $.ajax({
+		url : "/tmpSave",
+		type:"POST",
+		headers: headers,
+ 	    data : data,
+ 	    success:function(retVal)
+ 	    {
+ 			alert('임시 저장 완료')
+ 	    },
+ 	    error: function(request,status,error)
+		{
+ 			alert('임시 저장에 실패하였습니다.')
+			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		}
+	});	
+ 	
+}
+
+
+//진행내역에 따라 내용 바꿔주기
 var showClickedList = function(rid)
 {
 	$.ajax({
@@ -56,39 +138,40 @@ var showClickedList = function(rid)
 			if(retVal != "")
 			{
 				var result = retVal.item;
+				$('#currentPosition').val(result.rid);
 				$('#RegTypeOfInvent').children('input').val(result.typeOfInvent);
-				$('#RegTitle').children('input').val(result.title);
-				$('#RegSummary').children().text(result.summary);
-				$('#RegWhyInvent').children().text(result.whyInvent);
-				$('#RegProblem').children().text(result.problem);
-				$('#RegSolution').children().text(result.solution);
-				$('#RegEffect').children().text(result.effect);
-				$('#RegCore_Element').children().text(result.core_element);
+				$('#RegTitle').children('textarea').text(result.title);
+				$('#RegSummary').children('textarea').text(result.summary);
+				$('#RegWhyInvent').children('textarea').text(result.whyInvent);
+				$('#RegProblem').children('textarea').text(result.problem);
+				$('#RegSolution').children('textarea').text(result.solution);
+				$('#RegEffect').children('textarea').text(result.effect);
+				$('#RegCore_Element').children('textarea').text(result.core_element);
 			
 				if(retVal.role == "inventor")
 				{
 					var comment = retVal.beforeComment;
 					if(comment == null)
 					{
-						$('#BeforeCommentTypeOfInvent').children().text("이전 코멘트");
-						$('#BeforeCommentTitle').children().text("이전 코멘트");
-						$('#BeforeCommentSummary').children().text("이전 코멘트");
-						$('#BeforeCommentWhyInvent').children().text("이전 코멘트");
-						$('#BeforeCommentProblem').children().text("이전 코멘트");
-						$('#BeforeCommentSolution').children().text("이전 코멘트");
-						$('#BeforeCommentEffect').children().text("이전 코멘트");
-						$('#BeforeCommentCore_Element').children().text("이전 코멘트");
+						$('#BeforeCommentTypeOfInvent').children('input').val("이전 코멘트");
+						$('#BeforeCommentTitle').children('textarea').text("이전 코멘트");
+						$('#BeforeCommentSummary').children('textarea').text("이전 코멘트");
+						$('#BeforeCommentWhyInvent').children('textarea').text("이전 코멘트");
+						$('#BeforeCommentProblem').children('textarea').text("이전 코멘트");
+						$('#BeforeCommentSolution').children('textarea').text("이전 코멘트");
+						$('#BeforeCommentEffect').children('textarea').text("이전 코멘트");
+						$('#BeforeCommentCore_Element').children('textarea').text("이전 코멘트");
 					}
 					else
 					{
-						$('#BeforeCommentTypeOfInvent').children().text(comment.re_typeOfInvent);
-						$('#BeforeCommentTitle').children().text(comment.re_title);
-						$('#BeforeCommentSummary').children().text(comment.re_summary);
-						$('#BeforeCommentWhyInvent').children().text(comment.re_whyInvent);
-						$('#BeforeCommentProblem').children().text(comment.re_problem);
-						$('#BeforeCommentSolution').children().text(comment.re_solution);
-						$('#BeforeCommentEffect').children().text(comment.re_effect);
-						$('#BeforeCommentCore_Element').children().text(comment.re_core_element);
+						$('#BeforeCommentTypeOfInvent').children('input').val(comment.re_typeOfInvent);
+						$('#BeforeCommentTitle').children('textarea').text(comment.re_title);
+						$('#BeforeCommentSummary').children('textarea').text(comment.re_summary);
+						$('#BeforeCommentWhyInvent').children('textarea').text(comment.re_whyInvent);
+						$('#BeforeCommentProblem').children('textarea').text(comment.re_problem);
+						$('#BeforeCommentSolution').children('textarea').text(comment.re_solution);
+						$('#BeforeCommentEffect').children('textarea').text(comment.re_effect);
+						$('#BeforeCommentCore_Element').children('textarea').text(comment.re_core_element);
 					}
 				}
 			}
@@ -158,16 +241,15 @@ var showClickedList = function(rid)
                 </table>                             
             </article>  
             <article>
-            <!--<form id="commentForm">-->
-                <div class="txt_box">
+               <input id="currentPosition" type="hidden" value="${item.getRid()}"/>
+               <div class="txt_box">
                     <h2>발명분야</h2>   
                     <button>작성 예시</button>
                     <div id="BeforeCommentTypeOfInvent" class="before_cmt">
-                        <textarea name="BeforeCommentTypeOfInvent"  disabled="disabled" class="disabled"/> ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅁㄴㅇㅁㄴㅇㅁㄴㅇazscasdasdas</textarea>
+                        <textarea name="BeforeCommentTypeOfInvent"  disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
                     </div>             
                     <div id="RegtypeOfInvent" class="box_before1">                        
-                        <input type="text" name="RegtypeOfInvent" value="${item.getTypeOfInvent() }" />
-                  <!--  <span>${item.getTypeOfInvent() }</span> -->
+                        <input type="text" value="${item.getTypeOfInvent() }" />
                     </div>
                     <div class="box_comment1">
                         <div class="img_comt">
@@ -184,7 +266,7 @@ var showClickedList = function(rid)
                     <h2>제목</h2>
                     <button>작성 예시</button>
                     <div id="BeforeCommentTitle" class="before_cmt">
-                        <textarea name="BeforeCommentTitle" disabled="disabled" class="disabled"/> ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅁㄴㅇㅁㄴㅇㅁㄴㅇazscasdasdas</textarea>
+                        <textarea name="BeforeCommentTitle" disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
                     </div>
                     <div id="RegTitle" class="box_before1">                        
                         <input type="text" name="RegTitle" value="${item.getTitle() }"/>
@@ -213,7 +295,7 @@ var showClickedList = function(rid)
                     <h2>요약</h2>
                     <button>작성 예시</button>
                     <div id="BeforeCommentSummary" class="before_cmt">
-                        <textarea name="BeforeCommentSummary" disabled="disabled" class="disabled"/> ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅁㄴㅇㅁㄴㅇㅁㄴㅇazscasdasdas</textarea>
+                        <textarea name="BeforeCommentSummary" disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
                     </div>                    
                     <div id="RegSummary" class="box_before1_b">   
 	                    <textarea name="RegSummary">${item.getSummary()}</textarea>                     
@@ -241,7 +323,7 @@ var showClickedList = function(rid)
                     <h2>필요이유</h2>
                     <button>작성 예시</button>
                     <div id="BeforeCommentWhyInvent" class="before_cmt">
-                        <textarea name="BeforeCommentWhyInvent" disabled="disabled" class="disabled"/> ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅁㄴㅇㅁㄴㅇㅁㄴㅇazscasdasdas</textarea>
+                        <textarea name="BeforeCommentWhyInvent" disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
                     </div>
                     <div id="RegWhyInvent" class="box_before1_b">                        
                          <textarea name="RegSummary">${item.getSummary()}</textarea>                     
@@ -270,7 +352,7 @@ var showClickedList = function(rid)
                     <h2>기존제품설명 및 문제점</h2>
                     <button>작성 예시</button>
                     <div id="BeforeCommentProblem" class="before_cmt">
-                    	<textarea name="BeforeCommentProblem" disabled="disabled" class="disabled"/> ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅁㄴㅇㅁㄴㅇㅁㄴㅇazscasdasdas</textarea>
+                    	<textarea name="BeforeCommentProblem" disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
                     </div>
                     <div id="RegProblem" class="box_before1_b">                        
                          <textarea name="RegSummary">${item.getSummary()}</textarea>
@@ -299,7 +381,7 @@ var showClickedList = function(rid)
                     <h2>문제해결방법</h2>
                     <button>작성 예시</button>
                     <div id="BeforeCommentSolution" class="before_cmt">
-                    	<textarea name="BeforeCommentSolution" disabled="disabled" class="disabled"/> ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅁㄴㅇㅁㄴㅇㅁㄴㅇazscasdasdas</textarea>
+                    	<textarea name="BeforeCommentSolution" disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
                     </div>
                     <div id="RegSolution" class="box_before1_b">                        
                     	<textarea name="RegSummary">${item.getSummary()}</textarea>
@@ -328,7 +410,7 @@ var showClickedList = function(rid)
                     <h2>발명의 효과</h2>
                     <button>작성 예시</button>
                     <div id="BeforeCommentEffect" class="before_cmt">
-                   		<textarea name="BeforeCommentEffect" disabled="disabled" class="disabled"/> ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅁㄴㅇㅁㄴㅇㅁㄴㅇazscasdasdas</textarea>
+                   		<textarea name="BeforeCommentEffect" disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
                     </div>
                     <div id="RegEffect" class="box_before1_b">                        
                     	<textarea name="RegSummary">${item.getSummary()}</textarea>
@@ -357,7 +439,7 @@ var showClickedList = function(rid)
                     <h2>핵심구성요소</h2>
                     <button>작성 예시</button>
                     <div id="BeforeCommentCore_Element" class="before_cmt">
-                    	<textarea name="BeforeCommentCore_Element" disabled="disabled" class="disabled"/> ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅁㄴㅇㅁㄴㅇㅁㄴㅇazscasdasdas</textarea>
+                    	<textarea name="BeforeCommentCore_Element" disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
                     </div>
                     <div id="RegCore_Element" class="box_before1_b">                        
                     	<textarea name="RegSummary">${item.getSummary()}</textarea>
@@ -382,56 +464,49 @@ var showClickedList = function(rid)
                     </div>
                 </div>
                 <div class="hr"></div>
-                <div class="txt_box">
-                    <h2 style="width:100%">도면첨부</h2>
-                    <button>작성 예시</button>
-                    <div id="BeforeCommentCore_Element" class="before_cmt">
-                    	<textarea name="BeforeCommentCore_Element" disabled="disabled" class="disabled"/> ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅁㄴㅇㅁㄴㅇㅁㄴㅇazscasdasdas</textarea>
-                    </div>
-                    <div id="demo_box">
-                        <div class="demo"></div>
-                        <div class="demo"></div>
-                        <div class="demo"></div>
-                        <div class="demo"></div>
-                        <div class="demo"></div>
-                        <div class="demo"></div>                                            
-                    </div>
-                    <div class="box_comment1">
-                        <div class="img_comt">
-                            <img src="/resources/image/comment.png" alt="cmt_img">
-                        </div> 
-                        <div id="AfterCommentFiles" class="comment1_txt">
-                            <img src="/resources/image/arr.png">
-                            <textarea placeholder="Comment..."></textarea>
-                        </div>
-                    </div>
-                    <div class="hiding_box">
-                        <div class="hiding_box_header">
-                            <h3>저작물 명칭</h3>
-                            <img src="/resources/image/close.png" alt="close" class="close_btn"> 
-                        </div>  
-                        <div class="hiding_box_content">
-                            <span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
-                        </div>                                                   
-                    </div>
-                </div>     
-                <div class="hr"></div>           
-                <div id="fin"> 
-                    <button id="tmpSave">임시저장</button>
-                    <button id="agree">코멘트작성</button>                    
-                </div>
-            <!-- </form> -->
+                <form id="commentForm">             
+	                <div class="txt_box">
+	                    <h2 style="width:100%">도면첨부</h2>
+	                    <button>작성 예시</button>
+	                    <div id="BeforeCommentCore_Element" class="before_cmt">
+	                    	<textarea name="BeforeCommentCore_Element" disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
+	                    </div>
+	                    <div id="demo_box">
+	                        <div class="demo"></div>
+	                        <div class="demo"></div>
+	                        <div class="demo"></div>
+	                        <div class="demo"></div>
+	                        <div class="demo"></div>
+	                        <div class="demo"></div>                                            
+	                    </div>
+	                    <div class="box_comment1">
+	                        <div class="img_comt">
+	                            <img src="/resources/image/comment.png" alt="cmt_img">
+	                        </div> 
+	                        <div id="AfterCommentFiles" class="comment1_txt">
+	                            <img src="/resources/image/arr.png">
+	                            <textarea placeholder="Comment..."></textarea>
+	                        </div>
+	                    </div>
+	                    <div class="hiding_box">
+	                        <div class="hiding_box_header">
+	                            <h3>저작물 명칭</h3>
+	                            <img src="/resources/image/close.png" alt="close" class="close_btn"> 
+	                        </div>  
+	                        <div class="hiding_box_content">
+	                            <span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
+	                        </div>                                                   
+	                    </div>
+	                </div>     
+	                <div class="hr"></div>           
+	                <div id="fin"> 
+	                    <button type="button" id="tmpSave">임시저장</button>
+	                    <button type="button" id="agree">코멘트작성</button>                    
+	                </div>
+	            </form>
             </article>
         </section>
     </div>
     <c:import url="/WEB-INF/views/import/footer.jsp"/>
-<script>
-    $(".txt_box > button").click(function(){
-        $(this).nextAll(".hiding_box").fadeIn();
-    });
-    $(".close_btn").click(function(){
-        $(this).parents(".hiding_box").fadeOut();
-    });
-</script>
 </body>
 </html>
