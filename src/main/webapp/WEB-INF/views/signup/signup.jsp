@@ -5,12 +5,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
 <meta name="_csrf" content="${_csrf.token}" />
 <meta name="_csrf_header" content="${_csrf.headerName}" />
-<link rel="stylesheet"
-	href="/webjars/bootstrap/3.3.7/dist/css/bootstrap.min.css">
 <script src="/webjars/jquery/3.1.0/dist/jquery.min.js"></script>
-<script src="/webjars/bootstrap/3.3.7/dist/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="/resources/common/css/style.css"> 
 <link rel="stylesheet" href="/resources/common/css/index.css">
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
@@ -18,11 +16,11 @@
 <script>
 function changeEmail(emailvalue){
 	if(emailvalue=="1"){
-		document.getElementById("email2").style.visibility="visible";
+		document.getElementById("email2").style.display="block";
 		document.signupform.email2.value="";
 	}
 	else{
-		document.getElementById("email2").style.visibility="hidden";
+		document.getElementById("email2").style.display="none";
 		document.signupform.email2.value=emailvalue;
 	}
 }
@@ -137,7 +135,7 @@ function execute(){
 					<td>이메일</td>
 					<td>
 						<input type="text" name="email1" id="email1">
-						<select name="emailMiddle" onChange=changeEmail(this.value);>
+						<select name="emailMiddle" onChange=changeEmail(this.value); id="email_chg">
 							<option value="" selected>이메일선택</option>
 							<option value="@naver.com">@ naver.com</option>
 							<option value="@hanmail.com">@ hanmail.com</option>
@@ -149,7 +147,7 @@ function execute(){
 							<option value="@korea.com">@ korea.com</option>
 							<option value="1">직접입력</option>							
 						</select>
-						<input type="text" name="email2" id="email2" style="visibility:hidden">
+						<input type="text" name="email2" id="email2" style="display:none;">
 					</td>
 				</tr>				
 				<tr id="hide">
@@ -179,6 +177,13 @@ $("#repw").keyup(function(){
 		$("#checkpassword").css("display","none");
 	}else{
 		$("#checkpassword").css("display","block");
+	}
+});
+$("#email_chg").change(function(){
+	if($(this).val()==1){
+		$("#email2").css("display","block");
+	}else{
+		$("#email2").css("display","none");
 	}
 });
 </script>

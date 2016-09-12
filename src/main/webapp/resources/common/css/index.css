@@ -444,3 +444,158 @@ footer #footer_fill #footer_wrap #footer_right span {
   font-size: 0.8rem;
   line-height: 1.4rem;
 }
+@media screen and (max-width: 640px) {
+  .header_wrap {
+    width: 640px !important;
+  }
+  .header_wrap ol {
+    display: block !important;
+    float: none !important;
+    margin-left: 188px !important;
+  }
+  .header_wrap ol button {
+    float: left;
+  }
+  .header_wrap .header_menu img {
+    float: none !important;
+    margin-bottom: 0 !important;
+    margin-left: 180px !important;
+  }
+  .header_wrap .header_menu ul {
+    padding-left: 0;
+    width: 100%;
+    margin-top: 10px !important;
+  }
+  .header_wrap .header_menu ul li {
+    margin-left: 34px !important;
+    margin: 10px;
+  }
+  .ani {
+    height: 300px;
+  }
+  .ani .imgs {
+    width: 100% !important;
+    height: 300px;
+  }
+  .ani_wrap {
+    width: 640px !important;
+  }
+  .ani_wrap #remote_box {
+    bottom: -20% !important;
+  }
+  .ani_wrap span {
+    font-size: 40px !important;
+  }
+  .ani_wrap #left_ani {
+    left: 15px;
+  }
+  article section {
+    width: 600px;
+    margin-left: 20px;
+  }
+  article section #benner_1 img {
+    left: -55%;
+  }
+  article section .block {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+  article section .block .block_inside img {
+    height: 350px !important;
+  }
+  #footer_benner {
+    padding-bottom: 10px !important;
+  }
+  #footer_benner #footer_benner_wrap {
+    width: 600px !important;
+  }
+  #footer_benner #footer_benner_wrap img {
+    margin-left: 40px !important;
+    margin-top: 10px !important;
+  }
+  #footer_fill {
+    height: auto;
+  }
+  #footer_wrap {
+    width: 600px !important;
+    text-align: center;
+  }
+  #footer_wrap #footer_left {
+    width: 100%;
+  }
+  #footer_wrap #footer_left ul {
+    margin-left: 130px;
+  }
+  #footer_wrap #footer_center {
+    width: 100% !important;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  #footer_wrap #footer_center img {
+    float: none !important;
+  }
+  #footer_wrap #footer_right {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  #header_benner {
+    position: relative;
+    height: 270px;
+  }
+  #header_benner img {
+    position: absolute !important;
+    width: 1540px !important;
+    height: auto;
+    left: -55%;
+  }
+  #wrap_form {
+    width: 600px !important;
+  }
+  #wrap_form form table tr td {
+    font-size: 1rem;
+    padding-left: 15px;
+  }
+  #wrap_form form table tr td:first-child {
+    width: 120px;
+  }
+  #wrap_form form table tr td #email1 {
+    margin-top: 5px !important;
+  }
+  #wrap_form form table tr td #email2 {
+    margin-top: 5px !important;
+    margin-bottom: 5px;
+  }
+  #log_form_wrap {
+    width: 600px !important;
+  }
+  .wrap_comment {
+    width: 600px;
+    margin-left: 20px !important;
+  }
+  .wrap_comment section article {
+    margin-left: 0;
+  }
+  .wrap_comment section article h1 {
+    width: 600px;
+  }
+  #demo_box {
+    padding-left: 100px !important;
+  }
+  .comment1_txt textarea {
+    width: 520px !important;
+    margin-left: 20px !important;
+  }
+  .comment1_txt img {
+    margin-left: 20px;
+  }
+  .hiding_box {
+    right: 0 !important;
+    top: -20px !important;
+  }
+}
+#wrap_form button {
+  font-size: 0.8rem !important;
+}
+#wrap_form #submit {
+  font-size: 0.8rem !important;
+}

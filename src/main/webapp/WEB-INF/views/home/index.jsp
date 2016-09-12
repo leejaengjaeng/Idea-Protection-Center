@@ -6,6 +6,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
     <title>IdeaProtect</title>
     <script src="/webjars/jquery/3.1.0/dist/jquery.min.js"></script>
     <link rel="stylesheet" href="/resources/common/css/index.css">
@@ -26,7 +27,7 @@
         <div class="imgs" id="fth_slide"></div>
         <div class="ani_wrap">
             <span style="right:0;" onclick="btn('right')">&gt;</span>
-            <span onclick="btn('left');">&lt;</span>
+            <span onclick="btn('left');" id="left_ani">&lt;</span>
             <div id="remote_box">
                 <div class="remote" onclick="pro(0)"></div>
                 <div class="remote" onclick="pro(1)"></div>
@@ -126,7 +127,7 @@
             </div>
             <div id="cont_title3">
                 <span id="onair_title">실시간 의뢰정보</span><br>
-                <span>아이디어 보호센터는 발명가님들의 여러 아이디어가 출원될 수 있도록 하는 강력한 파트너입니다.</span>
+                <span style="line-height:1.8rem;">아이디어 보호센터는 발명가님들의 여러 아이디어가<br> 출원될 수 있도록 하는 강력한 파트너입니다.</span>
             </div>
             <div id="onair">
                 <div id="onair_who">

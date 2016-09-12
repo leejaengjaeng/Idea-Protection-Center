@@ -5,12 +5,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
     <meta name="_csrf" content="${_csrf.token}" />
 	<meta name="_csrf_header" content="${_csrf.headerName}" />
     <title>Idea Protection Center</title>
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>  
     <link href="/resources/common/css/style.css" rel="stylesheet">
-    <link href="/resources/common/css/index.css" rel="stylesheet">
+    <link href="/resources/common/css/index.css" rel="stylesheet">    
 <script>
 $(document).ready(function()
 {
@@ -205,16 +206,16 @@ var showClickedList = function(rid)
                 <div id="nav_benner">
                     <ul>
                         <li>
-                            <img src="#" alt="benner1">
+                            <img src="/resources/image/index_patent_1.jpg" alt="benner1">
                         </li>
                         <li>
-                            <img src="#" alt="benner2">
+                            <img src="/resources/image/index_patent_2.jpg" alt="benner2">
                         </li>
                         <li>
-                            <img src="#" alt="benner3">
+                            <img src="/resources/image/index_patent_3.jpg" alt="benner3">
                         </li>
                         <li>
-                            <img src="#" alt="benner4">
+                            <img src="/resources/image/index_patent_4.jpg" alt="benner4">
                         </li>
                     </ul>
                 </div>
@@ -240,7 +241,7 @@ var showClickedList = function(rid)
 					</c:forEach>
                 </table>                             
             </article>  
-            <article style="width: 100%;>
+            <article style="width: 75%;">
                <input id="currentPosition" type="hidden" value="${item.getRid()}"/>
                <div class="txt_box">
                     <h2>발명분야</h2>   
@@ -259,6 +260,15 @@ var showClickedList = function(rid)
                             <img src="/resources/image/arr.png">
                             <textarea name="AfterCommentTypeOfInvent" placeholder="Comment..."></textarea>
                         </div>
+                    </div>
+                    <div class="hiding_box">
+                       <div class="hiding_box_header">
+                           <h3>저작물 명칭</h3>
+                           <img src="/resources/image/close.png" alt="close" class="close_btn"> 
+                       </div>  
+                       <div class="hiding_box_content">
+                           <span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
+                       </div>                                                   
                     </div>
                 </div>
                 <div class="hr"></div>

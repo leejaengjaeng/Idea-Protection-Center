@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
 <script src="/webjars/jquery/3.1.0/dist/jquery.min.js"></script>
 <script src="/webjars/bootstrap/3.3.7/dist/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="/resources/common/css/index.css">
@@ -26,6 +27,28 @@ $(document).ready(function()
 </head>
 <body>
 <c:import url="/WEB-INF/views/import/header.jsp"/>
+<div id="hide_menu">
+	<img src="/resources/image/hide_menu.png" alt="ham">	
+</div>
+<div id="hide_nav">
+	<div id="hide_nav_cont">
+	    <div id="profile">
+	        <img src="#" alt="profile">
+	        <h4>${currentUser.getName() }</h4>
+	        <span>ideaconcert</span>
+	    </div>
+	    <div id="profile_menu">
+	        <ul style="padding-left:0;">
+	            <li>회원정보수정</li>
+	            <li>1:1질문하기</li>
+	            <li>아이디어 진행내역</li>
+	            <li>임시저장함</li>
+	            <li>결제대기</li>
+	            <li>결제내역</li>
+	        </ul>
+	    </div>	    
+	</div>
+</div>
 <div id="inven">
     <div id="inven_wrap">
         <nav>
@@ -233,5 +256,17 @@ $(document).ready(function()
     </div>    
 </div>
 <c:import url="/WEB-INF/views/import/footer.jsp"/>
+<script>
+	$("#hide_menu").click(function(){
+		$("#hide_nav").animate({width:"200px"});		
+	});
+	$(document).click(function(e){
+		if($('#hide_nav').css('width') == '200px'){
+			if($("#hide_nav").has(e.target).length == 0){
+				$('#hide_nav').animate({width:"0"});
+			}
+		}
+	});
+</script>
 </body>
 </html>
