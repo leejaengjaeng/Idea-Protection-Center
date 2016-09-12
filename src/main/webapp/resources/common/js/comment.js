@@ -93,9 +93,8 @@ var disableInventor = function()
 }
 
 //임시 저장
-var ideaSave = function(flag)
+var tmpSave = function(role)
 {
-	
 	var csrfToken = $("meta[name='_csrf']").attr("content"); 
 	var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
 	var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
@@ -106,9 +105,8 @@ var ideaSave = function(flag)
     headers[csrfHeader] = csrfToken;
 
     data['rid'] = $('#IdeaModifyList').find('.clickedIdea').children('input').val();
-	data['flag'] = flag;
 	//발명가인 경우 
-	if("${user}"=="inventor")
+	if(role=="inventor")
 	{
 		data['role'] = "inventor";
 		data['typeOfInvent'] = $('#RegtypeOfInvent').children("input").val();
@@ -121,7 +119,7 @@ var ideaSave = function(flag)
 		data['core_element'] = $("#RegCore_Element").children("textarea").val();
 	}
 	//변리사인 경우
-	else if("${user}"=="pl")
+	else if(role=="pl")
 	{
 		data['role'] = "pl";
 		data['re_typeOfInvent'] = $('#AfterCommentTypeOfInvent').children("input").val();
@@ -141,7 +139,7 @@ var ideaSave = function(flag)
 	console.log(data);
 
     $.ajax({
-		url : "/saveIdea",
+		url : "/tmpSave",
 		type:"POST",
 		headers: headers,
  	    data : data,
@@ -153,6 +151,70 @@ var ideaSave = function(flag)
 		{
  			alert('임시 저장에 실패하였습니다.')
 			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		}
+	});	
+ 	
+}
+//저장
+var ideaSave = function(role)
+{
+	var csrfToken = $("meta[name='_csrf']").attr("content"); 
+	var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+	var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
+	var data = {};
+	var headers = {};
+
+	data[csrfParameter] = csrfToken;
+    headers[csrfHeader] = csrfToken;
+
+    data['rid'] = $('#IdeaModifyList').find('.clickedIdea').children('input').val();
+	//발명가인 경우 
+	if(role=="inventor")
+	{
+		data['role'] = role;
+		data['typeOfInvent'] = $('#RegtypeOfInvent').children("textarea").val();
+		data['title'] = $('#RegTitle').children("textarea").val();
+		data['summary'] = $('#RegSummary').children("textarea").val();
+		data['whyInvent'] = $('#RegWhyInvent').children("textarea").val();
+		data['problem'] = $('#RegProblem').children("textarea").val();
+		data['solution'] = $('#RegSolution').children("textarea").val();
+		data['effect'] = $('#RegEffect').children("textarea").val();
+		data['core_element'] = $("#RegCore_Element").children("textarea").val();
+	}
+	//변리사인 경우
+	else if(role=="pl")
+	{
+		data['role'] = role;
+		data['re_typeOfInvent'] = $('#AfterCommentTypeOfInvent').children("textarea").val();
+		data['re_title'] = $('#AfterCommentTitle').children("textarea").val();
+		data['re_summary'] = $('#AfterCommentSummary').children("textarea").val();
+		data['re_whyInvent'] = $('#AfterCommentWhyInvent').children("textarea").val();
+		data['re_problem'] = $('#AfterCommentProblem').children("textarea").val();
+		data['re_solution'] = $('#AfterCommentSolution').children("textarea").val();
+		data['re_effect'] = $('#AfterCommentEffect').children("textarea").val();
+		data['re_core_element'] = $('#AfterCommentCore_Element').children("textarea").val();
+	}
+	else
+	{
+		alert(role);
+		data['role'] = "error";
+	}
+	
+	console.log(data);
+
+    $.ajax({
+		url : "/ideaSave",
+		type:"POST",
+		headers: headers,
+ 	    data : data,
+ 	    success:function(retVal)
+ 	    {
+ 	    	alert(retVal);
+ 	    },
+ 	    error: function(request,status,error)
+		{
+ 			//alert('저장에 실패하였습니다.')
+			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		}
 	});	
  	
@@ -179,32 +241,43 @@ var showClickedList = function(rid)
 				$('#RegEffect').children('textarea').text(result.effect);
 				$('#RegCore_Element').children('textarea').text(result.core_element);
 			
-				if(retVal.role == "inventor")
+				var comment = retVal.beforeComment;
+				if(comment == null)
 				{
-					var comment = retVal.beforeComment;
-					if(comment == null)
-					{
-						$('#BeforeCommentTypeOfInvent').children('textarea').text("이전 코멘트");
-						$('#BeforeCommentTitle').children('textarea').text("이전 코멘트");
-						$('#BeforeCommentSummary').children('textarea').text("이전 코멘트");
-						$('#BeforeCommentWhyInvent').children('textarea').text("이전 코멘트");
-						$('#BeforeCommentProblem').children('textarea').text("이전 코멘트");
-						$('#BeforeCommentSolution').children('textarea').text("이전 코멘트");
-						$('#BeforeCommentEffect').children('textarea').text("이전 코멘트");
-						$('#BeforeCommentCore_Element').children('textarea').text("이전 코멘트");
-					}
-					else
-					{
-						$('#BeforeCommentTypeOfInvent').children('textarea').text(comment.re_typeOfInvent);
-						$('#BeforeCommentTitle').children('textarea').text(comment.re_title);
-						$('#BeforeCommentSummary').children('textarea').text(comment.re_summary);
-						$('#BeforeCommentWhyInvent').children('textarea').text(comment.re_whyInvent);
-						$('#BeforeCommentProblem').children('textarea').text(comment.re_problem);
-						$('#BeforeCommentSolution').children('textarea').text(comment.re_solution);
-						$('#BeforeCommentEffect').children('textarea').text(comment.re_effect);
-						$('#BeforeCommentCore_Element').children('textarea').text(comment.re_core_element);
-					}
+					$('#BeforeCommentTypeOfInvent').children('textarea').text("이전 코멘트");
+					$('#BeforeCommentTitle').children('textarea').text("이전 코멘트");
+					$('#BeforeCommentSummary').children('textarea').text("이전 코멘트");
+					$('#BeforeCommentWhyInvent').children('textarea').text("이전 코멘트");
+					$('#BeforeCommentProblem').children('textarea').text("이전 코멘트");
+					$('#BeforeCommentSolution').children('textarea').text("이전 코멘트");
+					$('#BeforeCommentEffect').children('textarea').text("이전 코멘트");
+					$('#BeforeCommentCore_Element').children('textarea').text("이전 코멘트");
 				}
+				else
+				{
+					$('#BeforeCommentTypeOfInvent').children('textarea').text(comment.re_typeOfInvent);
+					$('#BeforeCommentTitle').children('textarea').text(comment.re_title);
+					$('#BeforeCommentSummary').children('textarea').text(comment.re_summary);
+					$('#BeforeCommentWhyInvent').children('textarea').text(comment.re_whyInvent);
+					$('#BeforeCommentProblem').children('textarea').text(comment.re_problem);
+					$('#BeforeCommentSolution').children('textarea').text(comment.re_solution);
+					$('#BeforeCommentEffect').children('textarea').text(comment.re_effect);
+					$('#BeforeCommentCore_Element').children('textarea').text(comment.re_core_element);
+				}
+				//변리사의 경우
+				var afterComment = retVal.afterComment;
+				if(retVal.role =="pl")
+				{
+					$('#AfterCommentTypeOfInvent').children('textarea').text(afterComment.re_typeOfInvent);
+					$('#AfterCommentTitle').children('textarea').text(afterComment.re_title);
+					$('#AfterCommentSummary').children('textarea').text(afterComment.re_summary);
+					$('#AfterCommentWhyInvent').children('textarea').text(afterComment.re_whyInvent);
+					$('#AfterCommentProblem').children('textarea').text(afterComment.re_problem);
+					$('#AfterCommentSolution').children('textarea').text(afterComment.re_solution);
+					$('#AfterCommentEffect').children('textarea').text(afterComment.re_effect);
+					$('#AfterCommentCore_Element').children('textarea').text(afterComment.re_core_element);
+				}
+				
 			}
 			else
 				alert('ajax Error');

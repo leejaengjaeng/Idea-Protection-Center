@@ -7,10 +7,10 @@
 	</insert>
 	
 	<select id="getInventorProcessList" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
-		select rid, iscomplete,registration_date, title, r_condition, start_rid, typeofinvent, apply_date, pre_apply_date from registration_patent where uid=#{uid} and rid=start_rid AND iscomplete=0
+		select rid, iscomplete,registration_date, title, r_condition, start_rid, typeofinvent, apply_date, pre_apply_date from registration_patent where uid=#{uid} and rid=start_rid 
 	</select>
 	<select id="getPlProcessList" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
-		select rid, iscomplete,registration_date, title, r_condition, start_rid, typeofinvent, apply_date, pre_apply_date from registration_patent where lid=#{lid} and rid=start_rid AND iscomplete=0
+		select rid, iscomplete,registration_date, title, r_condition, start_rid, typeofinvent, apply_date, pre_apply_date from registration_patent where lid=#{lid} and rid=start_rid 
 	</select>
 	
 	<update id="updatetempidea" parameterType="Hashmap">
@@ -18,15 +18,19 @@
 	</update>
 	
 	<update id="inventorSave" parameterType="com.ipc.vo.RegistrationPatentVo">
-		update registration_patent set typeOfInvent=#{typeOfInvent}, title=#{title}, whyInvent=#{whyInvent}, summary=#{summary}, problem=#{problem}, solution=#{solution}, effect=#{effect}, core_element=#{core_element} iscomplete=#{iscomplete} WHERE rid=#{rid}
+		update registration_patent set typeOfInvent=#{typeOfInvent}, title=#{title}, whyInvent=#{whyInvent}, summary=#{summary}, problem=#{problem}, solution=#{solution}, effect=#{effect}, core_element=#{core_element}, iscomplete=#{iscomplete} WHERE rid=#{rid}
 	</update>
 
 	<select id="checkIsCompletedByRid" parameterType="Integer" resultType="Integer">
 		select iscomplete from registration_patent where rid=#{rid}
 	</select>
+
+	<update id="plUpdate" parameterType="com.ipc.vo.RegistrationPatentVo">
+		update registration_patent set re_typeOfInvent=#{re_typeOfInvent}, re_title=#{re_title}, re_whyInvent=#{re_whyInvent}, re_summary=#{re_summary}, re_problem=#{re_problem}, re_solution=#{re_solution}, re_effect=#{re_effect}, re_core_element=#{re_core_element}, iscomplete=#{iscomplete} WHERE rid=#{rid}
+	</update>
 	
 	<insert id="plSave" parameterType="com.ipc.vo.RegistrationPatentVo" useGeneratedKeys="true" keyProperty="rid">
-		insert into registration_patent(re_typeofinvent,re_title,re_summary,re_whyinvent,re_problem,re_solution,re_effect,re_core_element,uid,lid,prev_rid,start_rid) values (#{re_typeOfInvent},#{re_title},#{re_summary},#{re_whyInvent},#{re_problem},#{re_solution},#{re_effect},#{re_core_element},#{uid},#{lid},#{prev_rid},#{start_rid})
+		insert into registration_patent(re_typeofinvent,re_title,re_summary,re_whyinvent,re_problem,re_solution,re_effect,re_core_element,uid,lid,prev_rid,start_rid,iscomplete) values (#{re_typeOfInvent},#{re_title},#{re_summary},#{re_whyInvent},#{re_problem},#{re_solution},#{re_effect},#{re_core_element},#{uid},#{lid},#{prev_rid},#{start_rid},#{iscomplete})
 	</insert>
 
 	<select id="getResourceForPlSaveByRid" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
@@ -34,7 +38,7 @@
 	</select>
 	
 	<select id="getLastRidInProcessList" parameterType="Integer" resultType="Integer">
-		select rid from idea_pc.registration_patent where start_rid=#{start_rid} order by rid desc limit 1  
+		select rid from registration_patent where start_rid=#{start_rid} order by rid desc limit 1  
 	</select>
 	
 	<insert id="maketempidea" parameterType="Hashmap">
@@ -45,23 +49,27 @@
 	</select>
 
 	<select id="getAssociatedMembers" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
-		select uid,lid from registration_patent where rid=#{start_rid} and start_rid=rid AND iscomplete=0
+		select uid,lid from registration_patent where rid=#{start_rid} and start_rid=rid
 	</select>
 	<select id="getAssociatedMembersByRid" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
 		select uid,lid from registration_patent where rid=#{rid}
-
 	</select>
 	<select id="getAssociatedProcessList" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
-		select rid, registration_date from registration_patent where start_rid = #{start_rid} AND iscomplete=0
+		select rid, registration_date from registration_patent where start_rid = #{start_rid}
 	</select>
 	<select id="getInventorProcessByRid" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
-		select rid, prev_rid, typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element from registration_patent where rid=#{rid} AND iscomplete=0
+		select rid, prev_rid, typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element,iscomplete from registration_patent where rid=#{rid}
 	</select>
 	<select id="getPrevCommentByPrevRid" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
-		select re_typeofinvent, re_title, re_summary, re_whyinvent, re_problem, re_solution, re_effect, re_core_element from registration_patent where rid=#{prev_rid} AND iscomplete=0
+		select re_typeofinvent, re_title, re_summary, re_whyinvent, re_problem, re_solution, re_effect, re_core_element from registration_patent where rid=#{prev_rid}
 	</select>
+
+	<select id="getAfterCommentByRid" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
+		select re_typeofinvent, re_title, re_summary, re_whyinvent, re_problem, re_solution, re_effect, re_core_element from registration_patent where rid=#{rid}
+	</select>
+
 	<select id="getPlProcessByRid" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
-		select rid, prev_rid, typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element, re_typeofinvent, re_title, re_summary, re_whyinvent, re_problem, re_solution, re_effect, re_core_element from registration_patent where rid=#{rid} AND iscomplete=0
+		select rid, prev_rid, typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element, re_typeofinvent, re_title, re_summary, re_whyinvent, re_problem, re_solution, re_effect, re_core_element,iscomplete from registration_patent where rid=#{rid}
 	</select>
 	<select id="gettempidea" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
 		select rid, typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element, re_typeofinvent, re_title, re_summary, re_whyinvent, re_problem, re_solution, re_effect, re_core_element from registration_patent where uid=#{uid} AND iscomplete=1

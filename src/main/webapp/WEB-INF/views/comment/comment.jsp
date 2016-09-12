@@ -5,6 +5,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
     <meta name="_csrf" content="${_csrf.token}" />
 	<meta name="_csrf_header" content="${_csrf.headerName}" />
     <title>Idea Protection Center</title>
@@ -13,19 +14,39 @@
     
     <link href="/resources/common/css/style.css" rel="stylesheet">
     <link href="/resources/common/css/index.css" rel="stylesheet">
-    
 <script>
 $(document).ready(function()
 {
 	//권한에 따라 보여주기
 	if("${user}" == "pl")
 	{
-		enablePl();
+		if("${item.getIscomplete()}" == 0)
+			enablePl();
+		
+		//이전 코멘트 지우기 
+		if("${isNull}" =="true")
+		{
+			var hideEl = document.getElementsByClassName('before_cmt')
+			for(var i =0; i <hideEl.length ; i++)
+				hideEl[i].style.display="none";
+		}
+
 	}
 	else if("${user}" == "inventor")
 	{
-		enableInventor();
-	var hideEl = document.getElementsByClassName('box_comment1')
+		if("${item.getIscomplete()}" == 0)
+			enableInventor();
+		
+		//이전 코멘트 지우기 
+		if("${isNull}" =="true")
+		{
+			var hideEl = document.getElementsByClassName('before_cmt')
+			for(var i =0; i <hideEl.length ; i++)
+				hideEl[i].style.display="none";
+		}
+		
+		//변리사 코멘트 지우기
+		var hideEl = document.getElementsByClassName('box_comment1')
 		for(var i =0; i <hideEl.length ; i++)
 			hideEl[i].style.display="none";
 	}
@@ -37,12 +58,19 @@ $(document).ready(function()
 	//폼 버튼 이벤트 
 	$('#tmpSave').on("click",function()
 	{
-		ideaSave("tmp");
+		tmpSave("${user}");
 	});
 	$('#agree').on("click",function()
 	{
 		alert('저장후에는 어쩌구~ 답변을 기다려야~ 어쩌구 저장하시겠습니까~ 어쩌구~');
-		ideaSave("save");
+		ideaSave("${user}");
+		
+		if("${user}" == "pl")
+			disablePl();
+		else if("${user}" == "inventor")
+			disableInventor();
+		
+		location.href ="/mainPage";
 	});
 
 	
@@ -56,12 +84,11 @@ $(document).ready(function()
 		
 		if(rid == ${lastRid})
 		{
-			if("${user}" == "pl")
+			if("${user}" == "pl" && "${item.getIscomplete()}" == 0)
 				enablePl();
-			else if("${user}" == "inventor")
+			else if("${user}" == "inventor" && ("${item.getIscomplete()}" == 0))
 				enableInventor();
-			else
-				alert("유저 어디감 : " + "${user}" );	
+			else;
 		}
 		else
 		{
@@ -85,6 +112,7 @@ $(document).ready(function()
         $(this).nextAll(".hiding_box").fadeIn();
     });
     $(".close_btn").click(function(){
+    	
         $(this).parents(".hiding_box").fadeOut();
     });
 
@@ -111,16 +139,16 @@ $(document).ready(function()
                 <div id="nav_benner">
                     <ul>
                         <li>
-                            <img src="#" alt="benner1">
+                            <img src="/resources/image/index_patent_1.jpg" alt="benner1">
                         </li>
                         <li>
-                            <img src="#" alt="benner2">
+                            <img src="/resources/image/index_patent_2.jpg" alt="benner2">
                         </li>
                         <li>
-                            <img src="#" alt="benner3">
+                            <img src="/resources/image/index_patent_3.jpg" alt="benner3">
                         </li>
                         <li>
-                            <img src="#" alt="benner4">
+                            <img src="/resources/image/index_patent_4.jpg" alt="benner4">
                         </li>
                     </ul>
                 </div>
@@ -133,32 +161,41 @@ $(document).ready(function()
                 <h1>아이디어수정내역</h1>   
                 <table id="IdeaModifyList">
                 	<c:forEach items="${processList}" var="list" varStatus="status">
-						<c:if test="${status.index == 0}">
-							<tr class="clickedIdea">
-								<input type="hidden" value="${list.getRid()}"/>
-								<td class="title_td">아이디어 등록(초안)</td>
-						       <td class="date_td">${list.getRegistration_date()}</td>
-		                	</tr>
-						</c:if>
-						<c:if test="${status.index > 0}">
-							<tr>
-								<input type="hidden" value="${list.getRid()}"/>
-								<td class="title_td">${status.index}차 전문가 검토 및 수정안</td>
-		                        <td class="date_td">${list.getRegistration_date()}</td>
-		                  	</tr>
-		                </c:if>   	
+						<c:choose>
+							<c:when test="${status.first}">
+								<tr>
+									<input type="hidden" value="${list.getRid()}"/>
+									<td class="title_td">아이디어 등록(초안)</td>
+							       <td class="date_td">${list.getRegistration_date()}</td>
+			                	</tr>
+							</c:when>
+							<c:when test="${status.last}">
+								<tr class="clickedIdea">
+									<input type="hidden" value="${list.getRid()}"/>
+									<td class="title_td">${status.index}차 전문가 검토 및 수정안</td>
+			                        <td class="date_td">${list.getRegistration_date()}</td>
+			                  	</tr>
+							</c:when>
+							<c:otherwise>	
+								<tr>
+									<input type="hidden" value="${list.getRid()}"/>
+									<td class="title_td">${status.index}차 전문가 검토 및 수정안</td>
+			                        <td class="date_td">${list.getRegistration_date()}</td>
+			                  	</tr>
+			               	</c:otherwise>
+			          	</c:choose>
 					</c:forEach>		
 				</table>                             
             </article>  
-            <article style="width: 100%;>
+            <article style="width: 75%;">
                <input id="currentPosition" type="hidden" value="${item.getRid()}"/>
                <div class="txt_box">
                     <h2>발명분야</h2>   
                     <button>작성 예시</button>
                     <div id="BeforeCommentTypeOfInvent" class="before_cmt">
-                        <textarea disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
+                        <textarea disabled="disabled" class="disabled"/>${beforeComment.getRe_typeOfInvent()}</textarea>
                     </div>             
-                    <div id="RegtypeOfInvent" class="box_before1">                        
+                    <div id="RegTypeOfInvent" class="box_before1">                        
                         <input type="text" value="${item.getTypeOfInvent() }" disabled="disabled" class="disabled" />
                     </div>
                     <div class="box_comment1">
@@ -170,13 +207,22 @@ $(document).ready(function()
                             <textarea placeholder="Comment..." disabled="disabled" class="disabled"></textarea>
                         </div>
                     </div>
+                    <div class="hiding_box">
+                       <div class="hiding_box_header">
+                           <h3>저작물 명칭</h3>
+                           <img src="/resources/image/close.png" alt="close" class="close_btn"> 
+                       </div>  
+                       <div class="hiding_box_content">
+                           <span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
+                       </div>                                                   
+                    </div>
                 </div>
                 <div class="hr"></div>
                  <div class="txt_box">
                     <h2>제목</h2>
                     <button>작성 예시</button>
                     <div id="BeforeCommentTitle" class="before_cmt">
-                        <textarea disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
+                        <textarea disabled="disabled" class="disabled"/>${beforeComment.getRe_title()}</textarea>
                     </div>
                     <div id="RegTitle" class="box_before1">                        
                         <input type="text" value="${item.getTitle() }" disabled="disabled" class="disabled"/>
@@ -205,7 +251,7 @@ $(document).ready(function()
                     <h2>요약</h2>
                     <button>작성 예시</button>
                     <div id="BeforeCommentSummary" class="before_cmt">
-                        <textarea disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
+                        <textarea disabled="disabled" class="disabled"/>${beforeComment.getRe_summary()}</textarea>
                     </div>                    
                     <div id="RegSummary" class="box_before1_b">   
 	                    <textarea disabled="disabled" class="disabled">${item.getSummary()}</textarea>                     
@@ -233,7 +279,7 @@ $(document).ready(function()
                     <h2>필요이유</h2>
                     <button>작성 예시</button>
                     <div id="BeforeCommentWhyInvent" class="before_cmt">
-                        <textarea disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
+                        <textarea disabled="disabled" class="disabled"/>${beforeComment.getRe_whyInvent()}</textarea>
                     </div>
                     <div id="RegWhyInvent" class="box_before1_b">                        
                          <textarea disabled="disabled" class="disabled">${item.getWhyInvent()}</textarea>                     
@@ -262,7 +308,7 @@ $(document).ready(function()
                     <h2>기존제품설명 및 문제점</h2>
                     <button>작성 예시</button>
                     <div id="BeforeCommentProblem" class="before_cmt">
-                    	<textarea disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
+                    	<textarea disabled="disabled" class="disabled"/>${beforeComment.getRe_problem()}</textarea>
                     </div>
                     <div id="RegProblem" class="box_before1_b">                        
                          <textarea disabled="disabled" class="disabled">${item.getProblem()}</textarea>
@@ -291,7 +337,7 @@ $(document).ready(function()
                     <h2>문제해결방법</h2>
                     <button>작성 예시</button>
                     <div id="BeforeCommentSolution" class="before_cmt">
-                    	<textarea disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
+                    	<textarea disabled="disabled" class="disabled"/>${beforeComment.getRe_solution()}</textarea>
                     </div>
                     <div id="RegSolution" class="box_before1_b">                        
                     	<textarea disabled="disabled" class="disabled">${item.getSolution()}</textarea>
@@ -320,7 +366,7 @@ $(document).ready(function()
                     <h2>발명의 효과</h2>
                     <button>작성 예시</button>
                     <div id="BeforeCommentEffect" class="before_cmt">
-                   		<textarea disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
+                   		<textarea disabled="disabled" class="disabled"/>${beforeComment.getRe_effect()}</textarea>
                     </div>
                     <div id="RegEffect" class="box_before1_b">                        
                     	<textarea disabled="disabled" class="disabled">${item.getEffect()}</textarea>
@@ -331,7 +377,7 @@ $(document).ready(function()
                         </div> 
                         <div id="AfterCommentEffect" class="comment1_txt">
                            <img src="/resources/image/arr.png">
-                            <textarea placeholder="Comment..." disabled="disabled" class="disabled"></textarea>
+                           <textarea placeholder="Comment..." disabled="disabled" class="disabled"></textarea>
                         </div>
                     </div>
                     <div class="hiding_box">
@@ -349,7 +395,7 @@ $(document).ready(function()
                     <h2>핵심구성요소</h2>
                     <button>작성 예시</button>
                     <div id="BeforeCommentCore_Element" class="before_cmt">
-                    	<textarea disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
+                    	<textarea disabled="disabled" class="disabled"/>${beforeComment.getRe_core_element()}</textarea>
                     </div>
                     <div id="RegCore_Element" class="box_before1_b">                        
                     	<textarea disabled="disabled" class="disabled">${item.getCore_element()}</textarea>
