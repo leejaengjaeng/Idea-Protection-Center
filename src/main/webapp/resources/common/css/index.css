@@ -65,7 +65,7 @@ header .header_wrap .header_menu ul li {
   height: 400px;
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: 0 50%;
+  background-position: 50% 50%;
 }
 .ani #fir_slide {
   background-image: url(../../image/slide_img1.jpg);
@@ -442,4 +442,5 @@ footer #footer_fill #footer_wrap #footer_right {
 footer #footer_fill #footer_wrap #footer_right span {
   color: white;
   font-size: 0.8rem;
+  line-height: 1.4rem;
 }

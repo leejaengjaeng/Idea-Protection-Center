@@ -168,6 +168,7 @@ $(document).ready(function()
 	                        <td>${process.getR_condition() }</td>
 	                        <td>${process.getPre_apply_date() }</td>
 	                        <td>${process.getApply_date() }</td>
+	                        <td>-</td>
 						</tr>
 					</c:forEach>
                 </table>
