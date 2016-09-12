@@ -256,8 +256,7 @@ var showClickedList = function(rid)
                         <div class="img_comt">
                             <img src="/resources/image/comment.png" alt="cmt_img">
                         </div> 
-                        <div id="AfterCommentTypeOfInvent" class="comment1_txt">
-                            <img src="/resources/image/arr.png">
+                        <div id="AfterCommentTypeOfInvent" class="comment1_txt">                            
                             <textarea name="AfterCommentTypeOfInvent" placeholder="Comment..."></textarea>
                         </div>
                     </div>
@@ -286,8 +285,8 @@ var showClickedList = function(rid)
                             <img src="/resources/image/comment.png" alt="cmt_img">
                         </div> 
                         <div id="AfterCommentTitle" class="comment1_txt">
-                            <img src="/resources/image/arr.png">
-                            <textarea name="AfterCommentTitle" placeholder="Comment..."></textarea>
+                            
+                            <textarea name="AfterCommentTitle" placeholder="Comment..." disabled="disabled" class="disabled"></textarea>
                         </div>
                     </div>
                     <div class="hiding_box">
@@ -315,7 +314,7 @@ var showClickedList = function(rid)
                             <img src="/resources/image/comment.png" alt="cmt_img">
                         </div> 
                         <div id="AfterCommentSummary" class="comment1_txt">
-                            <img src="/resources/image/arr.png">
+                            
                             <textarea name="AfterCommentSummary" placeholder="Comment..."></textarea>
                         </div>
                     </div>
@@ -343,7 +342,7 @@ var showClickedList = function(rid)
                             <img src="/resources/image/comment.png" alt="cmt_img">
                         </div> 
                         <div id="AfterCommentWhyInvent" class="comment1_txt">
-                            <img src="/resources/image/arr.png">
+                            
                             <textarea placeholder="Comment..."></textarea>
                         </div>
                     </div>
@@ -372,7 +371,7 @@ var showClickedList = function(rid)
                             <img src="/resources/image/comment.png" alt="cmt_img">
                         </div> 
                         <div id="AfterCommentProblem" class="comment1_txt">
-                            <img src="/resources/image/arr.png">
+                            
                             <textarea name ="AfterCommentProblem" placeholder="Comment..."></textarea>
                         </div>
                     </div>
@@ -401,7 +400,7 @@ var showClickedList = function(rid)
                             <img src="/resources/image/comment.png" alt="cmt_img">
                         </div> 
                         <div id="AfterCommentSolution" class="comment1_txt">
-                            <img src="/resources/image/arr.png">
+                            
                             <textarea name="AfterCommentSolution" placeholder="Comment..."></textarea>
                         </div>
                     </div>
@@ -430,7 +429,7 @@ var showClickedList = function(rid)
                             <img src="/resources/image/comment.png" alt="cmt_img">
                         </div> 
                         <div id="AfterCommentEffect" class="comment1_txt">
-                           <img src="/resources/image/arr.png">
+                           
                             <textarea name = "AfterCommentEffect" placeholder="Comment..."></textarea>
                         </div>
                     </div>
@@ -459,7 +458,7 @@ var showClickedList = function(rid)
                             <img src="/resources/image/comment.png" alt="cmt_img">
                         </div> 
                         <div id="AfterCommentCore_Element" class="comment1_txt">
-                            <img src="/resources/image/arr.png">
+                            
                             <textarea name ="AfterCommentCore_Element" placeholder="Comment..."></textarea>
                         </div>
                     </div>
@@ -494,7 +493,7 @@ var showClickedList = function(rid)
 	                            <img src="/resources/image/comment.png" alt="cmt_img">
 	                        </div> 
 	                        <div id="AfterCommentFiles" class="comment1_txt">
-	                            <img src="/resources/image/arr.png">
+	                            
 	                            <textarea placeholder="Comment..."></textarea>
 	                        </div>
 	                    </div>
