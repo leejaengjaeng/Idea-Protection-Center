@@ -26,5 +26,10 @@ public interface RegistrationDao {
 	public RegistrationPatentVo getPlProcessByRid(int rid);
 	public void removeTempIdea(int uid);
 	
-	public void tmpInventorSave (RegistrationPatentVo rvo);
+	public void inventorSave (RegistrationPatentVo rvo);
+	public void plSave (RegistrationPatentVo rvo);
+	public RegistrationPatentVo getResourceForPlSaveByRid(int rid);
+	public int getLastRidInProcessList (int start_rid);
+	
+	public int checkIsCompletedByRid(int rid);
 }

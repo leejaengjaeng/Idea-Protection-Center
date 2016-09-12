@@ -17,9 +17,25 @@
 		update registration_patent set typeOfInvent=#{typeOfInvent}, title=#{title}, whyInvent=#{whyInvent}, summary=#{summary}, problem=#{problem}, solution=#{solution}, effect=#{effect}, core_element=#{core_element} WHERE uid=#{uid} AND iscomplete=1
 	</update>
 	
-	<update id="tmpInventorSave" parameterType="com.ipc.vo.RegistrationPatentVo">
-		update registration_patent set typeOfInvent=#{typeOfInvent}, title=#{title}, whyInvent=#{whyInvent}, summary=#{summary}, problem=#{problem}, solution=#{solution}, effect=#{effect}, core_element=#{core_element} WHERE rid=#{rid}
+	<update id="inventorSave" parameterType="com.ipc.vo.RegistrationPatentVo">
+		update registration_patent set typeOfInvent=#{typeOfInvent}, title=#{title}, whyInvent=#{whyInvent}, summary=#{summary}, problem=#{problem}, solution=#{solution}, effect=#{effect}, core_element=#{core_element} iscomplete=#{iscomplete} WHERE rid=#{rid}
 	</update>
+
+	<select id="checkIsCompletedByRid" parameterType="Integer" resultType="Integer">
+		select iscomplete from registration_patent where rid=#{rid}
+	</select>
+	
+	<insert id="plSave" parameterType="com.ipc.vo.RegistrationPatentVo" useGeneratedKeys="true" keyProperty="rid">
+		insert into registration_patent(re_typeofinvent,re_title,re_summary,re_whyinvent,re_problem,re_solution,re_effect,re_core_element,uid,lid,prev_rid,start_rid) values (#{re_typeOfInvent},#{re_title},#{re_summary},#{re_whyInvent},#{re_problem},#{re_solution},#{re_effect},#{re_core_element},#{uid},#{lid},#{prev_rid},#{start_rid})
+	</insert>
+
+	<select id="getResourceForPlSaveByRid" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
+		select uid,start_rid,lid from registration_patent where rid=#{rid}
+	</select>
+	
+	<select id="getLastRidInProcessList" parameterType="Integer" resultType="Integer">
+		select rid from idea_pc.registration_patent where start_rid=#{start_rid} order by rid desc limit 1  
+	</select>
 	
 	<insert id="maketempidea" parameterType="Hashmap">
 		insert into registration_patent(typeOfInvent,title,summary,whyInvent,problem,solution,effect,core_element,registration_date,uid,iscomplete) values (#{typeOfInvent},#{title},#{summary},#{whyInvent},#{problem},#{solution},#{effect},#{core_element},#{registrtaion_date},#{uid},"1")

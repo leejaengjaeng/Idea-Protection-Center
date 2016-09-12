@@ -9,21 +9,23 @@
 	<meta name="_csrf_header" content="${_csrf.headerName}" />
     <title>Idea Protection Center</title>
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>  
+    <script src="/resources/common/js/comment.js"></script>  
+    
     <link href="/resources/common/css/style.css" rel="stylesheet">
     <link href="/resources/common/css/index.css" rel="stylesheet">
+    
 <script>
 $(document).ready(function()
 {
 	//권한에 따라 보여주기
 	if("${user}" == "pl")
 	{
-		var hideEl = document.getElementsByClassName('before_cmt')
-		for(var i =0; i <hideEl.length ; i++)
-			hideEl[i].style.display="none";
+		enablePl();
 	}
 	else if("${user}" == "inventor")
 	{
-		var hideEl = document.getElementsByClassName('box_comment1')
+		enableInventor();
+	var hideEl = document.getElementsByClassName('box_comment1')
 		for(var i =0; i <hideEl.length ; i++)
 			hideEl[i].style.display="none";
 	}
@@ -32,11 +34,50 @@ $(document).ready(function()
 		location.href="/authError";
 	}	
 	
-	//진행내역에 따라 내용 바꿔주기
+	//폼 버튼 이벤트 
+	$('#tmpSave').on("click",function()
+	{
+		ideaSave("tmp");
+	});
+	$('#agree').on("click",function()
+	{
+		alert('저장후에는 어쩌구~ 답변을 기다려야~ 어쩌구 저장하시겠습니까~ 어쩌구~');
+		ideaSave("save");
+	});
+
+	
+	//클릭에 따라 내용 바꿔주기
 	$('#IdeaModifyList').on("click","tr",function()
 	{
+		//IdeaModifyList 내부의 tr중 clickedIdea를 가지고있는 요소를 clickedIdea를 제거 
+		$(this).parent().find('.clickedIdea').removeClass('clickedIdea');
+
 		var rid = $(this).children('input').attr('value');
+		
+		if(rid == ${lastRid})
+		{
+			if("${user}" == "pl")
+				enablePl();
+			else if("${user}" == "inventor")
+				enableInventor();
+			else
+				alert("유저 어디감 : " + "${user}" );	
+		}
+		else
+		{
+			if("${user}" == "pl")
+				disablePl();
+			else if("${user}" == "inventor")
+				disableInventor();
+			else
+				alert("유저 어디감 : " + "${user}" );	
+		}
+
+		//현재 선택된 요소(tr)에 clickedIdea를 붙임
+		$(this).addClass('clickedIdea');
+		
 		showClickedList(rid);	
+		
 	})
 
 	//예시 
@@ -47,143 +88,8 @@ $(document).ready(function()
         $(this).parents(".hiding_box").fadeOut();
     });
 
-	//폼 버튼 이벤트 
-	$('#tmpSave').on("click",function()
-	{
-		tmpSave();
-	});
-	$('#agree').on("click",function()
-	{
-		alert('저장 구현중');
-	});
 });
 
-//임시 저장
-var tmpSave = function()
-{
-	
-	var csrfToken = $("meta[name='_csrf']").attr("content"); 
-	var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
-	var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
-	var data = {};
-	var headers = {};
-
-	data[csrfParameter] = csrfToken;
-    headers[csrfHeader] = csrfToken;
-    
-    
-	//발명가인 경우 
-	if("${user}"=="inventor")
-	{
-		data['role'] = "inventor";
-		data['rid'] = $('#currentPosition').val();
-		data['typeOfInvent'] = $('#RegtypeOfInvent').children("input").val();
-		data['title'] = $('#RegTitle').children("input").val();
-		data['summary'] = $('#RegSummary').children("textarea").val();
-		data['whyInvent'] = $('#RegWhyInvent').children("textarea").val();
-		data['problem'] = $('#RegProblem').children("textarea").val();
-		data['solution'] = $('#RegSolution').children("textarea").val();
-		data['effect'] = $('#RegEffect').children("textarea").val();
-		data['core_element'] = $("#RegCore_Element").children("textarea").val();
-	}
-	//변리사인 경우
-	else if("${user}"=="pl")
-	{
-		data['role'] = "pl";
-		data['rid'] = $('#currentPosition').val();
-		data['re_typeOfInvent'] = $('#AfterCommentTypeOfInvent').children("input").val();
-		data['re_title'] = $('#AfterCommentTitle').children("input").val();
-		data['re_summary'] = $('#AfterCommentSummary').children("textarea").val();
-		data['re_whyInvent'] = $('#AfterCommentWhyInvent').children("textarea").val();
-		data['re_problem'] = $('#AfterCommentProblem').children("textarea").val();
-		data['re_solution'] = $('#AfterCommentSolution').children("textarea").val();
-		data['re_effect'] = $('#AfterCommentEffect').children("textarea").val();
-		data['re_core_element'] = $('#AfterCommentCore_Element').children("textarea").val();
-	}
-	else
-	{
-		data['role'] = "error";
-	}
-	
-	console.log(data);
-
-    $.ajax({
-		url : "/tmpSave",
-		type:"POST",
-		headers: headers,
- 	    data : data,
- 	    success:function(retVal)
- 	    {
- 			alert('임시 저장 완료')
- 	    },
- 	    error: function(request,status,error)
-		{
- 			alert('임시 저장에 실패하였습니다.')
-			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-		}
-	});	
- 	
-}
-
-
-//진행내역에 따라 내용 바꿔주기
-var showClickedList = function(rid)
-{
-	$.ajax({
-		url : "/detailByRid/"+rid,
-		type:"GET",
-		success:function(retVal)
-		{
-			
-			if(retVal != "")
-			{
-				var result = retVal.item;
-				$('#currentPosition').val(result.rid);
-				$('#RegTypeOfInvent').children('input').val(result.typeOfInvent);
-				$('#RegTitle').children('textarea').text(result.title);
-				$('#RegSummary').children('textarea').text(result.summary);
-				$('#RegWhyInvent').children('textarea').text(result.whyInvent);
-				$('#RegProblem').children('textarea').text(result.problem);
-				$('#RegSolution').children('textarea').text(result.solution);
-				$('#RegEffect').children('textarea').text(result.effect);
-				$('#RegCore_Element').children('textarea').text(result.core_element);
-			
-				if(retVal.role == "inventor")
-				{
-					var comment = retVal.beforeComment;
-					if(comment == null)
-					{
-						$('#BeforeCommentTypeOfInvent').children('input').val("이전 코멘트");
-						$('#BeforeCommentTitle').children('textarea').text("이전 코멘트");
-						$('#BeforeCommentSummary').children('textarea').text("이전 코멘트");
-						$('#BeforeCommentWhyInvent').children('textarea').text("이전 코멘트");
-						$('#BeforeCommentProblem').children('textarea').text("이전 코멘트");
-						$('#BeforeCommentSolution').children('textarea').text("이전 코멘트");
-						$('#BeforeCommentEffect').children('textarea').text("이전 코멘트");
-						$('#BeforeCommentCore_Element').children('textarea').text("이전 코멘트");
-					}
-					else
-					{
-						$('#BeforeCommentTypeOfInvent').children('input').val(comment.re_typeOfInvent);
-						$('#BeforeCommentTitle').children('textarea').text(comment.re_title);
-						$('#BeforeCommentSummary').children('textarea').text(comment.re_summary);
-						$('#BeforeCommentWhyInvent').children('textarea').text(comment.re_whyInvent);
-						$('#BeforeCommentProblem').children('textarea').text(comment.re_problem);
-						$('#BeforeCommentSolution').children('textarea').text(comment.re_solution);
-						$('#BeforeCommentEffect').children('textarea').text(comment.re_effect);
-						$('#BeforeCommentCore_Element').children('textarea').text(comment.re_core_element);
-					}
-				}
-			}
-			else
-				alert('ajax Error');
-		},
-		error: function(request,status,error)
-		{
-		       //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-		}
-	});	
-}
 </script>
 </head>
 <body>
@@ -226,19 +132,23 @@ var showClickedList = function(rid)
             <article class="modify_log">                    
                 <h1>아이디어수정내역</h1>   
                 <table id="IdeaModifyList">
-                    <c:forEach items="${processList}" var="list" varStatus="status">
-						<tr>
-							<input type="hidden" value="${list.getRid()}"/>
-							<c:if test="${status.index == 0}">
+                	<c:forEach items="${processList}" var="list" varStatus="status">
+						<c:if test="${status.index == 0}">
+							<tr class="clickedIdea">
+								<input type="hidden" value="${list.getRid()}"/>
 								<td class="title_td">아이디어 등록(초안)</td>
-							</c:if>
-							<c:if test="${status.index > 0}">
+						       <td class="date_td">${list.getRegistration_date()}</td>
+		                	</tr>
+						</c:if>
+						<c:if test="${status.index > 0}">
+							<tr>
+								<input type="hidden" value="${list.getRid()}"/>
 								<td class="title_td">${status.index}차 전문가 검토 및 수정안</td>
-	                        </c:if>
-	                        <td class="date_td">${list.getRegistration_date()}</td>
-	                    </tr>                    
-					</c:forEach>
-                </table>                             
+		                        <td class="date_td">${list.getRegistration_date()}</td>
+		                  	</tr>
+		                </c:if>   	
+					</c:forEach>		
+				</table>                             
             </article>  
             <article style="width: 100%;>
                <input id="currentPosition" type="hidden" value="${item.getRid()}"/>
@@ -246,10 +156,10 @@ var showClickedList = function(rid)
                     <h2>발명분야</h2>   
                     <button>작성 예시</button>
                     <div id="BeforeCommentTypeOfInvent" class="before_cmt">
-                        <textarea name="BeforeCommentTypeOfInvent"  disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
+                        <textarea disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
                     </div>             
                     <div id="RegtypeOfInvent" class="box_before1">                        
-                        <input type="text" value="${item.getTypeOfInvent() }" />
+                        <input type="text" value="${item.getTypeOfInvent() }" disabled="disabled" class="disabled" />
                     </div>
                     <div class="box_comment1">
                         <div class="img_comt">
@@ -257,7 +167,7 @@ var showClickedList = function(rid)
                         </div> 
                         <div id="AfterCommentTypeOfInvent" class="comment1_txt">
                             <img src="/resources/image/arr.png">
-                            <textarea name="AfterCommentTypeOfInvent" placeholder="Comment..."></textarea>
+                            <textarea placeholder="Comment..." disabled="disabled" class="disabled"></textarea>
                         </div>
                     </div>
                 </div>
@@ -266,10 +176,10 @@ var showClickedList = function(rid)
                     <h2>제목</h2>
                     <button>작성 예시</button>
                     <div id="BeforeCommentTitle" class="before_cmt">
-                        <textarea name="BeforeCommentTitle" disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
+                        <textarea disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
                     </div>
                     <div id="RegTitle" class="box_before1">                        
-                        <input type="text" name="RegTitle" value="${item.getTitle() }"/>
+                        <input type="text" value="${item.getTitle() }" disabled="disabled" class="disabled"/>
                     </div>
                     <div class="box_comment1">
                         <div class="img_comt">
@@ -277,7 +187,7 @@ var showClickedList = function(rid)
                         </div> 
                         <div id="AfterCommentTitle" class="comment1_txt">
                             <img src="/resources/image/arr.png">
-                            <textarea name="AfterCommentTitle" placeholder="Comment..."></textarea>
+                            <textarea placeholder="Comment..." disabled="disabled" class="disabled"></textarea>
                         </div>
                     </div>
                     <div class="hiding_box">
@@ -295,10 +205,10 @@ var showClickedList = function(rid)
                     <h2>요약</h2>
                     <button>작성 예시</button>
                     <div id="BeforeCommentSummary" class="before_cmt">
-                        <textarea name="BeforeCommentSummary" disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
+                        <textarea disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
                     </div>                    
                     <div id="RegSummary" class="box_before1_b">   
-	                    <textarea name="RegSummary">${item.getSummary()}</textarea>                     
+	                    <textarea disabled="disabled" class="disabled">${item.getSummary()}</textarea>                     
                     </div>
                     <div class="box_comment1">
                         <div class="img_comt">
@@ -306,7 +216,7 @@ var showClickedList = function(rid)
                         </div> 
                         <div id="AfterCommentSummary" class="comment1_txt">
                             <img src="/resources/image/arr.png">
-                            <textarea name="AfterCommentSummary" placeholder="Comment..."></textarea>
+                            <textarea placeholder="Comment..." disabled="disabled" class="disabled"></textarea>
                         </div>
                     </div>
                     <div class="hiding_box">
@@ -323,10 +233,10 @@ var showClickedList = function(rid)
                     <h2>필요이유</h2>
                     <button>작성 예시</button>
                     <div id="BeforeCommentWhyInvent" class="before_cmt">
-                        <textarea name="BeforeCommentWhyInvent" disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
+                        <textarea disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
                     </div>
                     <div id="RegWhyInvent" class="box_before1_b">                        
-                         <textarea name="RegSummary">${item.getSummary()}</textarea>                     
+                         <textarea disabled="disabled" class="disabled">${item.getWhyInvent()}</textarea>                     
                    </div>
                     <div class="box_comment1">
                         <div class="img_comt">
@@ -334,7 +244,7 @@ var showClickedList = function(rid)
                         </div> 
                         <div id="AfterCommentWhyInvent" class="comment1_txt">
                             <img src="/resources/image/arr.png">
-                            <textarea placeholder="Comment..."></textarea>
+                            <textarea placeholder="Comment..." disabled="disabled" class="disabled"></textarea>
                         </div>
                     </div>
                     <div class="hiding_box">
@@ -352,10 +262,10 @@ var showClickedList = function(rid)
                     <h2>기존제품설명 및 문제점</h2>
                     <button>작성 예시</button>
                     <div id="BeforeCommentProblem" class="before_cmt">
-                    	<textarea name="BeforeCommentProblem" disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
+                    	<textarea disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
                     </div>
                     <div id="RegProblem" class="box_before1_b">                        
-                         <textarea name="RegSummary">${item.getSummary()}</textarea>
+                         <textarea disabled="disabled" class="disabled">${item.getProblem()}</textarea>
                     </div>
                     <div class="box_comment1">
                         <div class="img_comt">
@@ -363,7 +273,7 @@ var showClickedList = function(rid)
                         </div> 
                         <div id="AfterCommentProblem" class="comment1_txt">
                             <img src="/resources/image/arr.png">
-                            <textarea name ="AfterCommentProblem" placeholder="Comment..."></textarea>
+                            <textarea placeholder="Comment..." disabled="disabled" class="disabled"></textarea>
                         </div>
                     </div>
                     <div class="hiding_box">
@@ -381,10 +291,10 @@ var showClickedList = function(rid)
                     <h2>문제해결방법</h2>
                     <button>작성 예시</button>
                     <div id="BeforeCommentSolution" class="before_cmt">
-                    	<textarea name="BeforeCommentSolution" disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
+                    	<textarea disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
                     </div>
                     <div id="RegSolution" class="box_before1_b">                        
-                    	<textarea name="RegSummary">${item.getSummary()}</textarea>
+                    	<textarea disabled="disabled" class="disabled">${item.getSolution()}</textarea>
                     </div>
                     <div class="box_comment1">
                         <div class="img_comt">
@@ -392,7 +302,7 @@ var showClickedList = function(rid)
                         </div> 
                         <div id="AfterCommentSolution" class="comment1_txt">
                             <img src="/resources/image/arr.png">
-                            <textarea name="AfterCommentSolution" placeholder="Comment..."></textarea>
+                            <textarea placeholder="Comment..." disabled="disabled" class="disabled"></textarea>
                         </div>
                     </div>
                     <div class="hiding_box">
@@ -410,10 +320,10 @@ var showClickedList = function(rid)
                     <h2>발명의 효과</h2>
                     <button>작성 예시</button>
                     <div id="BeforeCommentEffect" class="before_cmt">
-                   		<textarea name="BeforeCommentEffect" disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
+                   		<textarea disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
                     </div>
                     <div id="RegEffect" class="box_before1_b">                        
-                    	<textarea name="RegSummary">${item.getSummary()}</textarea>
+                    	<textarea disabled="disabled" class="disabled">${item.getEffect()}</textarea>
 					</div>
                     <div class="box_comment1">
                         <div class="img_comt">
@@ -421,7 +331,7 @@ var showClickedList = function(rid)
                         </div> 
                         <div id="AfterCommentEffect" class="comment1_txt">
                            <img src="/resources/image/arr.png">
-                            <textarea name = "AfterCommentEffect" placeholder="Comment..."></textarea>
+                            <textarea placeholder="Comment..." disabled="disabled" class="disabled"></textarea>
                         </div>
                     </div>
                     <div class="hiding_box">
@@ -439,10 +349,10 @@ var showClickedList = function(rid)
                     <h2>핵심구성요소</h2>
                     <button>작성 예시</button>
                     <div id="BeforeCommentCore_Element" class="before_cmt">
-                    	<textarea name="BeforeCommentCore_Element" disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
+                    	<textarea disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
                     </div>
                     <div id="RegCore_Element" class="box_before1_b">                        
-                    	<textarea name="RegSummary">${item.getSummary()}</textarea>
+                    	<textarea disabled="disabled" class="disabled">${item.getCore_element()}</textarea>
 					</div>
                     <div class="box_comment1">                    
                         <div class="img_comt">
@@ -450,7 +360,7 @@ var showClickedList = function(rid)
                         </div> 
                         <div id="AfterCommentCore_Element" class="comment1_txt">
                             <img src="/resources/image/arr.png">
-                            <textarea name ="AfterCommentCore_Element" placeholder="Comment..."></textarea>
+                            <textarea placeholder="Comment..." disabled="disabled" class="disabled"></textarea>
                         </div>
                     </div>
                     <div class="hiding_box">
@@ -468,8 +378,8 @@ var showClickedList = function(rid)
 	                <div class="txt_box">
 	                    <h2 style="width:100%">도면첨부</h2>
 	                    <button>작성 예시</button>
-	                    <div id="BeforeCommentCore_Element" class="before_cmt">
-	                    	<textarea name="BeforeCommentCore_Element" disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
+	                    <div id="BeforeFileComment" class="before_cmt">
+	                    	<textarea disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
 	                    </div>
 	                    <div id="demo_box">
 	                        <div class="demo"></div>
@@ -485,7 +395,7 @@ var showClickedList = function(rid)
 	                        </div> 
 	                        <div id="AfterCommentFiles" class="comment1_txt">
 	                            <img src="/resources/image/arr.png">
-	                            <textarea placeholder="Comment..."></textarea>
+	                            <textarea placeholder="Comment..." disabled="disabled" class="disabled"></textarea>
 	                        </div>
 	                    </div>
 	                    <div class="hiding_box">
@@ -501,7 +411,7 @@ var showClickedList = function(rid)
 	                <div class="hr"></div>           
 	                <div id="fin"> 
 	                    <button type="button" id="tmpSave">임시저장</button>
-	                    <button type="button" id="agree">코멘트작성</button>                    
+	                    <button type="button" id="agree">저장</button>                    
 	                </div>
 	            </form>
             </article>

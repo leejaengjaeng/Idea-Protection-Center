@@ -43,7 +43,6 @@ public class CommentController {
 	{
 		//접근한 경로에 대한 권한 확인
 		RegistrationPatentVo assosiatedMemberId= regDao.getAssociatedMembersByRid(start_rid);		
-		System.out.println(assosiatedMemberId);
 
 		Object isAuthenticated = session.getAttribute("currentUser");
 
@@ -52,25 +51,33 @@ public class CommentController {
 			int inventorId = assosiatedMemberId.getUid();
 			int plId = assosiatedMemberId.getLid();
 			int userId = ((userVo)isAuthenticated).getUid();
-			
+			int lastRid = regDao.getLastRidInProcessList(start_rid);
+
+			//현재 나타내는 rid 저장
+			session.setAttribute("currentPosition", lastRid);
+
 			//발명가가 보는 경우
 			if(inventorId==userId) 
 			{
 				List<RegistrationPatentVo> processList = regDao.getAssociatedProcessList(start_rid);
-				RegistrationPatentVo firstItem = regDao.getInventorProcessByRid(start_rid);
+				RegistrationPatentVo firstItem = regDao.getInventorProcessByRid(lastRid);
 				model.addAttribute("user","inventor");
 				model.addAttribute("processList",processList);
 				model.addAttribute("item",firstItem);
+				model.addAttribute("lastRid",lastRid);
+					
 				return "comment/comment";
 			}
 			//변리사가 보는 경우
 			if(plId==userId)
 			{
 				List<RegistrationPatentVo> processList = regDao.getAssociatedProcessList(start_rid);
-				RegistrationPatentVo firstItem = regDao.getPlProcessByRid(start_rid);
+				RegistrationPatentVo firstItem = regDao.getPlProcessByRid(lastRid);
 				model.addAttribute("user","pl");
 				model.addAttribute("processList",processList);
 				model.addAttribute("item",firstItem);
+				model.addAttribute("lastRid",lastRid);
+				
 				return "comment/comment";
 			}
 		}
@@ -91,8 +98,9 @@ public class CommentController {
 			int inventorId = assosiatedMemberId.getUid();
 			int plId = assosiatedMemberId.getLid();
 			int userId = ((userVo)isAuthenticated).getUid();
-		
-		
+			
+			session.setAttribute("currentPosition", rid);
+			
 			//발명가가 보는 경우
 			if(inventorId==userId) 
 			{
@@ -122,27 +130,50 @@ public class CommentController {
 	}
 	
 	//Ajax용
-	@RequestMapping(value="/tmpSave",method=RequestMethod.POST)
+	@RequestMapping(value="/saveIdea",method=RequestMethod.POST)
 	@ResponseBody
 	public String tmpSave(RegistrationPatentVo regVo, HttpServletRequest req)
 	{
 		String role = req.getParameter("role");
+		String flag = req.getParameter("flag");
 		
-		System.out.println(regVo.getTitle());
-		System.out.println(regVo.getTypeOfInvent());
+		//완료여부에 따른 체크 
+		if(1 == regDao.checkIsCompletedByRid(regVo.getRid()))
+			return "이미 완료된 사항입니다.";
 		
+		
+		
+		System.out.println(flag);
+		//버튼에 따른 동작 
+		if(flag.equals("save"))
+			regVo.setIscomplete(1);
+		
+		else if(flag.equals("tmp"))
+			regVo.setIscomplete(0);
+		else
+			return "Flag Error";
+		
+		//현재 페이지의 rid와 수정 요청한 rid가 같은지 확인 
+		if((int)session.getAttribute("currentPosition") != regVo.getRid())
+			return "잘못된 접근입니다.";
+			
 		if(role.equals("pl"))
 		{
-			System.out.println("/tmpSave -> pl 작성중");
+			RegistrationPatentVo tmpVo = regDao.getResourceForPlSaveByRid(regVo.getRid());
+			regVo.setPrev_rid(regVo.getRid());
+			regVo.setStart_rid(tmpVo.getStart_rid());
+			regVo.setLid(tmpVo.getLid());
+			regVo.setUid(tmpVo.getUid());
+			regDao.plSave(regVo);
 		}
 		else if(role.equals("inventor"))
 		{
-			regDao.tmpInventorSave(regVo);
+			regDao.inventorSave(regVo);
 		}
 		else
 		{
-			return "error";
+			return "저장 실패";
 		}
-		return "success";
+		return "저장 성공";
 	}
 }
