@@ -57,7 +57,6 @@ header .header_wrap .header_menu ul li {
   float: left;
   border: 1px solid #ccc;
   position: relative;
-  background: #000;
 }
 .ani .imgs {
   position: absolute;
@@ -68,16 +67,16 @@ header .header_wrap .header_menu ul li {
   background-position: 50% 50%;
 }
 .ani #fir_slide {
-  background-image: url(../../image/slide_img1.jpg);
+  background-image: url(../../image/ideapc_1.jpg);
 }
 .ani #sec_slide {
-  background-image: url(../../image/slide_img2.jpg);
+  background-image: url(../../image/ideapc_2.jpg);
 }
 .ani #tth_slide {
-  background-image: url(../../image/slide_img3.jpg);
+  background-image: url(../../image/ideapc_3.jpg);
 }
 .ani #fth_slide {
-  background-image: url(../../image/slide_img4.jpg);
+  background-image: url(../../image/ideapc_4.jpg);
 }
 .ani .ani_wrap {
   width: 1000px;
@@ -89,7 +88,7 @@ header .header_wrap .header_menu ul li {
   color: rgba(241, 241, 241, 0.9);
   font-weight: bold;
   font-size: 50px;
-  top: 50%;
+  top: 70%;
   transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
@@ -524,7 +523,8 @@ footer #footer_fill #footer_wrap #footer_right span {
     width: 100%;
   }
   #footer_wrap #footer_left ul {
-    margin-left: 130px;
+    margin-left: 170px;
+    font-size: 1.1rem !important;
   }
   #footer_wrap #footer_center {
     width: 100% !important;
@@ -591,6 +591,12 @@ footer #footer_fill #footer_wrap #footer_right span {
   .hiding_box {
     right: 0 !important;
     top: -20px !important;
+  }
+  article section #table_notice table tr td {
+    font-size: 1rem;
+  }
+  #onair_who table tr td {
+    font-size: 1rem !important;
   }
 }
 #wrap_form button {
