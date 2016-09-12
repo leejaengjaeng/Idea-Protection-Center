@@ -38,6 +38,7 @@ CREATE TABLE `registration_patent` (
   `uid` int(11) DEFAULT NULL,
   `iscomplete` tinyint(4) DEFAULT '0',
   `start_rid` int(11) DEFAULT NULL,
+  `prev_rid` int(11) DEFAULT '-1',
   `re_typeofinvent` varchar(45) DEFAULT NULL,
   `re_title` varchar(45) DEFAULT NULL,
   `re_summary` text,

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>management</title>
+    <link href="/resources/common/css/admin.css" rel="stylesheet">
+    <link href="/resources/common/css/style.css" rel="stylesheet">
+    <script src="/resources/common/js/jquery-3.1.0.min.js"></script>
+</head>
+<body>
+    <header>        
+        <img src="image/ideapc_logo.jpg" alt="logo">
+        <div id="header_info">
+            <span><b>Admin</b>님</span>
+            <button>로그아웃</button>
+        </div>        
+    </header>
+    <div id="admin_cont">
+        <nav>
+            <ul>
+                <li>회원관리</li>
+                <li>아이디어 관리</li>
+                <li>문의사항 관리</li>
+                <li>게시판 관리</li>
+            </ul>  
+        </nav>
+        <article>
+            <div id="table_header">
+                <h1>아이디어 관리</h1>
+                <div id="select_management">
+                    <select>
+                        <option>전체분류</option>
+                    </select>
+                    <select>
+                        <option>전체상태</option>
+                    </select>
+                    <input type="text">
+                    <button>검색</button>
+                </div>
+            </div>
+            <table class="manage_table">
+                <tr>
+                    <th style="width:50px;">No</th>
+                    <th>사용자</th>
+                    <th style="width:100px;">지정변리사</th>
+                    <th style="width:100px;">이름</th>
+                    <th>이메일</th>                    
+                    <th>연락처</th>
+                    <th>분류</th>
+                    <th style="width:280px;">제목</th>
+                    <th>진행상태</th>
+                    <th style="width:120px;">수정</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>ideaconcert</td>
+                    <td>사용자</td>
+                    <td>어드민</td>
+                    <td>admin@gmail.com</td>
+                    <td>010-1234-5678</td>
+                    <td>2015-09-12</td>
+                    <td>걸어다니는 코딩기계</td>
+                    <td>
+                       <select>
+                           <option>아이디어등록</option>                                                   
+                        </select>
+                    </td>
+                    <td><button>정보수정</button></td>
+                </tr>
+                 <tr>
+                    <td>2</td>
+                    <td>ideaconcert</td>
+                    <td>사용자</td>
+                    <td>어드민</td>
+                    <td>admin@gmail.com</td>
+                    <td>010-1234-5678</td>
+                    <td>2015-09-12</td>
+                    <td>걸어다니는 코딩기계 asdsadsadasdasd</td>
+                    <td>
+                        <select>
+                           <option>아이디어등록</option>                            
+                        </select>                        
+                    </td>
+                    <td><button>정보수정</button></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>ideaconcert</td>
+                    <td>사용자</td>
+                    <td>어드민</td>
+                    <td>admin@gmail.com</td>
+                    <td>010-1234-5678</td>
+                    <td>2015-09-12</td>
+                    <td>걸어다니는 코딩기계 asdsadsadasdasd</td>
+                    <td>
+                        <select>
+                           <option>아이디어등록</option>                            
+                        </select>                        
+                    </td>
+                    <td><button>정보수정</button></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>ideaconcert</td>
+                    <td>사용자</td>
+                    <td>어드민</td>
+                    <td>admin@gmail.com</td>
+                    <td>010-1234-5678</td>
+                    <td>2015-09-12</td>
+                    <td>걸어다니는 코딩기계 asdsadsadasdasd</td>
+                    <td>
+                        <select>
+                           <option>아이디어등록</option>                            
+                        </select>                        
+                    </td>
+                    <td><button>정보수정</button></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>ideaconcert</td>
+                    <td>사용자</td>
+                    <td>어드민</td>
+                    <td>admin@gmail.com</td>
+                    <td>010-1234-5678</td>
+                    <td>2015-09-12</td>
+                    <td>걸어다니는 코딩기계 asdsadsadasdasd</td>
+                    <td>
+                        <select>
+                           <option>아이디어등록</option>                            
+                        </select>                        
+                    </td>
+                    <td><button>정보수정</button></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>ideaconcert</td>
+                    <td>사용자</td>
+                    <td>어드민</td>
+                    <td>admin@gmail.com</td>
+                    <td>010-1234-5678</td>
+                    <td>2015-09-12</td>
+                    <td>걸어다니는 코딩기계 asdsadsadasdasd</td>
+                    <td>
+                        <select>
+                           <option>아이디어등록</option>                            
+                        </select>                        
+                    </td>
+                    <td><button>정보수정</button></td>
+                </tr>
+            </table>
+            <span>< 1 2 3 4 ></1></span>
+        </article>
+    </div>
+<footer>
+    <div id="admin_footer">
+        <span>COPYRIGHT 2016 @ IDEAPROTECTIONCENTER ALL RIGHTS RESERVED</span>
+    </div>
+</footer>     
+<script>
+    $(document).ready(function(){
+      $('.manage_table tr:even').css("backgroundColor","#fff");         // odd 홀수
+      $('.manage_table tr:odd').css("backgroundColor","#f5f5fc");   // even 짝수
+    }); 
+</script>
+</body>
+</html>

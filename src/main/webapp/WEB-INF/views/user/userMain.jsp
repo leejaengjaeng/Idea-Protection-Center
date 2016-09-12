@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
 <script src="/webjars/jquery/3.1.0/dist/jquery.min.js"></script>
 <script src="/webjars/bootstrap/3.3.7/dist/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="/resources/common/css/index.css">
@@ -13,19 +14,41 @@
 <link rel="stylesheet" href="/resources/common/css/inventor.css">
 
 <script>
-	$('.ideaList').click(function()
+//js파일 밖으로 빼기 
+$(document).ready(function()
+{
+	$('.ideaList').on("click",(function()
 	{
-		console.log($(this));
-
-		alert($(this).children('input'));
-		console.log($(this).children('input').attr('value'));
-		console.log($(this).children('input').value);
-		
-	});
+		var r = $(this).children('input').attr('value');
+		location.href="/detail/"+r;
+	}));
+});
 </script>
 </head>
 <body>
 <c:import url="/WEB-INF/views/import/header.jsp"/>
+<div id="hide_menu">
+	<img src="/resources/image/hide_menu.png" alt="ham">	
+</div>
+<div id="hide_nav">
+	<div id="hide_nav_cont">
+	    <div id="profile">
+	        <img src="#" alt="profile">
+	        <h4>${currentUser.getName() }</h4>
+	        <span>ideaconcert</span>
+	    </div>
+	    <div id="profile_menu">
+	        <ul style="padding-left:0;">
+	            <li>회원정보수정</li>
+	            <li>1:1질문하기</li>
+	            <li>아이디어 진행내역</li>
+	            <li>임시저장함</li>
+	            <li>결제대기</li>
+	            <li>결제내역</li>
+	        </ul>
+	    </div>	    
+	</div>
+</div>
 <div id="inven">
     <div id="inven_wrap">
         <nav>
@@ -35,7 +58,7 @@
                 <span>ideaconcert</span>
             </div>
             <div id="profile_menu">
-                <ul>
+                <ul style="padding-left:0;">
                     <li>회원정보수정</li>
                     <li>1:1질문하기</li>
                     <li>아이디어 진행내역</li>
@@ -45,18 +68,18 @@
                 </ul>
             </div>
             <div id="nav_benner">
-                <ul>
+                <ul style="padding-left:0;">
                     <li>
-                        <img src="#" alt="benner1">
+                        <img src="/resources/image/index_patent_1.jpg" alt="benner1">
                     </li>
                     <li>
-                        <img src="#" alt="benner2">
+                        <img src="/resources/image/index_patent_2.jpg" alt="benner2">
                     </li>
                     <li>
-                        <img src="#" alt="benner3">
+                        <img src="/resources/image/index_patent_3.jpg" alt="benner3">
                     </li>
                     <li>
-                        <img src="#" alt="benner4">
+                        <img src="/resources/image/index_patent_4.jpg" alt="benner4">
                     </li>
                 </ul>
             </div>
@@ -65,9 +88,9 @@
             <section id="msg_section">
                 <div id="now_count">
                     <h2>
-                        현재까지 진행중인<br>
-                        아이디어 00건,<br>
-                        완료 00건이 있습니다.
+			                    현재까지 진행중인<br>
+			                    아이디어 00건,<br>
+			                    완료 00건이 있습니다.
                     </h2>
                 </div>
                 <div id="now_msg">
@@ -160,7 +183,7 @@
                     </tr>
                    	<c:forEach var="process" items="${processList }">
 						<tr class="ideaList">
-							<input type="hidden" value=${process.getRid() }/>
+							<input type="hidden" value="${process.getRid()}"/>
 							<td style="background:#f1f1f1;">0</td>
 	                        <td>${process.getRegistration_date() }</td>
 	                        <td>${process.getTypeOfInvent() }</td>
@@ -168,6 +191,7 @@
 	                        <td>${process.getR_condition() }</td>
 	                        <td>${process.getPre_apply_date() }</td>
 	                        <td>${process.getApply_date() }</td>
+	                        <td>-</td>
 						</tr>
 					</c:forEach>
                 </table>
@@ -232,5 +256,17 @@
     </div>    
 </div>
 <c:import url="/WEB-INF/views/import/footer.jsp"/>
+<script>
+	$("#hide_menu").click(function(){
+		$("#hide_nav").animate({width:"200px"});		
+	});
+	$(document).click(function(e){
+		if($('#hide_nav').css('width') == '200px'){
+			if($("#hide_nav").has(e.target).length == 0){
+				$('#hide_nav').animate({width:"0"});
+			}
+		}
+	});
+</script>
 </body>
 </html>

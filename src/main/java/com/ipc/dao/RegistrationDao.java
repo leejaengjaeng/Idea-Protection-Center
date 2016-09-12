@@ -9,8 +9,22 @@ import com.ipc.vo.RegistrationPatentVo;
 
 @Mapper
 public interface RegistrationDao {
-	public void makeidea(HashMap<String,String> map);
-	public List<RegistrationPatentVo>getInventorProcessList(int uid);
-	public List<RegistrationPatentVo>getPlProcessList(int lid);
+	public void makeidea(RegistrationPatentVo rv);
+	public void maketempidea(HashMap<String,String> map);
+	public void updatetempidea(HashMap<String,String> map);
+	public RegistrationPatentVo gettempidea(int uid);
+	public List<RegistrationPatentVo> getInventorProcessList(int uid);
+
+	public int countTempIdea(int uid);
+
+	public List<RegistrationPatentVo> getPlProcessList(int lid);
+	public RegistrationPatentVo getAssociatedMembersByRid(int start_rid);
 	
+	public List<RegistrationPatentVo> getAssociatedProcessList(int start_rid);
+	public RegistrationPatentVo getInventorProcessByRid(int rid);
+	public RegistrationPatentVo getPrevCommentByPrevRid(int prev_rid);
+	public RegistrationPatentVo getPlProcessByRid(int rid);
+	public void removeTempIdea(int uid);
+	
+	public void tmpInventorSave (RegistrationPatentVo rvo);
 }
