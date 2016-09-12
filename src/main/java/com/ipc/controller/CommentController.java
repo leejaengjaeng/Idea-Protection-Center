@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -118,5 +119,30 @@ public class CommentController {
 		}
 		
 		return null;
+	}
+	
+	//Ajax용
+	@RequestMapping(value="/tmpSave",method=RequestMethod.POST)
+	@ResponseBody
+	public String tmpSave(RegistrationPatentVo regVo, HttpServletRequest req)
+	{
+		String role = req.getParameter("role");
+		
+		System.out.println(regVo.getTitle());
+		System.out.println(regVo.getTypeOfInvent());
+		
+		if(role.equals("pl"))
+		{
+			System.out.println("/tmpSave -> pl 작성중");
+		}
+		else if(role.equals("inventor"))
+		{
+			regDao.tmpInventorSave(regVo);
+		}
+		else
+		{
+			return "error";
+		}
+		return "success";
 	}
 }

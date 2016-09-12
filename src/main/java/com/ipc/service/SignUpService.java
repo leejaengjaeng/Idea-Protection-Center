@@ -1,5 +1,6 @@
 package com.ipc.service;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 
@@ -37,5 +38,11 @@ public class SignUpService {
 		}
 		return buf;
 	}
-	
+	public void mkdir(String ID){
+		String path="../Idea-Protection-Center/src/main/webapp/resources/uploadimgs/invenor/"+ID;
+		File dir=new File(path);
+		
+			dir.mkdirs();
+		
+	}
 }

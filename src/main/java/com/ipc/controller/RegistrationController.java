@@ -56,36 +56,19 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 		return "inventor/inventor_main";
 	}
 	@RequestMapping(value="/inputidea",method=RequestMethod.POST)
-	public String inputidea(HttpServletRequest request){
+	public String inputidea(HttpServletRequest request,RegistrationPatentVo rv){
 		MultipartHttpServletRequest multipartRequest =  (MultipartHttpServletRequest)request;  //다중파일 업로드
 		List<MultipartFile> files = multipartRequest.getFiles("imgs");
 		System.out.println(files.size());
-		String uid=request.getParameter("uid");
-		String typeOfInvent=request.getParameter("typeOfInvent");
-		String title=request.getParameter("title");
-		String summary=request.getParameter("summary");
-		String whyInvent=request.getParameter("whyInvent");
-		String solution=request.getParameter("solution");
-		String effect=request.getParameter("effect");
-		String core_element=request.getParameter("core_element");
-		String problem = request.getParameter("problem");
-		HashMap<String,String> map=new HashMap();
-		map.put("uid", uid);
-		map.put("typeOfInvent", typeOfInvent);
-		map.put("title", title);
-		map.put("summary", summary);
-		map.put("whyInvent", whyInvent);
-		map.put("solution", solution);
-		map.put("effect", effect);
-		map.put("core_element", core_element);
-		map.put("problem",problem);
+		System.out.println(rv.getEffect());
 		RegistrationService rs=new RegistrationService();
-		map.put("registrtaion_date",rs.getToday(0) );
-		regismapper.makeidea(map);
-		
-		//userVo uv=usermapper.getUserByUid(uid);
+		rv.setRegistration_date(rs.getToday(0));
+		regismapper.makeidea(rv);
+		System.out.println(rv.getRid());
+		int uid=rv.getUid();
+		userVo uv=usermapper.getUserByUid(Integer.toString(uid));
 		for(int i=0;i<files.size();i++){
-			rs.makeimageFile(files.get(i), rs.getToday(1)+i,"inventor\\");
+			rs.makeimageFile(files.get(i), rs.getToday(1)+i,uv.getId());
 		}
 		return "home/index";
 	}
