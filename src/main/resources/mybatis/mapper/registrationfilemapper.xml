@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ipc.dao.RegistrationFileDao">
+	<insert id="makeFile" parameterType="Hashmap">
+		insert into registration_files(start_rid,file_path) values (#{start_rid},#{file_path})
+	</insert>
+</mapper>
