@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ipc.dao.RegistrationDao;
+import com.ipc.dao.RegistrationFileDao;
 import com.ipc.dao.UserDao;
 import com.ipc.service.RegistrationService;
 import com.ipc.vo.RegistrationPatentVo;
@@ -36,6 +37,8 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 	RegistrationDao regismapper;
 	@Autowired
 	UserDao usermapper;
+//	@Autowired
+//	RegistrationFileDao regisfilemapper;
 	
 	@RequestMapping("/addidea")
 	public String addidea(Model model,HttpSession session, HttpServletRequest request){
@@ -67,8 +70,13 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 		System.out.println(rv.getRid());
 		int uid=rv.getUid();
 		userVo uv=usermapper.getUserByUid(Integer.toString(uid));
+		System.out.println("uid:"+uid);
 		for(int i=0;i<files.size();i++){
-			rs.makeimageFile(files.get(i), rs.getToday(1)+i,uv.getId());
+			rs.makeimageFile(files.get(i), rs.getToday(1)+i,uv.getId(),rv.getRid());
+//			HashMap<String,String> map = new HashMap<String,String>();
+//			map.put("start_rid", "1");
+//			map.put("file_path", "2");
+//			regisfilemapper.makeFile(map);
 		}
 		return "home/index";
 	}

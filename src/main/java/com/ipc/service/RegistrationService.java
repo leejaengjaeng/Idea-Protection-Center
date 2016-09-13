@@ -4,15 +4,22 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ipc.dao.RegistrationFileDao;
 import com.ipc.vo.RegistrationPatentVo;
 import com.ipc.vo.userVo;
-
+@Service
 public class RegistrationService {
+	@Autowired
+	RegistrationFileDao registrationfilemapper;
+	
 	public String getToday(int i){
 		Calendar calendar = Calendar.getInstance();
 		java.util.Date date = calendar.getTime();
@@ -26,7 +33,7 @@ public class RegistrationService {
 		return today;
 	}
 	private FileOutputStream fos;
-	public void makeimageFile(MultipartFile file,String filename,String ID){
+	public void makeimageFile(MultipartFile file,String filename,String ID,int rid){
 		try {
 			String dirpath="../Idea-Protection-Center\\src\\main\\webapp\\resources\\uploadimgs\\inventor\\"+ID+"\\";
 			mkdir(ID);
@@ -37,8 +44,20 @@ public class RegistrationService {
 			String fileType = filePoint.toLowerCase();
 //			fos = new FileOutputStream("../sting\\src\\main\\webapp\\resource\\uploadimgs\\"+path+filename+ "." + fileType);
 			fos = new FileOutputStream(dirpath+filename+ "." + fileType);
-
 			fos.write(fileData);
+			HashMap<String,String> map=new HashMap<String,String>();
+			//System.out.println("ID:"+ID);
+			//System.out.println("Filename : "+filename);
+			map.put("start_rid", Integer.toString(rid));
+			map.put("file_path", "/resource/uploadimgs/inventor/"+ID+filename+ "." + fileType);
+//			map.put("start_rid", "1");
+//			map.put("file_path", "2");
+			try{
+				//registrationfilemapper.makeFile(map);
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

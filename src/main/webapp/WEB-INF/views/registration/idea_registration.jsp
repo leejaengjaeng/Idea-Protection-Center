@@ -241,7 +241,7 @@ function closeload(){
                 <div class="txt_box">
                     <h2>발명분야</h2>
                     <button>작성예시 보기</button>
-                    <input type="text" id="idea_kind" name="typeOfInvent">
+                    <input type="text" id="idea_kind" name="typeOfInvent" required>
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
@@ -256,7 +256,7 @@ function closeload(){
                  <div class="txt_box">
                     <h2>제목</h2>
                     <button>작성예시 보기</button>
-                    <input type="text" id="idea_title"  name="title">
+                    <input type="text" id="idea_title"  name="title" required>
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
@@ -271,7 +271,7 @@ function closeload(){
                 <div class="txt_box">
                     <h2>요약</h2>
                     <button>작성예시 보기</button>
-                    <textarea id="small_cont"  name="summary"></textarea>
+                    <textarea id="small_cont"  name="summary" required></textarea>
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
@@ -286,7 +286,7 @@ function closeload(){
                 <div class="txt_box">
                     <h2>필요이유</h2>
                     <button>작성예시 보기</button>
-                    <textarea id="why_cont"  name="whyInvent"></textarea>
+                    <textarea id="why_cont"  name="whyInvent" required></textarea>
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
@@ -301,7 +301,7 @@ function closeload(){
                 <div class="txt_box">
                     <h2>기존제품설명 및 문제점</h2>
                     <button>작성예시 보기</button>
-                    <textarea id="col_cont"  name="problem"></textarea>
+                    <textarea id="col_cont"  name="problem" required></textarea>
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
@@ -316,7 +316,7 @@ function closeload(){
                 <div class="txt_box">
                     <h2>문제해결방법</h2>
                     <button>작성예시 보기</button>
-                    <textarea id="wel_cont"  name="solution"></textarea>
+                    <textarea id="wel_cont"  name="solution" required></textarea>
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
@@ -331,7 +331,7 @@ function closeload(){
                 <div class="txt_box">
                     <h2>발명의 효과</h2>
                     <button>작성예시 보기</button>
-                    <textarea id="bal_cont"  name="effect"></textarea>
+                    <textarea id="bal_cont"  name="effect" required></textarea>
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
@@ -346,7 +346,7 @@ function closeload(){
                 <div class="txt_box">
                     <h2>핵심구성요소</h2>
                     <button>작성예시 보기</button>
-                    <textarea id="imp_cont"  name="core_element"></textarea>
+                    <textarea id="imp_cont"  name="core_element" required></textarea>
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
@@ -359,7 +359,7 @@ function closeload(){
                 </div>
                 <div id="upimgdiv" class="txt_box">
                     <h2 style="width:100%">도면첨부</h2>
-                    <input type="file" id="upimg" name="imgs" onchange="addfile()" accept="image/gif, image/jpeg, image/png" style="padding-top:5px;"><button style="margin-top:5px;">제거</button>
+                    <input type="file" id="upimg" name="imgs" accept="image/gif, image/jpeg, image/png" style="padding-top:5px;"><button type="button" style="margin-top:5px;" onclick="addfile()">추가</button>
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
