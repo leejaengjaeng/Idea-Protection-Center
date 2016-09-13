@@ -80,4 +80,9 @@
 	<update id="updateStartId" parameterType="Integer">
 		update registration_patent set start_rid=#{rid} WHERE rid=#{rid}
 	</update>
+	
+	<select id="adminGetIdeaList" resultType="com.ipc.vo.adminListVo">
+		select rp.rid, inventor.id as iId, pl.name as pName, inventor.name as iName, inventor.email, inventor.phone ,rp.registration_date,rp.title,rp.r_condition,rp.typeofinvent from registration_patent as rp,user as inventor, user as pl where ((rp.prev_rid=-1) AND (rp.lid = pl.uid AND rp.uid = inventor.uid));
+	</select>
+	
 </mapper>

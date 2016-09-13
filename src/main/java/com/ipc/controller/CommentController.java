@@ -167,9 +167,6 @@ public class CommentController {
 	{
 		String role = req.getParameter("role");
 		
-		
-		regVo.setIscomplete(0);
-		
 		//현재 페이지의 rid와 수정 요청한 rid가 같은지 확인 
 		if((int)session.getAttribute("currentPosition") != regVo.getRid())
 			return "잘못된 접근입니다.";
@@ -180,6 +177,8 @@ public class CommentController {
 			if(0 == regDao.checkIsCompletedByRid(regVo.getRid()))
 				return "이미 완료된 사항입니다.";
 			
+			regVo.setIscomplete(1);
+			
 			regDao.plUpdate(regVo);
 		}
 		else if(role.equals("inventor"))
@@ -187,6 +186,8 @@ public class CommentController {
 			//완료여부에 따른 체크 
 			if(1 == regDao.checkIsCompletedByRid(regVo.getRid()))
 				return "이미 완료된 사항입니다.";
+
+			regVo.setIscomplete(0);
 			
 			regDao.inventorSave(regVo);
 		}
@@ -233,14 +234,8 @@ public class CommentController {
 			if(1 == regDao.checkIsCompletedByRid(regVo.getRid()))
 				return "이미 완료된 사항입니다.";
 		
-			System.out.println("컴플릿 전");
-			
 			regVo.setIscomplete(1);
-			
-			System.out.println("저장 전");
-			
 			regDao.inventorSave(regVo);
-			System.out.println("저장 후");
 			
 			return "저장 성공";
 			

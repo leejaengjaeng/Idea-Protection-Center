@@ -23,12 +23,14 @@ $(document).ready(function()
 		//0 고객 작성중(변리사 작성 완료), 1 고객 작성 완료
 		if("${item.getIscomplete()}" == 1)
 			enablePl();
+			//값 넣어주는거 함수로 만들기?
 		else 
 		{
 			disablePl();
 			alert('고객이 작성을 완료하기를 기다려주세요');			
 		}
 		
+		/*
 		//이전 코멘트 지우기 
 		if("${isNull}" =="true")
 		{
@@ -36,7 +38,7 @@ $(document).ready(function()
 			for(var i =0; i <hideEl.length ; i++)
 				hideEl[i].style.display="none";
 		}
-
+		*/
 	}
 	else if("${user}" == "inventor")
 	{
@@ -47,7 +49,7 @@ $(document).ready(function()
 			disablePl();
 			alert('변리사의 답변을 기다려주세요');
 		}
-		
+		/*
 		//이전 코멘트 지우기 
 		if("${isNull}" =="true")
 		{
@@ -55,7 +57,7 @@ $(document).ready(function()
 			for(var i =0; i <hideEl.length ; i++)
 				hideEl[i].style.display="none";
 		}
-		
+		*/
 		//변리사 코멘트 지우기
 		var hideEl = document.getElementsByClassName('box_comment1')
 		for(var i =0; i <hideEl.length ; i++)
@@ -75,13 +77,7 @@ $(document).ready(function()
 	{
 		alert('저장후에는 어쩌구~ 답변을 기다려야~ 어쩌구 저장하시겠습니까~ 어쩌구~');
 		ideaSave("${user}");
-		
-		if("${user}" == "pl")
-			disablePl();
-		else if("${user}" == "inventor")
-			disableInventor();
-		
-		location.href ="/mainPage";
+	
 	});
 
 	

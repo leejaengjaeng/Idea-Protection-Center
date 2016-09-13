@@ -4,10 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ipc.vo.RegistrationPatentVo;
+import com.ipc.vo.adminListVo;
 
 @Mapper
+@Transactional
 public interface RegistrationDao {
 	public void makeidea(RegistrationPatentVo rv);
 	public void maketempidea(HashMap<String,String> map);
@@ -37,4 +40,6 @@ public interface RegistrationDao {
 	
 	public int checkIsCompletedByRid(int rid);
 	public void updateStartId(int rid);
+	
+	public List<adminListVo> adminGetIdeaList();
 }

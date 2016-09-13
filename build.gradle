@@ -52,10 +52,6 @@ dependencies {
 	compile 'org.webjars.bower:bootstrap:3.3.7'
 	compile 'org.webjars.bower:jquery:3.1.0'
 	
-	//security
-	//compile 'org.springframework.security:spring-security-web:4.1.2.RELEASE'
-	//compile 'org.springframework.security:spring-security-config:4.1.2.RELEASE'
-	//compile 'org.springframework.security:spring-security-taglibs:4.0.4.RELEASE'
 	
 	//logback
 	compile('ch.qos.logback:logback-classic:1.1.2')
@@ -78,6 +74,9 @@ dependencies {
  	
  	compile 'javax.validation:validation-api:1.1.0.Final'
 	compile 'org.hibernate:hibernate-validator:5.0.1.Final'
+	
+	//cglib
+	compile group: 'cglib', name: 'cglib', version: '3.1'
 }
 
 eclipse {
