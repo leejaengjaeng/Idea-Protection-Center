@@ -66,8 +66,9 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 		System.out.println(rv.getEffect());
 		RegistrationService rs=new RegistrationService();
 		rv.setRegistration_date(rs.getToday(0));
-		regismapper.makeidea(rv);
+		regismapper.makeidea(rv);		
 		System.out.println(rv.getRid());
+		regismapper.updateStartId(rv.getRid());
 		int uid=rv.getUid();
 		userVo uv=usermapper.getUserByUid(Integer.toString(uid));
 		System.out.println("uid:"+uid);
