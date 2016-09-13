@@ -12,7 +12,13 @@ public class userVo {
 	String email;
 	String role;
 	String is_member;
-
+	String profileimg;
+	public String getProfileimg() {
+		return profileimg;
+	}
+	public void setProfileimg(String profileimg) {
+		this.profileimg = profileimg;
+	}
 	public String getIs_member() {
 		return is_member;
 	}

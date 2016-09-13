@@ -231,7 +231,38 @@
                         background: #f1f1f1;
                         margin-top: 15px;
                         border: 1px solid #ccc;
-                        margin-left: 15px;                    
+                        margin-left: 15px;    
+                        position: relative;                              
+                        img{
+                            position: absolute;
+                            left: 50%;
+                            top: 50%;
+                            transform: translate(-50%,-50%);
+                            -moz-transform: translate(-50%,-50%);
+                            -webkit-transform: translate(-50%,-50%);
+                            opacity: 0;
+                            transition:.25s;
+                            -moz-transition:.25s;
+                            -webkit-transition:.25s;
+                            z-index: 1;
+                        }
+                        input{
+                            margin: 0;
+                            border: none;
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            width: 100%;
+                            height: 100%;
+                            opacity: 0;
+                            cursor: pointer;                                
+                            z-index: 2;
+                        }
+                         &:hover{
+                            img{
+                                opacity: 0.7;                                
+                            }
+                        }
                     }
                 }
                 #fir{
@@ -259,16 +290,26 @@
             .before_cmt{
                 width: 100%;
                 height: 100px;
-                float: left;
-                background: #f1f1f1;
+                float: left;                
                 margin-top: 30px;
                 border-radius: 4px;                
                 textarea{
                     height: 100%;
+                    float: left;
+                    width: 85%;
                 }
                 p{
                     font-size: 0.9rem;                    
                     color: #383838;
+                }
+                .img_comt{
+                    width: 100px;
+                    height: 100%;
+                    border-radius: 4px;
+                    float: right;
+                    background: #f9f9f9;
+                    padding:25px;
+                    border: 1px solid #ccc;                    
                 }
             }
             .box_comment1{
@@ -322,7 +363,7 @@
     border-bottom: 3px solid @dark_blue;
     img{
         height: 100%;
-        float: left
+        float: left            
     }
 }
 #wrap_form{
@@ -356,6 +397,33 @@
                 border-top: 1px solid #e1e1e1;
                 border-bottom: 1px solid #e1e1e1;
                 height: 80px;
+                .join_img_td{
+                    div{
+                        width: 150px;
+                        height: 215px;
+                        position: relative;
+                        margin-top: 20px;
+                        margin-bottom: 20px;
+                        img{
+                            width: 150px;
+                            height: 200px;
+                                                                                
+                        }
+                        input{
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            width: 150px;
+                            height: 200px;
+                            opacity: 0;
+                        }
+                        span{
+                            display:inline-block;                            
+                            font-size: 0.8rem;
+                            color: #797979;
+                        }
+                    }
+                }
                 td{
                     text-align: left;
                     padding-left: 100px;
@@ -613,4 +681,9 @@ section{
     height: 100%;
     text-align: left;
     float: left;
+}
+.clickedIdea{
+    .title_td{
+            background:#45d4fe !important;
+        }
 }
