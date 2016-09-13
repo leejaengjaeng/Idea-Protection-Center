@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ipc.dao.RegistrationDao;
+import com.ipc.dao.RegistrationFileDao;
+import com.ipc.vo.RegistrationFileVo;
 import com.ipc.vo.RegistrationPatentVo;
 import com.ipc.vo.userVo;
 
@@ -31,6 +33,8 @@ public class CommentController {
 	RegistrationDao regDao;
 	@Autowired
 	HttpSession session;
+	@Autowired
+	RegistrationFileDao regFileDao;
 	
 	@RequestMapping("/test")
 	public String test(Model model)
@@ -52,10 +56,11 @@ public class CommentController {
 			int plId = assosiatedMemberId.getLid();
 			int userId = ((userVo)isAuthenticated).getUid();
 			int lastRid = regDao.getLastRidInProcessList(start_rid);
-
+			List<RegistrationFileVo> imgList= regFileDao.getImgListByStartRid(start_rid);
+			model.addAttribute("imgs", imgList);
 			//현재 나타내는 rid 저장
 			session.setAttribute("currentPosition", lastRid);
-
+				
 			//발명가가 보는 경우
 			if(inventorId==userId) 
 			{
@@ -139,7 +144,6 @@ public class CommentController {
 				RegistrationPatentVo item = regDao.getPlProcessByRid(rid);
 				RegistrationPatentVo afterComment = regDao.getAfterCommentByRid(rid);
 				RegistrationPatentVo beforeComment = regDao.getPrevCommentByPrevRid(item.getPrev_rid());
-				
 				retVal.put("role", "pl");
 				retVal.put("item", item);
 				retVal.put("beforeComment", beforeComment);

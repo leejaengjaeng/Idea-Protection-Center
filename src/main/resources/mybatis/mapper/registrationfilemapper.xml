@@ -4,4 +4,7 @@
 	<insert id="makeFile" parameterType="Hashmap">
 		insert into registration_files(start_rid,file_path) values (#{start_rid},#{file_path})
 	</insert>
+	<select id="getImgListByStartRid" parameterType="Integer" resultType="com.ipc.vo.RegistrationFileVo">
+		select rfid,start_rid,file_path form registration_files where start_rid=#{start_rid}
+	</select>
 </mapper>

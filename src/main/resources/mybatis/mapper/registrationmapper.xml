@@ -3,7 +3,7 @@
 
 <mapper namespace="com.ipc.dao.RegistrationDao">
 	<insert id="makeidea" parameterType="com.ipc.vo.RegistrationPatentVo" useGeneratedKeys="true" keyProperty="rid">
-		insert into registration_patent(typeofinvent,title,summary,whyinvent,problem,solution,effect,core_element,registration_date,uid,iscomplete) values (#{typeOfInvent},#{title},#{summary},#{whyInvent},#{problem},#{solution},#{effect},#{core_element},#{registration_date},#{uid},"0")
+		insert into registration_patent(typeofinvent,title,summary,whyinvent,problem,solution,effect,core_element,registration_date,uid,iscomplete) values (#{typeOfInvent},#{title},#{summary},#{whyInvent},#{problem},#{solution},#{effect},#{core_element},#{registration_date},#{uid},"1")
 	</insert>
 	
 	<select id="getInventorProcessList" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
@@ -14,7 +14,7 @@
 	</select>
 	
 	<update id="updatetempidea" parameterType="Hashmap">
-		update registration_patent set typeOfInvent=#{typeOfInvent}, title=#{title}, whyInvent=#{whyInvent}, summary=#{summary}, problem=#{problem}, solution=#{solution}, effect=#{effect}, core_element=#{core_element} WHERE uid=#{uid} AND iscomplete=1
+		update registration_patent set typeOfInvent=#{typeOfInvent}, title=#{title}, whyInvent=#{whyInvent}, summary=#{summary}, problem=#{problem}, solution=#{solution}, effect=#{effect}, core_element=#{core_element} WHERE uid=#{uid} AND iscomplete=0
 	</update>
 	
 	<update id="inventorSave" parameterType="com.ipc.vo.RegistrationPatentVo">
@@ -42,10 +42,10 @@
 	</select>
 	
 	<insert id="maketempidea" parameterType="Hashmap">
-		insert into registration_patent(typeOfInvent,title,summary,whyInvent,problem,solution,effect,core_element,registration_date,uid,iscomplete) values (#{typeOfInvent},#{title},#{summary},#{whyInvent},#{problem},#{solution},#{effect},#{core_element},#{registrtaion_date},#{uid},"1")
+		insert into registration_patent(typeOfInvent,title,summary,whyInvent,problem,solution,effect,core_element,registration_date,uid,iscomplete) values (#{typeOfInvent},#{title},#{summary},#{whyInvent},#{problem},#{solution},#{effect},#{core_element},#{registrtaion_date},#{uid},"0")
 	</insert>
 	<select id="countTempIdea" parameterType="Integer" resultType="Integer">
-		select count(*) from registration_patent where uid=#{uid} AND iscomplete=1
+		select count(*) from registration_patent where uid=#{uid} AND iscomplete=0
 	</select>
 
 	<select id="getAssociatedMembers" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
@@ -72,10 +72,10 @@
 		select rid, prev_rid, typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element, re_typeofinvent, re_title, re_summary, re_whyinvent, re_problem, re_solution, re_effect, re_core_element,iscomplete from registration_patent where rid=#{rid}
 	</select>
 	<select id="gettempidea" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
-		select rid, typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element, re_typeofinvent, re_title, re_summary, re_whyinvent, re_problem, re_solution, re_effect, re_core_element from registration_patent where uid=#{uid} AND iscomplete=1
+		select rid, typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element, re_typeofinvent, re_title, re_summary, re_whyinvent, re_problem, re_solution, re_effect, re_core_element from registration_patent where uid=#{uid} AND iscomplete=0
 	</select>
 	<delete id="removeTempIdea" parameterType="Integer">
-		delete from registration_patent where uid=#{uid} AND iscomplete=1
+		delete from registration_patent where uid=#{uid} AND iscomplete=0
 	</delete>
 	<update id="updateStartId" parameterType="Integer">
 		update registration_patent set start_rid=#{rid} WHERE rid=#{rid}
