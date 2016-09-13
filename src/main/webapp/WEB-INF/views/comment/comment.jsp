@@ -127,7 +127,56 @@ $(document).ready(function()
     });
 
 });
+function delImg(path,id,btnid){
+	//alert(path+","+id);
+	var element= document.getElementById(id);
+	element.parentNode.removeChild(element);
+	var btnelement= document.getElementById(btnid);
+	btnelement.parentNode.removeChild(btnelement);
+	var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+	var csrfToken = $("meta[name='_csrf']").attr("content"); 
+	var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
+	var data = {};
+	var headers = {};
+	data[csrfParameter] = csrfToken;
+    data["path"] = path;
+    headers[csrfHeader] = csrfToken;
+    $.ajax({
+	    url : "/deleteFile",
+	    dataType : "json",
+	    type : "POST",
+	    headers: headers,
+	    data : data,
+	    success: function(data) {
+	        alert("성공:"+data.result);
+	    },
+	    error:function(request,status,error){
+	        alert("code:"+request.status+"\n"+"error:"+error);
+	    }
+	 
+	}); 
+}
+var i=0;
+function addFile(){
+	$('#inputFileDiv').append("<div style='clear:both;flaot:left'><img style='width:200px' src='/resources/image/plus.png' alt='img' id='"+i+"'><br><input type='file' id='imgInp"+i+"' name='addupimgs' onchange='readURL(this,"+i+")' name='profileImg' style='width:30%'></div>");
+	i++;
+}
 
+
+
+function readURL(input,id) {
+	
+	//alert(id);
+    if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+            $('#'+id).attr('src', e.target.result);
+        }
+
+      reader.readAsDataURL(input.files[0]);
+    }
+}
 </script>
 </head>
 <body>
@@ -473,6 +522,21 @@ $(document).ready(function()
                         	</div>
 	                    </div>
 	                    <div id="demo_box">
+	                    <c:forEach items="${imgs}" var="list" varStatus="status">
+		                    <div>
+		                    
+	                        	<!-- <input type="file"> -->
+	                        	<!-- <img src="${list.getFile_path()}" alt="plus"> -->
+	                        	<a href="${list.getFile_path()}" id="id${list.getRfid()}" style="clear:both"><img src="${list.getFile_path()}" style="width:200px;padding-left:10px"></a>
+	                        </div>
+	                        <button  style="float:left" type="button" id='btn${list.getRfid()}' onclick="delImg('${list.getFile_path()}','id${list.getRfid()}','btn${list.getRfid()}')">삭제</button>
+	                    	
+	                    </c:forEach>
+	                    <button style="clear:both" type="button" onclick="addFile()">추가</button>
+	                        <div id="inputFileDiv">
+	                        	
+	                        </div>
+	                        <!--  
 	                        <div class="demo">
 	                        	<input type="file">
 	                        	<img src="/resources/image/plus.png" alt="plus">
@@ -492,11 +556,8 @@ $(document).ready(function()
 	                        <div class="demo">
 	                        	<input type="file">
 	                        	<img src="/resources/image/plus.png" alt="plus">
-	                        </div>
-	                        <div class="demo">
-	                        	<input type="file">
-	                        	<img src="/resources/image/plus.png" alt="plus">
-	                        </div>                                            
+	                        </div> 
+	                        -->                                           
 	                    </div>
 	                    <div class="box_comment1">
 	                        <div class="img_comt">

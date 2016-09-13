@@ -1,5 +1,6 @@
 package com.ipc.controller;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +18,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ipc.dao.RegistrationDao;
 import com.ipc.dao.RegistrationFileDao;
@@ -199,8 +203,6 @@ public class CommentController {
 	{
 		String role = req.getParameter("role");
 		//완료여부에 따른 체크 
-		
-		
 		//현재 페이지의 rid와 수정 요청한 rid가 같은지 확인 
 		if((int)session.getAttribute("currentPosition") != regVo.getRid())
 		{
@@ -250,5 +252,18 @@ public class CommentController {
 			return "저장 실패";
 		}
 		
+	}
+	@RequestMapping(value="deleteFile",method=RequestMethod.POST)
+	@ResponseBody
+	public HashMap<String,String> deleteFile(HttpServletRequest request,@RequestParam HashMap<String, Object> param){
+		String path=param.get("path").toString();
+		File file=new File("../Idea-Protection-Center/src/main/webapp"+path);
+		file.delete();
+		regFileDao.deleteFile(path);
+		
+		
+		HashMap<String,String> map=new HashMap<String,String>();
+		map.put("result", "aa");
+		return map;
 	}
 }
