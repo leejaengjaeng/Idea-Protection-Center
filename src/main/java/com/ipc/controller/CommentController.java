@@ -163,9 +163,6 @@ public class CommentController {
 	{
 		String role = req.getParameter("role");
 		
-		//완료여부에 따른 체크 
-		if(1 == regDao.checkIsCompletedByRid(regVo.getRid()))
-			return "이미 완료된 사항입니다.";
 		
 		regVo.setIscomplete(0);
 		
@@ -175,10 +172,18 @@ public class CommentController {
 			
 		if(role.equals("pl"))
 		{
+			//완료여부에 따른 체크 
+			if(0 == regDao.checkIsCompletedByRid(regVo.getRid()))
+				return "이미 완료된 사항입니다.";
+			
 			regDao.plUpdate(regVo);
 		}
 		else if(role.equals("inventor"))
 		{
+			//완료여부에 따른 체크 
+			if(1 == regDao.checkIsCompletedByRid(regVo.getRid()))
+				return "이미 완료된 사항입니다.";
+			
 			regDao.inventorSave(regVo);
 		}
 		else
@@ -193,10 +198,7 @@ public class CommentController {
 	public String ideaSave(RegistrationPatentVo regVo, HttpServletRequest req)
 	{
 		String role = req.getParameter("role");
-		System.out.println(role);
 		//완료여부에 따른 체크 
-		if(1 == regDao.checkIsCompletedByRid(regVo.getRid()))
-			return "이미 완료된 사항입니다.";
 		
 		
 		//현재 페이지의 rid와 수정 요청한 rid가 같은지 확인 
@@ -208,18 +210,38 @@ public class CommentController {
 			
 		if(role.equals("pl"))
 		{
+			if(0 == regDao.checkIsCompletedByRid(regVo.getRid()))
+				return "이미 완료된 사항입니다.";
+			
 			RegistrationPatentVo tmpVo = regDao.getResourceForPlSaveByRid(regVo.getRid());
+			System.out.println("여기로 오니?");
+			regVo.setRid(0);
 			regVo.setIscomplete(0);
 			regVo.setPrev_rid(regVo.getRid());
 			regVo.setStart_rid(tmpVo.getStart_rid());
 			regVo.setLid(tmpVo.getLid());
 			regVo.setUid(tmpVo.getUid());
 			regDao.plSave(regVo);
+
+			return "저장 성공";
+
 		}
 		else if(role.equals("inventor"))
 		{
+			if(1 == regDao.checkIsCompletedByRid(regVo.getRid()))
+				return "이미 완료된 사항입니다.";
+		
+			System.out.println("컴플릿 전");
+			
 			regVo.setIscomplete(1);
+			
+			System.out.println("저장 전");
+			
 			regDao.inventorSave(regVo);
+			System.out.println("저장 후");
+			
+			return "저장 성공";
+			
 		}
 		else
 		{
@@ -227,6 +249,6 @@ public class CommentController {
 			
 			return "저장 실패";
 		}
-		return "저장 성공";
+		
 	}
 }

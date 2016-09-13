@@ -7,10 +7,10 @@
 	</insert>
 	
 	<select id="getInventorProcessList" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
-		select rid, iscomplete,registration_date, title, r_condition, start_rid, typeofinvent, apply_date, pre_apply_date from registration_patent where uid=#{uid} and rid=start_rid 
+		select rid, iscomplete,registration_date, title, r_condition, start_rid, typeofinvent, apply_date, pre_apply_date from registration_patent where uid=#{uid} and prev_rid=-1 
 	</select>
 	<select id="getPlProcessList" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
-		select rid, iscomplete,registration_date, title, r_condition, start_rid, typeofinvent, apply_date, pre_apply_date from registration_patent where lid=#{lid} and rid=start_rid 
+		select rid, iscomplete,registration_date, title, r_condition, start_rid, typeofinvent, apply_date, pre_apply_date from registration_patent where lid=#{lid} and prev_rid=-1 
 	</select>
 	
 	<update id="updatetempidea" parameterType="Hashmap">

@@ -20,8 +20,14 @@ $(document).ready(function()
 	//권한에 따라 보여주기
 	if("${user}" == "pl")
 	{
-		if("${item.getIscomplete()}" == 0)
+		//0 고객 작성중(변리사 작성 완료), 1 고객 작성 완료
+		if("${item.getIscomplete()}" == 1)
 			enablePl();
+		else 
+		{
+			disablePl();
+			alert('고객이 작성을 완료하기를 기다려주세요');			
+		}
 		
 		//이전 코멘트 지우기 
 		if("${isNull}" =="true")
@@ -36,6 +42,11 @@ $(document).ready(function()
 	{
 		if("${item.getIscomplete()}" == 0)
 			enableInventor();
+		else
+		{
+			disablePl();
+			alert('변리사의 답변을 기다려주세요');
+		}
 		
 		//이전 코멘트 지우기 
 		if("${isNull}" =="true")
@@ -137,7 +148,7 @@ $(document).ready(function()
                 </div>
                 <div id="nav_benner">
                     <ul>
-                        <li>
+                        <li onclick="loaction.href='/registration/addidea'">
                             <img src="/resources/image/index_patent_1.jpg" alt="benner1">
                         </li>
                         <li>
@@ -161,6 +172,15 @@ $(document).ready(function()
                 <table id="IdeaModifyList">
                 	<c:forEach items="${processList}" var="list" varStatus="status">
 						<c:choose>
+						<%-- 목록이 하나인 경우 --%>
+							<c:when test="${status.first and status.last }">
+								<tr class="clickedIdea">
+									<input type="hidden" value="${list.getRid()}"/>
+									<td class="title_td">아이디어 등록(초안)</td>
+							       <td class="date_td">${list.getRegistration_date()}</td>
+			                	</tr>
+							</c:when>
+						<%-- 목록이 하나가 아닌 경우 --%>
 							<c:when test="${status.first}">
 								<tr>
 									<input type="hidden" value="${list.getRid()}"/>

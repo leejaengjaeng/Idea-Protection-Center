@@ -109,6 +109,7 @@ function execute(){
 	<c:import url="/WEB-INF/views/import/header.jsp"/>
 	<div id="wrap_form">
 		<h1>회원가입</h1>
+
 		<form action="/signup/inputsignup" method="POST" name="signupform" onsubmit="return execute();" enctype="multipart/form-data">
 			<input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}" />
 			<button type="button" class="hill on" data-no="0" onclick='changerole("1")'>발명자 회원</button>
