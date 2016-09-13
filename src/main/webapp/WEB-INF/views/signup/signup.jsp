@@ -116,6 +116,15 @@ function execute(){
 			<input type="text" id="role" name="role" value="1" hidden>		
 			<table>
 				<tr>
+					<td colspan="2" style="text-align:center; padding-left: 0;" class="join_img_td">						
+						<div>
+							<img src="#" alt="img" id="blah"><br>
+							<input type="file" id="imgInp">
+							<span>대표사진을 설정해주세요</span>
+						</div>
+					</td>
+				</tr>
+				<tr>
 					<td>아이디</td>
 					<td><input type="text" name="id" id="id"><button type="button" onclick="checkid()">중복확인</button></td>
 				</tr>
@@ -186,6 +195,24 @@ $("#email_chg").change(function(){
 		$("#email2").css("display","none");
 	}
 });
+
+$(function() {
+    $("#imgInp").on('change', function(){
+        readURL(this);
+    });
+});
+
+function readURL(input) {
+    if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+            $('#blah').attr('src', e.target.result);
+        }
+
+      reader.readAsDataURL(input.files[0]);
+    }
+}
 </script>
 </body>
 </html>
