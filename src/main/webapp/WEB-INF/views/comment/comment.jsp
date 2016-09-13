@@ -79,7 +79,6 @@ $(document).ready(function()
 	{
 		//IdeaModifyList 내부의 tr중 clickedIdea를 가지고있는 요소를 clickedIdea를 제거 
 		$(this).parent().find('.clickedIdea').removeClass('clickedIdea');
-
 		var rid = $(this).children('input').attr('value');
 		
 		if(rid == ${lastRid})
@@ -194,6 +193,9 @@ $(document).ready(function()
                     <button>작성 예시</button>
                     <div id="BeforeCommentTypeOfInvent" class="before_cmt">
                         <textarea disabled="disabled" class="disabled"/>${beforeComment.getRe_typeOfInvent()}</textarea>
+                        <div class="img_comt">
+                            <img src="/resources/image/inventor3.png" alt="inventor">
+                        </div>
                     </div>             
                     <div id="RegTypeOfInvent" class="box_before1">                        
                         <input type="text" value="${item.getTypeOfInvent() }" disabled="disabled" class="disabled" />
@@ -202,8 +204,7 @@ $(document).ready(function()
                         <div class="img_comt">
                             <img src="/resources/image/comment.png" alt="cmt_img">
                         </div> 
-                        <div id="AfterCommentTypeOfInvent" class="comment1_txt">
-                            
+                        <div id="AfterCommentTypeOfInvent" class="comment1_txt">                            
                             <textarea placeholder="Comment..." disabled="disabled" class="disabled"></textarea>
                         </div>
                     </div>
@@ -223,6 +224,9 @@ $(document).ready(function()
                     <button>작성 예시</button>
                     <div id="BeforeCommentTitle" class="before_cmt">
                         <textarea disabled="disabled" class="disabled"/>${beforeComment.getRe_title()}</textarea>
+                        <div class="img_comt">
+                            <img src="/resources/image/inventor3.png" alt="inventor">
+                        </div>
                     </div>
                     <div id="RegTitle" class="box_before1">                        
                         <input type="text" value="${item.getTitle() }" disabled="disabled" class="disabled"/>
@@ -252,6 +256,9 @@ $(document).ready(function()
                     <button>작성 예시</button>
                     <div id="BeforeCommentSummary" class="before_cmt">
                         <textarea disabled="disabled" class="disabled"/>${beforeComment.getRe_summary()}</textarea>
+                        <div class="img_comt">
+                           	<img src="/resources/image/inventor3.png" alt="inventor">
+                       	</div>
                     </div>                    
                     <div id="RegSummary" class="box_before1_b">   
 	                    <textarea disabled="disabled" class="disabled">${item.getSummary()}</textarea>                     
@@ -280,6 +287,9 @@ $(document).ready(function()
                     <button>작성 예시</button>
                     <div id="BeforeCommentWhyInvent" class="before_cmt">
                         <textarea disabled="disabled" class="disabled"/>${beforeComment.getRe_whyInvent()}</textarea>
+                        <div class="img_comt">
+                            <img src="/resources/image/inventor3.png" alt="inventor">
+                        </div>
                     </div>
                     <div id="RegWhyInvent" class="box_before1_b">                        
                          <textarea disabled="disabled" class="disabled">${item.getWhyInvent()}</textarea>                     
@@ -309,6 +319,9 @@ $(document).ready(function()
                     <button>작성 예시</button>
                     <div id="BeforeCommentProblem" class="before_cmt">
                     	<textarea disabled="disabled" class="disabled"/>${beforeComment.getRe_problem()}</textarea>
+                    	<div class="img_comt">
+                            <img src="/resources/image/inventor3.png" alt="inventor">
+                        </div>
                     </div>
                     <div id="RegProblem" class="box_before1_b">                        
                          <textarea disabled="disabled" class="disabled">${item.getProblem()}</textarea>
@@ -338,6 +351,9 @@ $(document).ready(function()
                     <button>작성 예시</button>
                     <div id="BeforeCommentSolution" class="before_cmt">
                     	<textarea disabled="disabled" class="disabled"/>${beforeComment.getRe_solution()}</textarea>
+                    	<div class="img_comt">
+                            <img src="/resources/image/inventor3.png" alt="inventor">
+                        </div>
                     </div>
                     <div id="RegSolution" class="box_before1_b">                        
                     	<textarea disabled="disabled" class="disabled">${item.getSolution()}</textarea>
@@ -367,6 +383,9 @@ $(document).ready(function()
                     <button>작성 예시</button>
                     <div id="BeforeCommentEffect" class="before_cmt">
                    		<textarea disabled="disabled" class="disabled"/>${beforeComment.getRe_effect()}</textarea>
+                   		<div class="img_comt">
+                            <img src="/resources/image/inventor3.png" alt="inventor">
+                        </div>
                     </div>
                     <div id="RegEffect" class="box_before1_b">                        
                     	<textarea disabled="disabled" class="disabled">${item.getEffect()}</textarea>
@@ -396,6 +415,9 @@ $(document).ready(function()
                     <button>작성 예시</button>
                     <div id="BeforeCommentCore_Element" class="before_cmt">
                     	<textarea disabled="disabled" class="disabled"/>${beforeComment.getRe_core_element()}</textarea>
+                    	<div class="img_comt">
+                            <img src="/resources/image/inventor3.png" alt="inventor">
+                        </div>
                     </div>
                     <div id="RegCore_Element" class="box_before1_b">                        
                     	<textarea disabled="disabled" class="disabled">${item.getCore_element()}</textarea>
@@ -426,14 +448,35 @@ $(document).ready(function()
 	                    <button>작성 예시</button>
 	                    <div id="BeforeFileComment" class="before_cmt">
 	                    	<textarea disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
+	                    	<div class="img_comt">
+                            	<img src="/resources/image/inventor3.png" alt="inventor">
+                        	</div>
 	                    </div>
 	                    <div id="demo_box">
-	                        <div class="demo"></div>
-	                        <div class="demo"></div>
-	                        <div class="demo"></div>
-	                        <div class="demo"></div>
-	                        <div class="demo"></div>
-	                        <div class="demo"></div>                                            
+	                        <div class="demo">
+	                        	<input type="file">
+	                        	<img src="/resources/image/plus.png" alt="plus">
+	                        </div>
+	                        <div class="demo">
+	                        	<input type="file">
+	                        	<img src="/resources/image/plus.png" alt="plus">
+	                        </div>
+	                        <div class="demo">
+	                        	<input type="file">
+	                        	<img src="/resources/image/plus.png" alt="plus">
+	                        </div>
+	                        <div class="demo">
+	                        	<input type="file">
+	                        	<img src="/resources/image/plus.png" alt="plus">
+	                        </div>
+	                        <div class="demo">
+	                        	<input type="file">
+	                        	<img src="/resources/image/plus.png" alt="plus">
+	                        </div>
+	                        <div class="demo">
+	                        	<input type="file">
+	                        	<img src="/resources/image/plus.png" alt="plus">
+	                        </div>                                            
 	                    </div>
 	                    <div class="box_comment1">
 	                        <div class="img_comt">
@@ -464,5 +507,9 @@ $(document).ready(function()
         </section>
     </div>
     <c:import url="/WEB-INF/views/import/footer.jsp"/>
+<script>
+	 
+	
+</script>
 </body>
 </html>

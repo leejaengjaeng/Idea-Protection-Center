@@ -225,6 +225,35 @@
   margin-top: 15px;
   border: 1px solid #ccc;
   margin-left: 15px;
+  position: relative;
+}
+.wrap_comment section article .txt_box #demo_box .demo img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: .25s;
+  -moz-transition: .25s;
+  -webkit-transition: .25s;
+  z-index: 1;
+}
+.wrap_comment section article .txt_box #demo_box .demo input {
+  margin: 0;
+  border: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+.wrap_comment section article .txt_box #demo_box .demo:hover img {
+  opacity: 0.7;
 }
 .wrap_comment section article .txt_box #fir {
   margin-left: 0 !important;
@@ -251,16 +280,26 @@
   width: 100%;
   height: 100px;
   float: left;
-  background: #f1f1f1;
   margin-top: 30px;
   border-radius: 4px;
 }
 .wrap_comment section article .before_cmt textarea {
   height: 100%;
+  float: left;
+  width: 85%;
 }
 .wrap_comment section article .before_cmt p {
   font-size: 0.9rem;
   color: #383838;
+}
+.wrap_comment section article .before_cmt .img_comt {
+  width: 100px;
+  height: 100%;
+  border-radius: 4px;
+  float: right;
+  background: #f9f9f9;
+  padding: 25px;
+  border: 1px solid #ccc;
 }
 .wrap_comment section article .box_comment1 {
   width: 100%;
@@ -347,6 +386,30 @@
   border-top: 1px solid #e1e1e1;
   border-bottom: 1px solid #e1e1e1;
   height: 80px;
+}
+#wrap_form form table tr .join_img_td div {
+  width: 150px;
+  height: 215px;
+  position: relative;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+#wrap_form form table tr .join_img_td div img {
+  width: 150px;
+  height: 200px;
+}
+#wrap_form form table tr .join_img_td div input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 150px;
+  height: 200px;
+  opacity: 0;
+}
+#wrap_form form table tr .join_img_td div span {
+  display: inline-block;
+  font-size: 0.8rem;
+  color: #797979;
 }
 #wrap_form form table tr td {
   text-align: left;
@@ -589,4 +652,7 @@ section nav #nav_benner ul li img {
   height: 100%;
   text-align: left;
   float: left;
+}
+.clickedIdea .title_td {
+  background: #45d4fe !important;
 }
