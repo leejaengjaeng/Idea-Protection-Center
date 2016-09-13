@@ -86,11 +86,18 @@ body{
  
 </style>
 <script>
+var i=1;
 function addfile(){
-	$('#upimgdiv').append("<input type='file' name='imgs' onchange='addfile()' accept='image/gif, image/jpeg, image/png'>");
+	i++;
+	$('#upimgdiv').append("<input type='file' id='upimg"+i+"' name='imgs' onchange='addfile()' accept='image/gif, image/jpeg, image/png'>");
     //var targetdiv=document.getElementById("uploaddiv");
     //targetdiv.innerHTML+="<input type='file' name='imgs' oncellchange='addfile()' accept='image/gif, image/jpeg, image/png'>";
+    
     }
+function delfile(){
+	$('#upimg'+i+'').detach();
+	i--;
+}
 function checkTemp(){  
     if(${isTemp}=="1"){
 		document.getElementById("bw").style.visibility="visible";
@@ -358,8 +365,9 @@ function closeload(){
                     </div>
                 </div>
                 <div id="upimgdiv" class="txt_box">
-                    <h2 style="width:100%">도면첨부</h2>
-                    <input type="file" id="upimg" name="imgs" accept="image/gif, image/jpeg, image/png" style="padding-top:5px;"><button type="button" style="margin-top:5px;" onclick="addfile()">추가</button>
+                    <h2 style="width:100%">도면첨부</h2><button type="button" style="margin-top:5px;" onclick="addfile()">추가</button>
+                    <button type="button" style="margin-top:5px;" onclick="delfile()">삭제</button>
+                    <input type="file" id="upimg1" name="imgs" accept="image/gif, image/jpeg, image/png" style="padding-top:5px;">
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
