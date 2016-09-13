@@ -36,4 +36,5 @@ public interface RegistrationDao {
 	public int getLastRidInProcessList (int start_rid);
 	
 	public int checkIsCompletedByRid(int rid);
+	public void updateStartId(int rid);
 }

@@ -77,4 +77,7 @@
 	<delete id="removeTempIdea" parameterType="Integer">
 		delete from registration_patent where uid=#{uid} AND iscomplete=1
 	</delete>
+	<update id="updateStartId" parameterType="Integer">
+		update registration_patent set start_rid=#{rid} WHERE rid=#{rid}
+	</update>
 </mapper>
