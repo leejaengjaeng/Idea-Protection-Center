@@ -75,13 +75,7 @@ $(document).ready(function()
 	{
 		alert('저장후에는 어쩌구~ 답변을 기다려야~ 어쩌구 저장하시겠습니까~ 어쩌구~');
 		ideaSave("${user}");
-		
-		if("${user}" == "pl")
-			disablePl();
-		else if("${user}" == "inventor")
-			disableInventor();
-		
-		location.href ="/mainPage";
+	
 	});
 
 	

@@ -4,10 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ipc.vo.RegistrationPatentVo;
 
 @Mapper
+@Transactional
 public interface RegistrationDao {
 	public void makeidea(RegistrationPatentVo rv);
 	public void maketempidea(HashMap<String,String> map);

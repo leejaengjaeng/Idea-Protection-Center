@@ -200,7 +200,7 @@ var ideaSave = function(role)
 		data['role'] = "error";
 	}
 	
-	console.log(data);
+	alert(data);
 
     $.ajax({
 		url : "/ideaSave",
@@ -210,10 +210,11 @@ var ideaSave = function(role)
  	    success:function(retVal)
  	    {
  	    	alert(retVal);
+ 			location.href ="/mainPage";
  	    },
  	    error: function(request,status,error)
 		{
- 			alert('저장에 실패하였습니다?')
+ 			alert('저장에 실패하였습니다')
 			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		}
 	});	
