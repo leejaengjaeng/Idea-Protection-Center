@@ -60,7 +60,10 @@
 	                    <td>${status.count}</td>
 	                    <td>${list.getiId()}</td>
 	                    <td>${list.getiName()}</td>
+
+	                    <!-- pName 없으면 선택하게 버튼나오도록 -->
 	                    <td>${list.getpName()}</td>
+
 	                    <td>${list.getEmail()}</td>
 	                    <td>${list.getPhone()}</td>
 	                    <td>${list.getTypeofinvent()}</td>

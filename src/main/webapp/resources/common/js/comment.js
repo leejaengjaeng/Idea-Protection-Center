@@ -135,8 +135,6 @@ var tmpSave = function(role)
 	{
 		data['role'] = "error";
 	}
-	
-	console.log(data);
 
     $.ajax({
 		url : "/tmpSave",
@@ -199,8 +197,6 @@ var ideaSave = function(role)
 		alert(role);
 		data['role'] = "error";
 	}
-	
-	alert(data);
 
     $.ajax({
 		url : "/ideaSave",
