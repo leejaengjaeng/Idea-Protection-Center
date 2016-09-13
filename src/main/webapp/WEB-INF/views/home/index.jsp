@@ -52,7 +52,7 @@
                        <h1><b>특허</b> 출원</h1>      
                        <span>198,000원 출원</span>                          
                    </div>
-                   <button class="btn_go">출원하러 가기 &gt;</button>           
+                   <button class="btn_go" onclick='location.href="/registration/addidea"'>출원하러 가기 &gt;</button>           
                 </div>
                 <div class="block" style="margin-left:20px;">                    
                     <div class="block_inside">
@@ -223,6 +223,7 @@
                 start();
             }
 		}
+		
 </script>    
 </body>
 </html>

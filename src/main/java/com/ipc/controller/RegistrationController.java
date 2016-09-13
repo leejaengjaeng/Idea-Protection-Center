@@ -37,8 +37,8 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 	RegistrationDao regismapper;
 	@Autowired
 	UserDao usermapper;
-//	@Autowired
-//	RegistrationFileDao regisfilemapper;
+	@Autowired
+	RegistrationFileDao regisfilemapper;
 	
 	@RequestMapping("/addidea")
 	public String addidea(Model model,HttpSession session, HttpServletRequest request){
@@ -72,11 +72,12 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 		userVo uv=usermapper.getUserByUid(Integer.toString(uid));
 		System.out.println("uid:"+uid);
 		for(int i=0;i<files.size();i++){
-			rs.makeimageFile(files.get(i), rs.getToday(1)+i,uv.getId(),rv.getRid());
-//			HashMap<String,String> map = new HashMap<String,String>();
-//			map.put("start_rid", "1");
-//			map.put("file_path", "2");
-//			regisfilemapper.makeFile(map);
+			String today=rs.getToday(1)+i;
+			String fileType=rs.makeimageFile(files.get(i),today ,uv.getId(),rv.getRid());
+			HashMap<String,String> map = new HashMap<String,String>();
+			map.put("start_rid", Integer.toString(rv.getRid()));
+			map.put("file_path", "/resource/uploadimgs/inventor/"+uv.getId()+"/"+today+"."+fileType);
+			regisfilemapper.makeFile(map);
 		}
 		return "home/index";
 	}
