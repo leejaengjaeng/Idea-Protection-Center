@@ -203,7 +203,7 @@ $(document).ready(function()
                             <img src="/resources/image/comment.png" alt="cmt_img">
                         </div> 
                         <div id="AfterCommentTypeOfInvent" class="comment1_txt">
-                            <img src="/resources/image/arr.png">
+                            
                             <textarea placeholder="Comment..." disabled="disabled" class="disabled"></textarea>
                         </div>
                     </div>
@@ -232,7 +232,7 @@ $(document).ready(function()
                             <img src="/resources/image/comment.png" alt="cmt_img">
                         </div> 
                         <div id="AfterCommentTitle" class="comment1_txt">
-                            <img src="/resources/image/arr.png">
+                            
                             <textarea placeholder="Comment..." disabled="disabled" class="disabled"></textarea>
                         </div>
                     </div>
@@ -261,7 +261,7 @@ $(document).ready(function()
                             <img src="/resources/image/comment.png" alt="cmt_img">
                         </div> 
                         <div id="AfterCommentSummary" class="comment1_txt">
-                            <img src="/resources/image/arr.png">
+                            
                             <textarea placeholder="Comment..." disabled="disabled" class="disabled"></textarea>
                         </div>
                     </div>
@@ -289,7 +289,7 @@ $(document).ready(function()
                             <img src="/resources/image/comment.png" alt="cmt_img">
                         </div> 
                         <div id="AfterCommentWhyInvent" class="comment1_txt">
-                            <img src="/resources/image/arr.png">
+                            
                             <textarea placeholder="Comment..." disabled="disabled" class="disabled"></textarea>
                         </div>
                     </div>
@@ -318,7 +318,7 @@ $(document).ready(function()
                             <img src="/resources/image/comment.png" alt="cmt_img">
                         </div> 
                         <div id="AfterCommentProblem" class="comment1_txt">
-                            <img src="/resources/image/arr.png">
+                            
                             <textarea placeholder="Comment..." disabled="disabled" class="disabled"></textarea>
                         </div>
                     </div>
@@ -347,7 +347,7 @@ $(document).ready(function()
                             <img src="/resources/image/comment.png" alt="cmt_img">
                         </div> 
                         <div id="AfterCommentSolution" class="comment1_txt">
-                            <img src="/resources/image/arr.png">
+                            
                             <textarea placeholder="Comment..." disabled="disabled" class="disabled"></textarea>
                         </div>
                     </div>
@@ -376,7 +376,7 @@ $(document).ready(function()
                             <img src="/resources/image/comment.png" alt="cmt_img">
                         </div> 
                         <div id="AfterCommentEffect" class="comment1_txt">
-                           <img src="/resources/image/arr.png">
+                           
                            <textarea placeholder="Comment..." disabled="disabled" class="disabled"></textarea>
                         </div>
                     </div>
@@ -405,7 +405,7 @@ $(document).ready(function()
                             <img src="/resources/image/comment.png" alt="cmt_img">
                         </div> 
                         <div id="AfterCommentCore_Element" class="comment1_txt">
-                            <img src="/resources/image/arr.png">
+                            
                             <textarea placeholder="Comment..." disabled="disabled" class="disabled"></textarea>
                         </div>
                     </div>
@@ -440,7 +440,7 @@ $(document).ready(function()
 	                            <img src="/resources/image/comment.png" alt="cmt_img">
 	                        </div> 
 	                        <div id="AfterCommentFiles" class="comment1_txt">
-	                            <img src="/resources/image/arr.png">
+	                            
 	                            <textarea placeholder="Comment..." disabled="disabled" class="disabled"></textarea>
 	                        </div>
 	                    </div>
