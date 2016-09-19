@@ -92,7 +92,10 @@
 	</update>
 	
 	<select id="adminGetIdeaList" resultType="com.ipc.vo.adminListVo">
-		select rp.rid, inventor.id as iId, pl.name as pName, inventor.name as iName, inventor.email, inventor.phone ,rp.registration_date,rp.title,rp.r_condition,rp.typeofinvent from registration_patent as rp,user as inventor, user as pl where ((rp.prev_rid=-1) AND (rp.lid = pl.uid AND rp.uid = inventor.uid));
+		select r.rid,u.id as iId,h.name as pName,u.name as iName, u.email, r.typeofinvent, r.title, r.r_condition, u.phone,r.registration_date
+		from (registration_patent as r left join user as u on r.uid=u.uid) left join (select user.uid as uid,user.name as name,patientent_lawyer.lid as lid
+																			  from user,patientent_lawyer 
+																			  where user.uid=patientent_lawyer.uid) as h on h.lid=r.lid
 	</select>
 	
 </mapper>

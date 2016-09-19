@@ -53,11 +53,7 @@ $(document).ready(function()
     <div id="inven_wrap">
         <nav>
             <div id="profile">
-<<<<<<< HEAD
-                <img src="/resources/image/attonrney_profile.jpg" alt="profile">
-=======
                 <img src="${currentUser.getProfileimg()}" alt="profile">
->>>>>>> baba8eb44d068751ccd063619d19ce66fca124f5
                 <h4>${currentUser.getName() }</h4>
                 <span>ideaconcert</span>
             </div>
