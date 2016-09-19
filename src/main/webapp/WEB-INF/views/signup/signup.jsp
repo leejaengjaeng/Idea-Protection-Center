@@ -119,15 +119,9 @@ function execute(){
 				<tr>
 					<td colspan="2" style="text-align:center; padding-left: 0;" class="join_img_td">						
 						<div>
-<<<<<<< HEAD
 							<img src="/resources/image/inventor_profile.jpg" alt="img" id="blah"><br>
 							<input type="file" id="imgInp">
-							<span>��ǥ������ �������ּ���</span>
-=======
-							<img src="#" alt="img" id="blah"><br>
-							<input type="file" id="imgInp" name="profileImg">
-							<span>대표사진을 설정해주세요</span>
->>>>>>> baba8eb44d068751ccd063619d19ce66fca124f5
+							<span>대표사진을 설정 해주세요</span>
 						</div>
 					</td>
 				</tr>
