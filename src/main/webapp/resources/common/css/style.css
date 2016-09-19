@@ -306,6 +306,10 @@
   border: 1px solid #ccc;
 }
 */
+.wrap_comment section article .current_cmt .img_comt{
+	float:left !important;
+	margin-right:10px;
+}
 
 
 .wrap_comment section article .cmt_field {
