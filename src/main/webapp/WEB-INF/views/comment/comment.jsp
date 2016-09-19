@@ -154,7 +154,7 @@ function delImg(path,id,btnid){
 }
 var i=0;
 function addFile(){
-	$('#inputFileDiv').append("<div style='clear:both;flaot:left'><img style='width:200px' src='/resources/image/plus.png' alt='img' id='"+i+"'><br><input type='file' id='imgInp"+i+"' name='addupimgs' onchange='readURL(this,"+i+")' name='profileImg' style='width:30%'></div>");
+	$('#inputFileDiv').append("<div style='float:left'><img style='width:200px' src='/resources/image/plus.png' alt='img' id='"+i+"'><br><input type='file' id='imgInp"+i+"' name='addupimgs' onchange='readURL(this,"+i+")' name='profileImg' style='width:30%'></div>");
 	i++;
 }
 
