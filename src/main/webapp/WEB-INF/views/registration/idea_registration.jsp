@@ -89,7 +89,7 @@ body{
 var i=1;
 function addfile(){
 	i++;
-	$('#upimgdiv').append("<input type='file' id='upimg"+i+"' name='imgs' onchange='addfile()' accept='image/gif, image/jpeg, image/png'>");
+	$('#upimgdiv').append("<input type='file' id='upimg"+i+"' name='imgs' accept='image/gif, image/jpeg, image/png'>");
     //var targetdiv=document.getElementById("uploaddiv");
     //targetdiv.innerHTML+="<input type='file' name='imgs' oncellchange='addfile()' accept='image/gif, image/jpeg, image/png'>";
     

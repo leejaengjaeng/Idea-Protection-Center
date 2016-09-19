@@ -77,7 +77,7 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 			String fileType=rs.makeimageFile(files.get(i),today ,uv.getId(),rv.getRid());
 			HashMap<String,String> map = new HashMap<String,String>();
 			map.put("start_rid", Integer.toString(rv.getRid()));
-			map.put("file_path", "/resource/uploadimgs/inventor/"+uv.getId()+"/"+today+"."+fileType);
+			map.put("file_path", "/resources/uploadimgs/inventor/"+uv.getId()+"/"+today+"."+fileType);
 			regisfilemapper.makeFile(map);
 		}
 		return "home/index";

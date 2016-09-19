@@ -109,8 +109,8 @@ var tmpSave = function(role)
 	if(role=="inventor")
 	{
 		data['role'] = "inventor";
-		data['typeOfInvent'] = $('#RegtypeOfInvent').children("input").val();
-		data['title'] = $('#RegTitle').children("input").val();
+		data['typeOfInvent'] = $('#RegTypeOfInvent').children('input').val();
+		data['title'] = $('#RegTitle').children('input').val();
 		data['summary'] = $('#RegSummary').children("textarea").val();
 		data['whyInvent'] = $('#RegWhyInvent').children("textarea").val();
 		data['problem'] = $('#RegProblem').children("textarea").val();
@@ -135,8 +135,6 @@ var tmpSave = function(role)
 	{
 		data['role'] = "error";
 	}
-	
-	console.log(data);
 
     $.ajax({
 		url : "/tmpSave",
@@ -172,8 +170,8 @@ var ideaSave = function(role)
 	if(role=="inventor")
 	{
 		data['role'] = role;
-		data['typeOfInvent'] = $('#RegtypeOfInvent').children("textarea").val();
-		data['title'] = $('#RegTitle').children("textarea").val();
+		data['typeOfInvent'] = $('#RegTypeOfInvent').children('input').val();
+		data['title'] =	$('#RegTitle').children('input').val();
 		data['summary'] = $('#RegSummary').children("textarea").val();
 		data['whyInvent'] = $('#RegWhyInvent').children("textarea").val();
 		data['problem'] = $('#RegProblem').children("textarea").val();
@@ -199,8 +197,6 @@ var ideaSave = function(role)
 		alert(role);
 		data['role'] = "error";
 	}
-	
-	console.log(data);
 
     $.ajax({
 		url : "/ideaSave",
@@ -210,10 +206,11 @@ var ideaSave = function(role)
  	    success:function(retVal)
  	    {
  	    	alert(retVal);
+ 			location.href ="/mainPage";
  	    },
  	    error: function(request,status,error)
 		{
- 			//alert('저장에 실패하였습니다.')
+ 			alert('저장에 실패하였습니다')
 			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		}
 	});	
@@ -233,7 +230,7 @@ var showClickedList = function(rid)
 			{
 				var result = retVal.item;
 				$('#RegTypeOfInvent').children('input').attr('value',result.typeOfInvent);
-				$('#RegTitle').children('textarea').text(result.title);
+				$('#RegTitle').children('input').attr('value',result.title);
 				$('#RegSummary').children('textarea').text(result.summary);
 				$('#RegWhyInvent').children('textarea').text(result.whyInvent);
 				$('#RegProblem').children('textarea').text(result.problem);

@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ipc.dao.RegistrationDao;
+import com.ipc.dao.UserDao;
 import com.ipc.service.SignUpService;
 import com.ipc.vo.RegistrationPatentVo;
+import com.ipc.vo.adminListVo;
 import com.ipc.vo.userVo;
 
 @Controller
@@ -28,6 +30,8 @@ public class MainController {
 	HttpSession session;
 	@Autowired
 	RegistrationDao regDao;
+	@Autowired
+	UserDao usermapper;
 	
 	private static final String roleAdmin = "ROLE_ADMIN";
 	private static final String roleInventor = "ROLE_INVENTOR";
@@ -63,7 +67,7 @@ public class MainController {
 				{
 					return "redirect:/";			
 				}
-
+				
 				model.addAttribute("processList",processList);
 				return "user/userMain";
 
@@ -78,11 +82,13 @@ public class MainController {
 		}
 	}
 	
-	@RequestMapping("/admin")
-	@ResponseBody
-	public String admin()
+	@RequestMapping("/IPC_adminPage")
+	public String admin2(Model model)
 	{
-		return "test Admin";
+		//권한 검사하기
+		List<adminListVo> ideaList = regDao.adminGetIdeaList();
+		model.addAttribute("ideaList", ideaList);
+		return "admin/admin_management";
 	}
 
 	

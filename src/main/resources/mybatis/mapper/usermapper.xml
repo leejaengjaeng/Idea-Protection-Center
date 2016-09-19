@@ -9,7 +9,7 @@
         SELECT * FROM user where uid = #{uid}
     </select>
     <insert id="makeuser" parameterType="Hashmap">
-    	insert into user(id,pw,phone,email,role,name,is_member) values (#{id},#{pw},#{phone},#{email},#{role},#{name},#{is_member})
+    	insert into user(id,pw,phone,email,role,name,is_member,profileimg) values (#{id},#{pw},#{phone},#{email},#{role},#{name},#{is_member},#{profileimg})
     </insert>
     <insert id="makelawyer" parameterType="String">
     	insert into patientent_lawyer(uid,license_scan_img,license_number) values (#{uid},#{license_scan_img},#{license_number})

@@ -1,18 +1,19 @@
-CREATE TABLE `idea_pc`.`user` (
-  `uid` INT NOT NULL AUTO_INCREMENT,
-  `id` VARCHAR(45) NOT NULL,
-  `pw` VARCHAR(45) NOT NULL,
-  `name` VARCHAR(45) NOT NULL,
-  `phone` VARCHAR(45) NULL,
-  `addr1` VARCHAR(45) NULL,
-  `addr2` VARCHAR(45) NULL,
-  `addr3` VARCHAR(45) NULL,
-  `email` VARCHAR(45) NULL,
-  `role` VARCHAR(45) NULL,
-  `is_member` VARCHAR(45) NULL,
-  PRIMARY KEY (`uid`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+CREATE TABLE `user` (
+  `uid` int(11) NOT NULL AUTO_INCREMENT,
+  `id` varchar(45) NOT NULL,
+  `pw` varchar(45) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `phone` varchar(45) DEFAULT NULL,
+  `addr1` varchar(45) DEFAULT NULL,
+  `addr2` varchar(45) DEFAULT NULL,
+  `addr3` varchar(45) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `role` varchar(45) DEFAULT NULL,
+  `is_member` varchar(45) DEFAULT NULL,
+  `profileimg` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`uid`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+
 
 
 CREATE TABLE `idea_pc`.`patientent_lawyer` (

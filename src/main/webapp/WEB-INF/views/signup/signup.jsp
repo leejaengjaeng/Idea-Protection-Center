@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -43,10 +43,10 @@ function checkid(){
 	    headers: headers,
 	    data : data,
 	    success: function(data) {
-	        alert("¼º°ø:"+data.KEY);
+	        alert("ì„±ê³µ:"+data.KEY);
 	        if (data.KEY=="YES"){
 	        	//document.signupform.id.readOnly=true;
-	        	var q=confirm(id+"´Â »ç¿ëÇÒ ¼ö ÀÖ´Â ¾ÆÀÌµğ ÀÔ´Ï´Ù. »ç¿ëÇÏ½Ã°Ú½À´Ï±î?")
+	        	var q=confirm(id+"ëŠ” ì‚¬ìš©í•  ìˆ˜ ìˆëŠ” ì•„ì´ë”” ì…ë‹ˆë‹¤. ì‚¬ìš©í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")
 	        	if(q==true){
 	        		document.signupform.id.readOnly=true;
 	        	}
@@ -56,7 +56,7 @@ function checkid(){
 	        }
 	        else{
 	        	document.getElementById("id").value="";
-	        	alert("Áßº¹µÈ ¾ÆÀÌµğ ÀÔ´Ï´Ù.");
+	        	alert("ì¤‘ë³µëœ ì•„ì´ë”” ì…ë‹ˆë‹¤.");
 	        }
 	        
 	    },
@@ -70,10 +70,10 @@ function checkpwd(){
 	var pwd=document.getElementById("pw").value;
 	var repwd=document.getElementById("repw").value;
 	if(pwd==repwd){
-		document.getElementById("checkpassword").innerHTML="<b>ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÕ´Ï´Ù</b>"
+		document.getElementById("checkpassword").innerHTML="<b>ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•©ë‹ˆë‹¤</b>"
 	}
 	else{
-		document.getElementById("checkpassword").innerHTML="<b>ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö¾Ê½À´Ï´Ù</b>"
+		document.getElementById("checkpassword").innerHTML="<b>ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ì•ŠìŠµë‹ˆë‹¤</b>"
 	}
 }
 function changerole(inputvalue){
@@ -86,18 +86,18 @@ function execute(){
 	var repwd=document.getElementById("repassword");
 	var id=document.getElementById("id");
 	if(pwd.value!=repwd.value){
-		alert("ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.");
+		alert("ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 		pwd.value="";
 		repwd.value="";
 		pwd.focus();
 		return false;
 	}
 	if(id.readOnly==false){
-		alert("¾ÆÀÌµğ Áßº¹È®ÀÎÀ» ÇØÁÖ¼¼¿ä");
+		alert("ì•„ì´ë”” ì¤‘ë³µí™•ì¸ì„ í•´ì£¼ì„¸ìš”");
 		return false;
 	}
 	if(id.value==""){
-		alert("¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+		alert("ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì„¸ìš”");
 		return false;
 	}
 	return true;
@@ -108,44 +108,51 @@ function execute(){
 <body>
 	<c:import url="/WEB-INF/views/import/header.jsp"/>
 	<div id="wrap_form">
-		<h1>È¸¿ø°¡ÀÔ</h1>
-		<form action="/signup/inputsignup" method="POST" name="signupform" onsubmit="return execute();">
+		<h1>íšŒì›ê°€ì…</h1>
+
+		<form action="/signup/inputsignup" method="POST" name="signupform" onsubmit="return execute();" enctype="multipart/form-data">
 			<input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}" />
-			<button type="button" class="hill on" data-no="0" onclick='changerole("1")'>¹ß¸íÀÚ È¸¿ø</button>
-			<button type="button" class="hill" data-no="1" onclick='changerole("2")'>º¯¸®»ç</button>			
+			<button type="button" class="hill on" data-no="0" onclick='changerole("1")'>ë°œëª…ì íšŒì›</button>
+			<button type="button" class="hill" data-no="1" onclick='changerole("2")'>ë³€ë¦¬ì‚¬</button>			
 			<input type="text" id="role" name="role" value="1" hidden>		
 			<table>
 				<tr>
 					<td colspan="2" style="text-align:center; padding-left: 0;" class="join_img_td">						
 						<div>
+<<<<<<< HEAD
 							<img src="/resources/image/inventor_profile.jpg" alt="img" id="blah"><br>
 							<input type="file" id="imgInp">
 							<span>´ëÇ¥»çÁøÀ» ¼³Á¤ÇØÁÖ¼¼¿ä</span>
+=======
+							<img src="#" alt="img" id="blah"><br>
+							<input type="file" id="imgInp" name="profileImg">
+							<span>ëŒ€í‘œì‚¬ì§„ì„ ì„¤ì •í•´ì£¼ì„¸ìš”</span>
+>>>>>>> baba8eb44d068751ccd063619d19ce66fca124f5
 						</div>
 					</td>
 				</tr>
 				<tr>
-					<td>¾ÆÀÌµğ</td>
-					<td><input type="text" name="id" id="id"><button type="button" onclick="checkid()">Áßº¹È®ÀÎ</button></td>
+					<td>ì•„ì´ë””</td>
+					<td><input type="text" name="id" id="id"><button type="button" onclick="checkid()">ì¤‘ë³µí™•ì¸</button></td>
 				</tr>
 				<tr>
-					<td>ºñ¹Ğ¹øÈ£</td>
+					<td>ë¹„ë°€ë²ˆí˜¸</td>
 					<td><input type="password" name="pw" id="pw"><div id="checkpassword"></div></td>
 				</tr>
 				<tr>
-					<td>ºñ¹Ğ¹øÈ£ È®ÀÎ</td>
+					<td>ë¹„ë°€ë²ˆí˜¸ í™•ì¸</td>
 					<td><input type="password" id="repw" onKeyUp='checkpwd()'></td>
 				</tr>
 				<tr>
-					<td>ÀÌ¸§</td>
+					<td>ì´ë¦„</td>
 					<td><input name="name" id="name"></td>
 				</tr>
 				<tr>
-					<td>ÀÌ¸ŞÀÏ</td>
+					<td>ì´ë©”ì¼</td>
 					<td>
 						<input type="text" name="email1" id="email1">
 						<select name="emailMiddle" onChange=changeEmail(this.value); id="email_chg">
-							<option value="" selected>ÀÌ¸ŞÀÏ¼±ÅÃ</option>
+							<option value="" selected>ì´ë©”ì¼ì„ íƒ</option>
 							<option value="@naver.com">@ naver.com</option>
 							<option value="@hanmail.com">@ hanmail.com</option>
 							<option value="@daum.net">@ daum.net</option>
@@ -154,17 +161,17 @@ function execute(){
 							<option value="@hotmail.com">@ hotmail.com</option>
 							<option value="@dreamwiz.com">@ dreamwiz.com</option>
 							<option value="@korea.com">@ korea.com</option>
-							<option value="1">Á÷Á¢ÀÔ·Â</option>							
+							<option value="1">ì§ì ‘ì…ë ¥</option>							
 						</select>
 						<input type="text" name="email2" id="email2" style="display:none;">
 					</td>
 				</tr>				
 				<tr id="hide">
-					<td>º¯¸®»ç ¹øÈ£</td>
+					<td>ë³€ë¦¬ì‚¬ ë²ˆí˜¸</td>
 					<td><input type="text" name="license_number" id="license_number"></td>
 				</tr>				
 			</table>
-			<input type="submit" value="°¡ÀÔ" id="submit">
+			<input type="submit" value="ê°€ì…" id="submit">
 		</form>
 	</div>
 	<c:import url="/WEB-INF/views/import/footer.jsp"/>
