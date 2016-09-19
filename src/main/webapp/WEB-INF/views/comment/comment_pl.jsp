@@ -17,7 +17,7 @@
 <script>
 $(document).ready(function()
 {
-	if(${isFirst} == "true")
+	if("${isFirst}" == "true")
 	{
 		hideBeforeCmt();
 	}

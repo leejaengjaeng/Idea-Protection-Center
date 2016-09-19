@@ -17,14 +17,11 @@
 <script>
 $(document).ready(function()
 {
-	//isFirst안썼넹
-
-	if(${isFirst} == "true")
+	if("${isFirst}" == "true")
 	{
 		hideBeforeCmt();
 		hideCurrentCmt();
 	}
-
 	/*
 		//배치 변경
 		var txtBoxList = $('.txt_box');
