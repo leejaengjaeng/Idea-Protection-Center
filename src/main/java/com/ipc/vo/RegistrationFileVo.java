@@ -4,7 +4,7 @@ public class RegistrationFileVo {
 	int rfid;
 	int start_rid;
 	int rid;
-	int file_path;
+	String file_path;
 	
 	public int getRfid() {
 		return rfid;
@@ -24,10 +24,10 @@ public class RegistrationFileVo {
 	public void setRid(int rid) {
 		this.rid = rid;
 	}
-	public int getFile_path() {
+	public String getFile_path() {
 		return file_path;
 	}
-	public void setFile_path(int file_path) {
+	public void setFile_path(String file_path) {
 		this.file_path = file_path;
 	}
 	

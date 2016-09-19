@@ -10,181 +10,89 @@
 	<meta name="_csrf_header" content="${_csrf.headerName}" />
     <title>Idea Protection Center</title>
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>  
+    <script src="/resources/common/js/comment.js"></script>  
+    
     <link href="/resources/common/css/style.css" rel="stylesheet">
-    <link href="/resources/common/css/index.css" rel="stylesheet">    
+    <link href="/resources/common/css/index.css" rel="stylesheet">
 <script>
 $(document).ready(function()
 {
-	//권한에 따라 보여주기
-	if("${user}" == "pl")
+	//role에 따라 입력 제한
+	if("${user}" == "inventor")
 	{
-		var hideEl = document.getElementsByClassName('before_cmt')
-		for(var i =0; i <hideEl.length ; i++)
-			hideEl[i].style.display="none";
+		//0 고객 작성중(변리사 작성 완료), 1 고객 작성 완료
+		if("${item.getIscomplete()}" == 0)
+			enableInput();
+		else
+		{
+			disableInput();
+			alert('변리사의 답변을 기다려주세요');
+		}
 	}
-	else if("${user}" == "inventor")
+	else if("${user}" == "pl")
 	{
-		var hideEl = document.getElementsByClassName('box_comment1')
-		for(var i =0; i <hideEl.length ; i++)
-			hideEl[i].style.display="none";
+		if("${item.getIscomplete()}" == 1)
+			enableInput();
+		else 
+		{
+			disableInput();
+			alert('고객이 작성을 완료하기를 기다려주세요');			
+		}
 	}
 	else
 	{
 		location.href="/authError";
 	}	
 	
-	//진행내역에 따라 내용 바꿔주기
+	//폼 버튼 이벤트 
+	$('#tmpSave').on("click",function()
+	{
+		tmpSave("${user}");
+	});
+	$('#agree').on("click",function()
+	{
+		ideaSave("${user}");
+	});
+
+	//클릭에 따라 내용 바꿔주기
 	$('#IdeaModifyList').on("click","tr",function()
 	{
+		//IdeaModifyList 내부의 tr중 clickedIdea를 가지고있는 요소의 clickedIdea를 제거 
+		$(this).parent().find('.clickedIdea').removeClass('clickedIdea');
 		var rid = $(this).children('input').attr('value');
+		
+		if(rid == ${lastRid} && ("${item.getIscomplete()}" == 0))
+		{
+			enableInput();
+		}
+		else
+		{
+			disableInput();
+		}
+
+		//현재 선택된 요소(tr)에 clickedIdea를 붙임
+		$(this).addClass('clickedIdea');
+		
 		showClickedList(rid);	
 	})
 
-	//예시 
+	//작성 예시 버튼 이벤트
     $(".txt_box > button").click(function(){
         $(this).nextAll(".hiding_box").fadeIn();
     });
     $(".close_btn").click(function(){
+    	
         $(this).parents(".hiding_box").fadeOut();
     });
 
-	//폼 버튼 이벤트 
-	$('#tmpSave').on("click",function()
-	{
-		tmpSave();
-	});
-	$('#agree').on("click",function()
-	{
-		alert('저장 구현중');
-	});
 });
 
-//임시 저장
-var tmpSave = function()
-{
-	
-	var csrfToken = $("meta[name='_csrf']").attr("content"); 
-	var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
-	var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
-	var data = {};
-	var headers = {};
-
-	data[csrfParameter] = csrfToken;
-    headers[csrfHeader] = csrfToken;
-    
-    
-	//발명가인 경우 
-	if("${user}"=="inventor")
-	{
-		data['role'] = "inventor";
-		data['rid'] = $('#currentPosition').val();
-		data['typeOfInvent'] = $('#RegtypeOfInvent').children("input").val();
-		data['title'] = $('#RegTitle').children("input").val();
-		data['summary'] = $('#RegSummary').children("textarea").val();
-		data['whyInvent'] = $('#RegWhyInvent').children("textarea").val();
-		data['problem'] = $('#RegProblem').children("textarea").val();
-		data['solution'] = $('#RegSolution').children("textarea").val();
-		data['effect'] = $('#RegEffect').children("textarea").val();
-		data['core_element'] = $("#RegCore_Element").children("textarea").val();
-	}
-	//변리사인 경우
-	else if("${user}"=="pl")
-	{
-		data['role'] = "pl";
-		data['rid'] = $('#currentPosition').val();
-		data['re_typeOfInvent'] = $('#AfterCommentTypeOfInvent').children("input").val();
-		data['re_title'] = $('#AfterCommentTitle').children("input").val();
-		data['re_summary'] = $('#AfterCommentSummary').children("textarea").val();
-		data['re_whyInvent'] = $('#AfterCommentWhyInvent').children("textarea").val();
-		data['re_problem'] = $('#AfterCommentProblem').children("textarea").val();
-		data['re_solution'] = $('#AfterCommentSolution').children("textarea").val();
-		data['re_effect'] = $('#AfterCommentEffect').children("textarea").val();
-		data['re_core_element'] = $('#AfterCommentCore_Element').children("textarea").val();
-	}
-	else
-	{
-		data['role'] = "error";
-	}
-	
-	console.log(data);
-
-    $.ajax({
-		url : "/tmpSave",
-		type:"POST",
-		headers: headers,
- 	    data : data,
- 	    success:function(retVal)
- 	    {
- 			alert('임시 저장 완료')
- 	    },
- 	    error: function(request,status,error)
-		{
- 			alert('임시 저장에 실패하였습니다.')
-			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-		}
-	});	
- 	
+var i=0;
+function addFile(){
+	$('#inputFileDiv').append("<div style='float:left'><img style='width:200px' src='/resources/image/plus.png' alt='img' id='"+i+"'><br><input type='file' id='imgInp"+i+"' name='addupimgs' onchange='readURL(this,"+i+")' name='profileImg' style='width:30%'></div>");
+	i++;
 }
 
-
-//진행내역에 따라 내용 바꿔주기
-var showClickedList = function(rid)
-{
-	$.ajax({
-		url : "/detailByRid/"+rid,
-		type:"GET",
-		success:function(retVal)
-		{
-			
-			if(retVal != "")
-			{
-				var result = retVal.item;
-				$('#currentPosition').val(result.rid);
-				$('#RegTypeOfInvent').children('input').val(result.typeOfInvent);
-				$('#RegTitle').children('textarea').text(result.title);
-				$('#RegSummary').children('textarea').text(result.summary);
-				$('#RegWhyInvent').children('textarea').text(result.whyInvent);
-				$('#RegProblem').children('textarea').text(result.problem);
-				$('#RegSolution').children('textarea').text(result.solution);
-				$('#RegEffect').children('textarea').text(result.effect);
-				$('#RegCore_Element').children('textarea').text(result.core_element);
-			
-				if(retVal.role == "inventor")
-				{
-					var comment = retVal.beforeComment;
-					if(comment == null)
-					{
-						$('#BeforeCommentTypeOfInvent').children('input').val("이전 코멘트");
-						$('#BeforeCommentTitle').children('textarea').text("이전 코멘트");
-						$('#BeforeCommentSummary').children('textarea').text("이전 코멘트");
-						$('#BeforeCommentWhyInvent').children('textarea').text("이전 코멘트");
-						$('#BeforeCommentProblem').children('textarea').text("이전 코멘트");
-						$('#BeforeCommentSolution').children('textarea').text("이전 코멘트");
-						$('#BeforeCommentEffect').children('textarea').text("이전 코멘트");
-						$('#BeforeCommentCore_Element').children('textarea').text("이전 코멘트");
-					}
-					else
-					{
-						$('#BeforeCommentTypeOfInvent').children('input').val(comment.re_typeOfInvent);
-						$('#BeforeCommentTitle').children('textarea').text(comment.re_title);
-						$('#BeforeCommentSummary').children('textarea').text(comment.re_summary);
-						$('#BeforeCommentWhyInvent').children('textarea').text(comment.re_whyInvent);
-						$('#BeforeCommentProblem').children('textarea').text(comment.re_problem);
-						$('#BeforeCommentSolution').children('textarea').text(comment.re_solution);
-						$('#BeforeCommentEffect').children('textarea').text(comment.re_effect);
-						$('#BeforeCommentCore_Element').children('textarea').text(comment.re_core_element);
-					}
-				}
-			}
-			else
-				alert('ajax Error');
-		},
-		error: function(request,status,error)
-		{
-		       //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-		}
-	});	
-}
 </script>
 </head>
 <body>
@@ -193,7 +101,7 @@ var showClickedList = function(rid)
         <section>            
            <nav>
                 <div id="profile">
-                    <img src="#" alt="profile">
+                    <img src="/resources/image/attonrney_profile.jpg" alt="profile">
                     <h4>${sessionScope.currentUser.getName()} 회원님</h4>
                     <span>${sessionScope.currentUser.getId()}</span>
                 </div>
@@ -205,7 +113,7 @@ var showClickedList = function(rid)
                 </div>
                 <div id="nav_benner">
                     <ul>
-                        <li>
+                        <li onclick="loaction.href='/registration/addidea'">
                             <img src="/resources/image/index_patent_1.jpg" alt="benner1">
                         </li>
                         <li>
@@ -227,39 +135,69 @@ var showClickedList = function(rid)
             <article class="modify_log">                    
                 <h1>아이디어수정내역</h1>   
                 <table id="IdeaModifyList">
-                    <c:forEach items="${processList}" var="list" varStatus="status">
-						<tr>
-							<input type="hidden" value="${list.getRid()}"/>
-							<c:if test="${status.index == 0}">
-								<td class="title_td">아이디어 등록(초안)</td>
-							</c:if>
-							<c:if test="${status.index > 0}">
-								<td class="title_td">${status.index}차 전문가 검토 및 수정안</td>
-	                        </c:if>
-	                        <td class="date_td">${list.getRegistration_date()}</td>
-	                    </tr>                    
-					</c:forEach>
-                </table>                             
+                	<c:forEach items="${processList}" var="list" varStatus="status">
+						<c:choose>
+						<%-- 목록이 하나인 경우 --%>
+							<c:when test="${status.first and status.last }">
+								<tr class="clickedIdea">
+									<input type="hidden" value="${list.getRid()}"/>
+									<td class="title_td">아이디어 등록(초안)</td>
+							       <td class="date_td">${list.getRegistration_date()}</td>
+			                	</tr>
+							</c:when>
+						<%-- 목록이 하나가 아닌 경우 --%>
+							<c:when test="${status.first}">
+								<tr>
+									<input type="hidden" value="${list.getRid()}"/>
+									<td class="title_td">아이디어 등록(초안)</td>
+							       <td class="date_td">${list.getRegistration_date()}</td>
+			                	</tr>
+							</c:when>
+							<c:when test="${status.last}">
+								<tr class="clickedIdea">
+									<input type="hidden" value="${list.getRid()}"/>
+									<td class="title_td">${status.index}차 전문가 검토 및 수정안</td>
+			                        <td class="date_td">${list.getRegistration_date()}</td>
+			                  	</tr>
+							</c:when>
+							<c:otherwise>	
+								<tr>
+									<input type="hidden" value="${list.getRid()}"/>
+									<td class="title_td">${status.index}차 전문가 검토 및 수정안</td>
+			                        <td class="date_td">${list.getRegistration_date()}</td>
+			                  	</tr>
+			               	</c:otherwise>
+			          	</c:choose>
+					</c:forEach>		
+				</table>                             
             </article>  
             <article style="width: 75%;">
                <input id="currentPosition" type="hidden" value="${item.getRid()}"/>
                <div class="txt_box">
-                    <h2>발명분야</h2>   
-                    <button>작성 예시</button>
-                    <div id="BeforeCommentTypeOfInvent" class="before_cmt">
-                        <textarea name="BeforeCommentTypeOfInvent"  disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
-                    </div>             
-                    <div id="RegtypeOfInvent" class="box_before1">                        
-                        <input type="text" value="${item.getTypeOfInvent() }" />
-                    </div>
-                    <div class="box_comment1">
+<!-- 1. 발명 분야 -->
+                 	<h2>발명분야</h2> <button>작성 예시</button>
+                    
+                    <div id="BeforeCommentTypeOfInvent" class="cmt_field before_cmt">
+                        <textarea disabled="disabled" class="disabled"/>${beforeComment.getRe_typeOfInvent()}</textarea>
                         <div class="img_comt">
-                            <img src="/resources/image/comment.png" alt="cmt_img">
-                        </div> 
-                        <div id="AfterCommentTypeOfInvent" class="comment1_txt">                            
-                            <textarea name="AfterCommentTypeOfInvent" placeholder="Comment..."></textarea>
+                            <img src="/resources/image/inventor3.png" alt="prev_userImg">
                         </div>
+                    </div>             
+           			
+           			<div id="RegTypeOfInvent" class="cmt_field current_cmt">                        
+                        <div class="img_comt">
+                            <img src="/resources/image/inventor3.png" alt="current_userImg">
+                        </div>
+                        <textarea disabled="disabled" class="disabled"/>${item.getTypeOfInvent() }</textarea>
+                    </div>             
+           
+                    <div id="AfterCommentTypeOfInvent" class="cmt_field after_cmt">
+                        <div class="img_comt">
+                            <img src="/resources/image/inventor3.png" alt="after_userImg">
+                        </div> 
+                        <textarea placeholder="Comment..." disabled="disabled" class="disabled"></textarea>
                     </div>
+                    
                     <div class="hiding_box">
                        <div class="hiding_box_header">
                            <h3>저작물 명칭</h3>
@@ -271,24 +209,31 @@ var showClickedList = function(rid)
                     </div>
                 </div>
                 <div class="hr"></div>
-                 <div class="txt_box">
-                    <h2>제목</h2>
-                    <button>작성 예시</button>
-                    <div id="BeforeCommentTitle" class="before_cmt">
-                        <textarea name="BeforeCommentTitle" disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
-                    </div>
-                    <div id="RegTitle" class="box_before1">                        
-                        <input type="text" name="RegTitle" value="${item.getTitle() }"/>
-                    </div>
-                    <div class="box_comment1">
+<!-- 2. 제목 -->
+                <div class="txt_box">
+                    <h2>제목</h2> <button>작성 예시</button>
+                   
+                    <div id="BeforeCommentTitle" class="cmt_field before_cmt">
+                        <textarea disabled="disabled" class="disabled"/>${beforeComment.getRe_title()}</textarea>
                         <div class="img_comt">
-                            <img src="/resources/image/comment.png" alt="cmt_img">
-                        </div> 
-                        <div id="AfterCommentTitle" class="comment1_txt">
-                            
-                            <textarea name="AfterCommentTitle" placeholder="Comment..." disabled="disabled" class="disabled"></textarea>
+                            <img src="/resources/image/inventor3.png" alt="prev_userImg">
                         </div>
+                    </div>             
+           			
+           			<div id="RegTitle" class="cmt_field current_cmt">                        
+                        <div class="img_comt">
+                            <img src="/resources/image/inventor3.png" alt="current_userImg">
+                        </div>
+                        <textarea disabled="disabled" class="disabled"/>${item.getTitle() }</textarea>
+                    </div>             
+           
+                    <div id="AfterCommentTitle" class="cmt_field after_cmt">
+                        <div class="img_comt">
+                            <img src="/resources/image/inventor3.png" alt="after_userImg">
+                        </div> 
+                        <textarea placeholder="Comment..." disabled="disabled" class="disabled"></textarea>
                     </div>
+                    
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>저작물 명칭</h3>
@@ -300,52 +245,31 @@ var showClickedList = function(rid)
                     </div>
                 </div>
                 <div class="hr"></div>
-                <div class="txt_box">
-                    <h2>요약</h2>
-                    <button>작성 예시</button>
-                    <div id="BeforeCommentSummary" class="before_cmt">
-                        <textarea name="BeforeCommentSummary" disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
-                    </div>                    
-                    <div id="RegSummary" class="box_before1_b">   
-	                    <textarea name="RegSummary">${item.getSummary()}</textarea>                     
-                    </div>
-                    <div class="box_comment1">
+<!-- 3. 요약 -->
+			    <div class="txt_box">
+                    <h2>요약</h2> <button>작성 예시</button>
+        
+                    <div id="BeforeCommentSummary" class="cmt_field before_cmt">
+                        <textarea disabled="disabled" class="disabled"/>${beforeComment.getRe_summary()}</textarea>
                         <div class="img_comt">
-                            <img src="/resources/image/comment.png" alt="cmt_img">
-                        </div> 
-                        <div id="AfterCommentSummary" class="comment1_txt">
-                            
-                            <textarea name="AfterCommentSummary" placeholder="Comment..."></textarea>
+                            <img src="/resources/image/inventor3.png" alt="prev_userImg">
                         </div>
-                    </div>
-                    <div class="hiding_box">
-                        <div class="hiding_box_header">
-                            <h3>저작물 명칭</h3>
-                            <img src="/resources/image/close.png" alt="close" class="close_btn"> 
-                        </div>  
-                        <div class="hiding_box_content">
-                            <span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
-                        </div>                                                   
-                    </div>
-                </div>
-                <div class="txt_box">
-                    <h2>필요이유</h2>
-                    <button>작성 예시</button>
-                    <div id="BeforeCommentWhyInvent" class="before_cmt">
-                        <textarea name="BeforeCommentWhyInvent" disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
-                    </div>
-                    <div id="RegWhyInvent" class="box_before1_b">                        
-                         <textarea name="RegSummary">${item.getSummary()}</textarea>                     
-                   </div>
-                    <div class="box_comment1">
+                    </div>             
+           			
+           			<div id="RegSummary" class="cmt_field current_cmt">                        
                         <div class="img_comt">
-                            <img src="/resources/image/comment.png" alt="cmt_img">
-                        </div> 
-                        <div id="AfterCommentWhyInvent" class="comment1_txt">
-                            
-                            <textarea placeholder="Comment..."></textarea>
+                            <img src="/resources/image/inventor3.png" alt="current_userImg">
                         </div>
+                        <textarea disabled="disabled" class="disabled"/>${item.getSummary()}</textarea>
+                    </div>             
+           
+                    <div id="AfterCommentSummary" class="cmt_field after_cmt">
+                        <div class="img_comt">
+                            <img src="/resources/image/inventor3.png" alt="after_userImg">
+                        </div> 
+                        <textarea placeholder="Comment..." disabled="disabled" class="disabled"></textarea>
                     </div>
+                   
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>저작물 명칭</h3>
@@ -357,24 +281,67 @@ var showClickedList = function(rid)
                     </div>
                 </div>
                 <div class="hr"></div>
+<!-- 4. 필요 이유 -->
                 <div class="txt_box">
-                    <h2>기존제품설명 및 문제점</h2>
-                    <button>작성 예시</button>
-                    <div id="BeforeCommentProblem" class="before_cmt">
-                    	<textarea name="BeforeCommentProblem" disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
-                    </div>
-                    <div id="RegProblem" class="box_before1_b">                        
-                         <textarea name="RegSummary">${item.getSummary()}</textarea>
-                    </div>
-                    <div class="box_comment1">
+                    <h2>필요이유</h2> <button>작성 예시</button>
+                    
+                    <div id="BeforeCommentWhyInvent" class="cmt_field before_cmt">
+                        <textarea disabled="disabled" class="disabled"/>${beforeComment.getRe_whyInvent()}</textarea>
                         <div class="img_comt">
-                            <img src="/resources/image/comment.png" alt="cmt_img">
-                        </div> 
-                        <div id="AfterCommentProblem" class="comment1_txt">
-                            
-                            <textarea name ="AfterCommentProblem" placeholder="Comment..."></textarea>
+                            <img src="/resources/image/inventor3.png" alt="prev_userImg">
                         </div>
+                    </div>             
+           			
+           			<div id="RegWhyInvent" class="cmt_field current_cmt">                        
+                        <div class="img_comt">
+                            <img src="/resources/image/inventor3.png" alt="current_userImg">
+                        </div>
+                        <textarea disabled="disabled" class="disabled"/>${item.getWhyInvent()}</textarea>
+                    </div>             
+           
+                    <div id="AfterCommentWhyInvent" class="cmt_field after_cmt">
+                        <div class="img_comt">
+                            <img src="/resources/image/inventor3.png" alt="after_userImg">
+                        </div> 
+                        <textarea placeholder="Comment..." disabled="disabled" class="disabled"></textarea>
                     </div>
+                   
+           			<div class="hiding_box">
+                        <div class="hiding_box_header">
+                            <h3>저작물 명칭</h3>
+                            <img src="/resources/image/close.png" alt="close" class="close_btn"> 
+                        </div>  
+                        <div class="hiding_box_content">
+                            <span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
+                        </div>                                                   
+                    </div>
+                </div>
+                <div class="hr"></div>
+<!-- 5. 기존제품 설명 및 문제점 -->
+                <div class="txt_box">
+                    <h2>기존제품설명 및 문제점</h2> <button>작성 예시</button>
+                    
+       				<div id="BeforeCommentProblem" class="cmt_field before_cmt">
+                        <textarea disabled="disabled" class="disabled"/>${beforeComment.getRe_problem()}</textarea>
+                        <div class="img_comt">
+                            <img src="/resources/image/inventor3.png" alt="prev_userImg">
+                        </div>
+                    </div>             
+           			
+           			<div id="RegProblem" class="cmt_field current_cmt">                        
+                        <div class="img_comt">
+                            <img src="/resources/image/inventor3.png" alt="current_userImg">
+                        </div>
+                        <textarea disabled="disabled" class="disabled"/>${item.getProblem()}</textarea>
+                    </div>             
+           
+                    <div id="AfterCommentProblem" class="cmt_field after_cmt">
+                        <div class="img_comt">
+                            <img src="/resources/image/inventor3.png" alt="after_userImg">
+                        </div> 
+                        <textarea placeholder="Comment..." disabled="disabled" class="disabled"></textarea>
+                    </div>
+                    
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>저작물 명칭</h3>
@@ -386,24 +353,31 @@ var showClickedList = function(rid)
                     </div>
                 </div>
                 <div class="hr"></div>
+<!-- 6. 문제 해결 방법 -->
                 <div class="txt_box">
-                    <h2>문제해결방법</h2>
-                    <button>작성 예시</button>
-                    <div id="BeforeCommentSolution" class="before_cmt">
-                    	<textarea name="BeforeCommentSolution" disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
-                    </div>
-                    <div id="RegSolution" class="box_before1_b">                        
-                    	<textarea name="RegSummary">${item.getSummary()}</textarea>
-                    </div>
-                    <div class="box_comment1">
+                    <h2>문제해결방법</h2> <button>작성 예시</button>
+                  
+                    <div id="BeforeCommentSolution" class="cmt_field before_cmt">
+                        <textarea disabled="disabled" class="disabled"/>${beforeComment.getRe_solution()}</textarea>
                         <div class="img_comt">
-                            <img src="/resources/image/comment.png" alt="cmt_img">
-                        </div> 
-                        <div id="AfterCommentSolution" class="comment1_txt">
-                            
-                            <textarea name="AfterCommentSolution" placeholder="Comment..."></textarea>
+                            <img src="/resources/image/inventor3.png" alt="prev_userImg">
                         </div>
+                    </div>             
+           			
+           			<div id="RegSolution" class="cmt_field current_cmt">                        
+                        <div class="img_comt">
+                            <img src="/resources/image/inventor3.png" alt="current_userImg">
+                        </div>
+                        <textarea disabled="disabled" class="disabled"/>${item.getSolution()}</textarea>
+                    </div>             
+           
+                    <div id="AfterCommentSolution" class="cmt_field after_cmt">
+                        <div class="img_comt">
+                            <img src="/resources/image/inventor3.png" alt="after_userImg">
+                        </div> 
+                        <textarea placeholder="Comment..." disabled="disabled" class="disabled"></textarea>
                     </div>
+                    
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>저작물 명칭</h3>
@@ -415,24 +389,31 @@ var showClickedList = function(rid)
                     </div>
                 </div>
                 <div class="hr"></div>
+<!-- 7. 발명의 효과 -->
                 <div class="txt_box">
-                    <h2>발명의 효과</h2>
-                    <button>작성 예시</button>
-                    <div id="BeforeCommentEffect" class="before_cmt">
-                   		<textarea name="BeforeCommentEffect" disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
-                    </div>
-                    <div id="RegEffect" class="box_before1_b">                        
-                    	<textarea name="RegSummary">${item.getSummary()}</textarea>
-					</div>
-                    <div class="box_comment1">
+                    <h2>발명의 효과</h2> <button>작성 예시</button>
+                  
+                    <div id="BeforeCommentEffect" class="cmt_field before_cmt">
+                        <textarea disabled="disabled" class="disabled"/>${beforeComment.getRe_effect()}</textarea>
                         <div class="img_comt">
-                            <img src="/resources/image/comment.png" alt="cmt_img">
-                        </div> 
-                        <div id="AfterCommentEffect" class="comment1_txt">
-                           
-                            <textarea name = "AfterCommentEffect" placeholder="Comment..."></textarea>
+                            <img src="/resources/image/inventor3.png" alt="prev_userImg">
                         </div>
+                    </div>             
+           			
+           			<div id="RegEffect" class="cmt_field current_cmt">                        
+                        <div class="img_comt">
+                            <img src="/resources/image/inventor3.png" alt="current_userImg">
+                        </div>
+                        <textarea disabled="disabled" class="disabled"/>${item.getEffect()}</textarea>
+                    </div>             
+           
+                    <div id="AfterCommentEffect" class="cmt_field after_cmt">
+                        <div class="img_comt">
+                            <img src="/resources/image/inventor3.png" alt="after_userImg">
+                        </div> 
+                        <textarea placeholder="Comment..." disabled="disabled" class="disabled"></textarea>
                     </div>
+                    
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>저작물 명칭</h3>
@@ -444,24 +425,31 @@ var showClickedList = function(rid)
                     </div>
                 </div>
                 <div class="hr"></div>
+<!-- 8. 핵심구성요소 -->
                 <div class="txt_box">
-                    <h2>핵심구성요소</h2>
-                    <button>작성 예시</button>
-                    <div id="BeforeCommentCore_Element" class="before_cmt">
-                    	<textarea name="BeforeCommentCore_Element" disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
-                    </div>
-                    <div id="RegCore_Element" class="box_before1_b">                        
-                    	<textarea name="RegSummary">${item.getSummary()}</textarea>
-					</div>
-                    <div class="box_comment1">                    
+                    <h2>핵심구성요소</h2> <button>작성 예시</button>
+                 
+                    <div id="BeforeCommentCore_Element" class="cmt_field before_cmt">
+                        <textarea disabled="disabled" class="disabled"/>${beforeComment.getRe_core_element()}</textarea>
                         <div class="img_comt">
-                            <img src="/resources/image/comment.png" alt="cmt_img">
-                        </div> 
-                        <div id="AfterCommentCore_Element" class="comment1_txt">
-                            
-                            <textarea name ="AfterCommentCore_Element" placeholder="Comment..."></textarea>
+                            <img src="/resources/image/inventor3.png" alt="prev_userImg">
                         </div>
+                    </div>             
+           			
+           			<div id="RegCore_Element" class="cmt_field current_cmt">                        
+                        <div class="img_comt">
+                            <img src="/resources/image/inventor3.png" alt="current_userImg">
+                        </div>
+                        <textarea disabled="disabled" class="disabled"/>${item.getCore_element()}</textarea>
+                    </div>             
+           
+                    <div id="AfterCommentCore_Element" class="cmt_field after_cmt">
+                        <div class="img_comt">
+                            <img src="/resources/image/inventor3.png" alt="after_userImg">
+                        </div> 
+                        <textarea placeholder="Comment..." disabled="disabled" class="disabled"></textarea>
                     </div>
+                    
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>저작물 명칭</h3>
@@ -473,31 +461,43 @@ var showClickedList = function(rid)
                     </div>
                 </div>
                 <div class="hr"></div>
+<!-- 9. 도면 첨부 -->
                 <form id="commentForm">             
 	                <div class="txt_box">
-	                    <h2 style="width:100%">도면첨부</h2>
-	                    <button>작성 예시</button>
-	                    <div id="BeforeCommentCore_Element" class="before_cmt">
-	                    	<textarea name="BeforeCommentCore_Element" disabled="disabled" class="disabled"/> 이전 코멘트</textarea>
-	                    </div>
-	                    <div id="demo_box">
-	                        <div class="demo"></div>
-	                        <div class="demo"></div>
-	                        <div class="demo"></div>
-	                        <div class="demo"></div>
-	                        <div class="demo"></div>
-	                        <div class="demo"></div>                                            
-	                    </div>
-	                    <div class="box_comment1">
+	                    <h2 style="width:100%">도면첨부</h2> <button>작성 예시</button>
+	                    
+	                    <div id="BeforeFileComment" class="cmt_field before_cmt">
+                        	<textarea disabled="disabled" class="disabled"/>넣어야함</textarea>
 	                        <div class="img_comt">
-	                            <img src="/resources/image/comment.png" alt="cmt_img">
-	                        </div> 
-	                        <div id="AfterCommentFiles" class="comment1_txt">
-	                            
-	                            <textarea placeholder="Comment..."></textarea>
+	                            <img src="/resources/image/inventor3.png" alt="prev_userImg">
 	                        </div>
+	                    </div>             
+
+	                    <div id="demo_box">
+		                    <c:forEach items="${imgs}" var="list" varStatus="status">
+			                    <div>
+			                    	<a href="${list.getFile_path()}" id="id${list.getRfid()}" style="clear:both"><img src="${list.getFile_path()}" style="width:200px;padding-left:10px"></a>
+		                        </div>
+		                        <button  style="float:left" type="button" id='btn${list.getRfid()}' onclick="delImg('${list.getFile_path()}','id${list.getRfid()}','btn${list.getRfid()}')">삭제</button>
+		                    </c:forEach>
+		                    <button style="clear:both" type="button" onclick="addFile()">추가</button>
+		                        <div id="inputFileDiv"></div>
+		                        <!--  
+		                        <div class="demo">
+		                        	<input type="file">
+		                        	<img src="/resources/image/plus.png" alt="plus">
+		                        </div>
+		                        -->                                           
+		                </div>
+		                
+		                <div id="AfterCommentFiles" class="cmt_field after_cmt">
+	                        <div class="img_comt">
+	                            <img src="/resources/image/inventor3.png" alt="after_userImg">
+	                        </div> 
+	                        <textarea placeholder="Comment..." disabled="disabled" class="disabled"></textarea>
 	                    </div>
-	                    <div class="hiding_box">
+	                    
+		                <div class="hiding_box">
 	                        <div class="hiding_box_header">
 	                            <h3>저작물 명칭</h3>
 	                            <img src="/resources/image/close.png" alt="close" class="close_btn"> 
@@ -510,12 +510,16 @@ var showClickedList = function(rid)
 	                <div class="hr"></div>           
 	                <div id="fin"> 
 	                    <button type="button" id="tmpSave">임시저장</button>
-	                    <button type="button" id="agree">코멘트작성</button>                    
+	                    <button type="button" id="agree">저장</button>                    
 	                </div>
 	            </form>
             </article>
         </section>
     </div>
     <c:import url="/WEB-INF/views/import/footer.jsp"/>
+<script>
+	 
+	
+</script>
 </body>
 </html>

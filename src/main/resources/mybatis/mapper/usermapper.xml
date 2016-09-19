@@ -9,7 +9,7 @@
         SELECT * FROM user where uid = #{uid}
     </select>
     <insert id="makeuser" parameterType="Hashmap">
-    	insert into user(id,pw,phone,email,role,name,is_member) values (#{id},#{pw},#{phone},#{email},#{role},#{name},#{is_member})
+    	insert into user(id,pw,phone,email,role,name,is_member,profileimg) values (#{id},#{pw},#{phone},#{email},#{role},#{name},#{is_member},#{profileimg})
     </insert>
     <insert id="makelawyer" parameterType="String">
     	insert into patientent_lawyer(uid,license_scan_img,license_number) values (#{uid},#{license_scan_img},#{license_number})
@@ -19,6 +19,12 @@
     </select>
     <update id="permit" parameterType="String">
     	update user set is_member="TRUE" WHERE uid=#{uid} 
+    </update>
+    <select id="getLawyerList" resultType="com.ipc.vo.userVo">
+    	SELECT uid,id,name,email FROM user where role="ROLE_PATIENTENTLAWYER"
+    </select>
+    <update id="assign" parameterType="Hashmap">
+    	update registration_patent set lid=(select lid from patientent_lawyer where uid=#{uid}) where rid=#{rid}
     </update>
 </mapper>
 

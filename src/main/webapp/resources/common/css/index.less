@@ -136,8 +136,18 @@ article{
                 position: absolute;
                 border: 1px solid #ccc;
                 height: 100%;            
-                float: left;
-                left: -30%;
+                float: left;                
+            }            
+             button{
+                position: absolute;
+                z-index: 10;
+                 right: 28px;
+                 bottom:23px;
+                 width: 100px;
+                 height: 30px;
+                 background: #45d4fe;
+                 color: white;
+                 border: none;
             }            
         }
         #cont_title1{
@@ -388,15 +398,15 @@ footer{
         width: 100%;
         float: left;      
         border-top:1px solid #e7e7e7;
-        padding-top:5px;            
-        padding-bottom: 5px;
+        padding-top:10px;            
+        padding-bottom: 10px;
+        
         #footer_benner_wrap{
             width: 1000px;              
-            img{
-                width: 150px;
-                height: 50px;
+            img{                
+                height:30px;
                 float: left;   
-                margin-left: 10px;
+                margin-left: 50px;
             }
         }
     }    
@@ -437,10 +447,14 @@ footer{
             #footer_center{
                 width: 300px;
                 float: left;
-                img{
-                    width: 180px;
-                    height: 50px;
-                    float: right;                
+                div{
+                    width: 100%;
+                    text-align: center;
+                    color: #72d1f3;
+                    span{
+                        font-size: 0.8rem;
+                        
+                    }
                 }
             }
             #footer_right{
@@ -492,7 +506,8 @@ footer{
         }
     }
     .ani_wrap{
-        width: 640px !important;
+        width: 620px !important;
+        margin-left: 10px;
         #remote_box{
             bottom:-20% !important;
         }
@@ -509,8 +524,10 @@ article{
         width: 600px;
         margin-left: 20px;
         #benner_1{
-            img{
-                left: -55%;
+            position: relative;   
+            height: 200px;
+            button{
+                display: none;
             }
         }
         .block{

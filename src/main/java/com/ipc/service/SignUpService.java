@@ -1,11 +1,14 @@
 package com.ipc.service;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Random;
 
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
+import org.springframework.web.multipart.MultipartFile;
 
 public class SignUpService {
 	public String sendhtmlmail(int uid,String key,String email) throws IOException, EmailException{
@@ -38,11 +41,39 @@ public class SignUpService {
 		}
 		return buf;
 	}
-	public void mkdir(String ID){
-		String path="../Idea-Protection-Center/src/main/webapp/resources/uploadimgs/invenor/"+ID;
+	private FileOutputStream fos;
+	public String makeimageFile(MultipartFile file,String ID,String role){
+		try {
+			String dirpath="../Idea-Protection-Center\\src\\main\\webapp\\resources\\uploadimgs\\"+role+"\\"+ID+"\\";
+			mkdir(ID);
+			byte fileData[] = file.getBytes();
+			int pathPoint = file.getOriginalFilename().trim().lastIndexOf(".");
+			String filePoint = file.getOriginalFilename().trim().substring(pathPoint + 1,
+					file.getOriginalFilename().trim().length());
+			String fileType = filePoint.toLowerCase();
+			fos = new FileOutputStream(dirpath+ID+ "." + fileType);
+			fos.write(fileData);
+			return fileType;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (fos != null) {
+				try {
+					fos.close();
+				} catch (Exception e) {
+				}
+			}
+		} // try end;
+		return "..";
+	}
+	public String mkdir(String ID){
+		String path="../Idea-Protection-Center/src/main/webapp/resources/uploadimgs/inventor/"+ID;
 		File dir=new File(path);
-		
+		if(!dir.exists())
+		{	
 			dir.mkdirs();
-		
+		}
+		return "OK";
 	}
 }

@@ -19,4 +19,6 @@ public interface UserDao {
 	public int checkid(String id);
 	public void makelawyer(HashMap<String,String> map);
 	public void permit(String uid);
+	public List<userVo> getLawyerList();
+	public void assign(HashMap<String,String> map);
 }

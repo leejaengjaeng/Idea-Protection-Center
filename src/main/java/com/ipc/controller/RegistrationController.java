@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ipc.dao.RegistrationDao;
+import com.ipc.dao.RegistrationFileDao;
 import com.ipc.dao.UserDao;
 import com.ipc.service.RegistrationService;
 import com.ipc.vo.RegistrationPatentVo;
@@ -36,6 +37,8 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 	RegistrationDao regismapper;
 	@Autowired
 	UserDao usermapper;
+	@Autowired
+	RegistrationFileDao regisfilemapper;
 	
 	@RequestMapping("/addidea")
 	public String addidea(Model model,HttpSession session, HttpServletRequest request){
@@ -63,12 +66,19 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 		System.out.println(rv.getEffect());
 		RegistrationService rs=new RegistrationService();
 		rv.setRegistration_date(rs.getToday(0));
-		regismapper.makeidea(rv);
+		regismapper.makeidea(rv);		
 		System.out.println(rv.getRid());
+		regismapper.updateStartId(rv.getRid());
 		int uid=rv.getUid();
 		userVo uv=usermapper.getUserByUid(Integer.toString(uid));
+		System.out.println("uid:"+uid);
 		for(int i=0;i<files.size();i++){
-			rs.makeimageFile(files.get(i), rs.getToday(1)+i,uv.getId());
+			String today=rs.getToday(1)+i;
+			String fileType=rs.makeimageFile(files.get(i),today ,uv.getId(),rv.getRid());
+			HashMap<String,String> map = new HashMap<String,String>();
+			map.put("start_rid", Integer.toString(rv.getRid()));
+			map.put("file_path", "/resources/uploadimgs/inventor/"+uv.getId()+"/"+today+"."+fileType);
+			regisfilemapper.makeFile(map);
 		}
 		return "home/index";
 	}

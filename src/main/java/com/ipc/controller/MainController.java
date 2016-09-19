@@ -1,8 +1,10 @@
 package com.ipc.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.mail.EmailException;
@@ -14,11 +16,14 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ipc.dao.RegistrationDao;
+import com.ipc.dao.UserDao;
 import com.ipc.service.SignUpService;
 import com.ipc.vo.RegistrationPatentVo;
+import com.ipc.vo.adminListVo;
 import com.ipc.vo.userVo;
 
 @Controller
@@ -28,6 +33,8 @@ public class MainController {
 	HttpSession session;
 	@Autowired
 	RegistrationDao regDao;
+	@Autowired
+	UserDao usermapper;
 	
 	private static final String roleAdmin = "ROLE_ADMIN";
 	private static final String roleInventor = "ROLE_INVENTOR";
@@ -63,7 +70,7 @@ public class MainController {
 				{
 					return "redirect:/";			
 				}
-
+				
 				model.addAttribute("processList",processList);
 				return "user/userMain";
 
@@ -78,12 +85,28 @@ public class MainController {
 		}
 	}
 	
-	@RequestMapping("/admin")
-	@ResponseBody
-	public String admin()
+	@RequestMapping("/IPC_adminPage")
+	public String admin2(Model model)
 	{
-		return "test Admin";
+		//권한 검사하기
+		List<adminListVo> ideaList = regDao.adminGetIdeaList();
+		List<userVo> lawyers = usermapper.getLawyerList();
+		model.addAttribute("ideaList", ideaList);
+		model.addAttribute("lawyerList",lawyers);
+		return "admin/admin_management";
 	}
-
+	@RequestMapping(value="/assign",method=RequestMethod.POST)
+	@ResponseBody
+	public HashMap<String, String> assign(HttpServletRequest req){
+		HashMap<String, String> map = new HashMap<String,String>(); 
+		map.put("rid", req.getParameter("rid"));
+		map.put("uid", req.getParameter("uid"));
+		usermapper.assign(map);
+		HashMap<String, String> resultMap = new HashMap<String,String>();
+		userVo uv = usermapper.getUserByUid(req.getParameter("uid"));
+		resultMap.put("result", "aa");
+		resultMap.put("lawyerName", uv.getName());
+		return resultMap;
+	}
 	
 }
