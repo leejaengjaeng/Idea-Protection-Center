@@ -10,12 +10,12 @@
 <footer>
     <div id="footer_benner">
         <div id="footer_benner_wrap">
-            <img src="#" alt="benner1">
-            <img src="#" alt="benner2">
-            <img src="#" alt="benner3">
-            <img src="#" alt="benner4">
-            <img src="#" alt="benner5">
-            <img src="#" alt="benner6">
+            <img src="/resources/image/banner1.png" alt="benner1">
+            <img src="/resources/image/banner2.gif" alt="benner2">
+            <img src="/resources/image/benner3.png" alt="benner3">
+            <img src="/resources/image/benner4.png" alt="benner4">
+            <img src="/resources/image/benner5.gif" alt="benner5">
+            <img src="/resources/image/benner6.gif" alt="benner6">
         </div>            
     </div>
     <div id="footer_fill">
@@ -37,7 +37,12 @@
                 </span>                   
             </div>
             <div id = "footer_center">
-                <img src="#" alt="Logo">
+                <div>
+                	<h3>아이디어 보호센터</h3>
+                	<span>
+                   	 	IDEAPROTECTIONCENTER
+               		 </span>
+                </div>
             </div>
             <div id = "footer_right">
                 <span>

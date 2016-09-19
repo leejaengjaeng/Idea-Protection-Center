@@ -125,7 +125,7 @@ $(document).ready(function()
         <section>            
            <nav>
                 <div id="profile">
-                    <img src="#" alt="profile">
+                    <img src="/resources/image/attonrney_profile.jpg" alt="profile">
                     <h4>${sessionScope.currentUser.getName()} 회원님</h4>
                     <span>${sessionScope.currentUser.getId()}</span>
                 </div>

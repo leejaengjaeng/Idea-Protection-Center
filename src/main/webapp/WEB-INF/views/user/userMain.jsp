@@ -53,7 +53,7 @@ $(document).ready(function()
     <div id="inven_wrap">
         <nav>
             <div id="profile">
-                <img src="#" alt="profile">
+                <img src="/resources/image/attonrney_profile.jpg" alt="profile">
                 <h4>${currentUser.getName() }</h4>
                 <span>ideaconcert</span>
             </div>
@@ -101,7 +101,7 @@ $(document).ready(function()
                                 에 대해 컨설턴트,변리사가 지정되었습니다.
                             </td>                  
                             <td>
-                                <img src="#" alt="msg">                                
+                                <img src="/resources/image/message.png" alt="msg">                                
                             </td>      
                         </tr>
                         <tr>
@@ -110,7 +110,7 @@ $(document).ready(function()
                                 에 대해 컨설턴트,변리사가 지정되었습니다.
                             </td>                  
                             <td>
-                                <img src="#" alt="msg">                                
+                                <img src="/resources/image/message new.png" alt="msg">     
                             </td>      
                         </tr>
                         <tr>
@@ -119,7 +119,7 @@ $(document).ready(function()
                                 에 대해 컨설턴트,변리사가 지정되었습니다.
                             </td>                  
                             <td>
-                                <img src="#" alt="msg">                                
+                            	<img src="/resources/image/message.png" alt="msg">                                
                             </td>      
                         </tr>
                         <tr>
@@ -128,7 +128,7 @@ $(document).ready(function()
                                 에 대해 컨설턴트,변리사가 지정되었습니다.
                             </td>                  
                             <td>
-                                <img src="#" alt="msg">                                
+                                <img src="/resources/image/message.png" alt="msg">                                
                             </td>      
                         </tr>
                         <tr>
@@ -137,7 +137,7 @@ $(document).ready(function()
                                 에 대해 컨설턴트,변리사가 지정되었습니다.
                             </td>                  
                             <td>
-                                <img src="#" alt="msg">                                
+                                <img src="/resources/image/message.png" alt="msg">                                
                             </td>      
                         </tr>
                     </table>

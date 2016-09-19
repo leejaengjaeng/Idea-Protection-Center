@@ -39,7 +39,8 @@
     <article>
         <section>
             <div id="benner_1">
-                <img src="/resources/image/patent_apply_banner.jpg" alt="benner">
+                <img src="/resources/image/main_banner.jpg" alt="benner">
+                <button>내용 보러가기</button>
             </div>
             <div id="cont_title1">
                 <span id="t_span">아이디어 출원하기</span><br>
@@ -127,7 +128,7 @@
             </div>
             <div id="cont_title3">
                 <span id="onair_title">실시간 의뢰정보</span><br>
-                <span style="line-height:1.8rem;">아이디어 보호센터는 발명가님들의 여러 아이디어가<br> 출원될 수 있도록 하는 강력한 파트너입니다.</span>
+                <span style="line-height:1.4rem;">아이디어 보호센터는 발명가님들의 여러 아이디어가<br> 출원될 수 있도록 하는 강력한 파트너입니다.</span>
             </div>
             <div id="onair">
                 <div id="onair_who">

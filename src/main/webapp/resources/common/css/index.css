@@ -134,7 +134,17 @@ article section #benner_1 img {
   border: 1px solid #ccc;
   height: 100%;
   float: left;
-  left: -30%;
+}
+article section #benner_1 button {
+  position: absolute;
+  z-index: 10;
+  right: 28px;
+  bottom: 23px;
+  width: 100px;
+  height: 30px;
+  background: #45d4fe;
+  color: white;
+  border: none;
 }
 article section #cont_title1 {
   width: 100%;
@@ -379,17 +389,16 @@ footer #footer_benner {
   width: 100%;
   float: left;
   border-top: 1px solid #e7e7e7;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 footer #footer_benner #footer_benner_wrap {
   width: 1000px;
 }
 footer #footer_benner #footer_benner_wrap img {
-  width: 150px;
-  height: 50px;
+  height: 30px;
   float: left;
-  margin-left: 10px;
+  margin-left: 50px;
 }
 footer #footer_fill {
   width: 100%;
@@ -429,10 +438,13 @@ footer #footer_fill #footer_wrap #footer_center {
   width: 300px;
   float: left;
 }
-footer #footer_fill #footer_wrap #footer_center img {
-  width: 180px;
-  height: 50px;
-  float: right;
+footer #footer_fill #footer_wrap #footer_center div {
+  width: 100%;
+  text-align: center;
+  color: #72d1f3;
+}
+footer #footer_fill #footer_wrap #footer_center div span {
+  font-size: 0.8rem;
 }
 footer #footer_fill #footer_wrap #footer_right {
   float: left;
@@ -477,7 +489,8 @@ footer #footer_fill #footer_wrap #footer_right span {
     height: 300px;
   }
   .ani_wrap {
-    width: 640px !important;
+    width: 620px !important;
+    margin-left: 10px;
   }
   .ani_wrap #remote_box {
     bottom: -20% !important;
@@ -492,8 +505,12 @@ footer #footer_fill #footer_wrap #footer_right span {
     width: 600px;
     margin-left: 20px;
   }
-  article section #benner_1 img {
-    left: -55%;
+  article section #benner_1 {
+    position: relative;
+    height: 200px;
+  }
+  article section #benner_1 button {
+    display: none;
   }
   article section .block {
     width: 100% !important;
