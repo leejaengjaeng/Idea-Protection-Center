@@ -23,8 +23,7 @@ body{
     z-index:98;
 }    
     .popup{
-        width: 400px;
-        height: 200px;
+        width: 600px;
         background:#fff;
         position: absolute;
         left: 50%;
@@ -71,13 +70,27 @@ body{
         width: 100px; 
         height: 35px;    
         margin:25px 5px 0 5px;
-        background: none;
+        background: #333;
         border: none;
         box-shadow: inset 0 -4px rgba(0, 0, 0, .1);
         color: white;        
     }
     .popup_close{
         cursor: pointer;
+    }
+    .pop_cont table{
+    	margin-top:30px;
+    	width:100%;
+    }
+    .pop_cont table tr td{
+    	height:50px;
+    }
+    .pop_cont table tr td button{
+    	margin:0;
+    }
+    .pop_cont table tr:nth-child(1){
+		border-top:1px solid #ccc;
+		border-bottom:1px solid #ccc;    
     }
  
 </style>
@@ -86,7 +99,7 @@ body{
     var buttonId;
     var pId;
     function giveLawyer(rid,btnid,pid){
-    	alert("aa");
+    	//alert("aa");
     	RegisId=rid;
     	buttonId=btnid;
     	pId=pid;
@@ -110,9 +123,11 @@ body{
     	    headers: headers,
     	    data : data,
     	    success: function(data) {
-    	    	$("#"buttonId).remove();
-    	    	inDiv=document.getElementById(pId);
-    	    	inDiv.innerHtml(data.lawyerName);
+    	    	alert(pId);
+    	    	var element = document.getElementById(buttonId);
+    	    	element.parentNode.removeChild(element);
+    	    	var inDiv=document.getElementById(pId);
+    	    	inDiv.innerHTML="<p>"+data.lawyerName+"</p>";
     	        document.getElementById("bw").style.visibility="hidden";
         		document.getElementById("pp").style.visibility="hidden";
         		
@@ -122,6 +137,10 @@ body{
     	    }
     	 
     	}); 
+    }
+    function closeload(){
+    	document.getElementById("bw").style.visibility="hidden";
+		document.getElementById("pp").style.visibility="hidden";
     }
     </script>
 </head>
@@ -139,13 +158,14 @@ body{
        		<td>아이디</td>
        		<td>이름</td>
        		<td>이메일</td>
+       		<td>지정</td>
        	</tr>
        	<c:forEach items="${lawyerList}" var="lawlist" varStatus="status">
        		<tr>
        			<td>${lawlist.getId()}</td>
        			<td>${lawlist.getName()}</td>
        			<td>${lawlist.getEmail()}</td>
-       			<td><button onclick="assign('${lawlist.getUid()}','btn${status.count}')">지정</button><td>
+       			<td><button onclick="assign('${lawlist.getUid()}')">지정</button><td>
        		</tr>
        	</c:forEach>
        	</table>
