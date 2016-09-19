@@ -19,24 +19,7 @@ var enableInput = function()
 	$('#AfterCommentCore_Element').children("textarea").attr('disabled',false);
 	$('#AfterCommentFiles').children("textarea").removeClass('disabled');
 	$('#AfterCommentFiles').children("textarea").attr('disabled',false);
-	
-	$('#RegTypeOfInvent').find('textarea').removeClass('disabled');
-	$('#RegTypeOfInvent').find('textarea').attr('disabled',false);
-	$('#RegTitle').children('textarea').removeClass('disabled');
-	$('#RegTitle').children('textarea').attr('disabled',false);
-	$('#RegSummary').children('textarea').removeClass('disabled');
-	$('#RegSummary').children('textarea').attr('disabled',false);
-	$('#RegWhyInvent').children('textarea').removeClass('disabled');
-	$('#RegWhyInvent').children('textarea').attr('disabled',false);
-	$('#RegProblem').children('textarea').removeClass('disabled');
-	$('#RegProblem').children('textarea').attr('disabled',false);
-	$('#RegSolution').children('textarea').removeClass('disabled');
-	$('#RegSolution').children('textarea').attr('disabled',false);
-	$('#RegEffect').children('textarea').removeClass('disabled');
-	$('#RegEffect').children('textarea').attr('disabled',false);
-	$('#RegCore_Element').children('textarea').removeClass('disabled');
-	$('#RegCore_Element').children('textarea').attr('disabled',false);	
-	
+
 	$('#tmpSave').show();
 	$('#agree').show();		
 
@@ -62,24 +45,7 @@ var disableInput = function()
 	$('#AfterCommentCore_Element').children("textarea").attr('disabled',true);
 	$('#AfterCommentFiles').children("textarea").addClass('disabled');
 	$('#AfterCommentFiles').children("textarea").attr('disabled',true);
-	
-	$('#RegTypeOfInvent').find('textarea').addClass('disabled');
-	$('#RegTypeOfInvent').find('textarea').attr('disabled',true);
-	$('#RegTitle').children('textarea').addClass('disabled');
-	$('#RegTitle').children('textarea').attr('disabled',true);
-	$('#RegSummary').children('textarea').addClass('disabled');
-	$('#RegSummary').children('textarea').attr('disabled',true);
-	$('#RegWhyInvent').children('textarea').addClass('disabled');
-	$('#RegWhyInvent').children('textarea').attr('disabled',true);
-	$('#RegProblem').children('textarea').addClass('disabled');
-	$('#RegProblem').children('textarea').attr('disabled',true);
-	$('#RegSolution').children('textarea').addClass('disabled');
-	$('#RegSolution').children('textarea').attr('disabled',true);
-	$('#RegEffect').children('textarea').addClass('disabled');
-	$('#RegEffect').children('textarea').attr('disabled',true);
-	$('#RegCore_Element').children('textarea').addClass('disabled');
-	$('#RegCore_Element').children('textarea').attr('disabled',true);	
-	
+
 	$('#tmpSave').hide();
 	$('#agree').hide();		
 
@@ -102,27 +68,27 @@ var tmpSave = function(role)
 	//발명가인 경우 
 	if(role=="inventor")
 	{
-		data['role'] = "inventor";
-		data['typeOfInvent'] = $('#RegTypeOfInvent').children("textarea").val();
-		data['title'] = $('#RegTitle').children("textarea").val();
-		data['summary'] = $('#RegSummary').children("textarea").val();
-		data['whyInvent'] = $('#RegWhyInvent').children("textarea").val();
-		data['problem'] = $('#RegProblem').children("textarea").val();
-		data['solution'] = $('#RegSolution').children("textarea").val();
-		data['effect'] = $('#RegEffect').children("textarea").val();
-		data['core_element'] = $("#RegCore_Element").children("textarea").val();
+		data['role'] 			= "inventor";
+		data['typeOfInvent'] 	= $('#AfterTypeOfInvent').children("textarea").val();
+		data['title'] 			= $('#AfterTitle').children("textarea").val();
+		data['summary'] 		= $('#AfterSummary').children("textarea").val();
+		data['whyInvent']		= $('#AfterWhyInvent').children("textarea").val();
+		data['problem'] 		= $('#AfterProblem').children("textarea").val();
+		data['solution'] 		= $('#AfterSolution').children("textarea").val();
+		data['effect'] 			= $('#AfterEffect').children("textarea").val();
+		data['core_element'] 	= $("#AfterCore_Element").children("textarea").val();
 	}
 	//변리사인 경우
 	else if(role=="pl")
 	{
-		data['role'] = "pl";
+		data['role'] 			= "pl";
 		data['re_typeOfInvent'] = $('#AfterCommentTypeOfInvent').children("textarea").val();
-		data['re_title'] = $('#AfterCommentTitle').children("textarea").val();
-		data['re_summary'] = $('#AfterCommentSummary').children("textarea").val();
-		data['re_whyInvent'] = $('#AfterCommentWhyInvent').children("textarea").val();
-		data['re_problem'] = $('#AfterCommentProblem').children("textarea").val();
-		data['re_solution'] = $('#AfterCommentSolution').children("textarea").val();
-		data['re_effect'] = $('#AfterCommentEffect').children("textarea").val();
+		data['re_title'] 		= $('#AfterCommentTitle').children("textarea").val();
+		data['re_summary'] 		= $('#AfterCommentSummary').children("textarea").val();
+		data['re_whyInvent'] 	= $('#AfterCommentWhyInvent').children("textarea").val();
+		data['re_problem'] 		= $('#AfterCommentProblem').children("textarea").val();
+		data['re_solution']		= $('#AfterCommentSolution').children("textarea").val();
+		data['re_effect'] 		= $('#AfterCommentEffect').children("textarea").val();
 		data['re_core_element'] = $('#AfterCommentCore_Element').children("textarea").val();
 	}
 	else
@@ -183,27 +149,27 @@ var ideaSave = function(role)
 	//발명가인 경우 
 	if(role=="inventor")
 	{
-		data['role'] = role;
-		data['typeOfInvent'] = $('#RegTypeOfInvent').children("textarea").val();
-		data['title'] =	$('#RegTitle').children("textarea").val();
-		data['summary'] = $('#RegSummary').children("textarea").val();
-		data['whyInvent'] = $('#RegWhyInvent').children("textarea").val();
-		data['problem'] = $('#RegProblem').children("textarea").val();
-		data['solution'] = $('#RegSolution').children("textarea").val();
-		data['effect'] = $('#RegEffect').children("textarea").val();
-		data['core_element'] = $("#RegCore_Element").children("textarea").val();
+		data['role'] 			= "inventor";
+		data['typeOfInvent'] 	= $('#AfterTypeOfInvent').children("textarea").val();
+		data['title'] 			= $('#AfterTitle').children("textarea").val();
+		data['summary'] 		= $('#AfterSummary').children("textarea").val();
+		data['whyInvent']		= $('#AfterWhyInvent').children("textarea").val();
+		data['problem'] 		= $('#AfterProblem').children("textarea").val();
+		data['solution'] 		= $('#AfterSolution').children("textarea").val();
+		data['effect'] 			= $('#AfterEffect').children("textarea").val();
+		data['core_element'] 	= $("#AfterCore_Element").children("textarea").val();
 	}
 	//변리사인 경우
 	else if(role=="pl")
 	{
-		data['role'] = role;
+		data['role'] 			= "pl";
 		data['re_typeOfInvent'] = $('#AfterCommentTypeOfInvent').children("textarea").val();
-		data['re_title'] = $('#AfterCommentTitle').children("textarea").val();
-		data['re_summary'] = $('#AfterCommentSummary').children("textarea").val();
-		data['re_whyInvent'] = $('#AfterCommentWhyInvent').children("textarea").val();
-		data['re_problem'] = $('#AfterCommentProblem').children("textarea").val();
-		data['re_solution'] = $('#AfterCommentSolution').children("textarea").val();
-		data['re_effect'] = $('#AfterCommentEffect').children("textarea").val();
+		data['re_title'] 		= $('#AfterCommentTitle').children("textarea").val();
+		data['re_summary'] 		= $('#AfterCommentSummary').children("textarea").val();
+		data['re_whyInvent'] 	= $('#AfterCommentWhyInvent').children("textarea").val();
+		data['re_problem'] 		= $('#AfterCommentProblem').children("textarea").val();
+		data['re_solution']		= $('#AfterCommentSolution').children("textarea").val();
+		data['re_effect'] 		= $('#AfterCommentEffect').children("textarea").val();
 		data['re_core_element'] = $('#AfterCommentCore_Element').children("textarea").val();
 	}
 	else
@@ -231,6 +197,31 @@ var ideaSave = function(role)
  	
 }
 
+var hideBeforeCmt = function()
+{
+	var hideEl = document.getElementsByClassName('before_cmt')
+	for(var i =0; i <hideEl.length ; i++)
+		hideEl[i].style.display="none";
+}
+var hideCurrentCmt = function()
+{
+	var hideEl = document.getElementsByClassName('current_cmt')
+	for(var i =0; i <hideEl.length ; i++)
+		hideEl[i].style.display="none";	
+}
+var showBeforeCmt = function()
+{
+	var hideEl = document.getElementsByClassName('before_cmt')
+	for(var i =0; i <hideEl.length ; i++)
+		hideEl[i].style.display="";
+}
+var showCurrentCmt = function()
+{
+	var hideEl = document.getElementsByClassName('current_cmt')
+	for(var i =0; i <hideEl.length ; i++)
+		hideEl[i].style.display="";	
+}
+
 
 //클릭에 따라 내용 바꿔주기
 var showClickedList = function(rid)
@@ -240,42 +231,56 @@ var showClickedList = function(rid)
 		type:"GET",
 		success:function(retVal)
 		{
-			if(retVal != "")
+			var role = retVal.user;
+			
+			if(role == "inventor")
 			{
-				var currentComment = retVal.item;
-				$('#RegTypeOfInvent').children("textarea").text(currentComment.typeOfInvent);
-				$('#RegTitle').children("textarea").text(currentComment.title);
-				$('#RegSummary').children("textarea").text(currentComment.summary);
-				$('#RegWhyInvent').children("textarea").text(currentComment.whyInvent);
-				$('#RegProblem').children("textarea").text(currentComment.problem);
-				$('#RegSolution').children("textarea").text(currentComment.solution);
-				$('#RegEffect').children("textarea").text(currentComment.effect);
-				$('#RegCore_Element').children("textarea").text(currentComment.core_element);
-			
-				var afterComment = retVal.afterComment;
-				$('#AfterCommentTypeOfInvent').children('textarea').text(afterComment.re_typeOfInvent);
-				$('#AfterCommentTitle').children('textarea').text(afterComment.re_title);
-				$('#AfterCommentSummary').children('textarea').text(afterComment.re_summary);
-				$('#AfterCommentWhyInvent').children('textarea').text(afterComment.re_whyInvent);
-				$('#AfterCommentProblem').children('textarea').text(afterComment.re_problem);
-				$('#AfterCommentSolution').children('textarea').text(afterComment.re_solution);
-				$('#AfterCommentEffect').children('textarea').text(afterComment.re_effect);
-				$('#AfterCommentCore_Element').children('textarea').text(afterComment.re_core_element);
-			
-				var beforeComment = retVal.beforeComment;
-				if(beforeComment == null)
+				if(retVal.isFirst == "false")
 				{
-					$('#BeforeCommentTypeOfInvent').children('textarea').text("이전 코멘트");
-					$('#BeforeCommentTitle').children('textarea').text("이전 코멘트");
-					$('#BeforeCommentSummary').children('textarea').text("이전 코멘트");
-					$('#BeforeCommentWhyInvent').children('textarea').text("이전 코멘트");
-					$('#BeforeCommentProblem').children('textarea').text("이전 코멘트");
-					$('#BeforeCommentSolution').children('textarea').text("이전 코멘트");
-					$('#BeforeCommentEffect').children('textarea').text("이전 코멘트");
-					$('#BeforeCommentCore_Element').children('textarea').text("이전 코멘트");
+					var beforeComment = retVal.beforeReg;
+					$('#BeforeCommentTypeOfInvent').children('textarea').text(beforeComment.typeOfInvent);
+					$('#BeforeCommentTitle').children('textarea').text(beforeComment.title);
+					$('#BeforeCommentSummary').children('textarea').text(beforeComment.summary);
+					$('#BeforeCommentWhyInvent').children('textarea').text(beforeComment.whyInvent);
+					$('#BeforeCommentProblem').children('textarea').text(beforeComment.problem);
+					$('#BeforeCommentSolution').children('textarea').text(beforeComment.solution);
+					$('#BeforeCommentEffect').children('textarea').text(beforeComment.effect);
+					$('#BeforeCommentCore_Element').children('textarea').text(beforeComment.core_element);
+				
+					$('#CurrentTypeOfInvent').children("textarea").text(beforeComment.re_typeOfInvent);
+					$('#CurrentTitle').children("textarea").text(beforeComment.re_title);
+					$('#CurrentSummary').children("textarea").text(beforeComment.re_summary);
+					$('#CurrentWhyInvent').children("textarea").text(beforeComment.re_whyInvent);
+					$('#CurrentProblem').children("textarea").text(beforeComment.re_problem);
+					$('#CurrentSolution').children("textarea").text(beforeComment.re_solution);
+					$('#CurrentEffect').children("textarea").text(beforeComment.re_effect);
+					$('#CurrentCore_Element').children("textarea").text(beforeComment.re_core_element);
+					
+					showBeforeCmt();
+					showCurrentCmt();
 				}
 				else
 				{
+					hideBeforeCmt();
+					hideCurrentCmt();
+				}
+			
+				var currentAnswer = retVal.currentAnswer;
+				$('#AfterCommentTypeOfInvent').children('textarea').text(currentAnswer.typeOfInvent);
+				$('#AfterCommentTitle').children('textarea').text(currentAnswer.title);
+				$('#AfterCommentSummary').children('textarea').text(currentAnswer.summary);
+				$('#AfterCommentWhyInvent').children('textarea').text(currentAnswer.whyInvent);
+				$('#AfterCommentProblem').children('textarea').text(currentAnswer.problem);
+				$('#AfterCommentSolution').children('textarea').text(currentAnswer.solution);
+				$('#AfterCommentEffect').children('textarea').text(currentAnswer.effect);
+				$('#AfterCommentCore_Element').children('textarea').text(currentAnswer.core_element);
+				
+			}
+			else if(role == "pl")
+			{
+				if(retVal.isFirst == "false")
+				{
+					var beforeComment = retVal.beforeComment;
 					$('#BeforeCommentTypeOfInvent').children('textarea').text(beforeComment.re_typeOfInvent);
 					$('#BeforeCommentTitle').children('textarea').text(beforeComment.re_title);
 					$('#BeforeCommentSummary').children('textarea').text(beforeComment.re_summary);
@@ -284,7 +289,33 @@ var showClickedList = function(rid)
 					$('#BeforeCommentSolution').children('textarea').text(beforeComment.re_solution);
 					$('#BeforeCommentEffect').children('textarea').text(beforeComment.re_effect);
 					$('#BeforeCommentCore_Element').children('textarea').text(beforeComment.re_core_element);
+
+					showBeforeCmt();
+
 				}
+				else
+				{
+					hideBeforeCmt();
+				}
+		
+				var currentAnswer = retVal.currentAnswer;
+				$('#CurrentTypeOfInvent').children("textarea").text(currentAnswer.typeOfInvent);
+				$('#CurrentTitle').children("textarea").text(currentAnswer.title);
+				$('#CurrentSummary').children("textarea").text(currentAnswer.summary);
+				$('#CurrentWhyInvent').children("textarea").text(currentAnswer.whyInvent);
+				$('#CurrentProblem').children("textarea").text(currentAnswer.problem);
+				$('#CurrentSolution').children("textarea").text(currentAnswer.solution);
+				$('#CurrentEffect').children("textarea").text(currentAnswer.effect);
+				$('#CurrentCore_Element').children("textarea").text(currentAnswer.core_element);
+			
+				$('#AfterCommentTypeOfInvent').children('textarea').text(currentAnswer.re_typeOfInvent);
+				$('#AfterCommentTitle').children('textarea').text(currentAnswer.re_title);
+				$('#AfterCommentSummary').children('textarea').text(currentAnswer.re_summary);
+				$('#AfterCommentWhyInvent').children('textarea').text(currentAnswer.re_whyInvent);
+				$('#AfterCommentProblem').children('textarea').text(currentAnswer.re_problem);
+				$('#AfterCommentSolution').children('textarea').text(currentAnswer.re_solution);
+				$('#AfterCommentEffect').children('textarea').text(currentAnswer.re_effect);
+				$('#AfterCommentCore_Element').children('textarea').text(currentAnswer.re_core_element);
 			}
 			else
 				alert('ajax Error');

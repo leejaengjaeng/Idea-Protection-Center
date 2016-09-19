@@ -46,6 +46,21 @@ public class CommentController {
 		return "comment/comment";
 	}
 	
+	/*
+	발명가
+
+		-이전 작성
+		코멘트   -
+		
+		-새로 작성
+		
+   	변리사
+		
+		이전 코멘트 - 
+		
+		-발명가 작성 
+		새로운 코멘트-
+	 */
 	@RequestMapping(value="/detail/{start_rid}",method=RequestMethod.GET)
 	public String detail(@PathVariable int start_rid,Model model)
 	{
@@ -60,54 +75,56 @@ public class CommentController {
 			int plId = assosiatedMemberId.getLid();
 			int userId = ((userVo)isAuthenticated).getUid();
 			int lastRid = regDao.getLastRidInProcessList(start_rid);
-			List<RegistrationFileVo> imgList= regFileDao.getImgListByStartRid(start_rid);
-			model.addAttribute("imgs", imgList);
+			
 			//현재 나타내는 rid 저장
 			session.setAttribute("currentPosition", lastRid);
-				
+
+			List<RegistrationFileVo> imgList= regFileDao.getImgListByStartRid(start_rid);
+			List<RegistrationPatentVo> processList = regDao.getAssociatedProcessList(start_rid);
+
+			model.addAttribute("imgs", imgList);
+			model.addAttribute("processList",processList);
+			model.addAttribute("lastRid",lastRid);
+			
 			//발명가가 보는 경우
 			if(inventorId==userId) 
 			{
-				List<RegistrationPatentVo> processList = regDao.getAssociatedProcessList(start_rid);
-				RegistrationPatentVo lastItem = regDao.getInventorProcessByRid(lastRid);
-				RegistrationPatentVo beforeComment = regDao.getPrevInventorModifyByPrevRid(lastItem.getPrev_rid());
-				RegistrationPatentVo afterComment = regDao.getAfterInventorModifyByRid(lastRid);
+				//getRegistrationByRidOrPrevRid(prevRid) + getInventorModifyByRid
+				
+				RegistrationPatentVo currentAnswer = regDao.getInventorModifyByRid(lastRid);
+				RegistrationPatentVo beforeReg = regDao.getRegistrationByRidOrPrevRid(currentAnswer.getPrev_rid());
 				
 				model.addAttribute("user","inventor");
-				model.addAttribute("processList",processList);
-				model.addAttribute("item",lastItem);
-				model.addAttribute("lastRid",lastRid);
-				model.addAttribute("beforeComment", beforeComment);
-				model.addAttribute("afterComment", beforeComment);
-
-				if(beforeComment == null)
-					model.addAttribute("isNull","true");
-				else
-					model.addAttribute("isNull","false");
+				model.addAttribute("beforeReg",beforeReg);
+				model.addAttribute("currentAnswer", currentAnswer);
 				
-				return "comment/comment";
+
+				if(beforeReg == null)
+					model.addAttribute("isFirst","true");
+				else
+					model.addAttribute("isFirst","false");
+				
+				return "comment/comment_inventor";
 			}
 			//변리사가 보는 경우
 			if(plId==userId)
 			{
-				List<RegistrationPatentVo> processList = regDao.getAssociatedProcessList(start_rid);
-				RegistrationPatentVo lastItem = regDao.getPlProcessByRid(lastRid);
-				RegistrationPatentVo beforeComment = regDao.getPrevPlCommentByPrevRid(lastItem.getPrev_rid());
-				RegistrationPatentVo afterComment = regDao.getAfterPlCommentByRid(lastRid);
+				//getRegistrationByRidOrPrevRid(rid) + getPrevPlCommentByPrevRid
 				
+				RegistrationPatentVo currentAnswer = regDao.getRegistrationByRidOrPrevRid(lastRid);
+				RegistrationPatentVo beforeComment = regDao.getPrevPlCommentByPrevRid(currentAnswer.getPrev_rid());
+					
 				model.addAttribute("user","pl");
-				model.addAttribute("processList",processList);
-				model.addAttribute("item",lastItem);
-				model.addAttribute("lastRid",lastRid);
-				model.addAttribute("afterComment", afterComment);
+				
 				model.addAttribute("beforeComment", beforeComment);
+				model.addAttribute("currentAnswer", currentAnswer);
 				
 				if(beforeComment == null)
-					model.addAttribute("isNull","true");
+					model.addAttribute("isFirst","true");
 				else
-					model.addAttribute("isNull","false");
+					model.addAttribute("isFirst","false");
 				
-				return "comment/comment";
+				return "comment/comment_pl";
 			}
 		}
 		return "redirect:/authError";
@@ -132,31 +149,42 @@ public class CommentController {
 			
 			Map<String,Object> retVal = new HashMap<String,Object>();
 			
+			
 			//발명가가 보는 경우
 			if(inventorId==userId) 
 			{
-				RegistrationPatentVo item = regDao.getInventorProcessByRid(rid);
-				RegistrationPatentVo beforeComment = regDao.getPrevInventorModifyByPrevRid(item.getPrev_rid());
-				RegistrationPatentVo afterComment = regDao.getAfterInventorModifyByRid(rid);
+				//getRegistrationByRidOrPrevRid(prevRid) + getInventorModifyByRid
 				
-				retVal.put("role", "inventor");
-				retVal.put("item",item);
-				retVal.put("beforeComment", beforeComment);
-				retVal.put("afterComment", afterComment);
+				RegistrationPatentVo currentAnswer = regDao.getInventorModifyByRid(rid);
+				RegistrationPatentVo beforeReg = regDao.getRegistrationByRidOrPrevRid(currentAnswer.getPrev_rid());
+				
+				retVal.put("user", "inventor");
+				retVal.put("beforeReg", beforeReg);
+				retVal.put("currentAnswer", currentAnswer);
+
+				if(beforeReg == null)
+					retVal.put("isFirst","true");
+				else
+					retVal.put("isFirst","false");
 				
 				return retVal;
 			}
 			//변리사가 보는 경우
 			if(plId==userId)
 			{
-				RegistrationPatentVo item = regDao.getPlProcessByRid(rid);
-				RegistrationPatentVo beforeComment = regDao.getPrevPlCommentByPrevRid(item.getPrev_rid());
-				RegistrationPatentVo afterComment = regDao.getAfterPlCommentByRid(rid);
-
-				retVal.put("role", "pl");
-				retVal.put("item", item);
+				//getRegistrationByRidOrPrevRid(rid) + getPrevPlCommentByPrevRid
+				
+				RegistrationPatentVo currentAnswer = regDao.getRegistrationByRidOrPrevRid(rid);
+				RegistrationPatentVo beforeComment = regDao.getPrevPlCommentByPrevRid(currentAnswer.getPrev_rid());
+					
+				retVal.put("user", "pl");
 				retVal.put("beforeComment", beforeComment);
-				retVal.put("afterComment", afterComment);
+				retVal.put("currentAnswer", currentAnswer);
+
+				if(beforeComment == null)
+					retVal.put("isFirst","true");
+				else
+					retVal.put("isFirst","false");
 				
 				return retVal;
 			}

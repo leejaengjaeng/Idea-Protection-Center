@@ -17,9 +17,15 @@
 <script>
 $(document).ready(function()
 {
-	//role에 따라 입력 제한
-	if("${user}" == "inventor")
+	//isFirst안썼넹
+
+	if(${isFirst} == "true")
 	{
+		hideBeforeCmt();
+		hideCurrentCmt();
+	}
+
+	/*
 		//배치 변경
 		var txtBoxList = $('.txt_box');
 		for(var i=0; i<8; i++) //9개 항목, 마지막 항목은 current_Cmt가 없음
@@ -35,30 +41,16 @@ $(document).ready(function()
 		$(txtBoxList[8]).children('.before_cmt').children('.img_comt').css('float','left !important');
 		$(txtBoxList[8]).children('.after_cmt').children('.img_comt').css('float','left !important');				
 		
+	*/
 
-		//0 고객 작성중(변리사 작성 완료), 1 고객 작성 완료
-		if("${item.getIscomplete()}" == 0)
-			enableInput();
-		else
-		{
-			disableInput();
-			alert('변리사의 답변을 기다려주세요');
-		}
-	}
-	else if("${user}" == "pl")
-	{
-		if("${item.getIscomplete()}" == 1)
-			enableInput();
-		else 
-		{
-			disableInput();
-			alert('고객이 작성을 완료하기를 기다려주세요');			
-		}
-	}
+	//0 고객 작성중(변리사 작성 완료), 1 고객 작성 완료
+	if("${currentAnswer.getIscomplete()}" == 0)
+		enableInput();
 	else
 	{
-		location.href="/authError";
-	}	
+		disableInput();
+		alert('변리사의 답변을 기다려주세요');
+	}
 	
 	//폼 버튼 이벤트 
 	$('#tmpSave').on("click",function()
@@ -77,7 +69,7 @@ $(document).ready(function()
 		$(this).parent().find('.clickedIdea').removeClass('clickedIdea');
 		var rid = $(this).children('input').attr('value');
 		
-		if(rid == ${lastRid} && ("${item.getIscomplete()}" == 0))
+		if(rid == ${lastRid} && ("${currentAnswer.getIscomplete()}" == 0))
 		{
 			enableInput();
 		}
@@ -104,7 +96,8 @@ $(document).ready(function()
 });
 
 var i=0;
-function addFile(){
+function addFile()
+{
 	$('#inputFileDiv').append("<div style='float:left'><img style='width:200px' src='/resources/image/plus.png' alt='img' id='"+i+"'><br><input type='file' id='imgInp"+i+"' name='addupimgs' onchange='readURL(this,"+i+")' name='profileImg' style='width:30%'></div>");
 	i++;
 }
@@ -188,30 +181,30 @@ function addFile(){
 				</table>                             
             </article>  
             <article style="width: 75%;">
-               <input id="currentPosition" type="hidden" value="${item.getRid()}"/>
+               <input id="currentPosition" type="hidden" value="${currentAnswer.getRid()}"/>
                <div class="txt_box">
 <!-- 1. 발명 분야 -->
                  	<h2>발명분야</h2> <button>작성 예시</button>
                     
                     <div id="BeforeCommentTypeOfInvent" class="cmt_field before_cmt">
-                        <textarea disabled="disabled" class="disabled"/>${beforeComment.getRe_typeOfInvent()}</textarea>
+                        <textarea disabled="disabled" class="disabled"/>${beforeReg.getTypeOfInvent()}</textarea>
                         <div class="img_comt">
                             <img src="/resources/image/inventor3.png" alt="prev_userImg">
                         </div>
                     </div>             
            			
-           			<div id="RegTypeOfInvent" class="cmt_field current_cmt">                        
+           			<div id="CurrentTypeOfInvent" class="cmt_field current_cmt">                        
                         <div class="img_comt">
                             <img src="/resources/image/inventor3.png" alt="current_userImg">
                         </div>
-                        <textarea disabled="disabled" class="disabled"/>${item.getTypeOfInvent() }</textarea>
+                        <textarea disabled="disabled" class="disabled"/>${beforeReg.getRe_typeOfInvent() }</textarea>
                     </div>             
            
                     <div id="AfterCommentTypeOfInvent" class="cmt_field after_cmt">
                         <div class="img_comt">
                             <img src="/resources/image/inventor3.png" alt="after_userImg">
                         </div> 
-                        <textarea  disabled="disabled" class="disabled">${afterComment.getTypeOfInvent() }</textarea>
+                        <textarea  disabled="disabled" class="disabled">${currentAnswer.getTypeOfInvent() }</textarea>
                     </div>
                     
                     <div class="hiding_box">
@@ -230,24 +223,24 @@ function addFile(){
                     <h2>제목</h2> <button>작성 예시</button>
                    
                     <div id="BeforeCommentTitle" class="cmt_field before_cmt">
-                        <textarea disabled="disabled" class="disabled"/>${beforeComment.getRe_title()}</textarea>
+                        <textarea disabled="disabled" class="disabled"/>${beforeReg.getTitle()}</textarea>
                         <div class="img_comt">
                             <img src="/resources/image/inventor3.png" alt="prev_userImg">
                         </div>
                     </div>             
            			
-           			<div id="RegTitle" class="cmt_field current_cmt">                        
+           			<div id="CurrentTitle" class="cmt_field current_cmt">                        
                         <div class="img_comt">
                             <img src="/resources/image/inventor3.png" alt="current_userImg">
                         </div>
-                        <textarea disabled="disabled" class="disabled"/>${item.getTitle() }</textarea>
+                        <textarea disabled="disabled" class="disabled"/>${beforeReg.getRe_title()}</textarea>
                     </div>             
            
                     <div id="AfterCommentTitle" class="cmt_field after_cmt">
                         <div class="img_comt">
                             <img src="/resources/image/inventor3.png" alt="after_userImg">
                         </div> 
-                        <textarea  disabled="disabled" class="disabled"></textarea>
+                        <textarea  disabled="disabled" class="disabled">${currentAnswer.getTitle()}</textarea>
                     </div>
                     
                     <div class="hiding_box">
@@ -266,24 +259,24 @@ function addFile(){
                     <h2>요약</h2> <button>작성 예시</button>
         
                     <div id="BeforeCommentSummary" class="cmt_field before_cmt">
-                        <textarea disabled="disabled" class="disabled"/>${beforeComment.getRe_summary()}</textarea>
+                        <textarea disabled="disabled" class="disabled"/>${beforeReg.getSummary()}</textarea>
                         <div class="img_comt">
                             <img src="/resources/image/inventor3.png" alt="prev_userImg">
                         </div>
                     </div>             
            			
-           			<div id="RegSummary" class="cmt_field current_cmt">                        
+           			<div id="CurrentSummary" class="cmt_field current_cmt">                        
                         <div class="img_comt">
                             <img src="/resources/image/inventor3.png" alt="current_userImg">
                         </div>
-                        <textarea disabled="disabled" class="disabled"/>${item.getSummary()}</textarea>
+                        <textarea disabled="disabled" class="disabled"/>${beforeReg.getRe_summary()}</textarea>
                     </div>             
            
                     <div id="AfterCommentSummary" class="cmt_field after_cmt">
                         <div class="img_comt">
                             <img src="/resources/image/inventor3.png" alt="after_userImg">
                         </div> 
-                        <textarea  disabled="disabled" class="disabled"></textarea>
+                        <textarea  disabled="disabled" class="disabled">${currentAnswer.getSummary()}</textarea>
                     </div>
                    
                     <div class="hiding_box">
@@ -302,24 +295,24 @@ function addFile(){
                     <h2>필요이유</h2> <button>작성 예시</button>
                     
                     <div id="BeforeCommentWhyInvent" class="cmt_field before_cmt">
-                        <textarea disabled="disabled" class="disabled"/>${beforeComment.getRe_whyInvent()}</textarea>
+                        <textarea disabled="disabled" class="disabled"/>${beforeReg.getWhyInvent()}</textarea>
                         <div class="img_comt">
                             <img src="/resources/image/inventor3.png" alt="prev_userImg">
                         </div>
                     </div>             
            			
-           			<div id="RegWhyInvent" class="cmt_field current_cmt">                        
+           			<div id="CurrentWhyInvent" class="cmt_field current_cmt">                        
                         <div class="img_comt">
                             <img src="/resources/image/inventor3.png" alt="current_userImg">
                         </div>
-                        <textarea disabled="disabled" class="disabled"/>${item.getWhyInvent()}</textarea>
+                        <textarea disabled="disabled" class="disabled"/>${beforeReg.getRe_whyInvent()}</textarea>
                     </div>             
            
                     <div id="AfterCommentWhyInvent" class="cmt_field after_cmt">
                         <div class="img_comt">
                             <img src="/resources/image/inventor3.png" alt="after_userImg">
                         </div> 
-                        <textarea  disabled="disabled" class="disabled"></textarea>
+                        <textarea  disabled="disabled" class="disabled">${currentAnswer.getWhyInvent()}</textarea>
                     </div>
                    
            			<div class="hiding_box">
@@ -338,24 +331,24 @@ function addFile(){
                     <h2>기존제품설명 및 문제점</h2> <button>작성 예시</button>
                     
        				<div id="BeforeCommentProblem" class="cmt_field before_cmt">
-                        <textarea disabled="disabled" class="disabled"/>${beforeComment.getRe_problem()}</textarea>
+                        <textarea disabled="disabled" class="disabled"/>${beforeReg.getProblem()}</textarea>
                         <div class="img_comt">
                             <img src="/resources/image/inventor3.png" alt="prev_userImg">
                         </div>
                     </div>             
            			
-           			<div id="RegProblem" class="cmt_field current_cmt">                        
+           			<div id="CurrentProblem" class="cmt_field current_cmt">                        
                         <div class="img_comt">
                             <img src="/resources/image/inventor3.png" alt="current_userImg">
                         </div>
-                        <textarea disabled="disabled" class="disabled"/>${item.getProblem()}</textarea>
+                        <textarea disabled="disabled" class="disabled"/>${beforeReg.getRe_problem()}</textarea>
                     </div>             
            
                     <div id="AfterCommentProblem" class="cmt_field after_cmt">
                         <div class="img_comt">
                             <img src="/resources/image/inventor3.png" alt="after_userImg">
                         </div> 
-                        <textarea  disabled="disabled" class="disabled"></textarea>
+                        <textarea  disabled="disabled" class="disabled">${currentAnswer.getProblem()}</textarea>
                     </div>
                     
                     <div class="hiding_box">
@@ -374,24 +367,24 @@ function addFile(){
                     <h2>문제해결방법</h2> <button>작성 예시</button>
                   
                     <div id="BeforeCommentSolution" class="cmt_field before_cmt">
-                        <textarea disabled="disabled" class="disabled"/>${beforeComment.getRe_solution()}</textarea>
+                        <textarea disabled="disabled" class="disabled"/>${beforeReg.getSolution()}</textarea>
                         <div class="img_comt">
                             <img src="/resources/image/inventor3.png" alt="prev_userImg">
                         </div>
                     </div>             
            			
-           			<div id="RegSolution" class="cmt_field current_cmt">                        
+           			<div id="CurrentSolution" class="cmt_field current_cmt">                        
                         <div class="img_comt">
                             <img src="/resources/image/inventor3.png" alt="current_userImg">
                         </div>
-                        <textarea disabled="disabled" class="disabled"/>${item.getSolution()}</textarea>
+                        <textarea disabled="disabled" class="disabled"/>${beforeReg.getRe_solution()}</textarea>
                     </div>             
            
                     <div id="AfterCommentSolution" class="cmt_field after_cmt">
                         <div class="img_comt">
                             <img src="/resources/image/inventor3.png" alt="after_userImg">
                         </div> 
-                        <textarea  disabled="disabled" class="disabled"></textarea>
+                        <textarea  disabled="disabled" class="disabled">${currentAnswer.getSolution()}</textarea>
                     </div>
                     
                     <div class="hiding_box">
@@ -410,24 +403,24 @@ function addFile(){
                     <h2>발명의 효과</h2> <button>작성 예시</button>
                   
                     <div id="BeforeCommentEffect" class="cmt_field before_cmt">
-                        <textarea disabled="disabled" class="disabled"/>${beforeComment.getRe_effect()}</textarea>
+                        <textarea disabled="disabled" class="disabled"/>${beforeReg.getEffect()}</textarea>
                         <div class="img_comt">
                             <img src="/resources/image/inventor3.png" alt="prev_userImg">
                         </div>
                     </div>             
            			
-           			<div id="RegEffect" class="cmt_field current_cmt">                        
+           			<div id="CurrentEffect" class="cmt_field current_cmt">                        
                         <div class="img_comt">
                             <img src="/resources/image/inventor3.png" alt="current_userImg">
                         </div>
-                        <textarea disabled="disabled" class="disabled"/>${item.getEffect()}</textarea>
+                        <textarea disabled="disabled" class="disabled"/>${beforeReg.getRe_effect()}</textarea>
                     </div>             
            
                     <div id="AfterCommentEffect" class="cmt_field after_cmt">
                         <div class="img_comt">
                             <img src="/resources/image/inventor3.png" alt="after_userImg">
                         </div> 
-                        <textarea  disabled="disabled" class="disabled"></textarea>
+                        <textarea  disabled="disabled" class="disabled">${currentAnswer.getEffect()}</textarea>
                     </div>
                     
                     <div class="hiding_box">
@@ -446,24 +439,24 @@ function addFile(){
                     <h2>핵심구성요소</h2> <button>작성 예시</button>
                  
                     <div id="BeforeCommentCore_Element" class="cmt_field before_cmt">
-                        <textarea disabled="disabled" class="disabled"/>${beforeComment.getRe_core_element()}</textarea>
+                        <textarea disabled="disabled" class="disabled"/>${beforeReg.getCore_element()}</textarea>
                         <div class="img_comt">
                             <img src="/resources/image/inventor3.png" alt="prev_userImg">
                         </div>
                     </div>             
            			
-           			<div id="RegCore_Element" class="cmt_field current_cmt">                        
+           			<div id="CurrentCore_Element" class="cmt_field current_cmt">                        
                         <div class="img_comt">
                             <img src="/resources/image/inventor3.png" alt="current_userImg">
                         </div>
-                        <textarea disabled="disabled" class="disabled"/>${item.getCore_element()}</textarea>
+                        <textarea disabled="disabled" class="disabled"/>${beforeReg.getRe_core_element()}</textarea>
                     </div>             
            
                     <div id="AfterCommentCore_Element" class="cmt_field after_cmt">
                         <div class="img_comt">
                             <img src="/resources/image/inventor3.png" alt="after_userImg">
                         </div> 
-                        <textarea  disabled="disabled" class="disabled"></textarea>
+                        <textarea  disabled="disabled" class="disabled">${currentAnswer.getCore_element()}</textarea>
                     </div>
                     
                     <div class="hiding_box">

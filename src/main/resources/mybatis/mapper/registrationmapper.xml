@@ -57,30 +57,41 @@
 	<select id="getAssociatedProcessList" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
 		select rid, registration_date from registration_patent where start_rid = #{start_rid}
 	</select>
-	<select id="getInventorProcessByRid" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
-		select rid, prev_rid, typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element,iscomplete from registration_patent where rid=#{rid}
+	
+<!-- Comment Get Process -->
+	<!-- (발명가<prevRid>, 변리사<Rid>) rid에 맞는 발명가 작성 내용 + 변리사 코멘트    -->
+	<select id="getRegistrationByRidOrPrevRid" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
+		select 
+			typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element, re_typeofinvent, re_title, re_summary, re_whyinvent, re_problem, re_solution, re_effect, re_core_element, prev_rid
+		from 
+			registration_patent 
+		where 
+			rid=#{rid}
 	</select>
 	
+	<!-- (발명가) after칸에 들어갈 발명가 작성 내용  -->
+	<select id="getInventorModifyByRid" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
+		select 
+			typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element, prev_rid 
+		from 
+			registration_patent 
+		where 
+			rid=#{rid}
+	</select>
 	
+	<!-- (변리사) before칸에 들어갈 변리사 작성 내용 -->
 	<select id="getPrevPlCommentByPrevRid" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
-		select re_typeofinvent, re_title, re_summary, re_whyinvent, re_problem, re_solution, re_effect, re_core_element from registration_patent where rid=#{prev_rid}
+		select 
+			re_typeofinvent, re_title, re_summary, re_whyinvent, re_problem, re_solution, re_effect, re_core_element
+		from 
+			registration_patent 
+		where 
+			rid=#{prev_rid}
 	</select>
-	<select id="getPrevInventorModifyByPrevRid" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
-		select typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element from registration_patent where rid=#{prev_rid}
-	</select>
-	
-	<select id="getAfterPlCommentByRid" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
-		select re_typeofinvent, re_title, re_summary, re_whyinvent, re_problem, re_solution, re_effect, re_core_element from registration_patent where rid=#{rid}
-	</select>
-	<select id="getAfterInventorModifyByRid" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
-		select typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element from registration_patent where rid=#{rid}
-	</select>
+<!-- Comment Get Process End-->
 
 	
 	
-	<select id="getPlProcessByRid" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
-		select rid, prev_rid, typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element, re_typeofinvent, re_title, re_summary, re_whyinvent, re_problem, re_solution, re_effect, re_core_element,iscomplete from registration_patent where rid=#{rid}
-	</select>
 	<select id="gettempidea" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
 		select rid, typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element, re_typeofinvent, re_title, re_summary, re_whyinvent, re_problem, re_solution, re_effect, re_core_element from registration_patent where uid=#{uid} AND iscomplete=0
 	</select>

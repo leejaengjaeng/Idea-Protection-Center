@@ -20,16 +20,19 @@ public interface RegistrationDao {
 
 	public List<RegistrationPatentVo> getInventorProcessList(int uid);
 	public List<RegistrationPatentVo> getPlProcessList(int lid);
-	public RegistrationPatentVo getInventorProcessByRid(int rid);
-	public RegistrationPatentVo getPlProcessByRid(int rid);
 	
 	public RegistrationPatentVo getAssociatedMembersByRid(int start_rid);
 	public List<RegistrationPatentVo> getAssociatedProcessList(int start_rid);
 	
-	public RegistrationPatentVo getPrevInventorModifyByPrevRid(int prev_rid);
+	//(발명가<prevRid>, 변리사<Rid>) rid에 맞는 발명가 작성 내용 + 변리사 코멘트 
+	public RegistrationPatentVo getRegistrationByRidOrPrevRid(int rid);
+	//(발명가) after칸에 들어갈 발명가 작성 내용
+	public RegistrationPatentVo getInventorModifyByRid(int rid);
+	//(변리사) before칸에 들어갈 변리사 작성 내용
 	public RegistrationPatentVo getPrevPlCommentByPrevRid(int prev_rid);
-	public RegistrationPatentVo getAfterInventorModifyByRid(int rid);
-	public RegistrationPatentVo getAfterPlCommentByRid(int rid);
+	
+	//start_rid로 연결된 마지막 rid를 찾음
+	public int getLastRidInProcessList (int start_rid);
 	
 	public void removeTempIdea(int uid);
 	
@@ -38,7 +41,6 @@ public interface RegistrationDao {
 	public void plSave (RegistrationPatentVo rvo);
 	
 	public RegistrationPatentVo getResourceForPlSaveByRid(int rid);
-	public int getLastRidInProcessList (int start_rid);
 	
 	public int checkIsCompletedByRid(int rid);
 	public void updateStartId(int rid);
