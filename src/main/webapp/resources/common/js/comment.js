@@ -1,5 +1,5 @@
 
-var enablePl = function()
+var enableInput = function()
 {
 	$('#AfterCommentTypeOfInvent').children("textarea").removeClass('disabled');
 	$('#AfterCommentTypeOfInvent').children("textarea").attr('disabled',false);
@@ -17,12 +17,30 @@ var enablePl = function()
 	$('#AfterCommentEffect').children("textarea").attr('disabled',false);
 	$('#AfterCommentCore_Element').children("textarea").removeClass('disabled');
 	$('#AfterCommentCore_Element').children("textarea").attr('disabled',false);
+	
+	$('#RegTypeOfInvent').find('input').removeClass('disabled');
+	$('#RegTypeOfInvent').find('input').attr('disabled',false);
+	$('#RegTitle').children('input').removeClass('disabled');
+	$('#RegTitle').children('input').attr('disabled',false);
+	$('#RegSummary').children('textarea').removeClass('disabled');
+	$('#RegSummary').children('textarea').attr('disabled',false);
+	$('#RegWhyInvent').children('textarea').removeClass('disabled');
+	$('#RegWhyInvent').children('textarea').attr('disabled',false);
+	$('#RegProblem').children('textarea').removeClass('disabled');
+	$('#RegProblem').children('textarea').attr('disabled',false);
+	$('#RegSolution').children('textarea').removeClass('disabled');
+	$('#RegSolution').children('textarea').attr('disabled',false);
+	$('#RegEffect').children('textarea').removeClass('disabled');
+	$('#RegEffect').children('textarea').attr('disabled',false);
+	$('#RegCore_Element').children('textarea').removeClass('disabled');
+	$('#RegCore_Element').children('textarea').attr('disabled',false);	
+	
 	$('#tmpSave').show();
 	$('#agree').show();		
 
 }
 
-var disablePl = function()
+var disableInput = function()
 {
 	$('#AfterCommentTypeOfInvent').children("textarea").addClass('disabled');
 	$('#AfterCommentTypeOfInvent').children("textarea").attr('disabled',true);
@@ -40,37 +58,7 @@ var disablePl = function()
 	$('#AfterCommentEffect').children("textarea").attr('disabled',true);
 	$('#AfterCommentCore_Element').children("textarea").addClass('disabled');
 	$('#AfterCommentCore_Element').children("textarea").attr('disabled',true);
-	$('#tmpSave').hide();
-	$('#agree').hide();		
-
-}
-
-
-var enableInventor = function()
-{
-	$('#RegTypeOfInvent').find('input').removeClass('disabled');
-	$('#RegTypeOfInvent').find('input').attr('disabled',false);
-	$('#RegTitle').children('input').removeClass('disabled');
-	$('#RegTitle').children('input').attr('disabled',false);
-	$('#RegSummary').children('textarea').removeClass('disabled');
-	$('#RegSummary').children('textarea').attr('disabled',false);
-	$('#RegWhyInvent').children('textarea').removeClass('disabled');
-	$('#RegWhyInvent').children('textarea').attr('disabled',false);
-	$('#RegProblem').children('textarea').removeClass('disabled');
-	$('#RegProblem').children('textarea').attr('disabled',false);
-	$('#RegSolution').children('textarea').removeClass('disabled');
-	$('#RegSolution').children('textarea').attr('disabled',false);
-	$('#RegEffect').children('textarea').removeClass('disabled');
-	$('#RegEffect').children('textarea').attr('disabled',false);
-	$('#RegCore_Element').children('textarea').removeClass('disabled');
-	$('#RegCore_Element').children('textarea').attr('disabled',false);	
-	$('#tmpSave').show();
-	$('#agree').show();		
-
-}
-
-var disableInventor = function()
-{
+	
 	$('#RegTypeOfInvent').find('input').addClass('disabled');
 	$('#RegTypeOfInvent').find('input').attr('disabled',true);
 	$('#RegTitle').children('input').addClass('disabled');
@@ -87,10 +75,12 @@ var disableInventor = function()
 	$('#RegEffect').children('textarea').attr('disabled',true);
 	$('#RegCore_Element').children('textarea').addClass('disabled');
 	$('#RegCore_Element').children('textarea').attr('disabled',true);	
+	
 	$('#tmpSave').hide();
 	$('#agree').hide();		
 
 }
+
 
 //임시 저장
 var tmpSave = function(role)
@@ -143,12 +133,19 @@ var tmpSave = function(role)
  	    data : data,
  	    success:function(retVal)
  	    {
- 	    	alert(retVal);
+	 	   	if(role == "inventor")
+	 		{
+	 			alert(retVal+'\n 저장 후 변리사의 코멘트를 받을 수 있습니다.');	
+	 		}
+	 		else if(role = "pl")
+	 		{
+	 			alert(retVal+'\n 저장 후 고객이 코멘트를 확인 할 수 있습니다.');	
+	 		}
  	    },
  	    error: function(request,status,error)
 		{
  			alert('임시 저장에 실패하였습니다.')
-			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+ 			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		}
 	});	
  	
@@ -156,6 +153,19 @@ var tmpSave = function(role)
 //저장
 var ideaSave = function(role)
 {
+	if(role == "inventor")
+	{
+		alert('(확인, 취소로 바꾸기) 저장 후 변리사가 코멘트를 완료하기 전까지 수정 할 수 없습니다.');	
+	}	
+	else if(role == "pl")
+	{
+		alert('(확인, 취소로 바꾸기) 저장 후 고객이 내용을 수정하기까지 수정 할 수 없습니다.');	
+	}
+	else
+	{
+		alert('role Error ->'+role);		
+	}
+
 	var csrfToken = $("meta[name='_csrf']").attr("content"); 
 	var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
 	var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
@@ -238,6 +248,16 @@ var showClickedList = function(rid)
 				$('#RegEffect').children('textarea').text(result.effect);
 				$('#RegCore_Element').children('textarea').text(result.core_element);
 			
+				var afterComment = retVal.afterComment;
+				$('#AfterCommentTypeOfInvent').children('textarea').text(afterComment.re_typeOfInvent);
+				$('#AfterCommentTitle').children('textarea').text(afterComment.re_title);
+				$('#AfterCommentSummary').children('textarea').text(afterComment.re_summary);
+				$('#AfterCommentWhyInvent').children('textarea').text(afterComment.re_whyInvent);
+				$('#AfterCommentProblem').children('textarea').text(afterComment.re_problem);
+				$('#AfterCommentSolution').children('textarea').text(afterComment.re_solution);
+				$('#AfterCommentEffect').children('textarea').text(afterComment.re_effect);
+				$('#AfterCommentCore_Element').children('textarea').text(afterComment.re_core_element);
+			
 				var comment = retVal.beforeComment;
 				if(comment == null)
 				{
@@ -261,20 +281,6 @@ var showClickedList = function(rid)
 					$('#BeforeCommentEffect').children('textarea').text(comment.re_effect);
 					$('#BeforeCommentCore_Element').children('textarea').text(comment.re_core_element);
 				}
-				//변리사의 경우
-				var afterComment = retVal.afterComment;
-				if(retVal.role =="pl")
-				{
-					$('#AfterCommentTypeOfInvent').children('textarea').text(afterComment.re_typeOfInvent);
-					$('#AfterCommentTitle').children('textarea').text(afterComment.re_title);
-					$('#AfterCommentSummary').children('textarea').text(afterComment.re_summary);
-					$('#AfterCommentWhyInvent').children('textarea').text(afterComment.re_whyInvent);
-					$('#AfterCommentProblem').children('textarea').text(afterComment.re_problem);
-					$('#AfterCommentSolution').children('textarea').text(afterComment.re_solution);
-					$('#AfterCommentEffect').children('textarea').text(afterComment.re_effect);
-					$('#AfterCommentCore_Element').children('textarea').text(afterComment.re_core_element);
-				}
-				
 			}
 			else
 				alert('ajax Error');
@@ -284,4 +290,48 @@ var showClickedList = function(rid)
 		       //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		}
 	});	
+}
+
+var delImg = function(path,id,btnid)
+{
+	//alert(path+","+id);
+	var element= document.getElementById(id);
+	element.parentNode.removeChild(element);
+	var btnelement= document.getElementById(btnid);
+	btnelement.parentNode.removeChild(btnelement);
+	var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+	var csrfToken = $("meta[name='_csrf']").attr("content"); 
+	var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
+	var data = {};
+	var headers = {};
+	data[csrfParameter] = csrfToken;
+    data["path"] = path;
+    headers[csrfHeader] = csrfToken;
+    $.ajax({
+	    url : "/deleteFile",
+	    dataType : "json",
+	    type : "POST",
+	    headers: headers,
+	    data : data,
+	    success: function(data) {
+	        alert("성공:"+data.result);
+	    },
+	    error:function(request,status,error){
+	        alert("code:"+request.status+"\n"+"error:"+error);
+	    }
+	}); 
+}
+
+var readUrl = function(input,id) 
+{	
+	//alert(id);
+    if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+            $('#'+id).attr('src', e.target.result);
+        }
+
+      reader.readAsDataURL(input.files[0]);
+    }
 }

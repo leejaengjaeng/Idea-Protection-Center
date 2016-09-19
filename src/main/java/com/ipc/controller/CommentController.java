@@ -70,13 +70,15 @@ public class CommentController {
 			{
 				List<RegistrationPatentVo> processList = regDao.getAssociatedProcessList(start_rid);
 				RegistrationPatentVo lastItem = regDao.getInventorProcessByRid(lastRid);
-				RegistrationPatentVo beforeComment = regDao.getPrevCommentByPrevRid(lastItem.getPrev_rid());
+				RegistrationPatentVo beforeComment = regDao.getPrevInventorModifyByPrevRid(lastItem.getPrev_rid());
+				RegistrationPatentVo afterComment = regDao.getAfterInventorModifyByRid(lastRid);
 				
 				model.addAttribute("user","inventor");
 				model.addAttribute("processList",processList);
 				model.addAttribute("item",lastItem);
 				model.addAttribute("lastRid",lastRid);
 				model.addAttribute("beforeComment", beforeComment);
+				model.addAttribute("afterComment", beforeComment);
 
 				if(beforeComment == null)
 					model.addAttribute("isNull","true");
@@ -90,8 +92,8 @@ public class CommentController {
 			{
 				List<RegistrationPatentVo> processList = regDao.getAssociatedProcessList(start_rid);
 				RegistrationPatentVo lastItem = regDao.getPlProcessByRid(lastRid);
-				RegistrationPatentVo beforeComment = regDao.getPrevCommentByPrevRid(lastItem.getPrev_rid());
-				RegistrationPatentVo afterComment = regDao.getAfterCommentByRid(lastRid);
+				RegistrationPatentVo beforeComment = regDao.getPrevPlCommentByPrevRid(lastItem.getPrev_rid());
+				RegistrationPatentVo afterComment = regDao.getAfterPlCommentByRid(lastRid);
 				
 				model.addAttribute("user","pl");
 				model.addAttribute("processList",processList);
@@ -134,11 +136,13 @@ public class CommentController {
 			if(inventorId==userId) 
 			{
 				RegistrationPatentVo item = regDao.getInventorProcessByRid(rid);
-				RegistrationPatentVo beforeComment = regDao.getPrevCommentByPrevRid(item.getPrev_rid());
+				RegistrationPatentVo beforeComment = regDao.getPrevInventorModifyByPrevRid(item.getPrev_rid());
+				RegistrationPatentVo afterComment = regDao.getAfterInventorModifyByRid(rid);
 				
 				retVal.put("role", "inventor");
 				retVal.put("item",item);
 				retVal.put("beforeComment", beforeComment);
+				retVal.put("afterComment", afterComment);
 				
 				return retVal;
 			}
@@ -146,8 +150,9 @@ public class CommentController {
 			if(plId==userId)
 			{
 				RegistrationPatentVo item = regDao.getPlProcessByRid(rid);
-				RegistrationPatentVo afterComment = regDao.getAfterCommentByRid(rid);
-				RegistrationPatentVo beforeComment = regDao.getPrevCommentByPrevRid(item.getPrev_rid());
+				RegistrationPatentVo beforeComment = regDao.getPrevPlCommentByPrevRid(item.getPrev_rid());
+				RegistrationPatentVo afterComment = regDao.getAfterPlCommentByRid(rid);
+
 				retVal.put("role", "pl");
 				retVal.put("item", item);
 				retVal.put("beforeComment", beforeComment);
