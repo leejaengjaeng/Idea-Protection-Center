@@ -86,7 +86,7 @@ body{
     var buttonId;
     var pId;
     function giveLawyer(rid,btnid,pid){
-    	alert("aa");
+    	//alert("aa");
     	RegisId=rid;
     	buttonId=btnid;
     	pId=pid;
@@ -110,9 +110,11 @@ body{
     	    headers: headers,
     	    data : data,
     	    success: function(data) {
-    	    	$("#"buttonId).remove();
-    	    	inDiv=document.getElementById(pId);
-    	    	inDiv.innerHtml(data.lawyerName);
+    	    	alert(pId);
+    	    	var element = document.getElementById(buttonId);
+    	    	element.parentNode.removeChild(element);
+    	    	var inDiv=document.getElementById(pId);
+    	    	inDiv.innerHTML="<p>"+data.lawyerName+"</p>";
     	        document.getElementById("bw").style.visibility="hidden";
         		document.getElementById("pp").style.visibility="hidden";
         		
@@ -122,6 +124,10 @@ body{
     	    }
     	 
     	}); 
+    }
+    function closeload(){
+    	document.getElementById("bw").style.visibility="hidden";
+		document.getElementById("pp").style.visibility="hidden";
     }
     </script>
 </head>
@@ -145,7 +151,7 @@ body{
        			<td>${lawlist.getId()}</td>
        			<td>${lawlist.getName()}</td>
        			<td>${lawlist.getEmail()}</td>
-       			<td><button onclick="assign('${lawlist.getUid()}','btn${status.count}')">지정</button><td>
+       			<td><button onclick="assign('${lawlist.getUid()}')">지정</button><td>
        		</tr>
        	</c:forEach>
        	</table>
