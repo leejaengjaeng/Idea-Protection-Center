@@ -37,7 +37,7 @@ $(document).ready(function()
 		
 
 		//0 고객 작성중(변리사 작성 완료), 1 고객 작성 완료
-		if("${item.getIscomplete()}" == 0)
+		if("${item.getIscomplete()}"== 0)
 			enableInput();
 		else
 		{

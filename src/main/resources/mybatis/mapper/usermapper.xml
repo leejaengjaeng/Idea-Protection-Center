@@ -24,7 +24,7 @@
     	SELECT uid,id,name,email FROM user where role="ROLE_PATIENTENTLAWYER"
     </select>
     <update id="assign" parameterType="Hashmap">
-    	update registration_patent set lid=(select lid from patientent_lawyer where uid=#{uid}) where rid=#{rid}
+    	update registration_patent set lid=#{uid} where rid=#{rid}
     </update>
 </mapper>
 
