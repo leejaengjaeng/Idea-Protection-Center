@@ -26,9 +26,8 @@ $(document).ready(function()
 		enableInput();
 	else 
 	{
-		enableInput();
-		//disableInput();
-		//alert('고객이 작성을 완료하기를 기다려주세요');			
+		disableInput();
+		alert('고객이 작성을 완료하기를 기다려주세요');			
 	}
 	
 	//폼 버튼 이벤트 
