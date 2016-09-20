@@ -19,7 +19,7 @@ public interface RegistrationDao {
 	public int countTempIdea(int uid);
 
 	public List<RegistrationPatentVo> getInventorProcessList(int uid);
-	public List<RegistrationPatentVo> getPlProcessList(int lid);
+	public List<RegistrationPatentVo> getPlProcessList(int uid);
 	
 	public RegistrationPatentVo getAssociatedMembersByRid(int start_rid);
 	public List<RegistrationPatentVo> getAssociatedProcessList(int start_rid);

@@ -62,6 +62,7 @@ public class MainController {
 				}
 				else if(currentUser.getRole().equals(rolePatientntLawyer))
 				{
+					System.out.println("aaasddd");
 					processList = regDao.getPlProcessList(currentUser.getUid());			
 				}
 				// 발명가나 변리사가 아니면 리다이렉트
