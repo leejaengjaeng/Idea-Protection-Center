@@ -69,14 +69,14 @@ var tmpSave = function(role)
 	if(role=="inventor")
 	{
 		data['role'] 			= "inventor";
-		data['typeOfInvent'] 	= $('#AfterTypeOfInvent').children("textarea").val();
-		data['title'] 			= $('#AfterTitle').children("textarea").val();
-		data['summary'] 		= $('#AfterSummary').children("textarea").val();
-		data['whyInvent']		= $('#AfterWhyInvent').children("textarea").val();
-		data['problem'] 		= $('#AfterProblem').children("textarea").val();
-		data['solution'] 		= $('#AfterSolution').children("textarea").val();
-		data['effect'] 			= $('#AfterEffect').children("textarea").val();
-		data['core_element'] 	= $("#AfterCore_Element").children("textarea").val();
+		data['typeOfInvent'] 	= $('#AfterCommentTypeOfInvent').children("textarea").val();
+		data['title'] 			= $('#AfterCommentTitle').children("textarea").val();
+		data['summary'] 		= $('#AfterCommentSummary').children("textarea").val();
+		data['whyInvent']		= $('#AfterCommentWhyInvent').children("textarea").val();
+		data['problem'] 		= $('#AfterCommentProblem').children("textarea").val();
+		data['solution'] 		= $('#AfterCommentSolution').children("textarea").val();
+		data['effect'] 			= $('#AfterCommentEffect').children("textarea").val();
+		data['core_element'] 	= $("#AfterCommentCore_Element").children("textarea").val();
 	}
 	//변리사인 경우
 	else if(role=="pl")
@@ -150,14 +150,14 @@ var ideaSave = function(role)
 	if(role=="inventor")
 	{
 		data['role'] 			= "inventor";
-		data['typeOfInvent'] 	= $('#AfterTypeOfInvent').children("textarea").val();
-		data['title'] 			= $('#AfterTitle').children("textarea").val();
-		data['summary'] 		= $('#AfterSummary').children("textarea").val();
-		data['whyInvent']		= $('#AfterWhyInvent').children("textarea").val();
-		data['problem'] 		= $('#AfterProblem').children("textarea").val();
-		data['solution'] 		= $('#AfterSolution').children("textarea").val();
-		data['effect'] 			= $('#AfterEffect').children("textarea").val();
-		data['core_element'] 	= $("#AfterCore_Element").children("textarea").val();
+		data['typeOfInvent'] 	= $('#AfterCommentTypeOfInvent').children("textarea").val();
+		data['title'] 			= $('#AfterCommentTitle').children("textarea").val();
+		data['summary'] 		= $('#AfterCommentSummary').children("textarea").val();
+		data['whyInvent']		= $('#AfterCommentWhyInvent').children("textarea").val();
+		data['problem'] 		= $('#AfterCommentProblem').children("textarea").val();
+		data['solution'] 		= $('#AfterCommentSolution').children("textarea").val();
+		data['effect'] 			= $('#AfterCommentEffect').children("textarea").val();
+		data['core_element'] 	= $("#AfterCommentCore_Element").children("textarea").val();
 	}
 	//변리사인 경우
 	else if(role=="pl")

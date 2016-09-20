@@ -62,6 +62,7 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 	public String inputidea(HttpServletRequest request,RegistrationPatentVo rv){
 		MultipartHttpServletRequest multipartRequest =  (MultipartHttpServletRequest)request;  //다중파일 업로드
 		List<MultipartFile> files = multipartRequest.getFiles("imgs");
+		
 		System.out.println(files.size());
 		System.out.println(rv.getEffect());
 		RegistrationService rs=new RegistrationService();

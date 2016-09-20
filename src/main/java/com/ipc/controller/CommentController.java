@@ -250,13 +250,13 @@ public class CommentController {
 				return "이미 완료된 사항입니다.";
 			
 			RegistrationPatentVo tmpVo = regDao.getResourceForPlSaveByRid(regVo.getRid());
-			System.out.println("여기로 오니?");
-			regVo.setRid(0);
 			regVo.setIscomplete(0);
 			regVo.setPrev_rid(regVo.getRid());
 			regVo.setStart_rid(tmpVo.getStart_rid());
 			regVo.setLid(tmpVo.getLid());
 			regVo.setUid(tmpVo.getUid());
+			regVo.setRid(0); //autoIncrese
+
 			regDao.plSave(regVo);
 
 			return "저장 성공";
@@ -268,6 +268,7 @@ public class CommentController {
 				return "이미 완료된 사항입니다.";
 		
 			regVo.setIscomplete(1);
+			
 			regDao.inventorSave(regVo);
 			
 			return "저장 성공";
