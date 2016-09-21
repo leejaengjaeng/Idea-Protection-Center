@@ -93,31 +93,11 @@ public class MainController {
 	public String admin2(Model model)
 	{
 		//권한 검사하기 -> security가 해줌 
-		
-		try{
-			String userId = SecurityContextHolder.getContext().getAuthentication().getName();		
-			userVo currentUser = userDao.getUserById(userId);
-			// 인증 정보가 없으면 userId = anonymousUser
-			// currnetUser = null
-			if(currentUser == null)
-				return "redirect:/login";		
-			else
-			{
-				List<adminListVo> ideaList = regDao.adminGetIdeaList();
-				List<userVo> lawyers = userDao.getLawyerList();
-				model.addAttribute("ideaList", ideaList);
-				model.addAttribute("lawyerList",lawyers);
-
-				return "admin/admin_management";
-			}
-		}
-		catch(Exception e)
-		{
-			logger.info("비정상 접근입니다(/IPC_adminPage): "+e.getMessage());
-			return "redirect:/";
-		}
-		
-		
+		List<adminListVo> ideaList = regDao.adminGetIdeaList();
+		List<userVo> lawyers = userDao.getLawyerList();
+		model.addAttribute("ideaList", ideaList);
+		model.addAttribute("lawyerList",lawyers);
+		return "admin/admin_management";
 	}
 	
 	@RequestMapping(value="/assign",method=RequestMethod.POST)
