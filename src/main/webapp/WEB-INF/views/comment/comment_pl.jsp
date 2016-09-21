@@ -14,6 +14,7 @@
     
     <link href="/resources/common/css/style.css" rel="stylesheet">
     <link href="/resources/common/css/index.css" rel="stylesheet">
+
 <script>
 $(document).ready(function()
 {
@@ -496,7 +497,8 @@ function addFile(){
 	                <div class="hr"></div>           
 	                <div id="fin"> 
 	                    <button type="button" id="tmpSave">임시저장</button>
-	                    <button type="button" id="agree">저장</button>                    
+	                    <button type="button" id="agree">저장</button>  
+	                    <button type="button" id="gogogo">출원하기</button>                    
 	                </div>
 	            </form>
             </article>

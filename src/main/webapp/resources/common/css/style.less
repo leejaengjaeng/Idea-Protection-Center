@@ -1,5 +1,5 @@
 //web-font-import
-@import url(http://fonts.googleapis.com/earlyaccess/nanummyeongjo.css);
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 //class
 
 .tr25{
@@ -36,7 +36,7 @@
     margin:0 auto; 
     border-collapse:collapse; 
     box-sizing: border-box;
-    font-family:'Nanum Myeongjo',sans-serif;
+    font-family:'Nanum Gothic',sans-serif;
 }
 .hr{
     width: 100%; 
@@ -222,11 +222,10 @@
                 #demo_box{
                     width: 100%;
                     float: left;
-                    margin-top: 15px;
-                    padding-left: 80px;
+                    margin-top: 15px;                    
                     .demo{
-                        width: 175px;
-                        height: 175px;
+                        width: 150px;
+                        height: 150px;
                         float: left;
                         background: #f1f1f1;
                         margin-top: 15px;
@@ -607,6 +606,9 @@ section{
             }
         }
 }
+#hide_menu{
+    display: none;
+}
 #hide_nav{    
     position: fixed;
     left: 0;
@@ -654,6 +656,7 @@ section{
         }
     }    
     #hide_menu{
+        display: block;
         width: 50px;
         height: 50px;
         position: fixed;
@@ -691,4 +694,43 @@ section{
     .title_td{
             background:#45d4fe !important;
         }
+}
+
+.img_comt{
+    width: 100px;
+    height: 100%;
+    border-radius: 4px;
+    float: right;
+    background: #f9f9f9;
+    padding:25px;
+    border: 1px solid #ccc;                    
+}
+.current_cmt{
+	width:100%;
+	float:left;
+	margin-top:20px;
+    .img_comt{
+        float: left;
+    }
+    textarea{
+        float:right;
+	    width:640px !important;
+	    height:106px !important;
+    }
+}
+.after_cmt{
+	float:left;
+	width:100%;
+	margin-top:20px;
+    .img_comt{
+        float: right;
+    }
+    textarea{
+        width: 640px !important;
+        height: 106px !important;
+        float: left;
+    }
+}
+#gogogo{
+    background: #f39800 !important;
 }

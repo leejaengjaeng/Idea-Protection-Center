@@ -15,9 +15,19 @@
 			<arguments>
 			</arguments>
 		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.buildship.core.gradleprojectbuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
 	</buildSpec>
 	<natures>
 		<nature>org.eclipse.buildship.core.gradleprojectnature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
+<<<<<<< HEAD
+		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
+		<nature>org.eclipse.buildship.core.gradleprojectnature</nature>
+=======
+>>>>>>> eeede0277f8a04afb26c485d9ef13b2bea15fa3c
 	</natures>
 </projectDescription>
