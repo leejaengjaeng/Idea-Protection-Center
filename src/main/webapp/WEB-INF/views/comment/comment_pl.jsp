@@ -17,6 +17,9 @@
 <script>
 $(document).ready(function()
 {
+	console.log(${currentAnswer.getIscomplete()});
+	console.log(${currentAnswer.getName()});
+
 	if("${isFirst}" == "true")
 	{
 		hideBeforeCmt();
