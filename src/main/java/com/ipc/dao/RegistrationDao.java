@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ipc.vo.RegistrationPatentVo;
 import com.ipc.vo.adminListVo;
+import com.ipc.vo.adminNoticeVo;
 
 @Mapper
 @Transactional
@@ -46,4 +47,5 @@ public interface RegistrationDao {
 	public void updateStartId(int rid);
 	
 	public List<adminListVo> adminGetIdeaList();
+	public void regisNotice(adminNoticeVo an);
 }

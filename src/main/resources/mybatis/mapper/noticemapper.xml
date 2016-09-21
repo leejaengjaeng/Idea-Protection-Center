@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ipc.dao.NoticeDao">
+	<insert id="regisNotice" parameterType="com.ipc.vo.adminNoticeVo">
+		insert into notice(title,content,date) values (#{title},#{content},#{date})  
+	</insert>
+	<select id="getNoticeListDesc" resultType="com.ipc.vo.adminNoticeVo">
+		select nid,title,content,date from notice order by date desc
+	</select>
+	<select id="getNoticeByNid" parameterType="Integer" resultType="com.ipc.vo.adminNoticeVo">
+		select nid,title,content,date from notice where nid=#{nid}
+	</select>
+	<select id="getNoticeListDescLimit" resultType="com.ipc.vo.adminNoticeVo" parameterType="Integer">
+		select nid,title,content,date from notice order by date desc limit #{num}
+	</select>
+</mapper>
+
+
