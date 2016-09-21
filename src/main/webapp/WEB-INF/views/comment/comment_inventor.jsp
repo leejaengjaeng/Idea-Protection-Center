@@ -14,10 +14,29 @@
     
     <link href="/resources/common/css/style.css" rel="stylesheet">
     <link href="/resources/common/css/index.css" rel="stylesheet">
+
 <style>
-.before_cmt{
-}
+   	.before_cmt>.img_comt{
+   		float: left !important;
+   	}
+   	.before_cmt>textarea{
+   		float:right !important;
+   	}
+   	.current_cmt>.img_comt{
+   		float:right !important;   	
+   	}
+   	.current_cmt>textarea{
+   		float:left !important;
+   	}
+   	.after_cmt>.img_comt{
+   		float:left !important;
+   		margin-top:10px;
+   	}
+   	.after_cmt>textarea{
+   		float:right !important;
+   	}
 </style>
+
 <script>
 $(document).ready(function()
 {
@@ -100,7 +119,7 @@ $(document).ready(function()
 var i=0;
 function addFile()
 {
-	$('#inputFileDiv').append("<div style='float:left'><img style='width:200px' src='/resources/image/plus.png' alt='img' id='"+i+"'><br><input type='file' id='imgInp"+i+"' name='addupimgs' onchange='readURL(this,"+i+")' name='profileImg' style='width:30%'></div>");
+	$('#inputFileDiv').append("<div style='float:left;text-align:center;margin:40px 5px 20px 5px;'><img style='width:50px' src='/resources/image/plus.png' alt='img' id='"+i+"'><br><input type='file' style='padding-top:5px; font-size:12px;' id='imgInp"+i+"' name='addupimgs' onchange='readURL(this,"+i+")' name='profileImg' style='width:180px;'></div>");
 	i++;
 }
 
@@ -483,15 +502,14 @@ function addFile()
 	                            <img src="/resources/image/inventor3.png" alt="prev_userImg">
 	                        </div>
 	                    </div>             
-
+						<button style="clear:both; margin-top:15px;" type="button" onclick="addFile()">추가</button>
 	                    <div id="demo_box">
 		                    <c:forEach items="${imgs}" var="list" varStatus="status">
 			                    <div>
-			                    	<a href="${list.getFile_path()}" id="id${list.getRfid()}" style="clear:both"><img src="${list.getFile_path()}" style="width:200px;padding-left:10px"></a>
+			                    	<a href="${list.getFile_path()}" id="id${list.getRfid()}" style="clear:both"><img src="${list.getFile_path()}" style="width:175px;padding-left:10px"></a>
 		                        </div>
 		                        <button  style="float:left" type="button" id='btn${list.getRfid()}' onclick="delImg('${list.getFile_path()}','id${list.getRfid()}','btn${list.getRfid()}')">삭제</button>
-		                    </c:forEach>
-		                    <button style="clear:both" type="button" onclick="addFile()">추가</button>
+		                    </c:forEach>		                    
 		                        <div id="inputFileDiv"></div>
 		                        <!--  
 		                        <div class="demo">
