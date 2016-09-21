@@ -60,6 +60,9 @@ public class CommentController {
 		
 		-발명가 작성 
 		새로운 코멘트-
+		
+		//iscomplete 0 고객 작성 차례, 1 변리사 작성 차례
+			
 	 */
 	@RequestMapping(value="/detail/{start_rid}",method=RequestMethod.GET)
 	public String detail(@PathVariable int start_rid,Model model)
@@ -249,15 +252,19 @@ public class CommentController {
 			if(0 == regDao.checkIsCompletedByRid(regVo.getRid()))
 				return "이미 완료된 사항입니다.";
 			
-			RegistrationPatentVo tmpVo = regDao.getResourceForPlSaveByRid(regVo.getRid());
-			System.out.println("여기로 오니?");
-			regVo.setRid(0);
+			
+			
+			//답변 달기
 			regVo.setIscomplete(0);
-			regVo.setPrev_rid(regVo.getRid());
-			regVo.setStart_rid(tmpVo.getStart_rid());
-			regVo.setLid(tmpVo.getLid());
-			regVo.setUid(tmpVo.getUid());
-			regDao.plSave(regVo);
+			regDao.plUpdate(regVo);
+			
+			//새로운 ROW만들기
+			RegistrationPatentVo tmpVo = regDao.getResourceForPlSaveByRid(regVo.getRid());
+			tmpVo.setIscomplete(0);
+			tmpVo.setPrev_rid(regVo.getRid());
+			tmpVo.setRid(0); //autoIncrese
+
+			regDao.plSave(tmpVo);
 
 			return "저장 성공";
 
@@ -268,6 +275,7 @@ public class CommentController {
 				return "이미 완료된 사항입니다.";
 		
 			regVo.setIscomplete(1);
+			
 			regDao.inventorSave(regVo);
 			
 			return "저장 성공";

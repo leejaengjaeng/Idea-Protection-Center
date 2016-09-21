@@ -22,13 +22,12 @@ $(document).ready(function()
 		hideBeforeCmt();
 	}
 
-	if("${item.getIscomplete()}" == 1)
+	if("${currentAnswer.getIscomplete()}" == 1)
 		enableInput();
 	else 
 	{
-		enableInput();
-		//disableInput();
-		//alert('고객이 작성을 완료하기를 기다려주세요');			
+		disableInput();
+		alert('고객이 작성을 완료하기를 기다려주세요');			
 	}
 	
 	//폼 버튼 이벤트 
@@ -48,7 +47,7 @@ $(document).ready(function()
 		$(this).parent().find('.clickedIdea').removeClass('clickedIdea');
 		var rid = $(this).children('input').attr('value');
 		
-		if(rid == ${lastRid} && ("${item.getIscomplete()}" == 0))
+		if(rid == ${lastRid} && ("${currentAnswer.getIscomplete()}" == 1))
 		{
 			enableInput();
 		}
