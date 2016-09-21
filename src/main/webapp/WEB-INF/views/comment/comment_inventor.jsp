@@ -237,7 +237,7 @@ function addFile()
                         <div class="img_comt">
                             <img src="/resources/image/inventor3.png" alt="after_userImg">
                         </div> 
-                        <textarea  disabled="disabled" class="disabled">${currentAnswer.getTitle()}</textarea>
+                        <textarea disabled="disabled" class="disabled">${currentAnswer.getTitle()}</textarea>
                     </div>
                     
                     <div class="hiding_box">
