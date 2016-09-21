@@ -30,7 +30,7 @@ public class SecConfig extends WebSecurityConfigurerAdapter {
 	{
 		http
 			.authorizeRequests()
-			.antMatchers("/admin","/adminMenu/**").hasRole("ADMIN")
+			.antMatchers("/IPC_adminPage").hasRole("ADMIN")
 			.antMatchers("/","/**","/signup/**","/signup/inputsignup").permitAll()
 			.and()
 			.formLogin()
@@ -41,7 +41,6 @@ public class SecConfig extends WebSecurityConfigurerAdapter {
 				.successForwardUrl("/loginProcess.do")
 				.and()
 			.logout()
-				.logoutSuccessUrl("/")
 				.and()		
 			.exceptionHandling()
 				.accessDeniedPage("/authError");
