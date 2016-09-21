@@ -14,9 +14,14 @@
     
     <link href="/resources/common/css/style.css" rel="stylesheet">
     <link href="/resources/common/css/index.css" rel="stylesheet">
+<style>
+.before_cmt{
+}
+</style>
 <script>
 $(document).ready(function()
 {
+	
 	if("${isFirst}" == "true")
 	{
 		hideBeforeCmt();

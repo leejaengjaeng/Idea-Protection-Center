@@ -28,13 +28,16 @@ import com.ipc.vo.userVo;
 
 @Controller
 public class MainController {
-	
+
 	@Autowired
 	HttpSession session;
 	@Autowired
 	RegistrationDao regDao;
 	@Autowired
-	UserDao usermapper;
+	UserDao userDao;
+	
+
+	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	
 	private static final String roleAdmin = "ROLE_ADMIN";
 	private static final String roleInventor = "ROLE_INVENTOR";
@@ -62,6 +65,7 @@ public class MainController {
 				}
 				else if(currentUser.getRole().equals(rolePatientntLawyer))
 				{
+					System.out.println("aaasddd");
 					processList = regDao.getPlProcessList(currentUser.getUid());			
 				}
 				// 발명가나 변리사가 아니면 리다이렉트
@@ -88,22 +92,43 @@ public class MainController {
 	@RequestMapping("/IPC_adminPage")
 	public String admin2(Model model)
 	{
-		//권한 검사하기
-		List<adminListVo> ideaList = regDao.adminGetIdeaList();
-		List<userVo> lawyers = usermapper.getLawyerList();
-		model.addAttribute("ideaList", ideaList);
-		model.addAttribute("lawyerList",lawyers);
-		return "admin/admin_management";
+		//권한 검사하기 -> security가 해줌 
+		
+		try{
+			String userId = SecurityContextHolder.getContext().getAuthentication().getName();		
+			userVo currentUser = userDao.getUserById(userId);
+			// 인증 정보가 없으면 userId = anonymousUser
+			// currnetUser = null
+			if(currentUser == null)
+				return "redirect:/login";		
+			else
+			{
+				List<adminListVo> ideaList = regDao.adminGetIdeaList();
+				List<userVo> lawyers = userDao.getLawyerList();
+				model.addAttribute("ideaList", ideaList);
+				model.addAttribute("lawyerList",lawyers);
+
+				return "admin/admin_management";
+			}
+		}
+		catch(Exception e)
+		{
+			logger.info("비정상 접근입니다(/IPC_adminPage): "+e.getMessage());
+			return "redirect:/";
+		}
+		
+		
 	}
+	
 	@RequestMapping(value="/assign",method=RequestMethod.POST)
 	@ResponseBody
 	public HashMap<String, String> assign(HttpServletRequest req){
 		HashMap<String, String> map = new HashMap<String,String>(); 
 		map.put("rid", req.getParameter("rid"));
 		map.put("uid", req.getParameter("uid"));
-		usermapper.assign(map);
+		userDao.assign(map);
 		HashMap<String, String> resultMap = new HashMap<String,String>();
-		userVo uv = usermapper.getUserByUid(req.getParameter("uid"));
+		userVo uv = userDao.getUserByUid(req.getParameter("uid"));
 		resultMap.put("result", "aa");
 		resultMap.put("lawyerName", uv.getName());
 		return resultMap;

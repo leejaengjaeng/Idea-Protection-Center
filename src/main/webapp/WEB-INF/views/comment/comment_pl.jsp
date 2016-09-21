@@ -22,7 +22,7 @@ $(document).ready(function()
 		hideBeforeCmt();
 	}
 
-	if("${item.getIscomplete()}" == 1)
+	if("${currentAnswer.getIscomplete()}" == 1)
 		enableInput();
 	else 
 	{
@@ -47,7 +47,7 @@ $(document).ready(function()
 		$(this).parent().find('.clickedIdea').removeClass('clickedIdea');
 		var rid = $(this).children('input').attr('value');
 		
-		if(rid == ${lastRid} && ("${item.getIscomplete()}" == 0))
+		if(rid == ${lastRid} && ("${currentAnswer.getIscomplete()}" == 1))
 		{
 			enableInput();
 		}

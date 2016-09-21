@@ -172,10 +172,10 @@ body{
     </div>
 </div>
     <header>        
-        <img src="image/ideapc_logo.jpg" alt="logo">
+        <img src=/resources/image/ideapc_logo.jpg" alt="logo">
         <div id="header_info">
-            <span><b>Admin</b>님</span>
-            <button>로그아웃</button>
+            <span><b>${currentUser.getName() }</b>님</span>
+            <button onclick="location.href='/logoutProcess.do'">로그아웃</button>
         </div>        
     </header>
     <div id="admin_cont">
