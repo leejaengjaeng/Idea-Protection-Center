@@ -104,9 +104,9 @@
 	
 	<select id="adminGetIdeaList" resultType="com.ipc.vo.adminListVo">
 		select r.rid,u.id as iId,h.name as pName,u.name as iName, u.email, r.typeofinvent, r.title, r.r_condition, u.phone,r.registration_date
-		from (registration_patent as r left join user as u on r.uid=u.uid) left join (select user.uid as uid,user.name as name,patientent_lawyer.lid as lid
-																			  from user,patientent_lawyer 
-																			  where user.uid=patientent_lawyer.uid) as h on h.lid=r.lid
+		from (registration_patent as r left join user as u on r.uid=u.uid) left join (select user.uid as uid,user.name as name,registration_patent.lid as lid
+																			  from user,registration_patent 
+																			  where user.uid=registration_patent.lid) as h on h.lid=r.lid
 	</select>
 	
 </mapper>
