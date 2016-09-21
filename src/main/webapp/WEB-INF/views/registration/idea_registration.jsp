@@ -201,7 +201,7 @@ function tempsave(){
 	   headers: headers,
 	   data : data,
 	   success: function(data) {
-
+			alert("임시저장이 완료되었습니다");
 	   },
 	   error:function(request,status,error){
 	       alert("code:"+request.status+"\n"+"error:"+error);
@@ -216,6 +216,7 @@ function closeload(){
 	document.getElementById("pp").style.visibility="hidden";                
 }
 function formSubmit(file){
+	//alert($("input[name=imgs]").length);
     var maxSize  = 5 * 1024 * 1024    
     var fileSize = 0;
 
@@ -225,14 +226,15 @@ function formSubmit(file){
 	// 익스플로러일 경우
 	if (browser=="Microsoft Internet Explorer")
 	{
+		alert("ie");
 		var oas = new ActiveXObject("Scripting.FileSystemObject");
 		fileSize = oas.getFile( file.value ).size;
 	}
 		// 익스플로러가 아닐경우
 	else
 	{
-		for(var i=0;i<$("input[name=imgs]").length;i++)
-			fileSize+= file.files[i].size;
+		fileSize+= file.files[i].size;
+		alert(fileSize);
 	}
 	
 	
@@ -243,7 +245,6 @@ function formSubmit(file){
 	    alert("첨부파일 사이즈는 5MB 이내로 등록 가능합니다.    ");
 	    return false;
 	}
-
 }
 </script>
 </head>
