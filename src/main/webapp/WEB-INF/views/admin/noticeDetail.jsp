@@ -13,6 +13,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<p>${noticeVo.getTitle()}</p>
+<p>${noticeVo.getContent()}</p>
+<p>${noticeVo.getDate()}</p>
 </body>
 </html>
