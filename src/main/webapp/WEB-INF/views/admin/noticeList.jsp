@@ -30,13 +30,12 @@
 			</th>
 		</tr>
 		<c:forEach items="${noticeList}" var="list" varStatus="status">
-    					<tr onclick="location.href='/noticeList/${list.getNid()}'">
-			    		
-			    			<td>${list.getTitle()}</td>
-			    			<td>${list.getDate()}</td>
-			    			<td>관리자</td>
-			    		</tr>
-					</c:forEach>
+			<tr onclick="location.href='/noticeList/${list.getNid()}'">
+    			<td>${list.getTitle()}</td>
+    			<td>${list.getDate()}</td>
+    			<td>관리자</td>
+    		</tr>
+		</c:forEach>
 	</table>
 </div>
 <c:import url="/WEB-INF/views/import/footer.jsp"/>
