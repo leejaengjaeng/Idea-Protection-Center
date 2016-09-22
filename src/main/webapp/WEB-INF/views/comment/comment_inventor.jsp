@@ -504,7 +504,7 @@ function readURL(input,imgId) {
                 </div>
                 <div class="hr"></div>
 <!-- 9. 도면 첨부 -->
-                <form id="commentForm">             
+                <form id="commentForm">
 	                <div class="txt_box">
 	                    <h2 style="width:100%">도면첨부</h2> <button>작성 예시</button>
 	                    
