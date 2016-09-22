@@ -194,18 +194,7 @@ $(document).ready(function()
 	                        <td>-</td>
 						</tr>
 					</c:forEach>
-                </table>
-                <div id="paging_btn">
-                    <span>
-                       <
-                    </span>
-                    <span>
-                       1 2 3 4 
-                    </span>
-                    <span>
-                       >
-                    </span>
-                </div>
+                </table>                
                 <div id="notice_title">
                     <h2>공지사항</h2>
                 </div>
