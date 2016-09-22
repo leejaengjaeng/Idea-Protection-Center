@@ -185,6 +185,7 @@ body{
                 <li>아이디어 관리</li>
                 <li>문의사항 관리</li>
                 <li>게시판 관리</li>
+                <a href="/admin_notice"><li>공지사항 관리<li></a>
             </ul>  
         </nav>
         <article>

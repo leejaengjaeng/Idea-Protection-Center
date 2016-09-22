@@ -64,6 +64,10 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 		MultipartHttpServletRequest multipartRequest =  (MultipartHttpServletRequest)request;  //다중파일 업로드
 		List<MultipartFile> files = multipartRequest.getFiles("imgs");
 		int rm = regismapper.countTempIdea(rv.getUid());
+		System.out.println("rm : "+rm);
+		if (rm!=0){
+			regismapper.removeTempIdea(rv.getUid());
+		}
 		System.out.println(files.size());
 		System.out.println(rv.getEffect());
 		RegistrationService rs=new RegistrationService();

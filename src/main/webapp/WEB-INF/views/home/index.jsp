@@ -86,41 +86,15 @@
             </div>                        
             <div id="table_notice">
                <table>
-                    <tr>
-                        <td style="text-align:left;">
-                            아이디어 보호센터에서 아이디어를 보호하는 방법안내
-                        </td>
-                        <td>2016.09.06</td>
-                        <td>Admin</td>                                               
-                    </tr>                    
-                    <tr>
-                        <td style="text-align:left;">
-                            아이디어 보호센터에서 아이디어를 보호하는 방법안내
-                        </td>
-                        <td>2016.09.06</td>
-                        <td>Admin</td>                                               
-                    </tr>
-                    <tr>
-                        <td style="text-align:left;">
-                            아이디어 보호센터에서 아이디어를 보호하는 방법안내
-                        </td>
-                        <td>2016.09.06</td>
-                        <td>Admin</td>                                               
-                    </tr>                    
-                    <tr>
-                        <td style="text-align:left;">
-                            아이디어 보호센터에서 아이디어를 보호하는 방법안내
-                        </td>
-                        <td>2016.09.06</td>
-                        <td>Admin</td>                                               
-                    </tr>
-                    <tr>
-                        <td style="text-align:left;">
-                            아이디어 보호센터에서 아이디어를 보호하는 방법안내
-                        </td>
-                        <td>2016.09.06</td>
-                        <td>Admin</td>                                               
-                    </tr>
+                    <c:forEach items="${noticeList}" var="list" varStatus="status">
+    					<tr onclick="location.href='/noticeList/${list.getNid()}'">
+			    		
+			    			<td>${list.getTitle()}</td>
+			    			<td>${list.getDate()}</td>
+			    			<td>관리자</td>
+			    		</tr>
+					</c:forEach>          
+                    
                 </table>
                 <button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;">
                         더보기

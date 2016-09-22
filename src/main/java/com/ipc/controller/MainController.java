@@ -15,15 +15,20 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ipc.dao.NoticeDao;
 import com.ipc.dao.RegistrationDao;
 import com.ipc.dao.UserDao;
+
+import com.ipc.service.RegistrationService;
 import com.ipc.service.SignUpService;
 import com.ipc.vo.RegistrationPatentVo;
 import com.ipc.vo.adminListVo;
+import com.ipc.vo.adminNoticeVo;
 import com.ipc.vo.userVo;
 
 @Controller
@@ -35,7 +40,8 @@ public class MainController {
 	RegistrationDao regDao;
 	@Autowired
 	UserDao userDao;
-	
+	@Autowired
+	NoticeDao noticeDao;
 
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	
@@ -44,8 +50,10 @@ public class MainController {
 	private static final String rolePatientntLawyer = "ROLE_PATIENTENTLAWYER";
 	private static final String roleGuest = "anonymousUser";
 	@RequestMapping("/")
-	public String hello()
+	public String hello(Model model)
 	{
+		List<adminNoticeVo> an = noticeDao.getNoticeListDescLimit(5);
+		model.addAttribute("noticeList",an);
 		return "home/index";
 	}
 	
@@ -113,5 +121,28 @@ public class MainController {
 		resultMap.put("lawyerName", uv.getName());
 		return resultMap;
 	}
-	
+	@RequestMapping(value="/admin_notice_registration")
+	public String adminNotice(){
+		return "admin/admin_regis_notice";
+	}
+	@RequestMapping(value="/noticeRegistration",method=RequestMethod.POST)
+	public String noticeRegistration(adminNoticeVo an){
+		RegistrationService rs = new RegistrationService();
+		an.setDate(rs.getToday(0));
+		noticeDao.regisNotice(an);
+		return "admin/admin_management";
+		
+	}
+	@RequestMapping("/admin_notice")
+	public String admin_notice(Model model){
+		List<adminNoticeVo> noticeList=noticeDao.getNoticeListDesc();
+		model.addAttribute("noticeList", noticeList);
+		return "/admin/admin_notice";
+	}
+	@RequestMapping(value="/noticeList/{nid}",method=RequestMethod.GET)
+	public String noticeList(Model model,@PathVariable int nid){
+		adminNoticeVo an = noticeDao.getNoticeByNid(nid);
+		model.addAttribute("noticeVo", an);
+		return "admin/noticeDetail";
+	}
 }
