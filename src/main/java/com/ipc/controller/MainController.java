@@ -149,7 +149,6 @@ public class MainController {
 	public String noticePage(Model model){
 		List<adminNoticeVo> noticeList=noticeDao.getNoticeListDesc();
 		model.addAttribute("noticeList", noticeList);
-		model.addAttribute("role", "notAdmin");
 		return "/admin/noticeList";
 	}
 	
