@@ -521,12 +521,14 @@ function readURL(input,imgId) {
 	                    </div>             
 						<button style="clear:both; margin-top:15px;" type="button" onclick="addFile()">추가</button>
 	                    <div id="demo_box">
+	                    	<div style="width:100%; float: left;  border-bottom:1px solid #ccc; padding-bottom:50px;">
 		                    <c:forEach items="${imgs}" var="list" varStatus="status">
-			                    <div>
-			                    	<a href="${list.getFile_path()}" id="id${list.getRfid()}" style="clear:both"><img src="${list.getFile_path()}" style="width:175px;padding-left:10px"></a>
-		                        </div>
-		                        <button  style="float:left" type="button" id='btn${list.getRfid()}' onclick="delImg('${list.getFile_path()}','id${list.getRfid()}','btn${list.getRfid()}')">삭제</button>
-		                    </c:forEach>		                    
+			                    <div style="width:200px; float:left; margin:20px;">
+			                    	<a href="${list.getFile_path()}" id="id${list.getRfid()}" style="clear:both"><img src="${list.getFile_path()}" style="width:200px; height:200px;"></a>
+			                    	<button  style="float:left" type="button" id='btn${list.getRfid()}' onclick="delImg('${list.getFile_path()}','id${list.getRfid()}','btn${list.getRfid()}')">삭제</button>
+		                        </div>		                        
+		                    </c:forEach>
+		                    </div>		                    
 		                        <div id="inputFileDiv"></div>
 		                        <!--  
 		                        <div class="demo">

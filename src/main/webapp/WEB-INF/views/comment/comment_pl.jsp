@@ -15,7 +15,10 @@
     <link href="/resources/common/css/style.css" rel="stylesheet">
     <link href="/resources/common/css/index.css" rel="stylesheet">
 	<style>
+		.after_cmt>textarea{
 		
+			margin-top:0 !important;
+		}
 	</style>
 <script>
 $(document).ready(function()
@@ -464,9 +467,8 @@ function addFile(){
 	                    <div id="demo_box">
 		                    <c:forEach items="${imgs}" var="list" varStatus="status">
 			                    <div>
-			                    	<a href="${list.getFile_path()}" id="id${list.getRfid()}" style="clear:both"><img src="${list.getFile_path()}" style="width:200px;padding-left:10px"></a>
-		                        </div>
-		                        <button  style="float:left" type="button" id='btn${list.getRfid()}' onclick="delImg('${list.getFile_path()}','id${list.getRfid()}','btn${list.getRfid()}')">삭제</button>
+			                    	<a href="${list.getFile_path()}" id="id${list.getRfid()}" style="clear:both"><img src="${list.getFile_path()}" style="width:200px; height:200px; border:1px solid #ccc;  float:left; margin:20px;"></a>
+		                        </div>		                        
 		                    </c:forEach>
 		                    
 		                        <div id="inputFileDiv"></div>
