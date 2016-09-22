@@ -81,7 +81,8 @@ $(document).ready(function()
 	});
 	$('#agree').on("click",function()
 	{
-		ideaSave("${user}");
+		document.getElementById("commentForm").submit();
+		//ideaSave("${user}");
 	});
 
 	//클릭에 따라 내용 바꿔주기
@@ -120,7 +121,7 @@ $(document).ready(function()
 var i=0;
 function addFile()
 {
-	$('#inputFileDiv').append("<div style='float:left;text-align:center;margin:40px 5px 20px 5px; width:230px;'><img style='width:200px; height:200px; border:1px solid #ccc;' src='/resources/image/plus2.png' alt='img' id='"+i+"'><br><input type='file' style='padding-top:5px; font-size:12px;' id='imgInp"+i+"' name='addupimgs' onchange='readURL(this,"+i+")' name='profileImg' style='width:180px;'></div>");
+	$('#inputFileDiv').append("<div style='float:left;text-align:center;margin:40px 5px 20px 5px; width:230px;'><img style='width:200px; height:200px; border:1px solid #ccc;' src='/resources/image/plus2.png' alt='img' id='"+i+"'><br><input type='file' style='padding-top:5px; font-size:12px;' id='imgInp"+i+"' name='imgs' onchange='readURL(this,"+i+")' name='profileImg' style='width:180px;'></div>");
 	i++;
 }
 function readURL(input,imgId) {
@@ -504,7 +505,11 @@ function readURL(input,imgId) {
                 </div>
                 <div class="hr"></div>
 <!-- 9. 도면 첨부 -->
-                <form id="commentForm">
+                <form id="commentForm" name="commentForm" action="/commentFileSave" method="post" enctype="multipart/form-data">
+                               	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                
+                <input type="hidden" name="userID_file" value="${sessionScope.currentUser.getId()}">
+                <input type="hidden" name="start_rid_file" value="${start_rid}">
 	                <div class="txt_box">
 	                    <h2 style="width:100%">도면첨부</h2> <button>작성 예시</button>
 	                    
@@ -550,8 +555,9 @@ function readURL(input,imgId) {
 	                </div>     
 	                <div class="hr"></div>           
 	                <div id="fin"> 
+	                	
 	                    <button type="button" id="tmpSave">임시저장</button>
-	                    <button type="button" id="agree">저장</button>                    
+	                    <button type="button" id="agree" >저장</button>                    
 	                </div>
 	            </form>
             </article>
@@ -560,7 +566,6 @@ function readURL(input,imgId) {
     <c:import url="/WEB-INF/views/import/footer.jsp"/>
 <script>
 	 
-	
 </script>
 </body>
 </html>

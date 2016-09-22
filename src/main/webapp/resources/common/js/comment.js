@@ -185,7 +185,10 @@ var ideaSave = function(role)
  	    data : data,
  	    success:function(retVal)
  	    {
+ 	    	alert("a");
+ 	    	document.getElementById("commentForm").submit();
  	    	alert(retVal);
+ 	    	
  			location.href ="/mainPage";
  	    },
  	    error: function(request,status,error)
@@ -196,7 +199,10 @@ var ideaSave = function(role)
 	});	
  	
 }
-
+function imgsave(){
+	 alert("s");
+	 
+}
 var hideBeforeCmt = function()
 {
 	var hideEl = document.getElementsByClassName('before_cmt')

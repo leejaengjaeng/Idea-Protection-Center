@@ -35,6 +35,7 @@ public class RegistrationService {
 	private FileOutputStream fos;
 	public String makeimageFile(MultipartFile file,String filename,String ID,int rid){
 		try {
+			
 			String dirpath="../Idea-Protection-Center\\src\\main\\webapp\\resources\\uploadimgs\\inventor\\"+ID+"\\";
 			mkdir(ID);
 			byte fileData[] = file.getBytes();

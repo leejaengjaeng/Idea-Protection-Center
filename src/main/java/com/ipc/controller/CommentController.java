@@ -25,6 +25,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ipc.dao.RegistrationDao;
 import com.ipc.dao.RegistrationFileDao;
+import com.ipc.service.RegistrationService;
 import com.ipc.vo.RegistrationFileVo;
 import com.ipc.vo.RegistrationPatentVo;
 import com.ipc.vo.userVo;
@@ -100,7 +101,7 @@ public class CommentController {
 				model.addAttribute("user","inventor");
 				model.addAttribute("beforeReg",beforeReg);
 				model.addAttribute("currentAnswer", currentAnswer);
-				
+				model.addAttribute("start_rid",start_rid);
 
 				if(beforeReg == null)
 					model.addAttribute("isFirst","true");
@@ -301,5 +302,24 @@ public class CommentController {
 		HashMap<String,String> map=new HashMap<String,String>();
 		map.put("result", "aa");
 		return map;
+	}
+	@RequestMapping(value="/commentFileSave",method=RequestMethod.POST)
+	public String commentFileSave(HttpServletRequest request){
+		System.out.println(request.getParameter("userID_file")+"   "+Integer.parseInt(request.getParameter("start_rid_file")));
+		String userID=request.getParameter("userID_file");
+		String start_rid_file=request.getParameter("start_rid_file");
+		MultipartHttpServletRequest multipartRequest =  (MultipartHttpServletRequest)request;  //다중파일 업로드
+		List<MultipartFile> files = multipartRequest.getFiles("imgs");
+		RegistrationService rs = new RegistrationService();
+		for(int i=0;i<files.size();i++){
+			String today=rs.getToday(1)+i;
+			String fileType=rs.makeimageFile(files.get(i),today ,userID,Integer.parseInt(start_rid_file));
+			System.out.println(fileType);
+			HashMap<String,String> map = new HashMap<String,String>();
+			map.put("start_rid", start_rid_file);
+			map.put("file_path", "/resources/uploadimgs/inventor/"+userID+"/"+today+"."+fileType);
+			regFileDao.makeFile(map);
+		}
+		return "home/index";
 	}
 }
