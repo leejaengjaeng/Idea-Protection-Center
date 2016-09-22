@@ -29,12 +29,13 @@
    		float:left !important;
    	}
    	.after_cmt>.img_comt{
-   		float:left !important;
-   		margin-top:10px;
+   		float:left !important;   		
    	}
    	.after_cmt>textarea{
    		float:right !important;
+   		margin-top:0 !important;
    	}
+   
 </style>
 
 <script>
@@ -119,7 +120,7 @@ $(document).ready(function()
 var i=0;
 function addFile()
 {
-	$('#inputFileDiv').append("<div style='float:left;text-align:center;margin:40px 5px 20px 5px;'><img style='width:50px' src='/resources/image/plus.png' alt='img' id='"+i+"'><br><input type='file' style='padding-top:5px; font-size:12px;' id='imgInp"+i+"' name='addupimgs' onchange='readURL(this,"+i+")' name='profileImg' style='width:180px;'></div>");
+	$('#inputFileDiv').append("<div style='float:left;text-align:center;margin:40px 5px 20px 5px; width:230px;'><img style='width:50px' src='/resources/image/plus.png' alt='img' id='"+i+"'><br><input type='file' style='padding-top:5px; font-size:12px;' id='imgInp"+i+"' name='addupimgs' onchange='readURL(this,"+i+")' name='profileImg' style='width:180px;'></div>");
 	i++;
 }
 
