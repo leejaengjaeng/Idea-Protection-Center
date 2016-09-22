@@ -33,7 +33,7 @@ $(document).ready(function()
 <div id="hide_nav">
 	<div id="hide_nav_cont">
 	    <div id="profile">
-	        <img src="${currentUser.getProfileimg()}" alt="profile">
+	        <img src="${currentUser.getProfileimg()}" alt="profile">	        
 	        <h4>${currentUser.getName() }</h4>
 	        <span>ideaconcert</span>
 	    </div>
