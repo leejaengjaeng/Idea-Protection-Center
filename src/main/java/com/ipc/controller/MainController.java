@@ -150,6 +150,7 @@ public class MainController {
 		List<adminNoticeVo> noticeList=noticeDao.getNoticeListDesc();
 		model.addAttribute("noticeList", noticeList);
 		model.addAttribute("role", "notAdmin");
-		return "/admin/admin_notice";
+		return "/admin/noticeList";
 	}
+	
 }
