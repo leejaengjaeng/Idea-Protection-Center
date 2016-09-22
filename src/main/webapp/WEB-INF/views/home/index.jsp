@@ -96,8 +96,8 @@
 					</c:forEach>          
                     
                 </table>
-                <button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;">
-                        더보기
+                <button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;" onclick="location.href='/noticePage'">
+                	더보기
                 </button>
             </div>
             <div id="cont_title3">
