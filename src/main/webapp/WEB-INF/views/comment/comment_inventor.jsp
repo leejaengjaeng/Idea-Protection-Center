@@ -123,6 +123,17 @@ function addFile()
 	$('#inputFileDiv').append("<div style='float:left;text-align:center;margin:40px 5px 20px 5px; width:230px;'><img style='width:50px' src='/resources/image/plus.png' alt='img' id='"+i+"'><br><input type='file' style='padding-top:5px; font-size:12px;' id='imgInp"+i+"' name='addupimgs' onchange='readURL(this,"+i+")' name='profileImg' style='width:180px;'></div>");
 	i++;
 }
+function readURL(input,imgId) {
+    if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+            $('#'+imgId).attr('src', e.target.result);
+        }
+
+      reader.readAsDataURL(input.files[0]);
+    }
+}
 
 </script>
 </head>
