@@ -8,9 +8,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="_csrf" content="${_csrf.token}" />
 <meta name="_csrf_header" content="${_csrf.headerName}" />
+<script>
+function checkAdmin(){
+	//alert("${role}");
+
+	if("${role}"=='notAdmin'){
+		document.getElementById("btn_notice_regis").style.display='none';
+	}
+}
+</script>
 <title>Insert title here</title>
 </head>
-<body>
+<body onload="checkAdmin()">
 <div>
 <table>
 <tr>
@@ -27,7 +36,7 @@
 	</c:forEach>
 </table>
 </div>
-<button onclick="location.href='/admin_notice_registration'">등록</button>
+<button id="btn_notice_regis" onclick="location.href='/admin_notice_registration'">등록</button>
 
 </body>
 </html>
