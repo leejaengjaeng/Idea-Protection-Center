@@ -172,7 +172,7 @@ body{
     </div>
 </div>
     <header>        
-        <img src=/resources/image/ideapc_logo.jpg" alt="logo">
+        <img src="/resources/image/ideapc_logo.jpg" alt="logo">
         <div id="header_info">
             <span><b>${currentUser.getName() }</b>님</span>
             <button onclick="location.href='/logoutProcess.do'">로그아웃</button>
@@ -185,8 +185,8 @@ body{
                 <li>아이디어 관리</li>
                 <li>문의사항 관리</li>
                 <li>게시판 관리</li>
-                <a href="/admin_notice"><li>공지사항 관리<li></a>
-            </ul>  
+                <a href="/admin_notice"><li>공지사항 관리</li></a>
+            </ul> 
         </nav>
         <article>
             <div id="table_header">
