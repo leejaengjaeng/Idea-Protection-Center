@@ -33,7 +33,9 @@
    	}
    	.after_cmt>textarea{
    		float:right !important;
+   		margin-top:0 !important;
    	}
+   
 </style>
 
 <script>
