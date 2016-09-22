@@ -8,10 +8,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="_csrf" content="${_csrf.token}" />
 <meta name="_csrf_header" content="${_csrf.headerName}" />
-<<<<<<< HEAD
+
 <link href="/resources/common/css/admin.css" rel="stylesheet">
 <link href="/resources/common/css/style.css" rel="stylesheet">
-=======
+
 <script>
 function checkAdmin(){
 	//alert("${role}");
@@ -21,14 +21,13 @@ function checkAdmin(){
 	}
 }
 </script>
->>>>>>> 57425e0470e2cf13724785d58e5197185483ede4
 <title>Insert title here</title>
 <style>
 
 </style>
 </head>
-<<<<<<< HEAD
-<body>
+
+<body onload="checkAdmin()">
     <header>        
         <img src="/resources/image/ideapc_logo.jpg" alt="logo" onclick="location.href='/IPC_adminPage'" style="cursor: pointer;">
         <div id="header_info">
@@ -54,7 +53,7 @@ function checkAdmin(){
                 <tr>
                     <th style="width:100px;">No</th>
                     <th>제목</th>
-                    <th style="width:150px;">날짜</th>
+                    <th style="width:280px;">날짜</th>
                 </tr>
                	<c:forEach items="${noticeList}" var="list" varStatus="status">
 			   		<tr onclick="location.href='/noticeList/${list.getNid()}'">
@@ -63,7 +62,8 @@ function checkAdmin(){
 				   		<td>${list.getDate()}</td>
 				   	</tr>
 				</c:forEach>
-            </table>            
+            </table>
+            <button onclick="location.href='/admin_notice_registration'" id="btn_add_notice">등록</button>            
         </article>
     </div>
 <footer>
@@ -77,26 +77,5 @@ function checkAdmin(){
       $('.manage_table tr:odd').css("backgroundColor","#f5f5fc");   // even 짝수
     }); 
 </script>
-=======
-<body onload="checkAdmin()">
-<div>
-<table>
-<tr>
-<th>번호</th>
-<th>제목</th>
-<th>날짜</th>
-</tr>
-	<c:forEach items="${noticeList}" var="list" varStatus="status">
-    	<tr onclick="location.href='/noticeList/${list.getNid()}'">
-    		<td>${status.count}</td>
-    		<td>${list.getTitle()}</td>
-    		<td>${list.getDate()}</td>
-    	</tr>
-	</c:forEach>
-</table>
-</div>
-<button id="btn_notice_regis" onclick="location.href='/admin_notice_registration'">등록</button>
-
->>>>>>> 57425e0470e2cf13724785d58e5197185483ede4
 </body>
 </html>

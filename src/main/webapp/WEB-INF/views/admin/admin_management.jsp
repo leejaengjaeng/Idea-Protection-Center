@@ -240,8 +240,7 @@ body{
 	                   <!--   <td><button>정보수정</button></td> -->
 	                </tr>	
 	            </c:forEach>
-            </table>
-            <span>< 1 2 3 4 ></1></span>
+            </table>            
         </article>
     </div>
 <footer>

@@ -217,3 +217,50 @@ footer #admin_footer {
   width: 1000px;
   text-align: center;
 }
+#btn_add_notice {
+  width: 120px;
+  height: 30px;
+  border-radius: 4px;
+  background: #555;
+  color: white;
+  float: right;
+  border: none;
+  margin-top: 25px;
+}
+.notice_form {
+  width: 500px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 50px;
+  box-shadow: 0 0 5px 0 #000;
+  border-radius: 6px;
+  background: #fff;
+}
+.notice_form span {
+  font-size: 18px;
+  color: #595959;
+  display: inline-block;
+  margin-bottom: 25px;
+}
+.notice_form form input {
+  width: 100%;
+  border: 1px solid #ccc;
+  height: 35px;
+  padding-left: 5px;
+}
+.notice_form form textarea {
+  width: 100%;
+  height: 200px;
+  margin-top: 25px;
+  border: 1px solid #ccc;
+  resize: none;
+  padding: 5px;
+}
+.notice_form form #submit {
+  color: white;
+  background: #555;
+  border: none;
+  margin-top: 25px;
+}

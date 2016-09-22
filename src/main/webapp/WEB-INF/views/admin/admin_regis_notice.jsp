@@ -8,17 +8,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="_csrf" content="${_csrf.token}" />
 <meta name="_csrf_header" content="${_csrf.headerName}" />
+<link href="/resources/common/css/admin.css" rel="stylesheet">
+<link href="/resources/common/css/style.css" rel="stylesheet">
 <title>Insert title here</title>
 </head>
-<body>
-<div>
-<form action="/noticeRegistration" name="noticeform" method="POST">
-<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-
-제목<input type="text" name="title" id="title"><br/>
-내용<textarea id="content" name="content"></textarea>
-<input type="submit">
-</form>
+<body style="background:#f9f9f9;">
+<div class="notice_form">
+	<span>공지사항</span>
+	<form action="/noticeRegistration" name="noticeform" method="POST">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />	
+		<input type="text" name="title" id="title" placeholder="제목"><br/>
+		<textarea id="content" name="content" placeholder="내용"></textarea>
+		<input type="submit" id="submit">
+	</form>
 </div>
 </body>
 </html>
