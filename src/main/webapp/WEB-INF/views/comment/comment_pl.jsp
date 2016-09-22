@@ -460,8 +460,7 @@ function addFile(){
 	                        <div class="img_comt">
 	                            <img src="/resources/image/inventor3.png" alt="prev_userImg">
 	                        </div>
-	                    </div>             
-						<button style="clear:both; margin-top:20px;" type="button" onclick="addFile()" >추가</button>
+	                    </div>             						
 	                    <div id="demo_box">
 		                    <c:forEach items="${imgs}" var="list" varStatus="status">
 			                    <div>
