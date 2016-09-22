@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-<<<<<<< HEAD
 	<name>IdeaProtectionCenter</name>
-=======
-	<name>Idea-Protection-Center</name>
->>>>>>> 57425e0470e2cf13724785d58e5197185483ede4
 	<comment></comment>
 	<projects>
 	</projects>
@@ -15,14 +11,11 @@
 			</arguments>
 		</buildCommand>
 		<buildCommand>
-<<<<<<< HEAD
 			<name>org.eclipse.jdt.core.javabuilder</name>
 			<arguments>
 			</arguments>
 		</buildCommand>
 		<buildCommand>
-=======
->>>>>>> 57425e0470e2cf13724785d58e5197185483ede4
 			<name>org.springframework.ide.eclipse.core.springbuilder</name>
 			<arguments>
 			</arguments>
@@ -32,9 +25,6 @@
 		<nature>org.springframework.ide.eclipse.core.springnature</nature>
 		<nature>org.springsource.ide.eclipse.gradle.core.nature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
-<<<<<<< HEAD
 		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
-=======
->>>>>>> 57425e0470e2cf13724785d58e5197185483ede4
 	</natures>
 </projectDescription>

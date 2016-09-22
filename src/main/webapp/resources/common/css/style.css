@@ -700,3 +700,57 @@ section nav #nav_benner ul li img {
 #gogogo {
   background: #f39800 !important;
 }
+#notice_table {
+  margin-top: 50px;
+  width: 100%;
+  float: left;
+  margin-bottom: 50px;
+}
+#notice_table tr th {
+  height: 50px;
+  border: 1px solid #ccc;
+  padding-left: 10px;
+  text-align: left;
+}
+#notice_table tr td {
+  height: 35px;
+  border: 1px solid #ccc;
+  text-align: left;
+  padding-left: 10px;
+}
+#notice_detail {
+  margin-bottom: 50px;
+  margin-top: 50px;
+  float: left;
+  width: 100%;
+}
+#notice_detail .title_detail {
+  height: 50px;
+  border-top: 1px solid #ccc;
+  width: 70%;
+  float: left;
+  padding-left: 10px;
+  text-align: left;
+  padding-top: 15px;
+  border-left: 1PX SOLID #CCC;
+  border-bottom: 1px solid #ccc;
+}
+#notice_detail .date_detail {
+  height: 50px;
+  border: 1px solid #ccc;
+  width: 30%;
+  text-align: left;
+  float: left;
+  padding-top: 15px;
+  padding-left: 10px;
+}
+#notice_detail .cont_detail {
+  width: 100%;
+  height: 500px;
+  border: 1px solid #ccc;
+  border-top: none;
+  text-align: left;
+  padding: 10px;
+  float: left;
+  overflow-y: scroll;
+}
