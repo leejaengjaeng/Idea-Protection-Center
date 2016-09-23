@@ -18,7 +18,6 @@
 	</update>
 	
 	<update id="inventorSave" parameterType="com.ipc.vo.RegistrationPatentVo">
-	 
 	 	update registration_patent set typeOfInvent=#{typeOfInvent}, title=#{title}, whyInvent=#{whyInvent}, summary=#{summary}, problem=#{problem}, solution=#{solution}, effect=#{effect}, core_element=#{core_element}, iscomplete=#{iscomplete} WHERE rid=#{rid}
 	
 	<!-- 
