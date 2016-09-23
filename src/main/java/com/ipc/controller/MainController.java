@@ -69,15 +69,20 @@ public class MainController {
 			if(currentUser != null)
 			{
 				List<RegistrationPatentVo> processList;
-				
+				int comIdea=0;
+				int ingIdea=0;
 				if(currentUser.getRole().equals(roleInventor))
 				{
-					processList = regDao.getInventorProcessList(currentUser.getUid());			
+					processList = regDao.getInventorProcessList(currentUser.getUid());	
+					comIdea=regDao.countCompleteIdeaIn(currentUser.getUid());
+					ingIdea=regDao.countIngIdeaIn(currentUser.getUid());
 				}
 				else if(currentUser.getRole().equals(rolePatientntLawyer))
 				{
 					System.out.println("aaasddd");
-					processList = regDao.getPlProcessList(currentUser.getUid());			
+					processList = regDao.getPlProcessList(currentUser.getUid());		
+					comIdea=regDao.countCompleteIdeaPl(currentUser.getUid());
+					ingIdea=regDao.countIngIdeaPl(currentUser.getUid());
 				}
 				// 발명가나 변리사가 아니면 리다이렉트
 				// If not only Inventor but patientLawyer, Redirecting to root path
@@ -85,7 +90,8 @@ public class MainController {
 				{
 					return "redirect:/";			
 				}
-				
+				model.addAttribute("comIdea",comIdea);
+				model.addAttribute("ingIdea",ingIdea);
 				model.addAttribute("processList",processList);
 				return "user/userMain";
 

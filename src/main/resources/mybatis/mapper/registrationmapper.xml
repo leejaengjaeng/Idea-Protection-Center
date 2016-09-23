@@ -118,4 +118,16 @@
 	<select id="getIscompleteByrid" parameterType="Integer" resultType="Integer">
 		select iscomplete from registration_patent where rid=#{rid}
 	</select>
+	<select id="countCompleteIdeaIn" parameterType="Integer" resultType="Integer">
+		select count(rid) from registration_patent where uid=#{uid} AND iscomplete!=2 AND rid=start_rid
+	</select>
+	<select id="countIngIdeaIn" parameterType="Integer" resultType="Integer">
+		select count(rid) from registration_patent where uid=#{uid} AND iscomplete=2
+	</select>
+	<select id="countCompleteIdeaPl" parameterType="Integer" resultType="Integer">
+		select count(rid) from registration_patent where lid=#{uid} AND iscomplete!=2 AND rid=start_rid
+	</select>
+	<select id="countIngIdeaPl" parameterType="Integer" resultType="Integer">
+		select count(rid) from registration_patent where lid=#{uid} AND iscomplete=2
+	</select>
 </mapper>
