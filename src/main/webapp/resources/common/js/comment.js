@@ -68,7 +68,8 @@ var tempApply=function(role){
  	    data : data,
  	    success:function(retVal)
  	    {
-	 	   	alert("aa");
+	 	   	alert("가출원 상태로 등록되었습니다.");
+	 	   	location.href="/";
  	    },
  	    error: function(request,status,error)
 		{
