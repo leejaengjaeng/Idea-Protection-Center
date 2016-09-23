@@ -80,16 +80,17 @@
   float: left;
 }
 #inven #inven_wrap article #msg_section #now_count {
-  width: 50%;
+  width: 100%;
   float: left;
   background: #01609a;
   height: 300px;
-  padding-left: 50px;
-  padding-top: 90px;
+  padding-left: 260px;
+  padding-top: 80px;
 }
 #inven #inven_wrap article #msg_section #now_count h2 {
   color: white;
-  line-height: 40px;
+  line-height: 45px;
+  font-size: 1.8rem;
 }
 #inven #inven_wrap article #msg_section #now_msg {
   width: 50%;

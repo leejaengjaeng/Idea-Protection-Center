@@ -113,9 +113,21 @@
 																						   WHERE user.role="ROLE_PATIENTENTLAWYER") as l on  r.lid=l.uid
 	</select>
 	<update id="tempApply" parameterType="Integer">
-		update registration_patent set iscomplete=2 where rid=(select start_rid from (select start_rid,rid from registration_patent) as temp where rid=#{rid})
+		update registration_patent set iscomplete=2,r_condition="가출원대기" where rid=(select start_rid from (select start_rid,rid from registration_patent) as temp where rid=#{rid})
 	</update>
 	<select id="getIscompleteByrid" parameterType="Integer" resultType="Integer">
 		select iscomplete from registration_patent where rid=#{rid}
+	</select>
+	<select id="countCompleteIdeaIn" parameterType="Integer" resultType="Integer">
+		select count(rid) from registration_patent where uid=#{uid} AND iscomplete!=2 AND rid=start_rid
+	</select>
+	<select id="countIngIdeaIn" parameterType="Integer" resultType="Integer">
+		select count(rid) from registration_patent where uid=#{uid} AND iscomplete=2
+	</select>
+	<select id="countCompleteIdeaPl" parameterType="Integer" resultType="Integer">
+		select count(rid) from registration_patent where lid=#{uid} AND iscomplete!=2 AND rid=start_rid
+	</select>
+	<select id="countIngIdeaPl" parameterType="Integer" resultType="Integer">
+		select count(rid) from registration_patent where lid=#{uid} AND iscomplete=2
 	</select>
 </mapper>

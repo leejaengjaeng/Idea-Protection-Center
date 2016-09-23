@@ -46,7 +46,14 @@ $(document).ready(function()
 		ideaSave("${user}");
 	});
 	$('#gogogo').on("click",function(){
-		tempApply("${user}");
+		var q=confirm("출원을 선택하면 수정할 수 없습니다. 출원을 선택하시겠습니까?")
+    	if(q==true){
+    		tempApply("${user}");
+    	}
+    	else{
+    		
+    	}
+		
 	});
 	//클릭에 따라 내용 바꿔주기
 	$('#IdeaModifyList').on("click","tr",function()
