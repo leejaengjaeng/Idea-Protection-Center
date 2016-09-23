@@ -18,11 +18,12 @@
 	</update>
 	
 	<update id="inventorSave" parameterType="com.ipc.vo.RegistrationPatentVo">
-	<!-- 
+	 
 	 	update registration_patent set typeOfInvent=#{typeOfInvent}, title=#{title}, whyInvent=#{whyInvent}, summary=#{summary}, problem=#{problem}, solution=#{solution}, effect=#{effect}, core_element=#{core_element}, iscomplete=#{iscomplete} WHERE rid=#{rid}
-	-->
-	 	update registration_patent set iscomplete=#{iscomplete} WHERE rid=#{rid}
 	
+	<!-- 
+	 	update registration_patent set iscomplete=#{iscomplete} WHERE rid=#{rid}
+	-->
 	</update>
 
 	<select id="checkIsCompletedByRid" parameterType="Integer" resultType="Integer">
@@ -112,5 +113,10 @@
 																						   FROM user
 																						   WHERE user.role="ROLE_PATIENTENTLAWYER") as l on  r.lid=l.uid
 	</select>
-	
+	<update id="tempApply" parameterType="Integer">
+		update registration_patent set iscomplete=2 where rid=(select start_rid from (select start_rid,rid from registration_patent) as temp where rid=#{rid})
+	</update>
+	<select id="getIscompleteByrid" parameterType="Integer" resultType="Integer">
+		select iscomplete from registration_patent where rid=#{rid}
+	</select>
 </mapper>
