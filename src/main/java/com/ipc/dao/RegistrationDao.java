@@ -48,4 +48,7 @@ public interface RegistrationDao {
 	
 	public List<adminListVo> adminGetIdeaList();
 	public void regisNotice(adminNoticeVo an);
+	public void tempApply(int rid);
+	
+	public int getIscompleteByrid(int rid);
 }

@@ -45,7 +45,9 @@ $(document).ready(function()
 	{
 		ideaSave("${user}");
 	});
-
+	$('#gogogo').on("click",function(){
+		tempApply("${user}");
+	});
 	//클릭에 따라 내용 바꿔주기
 	$('#IdeaModifyList').on("click","tr",function()
 	{

@@ -50,7 +50,33 @@ var disableInput = function()
 	$('#agree').hide();		
 
 }
+var tempApply=function(role){
+	var csrfToken = $("meta[name='_csrf']").attr("content"); 
+	var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+	var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
+	var data = {};
+	var headers = {};
 
+	data[csrfParameter] = csrfToken;
+    headers[csrfHeader] = csrfToken;
+
+    data['rid'] = $('#IdeaModifyList').find('.clickedIdea').children('input').val();
+    $.ajax({
+		url : "/tempApply",
+		type:"POST",
+		headers: headers,
+ 	    data : data,
+ 	    success:function(retVal)
+ 	    {
+	 	   	alert("aa");
+ 	    },
+ 	    error: function(request,status,error)
+		{
+ 			alert('임시 저장에 실패하였습니다.')
+ 			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		}
+	});	
+}
 
 //임시 저장
 var tmpSave = function(role)
@@ -185,10 +211,7 @@ var ideaSave = function(role)
  	    data : data,
  	    success:function(retVal)
  	    {
- 	    	alert("a");
- 	    	document.getElementById("commentForm").submit();
  	    	alert(retVal);
- 	    	
  			location.href ="/mainPage";
  	    },
  	    error: function(request,status,error)

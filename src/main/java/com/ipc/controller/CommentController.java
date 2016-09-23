@@ -85,11 +85,11 @@ public class CommentController {
 
 			List<RegistrationFileVo> imgList= regFileDao.getImgListByStartRid(start_rid);
 			List<RegistrationPatentVo> processList = regDao.getAssociatedProcessList(start_rid);
-
+			int start_iscomplete = regDao.getIscompleteByrid(start_rid);
 			model.addAttribute("imgs", imgList);
 			model.addAttribute("processList",processList);
 			model.addAttribute("lastRid",lastRid);
-			
+			model.addAttribute("start_iscomplete",start_iscomplete);
 			//발명가가 보는 경우
 			if(inventorId==userId) 
 			{
@@ -290,7 +290,7 @@ public class CommentController {
 		}
 		
 	}
-	@RequestMapping(value="deleteFile",method=RequestMethod.POST)
+	@RequestMapping(value="/deleteFile",method=RequestMethod.POST)
 	@ResponseBody
 	public HashMap<String,String> deleteFile(HttpServletRequest request,@RequestParam HashMap<String, Object> param){
 		String path=param.get("path").toString();
@@ -304,6 +304,7 @@ public class CommentController {
 		return map;
 	}
 	@RequestMapping(value="/commentFileSave",method=RequestMethod.POST)
+	//@ResponseBody
 	public String commentFileSave(HttpServletRequest request){
 		System.out.println(request.getParameter("userID_file")+"   "+Integer.parseInt(request.getParameter("start_rid_file")));
 		String userID=request.getParameter("userID_file");
@@ -320,6 +321,15 @@ public class CommentController {
 			map.put("file_path", "/resources/uploadimgs/inventor/"+userID+"/"+today+"."+fileType);
 			regFileDao.makeFile(map);
 		}
-		return "home/index";
+		HashMap<String,String> map2=new HashMap<String,String>();
+		map2.put("aa","aa");
+		return "redirect:/mainPage";
+	}
+	@RequestMapping(value="/tempApply",method=RequestMethod.POST)
+	@ResponseBody
+	public String tempApply(HttpServletRequest request){
+		String rid=request.getParameter("rid");
+		regDao.tempApply(Integer.parseInt(rid));
+		return "aa";
 	}
 }

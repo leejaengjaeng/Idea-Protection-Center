@@ -47,6 +47,10 @@ $(document).ready(function()
 		hideBeforeCmt();
 		hideCurrentCmt();
 	}
+	if("${start_iscomplete}"==2){
+		disableInput();
+		alert('가출원상태입니다.');
+	}
 	/*
 		//배치 변경
 		var txtBoxList = $('.txt_box');
@@ -64,10 +68,13 @@ $(document).ready(function()
 		$(txtBoxList[8]).children('.after_cmt').children('.img_comt').css('float','left !important');				
 		
 	*/
-
 	//0 고객 작성중(변리사 작성 완료), 1 고객 작성 완료
 	if("${currentAnswer.getIscomplete()}" == 0)
+	{
 		enableInput();
+	
+		
+	}
 	else
 	{
 		disableInput();
@@ -82,7 +89,9 @@ $(document).ready(function()
 	$('#agree').on("click",function()
 	{
 		document.getElementById("commentForm").submit();
-		//ideaSave("${user}");
+		ideaSave("${user}");
+		
+
 	});
 
 	//클릭에 따라 내용 바꿔주기

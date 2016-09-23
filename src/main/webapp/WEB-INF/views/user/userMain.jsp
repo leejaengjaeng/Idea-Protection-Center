@@ -190,8 +190,25 @@ $(document).ready(function()
 	                        <td>${process.getTitle()}</td>
 	                        <td>${process.getR_condition() }</td>
 	                        <td>${process.getPre_apply_date() }</td>
-	                        <td>${process.getApply_date() }</td>
-	                        <td>-</td>
+	                        
+	                        <td  class="ideaList">${process.getApply_date() }</td>
+	                        <c:choose>
+		                        <c:when test="${process.getIscomplete() eq '2' }">
+		                        	<c:choose>
+		                	        	<c:when test="${currentUser.getRole()=='ROLE_INVENTOR'}">
+		                    	    		<td><button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;">가출원하기</button></td>
+		                        		</c:when>
+		                        		<c:otherwise>
+		                        			<td>-</td>
+		                        		</c:otherwise>
+		                        	</c:choose>
+		                        	
+		                        </c:when>
+	                     	    <c:otherwise>
+	                        		<td>-</td>
+	                        	</c:otherwise>
+	                        </c:choose>
+	                        
 						</tr>
 					</c:forEach>
                 </table>                
