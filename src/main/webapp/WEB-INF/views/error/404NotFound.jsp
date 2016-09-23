@@ -12,7 +12,7 @@
 <c:import url="/WEB-INF/views/import/header.jsp"/>
 	<div class="wrap_comment" style="text-align:center;">
         <div style="width:100%; float:left; padding:150px 0 150px 0;">
-            <h1 style="float:left; font-size:150px; color:#333;" id="nfound">4</h1><img src="image/404.png" alt="404" style="float:left;width:100px; margin-top:40px;">
+            <h1 style="float:left; font-size:150px; color:#333;" id="nfound">4</h1><img src="/resources/image/404.png" alt="404" style="float:left;width:100px; margin-top:40px;">
             <h1 style="float:left; font-size:150px; color:#333;">4</h1>
             <h1 style="float:left; font-size:100px; color:#333; margin-top:30px; margin-left:30px;">NOT FOUND</h1>
             <h2 style="float:right; margin-top:20px; color:#333;">페이지를 찾을 수 없습니다.</h2>

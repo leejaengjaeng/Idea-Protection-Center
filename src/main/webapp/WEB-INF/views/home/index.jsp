@@ -89,9 +89,10 @@
                     <c:forEach items="${noticeList}" var="list" varStatus="status">
     					<tr onclick="location.href='/noticeList/${list.getNid()}'">
 			    		
-			    			<td>${list.getTitle()}</td>
-			    			<td>${list.getDate()}</td>
 			    			<td>관리자</td>
+			    			<td style="width:550px;">${list.getTitle()}</td>
+			    			<td>${list.getDate()}</td>
+			    			
 			    		</tr>
 					</c:forEach>          
                     
