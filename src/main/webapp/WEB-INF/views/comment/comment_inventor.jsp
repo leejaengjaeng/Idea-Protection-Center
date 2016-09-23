@@ -47,6 +47,10 @@ $(document).ready(function()
 		hideBeforeCmt();
 		hideCurrentCmt();
 	}
+	if("${start_iscomplete}"==2){
+		disableInput();
+		alert('가출원상태입니다.');
+	}
 	/*
 		//배치 변경
 		var txtBoxList = $('.txt_box');
@@ -64,10 +68,13 @@ $(document).ready(function()
 		$(txtBoxList[8]).children('.after_cmt').children('.img_comt').css('float','left !important');				
 		
 	*/
-
 	//0 고객 작성중(변리사 작성 완료), 1 고객 작성 완료
 	if("${currentAnswer.getIscomplete()}" == 0)
+	{
 		enableInput();
+	
+		
+	}
 	else
 	{
 		disableInput();
@@ -81,7 +88,10 @@ $(document).ready(function()
 	});
 	$('#agree').on("click",function()
 	{
+		document.getElementById("commentForm").submit();
 		ideaSave("${user}");
+		
+
 	});
 
 	//클릭에 따라 내용 바꿔주기
@@ -120,8 +130,19 @@ $(document).ready(function()
 var i=0;
 function addFile()
 {
-	$('#inputFileDiv').append("<div style='float:left;text-align:center;margin:40px 5px 20px 5px; width:230px;'><img style='width:50px' src='/resources/image/plus.png' alt='img' id='"+i+"'><br><input type='file' style='padding-top:5px; font-size:12px;' id='imgInp"+i+"' name='addupimgs' onchange='readURL(this,"+i+")' name='profileImg' style='width:180px;'></div>");
+	$('#inputFileDiv').append("<div style='float:left;text-align:center;margin:40px 5px 20px 5px; width:230px;'><img style='width:200px; height:200px; border:1px solid #ccc;' src='/resources/image/plus2.png' alt='img' id='"+i+"'><br><input type='file' style='padding-top:5px; font-size:12px;' id='imgInp"+i+"' name='imgs' onchange='readURL(this,"+i+")' name='profileImg' style='width:180px;'></div>");
 	i++;
+}
+function readURL(input,imgId) {
+    if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+            $('#'+imgId).attr('src', e.target.result);
+        }
+
+      reader.readAsDataURL(input.files[0]);
+    }
 }
 
 </script>
@@ -493,7 +514,11 @@ function addFile()
                 </div>
                 <div class="hr"></div>
 <!-- 9. 도면 첨부 -->
-                <form id="commentForm">             
+                <form id="commentForm" name="commentForm" action="/commentFileSave" method="post" enctype="multipart/form-data">
+                               	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                
+                <input type="hidden" name="userID_file" value="${sessionScope.currentUser.getId()}">
+                <input type="hidden" name="start_rid_file" value="${start_rid}">
 	                <div class="txt_box">
 	                    <h2 style="width:100%">도면첨부</h2> <button>작성 예시</button>
 	                    
@@ -505,12 +530,14 @@ function addFile()
 	                    </div>             
 						<button style="clear:both; margin-top:15px;" type="button" onclick="addFile()">추가</button>
 	                    <div id="demo_box">
+	                    	<div style="width:100%; float: left;  border-bottom:1px solid #ccc; padding-bottom:50px;">
 		                    <c:forEach items="${imgs}" var="list" varStatus="status">
-			                    <div>
-			                    	<a href="${list.getFile_path()}" id="id${list.getRfid()}" style="clear:both"><img src="${list.getFile_path()}" style="width:175px;padding-left:10px"></a>
-		                        </div>
-		                        <button  style="float:left" type="button" id='btn${list.getRfid()}' onclick="delImg('${list.getFile_path()}','id${list.getRfid()}','btn${list.getRfid()}')">삭제</button>
-		                    </c:forEach>		                    
+			                    <div style="width:200px; float:left; margin:20px;">
+			                    	<a href="${list.getFile_path()}" id="id${list.getRfid()}" style="clear:both"><img src="${list.getFile_path()}" style="width:200px; height:200px;"></a>
+			                    	<button  style="float:left" type="button" id='btn${list.getRfid()}' onclick="delImg('${list.getFile_path()}','id${list.getRfid()}','btn${list.getRfid()}')">삭제</button>
+		                        </div>		                        
+		                    </c:forEach>
+		                    </div>		                    
 		                        <div id="inputFileDiv"></div>
 		                        <!--  
 		                        <div class="demo">
@@ -539,8 +566,9 @@ function addFile()
 	                </div>     
 	                <div class="hr"></div>           
 	                <div id="fin"> 
+	                	
 	                    <button type="button" id="tmpSave">임시저장</button>
-	                    <button type="button" id="agree">저장</button>                    
+	                    <button type="button" id="agree" >저장</button>                    
 	                </div>
 	            </form>
             </article>
@@ -549,7 +577,6 @@ function addFile()
     <c:import url="/WEB-INF/views/import/footer.jsp"/>
 <script>
 	 
-	
 </script>
 </body>
 </html>

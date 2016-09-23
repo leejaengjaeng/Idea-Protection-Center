@@ -15,7 +15,10 @@
     <link href="/resources/common/css/style.css" rel="stylesheet">
     <link href="/resources/common/css/index.css" rel="stylesheet">
 	<style>
+		.after_cmt>textarea{
 		
+			margin-top:0 !important;
+		}
 	</style>
 <script>
 $(document).ready(function()
@@ -42,7 +45,9 @@ $(document).ready(function()
 	{
 		ideaSave("${user}");
 	});
-
+	$('#gogogo').on("click",function(){
+		tempApply("${user}");
+	});
 	//클릭에 따라 내용 바꿔주기
 	$('#IdeaModifyList').on("click","tr",function()
 	{
@@ -460,14 +465,12 @@ function addFile(){
 	                        <div class="img_comt">
 	                            <img src="/resources/image/inventor3.png" alt="prev_userImg">
 	                        </div>
-	                    </div>             
-						<button style="clear:both; margin-top:20px;" type="button" onclick="addFile()" >추가</button>
+	                    </div>             						
 	                    <div id="demo_box">
 		                    <c:forEach items="${imgs}" var="list" varStatus="status">
 			                    <div>
-			                    	<a href="${list.getFile_path()}" id="id${list.getRfid()}" style="clear:both"><img src="${list.getFile_path()}" style="width:200px;padding-left:10px"></a>
-		                        </div>
-		                        <button  style="float:left" type="button" id='btn${list.getRfid()}' onclick="delImg('${list.getFile_path()}','id${list.getRfid()}','btn${list.getRfid()}')">삭제</button>
+			                    	<a href="${list.getFile_path()}" id="id${list.getRfid()}" style="clear:both"><img src="${list.getFile_path()}" style="width:200px; height:200px; border:1px solid #ccc;  float:left; margin:20px;"></a>
+		                        </div>		                        
 		                    </c:forEach>
 		                    
 		                        <div id="inputFileDiv"></div>

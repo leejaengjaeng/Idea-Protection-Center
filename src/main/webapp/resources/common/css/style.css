@@ -754,3 +754,15 @@ section nav #nav_benner ul li img {
   float: left;
   overflow-y: scroll;
 }
+#nfound {
+  position: relative;
+}
+#nfound::before {
+  content: "";
+  width: 230%;
+  height: 3px;
+  background: #1c4098;
+  left: 50%;
+  top: 0;
+  position: absolute;
+}
