@@ -66,6 +66,8 @@ public class MainController {
 		try
 		{
 			userVo currentUser = (userVo) session.getAttribute("currentUser");
+			List<adminNoticeVo> an = noticeDao.getNoticeListDescLimit(5);
+			model.addAttribute("noticeList",an);
 			if(currentUser != null)
 			{
 				List<RegistrationPatentVo> processList;
