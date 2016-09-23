@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -59,7 +61,7 @@ $(document).ready(function()
             </div>
             <div id="profile_menu">
                 <ul style="padding-left:0;">
-                    <li>회원정보수정123</li>
+                    <li>회원정보수정</li>
                     <li>1:1질문하기</li>
                     <li>아이디어 진행내역</li>
                     <li>임시저장함</li>
@@ -92,56 +94,7 @@ $(document).ready(function()
 			                    아이디어 ${ingIdea}건,<br>
 			                    완료 ${comIdea}건이 있습니다.
                     </h2>
-                </div>
-                <div id="now_msg">
-                    <table>
-                        <tr>
-                            <td>
-                                "아이디어 손잡이"<br>
-                                에 대해 컨설턴트,변리사가 지정되었습니다.
-                            </td>                  
-                            <td>
-                                <img src="/resources/image/message.png" alt="msg">                                
-                            </td>      
-                        </tr>
-                        <tr>
-                            <td>
-                                "제목"<br>
-                                에 대해 컨설턴트,변리사가 지정되었습니다.
-                            </td>                  
-                            <td>
-                                <img src="/resources/image/message new.png" alt="msg">     
-                            </td>      
-                        </tr>
-                        <tr>
-                            <td>
-                                "제목"<br>
-                                에 대해 컨설턴트,변리사가 지정되었습니다.
-                            </td>                  
-                            <td>
-                            	<img src="/resources/image/message.png" alt="msg">                                
-                            </td>      
-                        </tr>
-                        <tr>
-                            <td>
-                                "제목"<br>
-                                에 대해 컨설턴트,변리사가 지정되었습니다.
-                            </td>                  
-                            <td>
-                                <img src="/resources/image/message.png" alt="msg">                                
-                            </td>      
-                        </tr>
-                        <tr>
-                            <td>
-                                "제목"<br>
-                                에 대해 컨설턴트,변리사가 지정되었습니다.
-                            </td>                  
-                            <td>
-                                <img src="/resources/image/message.png" alt="msg">                                
-                            </td>      
-                        </tr>
-                    </table>
-                </div>
+                </div>                
             </section>
             <div id="cont_header">
                 <h2>아이디어 진행내역</h2>
@@ -217,41 +170,13 @@ $(document).ready(function()
                 </div>
                 <div id="table_notice">
                     <table>
-                        <tr>
-                            <td style="text-align:left;">
-                                아이디어 보호센터에서 아이디어를 보호하는 방법안내
-                            </td>
-                            <td>2016.09.06</td>
-                            <td>Admin</td>                                               
-                        </tr>                    
-                        <tr>
-                            <td style="text-align:left;">
-                                아이디어 보호센터에서 아이디어를 보호하는 방법안내
-                            </td>
-                            <td>2016.09.06</td>
-                            <td>Admin</td>                                               
-                        </tr>
-                        <tr>
-                            <td style="text-align:left;">
-                                아이디어 보호센터에서 아이디어를 보호하는 방법안내
-                            </td>
-                            <td>2016.09.06</td>
-                            <td>Admin</td>                                               
-                        </tr>                    
-                        <tr>
-                            <td style="text-align:left;">
-                                아이디어 보호센터에서 아이디어를 보호하는 방법안내
-                            </td>
-                            <td>2016.09.06</td>
-                            <td>Admin</td>                                               
-                        </tr>
-                        <tr>
-                            <td style="text-align:left;">
-                                아이디어 보호센터에서 아이디어를 보호하는 방법안내
-                            </td>
-                            <td>2016.09.06</td>
-                            <td>Admin</td>                                               
-                        </tr>
+                        <c:forEach items="${noticeList}" var="list" varStatus="status">
+    					<tr onclick="location.href='/noticeList/${list.getNid()}'">
+    						<td>${list.getTitle()}</td>			    		
+			    			<td>관리자</td>			    			
+			    			<td>${list.getDate()}</td>			    			
+			    		</tr>
+					</c:forEach>
                     </table>
                 <button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;">
                         더보기

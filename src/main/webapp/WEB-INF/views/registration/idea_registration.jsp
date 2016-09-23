@@ -20,7 +20,7 @@ body{
     height: 100% !important;        
 }
 .black_wall{
-    width: 100%;
+    width: 100%;0
     height: 100%;
     background: rgba(0,0,0,0.7);
     position:fixed;    
