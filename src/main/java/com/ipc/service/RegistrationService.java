@@ -36,7 +36,7 @@ public class RegistrationService {
 	public String makeimageFile(MultipartFile file,String filename,String ID,int rid){
 		try {
 			
-			String dirpath="../Idea-Protection-Center\\src\\main\\webapp\\resources\\uploadimgs\\inventor\\"+ID+"\\";
+			String dirpath="../IdeaProtectionCenter\\src\\main\\webapp\\resources\\uploadimgs\\inventor\\"+ID+"\\";
 			mkdir(ID);
 			byte fileData[] = file.getBytes();
 			int pathPoint = file.getOriginalFilename().trim().lastIndexOf(".");
@@ -69,7 +69,7 @@ public class RegistrationService {
 		
 	}
 	public String mkdir(String ID){
-		String path="../Idea-Protection-Center/src/main/webapp/resources/uploadimgs/inventor/"+ID;
+		String path="../IdeaProtectionCenter/src/main/webapp/resources/uploadimgs/inventor/"+ID;
 		File dir=new File(path);
 		if(!dir.exists())
 		{	

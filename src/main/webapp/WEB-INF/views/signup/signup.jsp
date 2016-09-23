@@ -43,7 +43,7 @@ function checkid(){
 	    headers: headers,
 	    data : data,
 	    success: function(data) {
-	        alert("성공:"+data.KEY);
+	        //alert("성공:"+data.KEY);
 	        if (data.KEY=="YES"){
 	        	//document.signupform.id.readOnly=true;
 	        	var q=confirm(id+"는 사용할 수 있는 아이디 입니다. 사용하시겠습니까?")
