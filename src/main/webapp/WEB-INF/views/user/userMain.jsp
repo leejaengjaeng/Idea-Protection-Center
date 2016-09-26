@@ -149,7 +149,7 @@ $(document).ready(function()
 		                        <c:when test="${process.getIscomplete() eq '2' }">
 		                        	<c:choose>
 		                	        	<c:when test="${currentUser.getRole()=='ROLE_INVENTOR'}">
-		                    	    		<td><button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;">가출원하기</button></td>
+		                    	    		<td><button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;" class="btn_chul">가출원하기</button></td>
 		                        		</c:when>
 		                        		<c:otherwise>
 		                        			<td>-</td>
