@@ -51,4 +51,9 @@ public interface RegistrationDao {
 	public void tempApply(int rid);
 	
 	public int getIscompleteByrid(int rid);
+	
+	public int countCompleteIdeaIn(int uid);
+	public int countIngIdeaIn(int uid);
+	public int countCompleteIdeaPl(int uid);
+	public int countIngIdeaPl(int uid);
 }

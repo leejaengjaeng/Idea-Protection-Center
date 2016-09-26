@@ -91,8 +91,8 @@ $(document).ready(function()
                 <div id="now_count">
                     <h2>
 			                    현재까지 진행중인<br>
-			                    아이디어 00건,<br>
-			                    완료 00건이 있습니다.
+			                    아이디어 ${ingIdea}건,<br>
+			                    완료 ${comIdea}건이 있습니다.
                     </h2>
                 </div>                
             </section>
@@ -134,7 +134,7 @@ $(document).ready(function()
                         <th>출원일</th>
                         <th>비고</th>
                     </tr>
-                   	<c:forEach var="process" items="${processList }">
+                   	<c:forEach var="process" items="${processList}">
 						<tr class="ideaList">
 							<input type="hidden" value="${process.getRid()}"/>
 							<td style="background:#f1f1f1;">0</td>
