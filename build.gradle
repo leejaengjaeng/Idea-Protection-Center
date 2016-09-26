@@ -12,13 +12,24 @@ buildscript {
 
 apply plugin: 'war'
 apply plugin: 'java'
-apply plugin: 'eclipse'
+apply plugin: 'eclipse-wtp'
+	//apply plugin: 'eclipse'
 apply plugin: 'spring-boot'
 
-jar {
-	baseName = 'IdeaProtectionCenter'
-	version = '0.0.1-SNAPSHOT'
+
+war {
+	baseName = 'IPC'
+	version = 'v0.1'
+	
+	manifest {
+       attributes 'Main-Class': 'com.ipc.IdeaProtectionCenterApplication'
+    }
+	
 }
+
+test.enabled=false
+
+
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
@@ -26,11 +37,19 @@ repositories {
 	mavenCentral()
 }
 
+configurations {
+	providedRuntime
+}
 
 dependencies {
+
+	
 	//Spring
 	compile('org.springframework.boot:spring-boot-starter-web')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+
+	//For cafe24(tomcat-WAS) distribution
+	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 	
 	//jsp
 	compile('org.apache.tomcat.embed:tomcat-embed-jasper')
