@@ -16,7 +16,7 @@ CREATE TABLE `user` (
 
 
 
-CREATE TABLE `idea_pc`.`patientent_lawyer` (
+CREATE TABLE `patientent_lawyer` (
   `lid` INT NOT NULL AUTO_INCREMENT,
   `uid` VARCHAR(45) NOT NULL,
   `license_scan_img` VARCHAR(100) NULL,
@@ -52,6 +52,7 @@ CREATE TABLE `registration_patent` (
   `r_condition` varchar(45) DEFAULT NULL,
   `pre_apply_date` datetime DEFAULT NULL,
   `apply_date` datetime DEFAULT NULL,
+  /*`registration_date` timestamp ,*/
   `registration_date` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`rid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -69,6 +70,7 @@ CREATE TABLE `notice` (
   `nid` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(45) DEFAULT NULL,
   `content` TEXT DEFAULT NULL,
+  /*`date` timestamp,*/  
   `date` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`nid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

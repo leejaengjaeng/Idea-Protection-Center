@@ -9,8 +9,5 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class IdeaProtectionCenterApplicationTests {
 
-	@Test
-	public void contextLoads() {
-	}
 
 }

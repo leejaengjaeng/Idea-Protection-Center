@@ -41,9 +41,14 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 	RegistrationFileDao regisfilemapper;
 	
 	@RequestMapping("/addidea")
-	public String addidea(Model model,HttpSession session, HttpServletRequest request){
+	public String addidea(Model model,HttpSession session, HttpServletRequest request)
+	{
+		if(request.getSession().getAttribute("currentUser")==null)
+		{
+			return "redirect:/login";
+		}
+		
 		userVo uv=(userVo) request.getSession().getAttribute("currentUser");
-		System.out.println(uv.getUid());
 		if(regismapper.countTempIdea(uv.getUid())!=0){
 			model.addAttribute("isTemp", "1");
 			
@@ -53,6 +58,7 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 		}
 			
 		return "registration/idea_registration";
+		
 	}
 	@RequestMapping("/inventor_main")
 	public String inventor_main(){
