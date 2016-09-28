@@ -645,7 +645,7 @@ section nav #nav_benner ul li img {
     display: none;
   }
   article {
-    width: 600px !important;
+    width: 100% !important;
   }
   #msg_section {
     margin-left: 0 !important;
