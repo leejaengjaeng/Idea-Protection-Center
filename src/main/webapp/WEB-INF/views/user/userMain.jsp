@@ -9,8 +9,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
-<script src="/webjars/jquery/3.1.0/dist/jquery.min.js"></script> 
-<script src="/webjars/bootstrap/3.3.7/dist/js/bootstrap.min.js"></script>
+<script src="/resources/common/js/jquery-3.1.0.min.js"></script> 
+<!-- <script src="/webjars/bootstrap/3.3.7/dist/js/bootstrap.min.js"></script> -->
 <link rel="stylesheet" href="/resources/common/css/index.css">
 <link rel="stylesheet" href="/resources/common/css/style.css">
 <link rel="stylesheet" href="/resources/common/css/inventor.css">
