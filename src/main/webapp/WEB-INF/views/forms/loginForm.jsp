@@ -25,7 +25,7 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-					<button class="join_btn">아직 회원이 아니시라면</button>
+					<button class="join_btn" onclick="location.href='/signup/signupPage'">아직 회원이 아니시라면</button>
 				</td>
 			</tr>
 		</form>			

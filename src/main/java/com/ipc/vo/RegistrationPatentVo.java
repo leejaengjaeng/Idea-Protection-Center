@@ -27,7 +27,14 @@ public class RegistrationPatentVo {
 	String apply_date;
 	String registration_date;
 	int prev_rid;
+	String re_file;
 	
+	public String getRe_file() {
+		return re_file;
+	}
+	public void setRe_file(String re_file) {
+		this.re_file = re_file;
+	}
 	public int getRid() {
 		return rid;
 	}
