@@ -202,7 +202,13 @@ $(function() {
         readURL(this);
     });
 });
-
+$("#email1").keyup(function(){
+	var email = $("#email1").val;
+	var check = /가-힣ㄱ-ㅎㅏ-ㅣ]/;
+	if(check.test(email)}{
+		alert();
+	})
+});
 function readURL(input) {
     if (input.files && input.files[0]) {
     var reader = new FileReader();

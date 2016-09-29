@@ -6,7 +6,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/resources/common/css/style.css"> 
+<link rel="stylesheet" href="/resources/common/css/style.css">
+<link rel="stylesheet" href="/resources/common/css/index.css"> 
 </head>
 <body>
 <c:import url="/WEB-INF/views/import/header.jsp"/>
