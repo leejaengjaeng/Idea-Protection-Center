@@ -48,6 +48,10 @@ public class SignUpController {
 		String email = request.getParameter("email1") + request.getParameter("email2");
 		MultipartHttpServletRequest multipartRequest =  (MultipartHttpServletRequest)request;  //다중파일 업로드
 		List<MultipartFile> files = multipartRequest.getFiles("profileImg");
+		
+		System.out.println("파일 있니?:"+files.isEmpty());
+		System.out.println("파일 있니?:"+files.get(0).toString());
+		
 		SignUpService ss=new SignUpService();
 		String root_path=request.getSession().getServletContext().getRealPath("/");
 		String fileType=ss.makeimageFile(files.get(0),uv.getId(),role,root_path);

@@ -137,8 +137,8 @@
                 </div>
                 <div id="onair_count">
                     <div id="center_box">
-                        <span>00명의 발명가님의</span><br>
-                        <span>00가지 아이디어와</span><br>
+                        <span>${totalUser}명의 발명가님의</span><br>
+                        <span>${totalIdea}가지 아이디어와</span><br>
                         <span>함께 하고 있습니다</span><br>
                     </div>
                 </div>

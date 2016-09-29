@@ -46,7 +46,7 @@
 	</select>
 	
 	<insert id="maketempidea" parameterType="Hashmap">
-		insert into registration_patent(typeOfInvent,title,summary,whyInvent,problem,solution,effect,core_element,registration_date,uid,iscomplete,re_file) values (#{typeOfInvent},#{title},#{summary},#{whyInvent},#{problem},#{solution},#{effect},#{core_element},#{registrtaion_date},#{uid},"-1",#{re_file)
+		insert into registration_patent(typeOfInvent,title,summary,whyInvent,problem,solution,effect,core_element,registration_date,uid,iscomplete) values (#{typeOfInvent},#{title},#{summary},#{whyInvent},#{problem},#{solution},#{effect},#{core_element},#{registrtaion_date},#{uid},"-1")
 	</insert>
 	<select id="countTempIdea" parameterType="Integer" resultType="Integer">
 		select count(*) from registration_patent where uid=#{uid} AND iscomplete=-1
