@@ -42,7 +42,10 @@ public class RegistrationService {
 			String filePoint = file.getOriginalFilename().trim().substring(pathPoint + 1,
 					file.getOriginalFilename().trim().length());
 			String fileType = filePoint.toLowerCase();
-			fos = new FileOutputStream(root_path+"resources\\uploadimgs\\inventor\\"+ID+"\\"+filename+ "." + fileType);
+			//Windows
+				//fos = new FileOutputStream(root_path+"resources\\uploadimgs\\inventor\\"+ID+"\\"+filename+ "." + fileType);
+			//Linux
+			fos = new FileOutputStream(root_path+"resources/uploadimgs/inventor/"+ID+"/"+filename+ "." + fileType);
 			fos.write(fileData);
 			HashMap<String,String> map=new HashMap<String,String>();
 			//map.put("start_rid", Integer.toString(rid));

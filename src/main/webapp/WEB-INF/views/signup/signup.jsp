@@ -144,7 +144,7 @@ function execute(){
 				<tr>
 					<td>이메일</td>
 					<td>
-						<input type="text" name="email1" id="email1" required>
+						<input type="text" name="email1" id="email1" pattern="[A-Za-z0-9_]+" required>
 						<select name="emailMiddle" onChange=changeEmail(this.value); id="email_chg">
 							<option value="" selected>이메일선택</option>
 							<option value="@naver.com">@ naver.com</option>
@@ -202,14 +202,7 @@ $(function() {
         readURL(this);
     });
 });
-$("#email1").keyup(function(){
-	var email = $("#email1").val;
-	var check = /가-힣ㄱ-ㅎㅏ-ㅣ]/;
-	if(check.test(email))
-	{
-		alert();
-	}
-});
+
 function readURL(input) {
     if (input.files && input.files[0]) {
     var reader = new FileReader();

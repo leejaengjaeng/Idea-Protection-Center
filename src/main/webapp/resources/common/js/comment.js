@@ -387,10 +387,11 @@ var delImg = function(path,id,btnid)
 	    headers: headers,
 	    data : data,
 	    success: function(data) {
-	        alert("성공:"+data.result);
+	    	alert("삭제 되었습니다.");
 	    },
 	    error:function(request,status,error){
-	        alert("code:"+request.status+"\n"+"error:"+error);
+	    	console.log("code:"+request.status+"\n"+"error:"+error);
+	    	alert("삭제에 실패하였습니다.");
 	    }
 	}); 
 }

@@ -111,6 +111,10 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 	@RequestMapping(value="/tempsave",method=RequestMethod.POST)
 	@ResponseBody
 	public HashMap <String,Object> tempsave(HttpServletRequest request,@RequestParam HashMap<String, Object> param){
+		
+		System.out.println("FOR YOU -> " +request.getSession().getServletContext().getRealPath("/"));
+		
+		
 		String typeOfInvent= param.get("typeOfInvent").toString();
 		String title = param.get("title").toString();
 		String whyInvent= param.get("whyInvent").toString();
