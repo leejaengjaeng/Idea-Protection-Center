@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
-    <title>IdeaProtect</title>
+    <title>Idea Protectection Center</title>
     <script src="/resources/common/js/jquery-3.1.0.min.js"></script>
     <link rel="stylesheet" href="/resources/common/css/index.css">
     <link rel="stylesheet" href="/resources/common/css/style.css">

@@ -26,5 +26,8 @@
     <update id="assign" parameterType="Hashmap">
     	update registration_patent set lid=#{uid} where rid=#{rid}
     </update>
+    <select id="counTotalUser" resultType="Integer">
+		SELECT count(1) FROM user;
+	</select>
 </mapper>
 

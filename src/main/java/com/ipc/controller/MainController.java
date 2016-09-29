@@ -56,7 +56,12 @@ public class MainController {
 	public String hello(Model model)
 	{
 		List<adminNoticeVo> an = noticeDao.getNoticeListDescLimit(5);
+		int totalUser = userDao.counTotalUser();
+		int totalIdea = regDao.counTotalIdea();
 		model.addAttribute("noticeList",an);
+		model.addAttribute("totalUser",totalUser);
+		model.addAttribute("totalIdea",totalIdea);
+		
 		return "home/index";
 	}
 	

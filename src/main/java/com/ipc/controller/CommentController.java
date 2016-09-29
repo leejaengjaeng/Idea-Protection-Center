@@ -41,11 +41,6 @@ public class CommentController {
 	@Autowired
 	RegistrationFileDao regFileDao;
 	
-	@RequestMapping("/test")
-	public String test(Model model)
-	{
-		return "comment/comment";
-	}
 	
 	/*
 	발명가

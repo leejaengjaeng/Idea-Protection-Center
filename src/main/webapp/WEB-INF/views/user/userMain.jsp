@@ -134,10 +134,10 @@ $(document).ready(function()
                         <th>출원일</th>
                         <th>비고</th>
                     </tr>
-                   	<c:forEach var="process" items="${processList}">
+                   	<c:forEach var="process" items="${processList}" varStatus="status">
 						<tr class="ideaList">
 							<input type="hidden" value="${process.getRid()}"/>
-							<td style="background:#f1f1f1;">0</td>
+							<td style="background:#f1f1f1;">${status.count }</td>
 	                        <td>${process.getRegistration_date() }</td>
 	                        <td>${process.getTypeOfInvent() }</td>
 	                        <td>${process.getTitle()}</td>

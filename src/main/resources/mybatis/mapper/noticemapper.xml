@@ -13,6 +13,7 @@
 	<select id="getNoticeListDescLimit" resultType="com.ipc.vo.adminNoticeVo" parameterType="Integer">
 		select nid,title,content,date from notice order by date desc limit #{num}
 	</select>
+
 </mapper>
 
 

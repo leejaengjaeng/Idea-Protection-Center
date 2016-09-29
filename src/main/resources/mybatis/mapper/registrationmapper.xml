@@ -76,7 +76,7 @@
 	<!-- (발명가) after칸에 들어갈 발명가 작성 내용  -->
 	<select id="getInventorModifyByRid" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
 		select 
-			typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element, prev_rid, iscomplete 
+			typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element, prev_rid, iscomplete, re_file 
 		from 
 			registration_patent 
 		where 
@@ -119,15 +119,19 @@
 		select iscomplete from registration_patent where rid=#{rid}
 	</select>
 	<select id="countCompleteIdeaIn" parameterType="Integer" resultType="Integer">
-		select count(rid) from registration_patent where uid=#{uid} AND iscomplete!=2 AND rid=start_rid
+		select count(rid) from registration_patent where uid=#{uid} AND iscomplete=2 
 	</select>
 	<select id="countIngIdeaIn" parameterType="Integer" resultType="Integer">
-		select count(rid) from registration_patent where uid=#{uid} AND iscomplete=2
+		select count(rid) from registration_patent where uid=#{uid} AND iscomplete!=2 AND prev_rid=-1
 	</select>
 	<select id="countCompleteIdeaPl" parameterType="Integer" resultType="Integer">
-		select count(rid) from registration_patent where lid=#{uid} AND iscomplete!=2 AND rid=start_rid
+		select count(rid) from registration_patent where lid=#{uid} AND iscomplete=2 
 	</select>
 	<select id="countIngIdeaPl" parameterType="Integer" resultType="Integer">
-		select count(rid) from registration_patent where lid=#{uid} AND iscomplete=2
+		select count(rid) from registration_patent where lid=#{uid} AND iscomplete!=2 AND prev_rid=-1
+	</select>
+	
+	<select id="counTotalIdea" resultType="Integer">
+		SELECT count(1) FROM registration_patent where prev_rid=-1;
 	</select>
 </mapper>

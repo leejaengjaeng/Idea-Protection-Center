@@ -50,10 +50,9 @@ public class AuthController {
 	}
 	
 	@RequestMapping("/authError")
-	@ResponseBody
 	public String no()
 	{
-		return "You can not see this";
+		return "error/noaccess";
 	}
 	
 	@RequestMapping("/loginProcess.do")

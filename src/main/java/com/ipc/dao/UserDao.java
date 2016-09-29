@@ -21,4 +21,5 @@ public interface UserDao {
 	public void permit(String uid);
 	public List<userVo> getLawyerList();
 	public void assign(HashMap<String,String> map);
+	public int counTotalUser();
 }
