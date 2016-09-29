@@ -33,17 +33,16 @@ public class RegistrationService {
 		return today;
 	}
 	private FileOutputStream fos;
-	public String makeimageFile(MultipartFile file,String filename,String ID,int rid){
+	public String makeimageFile(MultipartFile file,String filename,String ID,int rid,String root_path){
 		try {
 			
-			String dirpath="../IdeaProtectionCenter\\src\\main\\webapp\\resources\\uploadimgs\\inventor\\"+ID+"\\";
-			mkdir(ID);
+			mkdir(ID,root_path);
 			byte fileData[] = file.getBytes();
 			int pathPoint = file.getOriginalFilename().trim().lastIndexOf(".");
 			String filePoint = file.getOriginalFilename().trim().substring(pathPoint + 1,
 					file.getOriginalFilename().trim().length());
 			String fileType = filePoint.toLowerCase();
-			fos = new FileOutputStream(dirpath+filename+ "." + fileType);
+			fos = new FileOutputStream(root_path+"resources\\uploadimgs\\inventor\\"+ID+"\\"+filename+ "." + fileType);
 			fos.write(fileData);
 			HashMap<String,String> map=new HashMap<String,String>();
 			//map.put("start_rid", Integer.toString(rid));
@@ -68,12 +67,13 @@ public class RegistrationService {
 		return "..";
 		
 	}
-	public String mkdir(String ID){
-		String path="../IdeaProtectionCenter/src/main/webapp/resources/uploadimgs/inventor/"+ID;
+	public String mkdir(String ID,String root_path){
+		String path=root_path+"/resources/uploadimgs/inventor/"+ID;
 		File dir=new File(path);
 		if(!dir.exists())
 		{	
 			dir.mkdirs();
+			System.out.println("mkdir!");
 		}
 		return "OK";
 	}

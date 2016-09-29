@@ -69,11 +69,11 @@ var tempApply=function(role){
  	    success:function(retVal)
  	    {
 	 	   	alert("가출원 상태로 등록되었습니다.");
-	 	   	location.href="/";
+	 	   	location.href="/mainPage";
  	    },
  	    error: function(request,status,error)
 		{
- 			alert('임시 저장에 실패하였습니다.')
+ 			alert('실패하였습니다.')
  			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		}
 	});	

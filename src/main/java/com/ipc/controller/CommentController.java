@@ -312,9 +312,10 @@ public class CommentController {
 		MultipartHttpServletRequest multipartRequest =  (MultipartHttpServletRequest)request;  //다중파일 업로드
 		List<MultipartFile> files = multipartRequest.getFiles("imgs");
 		RegistrationService rs = new RegistrationService();
+		String root_path=request.getSession().getServletContext().getRealPath("/");
 		for(int i=0;i<files.size();i++){
 			String today=rs.getToday(1)+i;
-			String fileType=rs.makeimageFile(files.get(i),today ,userID,Integer.parseInt(start_rid_file));
+			String fileType=rs.makeimageFile(files.get(i),today ,userID,Integer.parseInt(start_rid_file),root_path);
 			System.out.println(fileType);
 			HashMap<String,String> map = new HashMap<String,String>();
 			map.put("start_rid", start_rid_file);

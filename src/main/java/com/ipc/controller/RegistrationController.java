@@ -39,7 +39,10 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 	UserDao usermapper;
 	@Autowired
 	RegistrationFileDao regisfilemapper;
-	
+	private static final String roleAdmin = "ROLE_ADMIN";
+	private static final String roleInventor = "ROLE_INVENTOR";
+	private static final String rolePatientntLawyer = "ROLE_PATIENTENTLAWYER";
+	private static final String roleGuest = "anonymousUser";
 	@RequestMapping("/addidea")
 	public String addidea(Model model,HttpSession session, HttpServletRequest request)
 	{
@@ -74,7 +77,9 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 		if (rm!=0){
 			regismapper.removeTempIdea(rv.getUid());
 		}
-		System.out.println(files.size());
+		String root_path=request.getSession().getServletContext().getRealPath("/");
+		
+		System.out.println(root_path);
 		System.out.println(rv.getEffect());
 		RegistrationService rs=new RegistrationService();
 		rv.setRegistration_date(rs.getToday(0));
@@ -86,7 +91,7 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 		System.out.println("uid:"+uid);
 		for(int i=0;i<files.size();i++){
 			String today=rs.getToday(1)+i;
-			String fileType=rs.makeimageFile(files.get(i),today ,uv.getId(),rv.getRid());
+			String fileType=rs.makeimageFile(files.get(i),today ,uv.getId(),rv.getRid(),root_path);
 			HashMap<String,String> map = new HashMap<String,String>();
 			map.put("start_rid", Integer.toString(rv.getRid()));
 			map.put("file_path", "/resources/uploadimgs/inventor/"+uv.getId()+"/"+today+"."+fileType);

@@ -42,9 +42,9 @@ public class SignUpService {
 		return buf;
 	}
 	private FileOutputStream fos;
-	public String makeimageFile(MultipartFile file,String ID,String role){
+	public String makeimageFile(MultipartFile file,String ID,String role,String root_path){
 		try {
-			String dirpath="../IdeaProtectionCenter\\src\\main\\webapp\\resources\\uploadimgs\\profileImg\\";
+			String dirpath=root_path+"\\resources\\uploadimgs\\profileImg\\";
 			
 			byte fileData[] = file.getBytes();
 			int pathPoint = file.getOriginalFilename().trim().lastIndexOf(".");
