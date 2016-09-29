@@ -106,6 +106,7 @@
                 <span style="line-height:1.4rem;">아이디어 보호센터는 발명가님들의 여러 아이디어가<br> 출원될 수 있도록 하는 강력한 파트너입니다.</span>
             </div>
             <div id="onair">
+               <!-- 
                 <div id="onair_who">
                     <table>
                         <tr>                            
@@ -135,7 +136,8 @@
                         </tr>
                     </table>
                 </div>
-                <div id="onair_count">
+                 -->
+                <div id="onair_count" style="width:100%;">
                     <div id="center_box">
                         <span>00명의 발명가님의</span><br>
                         <span>00가지 아이디어와</span><br>
