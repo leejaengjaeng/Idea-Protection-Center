@@ -49,7 +49,8 @@ public class SignUpController {
 		MultipartHttpServletRequest multipartRequest =  (MultipartHttpServletRequest)request;  //다중파일 업로드
 		List<MultipartFile> files = multipartRequest.getFiles("profileImg");
 		SignUpService ss=new SignUpService();
-		String fileType=ss.makeimageFile(files.get(0),uv.getId(),role);
+		String root_path=request.getSession().getServletContext().getRealPath("/");
+		String fileType=ss.makeimageFile(files.get(0),uv.getId(),role,root_path);
 		HashMap<String,String> map=new HashMap<String,String>();
 		map.put("id", uv.getId());
 		map.put("pw", uv.getPw());

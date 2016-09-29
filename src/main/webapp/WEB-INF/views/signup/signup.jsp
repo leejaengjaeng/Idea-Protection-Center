@@ -85,6 +85,7 @@ function execute(){
 	var pwd=document.getElementById("password");
 	var repwd=document.getElementById("repassword");
 	var id=document.getElementById("id");
+	var email=document.getElementById("email1");
 	if(pwd.value!=repwd.value){
 		alert("비밀번호가 일치하지 않습니다.");
 		pwd.value="";
@@ -127,24 +128,24 @@ function execute(){
 				</tr>
 				<tr>
 					<td>아이디</td>
-					<td><input type="text" name="id" id="id"><button type="button" onclick="checkid()">중복확인</button></td>
+					<td><input type="text" name="id" id="id"><button type="button" onclick="checkid()" required>중복확인</button></td>
 				</tr>
 				<tr>
 					<td>비밀번호</td>
-					<td><input type="password" name="pw" id="pw"><div id="checkpassword"></div></td>
+					<td><input type="password" name="pw" id="pw"><div id="checkpassword" required></div></td>
 				</tr>
 				<tr>
 					<td>비밀번호 확인</td>
-					<td><input type="password" id="repw" onKeyUp='checkpwd()'></td>
+					<td><input type="password" id="repw" onKeyUp='checkpwd()' required></td>
 				</tr>
 				<tr>
 					<td>이름</td>
-					<td><input name="name" id="name"></td>
+					<td><input name="name" id="name" required></td>
 				</tr>
 				<tr>
 					<td>이메일</td>
 					<td>
-						<input type="text" name="email1" id="email1">
+						<input type="text" name="email1" id="email1" required>
 						<select name="emailMiddle" onChange=changeEmail(this.value); id="email_chg">
 							<option value="" selected>이메일선택</option>
 							<option value="@naver.com">@ naver.com</option>
@@ -157,7 +158,7 @@ function execute(){
 							<option value="@korea.com">@ korea.com</option>
 							<option value="1">직접입력</option>							
 						</select>
-						<input type="text" name="email2" id="email2" style="display:none;">
+						<input type="text" name="email2" id="email2" style="display:none;" required>
 					</td>
 				</tr>				
 				<tr id="hide">
