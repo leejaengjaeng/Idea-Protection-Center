@@ -128,8 +128,7 @@ article{
         #benner_1{
             overflow: hidden;
             width: 100%;                        
-            float: left;
-            height: 250px;
+            float: left;            
             position: relative;
             overflow: hidden;
             img{
@@ -197,8 +196,8 @@ article{
                     padding: 15px;                    
                     float: left;
                     img{
-                        width: 100%;
-                        height: 200px;
+                        width: 100% ;
+                        height: auto !important;
                         border: 1px solid #72d1f3;
                     } 
                     h1{
@@ -286,7 +285,7 @@ article{
                     border-top:1px solid #72d1f3;
                     height: 50px;
                     text-align: center;
-                    font-size: 0.9rem;
+                    font-size: 0.7rem;
                     transition: .3s;
                     -webkit-transition: .3s;
                     -moz-transition: .3s;
@@ -356,7 +355,7 @@ article{
                 table{
                     width: 100%;
                     float: left;
-                    font-size: 0.8rem;
+                    font-size: 0.7rem !important;
                     text-align: center;
                     padding: 15px;
                     tr{
@@ -471,48 +470,60 @@ footer{
 }
 
 @media screen and (max-width: 640px) {
+     #onair_who table tr td{
+         font-size: 0.7rem !important;
+    }
+    #center_box{
+        span{
+            font-size: 0.8rem !important;
+        }
+    }
+    header{
+        text-align: center;
+    }
     .header_wrap{
-        width: 640px !important;
-        ol{
-            display: block !important;
-            float: none !important;
-            margin-left: 188px !important;
-            button{
-                float: left;
-            }
+        width: 100% !important;
+        text-align: center;
+        ol{            
+            float: none !important; 
+            display:inline-block;
         }
         .header_menu{
             img{
                 float: none !important;
-                margin-bottom: 0 !important;
-                margin-left: 180px !important;
+                margin-bottom: 0 !important;                
             }
             ul{
                 padding-left: 0;
                 width: 100%;
                 margin-top: 10px !important;
+                border-top:1px solid #ccc;
+                border-bottom:1px solid #ccc;
                 li{
-                    margin-left:34px !important;
-                    margin: 10px;
+                    margin: 0 !important;
+                    width: 100%;
+                    height: 40px;
+                    padding-top:10px;
+                    
                 }
             }
         }
     }
     .ani{
-        height: 300px;
+        height: 200px;
         .imgs{
             width: 100% !important;
-            height: 300px;
+            height: 200px;
         }
     }
     .ani_wrap{
-        width: 620px !important;
-        margin-left: 10px;
+        width: 100% !important;        
         #remote_box{
             bottom:-20% !important;
         }
         span{
             font-size: 40px !important;
+            top: 50%;
         }
         #left_ani{
             left: 15px;
@@ -520,12 +531,18 @@ footer{
     }
 
 article{
+        width: 100% !important;
     section{
-        width: 600px;
-        margin-left: 20px;
+        width: 100% !important;        
+         
         #benner_1{
             position: relative;   
             height: 200px;
+            width: 100% !important;
+            img{
+                width: 100%;
+                height: auto;
+            }
             button{
                 display: none;
             }
@@ -545,7 +562,7 @@ article{
     #footer_benner{
             padding-bottom: 10px !important;
         #footer_benner_wrap{
-            width: 600px !important;
+            width: 100% !important;
             
             img{
                 margin-left: 40px !important;
@@ -557,13 +574,14 @@ article{
     height: auto;
 }
 #footer_wrap{
-    width: 600px !important;
+    width: 100% !important;
     text-align: center;
     
     #footer_left{
-        width: 100%;        
-        ul{
-            margin-left: 170px;
+        width: 100%;   
+        text-align: center !important;        
+        ul{                 
+            display:inline-block;
             font-size: 1.1rem !important;
         }
     }
@@ -582,25 +600,47 @@ article{
 }
 
     #header_benner{
-            position: relative;
-            height:270px;
-        img{
-            position: absolute !important;
-            width: 1540px !important;      
-            height: auto;
-            left: -55%;
+            position: relative;  
+            width: 100%;
+            height: 100px !important;
+            display: none;
+        img{            
+            height: auto;         
+            width: 100%;
+            float: left;
         }
     }
+    .hill{
+        margin-left: 5px !important;
+    }
     #wrap_form{
-        width: 600px !important;
+        width:100% !important;
         form{            
             table{
+                width: 100%;
                 tr{
                     td{
-                        font-size: 1rem;
-                        padding-left: 15px;
-                        &:first-child{
-                            width: 120px;
+                        font-size: 0.8rem;
+                        padding-left: 10px;
+                        width:100px;                    
+                        input{
+                            width:120px !important;
+                            float: left;
+                        }
+                        button{
+                            width: 100px;
+                            float: left;
+                            margin: 0;
+                            margin-left: 5px;
+                        }       
+                        #pw{
+                            width: 80% !important;
+                        }
+                        #repw{
+                            width: 80% !important;
+                        }
+                        #name{
+                            width: 80% !important;
                         }
                         #email1{
                             margin-top: 5px !important;                            
@@ -609,6 +649,16 @@ article{
                             margin-top: 5px !important;
                             margin-bottom: 5px;
                         }
+                        select{
+                            width: 100px;
+                            margin-top: 5px;
+                        }
+                        &:nth-child(2){
+                            width: 75%;
+                        }
+                        #license_number{
+                            width: 80% !important;
+                        }
                     }
                 }
             }
@@ -616,11 +666,24 @@ article{
     }
     
  #log_form_wrap{
-        width: 600px !important;
-    }      
+     width: 100% !important;
+     table{
+         
+         tr{
+             td{
+                 button{
+                     width: 150px !important;            
+                 }
+                 .join_btn{
+                     width: 100% !important;
+                 }
+             }
+         }
+     }
+ }      
     .wrap_comment{
-        width: 600px;
-        margin-left: 20px !important;
+        width: 100%;
+        margin-left: 0 !important;
     }
     
     .wrap_comment section article{
@@ -647,7 +710,7 @@ article{
         font-size: 1rem;
     }
     #onair_who table tr td{
-        font-size: 1rem !important;
+        font-size: 1rem ;
     }
 }
 

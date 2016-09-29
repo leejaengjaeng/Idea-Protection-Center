@@ -8,10 +8,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="_csrf" content="${_csrf.token}" />
 <meta name="_csrf_header" content="${_csrf.headerName}" />
-<link rel="stylesheet"
-	href="/webjars/bootstrap/3.3.7/dist/css/bootstrap.min.css">
-<script src="/webjars/jquery/3.1.0/dist/jquery.min.js"></script>
-<script src="/webjars/bootstrap/3.3.7/dist/js/bootstrap.min.js"></script>
+<!-- <link rel="stylesheet"
+	href="/webjars/bootstrap/3.3.7/dist/css/bootstrap.min.css"> -->
+<script src="/resources/common/js/jquery-3.1.0.min.js"></script>
 <link rel="stylesheet" href="/resources/common/css/index.css">
 <link rel="stylesheet" href="/resources/common/css/style.css">
 <title>Insert title here</title>

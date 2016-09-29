@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -22,15 +22,15 @@
         <div id="footer_wrap">
             <div id="footer_left">
                 <ul>                        
-                   <li><a href="#">ÀÌ¿ë¾È³»</a> &nbsp;| </li> 
-                   <li><a href="#">¿À½Ã´Â ±æ</a> &nbsp;| </li> 
-                   <li><a href="#">»ó´ã¿¹¾à</a> &nbsp;| </li> 
-                   <li><a href="#">¿öÅ©¼¥ ¾È³»</a></li> 
+                   <li><a href="#">ì´ìš©ì•ˆë‚´</a> &nbsp;| </li> 
+                   <li><a href="#">ì˜¤ì‹œëŠ” ê¸¸</a> &nbsp;| </li> 
+                   <li><a href="#">ìƒë‹´ì˜ˆì•½</a> &nbsp;| </li> 
+                   <li><a href="#">ì›Œí¬ìƒµ ì•ˆë‚´</a></li> 
                 </ul><br>
                 <ul id="small_ul">                        
-                   <li><a href="#">ÀÌ¿ë¾à°ü</a> &nbsp;| </li> 
-                   <li><a href="#">°³ÀÎÁ¤º¸ º¸È£¹æÄ§</a> &nbsp;| </li> 
-                   <li><a href="#">ÀÌ¸ÞÀÏ ¼öÁý°ÅºÎ</a></li> 
+                   <li><a href="#">ì´ìš©ì•½ê´€</a> &nbsp;| </li> 
+                   <li><a href="#">ê°œì¸ì •ë³´ ë³´í˜¸ë°©ì¹¨</a> &nbsp;| </li> 
+                   <li><a href="#">ì´ë©”ì¼ ìˆ˜ì§‘ê±°ë¶€</a></li> 
                 </ul><br>
                 <span>
                     COPYRIGHT 2016 @ IDEAPROTECTIONCENTER ALL RIGHTS RESERVED
@@ -38,7 +38,7 @@
             </div>
             <div id = "footer_center">
                 <div>
-                	<h3>¾ÆÀÌµð¾î º¸È£¼¾ÅÍ</h3>
+                	<h3>ì•„ì´ë””ì–´ ë³´í˜¸ì„¼í„°</h3>
                 	<span>
                    	 	IDEAPROTECTIONCENTER
                		 </span>
@@ -46,8 +46,8 @@
             </div>
             <div id = "footer_right">
                 <span>
-                    °æ±âÃ¢Á¶°æÁ¦Çõ½Å¼¾ÅÍ 5Ãþ<br>
-                    °æ±âµµ ¼º³²½Ã ºÐ´ç±¸ ´ë¿ÕÆÇ±³·Î 635¹ø±æ 12<br>
+                    ê²½ê¸°ì°½ì¡°ê²½ì œí˜ì‹ ì„¼í„° 5ì¸µ<br>
+                    ê²½ê¸°ë„ ì„±ë‚¨ì‹œ ë¶„ë‹¹êµ¬ ëŒ€ì™•íŒêµë¡œ 635ë²ˆê¸¸ 12<br>
                     Tel : 010-3302-7000<br>
                     mail : ideaconcert@naver.com
                 </span>

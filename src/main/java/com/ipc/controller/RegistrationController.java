@@ -44,8 +44,14 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 	private static final String rolePatientntLawyer = "ROLE_PATIENTENTLAWYER";
 	private static final String roleGuest = "anonymousUser";
 	@RequestMapping("/addidea")
-	public String addidea(Model model,HttpSession session, HttpServletRequest request){
-		System.out.println(uv.getUid());
+	public String addidea(Model model,HttpSession session, HttpServletRequest request)
+	{
+		if(request.getSession().getAttribute("currentUser")==null)
+		{
+			return "redirect:/login";
+		}
+		
+		userVo uv=(userVo) request.getSession().getAttribute("currentUser");
 		if(regismapper.countTempIdea(uv.getUid())!=0){
 			model.addAttribute("isTemp", "1");
 			
@@ -55,6 +61,7 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 		}
 			
 		return "registration/idea_registration";
+		
 	}
 	@RequestMapping("/inventor_main")
 	public String inventor_main(){

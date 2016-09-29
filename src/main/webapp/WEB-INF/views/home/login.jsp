@@ -13,7 +13,7 @@
     <title>IdeaProtect</title>
     <link href="/resources/common/css/index.css" rel="stylesheet">
     <link href="/resources/common/css/style.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="/resources/common/js/jquery-3.1.0.min.js"></script>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/import/header.jsp"/>	

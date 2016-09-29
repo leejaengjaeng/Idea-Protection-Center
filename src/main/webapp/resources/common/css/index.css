@@ -125,7 +125,6 @@ article section {
 article section #benner_1 {
   width: 100%;
   float: left;
-  height: 250px;
   position: relative;
   overflow: hidden;
 }
@@ -194,8 +193,8 @@ article section #cont_block1 .block .block_inside {
   float: left;
 }
 article section #cont_block1 .block .block_inside img {
-  width: 100%;
-  height: 200px;
+  width: 100% ;
+  height: auto !important;
   border: 1px solid #72d1f3;
 }
 article section #cont_block1 .block .block_inside h1 {
@@ -281,7 +280,7 @@ article section #table_notice table tr {
   border-top: 1px solid #72d1f3;
   height: 50px;
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   transition: .3s;
   -webkit-transition: .3s;
   -moz-transition: .3s;
@@ -350,7 +349,7 @@ article section #onair #onair_who {
 article section #onair #onair_who table {
   width: 100%;
   float: left;
-  font-size: 0.8rem;
+  font-size: 0.7rem !important;
   text-align: center;
   padding: 15px;
 }
@@ -456,58 +455,74 @@ footer #footer_fill #footer_wrap #footer_right span {
   line-height: 1.4rem;
 }
 @media screen and (max-width: 640px) {
+  #onair_who table tr td {
+    font-size: 0.7rem !important;
+  }
+  #center_box span {
+    font-size: 0.8rem !important;
+  }
+  header {
+    text-align: center;
+  }
   .header_wrap {
-    width: 640px !important;
+    width: 100% !important;
+    text-align: center;
   }
   .header_wrap ol {
-    display: block !important;
     float: none !important;
-    margin-left: 188px !important;
-  }
-  .header_wrap ol button {
-    float: left;
+    display: inline-block;
   }
   .header_wrap .header_menu img {
     float: none !important;
     margin-bottom: 0 !important;
-    margin-left: 180px !important;
   }
   .header_wrap .header_menu ul {
     padding-left: 0;
     width: 100%;
     margin-top: 10px !important;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
   }
   .header_wrap .header_menu ul li {
-    margin-left: 34px !important;
-    margin: 10px;
+    margin: 0 !important;
+    width: 100%;
+    height: 40px;
+    padding-top: 10px;
   }
   .ani {
-    height: 300px;
+    height: 200px;
   }
   .ani .imgs {
     width: 100% !important;
-    height: 300px;
+    height: 200px;
   }
   .ani_wrap {
-    width: 620px !important;
-    margin-left: 10px;
+    width: 100% !important;
   }
   .ani_wrap #remote_box {
     bottom: -20% !important;
   }
   .ani_wrap span {
     font-size: 40px !important;
+    top: 50%;
   }
   .ani_wrap #left_ani {
     left: 15px;
   }
+  article {
+    width: 100% !important;
+  }
   article section {
-    width: 600px;
-    margin-left: 20px;
+    width: 100% !important;
   }
   article section #benner_1 {
     position: relative;
     height: 200px;
+    width: 100% !important;
+  }
+  article section #benner_1 img {
+    width: 100%;
+    height: auto;
   }
   article section #benner_1 button {
     display: none;
@@ -523,7 +538,7 @@ footer #footer_fill #footer_wrap #footer_right span {
     padding-bottom: 10px !important;
   }
   #footer_benner #footer_benner_wrap {
-    width: 600px !important;
+    width: 100% !important;
   }
   #footer_benner #footer_benner_wrap img {
     margin-left: 40px !important;
@@ -533,14 +548,15 @@ footer #footer_fill #footer_wrap #footer_right span {
     height: auto;
   }
   #footer_wrap {
-    width: 600px !important;
+    width: 100% !important;
     text-align: center;
   }
   #footer_wrap #footer_left {
     width: 100%;
+    text-align: center !important;
   }
   #footer_wrap #footer_left ul {
-    margin-left: 170px;
+    display: inline-block;
     font-size: 1.1rem !important;
   }
   #footer_wrap #footer_center {
@@ -557,23 +573,47 @@ footer #footer_fill #footer_wrap #footer_right span {
   }
   #header_benner {
     position: relative;
-    height: 270px;
+    width: 100%;
+    height: 100px !important;
+    display: none;
   }
   #header_benner img {
-    position: absolute !important;
-    width: 1540px !important;
     height: auto;
-    left: -55%;
+    width: 100%;
+    float: left;
+  }
+  .hill {
+    margin-left: 5px !important;
   }
   #wrap_form {
-    width: 600px !important;
+    width: 100% !important;
+  }
+  #wrap_form form table {
+    width: 100%;
   }
   #wrap_form form table tr td {
-    font-size: 1rem;
-    padding-left: 15px;
+    font-size: 0.8rem;
+    padding-left: 10px;
+    width: 100px;
   }
-  #wrap_form form table tr td:first-child {
-    width: 120px;
+  #wrap_form form table tr td input {
+    width: 120px !important;
+    float: left;
+  }
+  #wrap_form form table tr td button {
+    width: 100px;
+    float: left;
+    margin: 0;
+    margin-left: 5px;
+  }
+  #wrap_form form table tr td #pw {
+    width: 80% !important;
+  }
+  #wrap_form form table tr td #repw {
+    width: 80% !important;
+  }
+  #wrap_form form table tr td #name {
+    width: 80% !important;
   }
   #wrap_form form table tr td #email1 {
     margin-top: 5px !important;
@@ -582,12 +622,28 @@ footer #footer_fill #footer_wrap #footer_right span {
     margin-top: 5px !important;
     margin-bottom: 5px;
   }
+  #wrap_form form table tr td select {
+    width: 100px;
+    margin-top: 5px;
+  }
+  #wrap_form form table tr td:nth-child(2) {
+    width: 75%;
+  }
+  #wrap_form form table tr td #license_number {
+    width: 80% !important;
+  }
   #log_form_wrap {
-    width: 600px !important;
+    width: 100% !important;
+  }
+  #log_form_wrap table tr td button {
+    width: 150px !important;
+  }
+  #log_form_wrap table tr td .join_btn {
+    width: 100% !important;
   }
   .wrap_comment {
-    width: 600px;
-    margin-left: 20px !important;
+    width: 100%;
+    margin-left: 0 !important;
   }
   .wrap_comment section article {
     margin-left: 0;
@@ -613,7 +669,7 @@ footer #footer_fill #footer_wrap #footer_right span {
     font-size: 1rem;
   }
   #onair_who table tr td {
-    font-size: 1rem !important;
+    font-size: 1rem ;
   }
 }
 #wrap_form button {

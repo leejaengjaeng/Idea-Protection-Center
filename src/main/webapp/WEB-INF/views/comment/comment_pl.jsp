@@ -9,7 +9,7 @@
     <meta name="_csrf" content="${_csrf.token}" />
 	<meta name="_csrf_header" content="${_csrf.headerName}" />
     <title>Idea Protection Center</title>
-    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>  
+    <script src="/resources/common/js/jquery-3.1.0.min.js"></script>  
     <script src="/resources/common/js/comment.js"></script>  
     
     <link href="/resources/common/css/style.css" rel="stylesheet">
