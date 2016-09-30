@@ -42,7 +42,7 @@
 			 -->
 			 	<li onclick="location.href='/registration/addidea'">특허 출원하기</li>
 			 	<li>1:1질문하기</li>
-				<li>자주하는 질문모음</li>
+				<li onclick="location.href='/qna/regularQna'">자주하는 질문모음</li>
 			</ul>
 		</div>		
 	</div>

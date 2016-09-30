@@ -76,4 +76,14 @@ CREATE TABLE `notice` (
   PRIMARY KEY (`nid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE `qna` (
+  `qid` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(45) DEFAULT NULL,
+  `content` TEXT DEFAULT NULL,
+  /*`date` timestamp,*/  
+  `date` datetime DEFAULT CURRENT_TIMESTAMP,
+  `isRegular` VARCHAR(10) NULL DEFAULT 'FALSE',
+  `del_pw` VARCHAR(20) NULL,
+  PRIMARY KEY (`qid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

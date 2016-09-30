@@ -153,5 +153,6 @@ public class MainController {
 		model.addAttribute("noticeList", noticeList);
 		return "/admin/noticeList";
 	}
+
 	
 }
