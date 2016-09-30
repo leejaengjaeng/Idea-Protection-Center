@@ -11,9 +11,9 @@
 		SELECT title,content,date FROM qna where qid=#{qid};
 	</select>
 	
-	<insert id="addQuestionWithIsRegularFlag" parameterType="com.ipc.vo.QnaVo">
-		INSERT INTO qna(qid,title, content, isRegular, del_pw) 
-		VALUES (#{qid},#{title},#{content},"TRUE",#{del_pw});
+	<insert id="addRegularQuestion" parameterType="com.ipc.vo.QnaVo">
+		INSERT INTO qna(title, content, isRegular, del_pw) 
+		VALUES (#{title},#{content},"TRUE",#{del_pw});
 	</insert>
 	
 </mapper>

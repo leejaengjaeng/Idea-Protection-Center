@@ -38,4 +38,16 @@ public class QnaController {
 		model.addAttribute("qna",qna);
 		return "/qna/qnaDetail";
 	}
+	@RequestMapping(value="/regularQnaAdd",method=RequestMethod.GET)
+	public String showAddRegularQuestion()
+	{
+		return "/qna/addRegularQna";
+	}
+	
+	@RequestMapping(value="/regularQnaAddProcess",method=RequestMethod.POST)
+	public String addRegularQuestion(QnaVo qnaVo){
+		
+		qnaDao.addRegularQuestion(qnaVo);
+		return "redirect:/IPC_admin/";
+	}
 }

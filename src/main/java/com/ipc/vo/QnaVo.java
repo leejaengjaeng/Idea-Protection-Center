@@ -6,7 +6,14 @@ public class QnaVo {
 	private String content;
 	private String date;
 	private String del_pw;
+	private String isRegular;
 	
+	public String getIsRegular() {
+		return isRegular;
+	}
+	public void setIsRegular(String isRegular) {
+		this.isRegular = isRegular;
+	}
 	public String getDel_pw() {
 		return del_pw;
 	}

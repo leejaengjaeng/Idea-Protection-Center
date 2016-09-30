@@ -42,6 +42,8 @@ function checkAdmin(){
                 <li onclick="location.href='/IPC_admin/'">아이디어 관리</li>
                 <li>문의사항 관리</li>
                 <li onclick="location.href='/IPC_admin/admin_notice'">공지사항 관리</li>
+            	<li onclick="location.href='/qna/regularQnaAdd'">자주 묻는 질문 등록</li>
+            
             </ul>  
         </nav>
         <article>
