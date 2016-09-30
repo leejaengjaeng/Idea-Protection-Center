@@ -10,7 +10,7 @@
 <meta name="_csrf_header" content="${_csrf.headerName}" />
 <link href="/resources/common/css/admin.css" rel="stylesheet">
 <link href="/resources/common/css/style.css" rel="stylesheet">
-<title>Insert title here</title>
+<title>IPC_AdminPage</title>
 </head>
 <body style="background:#f9f9f9;">
 <div class="notice_form">

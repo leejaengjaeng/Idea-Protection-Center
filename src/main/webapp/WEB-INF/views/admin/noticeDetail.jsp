@@ -11,7 +11,7 @@
 <link href="/resources/common/css/index.css" rel="stylesheet">
 <meta name="_csrf" content="${_csrf.token}" />
 <meta name="_csrf_header" content="${_csrf.headerName}" />
-<title>Insert title here</title>
+<title>IPC_AdminPage</title>
 </head>
 <body>
 <c:import url="/WEB-INF/views/import/header.jsp"/>

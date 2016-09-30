@@ -70,9 +70,9 @@ public class AuthController {
 				session.setAttribute("currentUser", currentUser);
 				logger.debug("로그인 :"+currentUser.getName());
 				if(currentUser.getRole().equals("ROLE_ADMIN"))
-					return "redirect:/IPC_adminPage";
+					return "redirect:/IPC_admin/";
 				else
-					return "redirect:/mainPage";
+					return "redirect:/";
 			}
 		}
 		catch(Exception e)

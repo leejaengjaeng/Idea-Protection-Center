@@ -113,16 +113,7 @@ public class MainController {
 		}
 	}
 	
-	@RequestMapping("/IPC_adminPage")
-	public String admin2(Model model)
-	{
-		//권한 검사하기 -> security가 해줌 
-		List<adminListVo> ideaList = regDao.adminGetIdeaList();
-		List<userVo> lawyers = userDao.getLawyerList();
-		model.addAttribute("ideaList", ideaList);
-		model.addAttribute("lawyerList",lawyers);
-		return "admin/admin_management";
-	}
+	
 	
 	@RequestMapping(value="/assign",method=RequestMethod.POST)
 	@ResponseBody
@@ -149,12 +140,7 @@ public class MainController {
 		return "admin/admin_management";
 		
 	}
-	@RequestMapping("/admin_notice")
-	public String admin_notice(Model model){
-		List<adminNoticeVo> noticeList=noticeDao.getNoticeListDesc();
-		model.addAttribute("noticeList", noticeList);
-		return "/admin/admin_notice";
-	}
+
 	@RequestMapping(value="/noticeList/{nid}",method=RequestMethod.GET)
 	public String noticeList(Model model,@PathVariable int nid){
 		adminNoticeVo an = noticeDao.getNoticeByNid(nid);

@@ -21,6 +21,7 @@
     <div id="footer_fill">
         <div id="footer_wrap">
             <div id="footer_left">
+            <!-- 
                 <ul>                        
                    <li><a href="#">이용안내</a> &nbsp;| </li> 
                    <li><a href="#">오시는 길</a> &nbsp;| </li> 
@@ -32,6 +33,7 @@
                    <li><a href="#">개인정보 보호방침</a> &nbsp;| </li> 
                    <li><a href="#">이메일 수집거부</a></li> 
                 </ul><br>
+                 -->
                 <span>
                     COPYRIGHT 2016 @ IDEAPROTECTIONCENTER ALL RIGHTS RESERVED
                 </span>                   
