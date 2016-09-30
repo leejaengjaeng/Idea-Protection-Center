@@ -75,5 +75,3 @@ CREATE TABLE `notice` (
   `date` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`nid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
