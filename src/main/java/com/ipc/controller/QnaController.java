@@ -67,7 +67,7 @@ public class QnaController {
 		System.out.println(rv.getContent());
 		qnaDao.addReply(rv);
 		return "/qna/detail/"+rv.getQid();
-
+	}
 	@RequestMapping(value="/regularQnaAdd",method=RequestMethod.GET)
 	public String showAddRegularQuestion()
 	{
