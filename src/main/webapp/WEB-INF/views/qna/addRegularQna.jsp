@@ -10,15 +10,16 @@
 <meta name="_csrf_header" content="${_csrf.headerName}" />
 <link href="/resources/common/css/admin.css" rel="stylesheet">
 <link href="/resources/common/css/style.css" rel="stylesheet">
-<title>IPC_AdminPage</title>
+<title>Idea Protection Center</title>
 </head>
 <body style="background:#f9f9f9;">
 <div class="notice_form">
-	<span>공지사항</span>
-	<form action="/noticeRegistration" name="noticeform" method="POST">
+	<span>자주묻는 질문 등록</span>
+	<form action="/qna/regularQnaAddProcess" name="noticeform" method="POST">
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />	
 		<input type="text" name="title" id="title" placeholder="제목"><br/>
 		<textarea id="content" name="content" placeholder="내용"></textarea>
+		<input type="text" name="del_pw" id="del_pw" placeholder="삭제 비밀번호"><br/>
 		<input type="submit" id="submit">
 	</form>
 </div>

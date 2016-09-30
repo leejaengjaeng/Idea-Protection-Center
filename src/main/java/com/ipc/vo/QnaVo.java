@@ -8,11 +8,18 @@ public class QnaVo {
 	private String date;
 	private String del_pw;
 	private String uid;
+	private String isRegular;
 	public String getUid() {
 		return uid;
 	}
 	public void setUid(String uid) {
 		this.uid = uid;
+	}
+	public String getIsRegular() {
+		return isRegular;
+	}
+	public void setIsRegular(String isRegular) {
+		this.isRegular = isRegular;
 	}
 	public String getDel_pw() {
 		return del_pw;

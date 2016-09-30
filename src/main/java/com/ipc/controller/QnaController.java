@@ -42,6 +42,7 @@ public class QnaController {
 		model.addAttribute("replyList",replyList);
 		return "/qna/qnaDetail";
 	}
+
 	@RequestMapping(value="/qnaBoard")
 	public String qnaBoard(Model model){
 		List<QnaVo> qnaList=qnaDao.getOneQuestions();
@@ -66,5 +67,18 @@ public class QnaController {
 		System.out.println(rv.getContent());
 		qnaDao.addReply(rv);
 		return "/qna/detail/"+rv.getQid();
+
+	@RequestMapping(value="/regularQnaAdd",method=RequestMethod.GET)
+	public String showAddRegularQuestion()
+	{
+		return "/qna/addRegularQna";
+	}
+	
+	@RequestMapping(value="/regularQnaAddProcess",method=RequestMethod.POST)
+	public String addRegularQuestion(QnaVo qnaVo){
+		
+		qnaDao.addRegularQuestion(qnaVo);
+		return "redirect:/IPC_admin/";
+
 	}
 }
