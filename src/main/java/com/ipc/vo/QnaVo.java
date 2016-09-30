@@ -1,12 +1,19 @@
 package com.ipc.vo;
 
+
 public class QnaVo {
 	private int qid;
 	private String title;
 	private String content;
 	private String date;
 	private String del_pw;
-	
+	private String uid;
+	public String getUid() {
+		return uid;
+	}
+	public void setUid(String uid) {
+		this.uid = uid;
+	}
 	public String getDel_pw() {
 		return del_pw;
 	}

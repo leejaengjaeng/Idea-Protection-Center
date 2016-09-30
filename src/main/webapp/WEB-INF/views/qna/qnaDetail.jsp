@@ -12,8 +12,17 @@
 <meta name="_csrf" content="${_csrf.token}" />
 <meta name="_csrf_header" content="${_csrf.headerName}" />
 <title>Idea Protection Center</title>
+<script type="text/javascript">
+function ddddd(){
+	//alert(sessionScope.currentUser.getRole());
+	//alert("${sessionScope.currentUser.getRole()}");
+	if("${sessionScope.currentUser.getRole()}"=="ROLE_ADMIN"){
+		document.getElementById("replyDiv").style.display='block';
+	}
+}
+</script>
 </head>
-<body>
+<body onload='ddddd();'>
 <c:import url="/WEB-INF/views/import/header.jsp"/>
 <div id="wrap_form">
 	<h1>Q n A</h1>
@@ -28,6 +37,30 @@
 			<p>${qna.getContent()}</p>
 		</div>
 	</div>
+	
+	<div id="wrap_form">
+	
+	<table id="notice_table">
+		
+		<c:forEach items="${replyList}" var="list" varStatus="status">
+			<tr>
+    			<td>${list.getContent()}</td>
+    		</tr>
+		</c:forEach>
+	</table>
+	
+
+	</div>
+	
+	<div id="replyDiv" style="display:none">
+		<form action="/qna/regisreply" method="POST" name="replyform">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+			<input type="hidden" value="${qna.getQid()}" name="qid">	
+			<textarea name="content" id="content" placeholder="답글달기"></textarea>
+			<input type="submit">
+		</form>
+	</div>
+	
 </div>
 <c:import url="/WEB-INF/views/import/footer.jsp"/>
 
