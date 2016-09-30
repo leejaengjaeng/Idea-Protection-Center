@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
+<title>Idea Protection Center</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
 <script src="/resources/common/js/jquery-3.1.0.min.js"></script> 
 <!-- <script src="/webjars/bootstrap/3.3.7/dist/js/bootstrap.min.js"></script> -->
@@ -37,16 +37,20 @@ $(document).ready(function()
 	    <div id="profile">
 	        <img src="${currentUser.getProfileimg()}" alt="profile">	        
 	        <h4>${currentUser.getName() }</h4>
-	        <span>ideaconcert</span>
+	        <span>${currentUser.getId() }</span>
 	    </div>
 	    <div id="profile_menu">
 	        <ul style="padding-left:0;">
+	            <!-- 
 	            <li>회원정보수정</li>
+	            -->
 	            <li>1:1질문하기</li>
 	            <li>아이디어 진행내역</li>
+	         	<!-- 
 	            <li>임시저장함</li>
 	            <li>결제대기</li>
 	            <li>결제내역</li>
+	             -->
 	        </ul>
 	    </div>	    
 	</div>
@@ -57,23 +61,28 @@ $(document).ready(function()
             <div id="profile">
                 <img src="${currentUser.getProfileimg()}" alt="profile">
                 <h4>${currentUser.getName() }</h4>
-                <span>ideaconcert</span>
+                <span>${currentUser.getId() }</span>
             </div>
             <div id="profile_menu">
                 <ul style="padding-left:0;">
-                    <li>회원정보수정</li>
-                    <li>1:1질문하기</li>
-                    <li>아이디어 진행내역</li>
-                    <li>임시저장함</li>
-                    <li>결제대기</li>
-                    <li>결제내역</li>
+                     <!-- 
+		            <li>회원정보수정</li>
+		            -->
+		            <li>1:1질문하기</li>
+		            <li>아이디어 진행내역</li>
+		         	<!-- 
+		            <li>임시저장함</li>
+		            <li>결제대기</li>
+		            <li>결제내역</li>
+		             -->
                 </ul>
             </div>
             <div id="nav_benner">
                 <ul style="padding-left:0;">
-                    <li>
+                    <li onclick="location.href='/registration/addidea'">
                         <img src="/resources/image/index_patent_1.jpg" alt="benner1">
                     </li>
+                    <!-- 
                     <li>
                         <img src="/resources/image/index_patent_2.jpg" alt="benner2">
                     </li>
@@ -83,6 +92,7 @@ $(document).ready(function()
                     <li>
                         <img src="/resources/image/index_patent_4.jpg" alt="benner4">
                     </li>
+                    -->
                 </ul>
             </div>
         </nav>
@@ -100,6 +110,7 @@ $(document).ready(function()
                 <h2>아이디어 진행내역</h2>
             </div>
             <div id="cont_table">
+                <!--  
                 <ol>
                     <li style="font-size:1.3rem; font-weight:bold;">분류</li>
                     <li>                        
@@ -123,6 +134,7 @@ $(document).ready(function()
                         </select>
                     </li>
                 </ol>
+                -->
                 <table>
                     <tr>
                         <th>번호</th>
@@ -178,7 +190,7 @@ $(document).ready(function()
 			    		</tr>
 					</c:forEach>
                     </table>
-                <button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;">
+                <button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;" onclick="location.href='/noticePage'">
                         더보기
                 </button>
             </div>                

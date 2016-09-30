@@ -15,6 +15,11 @@
     	#header_benner{
     		display: none;
     	}
+    	.notYet
+    	{
+	    	cursor: auto !important;
+		    background: #b9b6b6 !important;
+    	}
     </style>
 </head>
 <body>
@@ -61,7 +66,7 @@
                         <h1><b style="color:#72d1f3;">디자인권</b> 출원</h1>      
                         <span>100,000원 출원</span>                          
                     </div>
-                    <button class="btn_go">출원하러 가기 &gt;</button>   
+                    <button class="notYet btn_go">준비중 입니다</button>   
                 </div>  
                 <div class="block">
                    <div class="block_inside">
@@ -69,7 +74,7 @@
                        <h1><b style="color:#0066cc;">상표</b> 출원</h1>      
                        <span>150,000원 출원</span>                          
                    </div>
-                   <button class="btn_go">출원하러 가기 &gt;</button>           
+                   <button class="notYet btn_go">준비중 입니다 </button>           
                 </div>
                 <div class="block" style="margin-left:20px;">                    
                     <div class="block_inside">
@@ -77,7 +82,7 @@
                         <h1><b style="color:#45d7c2;">저작권</b> 출원</h1>      
                         <span>50,000원 등록 보장</span>                          
                     </div>
-                    <button class="btn_go">출원하러 가기 &gt;</button>   
+                    <button class="notYet btn_go">준비중 입니다</button>   
                 </div>                
             </div>
             <div id="cont_title2">

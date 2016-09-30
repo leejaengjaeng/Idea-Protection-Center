@@ -30,7 +30,7 @@ public class SecConfig extends WebSecurityConfigurerAdapter {
 	{
 		http
 			.authorizeRequests()
-			.antMatchers("/IPC_adminPage","/admin_notice","/noticeRegistration").hasRole("ADMIN")
+			.antMatchers("/IPC_admin/**").hasRole("ADMIN")
 			.antMatchers("/","/**","/signup/**","/signup/inputsignup").permitAll()
 			.and()
 			.formLogin()

@@ -12,22 +12,14 @@
 <link href="/resources/common/css/admin.css" rel="stylesheet">
 <link href="/resources/common/css/style.css" rel="stylesheet">
 
-<script>
-function checkAdmin(){
-	//alert("${role}");
 
-	if("${role}"=='notAdmin'){
-		document.getElementById("btn_notice_regis").style.display='none';
-	}
-}
-</script>
 <title>IPC_AdminPage</title>
 <style>
 
 </style>
 </head>
 
-<body onload="checkAdmin()">
+<body>
     <header>        
         <img src="/resources/image/ideapc_logo.jpg" alt="logo" onclick="location.href='/IPC_admin/'" style="cursor: pointer;">
         <div id="header_info">
@@ -50,19 +42,42 @@ function checkAdmin(){
             </div>
             <table class="manage_table">
                 <tr>
-                    <th style="width:100px;">No</th>
-                    <th>제목</th>
-                    <th style="width:280px;">날짜</th>
+                    <th>No</th>
+                    <th>ID</th>
+                    <th>이름</th>
+                    <th>전화번호</th>
+                    <th>주소</th>
+                    <th>이메일</th>
+                    <th>역할</th>       
                 </tr>
-               	<c:forEach items="${noticeList}" var="list" varStatus="status">
-			   		<tr onclick="location.href='/noticeList/${list.getNid()}'">
+               	<c:forEach items="${userList}" var="user" varStatus="status">
+			   		<tr>
 				   		<td>${status.count}</td>
-				   		<td>${list.getTitle()}</td>
-				   		<td>${list.getDate()}</td>
+				   		<td>${user.getId()}</td>
+				   		<td>${user.getName()}</td>
+				   		<td>${user.getPhone()}</td>
+				   		<td>
+				   			${user.getAddr3()} <br>
+				   			${user.getAddr1()} &nbsp; ${user.getAddr2()}
+				   		</td>
+						<td>${user.getEmail()}</td>
+				   		<c:choose>
+				   			<c:when test="${user.getRole() == 'ROLE_INVENTOR' }">
+				   				<td> 발명가 </td>
+				   			</c:when>
+				   			<c:when test="${user.getRole() == 'ROLE_ADMIN' }">
+				   				<td> 관리자 </td>
+				   			</c:when>
+				   			<c:when test="${user.getRole() == 'ROLE_PATIENTENTLAWYER' }">
+				   				<td> 변리사 </td>
+				   			</c:when>
+				   			<c:otherwise>
+				   				<td style="color:red"> 비 정상 사용자 </td>
+				   			</c:otherwise>
+				   		</c:choose>
 				   	</tr>
 				</c:forEach>
             </table>
-            <button onclick="location.href='/admin_notice_registration'" id="btn_add_notice">등록</button>            
         </article>
     </div>
 <footer>

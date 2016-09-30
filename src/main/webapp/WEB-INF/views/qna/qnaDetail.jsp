@@ -11,32 +11,23 @@
 <link href="/resources/common/css/index.css" rel="stylesheet">
 <meta name="_csrf" content="${_csrf.token}" />
 <meta name="_csrf_header" content="${_csrf.headerName}" />
-<title>IPC_AdminPage</title>
+<title>Idea Protection Center</title>
 </head>
 <body>
 <c:import url="/WEB-INF/views/import/header.jsp"/>
 <div id="wrap_form">
-	<h1>공지사항</h1>
-	<table id="notice_table">
-		<tr>
-			<th style="width:100px;">
-				no
-			</th>
-			<th>
-				제목
-			</th>
-			<th style="width:250px;">
-				시간
-			</th>
-		</tr>
-		<c:forEach items="${noticeList}" var="list" varStatus="status">
-			<tr onclick="location.href='/noticeList/${list.getNid()}'">
-    			<td>${status.count }</td>
-    			<td>${list.getTitle()}</td>
-    			<td>${list.getDate()}</td>
-    		</tr>
-		</c:forEach>
-	</table>
+	<h1>Q n A</h1>
+	<div id="notice_detail">
+		<div class="title_detail">
+			<p>${qna.getTitle()}</p>
+		</div>
+		<div class="date_detail">
+			<p>${qna.getDate()}</p>
+		</div>
+		<div class="cont_detail">
+			<p>${qna.getContent()}</p>
+		</div>
+	</div>
 </div>
 <c:import url="/WEB-INF/views/import/footer.jsp"/>
 
