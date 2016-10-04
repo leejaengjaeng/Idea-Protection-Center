@@ -134,4 +134,7 @@
 	<select id="counTotalIdea" resultType="Integer">
 		SELECT count(1) FROM registration_patent where prev_rid=-1;
 	</select>
+	<select id="getloadtemp" resultType="com.ipc.vo.RegistrationPatentVo">
+		select rid, typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element, re_typeofinvent, re_title, re_summary, re_whyinvent, re_problem, re_solution, re_effect, re_core_element,re_file,registration_date from registration_patent where rid=#{rid} AND iscomplete=-1
+	</select>
 </mapper>
