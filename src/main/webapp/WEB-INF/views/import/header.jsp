@@ -40,6 +40,7 @@
 				<li>아이디어 권리확보 시스템</li>
 				<li>이용안내</li>
 			 -->
+			 	<li>오시는 길</li>
 			 	<li onclick="location.href='/registration/addidea'">특허 출원하기</li>
 			 	<li onclick="location.href='/qna/qnaBoard'">1:1질문하기</li>
 				<li onclick="location.href='/qna/regularQna'">자주하는 질문모음</li>

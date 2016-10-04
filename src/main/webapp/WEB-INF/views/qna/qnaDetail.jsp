@@ -24,7 +24,7 @@ function ddddd(){
 </head>
 <body onload='ddddd();'>
 <c:import url="/WEB-INF/views/import/header.jsp"/>
-<div id="wrap_form">
+<div id="wrap_form" >
 	<h1>Q n A</h1>
 	<div id="notice_detail">
 		<div class="title_detail">
@@ -37,30 +37,29 @@ function ddddd(){
 			<p>${qna.getContent()}</p>
 		</div>
 	</div>
-	
 	<div id="wrap_form">
-	
 	<table id="notice_table">
 		
 		<c:forEach items="${replyList}" var="list" varStatus="status">
-			<tr>
+			<tr style="border-top:1px solid #ccc;">
+    			<td>
+    				<div style="width:60px; height:60px; padding:5px; border:1px solid #ccc; margin:10px; background:#e8e8e8;">
+    					<img src="/resources/image/inventor.png">
+    				</div>
+    			</td>
     			<td>${list.getContent()}</td>
     		</tr>
 		</c:forEach>
 	</table>
-	
-
 	</div>
-	
-	<div id="replyDiv" style="display:none">
-		<form action="/qna/regisreply" method="POST" name="replyform">
+	<div id="replyDiv" style="display:none;">
+		<form action="/qna/regisreply" method="POST" name="replyform" style="margin-bottom:50px;">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-			<input type="text" value="${qna.getQid()}" name="qid">	
-			<textarea name="content" id="content" placeholder="답글달기"></textarea>
-			<input type="submit">
+			<input type="hidden" value="${qna.getQid()}" name="qid" style="width:88%; height:25px; padding-left:5px; float:left;">	
+			<textarea name="content" id="content" placeholder="답글달기" style="width:88%; height:50px; padding-left:5px; padding-top:5px; height:80px; float:left; resize: none;"></textarea>
+			<input type="submit" style="width:10%;height:80px;background:none; border:2px solid #ccc;">
 		</form>
-	</div>
-	
+	</div>	
 </div>
 <c:import url="/WEB-INF/views/import/footer.jsp"/>
 

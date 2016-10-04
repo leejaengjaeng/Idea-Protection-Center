@@ -24,6 +24,9 @@
 		<div class="date_detail">
 			<p>${noticeVo.getDate()}</p>
 		</div>
+		<div class="name_detail">
+			관리자 &nbsp; | &nbsp; 조회수 0
+		</div>
 		<div class="cont_detail">
 			<p>${noticeVo.getContent()}</p>
 		</div>

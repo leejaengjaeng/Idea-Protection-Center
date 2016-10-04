@@ -13,7 +13,6 @@
 <script src="/resources/common/js/jquery-3.1.0.min.js"></script>
 <link rel="stylesheet" href="/resources/common/css/index.css">
 <link rel="stylesheet" href="/resources/common/css/style.css">
-<link href="/resources/common/css/admin.css" rel="stylesheet">
 
 <title>Insert title here</title>
 </head>
@@ -29,8 +28,8 @@
 			<th>
 				제목
 			</th>
-			<th>
-				시간
+			<th style="width:200px;">
+				날짜
 			</th>
 		</tr>
 		<c:forEach items="${qnaList}" var="list" varStatus="status">

@@ -54,12 +54,14 @@ function checkAdmin(){
                 <tr>
                     <th style="width:100px;">No</th>
                     <th>제목</th>
+                    <th style="width:150px;">작성자</th>
                     <th style="width:280px;">날짜</th>
                 </tr>
                	<c:forEach items="${noticeList}" var="list" varStatus="status">
 			   		<tr onclick="location.href='/noticeList/${list.getNid()}'">
 				   		<td>${status.count}</td>
 				   		<td>${list.getTitle()}</td>
+				   		<td>관리자</td>
 				   		<td>${list.getDate()}</td>
 				   	</tr>
 				</c:forEach>
