@@ -18,7 +18,7 @@ public interface RegistrationDao {
 	public void updatetempidea(HashMap<String,String> map);
 	public List<RegistrationPatentVo> gettempidea(int uid);
 	public int countTempIdea(int uid);
-
+	public RegistrationPatentVo getloadtemp(int rid);
 	public List<RegistrationPatentVo> getInventorProcessList(int uid);
 	public List<RegistrationPatentVo> getPlProcessList(int uid);
 	
@@ -35,7 +35,7 @@ public interface RegistrationDao {
 	//start_rid로 연결된 마지막 rid를 찾음
 	public int getLastRidInProcessList (int start_rid);
 	
-	public void removeTempIdea(int uid);
+	public void removeTempIdea(int rid);
 	
 	public void inventorSave (RegistrationPatentVo rvo);
 	public void plUpdate (RegistrationPatentVo rvo);

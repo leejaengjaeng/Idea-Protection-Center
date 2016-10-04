@@ -59,8 +59,8 @@ $(document).ready(function()
     <div id="inven_wrap">
         <nav>
             <div id="profile">
-                <!-- 프로필 이미지 없을때-->
-                <img src="/resources/image/attonrney_profile.jpg" alt="img1">
+                <!-- 프로필 이미지 없을때-->                              
+                <!-- <img src="/resources/image/attonrney_profile.jpg" alt="img1"> -->
                 <!-- 프로필 이미지 있을때-->
                 <img src="${currentUser.getProfileimg()}" alt="profile">
                 <h4>${currentUser.getName() }</h4>

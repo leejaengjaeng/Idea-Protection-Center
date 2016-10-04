@@ -116,41 +116,7 @@ function checkTemp(){
                 		
      }
 }
-function loadTempIdea(){
-	var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
-	var csrfToken = $("meta[name='_csrf']").attr("content"); 
-	var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
-	var data = {};
-	var headers = {};
-
-	data[csrfParameter] = csrfToken;
- 	data["uid"]=${sessionScope.currentUser.getUid()};
- 	headers[csrfHeader] = csrfToken;
-     $.ajax({
- 	    url : "/registration/loadTempIdea",
- 	    dataType : "json",
- 	    type : "POST",
- 	    headers: headers,
- 	    data : data,
- 	    success: function(data) {
- 	    	document.getElementById("idea_kind").value=data.typeOfInvent;
-        	document.getElementById("idea_title").value=data.title;
-        	document.getElementById("small_cont").value=data.summary;
-        	document.getElementById("why_cont").value=data.whyInvent;
-        	document.getElementById("col_cont").value=data.problem;
-        	document.getElementById("wel_cont").value=data.solution;
-        	document.getElementById("bal_cont").value=data.effect;
-        	document.getElementById("imp_cont").value=data.core_element;
-        	document.getElementById("bw").style.visibility="hidden";
-    		document.getElementById("pp").style.visibility="hidden";
- 	    },
- 	    error:function(request,status,error){
- 	        alert("code:"+request.status+"\n"+"error:"+error);
- 	    }
- 	}); 
-}
-
-function removeTempIdea(){
+function loadTempIdea(rid){
 	var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
 	var csrfToken = $("meta[name='_csrf']").attr("content"); 
 	var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
@@ -158,7 +124,42 @@ function removeTempIdea(){
 	var headers = {};
 	
 	data[csrfParameter] = csrfToken;
-	data["uid"]=${sessionScope.currentUser.getUid()};
+	data["rid"]=rid;
+	headers[csrfHeader] = csrfToken;
+	   $.ajax({
+	    url : "/registration/loadTempIdea",
+	    dataType : "json",
+	    type : "POST",
+	    headers: headers,
+	    data : data,
+	    success: function(data) {
+	    	document.getElementById("idea_kind").value=data.typeOfInvent;
+	      	document.getElementById("idea_title").value=data.title;
+	      	document.getElementById("small_cont").value=data.summary;
+	      	document.getElementById("why_cont").value=data.whyInvent;
+	      	document.getElementById("col_cont").value=data.problem;
+	      	document.getElementById("wel_cont").value=data.solution;
+	      	document.getElementById("bal_cont").value=data.effect;
+	      	document.getElementById("imp_cont").value=data.core_element;
+	      	document.getElementById("bw").style.visibility="hidden";
+	  		document.getElementById("pp").style.visibility="hidden";
+	    },
+	    error:function(request,status,error){
+	        alert("code:"+request.status+"\n"+"error:"+error);
+	    }
+	}); 
+	
+}
+
+function removeTempIdea(rid){
+	var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+	var csrfToken = $("meta[name='_csrf']").attr("content"); 
+	var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
+	var data = {};
+	var headers = {};
+	
+	data[csrfParameter] = csrfToken;
+	data["rid"]=rid;
     headers[csrfHeader] = csrfToken;
     $.ajax({
  	    url : "/registration/removeTempIdea",
@@ -169,6 +170,7 @@ function removeTempIdea(){
  	    success: function(data) {
  	    	document.getElementById("bw").style.visibility="hidden";
     		document.getElementById("pp").style.visibility="hidden";
+    		location.href="/registration/addidea";
  	    },
     	error:function(request,status,error){
         	alert("code:"+request.status+"\n"+"error:"+error);
@@ -273,8 +275,9 @@ function formSubmit(file){
     				<td style="width:30px;">${status.count }</td>
     				<td>${list.getTitle()}</td>
     				<td>${list.getRegistration_date() }</td> 
-    				<td style="width:100px;"><button style="background:#45d4fe;" onclick="loadTempIdea()">불러오기</button></td>
-    				<td style="width:100px;"><button style="background:#e9e9e9; color:#333;" onclick="removeTempIdea()">삭제하기</button></td>
+    				<td style="width:100px;"><button style="background:#45d4fe;" onclick="loadTempIdea(${list.getRid()})">불러오기</button></td>
+    				<td style="width:100px;"><button style="background:#e9e9e9; color:#333;" onclick="removeTempIdea(${list.getRid()})">삭제하기</button></td>
+
     			</tr>
 			</c:forEach>
 		</table>

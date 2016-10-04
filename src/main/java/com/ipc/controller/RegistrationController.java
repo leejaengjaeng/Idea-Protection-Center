@@ -65,6 +65,7 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 			List<RegistrationPatentVo> tempList = regismapper.gettempidea(uv.getUid());
 			model.addAttribute("isTemp", "1");
 			model.addAttribute("tempList",tempList);
+			
 		}
 		else{
 			model.addAttribute("isTemp", "0");
@@ -152,31 +153,31 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 		
 	}
 	
-//	@RequestMapping(value="/loadTempIdea",method=RequestMethod.POST)
-//	@ResponseBody
-//	public HashMap<String,String> loadTempIdea(HttpServletRequest request){
-//		
-//		String uid=request.getParameter("uid");
-//		System.out.println(uid);
-//		RegistrationPatentVo rv=regismapper.gettempidea(Integer.parseInt(uid));
-//		HashMap<String, String> hashmap = new HashMap<String, String>();
-//		hashmap.put("typeOfInvent", rv.getTypeOfInvent());
-//		hashmap.put("title", rv.getTitle());
-//		hashmap.put("whyInvent", rv.getWhyInvent());
-//		hashmap.put("solution", rv.getSolution());
-//		hashmap.put("effect", rv.getEffect());
-//		hashmap.put("summary", rv.getSummary());
-//		hashmap.put("problem", rv.getProblem());
-//		hashmap.put("core_element", rv.getCore_element());
-//		System.out.println(rv.getTypeOfInvent());
-//		System.out.println(rv.getSummary());
-//		return hashmap;
-//	}
+	@RequestMapping(value="/loadTempIdea",method=RequestMethod.POST)
+	@ResponseBody
+	public HashMap<String,String> loadTempIdea(HttpServletRequest request){
+		
+		String rid=request.getParameter("rid");
+		System.out.println(rid);
+		RegistrationPatentVo rv=regismapper.getloadtemp(Integer.parseInt(rid));
+		HashMap<String, String> hashmap = new HashMap<String, String>();
+		hashmap.put("typeOfInvent", rv.getTypeOfInvent());
+		hashmap.put("title", rv.getTitle());
+		hashmap.put("whyInvent", rv.getWhyInvent());
+		hashmap.put("solution", rv.getSolution());
+		hashmap.put("effect", rv.getEffect());
+		hashmap.put("summary", rv.getSummary());
+		hashmap.put("problem", rv.getProblem());
+		hashmap.put("core_element", rv.getCore_element());
+		System.out.println(rv.getTypeOfInvent());
+		System.out.println(rv.getSummary());
+		return hashmap;
+	}
 	@RequestMapping(value="/removeTempIdea",method=RequestMethod.POST)
 	@ResponseBody
 	public HashMap<String,String> removeTempIdea(HttpServletRequest request){
-		String uid=request.getParameter("uid");
-		regismapper.removeTempIdea(Integer.parseInt(uid));
+		String rid=request.getParameter("rid");
+		regismapper.removeTempIdea(Integer.parseInt(rid));
 		HashMap<String, String> hashmap = new HashMap<String, String>();
 		hashmap.put("aa","aa");
 		return hashmap;

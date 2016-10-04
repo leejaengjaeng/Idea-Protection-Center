@@ -100,7 +100,7 @@
 		select rid, typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element, re_typeofinvent, re_title, re_summary, re_whyinvent, re_problem, re_solution, re_effect, re_core_element,re_file,registration_date from registration_patent where uid=#{uid} AND iscomplete=-1 order by registration_date desc
 	</select>
 	<delete id="removeTempIdea" parameterType="Integer">
-		delete from registration_patent where uid=#{uid} AND iscomplete=-1
+		delete from registration_patent where rid=#{rid} AND iscomplete=-1
 	</delete>
 	<update id="updateStartId" parameterType="Integer">
 		update registration_patent set start_rid=#{rid} WHERE rid=#{rid}
@@ -130,8 +130,10 @@
 	<select id="countIngIdeaPl" parameterType="Integer" resultType="Integer">
 		select count(rid) from registration_patent where lid=#{uid} AND iscomplete!=2 AND prev_rid=-1
 	</select>
-	
 	<select id="counTotalIdea" resultType="Integer">
 		SELECT count(1) FROM registration_patent where prev_rid=-1;
+	</select>
+	<select id="getloadtemp" resultType="com.ipc.vo.RegistrationPatentVo">
+		select rid, typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element, re_typeofinvent, re_title, re_summary, re_whyinvent, re_problem, re_solution, re_effect, re_core_element,re_file,registration_date from registration_patent where rid=#{rid} AND iscomplete=-1
 	</select>
 </mapper>
