@@ -17,15 +17,15 @@
 			</tr>
 			<tr>
 				<td>
-					<button class="log_btn" style="background:#45d4fe">로그인</button>
+					<button class="log_btn" style="cursor:pointer;background:#45d4fe">로그인</button>
 	       		</td>
 	       		<td>
-					<button class="lost_password" style="background:#585858" >비밀번호 찾기</button>
+					<button type="button" class="lost_password" style="background:#585858">ID/PW 찾기 (준비중)</button>
 	       		</td>					
 			</tr>
 			<tr>
 				<td colspan="2">
-					<button class="join_btn">아직 회원이 아니시라면</button>
+					<button type="button" class="join_btn" onclick="location.href='/signup/signupPage'">아직 회원이 아니시라면</button>
 				</td>
 			</tr>
 		</form>			

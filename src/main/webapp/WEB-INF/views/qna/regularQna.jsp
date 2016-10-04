@@ -11,12 +11,12 @@
 <link href="/resources/common/css/index.css" rel="stylesheet">
 <meta name="_csrf" content="${_csrf.token}" />
 <meta name="_csrf_header" content="${_csrf.headerName}" />
-<title>IPC_AdminPage</title>
+<title>Idea Protection Center</title>
 </head>
 <body>
 <c:import url="/WEB-INF/views/import/header.jsp"/>
 <div id="wrap_form">
-	<h1>공지사항</h1>
+	<h1>자주하는 질문 모음</h1>
 	<table id="notice_table">
 		<tr>
 			<th style="width:100px;">
@@ -25,15 +25,11 @@
 			<th>
 				제목
 			</th>
-			<th style="width:250px;">
-				시간
-			</th>
 		</tr>
-		<c:forEach items="${noticeList}" var="list" varStatus="status">
-			<tr onclick="location.href='/noticeList/${list.getNid()}'">
+		<c:forEach items="${qnaList}" var="list" varStatus="status">
+			<tr onclick="location.href='/qna/detail/${list.getQid()}'">
     			<td>${status.count }</td>
     			<td>${list.getTitle()}</td>
-    			<td>${list.getDate()}</td>
     		</tr>
 		</c:forEach>
 	</table>

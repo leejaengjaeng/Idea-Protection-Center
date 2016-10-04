@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>management</title>
+    <title>IPC_AdminPage</title>
     <link href="/resources/common/css/admin.css" rel="stylesheet">
     <link href="/resources/common/css/style.css" rel="stylesheet">
     <meta name="_csrf" content="${_csrf.token}" />
@@ -181,16 +181,21 @@ body{
     <div id="admin_cont">
         <nav>
             <ul>
-                <li>회원관리</li>
-                <li>아이디어 관리</li>
+                <li onclick="location.href='/IPC_admin/userList'">회원관리</li>
+                <li onclick="location.href='/IPC_admin/'">아이디어 관리</li>
                 <li>문의사항 관리</li>
-                <li>게시판 관리</li>
-                <a href="/admin_notice"><li>공지사항 관리</li></a>
+                <li onclick="location.href='/IPC_admin/admin_notice'">공지사항 관리</li>
+            	<li onclick="location.href='/qna/regularQnaAdd'">자주 묻는 질문 등록</li>
+            	
+            	<!-- 
+            	<li>게시판 관리</li>
+                 -->
             </ul> 
         </nav>
         <article>
             <div id="table_header">
                 <h1>아이디어 관리</h1>
+                <!-- 
                 <div id="select_management">
                     <select>
                         <option>전체분류</option>
@@ -201,6 +206,7 @@ body{
                     <input type="text">
                     <button>검색</button>
                 </div>
+                 -->
             </div>
             <table class="manage_table">
                 <tr>

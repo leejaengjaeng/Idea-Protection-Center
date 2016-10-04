@@ -56,4 +56,6 @@ public interface RegistrationDao {
 	public int countIngIdeaIn(int uid);
 	public int countCompleteIdeaPl(int uid);
 	public int countIngIdeaPl(int uid);
+	
+	public int counTotalIdea();
 }

@@ -7,13 +7,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
-    <title>IdeaProtect</title>
+    <title>Idea Protectection Center</title>
     <script src="/resources/common/js/jquery-3.1.0.min.js"></script>
     <link rel="stylesheet" href="/resources/common/css/index.css">
     <link rel="stylesheet" href="/resources/common/css/style.css">
     <style>
     	#header_benner{
     		display: none;
+    	}
+    	.notYet
+    	{
+	    	cursor: auto !important;
+		    background: #b9b6b6 !important;
     	}
     </style>
 </head>
@@ -61,7 +66,7 @@
                         <h1><b style="color:#72d1f3;">디자인권</b> 출원</h1>      
                         <span>100,000원 출원</span>                          
                     </div>
-                    <button class="btn_go">출원하러 가기 &gt;</button>   
+                    <button class="notYet btn_go">준비중 입니다</button>   
                 </div>  
                 <div class="block">
                    <div class="block_inside">
@@ -69,7 +74,7 @@
                        <h1><b style="color:#0066cc;">상표</b> 출원</h1>      
                        <span>150,000원 출원</span>                          
                    </div>
-                   <button class="btn_go">출원하러 가기 &gt;</button>           
+                   <button class="notYet btn_go">준비중 입니다 </button>           
                 </div>
                 <div class="block" style="margin-left:20px;">                    
                     <div class="block_inside">
@@ -77,7 +82,7 @@
                         <h1><b style="color:#45d7c2;">저작권</b> 출원</h1>      
                         <span>50,000원 등록 보장</span>                          
                     </div>
-                    <button class="btn_go">출원하러 가기 &gt;</button>   
+                    <button class="notYet btn_go">준비중 입니다</button>   
                 </div>                
             </div>
             <div id="cont_title2">
@@ -111,36 +116,36 @@
                     <table>
                         <tr>                            
                             <td style="text-align:left;">걸어다니는 코딩기계</td>
-                            <td>2016.09.06</td>
+                            <td>2016.09.28</td>
                             <td>김**님</td>
                         </tr>
                         <tr>                            
-                            <td style="text-align:left;">걸어다니는 코딩기계</td>
-                            <td>2016.09.06</td>
+                            <td style="text-align:left;">기어다니는 자판기</td>
+                            <td>2016.09.26</td>
+                            <td>전**님</td>
+                        </tr>
+                         <tr>                            
+                            <td style="text-align:left;">날아다니는 고양이 장난감</td>
+                            <td>2016.09.25</td>
                             <td>김**님</td>
                         </tr>
-                        <tr>                            
-                            <td style="text-align:left;">걸어다니는 코딩기계</td>
-                            <td>2016.09.06</td>
-                            <td>김**님</td>
+                         <tr>                            
+                            <td style="text-align:left;">굴러다니는 쓰레기통</td>
+                            <td>2016.09.11</td>
+                            <td>이**님</td>
                         </tr>
-                        <tr>                            
-                            <td style="text-align:left;">걸어다니는 코딩기계</td>
+                         <tr>                            
+                            <td style="text-align:left;">자동 회원가입기</td>
                             <td>2016.09.06</td>
-                            <td>김**님</td>
-                        </tr>
-                        <tr>                            
-                            <td style="text-align:left;">걸어다니는 코딩기계</td>
-                            <td>2016.09.06</td>
-                            <td>김**님</td>
+                            <td>박**님</td>
                         </tr>
                     </table>
                 </div>
                  -->
                 <div id="onair_count" style="width:100%;">
                     <div id="center_box">
-                        <span>00명의 발명가님의</span><br>
-                        <span>00가지 아이디어와</span><br>
+                        <span>${totalUser}명의 발명가님의</span><br>
+                        <span>${totalIdea}가지 아이디어와</span><br>
                         <span>함께 하고 있습니다</span><br>
                     </div>
                 </div>

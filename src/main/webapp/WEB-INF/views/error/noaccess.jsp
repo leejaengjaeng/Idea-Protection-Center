@@ -5,15 +5,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
-<link rel="stylesheet" href="/resources/common/css/style.css">
+<title>Idea Protectection Center</title>
+<link rel="stylesheet" href="/resources/common/css/style.css"> 
 <link rel="stylesheet" href="/resources/common/css/index.css"> 
 </head>
 <body>
 <c:import url="/WEB-INF/views/import/header.jsp"/>
 	<div id="wrap_form">
         <div style="width:100%;float:left;">
-            <img src="image/error.png" alt="error" style="width:200px; margin-top:100px;">
+            <img src="/resources/image/error.png" alt="error" style="width:200px; margin-top:100px;">
             <h1 style="margin-top:10px; color:#3e3e3e; font-size:40px; display:block;">권한이 없습니다.</h1>
             <h3 style="display:block; margin-bottom:100px;">Sorry No Access</h3>
         </div>

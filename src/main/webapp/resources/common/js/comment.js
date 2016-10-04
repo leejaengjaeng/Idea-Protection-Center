@@ -104,6 +104,7 @@ var tmpSave = function(role)
 		data['solution'] 		= $('#AfterCommentSolution').children("textarea").val();
 		data['effect'] 			= $('#AfterCommentEffect').children("textarea").val();
 		data['core_element'] 	= $("#AfterCommentCore_Element").children("textarea").val();
+
 	}
 	//변리사인 경우
 	else if(role=="pl")
@@ -117,6 +118,7 @@ var tmpSave = function(role)
 		data['re_solution']		= $('#AfterCommentSolution').children("textarea").val();
 		data['re_effect'] 		= $('#AfterCommentEffect').children("textarea").val();
 		data['re_core_element'] = $('#AfterCommentCore_Element').children("textarea").val();
+		data['re_file']			= $('#AfterCommentFiles').children("textarea").val();
 	}
 	else
 	{
@@ -198,6 +200,8 @@ var ideaSave = function(role)
 		data['re_solution']		= $('#AfterCommentSolution').children("textarea").val();
 		data['re_effect'] 		= $('#AfterCommentEffect').children("textarea").val();
 		data['re_core_element'] = $('#AfterCommentCore_Element').children("textarea").val();
+		data['re_file']			= $('#AfterCommentFiles').children("textarea").val();
+		
 	}
 	else
 	{
@@ -276,7 +280,8 @@ var showClickedList = function(rid)
 					$('#BeforeCommentSolution').children('textarea').text(beforeComment.solution);
 					$('#BeforeCommentEffect').children('textarea').text(beforeComment.effect);
 					$('#BeforeCommentCore_Element').children('textarea').text(beforeComment.core_element);
-				
+					$('#BeforeCommentFiles').children("textarea").text(beforeComment.re_file);
+					
 					$('#CurrentTypeOfInvent').children("textarea").text(beforeComment.re_typeOfInvent);
 					$('#CurrentTitle').children("textarea").text(beforeComment.re_title);
 					$('#CurrentSummary').children("textarea").text(beforeComment.re_summary);
@@ -304,6 +309,7 @@ var showClickedList = function(rid)
 				$('#AfterCommentSolution').children('textarea').text(currentAnswer.solution);
 				$('#AfterCommentEffect').children('textarea').text(currentAnswer.effect);
 				$('#AfterCommentCore_Element').children('textarea').text(currentAnswer.core_element);
+				$('#AfterCommentFiles').children("textarea").text(currentAnswer.re_file);
 				
 			}
 			else if(role == "pl")
@@ -319,7 +325,8 @@ var showClickedList = function(rid)
 					$('#BeforeCommentSolution').children('textarea').text(beforeComment.re_solution);
 					$('#BeforeCommentEffect').children('textarea').text(beforeComment.re_effect);
 					$('#BeforeCommentCore_Element').children('textarea').text(beforeComment.re_core_element);
-
+					$('#BeforeCommentFiles').children("textarea").text(beforeComment.re_file);
+					
 					showBeforeCmt();
 
 				}
@@ -346,6 +353,8 @@ var showClickedList = function(rid)
 				$('#AfterCommentSolution').children('textarea').text(currentAnswer.re_solution);
 				$('#AfterCommentEffect').children('textarea').text(currentAnswer.re_effect);
 				$('#AfterCommentCore_Element').children('textarea').text(currentAnswer.re_core_element);
+				$('#AfterCommentFiles').children("textarea").text(currentAnswer.re_file);
+				
 			}
 			else
 				alert('ajax Error');
@@ -359,7 +368,6 @@ var showClickedList = function(rid)
 
 var delImg = function(path,id,btnid)
 {
-	//alert(path+","+id);
 	var element= document.getElementById(id);
 	element.parentNode.removeChild(element);
 	var btnelement= document.getElementById(btnid);
@@ -379,10 +387,11 @@ var delImg = function(path,id,btnid)
 	    headers: headers,
 	    data : data,
 	    success: function(data) {
-	        alert("성공:"+data.result);
+	    	alert("삭제 되었습니다.");
 	    },
 	    error:function(request,status,error){
-	        alert("code:"+request.status+"\n"+"error:"+error);
+	    	console.log("code:"+request.status+"\n"+"error:"+error);
+	    	alert("삭제에 실패하였습니다.");
 	    }
 	}); 
 }

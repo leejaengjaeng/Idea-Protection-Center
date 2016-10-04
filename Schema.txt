@@ -54,6 +54,7 @@ CREATE TABLE `registration_patent` (
   `apply_date` datetime DEFAULT NULL,
   /*`registration_date` timestamp ,*/
   `registration_date` datetime DEFAULT CURRENT_TIMESTAMP,
+  `re_file` text,
   PRIMARY KEY (`rid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -73,6 +74,18 @@ CREATE TABLE `notice` (
   /*`date` timestamp,*/  
   `date` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`nid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `qna` (
+  `qid` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(45) DEFAULT NULL,
+  `content` TEXT DEFAULT NULL,
+  /*`date` timestamp,*/  
+  `date` datetime DEFAULT CURRENT_TIMESTAMP,
+  `isRegular` VARCHAR(10) NULL DEFAULT 'FALSE',
+  `del_pw` VARCHAR(20) NULL,
+  `uid` int(11) NULL,
+  PRIMARY KEY (`qid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 

@@ -13,14 +13,19 @@
 <title>IPC_AdminPage</title>
 </head>
 <body style="background:#f9f9f9;">
-<div class="notice_form">
-	<span>공지사항</span>
-	<form action="/noticeRegistration" name="noticeform" method="POST">
+<c:import url="/WEB-INF/views/import/header.jsp"/>
+
+<!-- <div class="notice_form"> -->
+	<span>질문하기</span>
+	<form action="/qna/regisOneQna" name="noticeform" method="POST">
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />	
+		<input type="hidden" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}">
 		<input type="text" name="title" id="title" placeholder="제목"><br/>
 		<textarea id="content" name="content" placeholder="내용"></textarea>
 		<input type="submit" id="submit">
 	</form>
-</div>
+<!-- </div> -->
+<c:import url="/WEB-INF/views/import/footer.jsp"/>
+
 </body>
 </html>

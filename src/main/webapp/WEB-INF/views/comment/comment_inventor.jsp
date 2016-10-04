@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
     <meta name="_csrf" content="${_csrf.token}" />
 	<meta name="_csrf_header" content="${_csrf.headerName}" />
-    <title>Idea Protection Center</title>
+    <title>Idea Protectection Center</title>
     <script src="/resources/common/js/jquery-3.1.0.min.js"></script>  
     <script src="/resources/common/js/comment.js"></script>  
     
@@ -523,7 +523,7 @@ function readURL(input,imgId) {
 	                    <h2 style="width:100%">도면첨부</h2> <button>작성 예시</button>
 	                    
 	                    <div id="BeforeFileComment" class="cmt_field before_cmt">
-                        	<textarea disabled="disabled" class="disabled"/>넣어야함</textarea>
+                        	<textarea disabled="disabled" class="disabled"/>${beforeReg.getRe_file()}</textarea>
 	                        <div class="img_comt">
 	                            <img src="/resources/image/inventor3.png" alt="prev_userImg">
 	                        </div>
@@ -551,7 +551,7 @@ function readURL(input,imgId) {
 	                        <div class="img_comt">
 	                            <img src="/resources/image/inventor3.png" alt="after_userImg">
 	                        </div> 
-	                        <textarea  disabled="disabled" class="disabled"></textarea>
+	                        <textarea  disabled="disabled" class="disabled">${currentAnswer.getRe_file()}</textarea>
 	                    </div>
 	                    
 		                <div class="hiding_box">

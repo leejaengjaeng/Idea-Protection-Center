@@ -12,4 +12,6 @@ public interface NoticeDao {
 	public List<adminNoticeVo> getNoticeListDesc();
 	public adminNoticeVo getNoticeByNid(int nid);
 	public List<adminNoticeVo> getNoticeListDescLimit(int num);
+
+	
 }

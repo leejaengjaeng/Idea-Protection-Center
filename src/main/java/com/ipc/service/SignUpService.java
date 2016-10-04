@@ -44,7 +44,11 @@ public class SignUpService {
 	private FileOutputStream fos;
 	public String makeimageFile(MultipartFile file,String ID,String role,String root_path){
 		try {
-			String dirpath=root_path+"\\resources\\uploadimgs\\profileImg\\";
+			
+			//Windows
+				//String dirpath=root_path+"\\resources\\uploadimgs\\profileImg\\";
+			//Linux
+				String dirpath=root_path+"/resources/uploadimgs/profileImg/";
 			
 			byte fileData[] = file.getBytes();
 			int pathPoint = file.getOriginalFilename().trim().lastIndexOf(".");
