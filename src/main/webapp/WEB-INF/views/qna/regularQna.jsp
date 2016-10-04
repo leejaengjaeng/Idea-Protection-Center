@@ -16,8 +16,8 @@
 <body>
 <c:import url="/WEB-INF/views/import/header.jsp"/>
 <div id="wrap_form">
-	<h1>자주하는 질문 모음</h1>
-	<table id="notice_table">
+	<h1 style="margin-top:100px;">자주하는 질문 모음</h1>
+	<table id="notice_table" style="margin-bottom:100px;">
 		<tr>
 			<th style="width:100px;">
 				no

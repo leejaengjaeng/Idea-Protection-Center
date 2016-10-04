@@ -19,7 +19,7 @@
 <body>
 <c:import url="/WEB-INF/views/import/header.jsp"/>
 <div id="wrap_form">
-	<h1>질문하기</h1>
+	<h1 style="margin-top:100px;">질문하기</h1>
 	<table id="notice_table">
 		<tr>
 			<th style="width:100px;">
@@ -40,7 +40,7 @@
     		</tr>
 		</c:forEach>
 	</table>
-	<button onclick="location.href='/qna/addOneQna'" id="btn_add_notice">등록</button>
+	<button onclick="location.href='/qna/addOneQna'" id="btn_add_notice" style="margin-bottom:100px;">등록</button>
 </div>
 <c:import url="/WEB-INF/views/import/footer.jsp"/>
 </body>

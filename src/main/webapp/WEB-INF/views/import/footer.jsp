@@ -10,12 +10,14 @@
 <footer>
     <div id="footer_benner">
         <div id="footer_benner_wrap">
-            <img src="/resources/image/banner1.png" alt="benner1">
-            <img src="/resources/image/banner2.gif" alt="benner2">
-            <img src="/resources/image/benner3.png" alt="benner3">
-            <img src="/resources/image/benner4.png" alt="benner4">
-            <img src="/resources/image/benner5.gif" alt="benner5">
-            <img src="/resources/image/benner6.gif" alt="benner6">
+            <img src="/resources/image/banner1.png" alt="benner1" onclick="location.href='http://www.kipo.go.kr/'">
+            <img src="/resources/image/banner2.gif" alt="benner2" onclick="location.href='http://www.kipo.go.kr/ipt/'">
+            <img src="/resources/image/benner3.png" alt="benner3" onclick="location.href='http://www.patentmap.or.kr/'">
+            <img src="/resources/image/benner4.png" alt="benner4" onclick="location.href='http://www.rndip.re.kr/'">
+            <img src="/resources/image/benner5.gif" alt="benner5" onclick="location.href='http://www.koreantk.com/'">
+            <img src="/resources/image/benner6.gif" alt="benner6" onclick="location.href='http://www.ripc.org/'"> 
+            <img src="/resources/image/banner7.png" alt="benner7" onclick="location.href='http://www.epcenter.or.kr/index.action'">
+            <img src="/resources/image/banner8.png" alt="benner8" onclick="location.href='http://library.kipo.go.kr/'">
         </div>            
     </div>
     <div id="footer_fill">

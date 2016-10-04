@@ -113,7 +113,7 @@ $(document).ready(function()
                 <h2>아이디어 진행내역</h2>
             </div>
             <div id="cont_table">
-                <!--  
+                
                 <ol>
                     <li style="font-size:1.3rem; font-weight:bold;">분류</li>
                     <li>                        
@@ -136,8 +136,7 @@ $(document).ready(function()
                             <option>가출원완료</option>                            
                         </select>
                     </li>
-                </ol>
-                -->
+                </ol>                
                 <table>
                     <tr>
                         <th>번호</th>

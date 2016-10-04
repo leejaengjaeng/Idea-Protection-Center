@@ -306,7 +306,7 @@ function formSubmit(file){
                             <span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
                         </div>                                                   
                     </div>
-                </div>
+                </div> 
                 <div class="hr"></div>
                  <div class="txt_box">
                     <h2>제목</h2>
