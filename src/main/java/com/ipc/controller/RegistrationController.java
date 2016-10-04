@@ -176,8 +176,8 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 	@RequestMapping(value="/removeTempIdea",method=RequestMethod.POST)
 	@ResponseBody
 	public HashMap<String,String> removeTempIdea(HttpServletRequest request){
-		String uid=request.getParameter("uid");
-		regismapper.removeTempIdea(Integer.parseInt(uid));
+		String rid=request.getParameter("rid");
+		regismapper.removeTempIdea(Integer.parseInt(rid));
 		HashMap<String, String> hashmap = new HashMap<String, String>();
 		hashmap.put("aa","aa");
 		return hashmap;

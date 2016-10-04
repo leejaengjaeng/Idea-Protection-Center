@@ -19,15 +19,15 @@ body{
     height: 100% !important;        
 }
 .black_wall{
-    width: 100%;0
+    width: 100%;
     height: 100%;
     background: rgba(0,0,0,0.7);
     position:fixed;    
     z-index:98;
 }    
     .popup{
-        width: 400px;
-        height: 200px;
+        width: 600px;
+        min-height: 200px;
         background:#fff;
         position: absolute;
         left: 50%;
@@ -71,9 +71,8 @@ body{
         width: 100%;
     }
     .pop_cont button{
-        width: 100px; 
-        height: 35px;    
-        margin:25px 5px 0 5px;
+        width: 80px; 
+        height: 30px;            
         background: none;
         border: none;
         box-shadow: inset 0 -4px rgba(0, 0, 0, .1);
@@ -82,6 +81,17 @@ body{
     .popup_close{
         cursor: pointer;
     }
+    .pop_cont table{
+   		margin-top:20px;
+   		font-size:14px;
+   		border-top:1px solid #ccc;
+   }
+   .pop_cont table td{   		   		
+   		height:50px;   		
+   		border-bottom:1px solid #ccc;
+   		border-collapse: collapse;
+   		border-top:none;
+   }
  
 </style>
 <script>
@@ -141,7 +151,7 @@ function loadTempIdea(rid){
 	
 }
 
-function removeTempIdea(){
+function removeTempIdea(rid){
 	var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
 	var csrfToken = $("meta[name='_csrf']").attr("content"); 
 	var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
@@ -149,7 +159,7 @@ function removeTempIdea(){
 	var headers = {};
 	
 	data[csrfParameter] = csrfToken;
-	data["uid"]=${sessionScope.currentUser.getUid()};
+	data["rid"]=rid;
     headers[csrfHeader] = csrfToken;
     $.ajax({
  	    url : "/registration/removeTempIdea",
@@ -160,6 +170,7 @@ function removeTempIdea(){
  	    success: function(data) {
  	    	document.getElementById("bw").style.visibility="hidden";
     		document.getElementById("pp").style.visibility="hidden";
+    		location.href="/registration/addidea";
  	    },
     	error:function(request,status,error){
         	alert("code:"+request.status+"\n"+"error:"+error);
@@ -258,19 +269,18 @@ function formSubmit(file){
     </div>
     <div class="pop_cont">            
        	<span>임시저장된 아이디어가 있습니다.</span>
-       	<table>
+       	<table style="width:100%;">
        		<c:forEach items="${tempList}" var="list" varStatus="status">
 				<tr>
-    				<td>${status.count }</td>
+    				<td style="width:30px;">${status.count }</td>
     				<td>${list.getTitle()}</td>
     				<td>${list.getRegistration_date() }</td> 
-    				<td><button style="background:#45d4fe;" onclick="loadTempIdea(${list.getRid()})">불러오기</button></td>
-    				<td><button style="background:#e9e9e9; color:#333;" onclick="removeTempIdea()">삭제하기</button></td>
+    				<td style="width:100px;"><button style="background:#45d4fe;" onclick="loadTempIdea(${list.getRid()})">불러오기</button></td>
+    				<td style="width:100px;"><button style="background:#e9e9e9; color:#333;" onclick="removeTempIdea(${list.getRid()})">삭제하기</button></td>
+
     			</tr>
 			</c:forEach>
 		</table>
-       	
-       	
     </div>
 </div>
  

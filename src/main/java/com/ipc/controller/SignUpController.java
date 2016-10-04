@@ -57,7 +57,13 @@ public class SignUpController {
 		map.put("pw", uv.getPw());
 		map.put("email", email);
 		map.put("name", uv.getName());
-		map.put("profileimg", "/resources/uploadimgs/profileImg/"+uv.getId()+"."+fileType);
+		System.out.println("filType: "+fileType);
+		if(fileType.equals("")){
+			map.put("profileimg", "/resources/image/attonrney_profile.jpg");
+		}
+		else{
+			map.put("profileimg", "/resources/uploadimgs/profileImg/"+uv.getId()+"."+fileType);
+		}
 		StringBuffer key=ss.makekey();
 		map.put("is_member", key.toString());
 		

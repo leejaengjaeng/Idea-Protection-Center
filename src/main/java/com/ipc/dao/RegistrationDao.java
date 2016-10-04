@@ -35,7 +35,7 @@ public interface RegistrationDao {
 	//start_rid로 연결된 마지막 rid를 찾음
 	public int getLastRidInProcessList (int start_rid);
 	
-	public void removeTempIdea(int uid);
+	public void removeTempIdea(int rid);
 	
 	public void inventorSave (RegistrationPatentVo rvo);
 	public void plUpdate (RegistrationPatentVo rvo);
