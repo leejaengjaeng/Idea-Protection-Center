@@ -50,7 +50,7 @@
                 <span>
                                    경기창조경제혁신센터 5층<br>
                                    경기도 성남시 분당구 대왕판교로 635번길 12<br>
-                    Tel : 010-3302-7000<br>
+                    Tel : 070-8825-5004<br>
                     mail : ideaconcert@naver.com
                 </span>
             </div>

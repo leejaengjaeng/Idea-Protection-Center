@@ -741,16 +741,16 @@ section{
     margin-bottom: 50px;
     tr{
         th{
-            height: 50px;
-            border: 1px solid #ccc;
-            padding-left: 10px;
-            text-align: left;
+            height: 35px;                        
+            background: #ccc;
+            text-align: center;
+            color:#383838;
         }
         td{
-            height: 35px;
-            border: 1px solid #ccc;
-            text-align: left;
-            padding-left: 10px;
+            height: 35px;            
+            text-align: center;   
+            font-size:14px;
+            border-bottom: 1px solid #ccc;
         }
     }
 }
@@ -759,35 +759,45 @@ section{
     margin-top: 50px;
     float: left;
     width: 100%;
+    border-top:1px solid #585858;    
     .title_detail{
-        height: 50px;
-        border-top: 1px solid #ccc;        
-        width:70%;
+        height: 70px;        
+        width:80%;
         float: left;
-        padding-left: 10px;
+        padding-left: 20px;
         text-align: left;
-        padding-top: 15px;        
-        border-left: 1PX SOLID #CCC;
         border-bottom: 1px solid #ccc;
+        padding-top: 15px; 
+        font-size:20px;
+        padding-top: 24px;
     }
     .date_detail{
-        height: 50px;
-        border: 1px solid #ccc;        
-        width:30%;
+        height: 70px;         
+        width:20%;
         text-align: left;
         float: left;
+        border-bottom: 1px solid #ccc;
+        padding-top: 25px;
+        padding-left: 10px;    
+    }
+    .name_detail{
+        width: 100%;
+        height: 50px;
+        float: left;
+        text-align: left;
+        padding-left: 20px; 
+        margin-top: 10px;
+        margin-bottom: 10px;
         padding-top: 15px;
-        padding-left: 10px;
     }
     .cont_detail{
         width: 100%;
-        height: 500px;
-        border: 1px solid #ccc;
+        min-height: 500px;        
         border-top: none;
         text-align: left;
-        padding: 10px;        
-        float: left;
-        overflow-y: scroll;
+        padding: 10px;   
+        padding-left: 20px;
+        float: left;        
     }
     
 }
@@ -802,4 +812,37 @@ section{
         top: 0;
         position: absolute;
     }    
+}
+#btn_add_notice{
+    width: 100px;
+    height: 35px;
+    box-shadow: inset 0 -4px rgba(0, 0, 0, .1); 
+    background: #45d4fe;    
+    margin-bottom: 50px;
+    float: right;
+    border: none;
+    color: white;
+}
+.qna_form{
+    div{
+        margin-top: 50px;
+        margin-bottom: 50px;
+        span{
+            font-size: 30px;
+            color: #565656;
+        }
+        form{
+            input{
+                width: 70%;
+                height: 35px;
+                margin: 7px;
+                padding-left: 5px;
+            }
+            textarea{
+                width: 70%;
+                height: 400px;
+                padding: 5px;
+            }
+        }
+    }
 }

@@ -20,25 +20,35 @@
 	<table id="notice_table">
 		<tr>
 			<th style="width:100px;">
-				no
+				번호
 			</th>
 			<th>
 				제목
 			</th>
+			<th style="width:100px;">
+				게시자
+			</th>
 			<th style="width:250px;">
-				시간
+				등록날짜
+			</th>			
+			<th style="width:100px;">
+				조회수
 			</th>
 		</tr>
 		<c:forEach items="${noticeList}" var="list" varStatus="status">
 			<tr onclick="location.href='/noticeList/${list.getNid()}'">
     			<td>${status.count }</td>
-    			<td>${list.getTitle()}</td>
-    			<td>${list.getDate()}</td>
+    			<td>${list.getTitle()}</td>    		
+    			<td>관리자</td>
+    			<td class="date">${list.getDate()}</td>    			
+    			<td>0</td>    			
     		</tr>
 		</c:forEach>
 	</table>
 </div>
 <c:import url="/WEB-INF/views/import/footer.jsp"/>
-
+<script>
+	
+</script>
 </body>
 </html>

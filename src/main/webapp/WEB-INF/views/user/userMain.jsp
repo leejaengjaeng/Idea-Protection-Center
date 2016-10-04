@@ -34,10 +34,10 @@ $(document).ready(function()
 </div>
 <div id="hide_nav">
 	<div id="hide_nav_cont">
-	    <div id="profile">
-	        <img src="${currentUser.getProfileimg()}" alt="profile">	        
+	    <div id="profile">	    
+	        <img src="${currentUser.getProfileimg()}" alt="profile">		                
 	        <h4>${currentUser.getName() }</h4>
-	        <span>${currentUser.getId() }</span>
+	        <span>ideaconcert</span>
 	    </div>
 	    <div id="profile_menu">
 	        <ul style="padding-left:0;">
@@ -59,6 +59,9 @@ $(document).ready(function()
     <div id="inven_wrap">
         <nav>
             <div id="profile">
+                <!-- 프로필 이미지 없을때-->
+                <img src="/resources/image/attonrney_profile.jpg" alt="img1">
+                <!-- 프로필 이미지 있을때-->
                 <img src="${currentUser.getProfileimg()}" alt="profile">
                 <h4>${currentUser.getName() }</h4>
                 <span>${currentUser.getId() }</span>
@@ -80,17 +83,17 @@ $(document).ready(function()
             <div id="nav_benner">
                 <ul style="padding-left:0;">
                     <li onclick="location.href='/registration/addidea'">
-                        <img src="/resources/image/index_patent_1.jpg" alt="benner1">
+                        <img src="/resources/image/sub_banner_1.jpg" alt="benner1" style="cursor:pointer" onclick='location.href="/registration/addidea"'>
                     </li>
                     <!-- 
                     <li>
-                        <img src="/resources/image/index_patent_2.jpg" alt="benner2">
+                        <img src="/resources/image/sub_banner_2.jpg" alt="benner2">
                     </li>
                     <li>
-                        <img src="/resources/image/index_patent_3.jpg" alt="benner3">
+                        <img src="/resources/image/sub_banner_3.jpg" alt="benner3">
                     </li>
                     <li>
-                        <img src="/resources/image/index_patent_4.jpg" alt="benner4">
+                        <img src="/resources/image/sub_banner_4.jpg" alt="benner4">
                     </li>
                     -->
                 </ul>
