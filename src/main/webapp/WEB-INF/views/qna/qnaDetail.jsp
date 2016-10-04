@@ -55,7 +55,7 @@ function ddddd(){
 	<div id="replyDiv" style="display:none">
 		<form action="/qna/regisreply" method="POST" name="replyform">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-			<input type="hidden" value="${qna.getQid()}" name="qid">	
+			<input type="text" value="${qna.getQid()}" name="qid">	
 			<textarea name="content" id="content" placeholder="답글달기"></textarea>
 			<input type="submit">
 		</form>
