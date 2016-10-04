@@ -131,7 +131,7 @@ function addFile(){
             </nav>            
             <article class="sub_head">                    
                 <h1><b>아이디어</b> 초안</h1>                
-                <img src="/resources/image/cmt.png" alt="cmt" style="width:100%; float:left;">
+                <img src="/resources/image/cmt.jpg" alt="cmt" style="width:100%; float:left; margin-bottom:100px;">
             </article>                
             <article class="modify_log">                    
                 <h1>아이디어수정내역</h1>   

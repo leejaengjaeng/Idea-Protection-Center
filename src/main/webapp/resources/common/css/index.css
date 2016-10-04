@@ -398,7 +398,7 @@ footer #footer_benner #footer_benner_wrap {
 footer #footer_benner #footer_benner_wrap img {
   height: 30px;
   float: left;
-  margin-left: 50px;
+  margin-left: 10px;
 }
 footer #footer_fill {
   width: 100%;
@@ -435,12 +435,12 @@ footer #footer_fill #footer_wrap #footer_left span {
   color: rgba(255, 255, 255, 0.8);
 }
 footer #footer_fill #footer_wrap #footer_center {
-  width: 300px;
+  width: 400px;
   float: left;
 }
 footer #footer_fill #footer_wrap #footer_center div {
   width: 100%;
-  text-align: center;
+  text-align: right;
   color: #72d1f3;
 }
 footer #footer_fill #footer_wrap #footer_center div span {
@@ -448,7 +448,7 @@ footer #footer_fill #footer_wrap #footer_center div span {
 }
 footer #footer_fill #footer_wrap #footer_right {
   float: left;
-  padding-left: 15px;
+  padding-left: 20px;
 }
 footer #footer_fill #footer_wrap #footer_right span {
   color: white;

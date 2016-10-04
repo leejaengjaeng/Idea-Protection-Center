@@ -144,8 +144,8 @@ function execute(){
 				<tr>
 					<td>이메일</td>
 					<td>
-						<input type="text" name="email1" id="email1" pattern="[A-Za-z0-9_]+" required>
-						<select name="emailMiddle" onChange=changeEmail(this.value); id="email_chg">
+						<input type="text" name="email1" id="email1" pattern="[A-Za-z0-9_]+" required style="float:left;">
+						<select name="emailMiddle" onChange=changeEmail(this.value); id="email_chg" style="float:left;">
 							<option value="" selected>이메일선택</option>
 							<option value="@naver.com">@ naver.com</option>
 							<option value="@hanmail.com">@ hanmail.com</option>
@@ -157,7 +157,8 @@ function execute(){
 							<option value="@korea.com">@ korea.com</option>
 							<option value="1">직접입력</option>							
 						</select>
-						<input type="text" name="email2" id="email2" style="display:none;" required>
+						<input type="text" name="email2" id="email2" style="display:none; float:left;" required>
+						<div style="width:100%; float:left; font-size:12px;margin-top:5px;"><span style="display:inline-block; float:left;">이메일은 회원가입 인증을 위한 정보입니다.</span></div>
 					</td>
 				</tr>				
 				<tr id="hide">

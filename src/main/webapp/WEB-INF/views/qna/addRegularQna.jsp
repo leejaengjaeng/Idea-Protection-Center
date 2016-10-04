@@ -20,7 +20,7 @@
 		<input type="text" name="title" id="title" placeholder="제목"><br/>
 		<textarea id="content" name="content" placeholder="내용"></textarea>
 		<input type="text" name="del_pw" id="del_pw" placeholder="삭제 비밀번호"><br/>
-		<input type="submit" id="submit">
+		<input type="submit" id="submit";">
 	</form>
 </div>
 </body>

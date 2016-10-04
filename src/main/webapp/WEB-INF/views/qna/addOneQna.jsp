@@ -16,7 +16,7 @@
 <body style="background:#f9f9f9;">
 <c:import url="/WEB-INF/views/import/header.jsp"/>
 	<div id="wrap_form" class="qna_form"> 
-		<div style="width:100%; float:left;">
+		<div style="width:100%; float:left; margin-top:100px; margin-bottom:100px;">
 			<span style="">질문하기</span>
 			<form action="/qna/regisOneQna" name="noticeform" method="POST">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />	
