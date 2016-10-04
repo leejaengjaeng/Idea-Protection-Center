@@ -257,8 +257,19 @@ function formSubmit(file){
     </div>
     <div class="pop_cont">            
        	<span>임시저장된 아이디어가 있습니다.</span>
-       	<button style="background:#45d4fe;" onclick="loadTempIdea()">불러오기</button>
-       	<button style="background:#e9e9e9; color:#333;" onclick="removeTempIdea()">삭제하기</button>
+       	<table>
+       		<c:forEach items="${tempList}" var="list" varStatus="status">
+				<tr>
+    				<td>${status.count }</td>
+    				<td>${list.getTitle()}</td>
+    				<td>${list.getRegistration_date() }</td> 
+    				<td><button style="background:#45d4fe;" onclick="loadTempIdea()">불러오기</button></td>
+    				<td><button style="background:#e9e9e9; color:#333;" onclick="removeTempIdea()">삭제하기</button></td>
+    			</tr>
+			</c:forEach>
+		</table>
+       	
+       	
     </div>
 </div>
  

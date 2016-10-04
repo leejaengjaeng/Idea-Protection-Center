@@ -46,7 +46,7 @@
 	</select>
 	
 	<insert id="maketempidea" parameterType="Hashmap">
-		insert into registration_patent(typeOfInvent,title,summary,whyInvent,problem,solution,effect,core_element,registration_date,uid,iscomplete) values (#{typeOfInvent},#{title},#{summary},#{whyInvent},#{problem},#{solution},#{effect},#{core_element},#{registrtaion_date},#{uid},"-1")
+		insert into registration_patent(typeOfInvent,title,summary,whyInvent,problem,solution,effect,core_element,registration_date,uid,iscomplete) values (#{typeOfInvent},#{title},#{summary},#{whyInvent},#{problem},#{solution},#{effect},#{core_element},#{registration_date},#{uid},"-1")
 	</insert>
 	<select id="countTempIdea" parameterType="Integer" resultType="Integer">
 		select count(*) from registration_patent where uid=#{uid} AND iscomplete=-1
@@ -97,7 +97,7 @@
 	
 	
 	<select id="gettempidea" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
-		select rid, typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element, re_typeofinvent, re_title, re_summary, re_whyinvent, re_problem, re_solution, re_effect, re_core_element,re_file from registration_patent where uid=#{uid} AND iscomplete=-1
+		select rid, typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element, re_typeofinvent, re_title, re_summary, re_whyinvent, re_problem, re_solution, re_effect, re_core_element,re_file,registration_date from registration_patent where uid=#{uid} AND iscomplete=-1 order by registration_date desc
 	</select>
 	<delete id="removeTempIdea" parameterType="Integer">
 		delete from registration_patent where uid=#{uid} AND iscomplete=-1
