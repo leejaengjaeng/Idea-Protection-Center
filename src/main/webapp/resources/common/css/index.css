@@ -125,6 +125,7 @@ article section {
 article section #benner_1 {
   width: 100%;
   float: left;
+  height: 250px;
   position: relative;
   overflow: hidden;
 }
