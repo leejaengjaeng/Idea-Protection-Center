@@ -8,8 +8,9 @@ import java.util.Random;
 
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
+@Service
 public class SignUpService {
 	public String sendhtmlmail(int uid,String key,String email) throws IOException, EmailException{
 		HtmlEmail sendemail = new HtmlEmail();
@@ -26,7 +27,13 @@ public class SignUpService {
 		String htmlmsg="<html><div style='width:1000px; float:left; border-bottom:2px solid #45d4fe; padding-bottom:5px;box-sizing:border-box;'></div><div style='width:1000px;float:left; box-sizing:border-box; padding:15px;'><h2>아이디어 보호센터에서 요청하신 인증메일을 발송해 드립니다.</h2><div style='width:100%; float:left; box-sizing:border-box; border:5px solid #f9f9f9; text-align:center; padding:40px 0 40px 0;'><span>아래 승인버튼을 클릭 해 주세요.</span><br><a href='http://localhost:8088/signup/permit?uid="+uid+"&key="+key+"'><button style='width:150px; height:40px; background:none; border:2px solid #45d4fe; font-size:1.1rem; text-decoration: none;font-weight:bold; margin-top:10px;'>승인</button></a></div></div></html>";
 		System.out.println(htmlmsg);
 		sendemail.setHtmlMsg(htmlmsg);
-		sendemail.send();
+		try{
+			sendemail.send();
+		}
+		catch(Exception e){
+			System.out.println("NOTOK");
+			return "NOTOK";
+		}
 		return "OK";
 	}
 	public StringBuffer makekey(){

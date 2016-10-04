@@ -165,11 +165,13 @@ function execute(){
 					<td><input type="text" name="license_number" id="license_number"></td>
 				</tr>				
 			</table>
-			<input type="submit" value="가입" id="submit">
+			<!-- <input type="submit" value="가입" id="submit"> -->
+			<input type="submit" value="가입" id="submit"></button>
 		</form>
 	</div>
 	<c:import url="/WEB-INF/views/import/footer.jsp"/>
 <script>
+
 $(".hill").click(function(){	
 	$(this).addClass("on");
 	$(this).siblings().removeClass("on");

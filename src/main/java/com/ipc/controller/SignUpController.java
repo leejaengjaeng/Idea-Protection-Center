@@ -28,7 +28,6 @@ import com.ipc.vo.userVo;
 @Controller
 @RequestMapping("/signup")
 public class SignUpController {
-	
 	@Autowired
 	UserDao usermapper;
 
@@ -85,8 +84,10 @@ public class SignUpController {
 			usermapper.makelawyer(map2);
 		}
 		System.out.println("uid is "+uv2.getUid());
-		ss.sendhtmlmail(uv2.getUid(),key.toString(),uv2.getEmail());
-		return "home/index";
+		if(ss.sendhtmlmail(uv2.getUid(),key.toString(),uv2.getEmail()).equals("NOTOK")){
+			return "signup/emailError";
+		}
+		return "redirect:/";
 	}
 	@RequestMapping(value="/checkid",method=RequestMethod.POST)
 	@ResponseBody
