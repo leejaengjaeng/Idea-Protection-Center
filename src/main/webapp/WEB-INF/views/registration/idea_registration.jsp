@@ -16,7 +16,8 @@
 <title>Insert title here</title>
 <style>
 body{
-    height: 100% !important;        
+    height: 100% !important;    
+    overflow: hidden;    
 }
 .black_wall{
     width: 100%;
@@ -222,9 +223,11 @@ function tempsave(){
 }
 
 
+
 function closeload(){
 	document.getElementById("bw").style.visibility="hidden";
-	document.getElementById("pp").style.visibility="hidden";                
+	document.getElementById("pp").style.visibility="hidden";  
+	
 }
 function formSubmit(file){
 	//alert($("input[name=imgs]").length);
@@ -436,7 +439,12 @@ function formSubmit(file){
                 </div>
             </article>
         </section>
-    </div>
+    </div>    
 <c:import url="/WEB-INF/views/import/footer.jsp"/>
+<script>
+$(".popup_close").click(function(){
+	$("body").css("overflow","auto");	
+});
+</script>
 </body>
 </html>

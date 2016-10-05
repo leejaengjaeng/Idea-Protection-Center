@@ -819,3 +819,35 @@ section nav #nav_benner ul li img {
   right: 0;
   top: -20px;
 }
+#ContentsWrap {
+  font-size: 12px;
+  line-height: 1.7em;
+  overflow-y: scroll;
+  height: 300px;
+  border: 1px solid #ccc;
+  padding: 5px;
+  background: #fff;
+  width: 100%;
+  float: left;
+}
+#ContentsWrap h3 {
+  margin: 10px 0 10px 0;
+}
+#ContentsWrap .txt_num {
+  float: left;
+  width: 17px;
+}
+#ContentsWrap .txt_clause {
+  vertical-align: middle;
+  font-size: 12px;
+}
+#ContentsWrap .list_2depth {
+  margin-left: 20px;
+  font-size: 10px;
+}
+#ContentsWrap .tit {
+  display: inline-block;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-size: 13px;
+}
