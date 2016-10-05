@@ -4,9 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Sign Up Error!</title>
 </head>
 <body>
-	email확인후 다시 가입해여 주십시오
+<c:import url="/WEB-INF/views/import/header.jsp"/>
+	email확인후 다시 가입하여 주십시오
+		<c:import url="/WEB-INF/views/import/footer.jsp"/>
+	
 </body>
 </html>

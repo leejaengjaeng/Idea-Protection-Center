@@ -27,7 +27,18 @@
 							<c:out value="${sessionScope.currentUser.getName() }" />
 						</b>
 						<!--권한별 이름변경-->
-						발명가님 환영합니다.
+						<c:choose>
+							<c:when test="${sessionScope.currentUser.getRole()=='ROLE_INVENTOR'}">
+								발명가님 환영합니다.
+							</c:when>
+							<c:when test="${sessionScope.currentUser.getRole()=='ROLE_PATIENTENTLAWYER'}">
+								변리사님 환영합니다.
+							</c:when>
+							<c:otherwise>
+								관리자님 환영합니다.
+							</c:otherwise>
+						</c:choose>
+						
 					</span>
 					
 				</li>

@@ -28,6 +28,9 @@
 			<th>
 				제목
 			</th>
+			<th>
+				작성자
+			</th>
 			<th style="width:200px;">
 				날짜
 			</th>
@@ -36,6 +39,7 @@
 			<tr onclick="location.href='/qna/detail/${list.getQid()}'">
     			<td>${status.count }</td>
     			<td>${list.getTitle()}</td>
+    			<td>${list.getId()}</td>
     			<td>${list.getDate()}</td>
     		</tr>
 		</c:forEach>

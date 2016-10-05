@@ -9,6 +9,13 @@ public class QnaVo {
 	private String del_pw;
 	private String uid;
 	private String isRegular;
+	private String id;
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getUid() {
 		return uid;
 	}

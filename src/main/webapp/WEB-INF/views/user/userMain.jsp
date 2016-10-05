@@ -41,9 +41,7 @@ $(document).ready(function()
 	    </div>
 	    <div id="profile_menu">
 	        <ul style="padding-left:0;">
-	            <!-- 
 	            <li>회원정보수정</li>
-	            -->
 	            <li>1:1질문하기</li>
 	            <li>아이디어 진행내역</li>
 	         	<!-- 
@@ -68,9 +66,7 @@ $(document).ready(function()
             </div>
             <div id="profile_menu">
                 <ul style="padding-left:0;">
-                     <!-- 
-		            <li>회원정보수정</li>
-		            -->
+		            <li onclick="location.href='/signup/editUser'">회원정보수정</li>
 		            <li>1:1질문하기</li>
 		            <li>아이디어 진행내역</li>
 		         	<!-- 

@@ -31,9 +31,7 @@
 			<th style="width:250px;">
 				등록날짜
 			</th>			
-			<th style="width:100px;">
-				조회수
-			</th>
+			
 		</tr>
 		<c:forEach items="${noticeList}" var="list" varStatus="status">
 			<tr onclick="location.href='/noticeList/${list.getNid()}'">
@@ -41,7 +39,7 @@
     			<td>${list.getTitle()}</td>    		
     			<td>관리자</td>
     			<td class="date">${list.getDate()}</td>    			
-    			<td>0</td>    			
+    			    			
     		</tr>
 		</c:forEach>
 	</table>

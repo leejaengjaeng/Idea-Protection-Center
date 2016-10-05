@@ -119,5 +119,9 @@ public class SignUpController {
 	public String compeletesignup(){
 		return "home/index";
 	}
-	
+	@RequestMapping(value="/editUser")
+	public String editUser(Model model){
+		
+		return "signup/EditUser";
+	}
 }

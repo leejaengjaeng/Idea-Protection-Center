@@ -47,6 +47,7 @@ function ddddd(){
     					<img src="/resources/image/inventor.png">
     				</div>
     			</td>
+    			<td>관리자</td>
     			<td>${list.getContent()}</td>
     		</tr>
 		</c:forEach>
