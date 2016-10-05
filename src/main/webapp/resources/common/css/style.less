@@ -846,3 +846,17 @@ section{
         }
     }
 }
+.road{
+    position: relative;
+    font-weight: bold;
+    color: #585858;
+    &::before{
+        content: "";
+        position: absolute;
+        width:60px;
+        height: 3px;
+        background: #888;
+        right:0;
+        top: -20px;
+    }
+}

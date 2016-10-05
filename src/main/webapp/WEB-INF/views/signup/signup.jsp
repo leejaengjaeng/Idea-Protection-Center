@@ -120,7 +120,7 @@ function execute(){
 					<td colspan="2" style="text-align:center; padding-left: 0;" class="join_img_td">						
 						<div>
 							<img src="/resources/image/inventor_profile.jpg" alt="img" id="blah"><br>
-							<input type="file" id="imgInp" name="profileImg">
+							<input type="file" id="imgInp" name="profileImg" style="cursor:pointer;">
 							<span>대표사진을 설정 해주세요</span>
 						</div>
 					</td>

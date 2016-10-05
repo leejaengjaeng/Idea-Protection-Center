@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,7 +16,7 @@
             <h1 style="float:left; font-size:150px; color:#333;" id="nfound">4</h1><img src="/resources/image/404.png" alt="404" style="float:left;width:100px; margin-top:40px;">
             <h1 style="float:left; font-size:150px; color:#333;">4</h1>
             <h1 style="float:left; font-size:100px; color:#333; margin-top:30px; margin-left:30px;">NOT FOUND</h1>
-            <h2 style="float:right; margin-top:20px; color:#333;">ÆäÀÌÁö¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.</h2>
+            <h2 style="float:right; margin-top:20px; color:#333;">íŽ˜ì´ì§€ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.</h2>
         </div>
     </div>
  <c:import url="/WEB-INF/views/import/footer.jsp"/>

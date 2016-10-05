@@ -520,8 +520,8 @@ function readURL(input,imgId) {
                 <input type="hidden" name="userID_file" value="${sessionScope.currentUser.getId()}">
                 <input type="hidden" name="start_rid_file" value="${start_rid}">
 	                <div class="txt_box">
-	                    <h2 style="width:100%">도면첨부</h2> <button>작성 예시</button>
-	                    
+	                    <h2 style="width:100%">도면첨부</h2> 
+	                    	                   
 	                    <div id="BeforeFileComment" class="cmt_field before_cmt">
                         	<textarea disabled="disabled" class="disabled"/>${beforeReg.getRe_file()}</textarea>
 	                        <div class="img_comt">

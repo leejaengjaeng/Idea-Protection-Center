@@ -805,3 +805,17 @@ section nav #nav_benner ul li img {
   height: 400px;
   padding: 5px;
 }
+.road {
+  position: relative;
+  font-weight: bold;
+  color: #585858;
+}
+.road::before {
+  content: "";
+  position: absolute;
+  width: 60px;
+  height: 3px;
+  background: #888;
+  right: 0;
+  top: -20px;
+}

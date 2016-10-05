@@ -25,7 +25,9 @@
 					<span style="display:inline-block; margin-top:8px;">
 						<b style="color:#45d4fe;" onclick="location.href='/mainPage'">
 							<c:out value="${sessionScope.currentUser.getName() }" />
-						</b>발명가님
+						</b>
+						<!--권한별 이름변경-->
+						발명가님 환영합니다.
 					</span>
 					
 				</li>

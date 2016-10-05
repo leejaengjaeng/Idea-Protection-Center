@@ -98,7 +98,7 @@ body{
 var i=1;
 function addfile(){
 	i++;
-	$('#upimgdiv').append("<input type='file' id='upimg"+i+"' name='imgs' accept='image/gif, image/jpeg, image/png'>");
+	$('#upimgdiv').append("<input type='file' id='upimg"+i+"' name='imgs' accept='image/gif, image/jpeg, image/png' style='padding-top:5px;'>");
     //var targetdiv=document.getElementById("uploaddiv");
     //targetdiv.innerHTML+="<input type='file' name='imgs' oncellchange='addfile()' accept='image/gif, image/jpeg, image/png'>";
     
@@ -287,7 +287,7 @@ function formSubmit(file){
 <c:import url="/WEB-INF/views/import/header.jsp"/>
     <div class="wrap_comment">
         <section>            
-            <article class="sub_head">                    
+            <article class="sub_head" style="margin-top:100px;">                    
                 <h1><b>특허</b>등록</h1>                
             </article>                
             <article>
