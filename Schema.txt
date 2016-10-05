@@ -80,12 +80,14 @@ CREATE TABLE `qna` (
   `qid` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(45) DEFAULT NULL,
   `content` text,
-  `date` datetime DEFAULT NULL,
+  `date` timestamp,  
+  /*`date` datetime DEFAULT NULL,*/
   `isRegular` varchar(10) DEFAULT 'FALSE',
   `del_pw` varchar(20) DEFAULT NULL,
   `uid` int(11) DEFAULT NULL,
   PRIMARY KEY (`qid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+
 CREATE TABLE `reply` (
   `reid` int(11) NOT NULL AUTO_INCREMENT,
   `content` text,

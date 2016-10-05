@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <link rel="stylesheet" href="/resources/common/css/index.css">
 <link rel="stylesheet" href="/resources/common/css/style.css">
-<title>Insert title here</title>
+<title>SiteMap</title>
 </head>
 <body>
 <c:import url="/WEB-INF/views/import/header.jsp"/>

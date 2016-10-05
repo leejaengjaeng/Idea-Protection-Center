@@ -153,6 +153,9 @@ public class MainController {
 		model.addAttribute("noticeList", noticeList);
 		return "/admin/noticeList";
 	}
-
+	@RequestMapping("/comeOn")
+	public String comeOn(){
+		return "sub/sitemap";
+	}
 	
 }
