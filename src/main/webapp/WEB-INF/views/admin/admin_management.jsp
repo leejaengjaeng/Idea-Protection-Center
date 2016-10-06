@@ -213,7 +213,7 @@ body{
                     <th style="width:50px;">No</th>
                     <th>사용자</th>
                     <th style="width:100px;">이름</th>
-                    <th style="width:100px;">지정변리사</th>
+                    <th style="width:130px;">지정변리사</th>
                     <th>이메일</th>                    
                     <th>연락처</th>
                     <th>분류</th>
