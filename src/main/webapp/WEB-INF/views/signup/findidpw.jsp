@@ -168,9 +168,8 @@ body{
 			type : "POST",
 			headers : headers,
 			data : data,
-			success : function(data) {
-				document.getElementById(pop_cont).innerHTML="'<span>아이디는 '+data.id+'입니다.</span>'";
-				//$("#pop_cont").append('아이디는 '+data.id+'입니다.');
+			success : function(data) {				
+				$("#pop_cont").append('아이디는 '+data.id+'입니다.');
 			
 			},
 			error : function(request, status, error) {
