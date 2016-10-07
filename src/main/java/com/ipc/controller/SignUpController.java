@@ -183,4 +183,22 @@ public class SignUpController {
 	public String findAccount(){
 		return "signup/findidpw";
 	}
+	@RequestMapping(value="/findId",method=RequestMethod.POST)
+	@ResponseBody
+	public HashMap<String,String> findId(HttpServletRequest request){
+		HashMap<String,String> mapresult=new HashMap<String,String>();
+		String name= request.getParameter("name");
+		String email= request.getParameter("email");
+		System.out.println(name+","+email);
+		mapresult.put("id", reId(name,email));
+		return mapresult;
+	}
+	private String reId(String name, String email){
+		HashMap<String,String> parameter=new HashMap<String,String>();
+		parameter.put("name", name);
+		parameter.put("email", email);
+		String ID=usermapper.getIdByNameAndEmail(parameter);
+		System.out.println(ID);
+		return ID;
+	}
 }

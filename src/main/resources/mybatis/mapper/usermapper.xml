@@ -41,5 +41,8 @@
 	<update id="updateProfileImg" parameterType="Hashmap">
 		update user set profileimg=#{profileimg} where uid=#{uid}
 	</update>
+	<select id="getIdByNameAndEmail" parameterType="HashMap" resultType="String">
+		select user.id from user where name=#{name} and email=#{email}
+	</select>
 </mapper>
 
