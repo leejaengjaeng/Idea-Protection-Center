@@ -21,7 +21,6 @@
   -moz-transform: translate(-50%, -50%);
 }
 * {
-  list-style: none;
   padding: 0;
   margin: 0 auto;
   border-collapse: collapse;
@@ -864,6 +863,12 @@ section nav #nav_benner ul li img {
   margin-top: 10px;
   font-size: 13px;
 }
+.service_role #ContentsWrap li {
+  margin-left: 15px;
+}
+.service_role #ContentsWrap li h2 {
+  line-height: 40px;
+}
 .service_role h2 {
   line-height: 30px;
 }
@@ -884,4 +889,30 @@ section nav #nav_benner ul li img {
 .check_box div input[type=checkbox] {
   transform: scale(1.5);
   margin-top: 3px;
+}
+.half {
+  width: 50%;
+  float: left;
+  padding: 25px;
+}
+.half div {
+  width: 100%;
+  float: left;
+  border: 1px solid #45d4fe;
+}
+.half div form {
+  margin-bottom: 50px;
+}
+.half div form input {
+  width: 80%;
+  height: 35px;
+  margin-top: 10px;
+  padding-left: 5px;
+}
+.half div form button {
+  width: 80% !important;
+  height: 35px !important;
+  background: #333 !important;
+  color: white !important;
+  border: none !important;
 }
