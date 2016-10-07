@@ -108,7 +108,7 @@ body{
        	<h2 style="color:#f9f9f9">아이디어 보호센터</h2>
        	<img src="/resources/image/close.png" alt="close" class="popup_close" onclick="closeload()" id="close">
     </div>
-    <div class="pop_cont">            
+    <div class="pop_cont" id="pop_cont">            
        	
     </div>
 </div>
@@ -121,9 +121,9 @@ body{
                 <div>
                     <h3 style="margin-top:50px; color:#555;">아이디 찾기 </h3>
                     <div id="form">
-                        <input name="nameLostId"  placeholder="이름">
-                        <input name="emailLostId" placeholder="이메일">
-                        <button>아이디찾기</button>
+                        <input id="nameLostId"  placeholder="이름">
+                        <input id="emailLostId" placeholder="이메일">
+                        <button id="findIdBtn">아이디찾기</button>
                     </div>
                     
                 </div>
@@ -132,9 +132,9 @@ body{
                 <div>                                        
                     <h3 style="margin-top:50px; color:#555;">비밀번호 찾기 </h3>
                     <div id="form">
-                        <input name="nameLostPw"  placeholder="아이디">
-                        <input name="emailLostPw" placeholder="이메일">
-                        <button>비밀번호찾기</button>
+                        <input id="nameLostPw"  placeholder="아이디">
+                        <input id="emailLostPw" placeholder="이메일">
+                        <button id="findPwBtn">비밀번호찾기</button>
                     </div>
                 </div>
             </div>
@@ -148,7 +148,40 @@ body{
 		$("body").css("overflow","auto");	
 
 	});
-	$(".half button").click(function(){
+	$("#findIdBtn").click(function(){
+		
+		//var id = document.getElementById("id").value;
+		var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+		var csrfToken = $("meta[name='_csrf']").attr("content");
+		var csrfHeader = $("meta[name='_csrf_header']").attr("content"); // THIS WAS ADDED
+		var name = document.getElementById("nameLostId").value;
+		var email=document.getElementById("emailLostId").value;
+		var data = {};
+		var headers = {};
+		data[csrfParameter] = csrfToken;
+		data["name"] = name;
+		data["email"]=email;
+		headers[csrfHeader] = csrfToken;
+		$.ajax({
+			url : "/signup/findId",
+			dataType : "json",
+			type : "POST",
+			headers : headers,
+			data : data,
+			success : function(data) {
+				document.getElementById(pop_cont).innerHTML="'<span>아이디는 '+data.id+'입니다.</span>'";
+				//$("#pop_cont").append('아이디는 '+data.id+'입니다.');
+			
+			},
+			error : function(request, status, error) {
+				alert("code:" + request.status + "\n" + "error:" + error);
+			}
+	
+		});
+		$(".black_wall , .popup").css("display","block");
+		$("body").css("overflow","hidden");	
+	});
+	$("#findPwBtn").click(function(){
 		$(".black_wall , .popup").css("display","block");
 		$("body").css("overflow","hidden");	
 	});
