@@ -179,12 +179,8 @@ function readURL(input,imgId) {
                         </li>
                     </ul>
                 </div>
-            </nav>            
-            <article class="sub_head">                    
-                <h1><b>아이디어</b> 초안</h1>                
-                <img src="/resources/image/cmt.jpg" alt="cmt" style="width:100%; float:left; margin-bottom:100px;">
-            </article>                
-            <article class="modify_log">                    
+            </nav>                                      
+            <article class="modify_log" style="margin-top:100px; border-top:2px solid #777; padding-top:50px;">                    
                 <h1>아이디어수정내역</h1>   
                 <table id="IdeaModifyList">
                 	<c:forEach items="${processList}" var="list" varStatus="status">
