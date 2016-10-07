@@ -940,13 +940,17 @@ section{
     padding: 25px;
     div{
         width:100%; float:left; border:1px solid #45d4fe;
-        form{
+        #form{
             margin-bottom: 50px;
+            border: none;
             input{
                 width: 80%;
                 height: 35px;            
                 margin-top:10px;
                 padding-left: 5px;
+                &:first-child{
+                    margin-top:20px;
+                }
             }
             button{
                 width: 80% !important;
@@ -954,6 +958,7 @@ section{
                 background: #333 !important;
                 color: white !important;
                 border: none !important;
+                margin-top:10px;
                 
             }
         }
