@@ -17,7 +17,7 @@
 <style>
 body{
     height: 100% !important;  
-    display: none;      
+    overflow:auto;
 }
 .black_wall{
     width: 100%;
@@ -25,6 +25,7 @@ body{
     background: rgba(0,0,0,0.7);
     position:fixed;    
     z-index:98;
+    display: none;
 }    
     .popup{
         width: 600px;
@@ -38,6 +39,7 @@ body{
         box-shadow: 0 0 10px 0 #000;                
         position: fixed;        
         z-index: 99;
+        display: none;
     }
     .pop_header{
         width: 100%;
@@ -100,8 +102,8 @@ body{
 </style>
 </head>
 <body>
-<div class="black_wall" id="bw" style="visibility:hidden"></div>
-<div class="popup" id="pp" style="visibility:hidden">
+<div class="black_wall" id="bw"></div>
+<div class="popup" id="pp">
    	<div class="pop_header">            
        	<h2 style="color:#f9f9f9">아이디어 보호센터</h2>
        	<img src="/resources/image/close.png" alt="close" class="popup_close" onclick="closeload()" id="close">
@@ -118,7 +120,7 @@ body{
             <div class="half">
                 <div>
                     <h3 style="margin-top:50px; color:#555;">아이디 찾기 </h3>
-                    <form action>
+                    <form>
                         <input name="nameLostId"  placeholder="이름">
                         <input name="emailLostId" placeholder="이메일">
                         <button>아이디찾기</button>
@@ -145,6 +147,10 @@ body{
 		$(".black_wall , .popup").css("display","none");
 		$("body").css("overflow","auto");	
 
+	});
+	$(".half button").click(function(){
+		$(".black_wall , .popup").css("display","block");
+		$("body").css("overflow","hidden");	
 	});
 </script>
 </body>
