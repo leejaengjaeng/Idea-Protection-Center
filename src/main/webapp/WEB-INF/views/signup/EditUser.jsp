@@ -13,16 +13,7 @@
 <link rel="stylesheet" href="/resources/common/css/index.css">
 <title>Insert title here</title>
 <script>
-function changeEmail(emailvalue){
-	if(emailvalue=="1"){
-		document.getElementById("email2").style.display="block";
-		document.signupform.email2.value="";
-	}
-	else{
-		document.getElementById("email2").style.display="none";
-		document.signupform.email2.value=emailvalue;
-	}
-}
+
 
 function checkpwd(){
 	var pwd=document.getElementById("pw").value;
@@ -67,18 +58,16 @@ function editExecute(){
 <body>
 	<c:import url="/WEB-INF/views/import/header.jsp"/>
 	<div id="wrap_form">
-		<h1>회원가입</h1>
+		<h1>회원정보수정</h1>
 
-		<form action="/signup/editUser" method="POST" name="signupform" onsubmit="return editExecute();" enctype="multipart/form-data">
+		<form action="/signup/editinput" method="POST" name="editform" onsubmit="return editExecute();" enctype="multipart/form-data" novalidate>
 			<input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}" />
-			<button type="button" class="hill on" data-no="0" onclick='changerole("1")'>발명자 회원</button>
-			<button type="button" class="hill" data-no="1" onclick='changerole("2")'>변리사</button>			
-			<input type="text" id="role" name="role" value="1" hidden>		
+			<input type="text" id="role" name="role" value="${role}" hidden>		
 			<table>
 				<tr>
 					<td colspan="2" style="text-align:center; padding-left: 0;" class="join_img_td">						
 						<div>
-							<img src="/resources/image/inventor_profile.jpg" alt="img" id="blah"><br>
+							<img src="${uv.getProfileimg()}" alt="img" id="blah"><br>
 							<input type="file" id="imgInp" name="profileImg" style="cursor:pointer;">
 							<span>대표사진을 설정 해주세요</span>
 						</div>
@@ -86,7 +75,7 @@ function editExecute(){
 				</tr>
 				<tr>
 					<td>아이디</td>
-					<td><input type="text" name="id" id="id"></td>
+					<td><input type="text" name="id" id="id" value="${uv.getId()}" readOnly style="background:#f1f1f1;"></td>
 				</tr>
 				<tr>
 					<td>비밀번호</td>
@@ -98,13 +87,13 @@ function editExecute(){
 				</tr>
 				<tr>
 					<td>이름</td>
-					<td><input name="name" id="name" required></td>
+					<td><input name="name" id="name" required value="${uv.getName()}" readOnly style="background:#f1f1f1;"></td>
 				</tr>
 				<tr>
 					<td>이메일</td>
 					<td>
 						<input type="text" name="email1" id="email1" pattern="[A-Za-z0-9_]+" required style="float:left;">
-						<select name="emailMiddle" onChange=changeEmail(this.value); id="email_chg" style="float:left;">
+						<select name="emailMiddle" onChange="changeEmail2(this.value);" id="email_chg" style="float:left;">
 							<option value="" selected>이메일선택</option>
 							<option value="@naver.com">@ naver.com</option>
 							<option value="@hanmail.com">@ hanmail.com</option>
@@ -116,17 +105,24 @@ function editExecute(){
 							<option value="@korea.com">@ korea.com</option>
 							<option value="1">직접입력</option>							
 						</select>
-						<input type="text" name="email2" id="email2" style="display:none; float:left;" required>
-						<div style="width:100%; float:left; font-size:12px;margin-top:5px;"><span style="display:inline-block; float:left;">이메일은 회원가입 인증을 위한 정보입니다.</span></div>
+						<input type="text" name="email3" id="email3" style="display:none; float:left;" required>
+						<div style="width:100%; float:left; font-size:12px;margin-top:5px;"><span style="display:inline-block; float:left;">이메일은 회원가입 인증을 위한 정보입니다. 정확히 기재해 주세요.</span></div>
 					</td>
-				</tr>				
-				<tr id="hide">
-					<td>변리사 번호</td>
-					<td><input type="text" name="license_number" id="license_number"></td>
-				</tr>				
+				</tr>
+				<c:choose>
+					<c:when test="${role=='lawyer'}">
+						<tr>
+							<td>변리사 번호</td>
+							<td><input type="text" name="license_number" id="license_number" value="${liNum}" readOnly style="background:#f1f1f1;"></td>
+						</tr>		
+					</c:when>
+					<c:otherwise>
+					</c:otherwise>
+				</c:choose>				
+								
 			</table>
 			<!-- <input type="submit" value="가입" id="submit"> -->
-			<input type="submit" value="가입" id="submit"></button>
+			<input type="submit" value="정보 수정" id="submit">
 		</form>
 	</div>
 	<c:import url="/WEB-INF/views/import/footer.jsp"/>
@@ -175,6 +171,16 @@ function readURL(input) {
 
       reader.readAsDataURL(input.files[0]);
     }
+}
+function changeEmail2(emailvalue){
+	if(emailvalue=="1"){
+		document.getElementById("email3").style.display="block";
+		document.editform.email3.value="";
+	}
+	else{
+		document.getElementById("email3").style.display="none";
+		document.editform.email3.value=emailvalue;
+	}
 }
 </script>
 </body>

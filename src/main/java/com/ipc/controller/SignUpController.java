@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
@@ -30,7 +31,12 @@ import com.ipc.vo.userVo;
 public class SignUpController {
 	@Autowired
 	UserDao usermapper;
-
+	@Autowired
+	HttpSession session;
+	private static final String roleAdmin = "ROLE_ADMIN";
+	private static final String roleInventor = "ROLE_INVENTOR";
+	private static final String rolePatientntLawyer = "ROLE_PATIENTENTLAWYER";
+	private static final String roleGuest = "anonymousUser";
 	@RequestMapping("/signupPage")
 	public String signupPage(Model model){
 		return "signup/signup";
@@ -121,7 +127,56 @@ public class SignUpController {
 	}
 	@RequestMapping(value="/editUser")
 	public String editUser(Model model){
-		
+		userVo currentUser = (userVo) session.getAttribute("currentUser");
+		if(currentUser.getRole().equals(roleInventor)){
+			model.addAttribute("uv",currentUser); 
+			model.addAttribute("role","inventor");                                                                                                                                      
+		}                                
+		else if(currentUser.getRole().equals(rolePatientntLawyer)){
+			model.addAttribute("uv",currentUser); 
+			model.addAttribute("role","lawyer");
+			String num=usermapper.getLicense_numberByUid(currentUser.getUid());
+			model.addAttribute("liNum",num);
+		}
 		return "signup/EditUser";
+	}
+	@RequestMapping(value="/editinput",method=RequestMethod.POST)
+	public String editinput(HttpServletRequest request) throws IOException{
+		userVo currentUser = (userVo) session.getAttribute("currentUser");
+		HashMap<String,String> map = new HashMap<String,String>();
+		String pw=request.getParameter("pw");
+		String email = request.getParameter("email1") + request.getParameter("email3");
+		String role=request.getParameter("role");
+		map.put("uid", Integer.toString(currentUser.getUid()));
+		map.put("pw", pw);
+		map.put("email",email);
+		map.put("role", role);
+		if(role.equals("lawyer")){
+			String license_number=request.getParameter("license_number");
+			map.put("license_number", license_number);
+		}
+		usermapper.editinput(map);
+		MultipartHttpServletRequest multipartRequest =  (MultipartHttpServletRequest)request;  //다중파일 업로드
+		List<MultipartFile> files = multipartRequest.getFiles("profileImg");
+		
+		int pathPoint = files.get(0).getOriginalFilename().trim().lastIndexOf(".");
+		String filePoint = files.get(0).getOriginalFilename().trim().substring(pathPoint + 1,
+				files.get(0).getOriginalFilename().trim().length());
+		String fileType = filePoint.toLowerCase();
+		System.out.println(fileType);
+		if(fileType.equals("")){
+			return "redirect:/mainPage";
+		}
+		HashMap<String,String> map2=new HashMap<String,String>();
+		userVo uv=usermapper.getUserByUid(Integer.toString(currentUser.getUid()));
+		File file=new File("../Idea-Protection-Center/src/main/webapp/"+uv.getProfileimg());
+		file.delete();
+		SignUpService ss=new SignUpService();
+		String root_path=request.getSession().getServletContext().getRealPath("/");
+		ss.makeimageFile(files.get(0),currentUser.getId(),role,root_path);
+		map2.put("uid", Integer.toString(currentUser.getUid()));
+		map2.put("url", "/resources/uploadimgs/profileImg/"+currentUser.getId()+"."+fileType);
+		usermapper.updateProfileImg(map2);
+		return "redirect:/mainPage";
 	}
 }
