@@ -110,7 +110,7 @@ body{
        	<img src="/resources/image/close.png" alt="close" class="popup_close" id="close">
     </div>
     <div class="pop_cont" id="pop_cont1">            
-       	아이디는 <span id="data_id"></span> 입니다
+       	<span id="isnull">아이디는 <span id="data_id"></span> 입니다</span>
     </div>
     <div class="pop_cont" id="pop_cont2">            
        	
@@ -175,6 +175,10 @@ body{
 			success : function(data) {		
 				//data.id
 				$("#pop_cont1").css("display","block");
+				if(data.id==null){
+					$("#isnull").text("존재하지 않는 계정입니다.");
+				}
+				
 				$("#data_id").text(data.id);
 			},
 			error : function(request, status, error) {
