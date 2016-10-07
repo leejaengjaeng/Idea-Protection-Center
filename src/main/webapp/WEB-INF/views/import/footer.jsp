@@ -23,19 +23,18 @@
     <div id="footer_fill">
         <div id="footer_wrap">
             <div id="footer_left">
-            <!-- 
+             
                 <ul>                        
                    <li><a href="#">이용안내</a> &nbsp;| </li> 
                    <li><a href="#">오시는 길</a> &nbsp;| </li> 
-                   <li><a href="#">상담예약</a> &nbsp;| </li> 
-                   <li><a href="#">워크샵 안내</a></li> 
+                   <li><a href="#">상담예약</a> &nbsp;</li> 
                 </ul><br>
                 <ul id="small_ul">                        
-                   <li><a href="#">이용약관</a> &nbsp;| </li> 
-                   <li><a href="#">개인정보 보호방침</a> &nbsp;| </li> 
-                   <li><a href="#">이메일 수집거부</a></li> 
+                   <li><a href="/role">이용약관</a> &nbsp;| </li> 
+                   <li><a href="/role">개인정보 보호방침</a> &nbsp;| </li> 
+                   <li><a href="/role">이메일 수집거부</a></li> 
                 </ul><br>
-                 -->
+                
                 <span>
                     COPYRIGHT 2016 @ IDEAPROTECTIONCENTER ALL RIGHTS RESERVED
                 </span>                   
