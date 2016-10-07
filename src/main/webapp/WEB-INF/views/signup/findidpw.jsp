@@ -24,9 +24,9 @@
             <div class="half">
                 <div>
                     <h3 style="margin-top:50px; color:#555;">아이디 찾기 </h3>
-                    <form>
-                        <input placeholder="이름">
-                        <input placeholder="이메일">
+                    <form action>
+                        <input name="nameLostId"  placeholder="이름">
+                        <input name="emailLostId" placeholder="이메일">
                         <button>아이디찾기</button>
                     </form>
                     
@@ -36,8 +36,8 @@
                 <div>                                        
                     <h3 style="margin-top:50px; color:#555;">비밀번호 찾기 </h3>
                     <form>
-                        <input placeholder="아이디">
-                        <input placeholder="이메일">
+                        <input name="nameLostPw"  placeholder="아이디">
+                        <input name="emailLostPw" placeholder="이메일">
                         <button>비밀번호찾기</button>
                     </form>
                 </div>

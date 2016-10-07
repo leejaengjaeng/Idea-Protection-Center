@@ -179,4 +179,8 @@ public class SignUpController {
 		usermapper.updateProfileImg(map2);
 		return "redirect:/mainPage";
 	}
+	@RequestMapping(value="/findAccount")
+	public String findAccount(){
+		return "signup/findidpw";
+	}
 }
