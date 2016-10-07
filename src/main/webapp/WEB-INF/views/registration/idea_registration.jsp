@@ -278,7 +278,7 @@ function formSubmit(file){
     				<td style="width:30px;">${status.count }</td>
     				<td>${list.getTitle()}</td>
     				<td>${list.getRegistration_date() }</td> 
-    				<td style="width:100px;"><button style="background:#45d4fe;" onclick="loadTempIdea(${list.getRid()})">불러오기</button></td>
+    				<td style="width:100px;"><button style="background:#45d4fe;" onclick="loadTempIdea(${list.getRid()})" id="load_data">불러오기</button></td>
     				<td style="width:100px;"><button style="background:#e9e9e9; color:#333;" onclick="removeTempIdea(${list.getRid()})">삭제하기</button></td>
 
     			</tr>
@@ -442,7 +442,7 @@ function formSubmit(file){
     </div>    
 <c:import url="/WEB-INF/views/import/footer.jsp"/>
 <script>
-$(".popup_close").click(function(){
+$(".popup_close, #load_data").click(function(){
 	$("body").css("overflow","auto");	
 });
 </script>

@@ -5,610 +5,667 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
 <meta name="_csrf" content="${_csrf.token}" />
 <meta name="_csrf_header" content="${_csrf.headerName}" />
 <script src="/resources/common/js/jquery-3.1.0.min.js"></script>
-<link rel="stylesheet" href="/resources/common/css/style.css"> 
+
+<link rel="stylesheet" href="/resources/common/css/style.css">
 <link rel="stylesheet" href="/resources/common/css/index.css">
 <title>Insert title here</title>
 <script>
-function changeEmail(emailvalue){
-	if(emailvalue=="1"){
-		document.getElementById("email2").style.display="block";
-		document.signupform.email2.value="";
+	function changeEmail(emailvalue) {
+		if (emailvalue == "1") {
+			document.getElementById("email2").style.display = "block";
+			document.signupform.email2.value = "";
+		} else {
+			document.getElementById("email2").style.display = "none";
+			document.signupform.email2.value = emailvalue;
+		}
 	}
-	else{
-		document.getElementById("email2").style.display="none";
-		document.signupform.email2.value=emailvalue;
-	}
-}
-function checkid(){
-	
-	//var id = document.getElementById("id").value;
-	var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
-	var csrfToken = $("meta[name='_csrf']").attr("content"); 
-	var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
-    var id = document.getElementById("id").value; 
-    var data = {};
-	var headers = {};
-    data[csrfParameter] = csrfToken;
-    data["id"] = id;
-    headers[csrfHeader] = csrfToken; 
-	$.ajax({
-	    url : "/signup/checkid",
-	    dataType : "json",
-	    type : "POST",
-	    headers: headers,
-	    data : data,
-	    success: function(data) {
-	        //alert("성공:"+data.KEY);
-	        if (data.KEY=="YES"){
-	        	//document.signupform.id.readOnly=true;
-	        	var q=confirm(id+"는 사용할 수 있는 아이디 입니다. 사용하시겠습니까?")
-	        	if(q==true){
-	        		document.signupform.id.readOnly=true;
-	        	}
-	        	else{
-	        		document.getElementById("id").value="";
-	        	}
-	        }
-	        else{
-	        	document.getElementById("id").value="";
-	        	alert("중복된 아이디 입니다.");
-	        }
-	        
-	    },
-	    error:function(request,status,error){
-	        alert("code:"+request.status+"\n"+"error:"+error);
-	    }
-	 
-	}); 
-}
-function checkpwd(){
-	var pwd=document.getElementById("pw").value;
-	var repwd=document.getElementById("repw").value;
-	if(pwd==repwd){
-		document.getElementById("checkpassword").innerHTML="<b>비밀번호가 일치합니다</b>"
-	}
-	else{
-		document.getElementById("checkpassword").innerHTML="<b>비밀번호가 일치하지않습니다</b>"
-	}
-}
-function changerole(inputvalue){
-	document.getElementById("role").value=inputvalue;
-	//alert(document.getElementById("role").value);
-	
-}
-function execute(){
-	var pwd=document.getElementById("password");
-	var repwd=document.getElementById("repassword");
-	var id=document.getElementById("id");
-	var email=document.getElementById("email1");
-	if(pwd.value!=repwd.value){
-		alert("비밀번호가 일치하지 않습니다.");
-		pwd.value="";
-		repwd.value="";
-		pwd.focus();
-		return false;
-	}
-	if(id.readOnly==false){
-		alert("아이디 중복확인을 해주세요");
-		return false;
-	}
-	if(id.value==""){
-		alert("아이디를 입력하세요");
-		return false;
-	}
-	return true;
-}
+	function checkid() {
 
+		//var id = document.getElementById("id").value;
+		var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+		var csrfToken = $("meta[name='_csrf']").attr("content");
+		var csrfHeader = $("meta[name='_csrf_header']").attr("content"); // THIS WAS ADDED
+		var id = document.getElementById("id").value;
+		var data = {};
+		var headers = {};
+		data[csrfParameter] = csrfToken;
+		data["id"] = id;
+		headers[csrfHeader] = csrfToken;
+		$.ajax({
+			url : "/signup/checkid",
+			dataType : "json",
+			type : "POST",
+			headers : headers,
+			data : data,
+			success : function(data) {
+				//alert("성공:"+data.KEY);
+				if (data.KEY == "YES") {
+					//document.signupform.id.readOnly=true;
+					var q = confirm(id + "는 사용할 수 있는 아이디 입니다. 사용하시겠습니까?")
+					if (q == true) {
+						document.signupform.id.readOnly = true;
+					} else {
+						document.getElementById("id").value = "";
+					}
+				} else {
+					document.getElementById("id").value = "";
+					alert("중복된 아이디 입니다.");
+				}
+
+			},
+			error : function(request, status, error) {
+				alert("code:" + request.status + "\n" + "error:" + error);
+			}
+
+		});
+	}
+	function checkpwd() {
+		var pwd = document.getElementById("pw").value;
+		var repwd = document.getElementById("repw").value;
+		if (pwd == repwd) {
+			document.getElementById("checkpassword").innerHTML = "<b>비밀번호가 일치합니다</b>"
+		} else {
+			document.getElementById("checkpassword").innerHTML = "<b>비밀번호가 일치하지않습니다</b>"
+		}
+	}
+	function changerole(inputvalue) {
+		document.getElementById("role").value = inputvalue;
+		//alert(document.getElementById("role").value);
+
+	}
+	function execute() {
+		var pwd = document.getElementById("password");
+		var repwd = document.getElementById("repassword");
+		var id = document.getElementById("id");
+		var email = document.getElementById("email1");
+		if (pwd.value != repwd.value) {
+			alert("비밀번호가 일치하지 않습니다.");
+			pwd.value = "";
+			repwd.value = "";
+			pwd.focus();
+			return false;
+		}
+		if (id.readOnly == false) {
+			alert("아이디 중복확인을 해주세요");
+			return false;
+		}
+		if (id.value == "") {
+			alert("아이디를 입력하세요");
+			return false;
+		}
+		return true;
+	}
 </script>
 <style>
-body{
-    height: 100% !important;    
-    overflow: hidden;    
+body {
+	height: 100% !important;
 }
-.black_wall{
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.7);
-    position:fixed;    
-    z-index:98;
-}    
-    .popup{
-        width: 1000px;
-        min-height: 200px;
-        background:#fff;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%,-50%);
-        -moz-transform: translate(-50%,-50%);
-        -webkit-transform: translate(-50%,-50%);
-        box-shadow: 0 0 30px #000;                
-        position: fixed;        
-        z-index: 99;
-        border-radius: 4px;
-        background: #f9f9f9;
-    }
-    .pop_header{
-        width: 100%;
-        float: left;
-        background: #696969;
-        color: white;
-        padding: 10px;    
-        box-shadow:0 0 5px 0 #000;
-    }
-    .pop_header>h2{
-        display: block;
-        float: left;
-        font-size: 1rem;
-        margin: 5px;
-    }
-    .pop_header>img{
-        width: 25px;
-        float: right;
-    }
-    .pop_cont{
-        width: 100%;
-        float: left;
-        text-align: left;
-        padding: 25px;
-        padding-top: 30px;
-        
-		
-    }
-    .pop_cont>span{
-        color: #595959;
-        font-size: 0.9;
-        display: inline-block;
-        width: 100%;
-    }
-    .pop_cont button{
-        width: 80px; 
-        height: 30px;            
-        background: #888;
-        border: none;
-        box-shadow: inset 0 -4px rgba(0, 0, 0, .1);
-        color: white;        
-    }
-    .popup_close{
-        cursor: pointer;
-    }
-    .pop_cont table{
-   		margin-top:20px;
-   		font-size:14px;
-   		border-top:1px solid #ccc;
-   }
-   .pop_cont table td{   		   		
-   		height:50px;   		
-   		border-bottom:1px solid #ccc;
-   		border-collapse: collapse;
-   		border-top:none;
-   }
- 
+
+.black_wall {
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.7);
+	position: fixed;
+	z-index: 98;
+}
+
+.popup {
+	width: 1000px;
+	min-height: 200px;
+	background: #fff;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+	box-shadow: 0 0 30px #000;
+	position: fixed;
+	z-index: 99;
+	border-radius: 4px;
+	background: #f9f9f9;
+}
+
+.pop_header {
+	width: 100%;
+	float: left;
+	background: #696969;
+	color: white;
+	padding: 10px;
+	box-shadow: 0 0 5px 0 #000;
+}
+
+.pop_header>h2 {
+	display: block;
+	float: left;
+	font-size: 1rem;
+	margin: 5px;
+}
+
+.pop_header>img {
+	width: 25px;
+	float: right;
+}
+
+.pop_cont {
+	width: 100%;
+	float: left;
+	text-align: left;
+	padding: 25px;
+	padding-top: 30px;
+}
+
+.pop_cont>span {
+	color: #595959;
+	font-size: 0.9;
+	display: inline-block;
+	width: 100%;
+}
+
+.pop_cont button {
+	width: 80px;
+	height: 30px;
+	background: #888;
+	border: none;
+	box-shadow: inset 0 -4px rgba(0, 0, 0, .1);
+	color: white;
+}
+
+.popup_close {
+	cursor: pointer;
+}
+
+.pop_cont table {
+	margin-top: 20px;
+	font-size: 14px;
+	border-top: 1px solid #ccc;
+}
+
+.pop_cont table td {
+	height: 50px;
+	border-bottom: 1px solid #ccc;
+	border-collapse: collapse;
+	border-top: none;
+}
 </style>
 </head>
 <body>
-<div class="black_wall" id="bw"></div>
-<div class="popup" id="pp">   	
-    <div class="pop_cont">
-    	<span style="display: inline-block; margin-bottom:10px;">서비스 약관 및 정책</span>    
-		<div id="ContentsWrap">
-            <h3>제 1 장 총 칙</h3>
-            <span class="tit">제1조 목적</span><br>
-            <p>
-                본 약관은 서비스 이용자가 아이디어보호센터 (이하 “회사”라 합니다)가 제공하는 온라인상의 인터넷 서비스(이하 “서비스”라고 하며, 접속 가능한 유∙무선 단말기의 종류와는 상관없이 이용 가능한 “회사”가 제공하는 모든 “서비스”를 의미합니다. 이하 같습니다)에 회원으로 가입하고 이를 이용함에 있어 회사와 회원(본 약관에 동의하고 회원등록을 완료한 서비스 이용자를 말합니다. 이하 “회원”이라고 합니다)의 권리•의무 및 책임사항을 규정함을 목적으로 합니다.
-            </p>
-            <span class="tit">제 2 조 (약관의 명시, 효력 및 개정)</span>
-            <ol class="list_terms">
-                <li>
-                    <span class="txt_num">①</span>
-                    <p class="txt_clause">회사는 이 약관의 내용을 회원이 쉽게 알 수 있도록 서비스 초기 화면에 게시합니다.</p>
-                </li>
-                <li>
-                    <span class="txt_num">②</span>
-                    <p class="txt_clause">회사는 온라인 디지털콘텐츠산업 발전법, 전자상거래 등에서의 소비자보호에 관한 법률, 약관의 규제에 관한 법률, 소비자기본법 등 관련법을 위배하지 않는 범위에서 이 약관을 개정할 수 있습니다.</p>
-                </li>
-                <li>
-                    <span class="txt_num">③</span>
-                    <p class="txt_clause">회사가 약관을 개정할 경우에는 기존약관과 개정약관 및 개정약관의 적용일자와 개정사유를 명시하여 현행약관과 함께 그 적용일자 일십오(15)일 전부터 적용일 이후 상당한 기간 동안, 개정 내용이 회원에게 불리한 경우에는 그 적용일자 삼십(30)일 전부터 적용일 이후 상당한 기간 동안 각각 이를 서비스 홈페이지에 공지하고 기존 회원에게는 회사가 부여한 이메일 주소로 개정약관을 발송하여 고지합니다.</p>
-                </li>
-                <li>
-                    <span class="txt_num">④</span>
-                    <p class="txt_clause">회사가 전항에 따라 회원에게 통지하면서 공지∙고지일로부터 개정약관 시행일 7일 후까지 거부의사를 표시하지 아니하면 승인한 것으로 본다는 뜻을 명확하게 고지하였음에도 의사표시가 없는 경우에는 변경된 약관을 승인한 것으로 봅니다. 회원이 개정약관에 동의하지 않을 경우 회원은 제17조 제1항의 규정에 따라 이용계약을 해지할 수 있습니다.</p>
-                </li>
-            </ol>
-            <h3>제2장 회원의 가입 및 관리</h3>
-            <span class="tit">제 3 조 (회원가입절차)</span>
-            <ol class="list_terms">
-                <li>
-                    <span class="txt_num">①</span>
-                    <p class="txt_clause">서비스 이용자가 본 약관을 읽고 “동의” 버튼을 누르거나 “확인” 등에 체크하는 방법을 취한 경우 본 약관에 동의한 것으로 간주합니다.</p>
-                </li>
-                <li>
-                    <span class="txt_num">②</span>
-                    <p class="txt_clause">회사의 서비스 이용을 위한 회원가입은 서비스 이용자가 제1항과 같이 동의한 후, 회사가 정한 온라인 회원가입 신청서에 회원 ID를 포함한 필수사항을 입력하고, “등록하기” 내지 “확인” 단추를 누르는 방법으로 합니다. 다만, 회사가 필요하다고 인정하는 경우 회원에게 별도의 서류를 제출하도록 할 수 있습니다.</p>
-                </li>
-                <li>
-                    <span class="txt_num">③</span>
-                    <p class="txt_clause">법인고객 회원가입의 경우 회원가입 신청서의 제출, 서비스 이용대금의 납부 이외에 회사가 정하는 추가 서류의 제출이 추가적으로 필요합니다.</p>
-                </li>
-                <li>
-                    <span class="txt_num">④</span>
-                    <p class="txt_clause">법인고객 회원가입의 경우 서비스 이용자와 이용요금 납입자가 다를 경우 회사는 이를 확인하기 위하여 제 증명을 요구할 수 있습니다.</p>
-                </li>
-            </ol>
-            <span class="tit">제 4 조 (회원등록의 성립과 유보 및 거절)</span>
-            <ol class="list_terms">
-                <li>
-                    <span class="txt_num">①</span>
-                    <p class="txt_clause">회원등록은 제3조에 정한 절차에 의한 서비스 이용자의 회원가입 신청과 회사의 회원등록 승낙에 의하여 성립합니다. 회사는 회원가입 신청자가 필수사항 등을 성실히 입력하여 가입신청을 완료하였을 때에는 필요한 사항을 확인한 후 지체 없이 이를 승낙을 하여야 합니다. 단 회원가입 신청서 제출 이외에 별도의 자료 제출이 요구되는 경우에는 예외로 합니다.</p>
-                </li>
-                <li>
-                    <span class="txt_num">②</span>
-                    <p class="txt_clause">회사는 아래 각 호의 1에 해당하는 경우에는 회원등록의 승낙을 유보할 수 있습니다.</p>
-                    <ol class="list_2depth">
-                        <li>1. 제공서비스 설비용량에 현실적인 여유가 없는 경우</li>
-                        <li>2. 서비스를 제공하기에는 기술적으로 문제가 있다고 판단되는 경우</li>
-                        <li>3. 법인 고객으로 가입신청을 하고 제3조 제3항 내지 제4항의 의무를 이행하지 않은 경우</li>
-                        <li>4. 기타 회사가 재정적, 기술적으로 필요하다고 인정하는 경우</li>
-                    </ol>
-                </li>
-                <li>
-                    <span class="txt_num">③</span>
-                    <p class="txt_clause">회사는 아래 각 호의 1에 해당하는 경우에는 회원등록을 거절할 수 있습니다.</p>
-                    <ol class="list_2depth">
-                        <li>1. 가입신청서의 내용을 허위로 기재하였거나 허위서류를 첨부하여 가입신청을 하는 경우</li>
-                        <li>2. 법인 고객으로 가입신청을 하고 회사가 별도로 규정하는 일정한 기간 이내에 제3조 제3항 내지 제4항의 의무를 이행하지 않은 경우</li>
-                        <li>3. 14세 미만의 아동이 개인정보제공에 대한 동의를 부모 등 법정대리인으로부터 받지 않은 경우</li>
-                        <li>4. 기타 회사가 관련법령 등을 기준으로 하여 명백하게 사회질서 및 미풍양속에 반할 우려가 있음을 인정하는 경우</li>
-                        <li>5. 제17조 제2항에 의하여 회사가 계약을 해지했던 회원이 다시 회원 신청을 하는 경우</li>
-                    </ol>
-                </li>
-            </ol>
-            <span class="tit">제 5 조 (회원 ID 등의 관리책임)</span>
-            <ol class="list_terms">
-                <li>
-                    <span class="txt_num">①</span>
-                    <p class="txt_clause">회원은 서비스 이용을 위한 회원 ID, 비밀번호의 관리에 대한 책임, 본인 ID의 제3자에 의한 부정사용 등 회원의 고의∙과실로 인해 발생하는 모든 불이익에 대한 책임을 부담합니다. 단, 이것이 회사의 고의∙과실로 인하여 야기된 경우는 회사가 책임을 부담합니다.</p>
-                </li>
-                <li>
-                    <span class="txt_num">②</span>
-                    <p class="txt_clause">회원은 회원 ID, 비밀번호 및 추가정보 등을 도난 당하거나 제3자가 사용하고 있음을 인지한 경우에는 즉시 본인의 비밀번호를 수정하는 등의 조치를 취하여야 하며 즉시 이를 회사에 통보하여 회사의 안내를 따라야 합니다.</p>
-                </li>
-            </ol>
-            <span class="tit">제 6 조 (개인정보의 수집 등)</span>
-            <p>회사는 서비스를 제공하기 위하여 관련 법령의 규정에 따라 회원으로부터 필요한 개인정보를 수집합니다.</p>
-            <span class="tit">제 7 조 (회원정보의 변경)</span>
-            <p>회원은 아래 각 호의 1에 해당하는 사항이 변경되었을 경우 즉시 회원정보 관리페이지에서 이를 변경하여야 합니다. 이 경우 회사는 회원이 회원정보를 변경하지 아니하여 발생한 손해에 대하여 책임을 부담하지 아니하며, 법인 회원의 경우에는 회사가 별도로 정하는 방법으로 변경할 수 있습니다.</p>
-            <ol class="list_2depth">
-                <li>1. 생년월일, 거주지역 및 연락처 등</li>
-                <li>2. 우편/경품 수신 주소, 취미•관심사 등</li>
-                <li>3. 서비스별 뉴스레터 수신 여부 등</li>
-                <li>4. 기타 회사가 인정하는 사항</li>
-            </ol>
-            <h3>제3장 서비스의 이용</h3>
-            <span class="tit">제 8 조 (서비스 이용)</span>
-            <ol class="list_terms">
-                <li>
-                    <span class="txt_num">①</span>
-                    <p class="txt_clause">서비스 이용은 회사의 서비스 사용승낙 직후부터 가능합니다. 다만, 유료 서비스의 경우 회사가 요금납입을 확인한 직후부터 가능하게 할 수 있습니다.</p>
-                </li>
-                <li>
-                    <span class="txt_num">②</span>
-                    <p class="txt_clause">민법상 미성년자인 회원이 유료 서비스를 이용할 경우 미성년자인 회원은 결제 전 법정대리인의 동의를 얻어야 합니다.</p>
-                </li>
-                <li>
-                    <span class="txt_num">③</span>
-                    <p class="txt_clause">서비스 이용시간은 회사의 업무상 또는 기술상 불가능한 경우를 제외하고는 연중무휴 1일 24시간(00:00-24:00)으로 함을 원칙으로 합니다. 다만, 서비스설비의 정기점검 등의 사유로 회사가 서비스를 특정범위로 분할하여 별도로 날짜와 시간을 정할 수 있습니다.</p>
-                </li>
-            </ol>
-            <span class="tit">제 9 조 (서비스내용변경 통지 등)</span>
-            <ol class="list_terms">
-                <li>
-                    <span class="txt_num">①</span>
-                    <p class="txt_clause">회사가 서비스 제공을 위해 계약한 CP(Contents Provider)와의 계약종료, CP의 변경, 신규서비스의 개시 등의 사유로 서비스 내용이 변경되거나 서비스가 종료되는 경우 회사는 회원의 등록된 전자우편 주소로 이메일을 통하여 서비스 내용의 변경 사항 또는 종료를 통지할 수 있습니다.</p>
-                </li>
-                <li>
-                    <span class="txt_num">②</span>
-                    <p class="txt_clause">전항의 경우 불특정 다수인을 상대로 통지를 함에 있어서는 웹사이트 기타 회사의 공지사항 페이지를 통하여 회원들에게 통지할 수 있습니다. 단, 회원 본인의 거래와 관련하여 중대한 영향을 미치는 사항은 상당한 기간 동안 게시판을 통해 이를 공지하고 회사가 부여한 이메일 주소로 개별통지 합니다.</p>
-                </li>
-                <li>
-                    <span class="txt_num">③</span>
-                    <p class="txt_clause">유료 서비스가 종료되는 경우에는 서비스를 이용하는 회원에게 반드시 제1항의 규정에 따라 이메일을 통하여 이를 고지하며 제16조 제4항의 규정에 따라 환불 처리합니다.</p>
-                </li>
-            </ol>
-            <span class="tit">제 10 조 (권리의 귀속 및 저작물의 이용)</span>
-            <ol class="list_terms">
-                <li>
-                    <span class="txt_num">①</span>
-                    <p class="txt_clause">회원이 서비스 내에 게시한 게시물 등(이하 "게시물 등"이라 합니다)의 저작권은 해당 게시물의 저작자에게 귀속됩니다.</p>
-                </li>
-                <li>
-                    <span class="txt_num">②</span>
-                    <p class="txt_clause">게시물 등은 회사가 운영하는 인터넷 사이트 및 모바일 어플리케이션을 통해 노출될 수 있으며, 검색결과 내지 관련 프로모션 등에도 노출될 수 있습니다. 해당 노출을 위해 필요한 범위 내에서는 일부 수정, 복제, 편집되어 게시될 수 있습니다. 이 경우, 회사는 저작권법 규정을 준수하며, 회원은 언제든지 고객센터 또는 각 서비스 내 관리기능을 통해 해당 게시물 등에 대해 삭제, 검색결과 제외, 비공개 등의 조치를 취할 수 있습니다.</p>
-                </li>
-                <li>
-                    <span class="txt_num">③</span>
-                    <p class="txt_clause">회사는 제2항 이외의 방법으로 회원의 게시물 등을 이용하고자 하는 경우에는 전화, 팩스, 전자우편 등을 통해 사전에 회원의 동의를 얻습니다. </p>
-                </li>
-            </ol>
-            <span class="tit">제 11 조 (서비스 이용의 제한 및 중지)</span>
-            <ol class="list_terms">
-                <li>
-                    <span class="txt_num">①</span>
-                    <p class="txt_clause">회사는 아래 각 호의 1에 해당하는 사유가 발생한 경우에는 회원의 서비스 이용을 제한하거나 중지시킬 수 있습니다.</p>
-                    <ol class="list_2depth">
-                        <li>1. 회원이 회사 서비스의 운영을 고의∙과실로 방해하는 경우</li>
-                        <li>2. 회원이 제13조의 의무를 위반한 경우</li>
-                        <li>3. 서비스용 설비 점검, 보수 또는 공사로 인하여 부득이한 경우</li>
-                        <li>4. 전기통신사업법에 규정된 기간통신사업자가 전기통신 서비스를 중지했을 경우</li>
-                        <li>5. 국가비상사태, 서비스 설비의 장애 또는 서비스 이용의 폭주 등으로 서비스 이용에 지장이 있는 때</li>
-                        <li>6. 기타 중대한 사유로 인하여 회사가 서비스 제공을 지속하는 것이 부적당하다고 인정하는 경우</li>
-                    </ol>
-                </li>
-                <li>
-                    <span class="txt_num">②</span>
-                    <p class="txt_clause">회사는 전항의 규정에 의하여 서비스의 이용을 제한하거나 중지한 때에는 그 사유 및 제한기간등을 회원에게 알려야 합니다.</p>
-                </li>
-                <li>
-                    <span class="txt_num">③</span>
-                    <p class="txt_clause">제17조 제2항에 의해 회사가 회원과의 계약을 해지하고 탈퇴시키기로 결정한 경우 회사는 회원의 탈퇴 처리 전에 이를 통지하고, 회원은 회사의 통지를 받은 날로부터 30일 이내에 이에 대한 항변의 기회를 가집니다.</p>
-                </li>
-                <li>
-                    <span class="txt_num">④</span>
-                    <p class="txt_clause">회원이 서비스를 이용하는 도중, 연속하여 삼(3)개월 동안 서비스를 이용하기 위해 log-in한 기록이 없는 경우, 회사는 당해 회원 "한메일넷 서비스"의 전자우편 수신을 제한할 수 있습니다.</p>
-                </li>
-                <li>
-                    <span class="txt_num">⑤</span>
-                    <p class="txt_clause">정보통신망 이용촉진 및 정보보호 등에 관한 법률(이하 “정보통신망법”이라 합니다)의 규정에 의해 다른 회원의 공개된 게시물 등이 본인의 사생활을 침해하거나 명예를 훼손하는 등 권리를 침해 받은 회원 또는 제3자(이하 “삭제 등 신청인”이라 합니다)는 그 침해사실을 소명하여 회사에 해당 게시물 등의 삭제 또는 반박 내용의 게재를 요청할 수 있습니다. 이 경우 회사는 해당 게시물 등의 권리 침해 여부를 판단할 수 없거나 당사자 간의 다툼이 예상되는 경우 해당 게시물 등에 대한 접근을 임시적으로 차단하는 조치(이하 “임시조치”라 합니다)를 최장 30일까지 취합니다.</p>
-                </li>
-                <li>
-                    <span class="txt_num">⑥</span>
-                    <p class="txt_clause">제5항에 의해 본인의 게시물 등이 임시조치된 회원(이하 “게시자”라 합니다)은 임시조치기간 중 회사에 해당 게시물 등을 복원해 줄 것을 요청(이하 “재게시 청구”라 합니다)할 수 있으며, 회사는 임시조치된 게시물의 명예훼손 등 판단에 대한 방송통신심의위원회 심의 요청에 대한 게시자 및 삭제 등 신청인의 동의가 있는 경우 게시자 및 삭제 등 신청인을 대리하여 이를 요청하고 동의가 없는 경우 회사가 이를 판단하여 게시물 등의 복원 여부를 결정합니다. 게시자의 재게시 청구가 있는 경우 임시조치 기간 내에 방송통신심의위원회 또는 회사의 결정이 있으면 그 결정에 따르고 그 결정이 임시조치 기간 내에 있지 않는 경우 해당 게시물 등은 임시조치 만료일 이후 복원됩니다. 재게시 청구가 없는 경우 해당 게시물 등은 임시조치 기간 만료 이후 삭제됩니다.</p>
-                </li>
-                <li>
-                    <span class="txt_num">⑦</span>
-                    <p class="txt_clause">회사는 서비스 내에 게시된 게시물 등이 사생활 침해 또는 명예훼손 등 제3자의 권리를 침해한다고 인정하는 경우 제5항에 따른 회원 또는 제3자의 신고가 없는 경우에도 임시조치(이하 “임의의 임시조치”라 합니다)를 취할 수 있습니다. 임의의 임시조치된 게시물의 처리 절차는 제5항 후단 및 제6항의 규정에 따릅니다.</p>
-                </li>
-                <li>
-                    <span class="txt_num">⑧</span>
-                    <p class="txt_clause">회원의 게시물 등으로 인한 법률상 이익 침해를 근거로, 다른 회원 또는 제3자가 회원 또는 회사를 대상으로 하여 민형사상의 법적 조치(예: 형사고소, 가처분 신청∙손해배상청구 등 민사소송의 제기)를 취하는 경우, 회사는 동 법적 조치의 결과인 법원의 확정판결이 있을 때까지 관련 게시물 등에 대한 접근을 잠정적으로 제한할 수 있습니다. 게시물 등의 접근 제한과 관련한 법적 조치의 소명, 법원의 확정 판결에 대한 소명 책임은 게시물 등에 대한 조치를 요청하는 자가 부담합니다.</p>
-                </li>
-            </ol>
-            <span class="tit">제 12 조 (회사의 의무)</span>
-            <ol class="list_terms">
-                <li>
-                    <span class="txt_num">①</span>
-                    <p class="txt_clause">회사는 회사의 서비스 제공 및 보안과 관련된 설비를 지속적이고 안정적인 서비스 제공에 적합하도록 유지, 점검 또는 복구 등의 조치를 성실히 이행하여야 합니다.</p>
-                </li>
-                <li>
-                    <span class="txt_num">②</span>
-                    <p class="txt_clause">회사는 회원이 수신 동의를 하지 않은 영리 목적의 광고성 전자우편, SMS 문자메시지 등을 발송하지 아니합니다.</p>
-                </li>
-                <li>
-                    <span class="txt_num">③</span>
-                    <p class="txt_clause">회사는 서비스의 제공과 관련하여 알게 된 회원의 개인정보를 본인의 승낙 없이 제3자에게 누설, 배포하지 않고, 이를 보호하기 위하여 노력합니다. 회원의 개인정보보호에 관한 기타의 사항은 정보통신망법 및 회사가 별도로 정한 “개인정보관리지침”에 따릅니다.</p>
-                </li>
-                <li>
-                    <span class="txt_num">④</span>
-                    <p class="txt_clause">회사가 제3자와의 서비스 제공계약 등을 체결하여 회원에게 서비스를 제공하는 경우 회사는 각 개별서비스에서 서비스의 제공을 위하여 제3자에게 제공되는 회원의 구체적인 회원정보를 명시하고 회원의 개별적이고 명시적인 동의를 받은 후 동의의 범위 내에서 해당 서비스의 제공 기간 동안에 한하여 회원의 개인정보를 제3자와 공유하는 등 관련 법령을 준수합니다.</p>
-                </li>
-            </ol>
-            <span class="tit">제 13 조 (회원의 의무)</span>
-            <ol class="list_terms">
-                <li>
-                    <span class="txt_num">①</span>
-                    <p class="txt_clause">회원은 아래 각 호의 1에 해당하는 행위를 하여서는 아니 됩니다.</p>
-                    <ol class="list_2depth">
-                        <li>1. 회원가입신청 또는 변경 시 허위내용을 등록하는 행위 </li>
-                        <li>2. 회사의 서비스에 게시된 정보를 변경하거나 서비스를 이용하여 얻은 정보를 회사의 사전 승낙 없이 영리 또는 비영리의 목적으로 복제, 출판, 방송 등에 사용하거나 제3자에게 제공하는 행위</li>
-                        <li>3. 회사가 제공하는 서비스를 이용하여 제3자에게 본인을 홍보할 기회를 제공 하거나 제3자의 홍보를 대행하는 등의 방법으로 금전을 수수하거나 서비스를 이용할 권리를 양도하고 이를 대가로 금전을 수수하는 행위</li>
-                        <li>4. 회사 기타 제3자에 대한 허위의 사실을 게재하거나 지적재산권을 침해하는 등 회사나 제3자의 권리를 침해하는 행위</li>
-                        <li>5. 다른 회원의 ID 및 비밀번호를 도용하여 부당하게 서비스를 이용하는 행위</li>
-                        <li>6. 타인의 계좌번호 및 신용카드번호 등 타인의 허락 없이 타인의 결제정보를 이용하여 회사의 유료서비스를 이용하는 행위</li>
-                        <li>7. 정크메일(junk mail), 스팸메일(spam mail), 행운의 편지(chain letters), 피라미드 조직에 가입할 것을 권유하는 메일, 외설 또는 폭력적인 메시지•화상•음성 등이 담긴 메일을 보내거나 기타 공서양속에 반하는 정보를 공개 또는 게시하는 행위 </li>
-                        <li>8. 정보통신망법 등 관련 법령에 의하여 그 전송 또는 게시가 금지되는 정보(컴퓨터 프로그램 등)를 전송하거나 게시하는 행위</li>
-                        <li>9. 청소년보호법에서 규정하는 청소년유해매체물을 게시하는 행위</li>
-                        <li>10. 공공질서 또는 미풍양속에 위배되는 내용의 정보, 문장, 도형, 음성 등을 유포하는 행위</li>
-                        <li>11. 회사의 직원이나 서비스의 관리자를 가장하거나 사칭하여 또는 타인의 명의를 모용하여 글을 게시하거나 메일을 발송하는 행위</li>
-                        <li>12. 컴퓨터 소프트웨어, 하드웨어, 전기통신 장비의 정상적인 가동을 방해, 파괴할 목적으로 고안된 소프트웨어 바이러스, 기타 다른 컴퓨터 코드, 파일, 프로그램을 포함하고 있는 자료를 게시하거나 전자우편으로 발송하는 행위</li>
-                        <li>13. 스토킹(stalking), 욕설, 채팅글 도배 등 다른 회원의 서비스 이용을 방해하는 행위</li>
-                        <li>14. 다른 회원의 개인정보를 그 동의 없이 수집, 저장, 공개하는 행위</li>
-                        <li>15. 불특정 다수의 회원을 대상으로 하여 광고 또는 선전을 게시하거나 스팸메일을 전송할 목적으로 회사에서 제공하는 프리미엄 메일 기타 서비스를 이용하여 영리활동을 하는 행위</li>
-                        <li>16. 회사가 제공하는 소프트웨어 등을 개작하거나 리버스 엔지니어링, 디컴파일, 디스어셈블 하는 행위</li>
-                        <li>17. 현행 법령, 회사가 제공하는 서비스에 정한 약관 기타 서비스 이용에 관한 규정을 위반하는 행위</li>
-                    </ol>
-                </li>
-                <li>
-                    <span class="txt_num">②</span>
-                    <p class="txt_clause">회사는 회원이 제1항의 행위를 하는 경우 해당 게시물 등을 삭제 또는 임시삭제할 수 있고 서비스의 이용을 제한하거나 일방적으로 본 계약을 해지할 수 있습니다.</p>
-                </li>
-                <li>
-                    <span class="txt_num">③</span>
-                    <p class="txt_clause">회사가 제공하는 서비스 중 관련 법령 등의 규정에 의하여 성인인증이 필요한 경우 회원은 해당 서비스를 이용하기 위하여 회사가 제공하는 방법에 따라 실명정보를 회사에 제공하여야 합니다.</p>
-                </li>
-            </ol>
-            <span class="tit">제 14 조 (양도금지)</span>
-            <p>회원의 서비스 받을 권리는 이를 양도 내지 증여하거나 질권의 목적으로 사용할 수 없습니다.</p>
-            <span class="tit">제 15 조 (이용요금의 납입)</span>
-            <ol class="list_terms">
-                <li>
-                    <span class="txt_num">①</span>
-                    <p class="txt_clause">회원은 회사가 제공하는 서비스 중 유료서비스를 이용하는 경우 이용대금을 납부한 후 서비스를 이용하는 것을 원칙으로 합니다.</p>
-                </li>
-                <li>
-                    <span class="txt_num">②</span>
-                    <p class="txt_clause">회사가 제공하는 유료서비스에 대한 이용요금의 결제 방법은 핸드폰결제, 신용카드결제, 일반전화결제, 계좌이체, 무통장입금, Daum캐쉬 결제 등이 있으며 각 유료서비스마다 결제 방법의 차이가 있을 수 있습니다.</p>
-                </li>
-                <li>
-                    <span class="txt_num">③</span>
-                    <p class="txt_clause">매월 정기적인 결제가 이루어지는 서비스의 경우 회원이 해당 서비스의 이용을 중단하고 정기 결제의 취소를 요청하지 않는 한 매월 결제가 이루어집니다.</p>
-                </li>
-                <li>
-                    <span class="txt_num">④</span>
-                    <p class="txt_clause">회사는 결제의 이행을 위하여 반드시 필요한 회원의 개인정보를 추가적으로 요구할 수 있으며, 회원은 회사가 요구하는 개인정보를 정확하게 제공하여야 합니다. 회사는 회원이 허위로 또는 부정확하게 제공한 개인정보로 인하여 회원에게 발생하는 손해에 대하여 회사의 고의∙과실이 없는 한 회원의 손해를 배상할 책임을 부담하지 않습니다.</p>
-                </li>
-            </ol>
-            <span class="tit">제 16 조 (이용요금의 환불 및 이의제기)</span>
-            <ol class="list_terms">
-                <li>
-                    <span class="txt_num">①</span>
-                    <p class="txt_clause">회원이 과오 납입한 요금에 대하여는 회사는 그 요금을 환불하여야 합니다.</p>
-                </li>
-                <li>
-                    <span class="txt_num">②</span>
-                    <p class="txt_clause">회원의 귀책사유로 이용요금을 환불하는 경우 일반적인 방법은 아래와 같습니다.</p>
-                    <ol class="list_2depth">
-                        <li>회사가 제공하는 유료서비스가 결제 후 1회의 이용만으로 서비스의 이용이나 구매가 완료되는 서비스인 경우 해당 서비스를 이용한 후에는 환불이 불가능합니다. 단, 1회의 구매 완료 후 그 사용기한이 무제한인 아바타, 배경음악, 스킨 등의 서비스는 구매 완료일로부터 1년 이내에만 환불이 가능하며 환불금액은 구입금액*(365-사용일수/365)로 합니다.</li>
-                        <li>회사가 제공하는 유료서비스가 결제 후 1개월(결제 기준) 이하로 지속되는 서비스인 경우 해지일로부터 이용일수에 해당하는 금액을 제외한 나머지 금액을 환불합니다. 본 항의 규정은 일(1)개월 단위로 매월 결제되는 서비스의 경우에도 적용됩니다.</li>
-                        <li>회사가 제공하는 유료서비스가 결제 후 1개월(결제 기준)을 초과하여 지속되는 서비스인 경우 해지일로부터 이용일수에 해당하는 금액과 총 남은 이용일수의 10%를 제외한 금액을 환불합니다. 단, 유료 서비스 이용 개시일로부터 7일 이내에 해지를 요구하는 경우 이용일수에 해당하는 금액만을 제외하고 환불합니다.</li>
-                    </ol>
-                </li>
-                <li>
-                    <span class="txt_num">③</span>
-                    <p class="txt_clause">제2항의 규정에도 불구하고 아래 각 호의 경우에는 회원이 결제한 전액을 환불합니다.</p>
-                    <ol class="list_2depth">
-                        <li>1. 회원이 결제를 완료한 후 서비스를 이용한 내역이 없는 경우</li>
-                        <li>2. 서비스 장애 또는 회사가 제시한 최소한의 기술사양을 충족하였음에도 불구하고 회사의 귀책사유로 서비스를 이용하지 못한 경우 </li>
-                        <li>3. 회원이 구매한 서비스가 제공되지 않은 경우</li>
-                        <li>4. 제공되는 서비스가 표시∙광고 등과 상이하거나 현저한 차이가 있는 경우</li>
-                        <li>5. 제공되는 서비스의 결함으로 서비스의 정상적인 이용이 현저히 불가능한 경우</li>
-                    </ol>
-                </li>
-                <li>
-                    <span class="txt_num">④</span>
-                    <p class="txt_clause">제3항 제2호의 사유 또는 서비스의 중단 등 회사의 귀책사유로 이용요금을 환불하는 경우 회사는 남은 유료서비스 이용일수에 해당하는 금액과 그 금액의 10%에 해당하는 금액을 추가적으로 회원에게 환불합니다. 단, 1회의 구매 완료 후 그 사용기한이 무제한인 아바타, 배경음악, 스킨 등의 서비스는 구매 완료일로부터 1년 이내일 경우에만 환불합니다.</p>
-                </li>
-                <li>
-                    <span class="txt_num">⑤</span>
-                    <p class="txt_clause">회원은 이용요금에 대하여 이의를 제기할 수 있습니다. 단, 이용요금에 관한 이의는 그 사유 발생을 안 날로부터 1월, 그 사유가 발생한 날로부터 3월 이내에 제기하여야 합니다.</p>
-                </li>
-                <li>
-                    <span class="txt_num">⑥</span>
-                    <p class="txt_clause">회원이 제13조의 규정을 위반하여 회사가 회원의 서비스 이용을 제한하거나 일방적으로 본 계약을 해지하는 경우 회사는 회원에게 대하여 일체의 환불을 하지 않습니다.</p>
-                </li>
-                <li>
-                    <span class="txt_num">⑦</span>
-                    <p class="txt_clause">전액 환불의 경우 회원이 해당 서비스의 이용을 위하여 이용한 결제수단으로 환불하는 것을 원칙으로 하나 이것이 불가능 하거나 서비스의 중도해지로 인한 부분 환불 등의 경우에는 회사가 정하는 별도의 방법으로 환불합니다.</p>
-                </li>
-                <li>
-                    <span class="txt_num">⑧</span>
-                    <p class="txt_clause">본 조의 규정에 의한 환불은 환불 의무가 발생한 날로부터 3영업일 이내에 하는 것으로 하며 환불이 지연되는 경우 지연이자율은 연리 11%로 합니다. 단, 환불에 회원의 협조가 필요한 경우에 회원의 귀책사유로 인한 환불 지연에 대해서는 지연이자를 지급하지 않습니다.</p>
-                </li>
-                <li>
-                    <span class="txt_num">⑨</span>
-                    <p class="txt_clause">환불에 소요되는 비용은 회원의 귀책사유로 인한 환불의 경우에는 회원이, 회사의 귀책사유로 인한 환불의 경우에는 회사가 각각 부담합니다.</p>
-                </li>
-            </ol>
-            <span class="tit">제 17 조 (이용계약의 해지)</span>
-            <ol class="list_terms">
-                <li>
-                    <span class="txt_num">①</span>
-                    <p class="txt_clause">회원이 서비스 이용계약을 해지하고자 하는 때에는 언제든지 회원정보관리에서 회사가 정한 절차에 따라 회원의 ID를 삭제하고 탈퇴할 수 있습니다.</p>
-                </li>
-                <li>
-                    <span class="txt_num">②</span>
-                    <p class="txt_clause">회원이 제13조의 규정을 위반한 경우 회사는 일방적으로 본 계약을 해지할 수 있고, 이로 인하여 서비스 운영에 손해가 발생한 경우 이에 대한 민, 형사상 책임도 물을 수 있습니다.</p>
-                </li>
-                <li>
-                    <span class="txt_num">③</span>
-                    <p class="txt_clause">회원이 서비스를 이용하는 도중, 연속하여 일(1)년 동안 서비스를 이용하기 위해 회사의 서비스에 log-in한 기록이 없는 경우 회사는 회원의 회원자격을 상실시킬 수 있습니다.</p>
-                </li>
-                <li>
-                    <span class="txt_num">④</span>
-                    <p class="txt_clause">유료서비스 이용계약의 해지는 회원의 서비스 해지신청 및 회사의 승낙에 의해 성립합니다. 회사가 승낙한 시점에 해지의 효과는 발생하며 환불할 금액이 있는 경우 환불도 이루어지게 됩니다. 환불에 대해서는 제16조의 규정을 따릅니다.</p>
-                </li>
-                <li>
-                    <span class="txt_num">⑤</span>
-                    <p class="txt_clause">각 개별 유료서비스에서 제4항의 규정과 다른 계약해지의 방법 및 효과를 개별 약관에서 규정하고 있는 경우 각 개별 유료서비스의 계약해지에 관해서는 당해 개별약관의 규정을 따릅니다. </p>
-                </li>
-                <li>
-                    <span class="txt_num">⑥</span>
-                    <p class="txt_clause">본 이용 계약이 해지된 경우 회원의 “게시물 등” 중 메일, 블로그 등과 같이 본인 계정에 등록된 ‘게시물 등’ 일체는 삭제됩니다만 다른 회원에 의해 스크랩되어 게시되거나 공용 게시판에 등록된 ‘게시물 등’은 삭제되지 않습니다.</p>
-                </li>
-            </ol>
-            <h3>제4장 기타</h3>
-            <span class="tit">제 18 조 (청소년 보호)</span>
-            <p>회사는 모든 연령대가 자유롭게 이용할 수 있는 공간으로써 유해 정보로부터 청소년을 보호하고 청소년의 안전한 인터넷 사용을 돕기 위해 정보통신망법에서 정한 청소년보호정책을 별도로 시행하고 있으며, 구체적인 내용은 서비스 초기 화면 등에서 확인할 수 있습니다.</p>
-            <span class="tit">제 19 조 (면책)</span>
-            <ol class="list_terms">
-                <li>
-                    <span class="txt_num">①</span>
-                    <p class="txt_clause">회사는 다음 각 호의 경우로 서비스를 제공할 수 없는 경우 이로 인하여 회원에게 발생한 손해에 대해서는 책임을 부담하지 않습니다.</p>
-                    <ol class="list_2depth">
-                        <li>1. 천재지변 또는 이에 준하는 불가항력의 상태가 있는 경우</li>
-                        <li>2. 서비스 제공을 위하여 회사와 서비스 제휴계약을 체결한 제3자의 고의적인 서비스 방해가 있는 경우</li>
-                        <li>3. 회원의 귀책사유로 서비스 이용에 장애가 있는 경우</li>
-                        <li>4. 제1호 내지 제3호를 제외한 기타 회사의 고의∙과실이 없는 사유로 인한 경우</li>
-                    </ol>
-                </li>
-                <li>
-                    <span class="txt_num">②</span>
-                    <p class="txt_clause">회사는 CP가 제공하거나 회원이 작성하는 등의 방법으로 서비스에 게재된 정보, 자료, 사실의 신뢰도, 정확성 등에 대해서는 보증을 하지 않으며 이로 인해 발생한 회원의 손해에 대하여는 책임을 부담하지 아니합니다.</p>
-                </li>
-            </ol>
-            <span class="tit">제 20 조 (분쟁의 해결)</span>
-            <p>본 약관은 대한민국법령에 의하여 규정되고 이행되며, 서비스 이용과 관련하여 회사와 회원간에 발생한 분쟁에 대해서는 민사소송법상의 주소지를 관할하는 법원을 합의관할로 합니다.</p>
-            <span class="tit">제 21 조 (규정의 준용)</span>
-            <p>본 약관에 명시되지 않은 사항에 대해서는 관련법령에 의하고, 법에 명시되지 않은 부분에 대하여는 관습에 의합니다.</p>
-            <span class="tit">부칙(2015. 6. 15)</span>
-            <p>본 약관은 2015년 6월 30일부터 적용됩니다.</p>                                  
-        </div>
- 		<span style="display: inline-block; margin-top:20px;">개인정보 이용약관</span>
-        <div id="ContentsWrap" style="margin-top:10px;">
-        	<p>본 사이트에 게시된 이메일 주소가 전자우편 수집 프로그램이나 그밖의 기술적 장치를 이용하여 무단으로 수집되는 것을 거부하며, 이를 위반시 정보통신망법에 의해 형사처벌됨을 유념하시기 바립니다.</p>
-            <span class="tit">이메일 개인정보 수집</span>
-            <ol class="list_terms">
-                <li>
-                    <span class="txt_num">①</span>
-                    <p class="txt_clause">정보통신망법 제 40조 2 (전자우편주소의 무단 수집행위 등 금지)</p>
-                    <ol class="list_2depth">
-                        <li>1. 누구든지 전자우편 주소의 수집을 거부하는 의사가 명시된 인터넷 홈페이지에서 자동으로 전자우편주소를 수집하는 프로그램 그밖의 기술적 장치를 이용하여 전자우편 주소를 수집하여서는 아니된다.</li>
-                        <li>2. 누구든지 제1항의 규정을 위반하여 수집된 전자우편주소를 판매 유통하여서는 아니된다.</li>
-                        <li>3. 누구든지 제1항 및 제2항의 규정에 의하여 수집 판매 및 유통이 금지된 전자우편 주소임을 알고 이를 정보전송에 이용하여서는 아니된다.</li>
-                    </ol>
-                </li>               
-            </ol>
-        </div>
-        <div style="width:100%; float:left;">        	
-        	<a href="/" style="float:left; text-decoration: none; margin-top:13px; font-size:14px;">메인으로 이동</a>
-        	<button style="float:right; margin-top:10px;" class="popup_close">동의</button>        	
-        </div>
-    </div>
-</div>
-	<c:import url="/WEB-INF/views/import/header.jsp"/>
-	<div id="wrap_form">
+	<c:import url="/WEB-INF/views/import/header.jsp" />
+	<div id="wrap_form">		
+		<div class="service_role">
+			<span class="role_title" style="margin-top:50px;">이용 약관 </span>
+			<div id="ContentsWrap">
+				<ul class="list-unstyled">
+					<li id="provision1"><h2>제 1 장 : 총 칙</h2>
+						<ul>
+							<li><h3>제 1조 (목적)</h3>
+								<p>이 약관은 아이디어보호센터(이하 "회사"라 한다)가 홈페이지(ideapc.org)에서 제공하는 모든
+									서비스(이하 "서비스"라 한다)의 이용조건 및 절차에 관한 사항을 규정함을 목적으로 합니다.</p></li>
+							<li><h3>제 2조 (정의)</h3>
+								<p>이 약관에서 사용하는 용어의 정의는 다음 각 호와 같습니다.</p>
+								<ul>
+									<li>이용자 - 본 약관에 따라 회사가 제공하는 서비스를 받는 자</li>
+									<li>이용계약 - 서비스 이용과 관련하여 회사와 이용자간에 체결하는 계약</li>
+									<li>가입 - 회사가 제공하는 신청서 양식에 해당 정보를 기입하고, 본 약관에 동의하여 서비스
+										이용계약을 완료시키는 행위</li>
+									<li>회원 - 당 사이트에 회원가입에 필요한 개인정보를 제공하여 회원 등록을 한 자</li>
+									<li>이용자번호(ID)- 회원 식별과 회원의 서비스 이용을 위하여 이용자가 선정하고 회사가 승인하는
+										영문자와 숫자의 조합</li>
+									<li>패스워드(PASSWORD) - 회원의 정보 보호를 위해 이용자 자신이 설정한 영문자와 숫자,
+										특수문자의 조합</li>
+									<li>이용해지 - 회사 또는 회원이 서비스 이용이후 그 이용계약을 종료시키는 의사표시										
+									</li>
+								</ul></li>
+							<li><h3>제3조(약관의 효력과 변경)</h3>
+								<p>
+									회원은 변경된 약관에 동의하지 않을 경우 회원 탈퇴(해지)를 요청할 수 있으며, 변경된 약관의 효력 발생일로부터
+									7일 이후에도 거부의사를 표시하지 아니하고 서비스를 계속 사용할 경우 약관의 변경 사항에 동의한 것으로
+									간주됩니다.<br> 이 약관의 서비스 화면에 게시하거나 공지사항 게시판 또는 기타의 방법으로 공지함으로써
+									효력이 발생됩니다.<br> 회사는 필요하다고 인정되는 경우 이 약관의 내용을 변경할 수 있으며, 변경된
+									약관은 서비스 화면에 공지하며, 공지후 7일 이후에도 거부의사를 표시하지 아니하고 서비스를 계속 사용할 경우
+									약관의 변경 사항에 동의한 것으로 간주됩니다.<br> 이용자가 변경된 약관에 동의하지 않는 경우 서비스
+									이용을 중단하고 본인의 회원등록을 취소할 수 있으며, 계속 사용하시는 경우에는 약관 변경에 동의한 것으로 간주되며
+									변경된 약관은 전항과 같은 방법으로 효력이 발생합니다.
+								</p></li>
+							<li><h3>제4조(준용규정)</h3>
+								<p>이 약관에 명시되지 않은 사항은 전기통신기본법, 전기통신사업법 및 기타 관련법령의 규정에 따릅니다</p></li>
+						</ul></li>
+					<li id="provision2"><h2>제2장 서비스 이용계약</h2>
+						<ul>
+							<li><h3>제5조(이용계약의 성립)</h3>
+								<p>이용계약은 이용자의 이용신청에 대한 회사의 승낙과 이용자의 약관 내용에 대한 동의로 성립됩니다.</p></li>
+							<li><h3>제6조(이용신청)</h3>
+								<p>이용신청은 서비스의 회원정보 화면에서 이용자가 회사에서 요구하는 가입신청서 양식에 개인의 신상정보를
+									기록하여 신청할 수 있습니다.</p></li>
+							<li><h3>제7조(이용신청의 승낙)</h3>
+								<ul>
+									<li>회원이 신청서의 모든 사항을 정확히 기재하여 이용신청을 하였을 경우에 특별한 사정이 없는 한
+										서비스 이용신청을 승낙합니다.</li>
+									<li>다음 각 호에 해당하는 경우에는 이용 승낙을 하지 않을 수 있습니다.
+										<ul>
+											<li>본인의 실명으로 신청하지 않았을 때</li>
+											<li>타인의 명의를 사용하여 신청하였을 때</li>
+											<li>이용신청의 내용을 허위로 기재한 경우</li>
+											<li>사회의 안녕 질서 또는 미풍양속을 저해할 목적으로 신청하였을 때</li>
+											<li>기타 회사가 정한 이용신청 요건에 미비 되었을 때</li>
+										</ul>
+									</li>
+								</ul></li>
+							<li><h3>제8조(계약사항의 변경)</h3>
+								<p>회원은 이용신청시 기재한 사항이 변경되었을 경우에는 수정하여야 하며, 수정하지 아니하여 발생하는 문제의
+									책임은 회원에게 있습니다.</p></li>
+						</ul></li>
+					<li id="provision3"><h2>제3장 계약당사자의 의무</h2>
+						<ul>
+							<li><h3>제9조(회사의 의무)</h3>
+								<p>회사는 서비스 제공과 관련해서 알고 있는 회원의 신상 정보를 본인의 승낙 없이 제3자에게 누설하거나
+									배포하지 않습니다. 단, 전기통신기본법 등 법률의 규정에 의해 국가기관의 요구가 있는 경우, 범죄에 대한 수사상의
+									목적이 있거나 또는 기타 관계법령에서 정한 절차에 의한 요청이 있을 경우에는 그러하지 아니합니다.</p></li>
+							<li><h3>제10조(회원의 의무)</h3>
+								<ol>
+									<li>회원은 서비스를 이용할 때 다음 각 호의 행위를 하지 않아야 합니다.
+										<ol>
+											<li>다른 회원의 ID를 부정하게 사용하는 행위</li>
+											<li>서비스에서 얻은 정보를 복제, 출판 또는 제3자에게 제공하는 행위</li>
+											<li>회사의 저작권, 제3자의 저작권 등 기타 권리를 침해하는 행위</li>
+											<li>공공질서 및 미풍양속에 위반되는 내용을 유포하는 행위</li>
+											<li>범죄와 결부된다고 객관적으로 판단되는 행위</li>
+											<li>기타 관계법령에 위반되는 행위</li>
+										</ol>
+									</li>
+									<li>회원은 서비스를 이용하여 영업활동을 할 수 없으며, 영업활동에 이용하여 발생한 결과에 대하여
+										회사는 책임을 지지 않습니다.</li>
+									<li>회원은 서비스의 이용권한, 기타 이용계약상 지위를 타인에게 양도하거나 증여할 수 없으며, 이를
+										담보로도 제공할 수 없습니다.</li>
+								</ol></li>
+						</ul></li>
+					<li id="provision4"><h2>제4장 서비스 이용</h2>
+						<ul>
+							<li><h3>제11조(회원의 의무)</h3>
+								<ol>
+									<li>회원은 필요에 따라 자신의 메일, 게시판, 등록자료 등 유지보수에 대한 관리책임을 갖습니다.</li>
+									<li>회원은 회사에서 제공하는 자료를 임의로 삭제, 변경할 수 없습니다.</li>
+									<li>회원은 회사의 홈페이지에 공공질서 및 미풍양속에 위반되는 내용물이나 제3자의 저작권 등 기타권리를
+										침해하는 내용물을 등록하는 행위를 하지 않아야 합니다. 만약 이와 같은 내용물을 게재하였을 때 발생하는 결과에
+										대한 모든 책임은 회원에게 있습니다.</li>
+								</ol></li>
+							<li><h3>제12조(게시물 관리 및 삭제)</h3>
+								<p>효율적인 서비스 운영을 위하여 회원의 메모리 공간, 메시지크기, 보관일수 등을 제한할 수 있으며
+									등록하는 내용이 다음 각 호에 해당하는 경우에는 사전 통지없이 삭제할 수 있습니다.</p>
+								<ol>
+									<li>다른 회원 또는 제3자를 비방하거나 중상모략으로 명예를 손상시키는 내용인 경우</li>
+									<li>공공질서 및 미풍양속에 위반되는 내용인 경우</li>
+									<li>범죄적 행위에 결부된다고 인정되는 내용인 경우</li>
+									<li>회사의 저작권, 제3자의 저작권 등 기타 권리를 침해하는 내용인 경우</li>
+									<li>회원이 회사의 홈페이지와 게시판에 음란물을 게재하거나 음란 사이트를 링크하는 경우</li>
+									<li>기타 관계법령에 위반된다고 판단되는 경우</li>
+								</ol></li>
+							<li><h3>제13조(게시물의 저작권)</h3>
+								<p>게시물의 저작권은 게시자 본인에게 있으며 회원은 서비스를 이용하여 얻은 정보를 가공, 판매하는 행위 등
+									서비스에 게재된 자료를 상업적으로 사용할 수 없습니다.</p></li>
+							<li><h3>제14조(서비스 이용시간)</h3>
+								<p>서비스의 이용은 업무상 또는 기술상 특별한 지장이 없는 한 연중무휴 1일 24시간을 원칙으로 합니다.
+									다만 정기 점검 등의 사유 발생시는 그러하지 않습니다.</p></li>
+							<li><h3>제15조(서비스 이용 책임)</h3>
+								<p>서비스를 이용하여 해킹, 음란사이트 링크, 상용S/W 불법배포 등의 행위를 하여서는 아니되며, 이를
+									위반으로 인해 발생한 영업활동의 결과 및 손실, 관계기관에 의한 법적 조치 등에 관하여는 회사는 책임을 지지
+									않습니다.</p></li>
+							<li><h3>제16조(서비스 제공의 중지)</h3>
+								<p>다음 각 호에 해당하는 경우에는 서비스 제공을 중지할 수 있습니다.</p>
+								<ol>
+									<li>서비스용 설비의 보수 등 공사로 인한 부득이한 경우</li>
+									<li>전기통신사업법에 규정된 기간통신사업자가 전기통신 서비스를 중지했을 경우</li>
+									<li>시스템 점검이 필요한 경우</li>
+									<li>기타 불가항력적 사유가 있는 경우</li>
+								</ol></li>
+						</ul></li>
+					<li id="provision5"><h2>제5장 계약해지 및 이용제한</h2>
+						<ul>
+							<li><h3>제17조(계약해지 및 이용제한)</h3>
+								<ol>
+									<li>회원이 이용계약을 해지하고자 하는 때에는 회원 본인이 인터넷을 통하여 해지신청을 하여야 하며,
+										회사에서는 본인 여부를 확인 후 조치합니다.</li>
+									<li>회사는 회원이 다음 각 호에 해당하는 행위를 하였을 경우 해지조치 30일전까지 그 뜻을
+										이용고객에게 통지하여 의견진술할 기회를 주어야 합니다.
+										<ol>
+											<li>타인의 이용자ID 및 패스워드를 도용한 경우</li>
+											<li>서비스 운영을 고의로 방해한 경우</li>
+											<li>허위로 가입 신청을 한 경우</li>
+											<li>같은 사용자가 다른 ID로 이중 등록을 한 경우</li>
+											<li>공공질서 및 미풍양속에 저해되는 내용을 유포시킨 경우</li>
+											<li>타인의 명예를 손상시키거나 불이익을 주는 행위를 한 경우</li>
+											<li>서비스의 안정적 운영을 방해할 목적으로 다량의 정보를 전송하거나 광고성 정보를 전송하는 경우</li>
+											<li>정보통신설비의 오작동이나 정보 등의 파괴를 유발시키는 컴퓨터바이러스 프로그램 등을 유포하는
+												경우</li>
+											<li>회사 또는 다른 회원이나 제3자의 지적재산권을 침해하는 경우</li>
+											<li>타인의 개인정보, 이용자ID 및 패스워드를 부정하게 사용하는 경우</li>
+											<li>회원이 자신의 홈페이지나 게시판 등에 음란물을 게재하거나 음란 사이트를 링크하는 경우</li>
+											<li>기타 관련법령에 위반된다고 판단되는 경우</li>
+										</ol>
+									</li>
+								</ol></li>
+						</ul></li>
+					<li id="provision6"><h2>제6장 기 타</h2>
+						<ul>
+							<li><h3>제18조(양도금지)</h3>
+								<p>회원은 서비스의 이용권한, 기타 이용계약상의 지위를 타인에게 양도, 증여할 수 없으며, 이를 담보로
+									제공할 수 없습니다.</p></li>
+							<li><h3>제19조(손해배상)</h3>
+								<p>회사는 무료로 제공되는 서비스와 관련하여 회원에게 어떠한 손해가 발생하더라도 동 손해가 회사의 고의
+									또는 중대한 과실로 인한 손해를 제외하고 이에 대하여 책임을 부담하지 아니합니다.</p></li>
+							<li><h3>제20조(면책 조항)</h3>
+								<ol>
+									<li>회사는 천재지변, 전쟁 또는 기타 이에 준하는 불가항력으로 인하여 서비스를 제공할 수 없는
+										경우에는 서비스 제공에 관한 책임이 면제됩니다.</li>
+									<li>회사는 서비스용 설비의 보수, 교체, 정기점검, 공사 등 부득이한 사유로 발생한 손해에 대한
+										책임이 면제됩니다.</li>
+									<li>회사는 회원의 귀책사유로 인한 서비스이용의 장애에 대하여 책임을 지지 않습니다.</li>
+									<li>회사는 회원이 서비스를 이용하여 기대하는 이익이나 서비스를 통하여 얻는 자료로 인한 손해에 관하여
+										책임을 지지 않습니다.</li>
+									<li>회사는 회원이 서비스에 게재한 정보, 자료, 사실의 신뢰도, 정확성 등의 내용에 관하여는 책임을
+										지지 않습니다.</li>
+								</ol></li>
+							<li><h3>제21조(관할법원)</h3>
+								<p>서비스 이용으로 발생한 분쟁에 대해 소송이 제기 될 경우 회사의 소재지를 관할하는 법원을 전속
+									관할법원으로 합니다.</p></li>
+						</ul></li>
+					<li id="provision7"><h2>부칙</h2>
+						<p>(시행일) 이 약관은 2014년 3월 15일부터 시행합니다.</p></li>
+				</ul>
+			</div>
+			<span style="float: left; margin-top: 20px;" class="role_title">개인정보
+				보호방침</span>
+			<div id="ContentsWrap" style="clear:both;">
+				<p>
+					'<strong>아이디어보호센터</strong>' 회사(이하 회사 이라 함)은 귀하의 개인정보보호를 매우 중요시하며,
+					『개인정보보호법』을 준수하고 있습니다.<br>회사은 개인정보처리방침을 통하여 귀하께서 제공하시는 개인정보가
+					어떠한 용도와 방식으로 이용되고 있으며, <br>개인정보보호를 위해 떠한 조치가 취해지고 있는지 알려드립니다.
+				</p>
+				<br>
+				<p>이 개인정보처리방침의 순서는 다음과 같습니다.</p>
+				<ol>
+					<li id="private1"><h2>수집하는 개인정보의 항목</h2>
+						<p>회원가입 시 필수항목과 선택항목이 있으며, 메일수신여부 등과 같은 선택항목은 동의하지 않으시더라도, 서비스
+							이용에는 제한이 없습니다.</p>
+						<h4>[홈페이지 개인정보 수집항목]</h4>
+						<dl class="dl-horizontal">
+							<dt>필수 항목</dt>
+							<dt></dt>
+							<dd>로그인 아이디, 이메일, 비밀번호</dd>
+							<dt>선택 항목</dt>
+							<dt></dt>
+							<dd>이름, 닉네임, 연락처(유선전화번호 또는 휴대폰 번호)</dd>
+							<dd>메일링서비스 수신여부, SMS 서비스 수신여부</dd>
+							<dd>서비스 이용 과정이나 서비스 제공 업무 처리 과정에서 다음 정보들이 자동으로 생성되어 수집될 수
+								있습니다.</dd>
+							<dd></dd>
+							<dd>서비스 이용기록, 접속 로그, 쿠키, 접속 IP정보</dd>
+						</dl>
+						<h4>[개인정보 수집방법]</h4>
+						<ol>
+							<dd>다음과 같은 방법으로 개인정보를 수집합니다.: 홈페이지 회원가입, 홈페이지 게시판</dd>
+						</ol></li>
+					<li id="private2"><h2>개인정보의 수집 및 이용목적</h2>
+						<p>
+							회사은 수집한 개인정보를 다음의 목적을 위해 활용합니다.<br> 이용자가 제공한 모든 정보는 하기 목적에
+							필요한 용도 이외로는 사용되지 않으며 이용 목적이 변경될 시에는 사전 동의를 구할 것입니다.
+						</p>
+						<dl class="dl-horizontal">
+							<dt rel="tooltip" title=""
+								data-original-title="이름 연락처, 이메일, 로그인 아이디ㆍ비밀번호">이름 연락처,
+								이메일, 로그인 아이디ㆍ비밀번호</dt>
+							<dd>서비스 이용에 따른 회원가입 및 본인 식별에 이용, 게시판 내 게시글 등록 및 확인(수정,삭제),
+								예약&amp;예약조회 및 회원제 서비스 제공</dd>
+							<dt rel="tooltip" title=""
+								data-original-title="이메일(메일링), SMS 서비스 수신 여부">이메일(메일링), SMS
+								서비스 수신 여부</dt>
+							<dd>소식 및 고지사항 전달, 불만처리 등을 위한 원활한 의사소통 경로의 확보, 상담 답변 및 예약
+								확인(취소) 안내, 의학정보 및 이벤트 정보 등의 안내, 정기 소식지 발송</dd>
+						</dl></li>
+					<li id="private3"><h2>개인정보의 보유 및 이용기간</h2>
+						<p>회사은 개인정보의 수집목적 또는 제공받은 목적이 달성된 때에는 귀하의 개인정보를 지체 없이 파기합니다.</p>
+						<p>다만, 수집목적 또는 제공받은 목적이 달성된 경우에도 상법 등 법령의 규정에 의하여 보존할 필요성이 있는
+							경우에는 귀한의 개인정보를 보유할 수 있습니다.</p>
+						<dl class="dl-horizontal">
+							<dt rel="tooltip" title=""
+								data-original-title="소비자의 불만 또는 분쟁처리에 관한 기록">소비자의 불만 또는
+								분쟁처리에 관한 기록</dt>
+							<dd>3년 (전자상거래 등에서의 소비자보호에 관한 법률)</dd>
+							<dt rel="tooltip" title=""
+								data-original-title="신용정보의 수집/처리 및 이용 등에 관한 기록">신용정보의 수집/처리
+								및 이용 등에 관한 기록</dt>
+							<dd>3년 (신용정보의 이용 및 보호에 관한 법률)</dd>
+							<dt>본인 확인에 관한 기록</dt>
+							<dd>6개월 (정보통신망 이용촉진 및 정보보호 등에 관한 법률)</dd>
+							<dt>방문에 관한 기록</dt>
+							<dd>3개월 (통신비밀보호법)</dd>
+						</dl></li>
+					<li id="private4"><h2>개인정보의 파기 절차 및 방법</h2>
+						<p>회사은 『개인정보의 수집 및 이용목적』이 달성된 후에는 개인 정보를 즉시 파기합니다. 파기절차 및 방법은
+							다음과 같습니다.</p>
+						<dl class="dl-horizontal">
+							<dt>파기절차</dt>
+							<dd>이용자가 회원가입 등을 위해 입력한 정보는 목적이 달성된 후 파기방법에 의하여 즉시 파기합니다.</dd>
+							<dt>파기방법</dt>
+							<dd>전자적 파일형태로 저장된 개인정보는 기록을 재생할 수 없는 기술적 방법을 사용하여 삭제합니다.</dd>
+							<dd>종이에 출력된 개인정보는 분쇄기로 분쇄하거나 소각을 통하여 파기합니다.</dd>
+						</dl></li>
+					<li id="private5"><h2>개인정보 제3제공 및 공유</h2>
+						<p>
+							회사은 귀하의 동의가 있거나 관련법령의 규정에 의한 경우를 제외하고는 어떠한 경우에도 『개인정보의 수집 및
+							용목적』에서 고지한 범위를 넘어 귀하의 개인정보를 이용하거나, 타인 또는 타기업ㆍ기관에 제공하지 않습니다.<br>
+							다만, 고객의 동의가 있거나 다음과 같은 사례에 해당하는 경우에는 예외로 합니다.
+						</p>
+						<ul>
+							<li>통계작성ㆍ학술연구를 위하여 필요한 경우 특정 개인을 알아볼 수 없는 형태로 가공하여 제공</li>
+							<li>법령에 정해진 절차와 방법에 따라 수사기관의 요구가 있는 경우 제공</li>
+						</ul></li>
+					<li id="private6"><h2>수집한 개인정보의 취급위탁</h2>
+						<p>회사은 서비스 이행을 위해 아래와 같이 개인정보를 위탁하고 있으며, 관계 법령에 따라 위탁계약 시
+							개인정보가 안전하게 관리될 수 있도록 필요한 사항을 규정하고 있습니다.</p>
+						<p>회사의 개인정보 위탁처리 기관 및 위탁업무 내용은 아래와 같습니다.</p>
+						<dl class="dl-horizontal">
+							<dt>수탁기관</dt>
+							<dt></dt>
+							<dd>
+								<a href="javascript:void(0);"
+									onclick="window.open('http://thelupe.co.kr/', '_blank');">(주)The
+									Lupe</a>
+							</dd>
+							<dt>위탁업무 내용</dt>
+							<dd>회원관리, 수집된 개인정보 관리 및 본인 확인, 불만처리 등 민원처리, 고지사항 전달, 마케팅 신규
+								서비스(제품) 개발 및 특화, 이벤트 등 광고성 정보 전달, 기타 AS 센터, 웹사이트 제작,운영 및 시스템 관리,
+								소식지(의학정보 제공) 정기 발송</dd>
+							<dt>위탁 개인정보 항목</dt>
+							<dd>이름, 생년월일, 성별, 로그인 아이디, 비밀번호, 연락처(유선전화번호 또는 휴대폰 번호), 이메일,
+								주소</dd>
+							<dd>위탁 대상자는 상업적인 목적이 아닌 국민건강 증진을 위해 발송하는 소식지를 회원에게 이메일을 통해
+								발송할 수 있습니다. 물론 이 경우에도 회원가입 시 동의 절차를 거치게 되며, 회원님께서 동의하지 않는 경우에는
+								발송하지 않습니다.</dd>
+							<dt rel="tooltip" title="" data-original-title="개인정보 보유 및 이용기간">개인정보
+								보유 및 이용기간</dt>
+							<dd>위탁 계약 종료시까지</dd>
+							<p></p>
+						</dl></li>
+					<li id="private7"><h2>동의를 거부할 권리가 있다는 사실 및 동의 거부에 따른 불이익
+							내용</h2>
+						<p>
+							귀하는 홈페이지에서 개인정보 수집에 대한 동의를 거부할 권리가 있습니다.<br> 그러나 동의를 거부할 경우
+							회원가입이 진행되지 않으며, 특정 게시판(또는 특정 페이지)에 접근 제한이 있을 수 있습니다. 이는 특정 게시판(또는
+							특정 페이지)으로의 접근에만 제한이 있을 뿐이며 홈페이지 이용에는 제한이 없습니다
+						</p></li>
+					<li id="private8"><h2>회원탈퇴 방법</h2>
+						<p>귀하는 회원가입 시 개인정보의 수집ㆍ이용 및 제공에 대해 동의하신 내용을 언제든지 철회하실 수 있습니다.
+							회원탈퇴는 회사 홈페이지에서 로그인하신 후, member info 페이지에서 『회원탈퇴』를 클릭하여 본인 확인 절차를
+							거치신 후 직접 회원탈퇴를 하시거나, 개인정보보호책임자에게 서면, 전화 또는 이메일 등으로 연락하시면 지체 없이
+							귀하의 개인정보를 파기하는 등 필요한 조치를 하겠습니다.</p></li>
+					<li id="private9"><h2>개인정보 자동 수집 장치의 설치/운영 및 그 거부에 관한 사항</h2>
+						<p>회사은 귀하의 정보를 수시로 저장하고 찾아내는 '쿠키(cookie)'를 운용합니다. 쿠키란 회사의
+							웹사이트를 운영하는데 이용되는 서버가 귀하의 브라우저에 보내는 아주 작은 텍스트 파일로서 귀하의 컴퓨터 하드디스크에
+							저장됩니다. 회사은 다음과 같은 목적을 위해 쿠키를 사용합니다.</p>
+						<p class="text-info">귀하는 쿠키 설치에 대한 선택권을 가지고 있습니다. 따라서, 귀하는 웹
+							브라우저에서 옵션을 설정함으로써 모든 쿠키를 허용하거나, 쿠키가 저장될 때마다 확인을 거치거나, 아니면 모든 쿠키의
+							저장을 거부할 수도 있습니다.</p> <strong class="text-danger">회원님께서 쿠키
+							설치를 거부하셨을 경우 일부 서비스 제공에 어려움이 있습니다.</strong></li>
+					<li id="private10"><h2>개인정보보호책임자</h2>
+						<p>귀하의 개인정보를 보호하고 개인정보와 관련한 불만을 처리하기 위하여 회사은 아래와 같이 개인정보보호책임자를
+							두고 있습니다.</p>
+						<p></p>
+						<h3>[개인정보보호 책임자]</h3>
+						<dl class="dl-horizontal">
+							<dt>이름</dt>
+							<dd>&nbsp;한걸음</dd>
+							<dt>소속</dt>
+							<dd>&nbsp;두걸음</dd>
+							<dt>전화번호</dt>
+							<dd>&nbsp;</dd>
+							<dt>이메일</dt>
+							<dd>&nbsp;</dd>
+						</dl>
+						<p>귀하께서는 회사의 서비스를 이용하시며 발생하는 모든 개인정보보호 관련 민원을 개인정보보호책임자로 신고하실
+							수 있습니다. 회사은 이용자들의 신고사항에 대해 신속하게 충분한 답변을 드릴 것입니다. 기타 개인정보침해에 대한
+							신고나 상담이 필요하신 경우에는 아래 기관에 문의하시기 바랍니다.</p>
+						<ol>
+							<li>개인분쟁조정위원회 (<a href="javascript:void(0);"
+								onclick="window.open('http://www.1336.or.kr', '_blank');">http://www.1336.or.kr</a>
+								/ <a href="tel:1336">1336</a>)
+							</li>
+							<li>개인정보침해신고센터 (<a href="javascript:void(0);"
+								onclick="window.open('http://118.or.kr', '_blank');">http://118.or.kr</a>
+								/ <a href="tel:118">118</a>)
+							</li>
+							<li>정보보호마크인증위원회 (<a href="javascript:void(0);"
+								onclick="window.open('http://eprivacy.or.kr', '_blank');">http://eprivacy.or.kr</a>
+								/ <a href="tel:02-580-0533">02-580-0533</a>~4)
+							</li>
+							<li>대검찰청 사이버범죄수사단 (<a href="javascript:void(0);"
+								onclick="window.open('http://spo.go.kr', '_blank');">http://spo.go.kr</a>
+								/ <a href="tel:02-3480-2000">02-3480-2000</a>)
+							</li>
+							<li>경찰청 사이버테러대응센터 (<a href="javascript:void(0);"
+								onclick="window.open('http://ctrc.go.kr', '_blank');">http://ctrc.go.kr</a>
+								/ <a href="02-392-0330">02-392-0330</a>)
+							</li>
+						</ol></li>
+					<li id="private11"><h2>개인정보의 안전성 확보조치</h2>
+						<p>회사은 회원님의 개인정보가 분실, 도난, 누출, 변조 또는 훼손되지 않도록 개인정보 보호를 위하여 다음과
+							같은 기술적, 관리적 대책을 강구하고 있습니다.</p>
+						<ul>
+							<li>기술적 대책
+								<ul>
+									<li>개인정보는 비밀번호에 의해 보호됩니다.</li>
+									<li class="hidden">네트워크상에서 개인정보를 안전하게 전송할 수 있도록 SSL 등
+										암호알고리즘을 이용한 보안조치를 마련하고 있으며, 회원가입 시 수집하는 주민등록번호는 암호화하여 보호되고
+										있습니다.</li>
+									<li class="hidden">백신프로그램을 이용하여 서버 바이러스에 의한 피해를 사전에 방지하고
+										있습니다. 백신프로그램은 주기적으로 업데이트되며, 바이러스에 걸린 경우 백신이 나오는 즉시 이를 치료함으로써
+										개인정보가 침해되는 것을 방지하고 있습니다.</li>
+									<li class="hidden">웹방화벽(국가정보원 CC인증 (EAL4 등급),
+										한국정보통신기술협회(TTA) GS 인증, 국가정보원 검증필 암호모듈 탑재)을 구축하여 해킹 등에 의해 귀하의
+										개인정보가 유출되는 것을 방지하고, 외부로부터의 침입을 차단하며, 24시간 침입을 감시하고 있습니다.</li>
+									<li><a href="javascript:void(0);"
+										onclick="window.open('http://help.cafe24.com/cs/cs_faq_view.php?idx=1181&amp;page=2&amp;mode=&amp;s_key=&amp;s_period=&amp;s_value=&amp;faq_list=35&amp;categoryIdx=0&amp;select_os=&amp;contentNum=1', '_blank');"><strong>안전한
+												홈페이지 운영을 위한 PC보안 관리 캠페인</strong></a></li>
+								</ul>
+							</li>
+							<li>관리적 대책
+								<ul>
+									<li>개인정보의 위탁 관리
+										<p>개인정보를 누설 또는 권한없이 처리하거나 제 3자에게 제공하는 등 부당한 목적을 위하여 사용하지
+											않도록 위탁 대상자(㈜엠서클)에 대한 감독과 관리를 실시하고 있습니다.</p>
+									</li>
+									<li>회사은 회원의 개인정보를 취급할 수 있는 자를 최소한으로 제한하고 접근 권한을 관리하며, 교육을
+										통하여 법규 및 정책을 준수합니다. 회원 개인정보를 취급하는 자는 다음과 같습니다.
+										<p>회원을 직.간접적으로 상대하여 업무를 처리하는 자</p>
+									</li>
+								</ul>
+							</li>
+						</ul></li>
+					<li id="private12"><h2>정책 변경에 따른 공지의무</h2>
+						<p>이 개인정보취급방침은 2014년 3월 15일에 제정되었으며 법령ㆍ정책 또는 보안기술의 변경에 따라 내용의
+							추가ㆍ삭제 및 수정이 있을 시에는 변경되는 개인정보취급방침을 시행하기 전에 회사 홈페이지를 통해 변경이유 및 내용
+							등을 공지하도록 하겠습니다.</p></li>
+				</ol>
+			</div>
+			<span class="role_title" style="float:left; margin-top:20px;">이메일 수집거부</span>
+			<div id="ContentsWrap">
+				<p>본 사이트에 게시된 이메일 주소가 전자우편 수집 프로그램이나 그밖의 기술적 장치를 이용하여 무단으로 수집되는<br>
+					것을 거부하며, 이를 위반시 정보통신망법에 의해 형사처벌됨을 유념하시기 바립니다.</p>
+					<br>
+					<br>
+				<ol>
+					<li>정보통신망법 제 40조 2 (전자우편주소의 무단 수집행위 등 금지)
+						<ol>
+							<li>누구든지 전자우편 주소의 수집을 거부하는 의사가 명시된 인터넷 홈페이지에서 자동으로 전자우편주소를
+								수집하는 프로그램 그밖의 기술적 장치를 이용하여 전자우편 주소를 수집하여서는 아니된다.</li>
+							<li>누구든지 제1항의 규정을 위반하여 수집된 전자우편주소를 판매 유통하여서는 아니된다.</li>
+							<li>누구든지 제1항 및 제2항의 규정에 의하여 수집 판매 및 유통이 금지된 전자우편 주소임을 알고 이를
+								정보전송에 이용하여서는 아니된다.</li>
+						</ol>
+					</li>
+				</ol>
+			</div>
+		</div>
+		<div class="check_box">
+			<div>
+				<span><b style="color:#f00;">[필수]</b> 이용약관에 동의합니다.</span>
+				<input type="checkbox" style="float:right;">
+			</div>
+			<div>
+				<span><b style="color:#f00;">[필수]</b>  개인정보 수집 및 이용에 대한 안내에 동의합니다.</span>
+				<input type="checkbox" style="float:right;">
+			</div>
+			<div>
+				<span><b style="color:#f00;">[필수]</b>  이메일 수집 거부에 대한 안내에 동의합니다.</span>
+				<input type="checkbox" style="float:right;">
+			</div>
+			<div style="border-top:1px solid #ccc; padding-top:10px; margin-top:30px;">
+				<span>위 모든 내용에 동의합니다.</span>
+				<input type="checkbox" style="float:right;">
+			</div>
+		</div>
 		<h1>회원가입</h1>
 
-		<form action="/signup/inputsignup" method="POST" name="signupform" onsubmit="return execute();" enctype="multipart/form-data">
-			<input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}" />
-			<button type="button" class="hill on" data-no="0" onclick='changerole("1")'>발명자 회원</button>
-			<button type="button" class="hill" data-no="1" onclick='changerole("2")'>변리사</button>			
-			<input type="text" id="role" name="role" value="1" hidden>		
+		<form action="/signup/inputsignup" method="POST" name="signupform"
+			onsubmit="return execute();" enctype="multipart/form-data">
+			<input type="hidden" name="${_csrf.parameterName}"
+				value="${_csrf.token}" />
+			<button type="button" class="hill on" data-no="0"
+				onclick='changerole("1")'>발명자 회원</button>
+			<button type="button" class="hill" data-no="1"
+				onclick='changerole("2")'>변리사</button>
+			<input type="text" id="role" name="role" value="1" hidden>
 			<table>
 				<tr>
-					<td colspan="2" style="text-align:center; padding-left: 0;" class="join_img_td">						
+					<td colspan="2" style="text-align: center; padding-left: 0;"
+						class="join_img_td">
 						<div>
-							<img src="/resources/image/inventor_profile.jpg" alt="img" id="blah"><br>
-							<input type="file" id="imgInp" name="profileImg" style="cursor:pointer;">
-							<span>대표사진을 설정 해주세요</span>
+							<img src="/resources/image/inventor_profile.jpg" alt="img"
+								id="blah"><br> <input type="file" id="imgInp"
+								name="profileImg" style="cursor: pointer;"> <span>대표사진을
+								설정 해주세요</span>
 						</div>
 					</td>
 				</tr>
 				<tr>
 					<td>아이디</td>
-					<td><input type="text" name="id" id="id"><button type="button" onclick="checkid()" required>중복확인</button></td>
+					<td><input type="text" name="id" id="id">
+						<button type="button" onclick="checkid()" required>중복확인</button></td>
 				</tr>
 				<tr>
 					<td>비밀번호</td>
-					<td><input type="password" name="pw" id="pw"><div id="checkpassword" required></div></td>
+					<td><input type="password" name="pw" id="pw">
+						<div id="checkpassword" required></div></td>
 				</tr>
 				<tr>
 					<td>비밀번호 확인</td>
-					<td><input type="password" id="repw" onKeyUp='checkpwd()' required></td>
+					<td><input type="password" id="repw" onKeyUp='checkpwd()'
+						required></td>
 				</tr>
 				<tr>
 					<td>이름</td>
@@ -616,9 +673,10 @@ body{
 				</tr>
 				<tr>
 					<td>이메일</td>
-					<td>
-						<input type="text" name="email1" id="email1" pattern="[A-Za-z0-9_]+" required style="float:left;">
-						<select name="emailMiddle" onChange=changeEmail(this.value); id="email_chg" style="float:left;">
+					<td><input type="text" name="email1" id="email1"
+						pattern="[A-Za-z0-9_]+" required style="float: left;"> <select
+						name="emailMiddle" onChange=changeEmail(this.value);
+						id="email_chg" style="float: left;">
 							<option value="" selected>이메일선택</option>
 							<option value="@naver.com">@ naver.com</option>
 							<option value="@hanmail.com">@ hanmail.com</option>
@@ -628,74 +686,76 @@ body{
 							<option value="@hotmail.com">@ hotmail.com</option>
 							<option value="@dreamwiz.com">@ dreamwiz.com</option>
 							<option value="@korea.com">@ korea.com</option>
-							<option value="1">직접입력</option>							
-						</select>
-						<input type="text" name="email2" id="email2" style="display:none; float:left;" required>
-						<div style="width:100%; float:left; font-size:12px;margin-top:5px;"><span style="display:inline-block; float:left;">이메일은 회원가입 인증을 위한 정보입니다.</span></div>
-					</td>
-				</tr>				
+							<option value="1">직접입력</option>
+					</select> <input type="text" name="email2" id="email2"
+						style="display: none; float: left;" required>
+						<div
+							style="width: 100%; float: left; font-size: 12px; margin-top: 5px;">
+							<span style="display: inline-block; float: left;">이메일은
+								회원가입 인증을 위한 정보입니다.</span>
+						</div></td>
+				</tr>
 				<tr id="hide">
 					<td>변리사 번호</td>
-					<td><input type="text" name="license_number" id="license_number"></td>
-				</tr>				
+					<td><input type="text" name="license_number"
+						id="license_number"></td>
+				</tr>
 			</table>
 			<!-- <input type="submit" value="가입" id="submit"> -->
-			<input type="submit" value="가입" id="submit"></button>
+			<input type="submit" value="가입" id="submit">
+			</button>
 		</form>
 	</div>
-	<c:import url="/WEB-INF/views/import/footer.jsp"/>
-<script>
+	<c:import url="/WEB-INF/views/import/footer.jsp" />
+	<script>
+		$(".hill").click(function() {
+			$(this).addClass("on");
+			$(this).siblings().removeClass("on");
 
-$(".hill").click(function(){	
-	$(this).addClass("on");
-	$(this).siblings().removeClass("on");
-	
-	
-	if($(this).data('no') == 1){		
-		$("#hide").css("display","table-row");
-	}else{		
-		$("#hide").css("display","none");
-	}
-	
-});
-$("#repw").keyup(function(){
-	if($(this).val() == ""){
-		$("#checkpassword").css("display","none");
-	}else{
-		$("#checkpassword").css("display","block");
-	}
-});
-$("#email_chg").change(function(){
-	if($(this).val()==1){
-		$("#email2").css("display","block");
-	}else{
-		$("#email2").css("display","none");
-	}
-});
+			if ($(this).data('no') == 1) {
+				$("#hide").css("display", "table-row");
+			} else {
+				$("#hide").css("display", "none");
+			}
 
-$(function() {
-    $("#imgInp").on('change', function(){
-        readURL(this);
-    });
-});
+		});
+		$("#repw").keyup(function() {
+			if ($(this).val() == "") {
+				$("#checkpassword").css("display", "none");
+			} else {
+				$("#checkpassword").css("display", "block");
+			}
+		});
+		$("#email_chg").change(function() {
+			if ($(this).val() == 1) {
+				$("#email2").css("display", "block");
+			} else {
+				$("#email2").css("display", "none");
+			}
+		});
 
-function readURL(input) {
-    if (input.files && input.files[0]) {
-    var reader = new FileReader();
+		$(function() {
+			$("#imgInp").on('change', function() {
+				readURL(this);
+			});
+		});
 
-    reader.onload = function (e) {
-            $('#blah').attr('src', e.target.result);
-        }
+		function readURL(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
 
-      reader.readAsDataURL(input.files[0]);
-    }
-}
-$(".popup_close").click(function(){
-	$(".black_wall").css("display","none");
-	$(".popup").css("display","none");
-	$("body").css("overflow","auto");	
-});
+				reader.onload = function(e) {
+					$('#blah').attr('src', e.target.result);
+				}
 
-</script>
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+		$(".popup_close").click(function() {
+			$(".black_wall").css("display", "none");
+			$(".popup").css("display", "none");
+			$("body").css("overflow", "auto");
+		});
+	</script>
 </body>
 </html>
