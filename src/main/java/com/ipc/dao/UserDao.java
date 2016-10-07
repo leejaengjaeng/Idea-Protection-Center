@@ -34,8 +34,14 @@ public interface UserDao {
 	public List<userVo> getAllUsers();
 	
 	public String getLicense_numberByUid(int uid);
+	
 	public void editinput(HashMap<String,String> map);
 	
 	public void updateProfileImg(HashMap<String,String> map);
+	
 	public String getIdByNameAndEmail(HashMap<String,String> map);
+	
+	public String getUidByIdAndEmail(HashMap<String,String> map);
+	
+	public void updateKey(HashMap<String,String> map);
 }

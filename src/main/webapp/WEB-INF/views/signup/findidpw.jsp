@@ -110,10 +110,15 @@ body{
        	<img src="/resources/image/close.png" alt="close" class="popup_close" id="close">
     </div>
     <div class="pop_cont" id="pop_cont1">            
-       	<span id="isnull">아이디는 <span id="data_id"></span> 입니다</span>
+       	<span id="data_id"></span>
+       	
     </div>
     <div class="pop_cont" id="pop_cont2">            
-       	
+       	<form action="/signup/confirmKey" method="POST">
+       		<h2>인증번호를 입력하세요</h2>
+       		<input type="text" name="key">
+       		<input type="submit">
+       	</form>
     </div>
 </div>
 <c:import url="/WEB-INF/views/import/header.jsp" />
@@ -136,7 +141,7 @@ body{
                 <div>                                        
                     <h3 style="margin-top:50px; color:#555;">비밀번호 찾기 </h3>
                     <div id="form">
-                        <input id="nameLostPw"  placeholder="아이디">
+                        <input id="idLostPw"  placeholder="아이디">
                         <input id="emailLostPw" placeholder="이메일">
                         <button id="findPwBtn">비밀번호찾기</button>
                     </div>
@@ -173,13 +178,21 @@ body{
 			headers : headers,
 			data : data,
 			success : function(data) {		
-				//data.id
+				
 				$("#pop_cont1").css("display","block");
-				if(data.id==null){
-					$("#isnull").text("존재하지 않는 계정입니다.");
+				
+				if(data.id!=null){
+					//alert("notnull");
+					//$("#isnull").css("display":"none");
+					$("#data_id").text("아이디는 "+data.id+" 입니다.");
+					
+				}
+				else{
+					//alert("null");
+					//$("#data_id").css("display":"none");
+					$("#data_id").text("존재하지 않는 계정입니다.");
 				}
 				
-				$("#data_id").text(data.id);
 			},
 			error : function(request, status, error) {
 				alert("code:" + request.status + "\n" + "error:" + error);
@@ -190,6 +203,43 @@ body{
 		$("body").css("overflow","hidden");	
 	});
 	$("#findPwBtn").click(function(){
+		var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+		var csrfToken = $("meta[name='_csrf']").attr("content");
+		var csrfHeader = $("meta[name='_csrf_header']").attr("content"); // THIS WAS ADDED
+		var id = document.getElementById("idLostPw").value;
+		var email=document.getElementById("emailLostPw").value;
+		var data = {};
+		var headers = {};
+		data[csrfParameter] = csrfToken;
+		data["id"] = id;
+		data["email"]=email;
+		headers[csrfHeader] = csrfToken;
+		$.ajax({
+			url : "/signup/findPw",
+			dataType : "json",
+			type : "POST",
+			headers : headers,
+			data : data,
+			success : function(data) {
+				alert(data.result);
+				if(data.result=="False"){
+					$("#data_id").text("존재하지 않는 계정입니다.");
+				}
+				else{
+					$("#data_id").text("계정 정보의 메일로 인증번호를 전송하였습니다.");
+				}
+				//alert(data.id);
+				//$("#pop_cont1").css("display","block");
+				//if(data.id==null){
+				//	$("#isnull").text("존재하지 않는 계정입니다.");
+				//}
+				//$("#data_id").text(data.id);
+			},
+			error : function(request, status, error) {
+				alert("code:" + request.status + "\n" + "error:" + error);
+			}
+	
+		});
 		$(".black_wall , .popup").css("display","block");
 		$("body").css("overflow","hidden");	
 	});
