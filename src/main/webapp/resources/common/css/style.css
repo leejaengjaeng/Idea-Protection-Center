@@ -819,35 +819,69 @@ section nav #nav_benner ul li img {
   right: 0;
   top: -20px;
 }
-#ContentsWrap {
+.service_role {
+  width: 100%;
+  float: left;
+  text-align: left;
+  border-top: 1px solid #555;
+  margin-top: 100px;
+}
+.service_role .role_title {
+  display: inline-block;
+  margin-top: 100px;
+  margin-bottom: 20px;
+}
+.service_role #ContentsWrap {
   font-size: 12px;
   line-height: 1.7em;
   overflow-y: scroll;
-  height: 300px;
+  height: 150px;
   border: 1px solid #ccc;
-  padding: 5px;
+  padding: 10px;
   background: #fff;
   width: 100%;
+  text-align: left;
   float: left;
 }
-#ContentsWrap h3 {
+.service_role #ContentsWrap h3 {
   margin: 10px 0 10px 0;
 }
-#ContentsWrap .txt_num {
+.service_role #ContentsWrap .txt_num {
   float: left;
   width: 17px;
 }
-#ContentsWrap .txt_clause {
+.service_role #ContentsWrap .txt_clause {
   vertical-align: middle;
   font-size: 12px;
 }
-#ContentsWrap .list_2depth {
+.service_role #ContentsWrap .list_2depth {
   margin-left: 20px;
   font-size: 10px;
 }
-#ContentsWrap .tit {
+.service_role #ContentsWrap .tit {
   display: inline-block;
   margin-bottom: 10px;
   margin-top: 10px;
   font-size: 13px;
+}
+.service_role h2 {
+  line-height: 30px;
+}
+.check_box {
+  width: 100%;
+  float: left;
+  margin-top: 50px;
+  margin-bottom: 100px;
+  border-top: 1px solid #ccc;
+  padding-top: 20px;
+}
+.check_box div {
+  float: left;
+  width: 100%;
+  margin-top: 10px;
+  text-align: left;
+}
+.check_box div input[type=checkbox] {
+  transform: scale(1.5);
+  margin-top: 3px;
 }
