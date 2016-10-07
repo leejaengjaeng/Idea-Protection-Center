@@ -65,6 +65,7 @@ body{
         text-align: center;
         padding: 20px;
         padding-top: 30px;
+        display: none;
     }
     .pop_cont>span{
         color: #595959;
@@ -106,9 +107,12 @@ body{
 <div class="popup" id="pp">
    	<div class="pop_header">            
        	<h2 style="color:#f9f9f9">아이디어 보호센터</h2>
-       	<img src="/resources/image/close.png" alt="close" class="popup_close" onclick="closeload()" id="close">
+       	<img src="/resources/image/close.png" alt="close" class="popup_close" id="close">
     </div>
-    <div class="pop_cont" id="pop_cont">            
+    <div class="pop_cont" id="pop_cont1">            
+       	아이디는 <span id="data_id"></span> 입니다
+    </div>
+    <div class="pop_cont" id="pop_cont2">            
        	
     </div>
 </div>
@@ -168,10 +172,10 @@ body{
 			type : "POST",
 			headers : headers,
 			data : data,
-			success : function(data) {
-				document.getElementById(pop_cont).innerHTML="'<span>아이디는 '+data.id+'입니다.</span>'";
-				//$("#pop_cont").append('아이디는 '+data.id+'입니다.');
-			
+			success : function(data) {		
+				//data.id
+				$("#pop_cont1").css("display","block");
+				$("#data_id").text(data.id);
 			},
 			error : function(request, status, error) {
 				alert("code:" + request.status + "\n" + "error:" + error);
