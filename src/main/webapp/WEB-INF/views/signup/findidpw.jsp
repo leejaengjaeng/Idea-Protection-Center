@@ -115,9 +115,12 @@ body{
     </div>
     <div class="pop_cont" id="pop_cont2">            
        	<form action="/signup/confirmKey" method="POST">
+       	   	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+       	
        		<h2>인증번호를 입력하세요</h2>
        		<input type="text" name="key">
        		<input type="submit">
+       	
        	</form>
     </div>
 </div>
