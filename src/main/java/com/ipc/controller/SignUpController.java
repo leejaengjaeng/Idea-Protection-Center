@@ -231,7 +231,7 @@ public class SignUpController {
 		else{
 			HashMap<String,String> param=new HashMap<String,String>();
 			SignUpService ss=new SignUpService();
-			String key=ss.makeNumber(5);
+			String key=ss.makeNumber(7);
 			param.put("key", key);
 			param.put("uid", uid);
 			usermapper.updateKey(param);

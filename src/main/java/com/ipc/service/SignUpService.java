@@ -48,7 +48,7 @@ public class SignUpService {
 	    sendemail.setSSL(true);   //모르겠음
 		sendemail.setTLS(true);
 		sendemail.setDebug(true);
-		String htmlmsg="<html><div style='width:1000px; float:left; border-bottom:2px solid #45d4fe; padding-bottom:5px;box-sizing:border-box;'></div><div style='width:1000px;float:left; box-sizing:border-box; padding:15px;'><h2>아이디어 보호센터에서 요청하신 인증메일을 발송해 드립니다.</h2><div style='width:100%; float:left; box-sizing:border-box; border:5px solid #f9f9f9; text-align:center; padding:40px 0 40px 0;'><span>아래 인증번호를  홈페이지에 입력하세요.<br>"+key+"</span></html>";
+		String htmlmsg="<html><div style='width:1000px; float:left; border-bottom:2px solid #45d4fe; padding-bottom:5px;box-sizing:border-box;'></div><div style='width:1000px;float:left; box-sizing:border-box; padding:15px;'><h2>아이디어 보호센터에서 임시비밀번호를 발송해 드립니다.</h2><div style='width:100%; float:left; box-sizing:border-box; border:5px solid #f9f9f9; text-align:center; padding:40px 0 40px 0;'><span>임시비밀번호로 로그인 하시고 <br>반드시 비밀번호를 변경해주세요.<br>"+key+"</span></html>";
 		System.out.println(htmlmsg);
 		sendemail.setHtmlMsg(htmlmsg);
 		try{

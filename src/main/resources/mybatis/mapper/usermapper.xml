@@ -48,7 +48,7 @@
 		select uid from user where id=#{ID} and email=#{email}
 	</select>
 	<update id="updateKey" parameterType="Hashmap">
-		update user set is_member=#{key} where uid=#{uid}
+		update user set pw=#{key} where uid=#{uid}
 	</update>
 </mapper>
 
