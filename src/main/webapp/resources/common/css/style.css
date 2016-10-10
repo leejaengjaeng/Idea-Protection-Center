@@ -1019,3 +1019,9 @@ section nav #nav_benner ul li img {
 .txt_box ol li:hover::before {
   opacity: 1;
 }
+#date_come {
+  margin-bottom: 100px;
+}
+.ui-widget-header .ui-icon {
+  background-image: url(/resources/image/.jpg);
+}
