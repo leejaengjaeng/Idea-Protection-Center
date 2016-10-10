@@ -672,6 +672,9 @@ footer #footer_fill #footer_wrap #footer_right span {
   #onair_who table tr td {
     font-size: 1rem ;
   }
+  #footer_center div {
+    text-align: center !important;
+  }
 }
 #wrap_form button {
   font-size: 0.8rem !important;

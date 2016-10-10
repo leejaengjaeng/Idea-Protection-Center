@@ -161,5 +161,14 @@ public class MainController {
 	public String role(){
 		return "sub/role";
 	}
+	@RequestMapping("/copyright")
+	public String copyright(){
+		return "registration/idea_copyright";
+	}
+	@RequestMapping("/design")
+	public String design(){
+		return "registration/idea_design";
+	}
+	
 	
 }

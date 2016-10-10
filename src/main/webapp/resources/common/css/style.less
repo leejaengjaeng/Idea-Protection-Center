@@ -964,3 +964,110 @@ section{
         }
     }
 }
+
+
+
+.txt_box{
+    .field{
+        width: 100%;
+        float: left;
+        margin-top: 20px;
+        span{
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #444;
+        }
+        select{
+            height: 35px;
+            width: 240px;
+            margin-left: 20px;
+            border: 1px solid #ccc;
+
+        }
+        input{
+            width: 240px !important;
+            border: 1px solid #ccc !important;
+            border-radius: 0px !important;
+            margin-left: 20px !important;
+        }
+    }
+    table{
+        width: 88%;        
+        float: left;
+        tr{   
+            height: 50px;
+            td{
+                color:#666;                
+                font-weight: bold;                
+                input{
+                    margin: 0 !important;
+                    padding-top: 4px;
+                    border-radius: 0px !important;
+                }
+                label{
+                    display: block;
+                    width: 110px;
+                    height: 35px;
+                    text-align: center;
+                    background: #45d4fe;
+                    color: white;                   
+                    padding-top: 10px;
+                    font-size: 0.9rem;
+                    margin-left: 30px;
+                    box-shadow: inset 0 -4px rgba(0, 0, 0, 0.1);
+                }
+                button{
+                    background: rgba(255,145,148,1) !important;
+                    border-radius:0px !important;
+                }
+                
+            }
+        }
+    }
+    ol{
+        width: 100%;
+        float: left;
+        margin-top: 20px;
+        border-bottom: 4px solid rgba(1,102,156,1);
+        li{
+            float: left;
+            list-style: none;
+            height: 40px;            
+            font-size: 0.9rem;
+            font-weight: bold;
+            padding: 10px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            margin-right: 5px;
+            color:#585858;
+            padding-top: 15px;
+            transition:.35s;
+            -moz-transition:.35s;
+            -webkit-transition:.35s;
+            &::before{
+                content: "";
+                background: rgba(1,102,156,1);
+                width: 120%;
+                height: 120%;
+                position: absolute;
+                left: -21%;
+                top: 5px;
+                border-radius: 15px;
+                z-index:-1;                
+                opacity: 0;
+                 transition:.35s;
+                -moz-transition:.35s;
+                -webkit-transition:.35s;
+            }
+            &:hover{
+                color: #fff;   
+            }      
+            &:hover::before{
+                opacity: 1;                
+                
+            }
+        }
+    }
+}
+

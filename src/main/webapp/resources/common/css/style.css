@@ -921,3 +921,101 @@ section nav #nav_benner ul li img {
   border: none !important;
   margin-top: 10px;
 }
+.txt_box .field {
+  width: 100%;
+  float: left;
+  margin-top: 20px;
+}
+.txt_box .field span {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #444;
+}
+.txt_box .field select {
+  height: 35px;
+  width: 240px;
+  margin-left: 20px;
+  border: 1px solid #ccc;
+}
+.txt_box .field input {
+  width: 240px !important;
+  border: 1px solid #ccc !important;
+  border-radius: 0px !important;
+  margin-left: 20px !important;
+}
+.txt_box table {
+  width: 88%;
+  float: left;
+}
+.txt_box table tr {
+  height: 50px;
+}
+.txt_box table tr td {
+  color: #666;
+  font-weight: bold;
+}
+.txt_box table tr td input {
+  margin: 0 !important;
+  padding-top: 4px;
+  border-radius: 0px !important;
+}
+.txt_box table tr td label {
+  display: block;
+  width: 110px;
+  height: 35px;
+  text-align: center;
+  background: #45d4fe;
+  color: white;
+  padding-top: 10px;
+  font-size: 0.9rem;
+  margin-left: 30px;
+  box-shadow: inset 0 -4px rgba(0, 0, 0, 0.1);
+}
+.txt_box table tr td button {
+  background: #ff9194 !important;
+  border-radius: 0px !important;
+}
+.txt_box ol {
+  width: 100%;
+  float: left;
+  margin-top: 20px;
+  border-bottom: 4px solid #01669c;
+}
+.txt_box ol li {
+  float: left;
+  list-style: none;
+  height: 40px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 10px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  margin-right: 5px;
+  color: #585858;
+  padding-top: 15px;
+  transition: .35s;
+  -moz-transition: .35s;
+  -webkit-transition: .35s;
+}
+.txt_box ol li::before {
+  content: "";
+  background: #01669c;
+  width: 120%;
+  height: 120%;
+  position: absolute;
+  left: -21%;
+  top: 5px;
+  border-radius: 15px;
+  z-index: -1;
+  opacity: 0;
+  transition: .35s;
+  -moz-transition: .35s;
+  -webkit-transition: .35s;
+}
+.txt_box ol li:hover {
+  color: #fff;
+}
+.txt_box ol li:hover::before {
+  opacity: 1;
+}

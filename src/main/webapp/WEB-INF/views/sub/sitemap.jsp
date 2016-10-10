@@ -5,15 +5,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<script src="/resources/common/js/jquery-3.1.0.min.js"></script>
+<script src="/resources/common/js/jquery-ui.min.js"></script>
 <link rel="stylesheet" href="/resources/common/css/index.css">
-<link rel="stylesheet" href="/resources/common/css/style.css">
+<link rel="stylesheet" href="/resources/common/css/index.css">
+<link rel="stylesheet" href="/resources/common/css/jquery-ui.min.css">
 <title>SiteMap</title>
 </head>
 <body>
 <c:import url="/WEB-INF/views/import/header.jsp"/>
 <div id="wrap_form">
-    <div style="width:100%; float:left; text-align:left; margin-bottom:100px;">
-        <h1>오시는 길</h1>
+    <div style="width:100%; float:left; text-align:left; margin-bottom:100px; margin-top:50px;">
+        <h1 style="border-bottom:2px solid #ccc; padding-bottom:10px;">오시는 길</h1>
     </div>
     <div style="width:100%; float:left;">
         <nav style="width:200px; float:left; text-align:right; padding-right:20px; font-size:20px; padding-top:20px;">
@@ -25,7 +28,7 @@
             <span style="font-size:14px; display:inline-block; margin-top:5px;">지하철 : 신분당선 판교역 4번이나 1번출구에서 안랩4거리 ▶ 좌회전 ▶ 300미터 ▶ <b style="color:#45d4fe;">경기창조혁신센터 5층 (주)아이디어콘서트</b></span>
         </div>
     </div>
-    <div style="width:100%; float:left; margin-top:200px; margin-bottom:200px;">
+    <div style="width:100%; float:left; margin-top:200px; margin-bottom:100px;">
         <nav style="width:200px; float:left; text-align:right; padding-right:20px; font-size:20px; padding-top:20px;">
             <span class="road">아이디어콘서트<br>부설연구소</span>
         </nav>
@@ -37,6 +40,9 @@
                 <span style="color:#ccc; display:inline-block; margin-top:5px;">※차를 가지고 오실 경우 1일 전에 연락을 주셔야 합니다.</span>
             </span>
         </div>
+    </div>
+    <div style="width:100%; float:left; text-align:left; margin-bottom:100px;">
+        <h1 style="border-bottom:2px solid #ccc; padding-bottom:10px;">예약하기</h1>
     </div>
 </div>
 <c:import url="/WEB-INF/views/import/footer.jsp"/>

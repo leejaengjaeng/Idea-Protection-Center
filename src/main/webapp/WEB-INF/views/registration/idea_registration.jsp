@@ -17,7 +17,7 @@
 <style>
 body{
     height: 100% !important;    
-    overflow: hidden;    
+
 }
 .black_wall{
     width: 100%;

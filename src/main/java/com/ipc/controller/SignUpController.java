@@ -201,4 +201,54 @@ public class SignUpController {
 		System.out.println(ID);
 		return ID;
 	}
+	@RequestMapping(value="/findPw",method=RequestMethod.POST)
+	@ResponseBody
+	public HashMap<String,String> findPw(HttpServletRequest request) throws IOException, EmailException{
+		HashMap<String,String> mapresult=new HashMap<String,String>();
+		String ID=request.getParameter("id");
+		String email=request.getParameter("email");
+		System.out.println(ID+","+email);
+		//String ie=isExist(ID,email);
+		if(isExist(ID,email).equals("NO")){
+			mapresult.put("result", "False");
+			return mapresult;
+		}
+		else{
+			mapresult.put("result", "OK");
+			//mapresult.put("uid", value);
+		}
+		return mapresult;
+	}
+	private String isExist(String ID,String email) throws IOException, EmailException{
+		HashMap<String,String> parameter=new HashMap<String,String>();
+		parameter.put("ID",ID);
+		parameter.put("email", email);
+		String uid=usermapper.getUidByIdAndEmail(parameter);
+		System.out.println(uid);
+		if(uid==null){
+			return "NO";
+		}
+		else{
+			HashMap<String,String> param=new HashMap<String,String>();
+			SignUpService ss=new SignUpService();
+			String key=ss.makeNumber(5);
+			param.put("key", key);
+			param.put("uid", uid);
+			usermapper.updateKey(param);
+			String condition=sendKey(key, uid);
+		}
+		return uid;
+	}
+	private String sendKey(String key,String uid) throws IOException, EmailException{
+		SignUpService ss=new SignUpService();
+		int uid2=Integer.parseInt(uid);
+		userVo uv=usermapper.getUserByUid(uid);
+		try{
+			ss.sendpwmail(uid2, key, uv.getEmail());
+		}
+		catch(Exception e){
+			return "NO";
+		}
+		return "OK";
+	}
 }
