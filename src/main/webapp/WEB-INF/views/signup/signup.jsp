@@ -614,19 +614,19 @@ body {
 		<div class="check_box">
 			<div>
 				<span><b style="color:#f00;">[필수]</b> 이용약관에 동의합니다.</span>
-				<input type="checkbox" style="float:right;">
+				<input type="checkbox" style="float:right;" name="box">
 			</div>
 			<div>
 				<span><b style="color:#f00;">[필수]</b>  개인정보 수집 및 이용에 대한 안내에 동의합니다.</span>
-				<input type="checkbox" style="float:right;">
+				<input type="checkbox" style="float:right;" name="box">
 			</div>
 			<div>
 				<span><b style="color:#f00;">[필수]</b>  이메일 수집 거부에 대한 안내에 동의합니다.</span>
-				<input type="checkbox" style="float:right;">
+				<input type="checkbox" style="float:right;" name="box">
 			</div>
 			<div style="border-top:1px solid #ccc; padding-top:10px; margin-top:30px;">
 				<span>위 모든 내용에 동의합니다.</span>
-				<input type="checkbox" style="float:right;">
+				<input type="checkbox" style="float:right;" id="all_check">
 			</div>
 		</div>
 		<h1>회원가입</h1>
@@ -755,6 +755,17 @@ body {
 			$(".black_wall").css("display", "none");
 			$(".popup").css("display", "none");
 			$("body").css("overflow", "auto");
+		});
+		$("#all_check").click(function(){
+			if($('#all_check:checked').length <= 0){
+				$("input[name=box]:checkbox").each(function(){				
+					$(this).attr("checked",false)
+				});
+			}else{
+				$("input[name=box]:checkbox").each(function(){					
+					$(this).attr("checked",true)
+				});	
+			}
 		});
 	</script>
 </body>
