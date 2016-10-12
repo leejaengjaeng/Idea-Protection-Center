@@ -50,7 +50,7 @@
 			</sec:authorize>
 		</ol>
 		<div class="header_menu">
-			<img src="/resources/image/ideapc_logo.jpg" alt="Logo" onclick="location.href='/'" style="cursor: pointer;" draggable="false">
+			<img src="/resources/image/logo.png" alt="Logo" onclick="location.href='/'" style="cursor: pointer;" draggable="false">
 			<ul>
 			<!-- 
 				<li>아이디어 권리확보 시스템</li>

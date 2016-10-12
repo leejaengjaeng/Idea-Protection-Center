@@ -8,7 +8,7 @@
 <script src="/resources/common/js/jquery-3.1.0.min.js"></script>
 <script src="/resources/common/js/jquery-ui.min.js"></script>
 <link rel="stylesheet" href="/resources/common/css/index.css">
-<link rel="stylesheet" href="/resources/common/css/index.css">
+<link rel="stylesheet" href="/resources/common/css/style.css">
 <link rel="stylesheet" href="/resources/common/css/jquery-ui.min.css">
 <title>SiteMap</title>
 </head>
@@ -44,7 +44,17 @@
     <div style="width:100%; float:left; text-align:left; margin-bottom:100px;">
         <h1 style="border-bottom:2px solid #ccc; padding-bottom:10px;">예약하기</h1>
     </div>
+    <div style="width:100%; float:left;">       
+        <div style="width:100%; float:left; text-align:left;">
+			<div id="date_come"></div>           
+        </div>
+    </div>
 </div>
 <c:import url="/WEB-INF/views/import/footer.jsp"/>
+<script>
+	$(function(){
+		$("#date_come").datepicker({});	
+	});
+</script>
 </body>
 </html>
