@@ -134,7 +134,7 @@ $(document).ready(function()
                     </li>
                 </ol>                
                 <table>
-                    <tr>
+                    <tr> 
                         <th>번호</th>
                         <th>등록날짜</th>
                         <th>분류</th>
@@ -151,12 +151,11 @@ $(document).ready(function()
 	                        <td>${process.getRegistration_date() }</td>
 	                        <td>${process.getTypeOfInvent() }</td>
 	                        <td>${process.getTitle()}</td>
-	                        <td>${process.getR_condition() }</td>
-	                        <td>${process.getPre_apply_date() }</td>
-	                        
-	                        <td  class="ideaList">${process.getApply_date() }</td>
+	                        <td>${process.getReg_condition()}</td>
+	                        <td>${process.getPre_apply_date()}</td>
+	                        <td>${process.getApply_date()}</td>
 	                        <c:choose>
-		                        <c:when test="${process.getIscomplete() eq '2' }">
+		                        <c:when test="${process.getReg_condition() eq '가출원대기' }">
 		                        	<c:choose>
 		                	        	<c:when test="${currentUser.getRole()=='ROLE_INVENTOR'}">
 		                    	    		<td><button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;" class="btn_chul">가출원하기</button></td>

@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.ipc.dao.MainPageDao;
 import com.ipc.dao.NoticeDao;
 import com.ipc.dao.RegistrationDao;
 import com.ipc.dao.UserDao;
@@ -32,6 +33,7 @@ import com.ipc.vo.RegistrationFileVo;
 import com.ipc.vo.RegistrationPatentVo;
 import com.ipc.vo.adminListVo;
 import com.ipc.vo.adminNoticeVo;
+import com.ipc.vo.mainPageVo;
 import com.ipc.vo.userVo;
 
 @Controller
@@ -45,7 +47,9 @@ public class MainController {
 	UserDao userDao;
 	@Autowired
 	NoticeDao noticeDao;
-
+	@Autowired
+	MainPageDao mainPageDao;
+		
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	
 	private static final String roleAdmin = "ROLE_ADMIN";
@@ -75,19 +79,19 @@ public class MainController {
 			model.addAttribute("noticeList",an);
 			if(currentUser != null)
 			{
-				List<RegistrationPatentVo> processList;
+				List<mainPageVo> processList;
 				int comIdea=0;
 				int ingIdea=0;
 				if(currentUser.getRole().equals(roleInventor))
 				{
-					processList = regDao.getInventorProcessList(currentUser.getUid());	
+					processList = mainPageDao.getMainPageList(currentUser.getUid());	
 					comIdea=regDao.countCompleteIdeaIn(currentUser.getUid());
 					ingIdea=regDao.countIngIdeaIn(currentUser.getUid());
 				}
 				else if(currentUser.getRole().equals(rolePatientntLawyer))
 				{
 					System.out.println("aaasddd");
-					processList = regDao.getPlProcessList(currentUser.getUid());		
+					processList = mainPageDao.getPlMainPageList(currentUser.getUid());		
 					comIdea=regDao.countCompleteIdeaPl(currentUser.getUid());
 					ingIdea=regDao.countIngIdeaPl(currentUser.getUid());
 				}
@@ -124,6 +128,7 @@ public class MainController {
 		userDao.assign(map);
 		HashMap<String, String> resultMap = new HashMap<String,String>();
 		userVo uv = userDao.getUserByUid(req.getParameter("uid"));
+		mainPageDao.updateMainPageLid(map);
 		resultMap.put("result", "aa");
 		resultMap.put("lawyerName", uv.getName());
 		return resultMap;

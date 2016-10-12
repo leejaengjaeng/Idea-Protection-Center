@@ -5,9 +5,11 @@ import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.ipc.dao.RegistrationFileDao;
 import com.ipc.service.RegistrationService;
 import com.ipc.service.SignUpService;
 import com.ipc.vo.RegistrationPatentVo;
@@ -15,7 +17,8 @@ import com.ipc.vo.RegistrationPatentVo;
 import java.io.*;
 @Controller
 public class DocController {
-	
+	@Autowired
+	RegistrationFileDao regisFileMapper;
 	
 	public String savefile(RegistrationPatentVo rv,String root_path){
 		RegistrationService ss = new RegistrationService();

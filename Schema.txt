@@ -14,8 +14,6 @@ CREATE TABLE `user` (
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
-
-
 CREATE TABLE `patientent_lawyer` (
   `lid` INT NOT NULL AUTO_INCREMENT,
   `uid` VARCHAR(45) NOT NULL,
@@ -25,18 +23,19 @@ CREATE TABLE `patientent_lawyer` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
-
 CREATE TABLE `registration_patent` (
   `rid` int(11) NOT NULL AUTO_INCREMENT,
   `typeofinvent` varchar(45) DEFAULT NULL,
   `title` varchar(45) DEFAULT NULL,
-  `summary` text,
-  `whyinvent` text,
-  `problem` text,
-  `solution` text,
-  `effect` text,
-  `core_element` text,
-  `uid` int(11) DEFAULT NULL,
+  `summary` text DEFAULT NULL,
+  `whyinvent` text DEFAULT NULL,
+  `problem` text DEFAULT NULL,
+  `solution` text DEFAULT NULL,
+  `effect` text DEFAULT NULL,
+  `core_element` text DEFAULT NULL,
+  `hope_content` text DEFAULT NULL,
+  `picture_explain` text DEFAULT NULL,
+  `uid` int(11) DEFAULT NULL DEFAULT NULL,
   `iscomplete` tinyint(4) DEFAULT '0',
   `start_rid` int(11) DEFAULT NULL,
   `prev_rid` int(11) DEFAULT '-1',
@@ -48,14 +47,24 @@ CREATE TABLE `registration_patent` (
   `re_solution` text,
   `re_effect` text,
   `re_core_element` text,
+  `re_hope_content` text DEFAULT NULL,
+  `re_picture_explain` text DEFAULT NULL,
   `lid` int(11) DEFAULT NULL,
-  `r_condition` varchar(45) DEFAULT NULL,
-  `pre_apply_date` datetime DEFAULT NULL,
-  `apply_date` datetime DEFAULT NULL,
   /*`registration_date` timestamp ,*/
   `registration_date` datetime DEFAULT CURRENT_TIMESTAMP,
   `re_file` text,
   PRIMARY KEY (`rid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `main_page_reg_info` (
+  `mprid` int(11) NOT NULL AUTO_INCREMENT,
+  `rid` int(11) NOT NULL,
+  `uid` int(11) DEFAULT NULL,
+  `reg_condition` varchar(45) DEFAULT NULL,
+  `pre_apply_date` datetime DEFAULT NULL,
+  `apply_date` datetime DEFAULT NULL,
+  `registration_date` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`mprid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -96,5 +105,10 @@ CREATE TABLE `reply` (
   PRIMARY KEY (`reid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
-
+CREATE TABLE `document` (
+  `did` int(11) NOT NULL AUTO_INCREMENT,
+  `start_rid` int(11) DEFAULT NULL,
+  `file_name` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`did`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
