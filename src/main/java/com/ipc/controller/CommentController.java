@@ -326,6 +326,12 @@ public class CommentController {
 	public String tempApply(HttpServletRequest request){
 		String rid=request.getParameter("rid");
 		regDao.tempApply(Integer.parseInt(rid));
+		System.out.println(rid);
+		RegistrationPatentVo rv = regDao.getLastIdea(Integer.parseInt(rid));
+		System.out.println(rv.getTitle()+"+"+rv.getEffect());
+		DocController dc = new DocController();
+		String root_path=request.getSession().getServletContext().getRealPath("/");
+		dc.savefile(rv,root_path);
 		return "aa";
 	}
 }

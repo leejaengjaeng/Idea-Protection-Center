@@ -177,5 +177,9 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 		hashmap.put("aa","aa");
 		return hashmap;
 	}
+	@RequestMapping("/addDesign")
+	public String addDesign(){
+		return "registration/idea_design";
+	}
 }
 	
