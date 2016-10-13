@@ -275,6 +275,8 @@ public class CommentController {
 			regVo.setIscomplete(1);
 			
 			regDao.inventorSave(regVo);
+			
+			//mainPage띄우는 테이블에 update
 			mainPageDao.updateMainPagerid(regVo);
 			return "저장 성공";
 			
