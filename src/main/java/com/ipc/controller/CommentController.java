@@ -255,7 +255,26 @@ public class CommentController {
 			//답변 달기
 			regVo.setIscomplete(0);
 			regDao.plUpdate(regVo);
+			
+			
 			//
+			int countOfRow=regDao.countNumOfEdit(regVo.getRid());
+			String ment;
+			
+			if(countOfRow==1){
+				ment = "초안수정";
+			}
+			else{
+				ment = Integer.toString(countOfRow-1)+"차 수정";
+			}
+			
+			int start_rid=regDao.getStartRidByRid(regVo.getRid());
+			
+			HashMap<String,String> map= new HashMap<String,String>();
+			map.put("ment", ment);
+			map.put("rid",Integer.toString(start_rid));
+			regDao.updateRegCondition(map);
+			
 			//새로운 ROW만들기
 			RegistrationPatentVo tmpVo = regDao.getResourceForPlSaveByRid(regVo.getRid());
 			tmpVo.setIscomplete(0);

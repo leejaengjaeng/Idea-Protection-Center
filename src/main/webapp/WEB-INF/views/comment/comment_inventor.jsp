@@ -509,21 +509,86 @@ function readURL(input,imgId) {
                     </div>
                 </div>
                 <div class="hr"></div>
-<!-- 9. 도면 첨부 -->
+<!-- 9.보호받고자 하는 내용 -->
+                <div class="txt_box">
+                    <h2>권리를 보장받고자 하는 내용</h2> <button>작성 예시</button>
+                 
+                    <div id="BeforeCommentHope_content" class="cmt_field before_cmt">
+                        <textarea disabled="disabled" class="disabled"/>${beforeReg.getHope_content()}</textarea>
+                        <div class="img_comt">
+                            <img src="/resources/image/inventor3.png" alt="prev_userImg">
+                        </div>
+                    </div>             
+           			
+           			<div id="CurrentHope_content" class="cmt_field current_cmt">                        
+                        <div class="img_comt">
+                            <img src="/resources/image/inventor3.png" alt="current_userImg">
+                        </div>
+                        <textarea disabled="disabled" class="disabled"/>${beforeReg.getRe_hope_content()}</textarea>
+                    </div>             
+           
+                    <div id="AfterCommentHope_content" class="cmt_field after_cmt">
+                        <div class="img_comt">
+                            <img src="/resources/image/inventor3.png" alt="after_userImg">
+                        </div> 
+                        <textarea  disabled="disabled" class="disabled">${currentAnswer.getHope_content()}</textarea>
+                    </div>
+                    
+                    <div class="hiding_box">
+                        <div class="hiding_box_header">
+                            <h3>저작물 명칭</h3>
+                            <img src="/resources/image/close.png" alt="close" class="close_btn"> 
+                        </div>  
+                        <div class="hiding_box_content">
+                            <span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
+                        </div>                                                   
+                    </div>
+                </div>
+                <div class="hr"></div>
+<!-- 10.도면에 대한 설명 -->
+                <div class="txt_box">
+                    <h2>도면에 대한 설명</h2> <button>작성 예시</button>
+                 
+                    <div id="BeforeCommentPicture_explain" class="cmt_field before_cmt">
+                        <textarea disabled="disabled" class="disabled"/>${beforeReg.getPicture_explain()}</textarea>
+                        <div class="img_comt">
+                            <img src="/resources/image/inventor3.png" alt="prev_userImg">
+                        </div>
+                    </div>             
+           			
+           			<div id="CurrentPicture_explain" class="cmt_field current_cmt">                        
+                        <div class="img_comt">
+                            <img src="/resources/image/inventor3.png" alt="current_userImg">
+                        </div>
+                        <textarea disabled="disabled" class="disabled"/>${beforeReg.getRe_picture_explain()}</textarea>
+                    </div>             
+           
+                    <div id="AfterCommentPicture_explain" class="cmt_field after_cmt">
+                        <div class="img_comt">
+                            <img src="/resources/image/inventor3.png" alt="after_userImg">
+                        </div> 
+                        <textarea  disabled="disabled" class="disabled">${currentAnswer.getPicture_explain()}</textarea>
+                    </div>
+                    
+                    <div class="hiding_box">
+                        <div class="hiding_box_header">
+                            <h3>저작물 명칭</h3>
+                            <img src="/resources/image/close.png" alt="close" class="close_btn"> 
+                        </div>  
+                        <div class="hiding_box_content">
+                            <span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
+                        </div>                                                   
+                    </div>
+                </div>
+                <div class="hr"></div>
+<!-- 11. 도면 첨부 -->
                 <form id="commentForm" name="commentForm" action="/commentFileSave" method="post" enctype="multipart/form-data">
                                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                 
                 <input type="hidden" name="userID_file" value="${sessionScope.currentUser.getId()}">
                 <input type="hidden" name="start_rid_file" value="${start_rid}">
 	                <div class="txt_box">
-	                    <h2 style="width:100%">도면첨부</h2> 
-	                    	                   
-	                    <div id="BeforeFileComment" class="cmt_field before_cmt">
-                        	<textarea disabled="disabled" class="disabled"/>${beforeReg.getRe_file()}</textarea>
-	                        <div class="img_comt">
-	                            <img src="/resources/image/inventor3.png" alt="prev_userImg">
-	                        </div>
-	                    </div>             
+	                         
 						<button style="clear:both; margin-top:15px;" type="button" onclick="addFile()">추가</button>
 	                    <div id="demo_box">
 	                    	<div style="width:100%; float: left;  border-bottom:1px solid #ccc; padding-bottom:50px;">
@@ -543,12 +608,7 @@ function readURL(input,imgId) {
 		                        -->                                           
 		                </div>
 		                
-		                <div id="AfterCommentFiles" class="cmt_field after_cmt">
-	                        <div class="img_comt">
-	                            <img src="/resources/image/inventor3.png" alt="after_userImg">
-	                        </div> 
-	                        <textarea  disabled="disabled" class="disabled">${currentAnswer.getRe_file()}</textarea>
-	                    </div>
+		                
 	                    
 		                <div class="hiding_box">
 	                        <div class="hiding_box_header">

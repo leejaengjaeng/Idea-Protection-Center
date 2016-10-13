@@ -133,6 +133,8 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 		String effect= param.get("effect").toString();
 		String core_element= param.get("core_element").toString();
 		String uid=param.get("uid").toString();
+		String hope_content=param.get("hope_content").toString();
+		String picture_explain=param.get("picture_explain").toString();
 		System.out.println("title : "+title);
 		HashMap<String, String> hashmap = new HashMap<String, String>();
 		hashmap.put("typeOfInvent", typeOfInvent);
@@ -145,6 +147,8 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 		hashmap.put("core_element", core_element);
 		hashmap.put("uid", uid);
 		hashmap.put("registration_date", rs.getToday(0));
+		hashmap.put("hope_content", hope_content);
+		hashmap.put("picture_explain", picture_explain);
 //		int rv = regismapper.countTempIdea(Integer.parseInt(uid));
 //		System.out.println("rv: "+rv);
 //		if(rv!=0){
@@ -175,6 +179,8 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 		hashmap.put("summary", rv.getSummary());
 		hashmap.put("problem", rv.getProblem());
 		hashmap.put("core_element", rv.getCore_element());
+		hashmap.put("hope_content", rv.getHope_content());
+		hashmap.put("picture_explain", rv.getPicture_explain());
 		System.out.println(rv.getTypeOfInvent());
 		System.out.println(rv.getSummary());
 		return hashmap;
