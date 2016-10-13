@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.ipc.dao.MainPageDao;
 import com.ipc.dao.RegistrationDao;
 import com.ipc.dao.RegistrationFileDao;
 import com.ipc.service.RegistrationService;
@@ -40,7 +41,8 @@ public class CommentController {
 	HttpSession session;
 	@Autowired
 	RegistrationFileDao regFileDao;
-	
+	@Autowired
+	MainPageDao mainPageDao;
 	
 	/*
 	발명가
@@ -253,15 +255,15 @@ public class CommentController {
 			//답변 달기
 			regVo.setIscomplete(0);
 			regDao.plUpdate(regVo);
-			
+			//
 			//새로운 ROW만들기
 			RegistrationPatentVo tmpVo = regDao.getResourceForPlSaveByRid(regVo.getRid());
 			tmpVo.setIscomplete(0);
 			tmpVo.setPrev_rid(regVo.getRid());
 			tmpVo.setRid(0); //autoIncrese
-
+			
 			regDao.plSave(tmpVo);
-
+			
 			return "저장 성공";
 
 		}
@@ -273,7 +275,7 @@ public class CommentController {
 			regVo.setIscomplete(1);
 			
 			regDao.inventorSave(regVo);
-			
+			mainPageDao.updateMainPagerid(regVo);
 			return "저장 성공";
 			
 		}
@@ -326,6 +328,12 @@ public class CommentController {
 	public String tempApply(HttpServletRequest request){
 		String rid=request.getParameter("rid");
 		regDao.tempApply(Integer.parseInt(rid));
+		System.out.println(rid);
+		RegistrationPatentVo rv = regDao.getLastIdea(Integer.parseInt(rid));
+		System.out.println(rv.getTitle()+"+"+rv.getEffect());
+		DocController dc = new DocController();
+		String root_path=request.getSession().getServletContext().getRealPath("/");
+		dc.savefile(rv,root_path);
 		return "aa";
 	}
 }

@@ -16,11 +16,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.ipc.dao.MainPageDao;
 import com.ipc.dao.RegistrationDao;
 import com.ipc.dao.RegistrationFileDao;
 import com.ipc.dao.UserDao;
 import com.ipc.service.RegistrationService;
 import com.ipc.vo.RegistrationPatentVo;
+import com.ipc.vo.mainPageVo;
 import com.ipc.vo.userVo;
 
 @Controller
@@ -34,6 +36,9 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 	UserDao usermapper;
 	@Autowired
 	RegistrationFileDao regisfilemapper;
+	@Autowired
+	MainPageDao mainpagemapper;
+	MainPageController mpc=new MainPageController();
 	private static final String roleAdmin = "ROLE_ADMIN";
 	private static final String roleInventor = "ROLE_INVENTOR";
 	private static final String rolePatientntLawyer = "ROLE_PATIENTENTLAWYER";
@@ -103,6 +108,12 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 			map.put("file_path", "/resources/uploadimgs/inventor/"+uv.getId()+"/"+today+"."+fileType);
 			regisfilemapper.makeFile(map);
 		}
+		
+		
+		//mainPage 테이블에 추가
+		mainPageVo mpv=new mainPageVo();
+		mpv=mpc.shiftData(rv, "결제대기중");
+		mainpagemapper.insertFirstRow(mpv);
 		return "home/index";
 	}
 	
@@ -176,6 +187,10 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 		HashMap<String, String> hashmap = new HashMap<String, String>();
 		hashmap.put("aa","aa");
 		return hashmap;
+	}
+	@RequestMapping("/addDesign")
+	public String addDesign(){
+		return "registration/idea_design";
 	}
 }
 	

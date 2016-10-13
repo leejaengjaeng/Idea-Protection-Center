@@ -242,7 +242,7 @@ body{
 	                    <td>${list.getPhone()}</td>
 	                    <td>${list.getTypeofinvent()}</td>
 	                    <td>${list.getTitle()}</td>
-	                    <td>${list.getR_condition()}</td>
+	                    <td>${list.getReg_condition()}</td>
 	                   <!--   <td><button>정보수정</button></td> -->
 	                </tr>	
 	            </c:forEach>

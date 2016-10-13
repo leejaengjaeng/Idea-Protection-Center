@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ipc.dao.MainPageDao">
+	<insert id="insertFirstRow" parameterType="com.ipc.vo.mainPageVo">
+		insert into main_page_reg_info(rid,uid,reg_condition,registration_date,title,typeOfInvent) values (#{rid},#{uid},#{reg_condition},#{registration_date},#{title},#{typeOfInvent})
+	</insert>
+	<select id="getMainPageList" parameterType="Integer" resultType="com.ipc.vo.mainPageVo">
+		select lid,mprid,rid,uid,reg_condition,pre_apply_date,apply_date,registration_date,title,typeOfInvent from main_page_reg_info where uid=#{uid}
+	</select>
+	<select id="getPlMainPageList" parameterType="Integer" resultType="com.ipc.vo.mainPageVo">
+		select lid,mprid,rid,uid,reg_condition,pre_apply_date,apply_date,registration_date,title,typeOfInvent from main_page_reg_info where lid=#{uid}
+	</select>
+	<update id="updateMainPageLid" parameterType="Hashmap">
+		update main_page_reg_info set lid=#{uid} where rid=#{rid}
+	</update>
+	<update id="updateMainPagerid" parameterType="com.ipc.vo.RegistrationPatentVo">
+		update main_page_reg_info set rid=#{rid} where rid=#{rid}
+	</update>
+</mapper>

@@ -58,4 +58,5 @@ public interface RegistrationDao {
 	public int countIngIdeaPl(int uid);
 	
 	public int counTotalIdea();
+	public RegistrationPatentVo getLastIdea(int rid);
 }
