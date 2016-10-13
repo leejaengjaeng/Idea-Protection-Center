@@ -1019,19 +1019,32 @@ section nav #nav_benner ul li img {
 .txt_box ol li:hover::before {
   opacity: 1;
 }
-#date_come {
-  margin-bottom: 100px;
-}
-.ui-widget-header .ui-icon {
-  background-image: url(/resources/image/.jpg);
-}
 .eximg div {
-  background-size: cover;
-  background-position: center;
+  width: 100%;
 }
 .tot .txt_box {
   display: none;
 }
 .tot #exe1 {
   display: block;
+}
+#sangform form input {
+  height: 35px;
+  padding-left: 5px;
+  margin-top: 10px;
+}
+#sangform form textarea {
+  margin-top: 0;
+  width: 80%;
+  height: 200px;
+  margin-top: 10px;
+  padding: 5px;
+}
+#sangform form button {
+  margin-top: 10px;
+  margin-left: 0;
+  margin-bottom: 150px;
+  height: 35px;
+  width: 130px;
+  color: #999;
 }
