@@ -1,6 +1,7 @@
 package com.ipc.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +9,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.ipc.dao.DocumentDao;
 import com.ipc.dao.MainPageDao;
 import com.ipc.dao.RegistrationDao;
 import com.ipc.dao.RegistrationFileDao;
@@ -43,6 +46,9 @@ public class CommentController {
 	RegistrationFileDao regFileDao;
 	@Autowired
 	MainPageDao mainPageDao;
+	@Autowired
+	DocumentDao docDao;
+	
 	
 	/*
 	발명가
@@ -250,8 +256,6 @@ public class CommentController {
 			if(0 == regDao.checkIsCompletedByRid(regVo.getRid()))
 				return "이미 완료된 사항입니다.";
 			
-			
-			
 			//답변 달기
 			regVo.setIscomplete(0);
 			regDao.plUpdate(regVo);
@@ -346,15 +350,43 @@ public class CommentController {
 	}
 	@RequestMapping(value="/tempApply",method=RequestMethod.POST)
 	@ResponseBody
-	public String tempApply(HttpServletRequest request){
+	public HashMap<String,String> tempApply(HttpServletRequest request) throws InvalidFormatException, IOException{
+		
+		HashMap<String,String> map= new HashMap<String,String>();
+		HashMap<String,String> retVal=new HashMap<String,String>();
+		HashMap<String,String> upCon=new HashMap<String,String>();
 		String rid=request.getParameter("rid");
+		String stRid=Integer.toString(regDao.getStartRidByRid(Integer.parseInt(rid)));
+		
+		upCon.put("rid", stRid);
+		upCon.put("ment","가출원상태");
+		
+		regDao.updateRegCondition(upCon);
+		
 		regDao.tempApply(Integer.parseInt(rid));
+		
 		System.out.println(rid);
-		RegistrationPatentVo rv = regDao.getLastIdea(Integer.parseInt(rid));
-		System.out.println(rv.getTitle()+"+"+rv.getEffect());
+		
+		RegistrationPatentVo rv = regDao.getLastIdea(Integer.parseInt(stRid));
+		
+		System.out.println(rv.getTitle()+","+rv.getEffect()+","+rv.getCore_element()+","+rv.getHope_content()+","+rv.getProblem()+",");
+		
 		DocController dc = new DocController();
 		String root_path=request.getSession().getServletContext().getRealPath("/");
-		dc.savefile(rv,root_path);
-		return "aa";
+		
+		String doc_name=dc.savefile(rv,root_path);
+		
+		
+		map.put("file_name", doc_name);
+		map.put("start_rid", stRid);
+		
+		docDao.saveDocument(map);
+		
+		//DocController dctl = new DocController();
+		
+		retVal.put("file_name", doc_name);
+		
+		//dctl.downLoadFile(request,doc_name);
+		return retVal;
 	}
 }

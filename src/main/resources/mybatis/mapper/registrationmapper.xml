@@ -137,7 +137,7 @@
 		select rid, typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element,hope_content,picture_explain,re_hope_content,re_picture_explain, re_typeofinvent, re_title, re_summary, re_whyinvent, re_problem, re_solution, re_effect, re_core_element,re_file,registration_date,re_hope_content,re_picture_explain from registration_patent where rid=#{rid} AND iscomplete=-1
 	</select>
 	<select id="getLastIdea" resultType="com.ipc.vo.RegistrationPatentVo" parameterType="Integer">
-		select typeofinvent,title,summary,whyinvent,problem,solution,effect,core_element,hope_content,picture_explain from registration_patent where rid=#{rid} order by prev_rid desc limit 1
+		select typeofinvent,title,summary,whyinvent,problem,solution,effect,core_element,hope_content,picture_explain from registration_patent where start_rid=#{rid} order by prev_rid desc limit 1
 	</select>
 	<select id="countNumOfEdit" parameterType="Integer" resultType="Integer">
 		select count(rid) from registration_patent where start_rid=(select start_rid from registration_patent where rid=#{rid})

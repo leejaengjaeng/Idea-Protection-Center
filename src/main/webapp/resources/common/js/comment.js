@@ -63,6 +63,7 @@ var tempApply=function(role){
 	var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
 	var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
 	var data = {};
+	var data2={};
 	var headers = {};
 
 	data[csrfParameter] = csrfToken;
@@ -77,7 +78,9 @@ var tempApply=function(role){
  	    success:function(retVal)
  	    {
 	 	   	alert("가출원 상태로 등록되었습니다.");
-	 	   	location.href="/mainPage";
+	 	   
+	 	   	location.href ="/getFile?file_name="+retVal.file_name;
+	 	   	
  	    },
  	    error: function(request,status,error)
 		{
@@ -85,6 +88,7 @@ var tempApply=function(role){
  			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		}
 	});	
+    //location.href ="/mainPage";
 }
 
 //임시 저장
