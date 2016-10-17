@@ -48,7 +48,8 @@ public class CommentController {
 	MainPageDao mainPageDao;
 	@Autowired
 	DocumentDao docDao;
-	
+	@Autowired
+	RegistrationFileDao regisFileMapper; 
 	
 	/*
 	발명가
@@ -369,12 +370,16 @@ public class CommentController {
 		
 		RegistrationPatentVo rv = regDao.getLastIdea(Integer.parseInt(stRid));
 		
+		rv.setStart_rid(Integer.parseInt(stRid));
+		
 		System.out.println(rv.getTitle()+","+rv.getEffect()+","+rv.getCore_element()+","+rv.getHope_content()+","+rv.getProblem()+",");
 		
 		DocController dc = new DocController();
 		String root_path=request.getSession().getServletContext().getRealPath("/");
 		
-		String doc_name=dc.savefile(rv,root_path);
+		List<RegistrationFileVo> rfv = regisFileMapper.getImgListByStartRid(Integer.parseInt(stRid));
+		
+		String doc_name=dc.savefile(rv,root_path,rfv);
 		
 		
 		map.put("file_name", doc_name);

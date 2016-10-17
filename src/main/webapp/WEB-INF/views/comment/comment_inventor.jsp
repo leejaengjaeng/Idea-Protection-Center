@@ -47,10 +47,7 @@ $(document).ready(function()
 		hideBeforeCmt();
 		hideCurrentCmt();
 	}
-	if("${start_iscomplete}"==2){
-		disableInput();
-		alert('가출원상태입니다.');
-	}
+	
 	/*
 		//배치 변경
 		var txtBoxList = $('.txt_box');
@@ -71,9 +68,12 @@ $(document).ready(function()
 	//0 고객 작성중(변리사 작성 완료), 1 고객 작성 완료
 	if("${currentAnswer.getIscomplete()}" == 0)
 	{
-		enableInput();
-	
-		
+		enableInput();	
+	}
+	else if("${currentAnswer.getIscomplete()}"==2){
+		disableInput();
+		btnHide();
+		alert("가출원상태입니다.");
 	}
 	else
 	{
@@ -589,13 +589,13 @@ function readURL(input,imgId) {
                 <input type="hidden" name="start_rid_file" value="${start_rid}">
 	                <div class="txt_box">
 	                         
-						<button style="clear:both; margin-top:15px;" type="button" onclick="addFile()">추가</button>
+						<button class="removeBtn" style="clear:both; margin-top:15px;" type="button" onclick="addFile()">추가</button>
 	                    <div id="demo_box">
 	                    	<div style="width:100%; float: left;  border-bottom:1px solid #ccc; padding-bottom:50px;">
 		                    <c:forEach items="${imgs}" var="list" varStatus="status">
 			                    <div style="width:200px; float:left; margin:20px;">
 			                    	<a href="${list.getFile_path()}" id="id${list.getRfid()}" style="clear:both"><img src="${list.getFile_path()}" style="width:200px; height:200px;"></a>
-			                    	<button  style="float:left" type="button" id='btn${list.getRfid()}' onclick="delImg('${list.getFile_path()}','id${list.getRfid()}','btn${list.getRfid()}')">삭제</button>
+			                    	<button class="removeBtn" style="float:left" type="button" id='btn${list.getRfid()}' onclick="delImg('${list.getFile_path()}','id${list.getRfid()}','btn${list.getRfid()}')">삭제</button>
 		                        </div>		                        
 		                    </c:forEach>
 		                    </div>		                    

@@ -58,6 +58,40 @@ var disableInput = function()
 	$('#agree').hide();		
 
 }
+var disableInputApply = function()
+{
+	$('#AfterCommentTypeOfInvent').children("textarea").addClass('disabled');
+	$('#AfterCommentTypeOfInvent').children("textarea").attr('disabled',true);
+	$('#AfterCommentTitle').children("textarea").addClass('disabled');
+	$('#AfterCommentTitle').children("textarea").attr('disabled',true);
+	$('#AfterCommentSummary').children("textarea").addClass('disabled');
+	$('#AfterCommentSummary').children("textarea").attr('disabled',true);
+	$('#AfterCommentWhyInvent').children("textarea").addClass('disabled');
+	$('#AfterCommentWhyInvent').children("textarea").attr('disabled',true);
+	$('#AfterCommentProblem').children("textarea").addClass('disabled');
+	$('#AfterCommentProblem').children("textarea").attr('disabled',true);
+	$('#AfterCommentSolution').children("textarea").addClass('disabled');
+	$('#AfterCommentSolution').children("textarea").attr('disabled',true);
+	$('#AfterCommentEffect').children("textarea").addClass('disabled');
+	$('#AfterCommentEffect').children("textarea").attr('disabled',true);
+	$('#AfterCommentCore_Element').children("textarea").addClass('disabled');
+	$('#AfterCommentCore_Element').children("textarea").attr('disabled',true);
+	$('#AfterCommentFiles').children("textarea").addClass('disabled');
+	$('#AfterCommentFiles').children("textarea").attr('disabled',true);
+	$('#AfterCommentHope_content').children("textarea").addClass('disabled');
+	$('#AfterCommentHope_content').children("textarea").attr('disabled',true);
+	$('#AfterCommentPicture_explain').children("textarea").addClass('disabled');
+	$('#AfterCommentPicture_explain').children("textarea").attr('disabled',true);
+	
+	$('#tmpSave').hide();
+	$('#agree').hide();		
+	$('#gogogo').hide();
+}
+
+var btnHide=function(){
+	$('.removeBtn').hide();
+}
+
 var tempApply=function(role){
 	var csrfToken = $("meta[name='_csrf']").attr("content"); 
 	var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
