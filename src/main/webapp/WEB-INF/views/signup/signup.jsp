@@ -15,6 +15,9 @@
 <link rel="stylesheet" href="/resources/common/css/index.css">
 <title>Insert title here</title>
 <script>
+function changeBank(value){
+	document.getElementById("bank_name").value=value;
+}
 	function changeEmail(emailvalue) {
 		if (emailvalue == "1") {
 			document.getElementById("email2").style.display = "block";
@@ -698,35 +701,35 @@ body {
 				<tr class="hide">
 					<td>변리사 번호</td>
 					<td><input type="text" name="license_number"
-						id="license_number"></td>
+						id="license_number" required></td>
 				</tr>
 				<tr class="hide">
 					<td>전문분야</td>
 					<td>
 						<ul>
 							<li><input type="checkbox" name="major" value="전자상거래">전자상거래</li>
-							<li><input type="checkbox" name="major" value="전자상거래">전자상거래</li>
-							<li><input type="checkbox" name="major" value="전자상거래">전자상거래</li>
-							<li><input type="checkbox" name="major" value="전자상거래">전자상거래</li>
-							<li><input type="checkbox" name="major" value="전자상거래">전자상거래</li>
-							<li><input type="checkbox" name="major" value="전자상거래">전자상거래</li>
-							<li><input type="checkbox" name="major" value="전자상거래">전자상거래</li>
-							<li><input type="checkbox" name="major" value="전자상거래">전자상거래</li>
-							<li><input type="checkbox" name="major" value="전자상거래">전자상거래</li>
-							<li><input type="checkbox" name="major" value="전자상거래">전자상거래</li>
-							<li><input type="checkbox" name="major" value="전자상거래">전자상거래</li>							
+							<li><input type="checkbox" name="major" value="플랫폼서비스">플랫폼서비스</li>
+							<li><input type="checkbox" name="major" value="헬스케어">헬스케어</li>
+							<li><input type="checkbox" name="major" value="iot(사물인터넷)">iot(사물인터넷)</li>
+							<li><input type="checkbox" name="major" value="전자/전기">전자/전기</li>
+							<li><input type="checkbox" name="major" value="생명공학/의료">생명공학/의료</li>
+							<li><input type="checkbox" name="major" value="정보통신">정보통신</li>
+							<li><input type="checkbox" name="major" value="기계/금속">기계/금속</li>
+							<li><input type="checkbox" name="major" value="화학/바이오">화학/바이오</li>
+							<li><input type="checkbox" name="major" value="디자인(제품)">디자인(제품)</li>
+							<li><input type="checkbox" name="major" value="아이디어상품">아이디어상품  </li>							
 						</ul>
 					</td>
 				</tr>
 				<tr class="hide">
 					<td>변리사 등록증 사본</td>
 					<td><input type="file" name="license_scan_img"
-						id="license_scan_img"></td>
+						id="license_scan_img" required></td>
 				</tr>
 				<tr class="hide">
 					<td>경력기술(간단한 소개)</td>
 					<td><textarea name="introduce"
-						id="introduce"></textarea></td>
+						id="introduce" required></textarea></td>
 				</tr>
 				<tr class="hide">
 					<td>계좌번호</td>
@@ -750,7 +753,9 @@ body {
 						<option value="산업은행">산업은행</option>
 						<option value="수출입은행">수출입은행</option>
 						<option value="수협은행">수협은행</option>
-					</select> <input type="text" name="account_number" id="account_number" placeholder="계좌번호"></td>
+					</select>
+					<input type="hidden" name="bank_name" id="bank_name">
+					<input type="text" name="account_number" id="account_number" placeholder="계좌번호" required></td>
 				</tr>
 				
 			</table>

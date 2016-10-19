@@ -5,6 +5,34 @@ public class patientent_lawyerVo {
 	char uid;
 	String license_scan_img;
 	String license_number;
+	String major;
+	String bank_name;
+	String introduce;
+	String account_number;
+	public String getAccount_number() {
+		return account_number;
+	}
+	public void setAccount_number(String account_number) {
+		this.account_number = account_number;
+	}
+	public String getMajor() {
+		return major;
+	}
+	public void setMajor(String major) {
+		this.major = major;
+	}
+	public String getBank_name() {
+		return bank_name;
+	}
+	public void setBank_name(String bank_name) {
+		this.bank_name = bank_name;
+	}
+	public String getIntroduce() {
+		return introduce;
+	}
+	public void setIntroduce(String introduce) {
+		this.introduce = introduce;
+	}
 	public int getLid() {
 		return lid;
 	}
