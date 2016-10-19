@@ -80,17 +80,18 @@
   float: left;
 }
 #inven #inven_wrap article #msg_section #now_count {
-  width: 100%;
+  width: 50%;
   float: left;
   background: #01609a;
   height: 300px;
-  padding-left: 260px;
+  padding-left: 80px;
   padding-top: 80px;
 }
 #inven #inven_wrap article #msg_section #now_count h2 {
   color: white;
-  line-height: 45px;
-  font-size: 1.8rem;
+  line-height: 1.8em;
+  font-size: 1.7rem;
+  font-weight: 300;
 }
 #inven #inven_wrap article #msg_section #now_msg {
   width: 50%;
@@ -112,6 +113,7 @@
   padding-left: 15px;
   color: #888;
   font-weight: bold;
+  line-height: 1.7em;
 }
 #inven #inven_wrap article #msg_section #now_msg table tr td img {
   width: 36px;
