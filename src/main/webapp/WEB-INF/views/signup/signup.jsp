@@ -707,6 +707,10 @@ body {
 					<td>전문분야</td>
 					<td>
 						<ul>
+							<c:forEach items="${typeList}" var="list" varStatus="status">
+								<li><input type="checkbox" name="major" value="${list.getType()}">${list.getType()}</li>
+							</c:forEach>
+							<!-- 
 							<li><input type="checkbox" name="major" value="전자상거래">전자상거래</li>
 							<li><input type="checkbox" name="major" value="플랫폼서비스">플랫폼서비스</li>
 							<li><input type="checkbox" name="major" value="헬스케어">헬스케어</li>
@@ -718,6 +722,7 @@ body {
 							<li><input type="checkbox" name="major" value="화학/바이오">화학/바이오</li>
 							<li><input type="checkbox" name="major" value="디자인(제품)">디자인(제품)</li>
 							<li><input type="checkbox" name="major" value="아이디어상품">아이디어상품  </li>							
+							 -->
 						</ul>
 					</td>
 				</tr>
@@ -733,7 +738,16 @@ body {
 				</tr>
 				<tr class="hide">
 					<td>계좌번호</td>
-					<td><select name="bank" id="bank" onChange=changeBank(this.value); style="float: left;">
+					<c:forEach items="${qnaList}" var="list" varStatus="status">
+						<tr onclick="location.href='/qna/detail/${list.getQid()}'">
+    						<td>${status.count }</td>
+    						<td>${list.getTitle()}</td>
+    						<td>${list.getId()}</td>
+    						<td>${list.getDate()}</td>
+    					</tr>
+					</c:forEach>
+					<td>
+					<select name="bank" id="bank" onChange=changeBank(this.value); style="float: left;">
 						<option value="" selected>은행 선택 </option>
 						<option value="국민은행">국민은행</option>
 						<option value="우리은행">우리은행</option>

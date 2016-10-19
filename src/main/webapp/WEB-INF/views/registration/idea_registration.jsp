@@ -259,6 +259,14 @@ function formSubmit(file){
 	    alert("첨부파일 사이즈는 5MB 이내로 등록 가능합니다.    ");
 	    return false;
 	}
+	
+	if(document.getElementById("typeOfInvent").value=="-"){
+		alert("발명분야를 선택해주세요");
+		return false;
+	}
+}
+function changeType(value){
+	document.getElementById("typeOfInvent").value=value;
 }
 </script>
 </head>
@@ -301,11 +309,13 @@ function formSubmit(file){
 
                 <div class="txt_box">
                     <h2 style="margin-top:7px;">발명분야</h2>                                      
-                   	<select style="width:150px; height:35px; padding-left:5px; float:right;">
-                   		<option>아이고</option>
-                   		<option>아이고</option>
-                   		<option>아이고</option>                    		
+                   	<select onChange=changeType(this.value); style="width:150px; height:35px; padding-left:5px; float:right;">
+                   		<option>-</option>
+                   		<c:forEach items="${typeList}" var="list" varStatus="status">
+							<option>${list.getType()}</option>
+						</c:forEach>                    		
                    	</select>                    
+                   	<input type="hidden" value="-" name="typeOfInvent" id="typeOfInvent">
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
@@ -495,6 +505,7 @@ function formSubmit(file){
                     <button type ="button" onclick="tempsave();">임시저장</button>
                     <input type="submit" value="제출" id="agree" style="width:140px; height:40px; border:none; box-shadow:inset 0 -4px rgba(0,0,0,.1); color:white; margin-left:10px;">
                 </div>
+            </form>
             </article>
         </section>
     </div>    

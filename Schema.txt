@@ -29,8 +29,13 @@ CREATE TABLE `patientent_lawyer` (
   `uid` varchar(45) NOT NULL,
   `license_scan_img` varchar(100) DEFAULT NULL,
   `license_number` varchar(45) DEFAULT NULL,
+  `major` text,
+  `account_number` varchar(45) DEFAULT NULL,
+  `bank_name` varchar(45) DEFAULT NULL,
+  `introduce` text,
   PRIMARY KEY (`lid`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
 CREATE TABLE `qna` (
   `qid` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(45) DEFAULT NULL,
@@ -101,3 +106,9 @@ CREATE TABLE `user` (
   `profileimg` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
+CREATE TABLE `typeofinvent` (
+  `tid` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`tid`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+
