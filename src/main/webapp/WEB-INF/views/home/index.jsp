@@ -152,7 +152,7 @@
             </div>
         </section>
     </article>
-    <a href="registration/idea_copyright">다운로드</a>
+    
     <c:import url="/WEB-INF/views/import/footer.jsp"/>       
 <script>
     var now=0;
