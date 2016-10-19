@@ -19,7 +19,11 @@ var enableInput = function()
 	$('#AfterCommentCore_Element').children("textarea").attr('disabled',false);
 	$('#AfterCommentFiles').children("textarea").removeClass('disabled');
 	$('#AfterCommentFiles').children("textarea").attr('disabled',false);
-
+	$('#AfterCommentHope_content').children("textarea").removeClass('disabled');
+	$('#AfterCommentHope_content').children("textarea").attr('disabled',false);
+	$('#AfterCommentPicture_explain').children("textarea").removeClass('disabled');
+	$('#AfterCommentPicture_explain').children("textarea").attr('disabled',false);
+	
 	$('#tmpSave').show();
 	$('#agree').show();		
 
@@ -45,16 +49,55 @@ var disableInput = function()
 	$('#AfterCommentCore_Element').children("textarea").attr('disabled',true);
 	$('#AfterCommentFiles').children("textarea").addClass('disabled');
 	$('#AfterCommentFiles').children("textarea").attr('disabled',true);
-
+	$('#AfterCommentHope_content').children("textarea").addClass('disabled');
+	$('#AfterCommentHope_content').children("textarea").attr('disabled',true);
+	$('#AfterCommentPicture_explain').children("textarea").addClass('disabled');
+	$('#AfterCommentPicture_explain').children("textarea").attr('disabled',true);
+	
 	$('#tmpSave').hide();
 	$('#agree').hide();		
 
 }
+var disableInputApply = function()
+{
+	$('#AfterCommentTypeOfInvent').children("textarea").addClass('disabled');
+	$('#AfterCommentTypeOfInvent').children("textarea").attr('disabled',true);
+	$('#AfterCommentTitle').children("textarea").addClass('disabled');
+	$('#AfterCommentTitle').children("textarea").attr('disabled',true);
+	$('#AfterCommentSummary').children("textarea").addClass('disabled');
+	$('#AfterCommentSummary').children("textarea").attr('disabled',true);
+	$('#AfterCommentWhyInvent').children("textarea").addClass('disabled');
+	$('#AfterCommentWhyInvent').children("textarea").attr('disabled',true);
+	$('#AfterCommentProblem').children("textarea").addClass('disabled');
+	$('#AfterCommentProblem').children("textarea").attr('disabled',true);
+	$('#AfterCommentSolution').children("textarea").addClass('disabled');
+	$('#AfterCommentSolution').children("textarea").attr('disabled',true);
+	$('#AfterCommentEffect').children("textarea").addClass('disabled');
+	$('#AfterCommentEffect').children("textarea").attr('disabled',true);
+	$('#AfterCommentCore_Element').children("textarea").addClass('disabled');
+	$('#AfterCommentCore_Element').children("textarea").attr('disabled',true);
+	$('#AfterCommentFiles').children("textarea").addClass('disabled');
+	$('#AfterCommentFiles').children("textarea").attr('disabled',true);
+	$('#AfterCommentHope_content').children("textarea").addClass('disabled');
+	$('#AfterCommentHope_content').children("textarea").attr('disabled',true);
+	$('#AfterCommentPicture_explain').children("textarea").addClass('disabled');
+	$('#AfterCommentPicture_explain').children("textarea").attr('disabled',true);
+	
+	$('#tmpSave').hide();
+	$('#agree').hide();		
+	$('#gogogo').hide();
+}
+
+var btnHide=function(){
+	$('.removeBtn').hide();
+}
+
 var tempApply=function(role){
 	var csrfToken = $("meta[name='_csrf']").attr("content"); 
 	var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
 	var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
 	var data = {};
+	var data2={};
 	var headers = {};
 
 	data[csrfParameter] = csrfToken;
@@ -69,7 +112,9 @@ var tempApply=function(role){
  	    success:function(retVal)
  	    {
 	 	   	alert("가출원 상태로 등록되었습니다.");
-	 	   	location.href="/mainPage";
+	 	   
+	 	   	location.href ="/getFile?file_name="+retVal.file_name;
+	 	   	
  	    },
  	    error: function(request,status,error)
 		{
@@ -77,6 +122,7 @@ var tempApply=function(role){
  			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		}
 	});	
+    //location.href ="/mainPage";
 }
 
 //임시 저장
@@ -104,7 +150,8 @@ var tmpSave = function(role)
 		data['solution'] 		= $('#AfterCommentSolution').children("textarea").val();
 		data['effect'] 			= $('#AfterCommentEffect').children("textarea").val();
 		data['core_element'] 	= $("#AfterCommentCore_Element").children("textarea").val();
-
+		data['hope_content']	= $("#AfterCommentHope_content").children("textarea").val();
+		data['picture_explain']	= $("#AfterCommentPicture_explain").children("textarea").val();
 	}
 	//변리사인 경우
 	else if(role=="pl")
@@ -119,6 +166,8 @@ var tmpSave = function(role)
 		data['re_effect'] 		= $('#AfterCommentEffect').children("textarea").val();
 		data['re_core_element'] = $('#AfterCommentCore_Element').children("textarea").val();
 		data['re_file']			= $('#AfterCommentFiles').children("textarea").val();
+		data['re_hope_content']	= $('#AfterCommentHope_content').children("textarea").val();
+		data['re_picture_explain']= $('#AfterCommentPicture_explain').children("textarea").val();
 	}
 	else
 	{
@@ -187,6 +236,9 @@ var ideaSave = function(role)
 		data['solution'] 		= $('#AfterCommentSolution').children("textarea").val();
 		data['effect'] 			= $('#AfterCommentEffect').children("textarea").val();
 		data['core_element'] 	= $("#AfterCommentCore_Element").children("textarea").val();
+		data['hope_content'] 	= $("#AfterCommentHope_content").children("textarea").val();
+		data['picture_explain'] 	= $("#AfterCommentPicture_explain").children("textarea").val();
+		
 	}
 	//변리사인 경우
 	else if(role=="pl")
@@ -201,6 +253,8 @@ var ideaSave = function(role)
 		data['re_effect'] 		= $('#AfterCommentEffect').children("textarea").val();
 		data['re_core_element'] = $('#AfterCommentCore_Element').children("textarea").val();
 		data['re_file']			= $('#AfterCommentFiles').children("textarea").val();
+		data['re_hope_content'] = $('#AfterCommentHope_content').children("textarea").val();
+		data['re_picture_explain']= $('#AfterCommentPicture_explain').children("textarea").val();
 		
 	}
 	else
@@ -281,6 +335,8 @@ var showClickedList = function(rid)
 					$('#BeforeCommentEffect').children('textarea').text(beforeComment.effect);
 					$('#BeforeCommentCore_Element').children('textarea').text(beforeComment.core_element);
 					$('#BeforeCommentFiles').children("textarea").text(beforeComment.re_file);
+					$('#BeforeCommentHope_content').children('textarea').text(beforeComment.hope_content);
+					$('#BeforeCommentPicture_explain').children("textarea").text(beforeComment.picture_explain);
 					
 					$('#CurrentTypeOfInvent').children("textarea").text(beforeComment.re_typeOfInvent);
 					$('#CurrentTitle').children("textarea").text(beforeComment.re_title);
@@ -290,6 +346,8 @@ var showClickedList = function(rid)
 					$('#CurrentSolution').children("textarea").text(beforeComment.re_solution);
 					$('#CurrentEffect').children("textarea").text(beforeComment.re_effect);
 					$('#CurrentCore_Element').children("textarea").text(beforeComment.re_core_element);
+					$('#CurrentHope_content').children("textarea").text(beforeComment.re_hope_content);
+					$('#CurrentPicture_explain').children("textarea").text(beforeComment.re_picture_explain);
 					
 					showBeforeCmt();
 					showCurrentCmt();
@@ -310,6 +368,8 @@ var showClickedList = function(rid)
 				$('#AfterCommentEffect').children('textarea').text(currentAnswer.effect);
 				$('#AfterCommentCore_Element').children('textarea').text(currentAnswer.core_element);
 				$('#AfterCommentFiles').children("textarea").text(currentAnswer.re_file);
+				$('#AfterCommentHope_content').children('textarea').text(currentAnswer.hope_content);
+				$('#AfterCommentPicture_explain').children("textarea").text(currentAnswer.picture_explain);
 				
 			}
 			else if(role == "pl")
@@ -326,7 +386,8 @@ var showClickedList = function(rid)
 					$('#BeforeCommentEffect').children('textarea').text(beforeComment.re_effect);
 					$('#BeforeCommentCore_Element').children('textarea').text(beforeComment.re_core_element);
 					$('#BeforeCommentFiles').children("textarea").text(beforeComment.re_file);
-					
+					$('#BeforeCommentPicture_explain').children('textarea').text(beforeComment.re_picture_explain);
+					$('#BeforeCommentHope_content').children("textarea").text(beforeComment.re_hope_content);
 					showBeforeCmt();
 
 				}
@@ -344,7 +405,9 @@ var showClickedList = function(rid)
 				$('#CurrentSolution').children("textarea").text(currentAnswer.solution);
 				$('#CurrentEffect').children("textarea").text(currentAnswer.effect);
 				$('#CurrentCore_Element').children("textarea").text(currentAnswer.core_element);
-			
+				$('#CurrentHope_content').children("textarea").text(currentAnswer.hope_content);
+				$('#CurrentPicture_explain').children("textarea").text(currentAnswer.picture_explain);
+				
 				$('#AfterCommentTypeOfInvent').children('textarea').text(currentAnswer.re_typeOfInvent);
 				$('#AfterCommentTitle').children('textarea').text(currentAnswer.re_title);
 				$('#AfterCommentSummary').children('textarea').text(currentAnswer.re_summary);
@@ -354,6 +417,8 @@ var showClickedList = function(rid)
 				$('#AfterCommentEffect').children('textarea').text(currentAnswer.re_effect);
 				$('#AfterCommentCore_Element').children('textarea').text(currentAnswer.re_core_element);
 				$('#AfterCommentFiles').children("textarea").text(currentAnswer.re_file);
+				$('#AfterCommentPicture_explain').children('textarea').text(currentAnswer.re_picture_explain);
+				$('#AfterCommentHope_content').children("textarea").text(currentAnswer.re_hope_content);
 				
 			}
 			else

@@ -116,9 +116,6 @@ public class MainController {
 			return "redirect:/";		
 		}
 	}
-	
-	
-	
 	@RequestMapping(value="/assign",method=RequestMethod.POST)
 	@ResponseBody
 	public HashMap<String, String> assign(HttpServletRequest req){
@@ -145,7 +142,6 @@ public class MainController {
 		return "admin/admin_management";
 		
 	}
-
 	@RequestMapping(value="/noticeList/{nid}",method=RequestMethod.GET)
 	public String noticeList(Model model,@PathVariable int nid){
 		adminNoticeVo an = noticeDao.getNoticeByNid(nid);
@@ -174,6 +170,4 @@ public class MainController {
 	public String design(){
 		return "registration/idea_design";
 	}
-	
-	
 }

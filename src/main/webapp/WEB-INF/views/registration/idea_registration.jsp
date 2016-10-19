@@ -9,7 +9,7 @@
 <meta name="_csrf" content="${_csrf.token}" />
 <meta name="_csrf_header" content="${_csrf.headerName}" />
 <!-- <link rel="stylesheet"
-	href="/webjars/bootstrap/3.3.7/dist/css/bootstrap.min.css"> -->
+   href="/webjars/bootstrap/3.3.7/dist/css/bootstrap.min.css"> -->
 <script src="/resources/common/js/jquery-3.1.0.min.js"></script>
 <link rel="stylesheet" href="/resources/common/css/index.css">
 <link rel="stylesheet" href="/resources/common/css/style.css">
@@ -300,9 +300,12 @@ function formSubmit(file){
                 <input type="text" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}" hidden> 
 
                 <div class="txt_box">
-                    <h2>발명분야</h2>
-                    <button>작성예시 보기</button>
-                    <input type="text" id="idea_kind" name="typeOfInvent" required>
+                    <h2 style="margin-top:7px;">발명분야</h2>                                      
+                   	<select style="width:150px; height:35px; padding-left:5px; float:right;">
+                   		<option>아이고</option>
+                   		<option>아이고</option>
+                   		<option>아이고</option>                    		
+                   	</select>                    
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>
@@ -432,6 +435,20 @@ function formSubmit(file){
                         </div>                                                   
                     </div>
                 </div>
+                <div class="txt_box">
+                    <h2>권리를 보장 받고자 하는 내용</h2>
+                    <button>작성예시 보기</button>
+                    <textarea id="hop_cont"  name="hope_content" required></textarea>
+                    <div class="hiding_box">
+                        <div class="hiding_box_header">
+                            <h3>발명분야</h3>
+                            <img src="/resources/image/ideapc_logo.jpg" alt="close" class="close_btn"> 
+                        </div>  
+                        <div class="hiding_box_content">
+                            <span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
+                        </div>                                                   
+                    </div>
+                </div>
                 <div id="upimgdiv" class="txt_box">
                     <h2 style="width:100%">도면첨부</h2><button type="button" style="margin-top:5px;" onclick="addfile()">추가</button>
                     <button type="button" style="margin-top:5px;" onclick="delfile()">삭제</button>
@@ -450,6 +467,20 @@ function formSubmit(file){
                     <h2>도면에 대한 설명</h2>
                     <button>작성예시 보기</button>
                     <textarea id="imp_cont"  name="core_element" required></textarea>
+                    <div class="hiding_box">
+                        <div class="hiding_box_header">
+                            <h3>발명분야</h3>
+                            <img src="/resources/image/ideapc_logo.jpg" alt="close" class="close_btn"> 
+                        </div>  
+                        <div class="hiding_box_content">
+                            <span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
+                        </div>                                                   
+                    </div>
+                </div>
+                <div class="txt_box">
+                    <h2>도면에 대한 설명</h2>
+                    <button>작성예시 보기</button>
+                    <textarea id="pic_cont"  name="picture_explain" required></textarea>
                     <div class="hiding_box">
                         <div class="hiding_box_header">
                             <h3>발명분야</h3>

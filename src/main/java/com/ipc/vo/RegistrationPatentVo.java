@@ -26,6 +26,10 @@ public class RegistrationPatentVo {
 	int prev_rid;
 	String re_file;
 	String hope_content;
+	String re_hope_content;
+	String picture_explain;
+	String re_picture_explain;
+	
 	public String getHope_content() {
 		return hope_content;
 	}
@@ -50,9 +54,7 @@ public class RegistrationPatentVo {
 	public void setRe_picture_explain(String re_picture_explain) {
 		this.re_picture_explain = re_picture_explain;
 	}
-	String re_hope_content;
-	String picture_explain;
-	String re_picture_explain;
+	
 	public String getRe_file() {
 		return re_file;
 	}

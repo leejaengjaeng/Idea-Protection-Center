@@ -59,4 +59,9 @@ public interface RegistrationDao {
 	
 	public int counTotalIdea();
 	public RegistrationPatentVo getLastIdea(int rid);
+	
+	public int countNumOfEdit(int rid);
+	public void updateRegCondition(HashMap<String,String> map);
+	
+	public int getStartRidByRid(int rid);
 }
