@@ -701,7 +701,7 @@ body {
 				<tr class="hide">
 					<td>변리사 번호</td>
 					<td><input type="text" name="license_number"
-						id="license_number" required></td>
+						id="license_number"></td>
 				</tr>
 				<tr class="hide">
 					<td>전문분야</td>
@@ -724,12 +724,12 @@ body {
 				<tr class="hide">
 					<td>변리사 등록증 사본</td>
 					<td><input type="file" name="license_scan_img"
-						id="license_scan_img" required></td>
+						id="license_scan_img"></td>
 				</tr>
 				<tr class="hide">
 					<td>경력기술(간단한 소개)</td>
 					<td><textarea name="introduce"
-						id="introduce" required></textarea></td>
+						id="introduce"></textarea></td>
 				</tr>
 				<tr class="hide">
 					<td>계좌번호</td>
@@ -755,7 +755,7 @@ body {
 						<option value="수협은행">수협은행</option>
 					</select>
 					<input type="hidden" name="bank_name" id="bank_name">
-					<input type="text" name="account_number" id="account_number" placeholder="계좌번호" required></td>
+					<input type="text" name="account_number" id="account_number" placeholder="계좌번호"></td>
 				</tr>
 				
 			</table>

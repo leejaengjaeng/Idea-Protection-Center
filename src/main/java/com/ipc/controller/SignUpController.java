@@ -22,8 +22,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.ipc.dao.TypeOfInventDao;
 import com.ipc.dao.UserDao;
 import com.ipc.service.SignUpService;
+import com.ipc.vo.TypeOfInventVo;
 import com.ipc.vo.patientent_lawyerVo;
 import com.ipc.vo.userVo;
 
@@ -34,12 +36,17 @@ public class SignUpController {
 	UserDao usermapper;
 	@Autowired
 	HttpSession session;
+	@Autowired
+	TypeOfInventDao typemapper;
+	
 	private static final String roleAdmin = "ROLE_ADMIN";
 	private static final String roleInventor = "ROLE_INVENTOR";
 	private static final String rolePatientntLawyer = "ROLE_PATIENTENTLAWYER";
 	private static final String roleGuest = "anonymousUser";
 	@RequestMapping("/signupPage")
 	public String signupPage(Model model){
+		List<TypeOfInventVo> tvList = typemapper.getTypeList();
+		model.addAttribute("typeList", tvList);
 		return "signup/signup";
 	}
 	@RequestMapping(value="/inputsignup", method=RequestMethod.POST)
