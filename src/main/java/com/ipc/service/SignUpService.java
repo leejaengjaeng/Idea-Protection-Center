@@ -8,10 +8,16 @@ import java.util.Random;
 
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.ipc.dao.TypeOfInventDao;
 @Service
 public class SignUpService {
+	@Autowired 
+	TypeOfInventDao typeOfmapper; 
+	
 	public String sendhtmlmail(int uid,String key,String email) throws IOException, EmailException{
 		HtmlEmail sendemail = new HtmlEmail();
 		sendemail.setCharset("euc-kr");
@@ -128,5 +134,9 @@ public class SignUpService {
 			dir.mkdirs();
 		}
 		return "OK";
+	}
+	
+	public void list(){
+		System.out.println(typeOfmapper.getTypeList().size());
 	}
 }

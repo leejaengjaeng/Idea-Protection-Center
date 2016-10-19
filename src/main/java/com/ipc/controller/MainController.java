@@ -49,7 +49,9 @@ public class MainController {
 	NoticeDao noticeDao;
 	@Autowired
 	MainPageDao mainPageDao;
-		
+	@Autowired
+	SignUpService ss;
+	
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	
 	private static final String roleAdmin = "ROLE_ADMIN";
@@ -65,7 +67,6 @@ public class MainController {
 		model.addAttribute("noticeList",an);
 		model.addAttribute("totalUser",totalUser);
 		model.addAttribute("totalIdea",totalIdea);
-		
 		return "home/index";
 	}
 	
