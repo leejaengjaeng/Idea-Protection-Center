@@ -418,6 +418,20 @@ function formSubmit(file){
                         </div>                                                   
                     </div>
                 </div>
+                <div class="txt_box">
+                    <h2>권리를 보장 받고자 하는 내용</h2>
+                    <button>작성예시 보기</button>
+                    <textarea id="imp_cont"  name="core_element" required></textarea>
+                    <div class="hiding_box">
+                        <div class="hiding_box_header">
+                            <h3>발명분야</h3>
+                            <img src="/resources/image/ideapc_logo.jpg" alt="close" class="close_btn"> 
+                        </div>  
+                        <div class="hiding_box_content">
+                            <span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
+                        </div>                                                   
+                    </div>
+                </div>
                 <div id="upimgdiv" class="txt_box">
                     <h2 style="width:100%">도면첨부</h2><button type="button" style="margin-top:5px;" onclick="addfile()">추가</button>
                     <button type="button" style="margin-top:5px;" onclick="delfile()">삭제</button>
@@ -432,7 +446,20 @@ function formSubmit(file){
                         </div>                                                   
                     </div>                    
                 </div>
-                
+                <div class="txt_box">
+                    <h2>도면에 대한 설명</h2>
+                    <button>작성예시 보기</button>
+                    <textarea id="imp_cont"  name="core_element" required></textarea>
+                    <div class="hiding_box">
+                        <div class="hiding_box_header">
+                            <h3>발명분야</h3>
+                            <img src="/resources/image/ideapc_logo.jpg" alt="close" class="close_btn"> 
+                        </div>  
+                        <div class="hiding_box_content">
+                            <span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
+                        </div>                                                   
+                    </div>
+                </div>
                 <div id="fin"> 
                     <button type ="button" onclick="tempsave();">임시저장</button>
                     <input type="submit" value="제출" id="agree" style="width:140px; height:40px; border:none; box-shadow:inset 0 -4px rgba(0,0,0,.1); color:white; margin-left:10px;">
