@@ -787,6 +787,7 @@ body {
 		});
 
 		$(function() {
+			$(".hide").hide();
 			$("#imgInp").on('change', function() {
 				readURL(this);
 			});
