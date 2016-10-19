@@ -695,15 +695,74 @@ body {
 								회원가입 인증을 위한 정보입니다.</span>
 						</div></td>
 				</tr>
-				<tr id="hide">
+				<tr class="hide">
 					<td>변리사 번호</td>
 					<td><input type="text" name="license_number"
 						id="license_number"></td>
 				</tr>
+				<tr class="hide">
+					<td>전문분야</td>
+					<td><input type="checkbox" name="major"
+						value="전자상거래">전자상거래
+						<input type="checkbox" name="major"
+						value="전자상거래">전자상거래
+						<input type="checkbox" name="major"
+						value="전자상거래">전자상거래
+						<input type="checkbox" name="major"
+						value="전자상거래">전자상거래
+						<input type="checkbox" name="major"
+						value="전자상거래">전자상거래
+						<input type="checkbox" name="major"
+						value="전자상거래">전자상거래
+						<input type="checkbox" name="major"
+						value="전자상거래">전자상거래
+						<input type="checkbox" name="major"
+						value="전자상거래">전자상거래
+						<input type="checkbox" name="major"
+						value="전자상거래">전자상거래
+						<input type="checkbox" name="major"
+						value="전자상거래">전자상거래
+						<input type="checkbox" name="major"
+						value="전자상거래">전자상거래</td>
+				</tr>
+				<tr class="hide">
+					<td>변리사 등록증 사본</td>
+					<td><input type="file" name="license_scan_img"
+						id="license_scan_img"></td>
+				</tr>
+				<tr class="hide">
+					<td>경력기술(간단한 소개)</td>
+					<td><textarea name="introduce"
+						id="introduce"></textarea></td>
+				</tr>
+				<tr class="hide">
+					<td>계좌번호</td>
+					<td><select name="bank" id="bank" onChange=changeBank(this.value); style="float: left;">
+						<option value="" selected>은행 선택 </option>
+						<option value="국민은행">국민은행</option>
+						<option value="우리은행">우리은행</option>
+						<option value="신한은행">신한은행</option>
+						<option value="하나은행">하나은행</option>
+						<option value="외환은행">외환은행</option>
+						<option value="SC제일은행">SC제일은행</option>
+						<option value="한국씨티은행">한국씨티은행</option>
+						<option value="부산은행">부산은행</option>
+						<option value="대구은행">대구은행</option>
+						<option value="경남은행">경남은행</option>
+						<option value="광주은행">광주은행</option>
+						<option value="전북은행">전북은행</option>
+						<option value="제주은행">제주은행</option>
+						<option value="농협은행">농협은행</option>
+						<option value="기업은행">기업은행</option>
+						<option value="산업은행">산업은행</option>
+						<option value="수출입은행">수출입은행</option>
+						<option value="수협은행">수협은행</option>
+					</select> <input type="text" name="account_number" id="account_number" placeholder="계좌번호"></td>
+				</tr>
+				
 			</table>
 			<!-- <input type="submit" value="가입" id="submit"> -->
 			<input type="submit" value="가입" id="submit">
-			</button>
 		</form>
 	</div>
 	<c:import url="/WEB-INF/views/import/footer.jsp" />
@@ -713,9 +772,9 @@ body {
 			$(this).siblings().removeClass("on");
 
 			if ($(this).data('no') == 1) {
-				$("#hide").css("display", "table-row");
+				$(".hide").css("display", "table-row");
 			} else {
-				$("#hide").css("display", "none");
+				$(".hide").css("display", "none");
 			}
 
 		});
