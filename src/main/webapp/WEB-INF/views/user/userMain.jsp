@@ -103,7 +103,15 @@ $(document).ready(function()
 			                    아이디어 ${ingIdea}건,<br>
 			                    완료 ${comIdea}건이 있습니다.
                     </h2>
-                </div>                
+                </div> 
+                <div id="now_msg">
+                	<table>
+                		<tr>
+                			<td>2016.10.19 <br> 변리사가 지정되었습니다.</td>
+                			<td><img src="/resources/image/sub_banner_2.jpg"></td>
+                		</tr>
+                	</table>
+                </div>               
             </section>
             <div id="cont_header">
                 <h2>아이디어 진행내역</h2>

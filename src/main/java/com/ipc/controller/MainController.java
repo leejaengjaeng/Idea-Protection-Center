@@ -85,12 +85,14 @@ public class MainController {
 				int ingIdea=0;
 				if(currentUser.getRole().equals(roleInventor))
 				{
+					System.out.println("in");
 					processList = mainPageDao.getMainPageList(currentUser.getUid());	
 					comIdea=regDao.countCompleteIdeaIn(currentUser.getUid());
 					ingIdea=regDao.countIngIdeaIn(currentUser.getUid());
 				}
 				else if(currentUser.getRole().equals(rolePatientntLawyer))
 				{
+					System.out.println("law");
 					System.out.println("aaasddd");
 					processList = mainPageDao.getPlMainPageList(currentUser.getUid());		
 					comIdea=regDao.countCompleteIdeaPl(currentUser.getUid());
@@ -100,6 +102,7 @@ public class MainController {
 				// If not only Inventor but patientLawyer, Redirecting to root path
 				else
 				{
+					System.out.println("re");
 					return "redirect:/";			
 				}
 				model.addAttribute("comIdea",comIdea);
