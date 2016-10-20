@@ -58,8 +58,10 @@ function loadTempIdea(rid){
             document.getElementById("wel_cont").value=data.solution;
             document.getElementById("bal_cont").value=data.effect;
             document.getElementById("imp_cont").value=data.core_element;
+            document.getElementById("hope_content").value=data.hope_content;
+            document.getElementById("picture_explain").value=data.picture_explain;
             document.getElementById("bw").style.visibility="hidden";
-           document.getElementById("pp").style.visibility="hidden";
+           	document.getElementById("pp").style.visibility="hidden";
        },
        error:function(request,status,error){
            alert("code:"+request.status+"\n"+"error:"+error);
@@ -104,6 +106,8 @@ function tempsave(){
    var effect=document.getElementById("bal_cont").value;
    var core_element=document.getElementById("imp_cont").value;
    var uid=document.getElementById("uid").value;
+   var hope_content=document.getElementById("hope_content").value;
+   var picture_explain=document.getElementById("picture_explain").value
    
    var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
    var csrfToken = $("meta[name='_csrf']").attr("content"); 
@@ -121,6 +125,8 @@ function tempsave(){
    data["effect"] = effect;
    data["core_element"] = core_element;
    data["uid"]=uid;
+   data["hope_content"]=hope_content;
+   data["picture_explain"]=picture_explain;
    headers[csrfHeader] = csrfToken;
    $.ajax({
       url : "/registration/tempsave",
@@ -182,7 +188,7 @@ function formSubmit(file){
    }
 }
 function changeType(value){
-   document.getElementById("typeOfInvent").value=value;
+   document.getElementById("idea_kind").value=value;
 }
 </script>
 </head>
@@ -220,13 +226,15 @@ function changeType(value){
             <article>
                 <form name = "regisForm" action="/registration/inputidea" method="POST" enctype="multipart/form-data" onsubmit="return formSubmit(document.regisForm.imgs);">
                   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                  <input type="text" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}" hidden> 
                 <div class="hiding_tab" style="position:relative;">
                     <select onChange=changeType(this.value);>
                          <option>-</option>
                          <c:forEach items="${typeList}" var="list" varStatus="status">
-                     <option>${list.getType()}</option>
-                  </c:forEach>                          
-                      </select>        
+                     		<option>${list.getType()}</option>
+                  		 </c:forEach>                          
+                      </select>
+                      <input type="hidden" value="-" name="typeOfInvent" id="idea_kind">        
                 </div>
                 <div class="hiding_tab">
                     <div class="tab_title">
@@ -249,7 +257,7 @@ function changeType(value){
                         <div class="img_cover">                            
                             <img src="/resources/image/inventor_profile.jpg" alt="123">                       
                         </div>
-                        <textarea name="summary"></textarea>
+                        <textarea id="small_cont" name="summary"></textarea>
                     </div>
                 </div>
                 <div class="hiding_tab">
@@ -261,7 +269,7 @@ function changeType(value){
                         <div class="img_cover">                            
                             <img src="/resources/image/inventor_profile.jpg" alt="123">                       
                         </div>
-                        <textarea name="whyInvent"></textarea>
+                        <textarea id="why_cont" name="whyInvent"></textarea>
                     </div>
                 </div>
                 <div class="hiding_tab">
@@ -273,7 +281,7 @@ function changeType(value){
                         <div class="img_cover">                            
                             <img src="/resources/image/inventor_profile.jpg" alt="123">                       
                         </div>
-                        <textarea name="problem"></textarea>
+                        <textarea id="col_cont" name="problem"></textarea>
                     </div>
                 </div>
                 <div class="hiding_tab">
@@ -285,7 +293,7 @@ function changeType(value){
                         <div class="img_cover">                            
                             <img src="/resources/image/inventor_profile.jpg" alt="123">                       
                         </div>
-                        <textarea name="solution"></textarea>
+                        <textarea id="wel_cont" name="solution"></textarea>
                     </div>
                 </div>            
                 <div class="hiding_tab">
@@ -297,7 +305,7 @@ function changeType(value){
                         <div class="img_cover">                            
                             <img src="/resources/image/inventor_profile.jpg" alt="123">                       
                         </div>
-                        <textarea name="effect"></textarea>
+                        <textarea id = "bal_cont" name="effect"></textarea>
                     </div>
                 </div>
                 <div class="hiding_tab">
@@ -309,7 +317,7 @@ function changeType(value){
                         <div class="img_cover">                            
                             <img src="/resources/image/inventor_profile.jpg" alt="123">                       
                         </div>
-                        <textarea name="core_element"></textarea>
+                        <textarea id="imp_cont"  name="core_element"></textarea>
                     </div>
                 </div>
                 <div class="hiding_tab">
@@ -321,7 +329,7 @@ function changeType(value){
                         <div class="img_cover">                            
                             <img src="/resources/image/inventor_profile.jpg" alt="123">                       
                         </div>
-                        <textarea></textarea>
+                        <textarea id="hope_content"  name="hope_content" required></textarea>
                     </div>
                 </div>
                 <div class="hiding_tab">
@@ -346,7 +354,7 @@ function changeType(value){
                         <div class="img_cover">                            
                             <img src="/resources/image/inventor_profile.jpg" alt="123">                       
                         </div>
-                        <textarea></textarea>
+                        <textarea id="picture_explain"  name="picture_explain" required></textarea>
                     </div>
                 </div>
                 <div class="fin">

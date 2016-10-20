@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -204,12 +205,13 @@ public class DocController {
 		}
 		return name;
 	}
-	@RequestMapping(value="/getFile",method=RequestMethod.GET)
-	public ModelAndView downLoadFile(HttpServletRequest request) {
+	@RequestMapping(value="/getFile/{file_name}",method=RequestMethod.GET)
+	public ModelAndView downLoadFile(HttpServletRequest request,@PathVariable String file_name) {
 		System.out.println("downcome");
         String root_path=request.getSession().getServletContext().getRealPath("/");
-        String doc_name=request.getParameter("file_name");
-        String fullPath = request.getSession().getServletContext().getRealPath("resources/uploadimgs/document/")+doc_name;
+        //String doc_name=request.getParameter("file_name");
+        String doc_name=file_name;
+        String fullPath = request.getSession().getServletContext().getRealPath("resources/uploadimgs/document/")+doc_name+".docx";
         System.out.println(fullPath);
         File downloadFile = new File(fullPath);
         System.out.println(fullPath);

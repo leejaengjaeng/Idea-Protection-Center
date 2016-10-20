@@ -113,8 +113,8 @@ var tempApply=function(role){
  	    {
 	 	   	alert("가출원 상태로 등록되었습니다.");
 	 	   
-	 	   	location.href ="/getFile?file_name="+retVal.file_name;
-	 	   	
+	 	   	//location.href ="/getFile?file_name="+retVal.file_name;
+	 	   location.href ="/getFile/"+retVal.file_name;
  	    },
  	    error: function(request,status,error)
 		{

@@ -45,17 +45,15 @@
         <h1 style="border-bottom:2px solid #ccc; padding-bottom:10px;">상담예약</h1>
     </div>
     <div style="width:100%; float:left;">       
-        <div style="width:70%; float:left; text-align:left;" id="sangform">
+        <div style="width:80%; float:right; text-align:left;" id="sangform">
         	<form>
         		<input placeholder="이메일" style="width:80%;">
         		<input placeholder="이름" style="width:39%">        		      	
 				<input id="date_come" style="width:38%; margin-left:2.4%" placeholder="날짜"></input>
-				<textarea style="resize:none;" placeholder="간단한 상담내용을 입력해주세요."></textarea>
+				<textarea style="resize:none;" placeholder="간단한 상담내용을 입력해주세요."></textarea><br>
 				<button>전송</button>
 			</form>           
-        </div>
-        <div style="width:30%; float:left; border:1px solid #999; margin-top:30px; height:290px;">
-        </div>
+        </div>        
     </div>
 </div>
 <c:import url="/WEB-INF/views/import/footer.jsp"/>
