@@ -297,7 +297,7 @@ function changeType(value){
                         <div class="img_cover">                            
                             <img src="/resources/image/inventor_profile.jpg" alt="123">                       
                         </div>
-                        <textarea></textarea>
+                        <textarea name="effect"></textarea>
                     </div>
                 </div>
                 <div class="hiding_tab">
@@ -309,7 +309,7 @@ function changeType(value){
                         <div class="img_cover">                            
                             <img src="/resources/image/inventor_profile.jpg" alt="123">                       
                         </div>
-                        <textarea name="effect"></textarea>
+                        <textarea name="core_element"></textarea>
                     </div>
                 </div>
                 <div class="hiding_tab">
@@ -321,7 +321,7 @@ function changeType(value){
                         <div class="img_cover">                            
                             <img src="/resources/image/inventor_profile.jpg" alt="123">                       
                         </div>
-                        <textarea name="core_element"></textarea>
+                        <textarea></textarea>
                     </div>
                 </div>
                 <div class="hiding_tab">
@@ -346,7 +346,7 @@ function changeType(value){
                         <div class="img_cover">                            
                             <img src="/resources/image/inventor_profile.jpg" alt="123">                       
                         </div>
-                        <textarea name="core_element"></textarea>
+                        <textarea></textarea>
                     </div>
                 </div>
                 <div class="fin">
