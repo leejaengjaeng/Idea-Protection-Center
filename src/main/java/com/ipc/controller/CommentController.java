@@ -29,7 +29,9 @@ import com.ipc.dao.DocumentDao;
 import com.ipc.dao.MainPageDao;
 import com.ipc.dao.RegistrationDao;
 import com.ipc.dao.RegistrationFileDao;
+import com.ipc.service.MessageService;
 import com.ipc.service.RegistrationService;
+import com.ipc.service.SignUpService;
 import com.ipc.vo.RegistrationFileVo;
 import com.ipc.vo.RegistrationPatentVo;
 import com.ipc.vo.userVo;
@@ -50,6 +52,10 @@ public class CommentController {
 	DocumentDao docDao;
 	@Autowired
 	RegistrationFileDao regisFileMapper; 
+	@Autowired
+	MessageService mService;
+	@Autowired
+	RegistrationService ss;
 	
 	/*
 	발명가
@@ -76,7 +82,7 @@ public class CommentController {
 		RegistrationPatentVo assosiatedMemberId= regDao.getAssociatedMembersByRid(start_rid);		
 
 		Object isAuthenticated = session.getAttribute("currentUser");
-
+		
 		if(assosiatedMemberId != null && isAuthenticated != null )
 		{
 			int inventorId = assosiatedMemberId.getUid();
@@ -246,6 +252,8 @@ public class CommentController {
 		String role = req.getParameter("role");
 		//완료여부에 따른 체크 
 		//현재 페이지의 rid와 수정 요청한 rid가 같은지 확인 
+		userVo currentUser = (userVo) session.getAttribute("currentUser");
+		System.out.println("uid=========="+currentUser.getUid());
 		if((int)session.getAttribute("currentPosition") != regVo.getRid())
 		{
 			System.out.println(regVo.getRid()+","+(int)session.getAttribute("currentPosition"));
@@ -280,13 +288,23 @@ public class CommentController {
 			map.put("rid",Integer.toString(start_rid));
 			regDao.updateRegCondition(map);
 			
+			
+			
+			
+			
 			//새로운 ROW만들기
 			RegistrationPatentVo tmpVo = regDao.getResourceForPlSaveByRid(regVo.getRid());
 			tmpVo.setIscomplete(0);
 			tmpVo.setPrev_rid(regVo.getRid());
 			tmpVo.setRid(0); //autoIncrese
 			
+			
+			
 			regDao.plSave(tmpVo);
+			tmpVo.setTitle(regDao.getRegistrationByRidOrPrevRid(regVo.getRid()).getTitle());
+			tmpVo.setRegistration_date(ss.getToday(0));
+			mService.editInventor(tmpVo);
+			mService.editPL(tmpVo);
 			
 			return "저장 성공";
 
@@ -298,10 +316,25 @@ public class CommentController {
 		
 			regVo.setIscomplete(1);
 			
+			
+			
+			
+			
+			
+			
 			regDao.inventorSave(regVo);
 			
+			System.out.println("lid==============="+regVo.getLid());
+			RegistrationPatentVo rvo = regDao.getRegistrationByRidOrPrevRid(regVo.getRid());
+			rvo.setRegistration_date(ss.getToday(0));
+			mService.reviewLawerInventor(rvo);
+			mService.reviewLawerPL(rvo);
+			
 			//mainPage띄우는 테이블에 update
-			mainPageDao.updateMainPagerid(regVo);
+			mainPageDao.updateMainPagerid(rvo);
+			
+			
+			
 			return "저장 성공";
 			
 		}

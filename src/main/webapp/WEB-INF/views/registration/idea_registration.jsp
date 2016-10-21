@@ -296,8 +296,8 @@ function changeType(value){
                     <div class="tab_contents">
                         <div class="img_cover">                            
                             <img src="/resources/image/inventor_profile.jpg" alt="123">                       
-                        </div>
-                        <textarea name="effect"></textarea>
+                        </div>                     
+                        <textarea id = "bal_cont" name="effect"></textarea>
                     </div>
                 </div>
                 <div class="hiding_tab">
@@ -309,7 +309,7 @@ function changeType(value){
                         <div class="img_cover">                            
                             <img src="/resources/image/inventor_profile.jpg" alt="123">                       
                         </div>
-                        <textarea name="core_element"></textarea>
+                        <textarea id="imp_cont"  name="core_element"></textarea>
                     </div>
                 </div>
                 <div class="hiding_tab">
@@ -321,7 +321,7 @@ function changeType(value){
                         <div class="img_cover">                            
                             <img src="/resources/image/inventor_profile.jpg" alt="123">                       
                         </div>
-                        <textarea></textarea>
+                        <textarea id="hope_content"  name="hope_content" required></textarea>
                     </div>
                 </div>
                 <div class="hiding_tab">
@@ -346,7 +346,7 @@ function changeType(value){
                         <div class="img_cover">                            
                             <img src="/resources/image/inventor_profile.jpg" alt="123">                       
                         </div>
-                        <textarea></textarea>
+                        <textarea id="picture_explain"  name="picture_explain" required></textarea>
                     </div>
                 </div>
                 <div class="fin">

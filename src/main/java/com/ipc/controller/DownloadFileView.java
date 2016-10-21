@@ -18,7 +18,7 @@ public class DownloadFileView extends AbstractView{
  
     public DownloadFileView() {
         // TODO Auto-generated constructor stub
-        setContentType("application/download; ccharset=utf-8");
+        setContentType("application/download; charset=utf-8");
     }
     
     @Override

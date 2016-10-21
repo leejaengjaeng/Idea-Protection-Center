@@ -21,6 +21,7 @@ import com.ipc.dao.RegistrationDao;
 import com.ipc.dao.RegistrationFileDao;
 import com.ipc.dao.TypeOfInventDao;
 import com.ipc.dao.UserDao;
+import com.ipc.service.MessageService;
 import com.ipc.service.RegistrationService;
 import com.ipc.vo.RegistrationPatentVo;
 import com.ipc.vo.TypeOfInventVo;
@@ -42,6 +43,8 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 	MainPageDao mainpagemapper;
 	@Autowired
 	TypeOfInventDao typemapper;
+	@Autowired
+	MessageService mService;
 	
 	MainPageController mpc=new MainPageController();
 	private static final String roleAdmin = "ROLE_ADMIN";
@@ -120,8 +123,11 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 		
 		//mainPage �뀒�씠釉붿뿉 異붽�
 		mainPageVo mpv=new mainPageVo();
-		mpv=mpc.shiftData(rv, "寃곗젣��湲곗쨷");
+		mpv=mpc.shiftData(rv, "결제대기중");
 		mainpagemapper.insertFirstRow(mpv);
+		
+		mService.payWait(rv);
+		
 		return "home/index";
 	}
 	

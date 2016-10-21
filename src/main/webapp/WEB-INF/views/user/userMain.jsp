@@ -106,10 +106,12 @@ $(document).ready(function()
                 </div> 
                 <div id="now_msg">
                 	<table>
+                	<c:forEach var="message" items="${MessageList}" varStatus="status">
                 		<tr>
-                			<td>2016.10.19 <br> 변리사가 지정되었습니다.</td>
+                			<td>${message.getDate()} <br> ${message.getContent()}</td>
                 			<td><img src="/resources/image/sub_banner_2.jpg"></td>
                 		</tr>
+                	</c:forEach>
                 	</table>
                 </div>               
             </section>
