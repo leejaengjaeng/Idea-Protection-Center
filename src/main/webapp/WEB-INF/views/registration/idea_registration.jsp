@@ -314,7 +314,7 @@ function changeType(value){
                 </div>
                 <div class="hiding_tab">
                     <div class="tab_title">
-                        <span>권리르 보장 받고자 하는 내용</span>
+                        <span>권리를 보장 받고자 하는 내용</span>
                         <div class="arrow-up"></div>
                     </div>
                     <div class="tab_contents">
@@ -378,11 +378,16 @@ $(".popup_close, #load_data").click(function(){
             $(this).parent().parent(".hiding_tab").stop().animate({"max-height":"70px"}).removeClass("tab");           
             $(this).stop().css({'transform' : 'rotate(180deg)','border-bottom-color':'#036EB7'}).addClass("tab");
         }else{            
-            $(this).parent().parent(".hiding_tab").stop().animate({"max-height":"1000px"}).addClass("tab");            
+            $(this).parent().parent(".hiding_tab").stop().animate({"max-height":"2000px"}).addClass("tab");            
             $(this).stop().css({'transform' : 'rotate(0deg)','border-bottom-color':'#ccc'}).addClass("tab");
         }
     });
-    
+ $("#idea_title").keyup(function(){
+	if($(this).val().length > 45){
+		alert('제한길이 초과');
+        $(this).val($(this).val().substr(0, 45));
+	} 
+ });
 </script>
 </body>
 </html>
