@@ -14,6 +14,6 @@
 		update main_page_reg_info set lid=#{uid} where rid=#{rid}
 	</update>
 	<update id="updateMainPagerid" parameterType="com.ipc.vo.RegistrationPatentVo">
-		update main_page_reg_info set rid=#{rid} where rid=#{rid}
+		update main_page_reg_info set title=#{title},typeOfInvent=#{typeOfInvent} where rid=(select start_rid from registration_patent where rid=#{rid})
 	</update>
 </mapper>

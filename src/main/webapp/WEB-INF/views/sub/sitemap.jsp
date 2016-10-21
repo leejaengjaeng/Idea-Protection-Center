@@ -42,18 +42,27 @@
         </div>
     </div>
     <div style="width:100%; float:left; text-align:left; margin-bottom:100px;">
-        <h1 style="border-bottom:2px solid #ccc; padding-bottom:10px;">예약하기</h1>
+        <h1 style="border-bottom:2px solid #ccc; padding-bottom:10px;">상담예약</h1>
     </div>
     <div style="width:100%; float:left;">       
-        <div style="width:100%; float:left; text-align:left;">
-			<div id="date_come"></div>           
-        </div>
+        <div style="width:80%; float:right; text-align:left;" id="sangform">
+        	<form>
+        		<input placeholder="이메일" style="width:80%;">
+        		<input placeholder="이름" style="width:39%">        		      	
+				<input id="date_come" style="width:38%; margin-left:2.4%" placeholder="날짜"></input>
+				<textarea style="resize:none;" placeholder="간단한 상담내용을 입력해주세요."></textarea><br>
+				<button>전송</button>
+			</form>           
+        </div>        
     </div>
 </div>
 <c:import url="/WEB-INF/views/import/footer.jsp"/>
 <script>
 	$(function(){
-		$("#date_come").datepicker({});	
+		$("#date_come").datepicker({
+			dateFormat:"yy-mm-dd",
+			minDate:0,
+		});	
 	});
 </script>
 </body>

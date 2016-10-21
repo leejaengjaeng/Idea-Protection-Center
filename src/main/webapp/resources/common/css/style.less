@@ -450,7 +450,7 @@
                 }
             }
             #hide{
-                display: none;                
+                display: none;                                
             }            
         }
         #submit{
@@ -1070,18 +1070,7 @@ section{
         }
     }
 }
-#date_come{    
-    margin-bottom: 100px;
-}
-.ui-widget-header .ui-icon{
-    background-image:url(/resources/image/.jpg);
-}
-.eximg{
-    div{
-        background-size: cover;
-        background-position: center;
-    }
-}
+
 .tot{
     .txt_box{
         display: none;
@@ -1090,3 +1079,275 @@ section{
         display: block;
     }
 }
+#sangform{
+    form{
+        input{
+            height: 35px;
+            padding-left: 5px;
+            margin-top:10px;
+        }
+        textarea{
+            margin-top:0;
+            width:80%;
+            height: 200px;
+            margin-top:10px;
+            padding: 5px;
+        }
+        button{
+            margin-top:10px;
+            margin-left: 0;
+            margin-bottom: 150px;
+            height: 35px;
+            width:130px;
+            color: #999;
+        }
+    }
+}
+#account_number{
+    margin-left: 10px;
+}
+#license_scan_img{
+    padding-top: 7px;
+}
+#introduce{
+    width: 415px;
+    height: 100px;
+    margin: 15px 0 15px 0;
+    resize:none;
+    padding: 5px;
+}
+.hide{
+    ul{
+        li{
+            list-style: none;
+            float: left;
+            width: 200px;
+            margin:15px 0 15px 0;
+            &:first-child{
+                margin-left: 0;
+            }
+        }
+    }
+    input[type=checkbox]{
+        width: 15px !important;
+        height: 15px !important;
+        vertical-align: middle;
+        margin-right: 5px;
+
+    }
+}
+
+.hiding_tab{
+    width: 100%;
+    float: left;
+    margin-bottom: 40px;    
+    font-size: 18px;
+    overflow: hidden;
+    max-height: 70px;
+    &:first-child{
+        position: relative;
+        margin-bottom:60px;
+        &::before{
+            content: "";
+            position: absolute;
+            width: 100%;
+            bottom: -15px;
+            height: 2px;
+            background: #ccc;
+            left: 0;
+        }
+    }
+    select{
+        width: 100%;
+        padding: 15px;
+        font-size: 18px;
+        height: 55px;
+        border:2px solid #ccc;
+        position: relative;
+        option{
+            height: 55px;            
+        }        
+    }        
+    .arrow-up {
+        width: 0; 
+        height: 0; 
+        border-left: 9px solid transparent;
+        border-right: 9px solid transparent;
+        border-bottom: 14px solid #036EB7;
+        transform: rotate(180deg);
+        float: right;
+        margin-top: 5px;
+        cursor: pointer;
+        transition: .25s;
+    } 
+    .tab_title{        
+        border: 2px solid #ccc;
+        width: 100%;
+        float: left;
+        padding: 15px;
+        height: 55px;
+        span{
+            font-size: 18px;
+        }               
+    }
+    .tab_contents{
+        width: 100%;
+        float: left;
+        border-top: 2px solid #ccc;
+        padding-top: 20px;
+        margin-top:10px;
+        button{
+            width: 110px;
+            height: 35px;
+            background: #036eb7;
+            color: white;
+            border: none;
+        }
+        .img_cover{
+            width: 60px;
+            height: 60px;
+            float: left;
+            background: #C5E3F6;
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+            img{
+                position: absolute;
+                width: 60px;                
+                top:-10px;
+            }
+        }
+        #upimgdiv{
+            width: 100%;
+            float: left;
+        }
+        input[type=text]{
+            width: 660px;
+            height: 60px;
+            float: left;
+            margin-left: 30px;
+            border-radius: 6px;
+            border: 2px solid #c5e3f6;            
+            padding-left: 10px;
+            font-size: 18px;
+        }
+        input[type=file]{
+            width: 100%;
+            height: 40px;
+            float: left;                                  
+            padding-left: 10px;
+            font-size: 12px;
+            margin-bottom: 10px;
+            padding-top: 10px;
+            border: 1px solid #ccc;
+        }
+        textarea{
+            resize:none;
+            width:660px;
+            margin-left: 30px;
+            border-radius: 6px;
+            border: 2px solid #c5e3f6;
+            padding:10px;            
+            height: 120px;
+        }
+    }
+}
+.fin{
+    width: 100%;
+    float: left;
+    text-align: center;
+    button{
+        width: 100px;
+        height: 40px;        
+        background:#c5e3f6;
+        border: none;
+        color: white;
+        margin: 5px;
+    }
+    input[type=submit]{
+        width: 100px;
+        background: #036eb7;
+        border: none;
+        height:40px;
+        color: white;
+        margin: 5px;
+    }
+}
+body{
+    height: 100% !important;    
+
+}
+.black_wall{
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    position:fixed;    
+    z-index:98;
+}    
+    .popup{
+        width: 600px;
+        min-height: 200px;
+        background:#fff;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        -moz-transform: translate(-50%,-50%);
+        -webkit-transform: translate(-50%,-50%);
+        box-shadow: 0 0 10px 0 #000;                
+        position: fixed;        
+        z-index: 99;
+    }
+    .pop_header{
+        width: 100%;
+        float: left;
+        background: #696969;
+        color: white;
+        padding: 10px;    
+        box-shadow:0 0 5px 0 #000;
+    }
+    .pop_header>h2{
+        display: block;
+        float: left;
+        font-size: 1rem;
+        margin: 5px;
+    }
+    .pop_header>img{
+        width: 25px;
+        float: right;
+    }
+    .pop_cont{
+        width: 100%;
+        float: left;
+        text-align: center;
+        padding: 20px;
+        padding-top: 30px;
+    }
+    .pop_cont>span{
+        color: #595959;
+        font-size: 0.9;
+        display: inline-block;
+        width: 100%;
+    }
+    .pop_cont button{
+        width: 80px; 
+        height: 30px;            
+        background: none;
+        border: none;
+        box-shadow: inset 0 -4px rgba(0, 0, 0, .1);
+        color: white;        
+    }
+    .popup_close{
+        cursor: pointer;
+    }
+    .pop_cont table{
+   		margin-top:20px;
+   		font-size:14px;
+   		border-top:1px solid #ccc;
+   }
+   .pop_cont table td{   		   		
+   		height:50px;   		
+   		border-bottom:1px solid #ccc;
+   		border-collapse: collapse;
+   		border-top:none;
+   }

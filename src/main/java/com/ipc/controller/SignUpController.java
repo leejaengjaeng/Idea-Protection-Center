@@ -22,8 +22,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.ipc.dao.TypeOfInventDao;
 import com.ipc.dao.UserDao;
 import com.ipc.service.SignUpService;
+import com.ipc.vo.TypeOfInventVo;
+import com.ipc.vo.patientent_lawyerVo;
 import com.ipc.vo.userVo;
 
 @Controller
@@ -33,12 +36,17 @@ public class SignUpController {
 	UserDao usermapper;
 	@Autowired
 	HttpSession session;
+	@Autowired
+	TypeOfInventDao typemapper;
+	
 	private static final String roleAdmin = "ROLE_ADMIN";
 	private static final String roleInventor = "ROLE_INVENTOR";
 	private static final String rolePatientntLawyer = "ROLE_PATIENTENTLAWYER";
 	private static final String roleGuest = "anonymousUser";
 	@RequestMapping("/signupPage")
 	public String signupPage(Model model){
+		List<TypeOfInventVo> tvList = typemapper.getTypeList();
+		model.addAttribute("typeList", tvList);
 		return "signup/signup";
 	}
 	@RequestMapping(value="/inputsignup", method=RequestMethod.POST)
@@ -51,12 +59,20 @@ public class SignUpController {
 			role="lawyer";
 		}
 		String email = request.getParameter("email1") + request.getParameter("email2");
-		MultipartHttpServletRequest multipartRequest =  (MultipartHttpServletRequest)request;  //다중파일 업로드
+		MultipartHttpServletRequest multipartRequest =  (MultipartHttpServletRequest)request;  //�떎以묓뙆�씪 �뾽濡쒕뱶
 		List<MultipartFile> files = multipartRequest.getFiles("profileImg");
+		
+		MultipartHttpServletRequest multipartRequestScan =  (MultipartHttpServletRequest)request;  //�떎以묓뙆�씪 �뾽濡쒕뱶
+		List<MultipartFile> filesScan = multipartRequestScan.getFiles("license_scan_img");
+		
+		
 		
 		SignUpService ss=new SignUpService();
 		String root_path=request.getSession().getServletContext().getRealPath("/");
-		String fileType=ss.makeimageFile(files.get(0),uv.getId(),role,root_path);
+		String fileType=ss.makeimageFile(files.get(0),uv.getId(),role,root_path,"profile");
+		
+		String fileTypeScan=ss.makeimageFile(filesScan.get(0), uv.getId(), role, root_path, "Scan");
+		
 		HashMap<String,String> map=new HashMap<String,String>();
 		map.put("id", uv.getId());
 		map.put("pw", uv.getPw());
@@ -85,14 +101,28 @@ public class SignUpController {
 		usermapper.makeuser(map);
 		userVo uv2=usermapper.getUserById(uv.getId());
 		if(request.getParameter("role").equals("2")){
+			String[] majorArr=request.getParameterValues("major");
+			String major="";
+			for(int i=0;i<majorArr.length;i++){
+				major+=majorArr[i]+" ";
+			}
 			map2.put("uid", Integer.toString(uv2.getUid()));
 			map2.put("license_number", request.getParameter("license_number"));
+			map2.put("major", major);
+			map2.put("account_number", request.getParameter("account_number"));
+			map2.put("bank_name", request.getParameter("bank_name"));
+			map2.put("introduce", request.getParameter("introduce"));
+			map2.put("license_scan_img", "/resources/uploadimgs/lawyer_scan/"+uv.getId()+"."+fileTypeScan);
 			usermapper.makelawyer(map2);
 		}
 		System.out.println("uid is "+uv2.getUid());
 		if(ss.sendhtmlmail(uv2.getUid(),key.toString(),uv2.getEmail()).equals("NOTOK")){
 			return "signup/emailError";
 		}
+		
+		//System.out.println("lawyerVo : "+lv.getIntroduce()+","+lv.getAccount_number()+","+lv.getLicense_number()+","+lv.getMajor());
+		
+		
 		return "redirect:/";
 	}
 	@RequestMapping(value="/checkid",method=RequestMethod.POST)
@@ -156,7 +186,7 @@ public class SignUpController {
 			map.put("license_number", license_number);
 		}
 		usermapper.editinput(map);
-		MultipartHttpServletRequest multipartRequest =  (MultipartHttpServletRequest)request;  //다중파일 업로드
+		MultipartHttpServletRequest multipartRequest =  (MultipartHttpServletRequest)request;  //�떎以묓뙆�씪 �뾽濡쒕뱶
 		List<MultipartFile> files = multipartRequest.getFiles("profileImg");
 		
 		int pathPoint = files.get(0).getOriginalFilename().trim().lastIndexOf(".");
@@ -173,7 +203,7 @@ public class SignUpController {
 		file.delete();
 		SignUpService ss=new SignUpService();
 		String root_path=request.getSession().getServletContext().getRealPath("/");
-		ss.makeimageFile(files.get(0),currentUser.getId(),role,root_path);
+		ss.makeimageFile(files.get(0),currentUser.getId(),role,root_path,"profile");
 		map2.put("uid", Integer.toString(currentUser.getUid()));
 		map2.put("url", "/resources/uploadimgs/profileImg/"+currentUser.getId()+"."+fileType);
 		usermapper.updateProfileImg(map2);

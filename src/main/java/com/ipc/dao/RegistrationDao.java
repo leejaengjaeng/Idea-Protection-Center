@@ -11,7 +11,6 @@ import com.ipc.vo.adminListVo;
 import com.ipc.vo.adminNoticeVo;
 
 @Mapper
-@Transactional
 public interface RegistrationDao {
 	public void makeidea(RegistrationPatentVo rv);
 	public void maketempidea(HashMap<String,String> map);

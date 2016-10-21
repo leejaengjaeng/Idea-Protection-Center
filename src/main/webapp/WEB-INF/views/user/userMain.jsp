@@ -103,7 +103,17 @@ $(document).ready(function()
 			                    아이디어 ${ingIdea}건,<br>
 			                    완료 ${comIdea}건이 있습니다.
                     </h2>
-                </div>                
+                </div> 
+                <div id="now_msg">
+                	<table>
+                	<c:forEach var="message" items="${MessageList}" varStatus="status">
+                		<tr>
+                			<td>${message.getDate()} <br> ${message.getContent()}</td>
+                			<td><img src="/resources/image/sub_banner_2.jpg"></td>
+                		</tr>
+                	</c:forEach>
+                	</table>
+                </div>               
             </section>
             <div id="cont_header">
                 <h2>아이디어 진행내역</h2>

@@ -393,7 +393,7 @@
 									개인정보가 유출되는 것을 방지하고, 외부로부터의 침입을 차단하며, 24시간 침입을 감시하고 있습니다.</li>
 								<li><a href="javascript:void(0);"
 									onclick="window.open('http://help.cafe24.com/cs/cs_faq_view.php?idx=1181&amp;page=2&amp;mode=&amp;s_key=&amp;s_period=&amp;s_value=&amp;faq_list=35&amp;categoryIdx=0&amp;select_os=&amp;contentNum=1', '_blank');"><strong>안전한
-											홈페이지 운영을 위한 PC보안 관리 캠페인</strong></a></li>
+											홈페이지 운영을 위한 PC보안 관리 캠페인</ strong></a></li>
 							</ul>
 						</li>
 						<li>관리적 대책
@@ -412,27 +412,9 @@
 				<li id="private12"><h2>정책 변경에 따른 공지의무</h2>
 					<p>이 개인정보취급방침은 2014년 3월 15일에 제정되었으며 법령ㆍ정책 또는 보안기술의 변경에 따라 내용의
 						추가ㆍ삭제 및 수정이 있을 시에는 변경되는 개인정보취급방침을 시행하기 전에 회사 홈페이지를 통해 변경이유 및 내용
-						등을 공지하도록 하겠습니다.</p></li>
+   						등을 공지하도록 하겠습니다.</p></li>
 			</ol>
-		</div>
-		<span class="role_title" style="float:left; margin-top:20px; font-size:22px;">이메일 수집거부</span>
-		<div id="ContentsWrap" style="height:200px;">
-			<p>본 사이트에 게시된 이메일 주소가 전자우편 수집 프로그램이나 그밖의 기술적 장치를 이용하여 무단으로 수집되는<br>
-				것을 거부하며, 이를 위반시 정보통신망법에 의해 형사처벌됨을 유념하시기 바립니다.</p>
-				<br>
-				<br>
-			<ol>
-				<li>정보통신망법 제 40조 2 (전자우편주소의 무단 수집행위 등 금지)
-					<ol>
-						<li>누구든지 전자우편 주소의 수집을 거부하는 의사가 명시된 인터넷 홈페이지에서 자동으로 전자우편주소를
-							수집하는 프로그램 그밖의 기술적 장치를 이용하여 전자우편 주소를 수집하여서는 아니된다.</li>
-						<li>누구든지 제1항의 규정을 위반하여 수집된 전자우편주소를 판매 유통하여서는 아니된다.</li>
-						<li>누구든지 제1항 및 제2항의 규정에 의하여 수집 판매 및 유통이 금지된 전자우편 주소임을 알고 이를
-							정보전송에 이용하여서는 아니된다.</li>
-					</ol>
-				</li>
-			</ol>
-		</div>
+		</div>		
 	</div>
 </div>
 <c:import url="/WEB-INF/views/import/footer.jsp"/>

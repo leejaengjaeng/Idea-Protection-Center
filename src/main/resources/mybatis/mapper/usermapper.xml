@@ -12,7 +12,7 @@
     	insert into user(id,pw,phone,email,role,name,is_member,profileimg) values (#{id},#{pw},#{phone},#{email},#{role},#{name},#{is_member},#{profileimg})
     </insert>
     <insert id="makelawyer" parameterType="String">
-    	insert into patientent_lawyer(uid,license_scan_img,license_number) values (#{uid},#{license_scan_img},#{license_number})
+    	insert into patientent_lawyer(uid,license_scan_img,license_number,major,account_number,bank_name,introduce) values (#{uid},#{license_scan_img},#{license_number},#{major},#{account_number},#{bank_name},#{introduce})
     </insert>
     <select id = "checkid" parameterType="String" resultType="Integer">
     	SELECT count(*) FROM user WHERE id=#{id} limit 1

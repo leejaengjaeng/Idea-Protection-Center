@@ -19,9 +19,12 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.ipc.dao.MainPageDao;
 import com.ipc.dao.RegistrationDao;
 import com.ipc.dao.RegistrationFileDao;
+import com.ipc.dao.TypeOfInventDao;
 import com.ipc.dao.UserDao;
+import com.ipc.service.MessageService;
 import com.ipc.service.RegistrationService;
 import com.ipc.vo.RegistrationPatentVo;
+import com.ipc.vo.TypeOfInventVo;
 import com.ipc.vo.mainPageVo;
 import com.ipc.vo.userVo;
 
@@ -38,6 +41,11 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 	RegistrationFileDao regisfilemapper;
 	@Autowired
 	MainPageDao mainpagemapper;
+	@Autowired
+	TypeOfInventDao typemapper;
+	@Autowired
+	MessageService mService;
+	
 	MainPageController mpc=new MainPageController();
 	private static final String roleAdmin = "ROLE_ADMIN";
 	private static final String roleInventor = "ROLE_INVENTOR";
@@ -70,7 +78,10 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 		else{
 			model.addAttribute("isTemp", "0");
 		}
-			
+		
+		List<TypeOfInventVo> tv = typemapper.getTypeList();
+		model.addAttribute("typeList", tv);
+		
 		return "registration/idea_registration";
 		
 	}
@@ -81,7 +92,7 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 	
 	@RequestMapping(value="/inputidea",method=RequestMethod.POST)
 	public String inputidea(HttpServletRequest request,RegistrationPatentVo rv){
-		MultipartHttpServletRequest multipartRequest =  (MultipartHttpServletRequest)request;  //다중파일 업로드
+		MultipartHttpServletRequest multipartRequest =  (MultipartHttpServletRequest)request;  //�떎以묓뙆�씪 �뾽濡쒕뱶
 		List<MultipartFile> files = multipartRequest.getFiles("imgs");
 		int rm = regismapper.countTempIdea(rv.getUid());
 		System.out.println("rm : "+rm);
@@ -110,10 +121,13 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 		}
 		
 		
-		//mainPage 테이블에 추가
+		//mainPage �뀒�씠釉붿뿉 異붽�
 		mainPageVo mpv=new mainPageVo();
 		mpv=mpc.shiftData(rv, "결제대기중");
 		mainpagemapper.insertFirstRow(mpv);
+		
+		mService.payWait(rv);
+		
 		return "home/index";
 	}
 	

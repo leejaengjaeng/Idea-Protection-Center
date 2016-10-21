@@ -26,7 +26,7 @@ import com.ipc.dao.MainPageDao;
 import com.ipc.dao.NoticeDao;
 import com.ipc.dao.RegistrationDao;
 import com.ipc.dao.UserDao;
-
+import com.ipc.service.MessageService;
 import com.ipc.service.RegistrationService;
 import com.ipc.service.SignUpService;
 import com.ipc.vo.RegistrationFileVo;
@@ -49,7 +49,12 @@ public class MainController {
 	NoticeDao noticeDao;
 	@Autowired
 	MainPageDao mainPageDao;
-		
+	@Autowired
+	SignUpService ss;
+	@Autowired
+	MessageService ms;
+
+	
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	
 	private static final String roleAdmin = "ROLE_ADMIN";
@@ -65,7 +70,6 @@ public class MainController {
 		model.addAttribute("noticeList",an);
 		model.addAttribute("totalUser",totalUser);
 		model.addAttribute("totalIdea",totalIdea);
-		
 		return "home/index";
 	}
 	
@@ -84,26 +88,33 @@ public class MainController {
 				int ingIdea=0;
 				if(currentUser.getRole().equals(roleInventor))
 				{
+					System.out.println("in");
 					processList = mainPageDao.getMainPageList(currentUser.getUid());	
 					comIdea=regDao.countCompleteIdeaIn(currentUser.getUid());
 					ingIdea=regDao.countIngIdeaIn(currentUser.getUid());
+					model.addAttribute("MessageList",ms.getMessageList(Integer.toString(currentUser.getUid())));
 				}
 				else if(currentUser.getRole().equals(rolePatientntLawyer))
 				{
+					System.out.println("law");
 					System.out.println("aaasddd");
 					processList = mainPageDao.getPlMainPageList(currentUser.getUid());		
 					comIdea=regDao.countCompleteIdeaPl(currentUser.getUid());
 					ingIdea=regDao.countIngIdeaPl(currentUser.getUid());
+					
+					model.addAttribute("MessageList",ms.getMessageListPL(Integer.toString(currentUser.getUid())));
 				}
 				// 발명가나 변리사가 아니면 리다이렉트
 				// If not only Inventor but patientLawyer, Redirecting to root path
 				else
 				{
+					System.out.println("re");
 					return "redirect:/";			
 				}
 				model.addAttribute("comIdea",comIdea);
 				model.addAttribute("ingIdea",ingIdea);
 				model.addAttribute("processList",processList);
+				
 				return "user/userMain";
 
 			}
@@ -128,6 +139,9 @@ public class MainController {
 		mainPageDao.updateMainPageLid(map);
 		resultMap.put("result", "aa");
 		resultMap.put("lawyerName", uv.getName());
+		
+		
+		
 		return resultMap;
 	}
 	@RequestMapping(value="/admin_notice_registration")

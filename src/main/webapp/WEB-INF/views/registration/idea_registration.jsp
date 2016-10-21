@@ -15,95 +15,11 @@
 <link rel="stylesheet" href="/resources/common/css/style.css">
 <title>Insert title here</title>
 <style>
-body{
-    height: 100% !important;    
 
-}
-.black_wall{
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.7);
-    position:fixed;    
-    z-index:98;
-}    
-    .popup{
-        width: 600px;
-        min-height: 200px;
-        background:#fff;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%,-50%);
-        -moz-transform: translate(-50%,-50%);
-        -webkit-transform: translate(-50%,-50%);
-        box-shadow: 0 0 10px 0 #000;                
-        position: fixed;        
-        z-index: 99;
-    }
-    .pop_header{
-        width: 100%;
-        float: left;
-        background: #696969;
-        color: white;
-        padding: 10px;    
-        box-shadow:0 0 5px 0 #000;
-    }
-    .pop_header>h2{
-        display: block;
-        float: left;
-        font-size: 1rem;
-        margin: 5px;
-    }
-    .pop_header>img{
-        width: 25px;
-        float: right;
-    }
-    .pop_cont{
-        width: 100%;
-        float: left;
-        text-align: center;
-        padding: 20px;
-        padding-top: 30px;
-    }
-    .pop_cont>span{
-        color: #595959;
-        font-size: 0.9;
-        display: inline-block;
-        width: 100%;
-    }
-    .pop_cont button{
-        width: 80px; 
-        height: 30px;            
-        background: none;
-        border: none;
-        box-shadow: inset 0 -4px rgba(0, 0, 0, .1);
-        color: white;        
-    }
-    .popup_close{
-        cursor: pointer;
-    }
-    .pop_cont table{
-         margin-top:20px;
-         font-size:14px;
-         border-top:1px solid #ccc;
-   }
-   .pop_cont table td{                  
-         height:50px;         
-         border-bottom:1px solid #ccc;
-         border-collapse: collapse;
-         border-top:none;
-   }
  
 </style>
 <script>
 var i=1;
-function addfile(){
-   i++;
-   $('#upimgdiv').append("<input type='file' id='upimg"+i+"' name='imgs' accept='image/gif, image/jpeg, image/png' style='padding-top:5px;'>");
-    //var targetdiv=document.getElementById("uploaddiv");
-    //targetdiv.innerHTML+="<input type='file' name='imgs' oncellchange='addfile()' accept='image/gif, image/jpeg, image/png'>";
-    
-    }
 function delfile(){
    $('#upimg'+i+'').detach();
    i--;
@@ -142,10 +58,10 @@ function loadTempIdea(rid){
             document.getElementById("wel_cont").value=data.solution;
             document.getElementById("bal_cont").value=data.effect;
             document.getElementById("imp_cont").value=data.core_element;
-            document.getElementById("hop_cont").value=data.hope_content;
-            document.getElementById("pic_cont").value=data.picture_explain;
+            document.getElementById("hope_content").value=data.hope_content;
+            document.getElementById("picture_explain").value=data.picture_explain;
             document.getElementById("bw").style.visibility="hidden";
-           document.getElementById("pp").style.visibility="hidden";
+           	document.getElementById("pp").style.visibility="hidden";
        },
        error:function(request,status,error){
            alert("code:"+request.status+"\n"+"error:"+error);
@@ -190,8 +106,8 @@ function tempsave(){
    var effect=document.getElementById("bal_cont").value;
    var core_element=document.getElementById("imp_cont").value;
    var uid=document.getElementById("uid").value;
-   var hope_content=document.getElementById("hop_cont").value;
-   var picture_explain=document.getElementById("pic_cont").value;
+   var hope_content=document.getElementById("hope_content").value;
+   var picture_explain=document.getElementById("picture_explain").value
    
    var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
    var csrfToken = $("meta[name='_csrf']").attr("content"); 
@@ -208,9 +124,9 @@ function tempsave(){
    data["solution"] = solution;
    data["effect"] = effect;
    data["core_element"] = core_element;
-   data["hope_content"] = hope_content;
-   data["picture_explain"] = picture_explain;
    data["uid"]=uid;
+   data["hope_content"]=hope_content;
+   data["picture_explain"]=picture_explain;
    headers[csrfHeader] = csrfToken;
    $.ajax({
       url : "/registration/tempsave",
@@ -265,6 +181,14 @@ function formSubmit(file){
        alert("첨부파일 사이즈는 5MB 이내로 등록 가능합니다.    ");
        return false;
    }
+   
+   if(document.getElementById("typeOfInvent").value=="-"){
+      alert("발명분야를 선택해주세요");
+      return false;
+   }
+}
+function changeType(value){
+   document.getElementById("idea_kind").value=value;
 }
 </script>
 </head>
@@ -300,184 +224,173 @@ function formSubmit(file){
                 <h1><b>특허</b>등록</h1>                
             </article>                
             <article>
-
-            <form name = "regisForm" action="/registration/inputidea" method="POST" enctype="multipart/form-data" onsubmit="return formSubmit(document.regisForm.imgs);">
+                <form name = "regisForm" action="/registration/inputidea" method="POST" enctype="multipart/form-data" onsubmit="return formSubmit(document.regisForm.imgs);">
                   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                <input type="text" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}" hidden> 
-
-                <div class="txt_box">
-                    <h2>발명분야</h2>
-                    <button>작성예시 보기</button>
-                    <input type="text" id="idea_kind" name="typeOfInvent" required>
-                    <div class="hiding_box">
-                        <div class="hiding_box_header">
-                            <h3>발명분야</h3>
-                            <img src="/resources/image/ideapc_logo.jpg" alt="close" class="close_btn"> 
-                        </div>  
-                        <div class="hiding_box_content">
-                            <span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
-                        </div>                                                   
-                    </div>
-                </div> 
-                <div class="hr"></div>
-                 <div class="txt_box">
-                    <h2>제목</h2>
-                    <button>작성예시 보기</button>
-                    <input type="text" id="idea_title"  name="title" required>
-                    <div class="hiding_box">
-                        <div class="hiding_box_header">
-                            <h3>발명분야</h3>
-                            <img src="/resources/image/ideapc_logo.jpg" alt="close" class="close_btn"> 
-                        </div>  
-                        <div class="hiding_box_content">
-                            <span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
-                        </div>                                                   
-                    </div>                    
+                  <input type="text" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}" hidden> 
+                <div class="hiding_tab" style="position:relative;">
+                    <select onChange=changeType(this.value);>
+                         <option>-</option>
+                         <c:forEach items="${typeList}" var="list" varStatus="status">
+                     		<option>${list.getType()}</option>
+                  		 </c:forEach>                          
+                      </select>
+                      <input type="hidden" value="-" name="typeOfInvent" id="idea_kind">        
                 </div>
-                <div class="hr"></div>
-                <div class="txt_box">
-                    <h2>요약</h2>
-                    <button>작성예시 보기</button>
-                    <textarea id="small_cont"  name="summary" required></textarea>
-                    <div class="hiding_box">
-                        <div class="hiding_box_header">
-                            <h3>발명분야</h3>
-                            <img src="/resources/image/ideapc_logo.jpg" alt="close" class="close_btn"> 
-                        </div>  
-                        <div class="hiding_box_content">
-                            <span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
-                        </div>                                                   
+                <div class="hiding_tab">
+                    <div class="tab_title">
+                        <span>제목</span>
+                        <div class="arrow-up"></div>
                     </div>
-                </div>                
-                <div class="hr"></div>
-                <div class="txt_box">
-                    <h2>필요이유</h2>
-                    <button>작성예시 보기</button>
-                    <textarea id="why_cont"  name="whyInvent" required></textarea>
-                    <div class="hiding_box">
-                        <div class="hiding_box_header">
-                            <h3>발명분야</h3>
-                            <img src="/resources/image/ideapc_logo.jpg" alt="close" class="close_btn"> 
-                        </div>  
-                        <div class="hiding_box_content">
-                            <span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
-                        </div>                                                   
+                    <div class="tab_contents">
+                        <div class="img_cover">                            
+                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
+                        </div>
+                        <input type="text" id="idea_title" name="title" required placeholder="45자 이내로 입력해주세요."> 
                     </div>
                 </div>
-                <div class="hr"></div>
-                <div class="txt_box">
-                    <h2>기존제품설명 및 문제점</h2>
-                    <button>작성예시 보기</button>
-                    <textarea id="col_cont"  name="problem" required></textarea>
-                    <div class="hiding_box">
-                        <div class="hiding_box_header">
-                            <h3>발명분야</h3>
-                            <img src="/resources/image/ideapc_logo.jpg" alt="close" class="close_btn"> 
-                        </div>  
-                        <div class="hiding_box_content">
-                            <span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
-                        </div>                                                   
+                <div class="hiding_tab">
+                    <div class="tab_title">
+                        <span>요약</span>
+                        <div class="arrow-up"></div>
+                    </div>
+                    <div class="tab_contents">
+                        <div class="img_cover">                            
+                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
+                        </div>
+                        <textarea id="small_cont" name="summary"></textarea>
                     </div>
                 </div>
-                <div class="hr"></div>
-                <div class="txt_box">
-                    <h2>문제해결방법</h2>
-                    <button>작성예시 보기</button>
-                    <textarea id="wel_cont"  name="solution" required></textarea>
-                    <div class="hiding_box">
-                        <div class="hiding_box_header">
-                            <h3>발명분야</h3>
-                            <img src="/resources/image/ideapc_logo.jpg" alt="close" class="close_btn"> 
-                        </div>  
-                        <div class="hiding_box_content">
-                            <span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
-                        </div>                                                   
+                <div class="hiding_tab">
+                    <div class="tab_title">
+                        <span>필요이유</span>
+                        <div class="arrow-up"></div>
+                    </div>
+                    <div class="tab_contents">
+                        <div class="img_cover">                            
+                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
+                        </div>
+                        <textarea id="why_cont" name="whyInvent"></textarea>
                     </div>
                 </div>
-                <div class="hr"></div>
-                <div class="txt_box">
-                    <h2>발명의 효과</h2>
-                    <button>작성예시 보기</button>
-                    <textarea id="bal_cont"  name="effect" required></textarea>
-                    <div class="hiding_box">
-                        <div class="hiding_box_header">
-                            <h3>발명분야</h3>
-                            <img src="/resources/image/ideapc_logo.jpg" alt="close" class="close_btn"> 
-                        </div>  
-                        <div class="hiding_box_content">
-                            <span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
-                        </div>                                                   
+                <div class="hiding_tab">
+                    <div class="tab_title">
+                        <span>기존제품설명 및 문제점</span>
+                        <div class="arrow-up"></div>
+                    </div>
+                    <div class="tab_contents">
+                        <div class="img_cover">                            
+                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
+                        </div>
+                        <textarea id="col_cont" name="problem"></textarea>
                     </div>
                 </div>
-                <div class="hr"></div>
-                <div class="txt_box">
-                    <h2>핵심구성요소</h2>
-                    <button>작성예시 보기</button>
-                    <textarea id="imp_cont"  name="core_element" required></textarea>
-                    <div class="hiding_box">
-                        <div class="hiding_box_header">
-                            <h3>발명분야</h3>
-                            <img src="/resources/image/ideapc_logo.jpg" alt="close" class="close_btn"> 
-                        </div>  
-                        <div class="hiding_box_content">
-                            <span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
-                        </div>                                                   
+                <div class="hiding_tab">
+                    <div class="tab_title">
+                        <span>문제해결방법</span>
+                        <div class="arrow-up"></div>
+                    </div>
+                    <div class="tab_contents">
+                        <div class="img_cover">                            
+                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
+                        </div>
+                        <textarea id="wel_cont" name="solution"></textarea>
+                    </div>
+                </div>            
+                <div class="hiding_tab">
+                    <div class="tab_title">
+                        <span>발명의효과</span>
+                        <div class="arrow-up"></div>
+                    </div>
+                    <div class="tab_contents">
+                        <div class="img_cover">                            
+                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
+                        </div>
+                        <textarea id = "bal_cont" name="effect"></textarea>
                     </div>
                 </div>
-                <div class="txt_box">
-                    <h2>권리를 보장 받고자 하는 내용</h2>
-                    <button>작성예시 보기</button>
-                    <textarea id="hop_cont"  name="hope_content" required></textarea>
-                    <div class="hiding_box">
-                        <div class="hiding_box_header">
-                            <h3>발명분야</h3>
-                            <img src="/resources/image/ideapc_logo.jpg" alt="close" class="close_btn"> 
-                        </div>  
-                        <div class="hiding_box_content">
-                            <span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
-                        </div>                                                   
+                <div class="hiding_tab">
+                    <div class="tab_title">
+                        <span>핵심구성요소</span>
+                        <div class="arrow-up"></div>
+                    </div>
+                    <div class="tab_contents">
+                        <div class="img_cover">                            
+                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
+                        </div>
+                        <textarea id="imp_cont"  name="core_element"></textarea>
                     </div>
                 </div>
-                <div id="upimgdiv" class="txt_box">
-                    <h2 style="width:100%">도면첨부</h2><button type="button" style="margin-top:5px;" onclick="addfile()">추가</button>
-                    <button type="button" style="margin-top:5px;" onclick="delfile()">삭제</button>
-                    <input type="file" id="upimg1" name="imgs" accept="image/gif, image/jpeg, image/png" style="padding-top:5px;">
-                    <div class="hiding_box">
-                        <div class="hiding_box_header">
-                            <h3>발명분야</h3>
-                            <img src="/resources/image/ideapc_logo.jpg" alt="close" class="close_btn"> 
-                        </div>  
-                        <div class="hiding_box_content">
-                            <span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
-                        </div>                                                   
-                    </div>                    
-                </div>
-                <div class="txt_box">
-                    <h2>도면에 대한 설명</h2>
-                    <button>작성예시 보기</button>
-                    <textarea id="pic_cont"  name="picture_explain" required></textarea>
-                    <div class="hiding_box">
-                        <div class="hiding_box_header">
-                            <h3>발명분야</h3>
-                            <img src="/resources/image/ideapc_logo.jpg" alt="close" class="close_btn"> 
-                        </div>  
-                        <div class="hiding_box_content">
-                            <span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
-                        </div>                                                   
+                <div class="hiding_tab">
+                    <div class="tab_title">
+                        <span>권리르 보장 받고자 하는 내용</span>
+                        <div class="arrow-up"></div>
+                    </div>
+                    <div class="tab_contents">
+                        <div class="img_cover">                            
+                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
+                        </div>
+                        <textarea id="hope_content"  name="hope_content" required></textarea>
                     </div>
                 </div>
-                <div id="fin"> 
+                <div class="hiding_tab">
+                    <div class="tab_title">
+                        <span>도면첨부</span>
+                        <div class="arrow-up"></div>
+                    </div>
+                    <div class="tab_contents">                    
+                        <div id="upimgdiv">
+                            <input type="file" id="upimg1" name="imgs" accept="image/gif, image/jpeg, image/png">               
+                        </div>
+                        <button type="button" onclick="addfile()">추가</button>
+                        <button type="button" onclick="delfile()">삭제</button>         
+                    </div>
+                </div>
+                <div class="hiding_tab">
+                    <div class="tab_title">
+                        <span>도면에 대한 설명</span>
+                        <div class="arrow-up"></div>
+                    </div>
+                    <div class="tab_contents">
+                        <div class="img_cover">                            
+                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
+                        </div>
+                        <textarea id="picture_explain"  name="picture_explain" required></textarea>
+                    </div>
+                </div>
+                <div class="fin">
                     <button type ="button" onclick="tempsave();">임시저장</button>
-                    <input type="submit" value="제출" id="agree" style="width:140px; height:40px; border:none; box-shadow:inset 0 -4px rgba(0,0,0,.1); color:white; margin-left:10px;">
+                    <input type="submit" value="제출" id="agree">
                 </div>
+                </form>
             </article>
         </section>
     </div>    
 <c:import url="/WEB-INF/views/import/footer.jsp"/>
 <script>
+    var i=1;
+function addfile(){
+    i++;
+    $('#upimgdiv').append("<input type='file' id='upimg"+i+"' name='imgs' accept='image/gif, image/jpeg, image/png' style='padding-top:10px;'>");
+    //var targetdiv=document.getElementById("uploaddiv");
+    //targetdiv.innerHTML+="<input type='file' name='imgs' oncellchange='addfile()' accept='image/gif, image/jpeg, image/png'>";
+
+}
+$(function(){
+   $("textarea").attr("placeholder", "Comment.."); 
+});
 $(".popup_close, #load_data").click(function(){
    $("body").css("overflow","auto");   
 });
+    $(".arrow-up").click(function(){
+       if($(this).parent().parent(".hiding_tab").hasClass("tab")){                                       
+            $(this).parent().parent(".hiding_tab").stop().animate({"max-height":"70px"}).removeClass("tab");           
+            $(this).stop().css({'transform' : 'rotate(180deg)','border-bottom-color':'#036EB7'}).addClass("tab");
+        }else{            
+            $(this).parent().parent(".hiding_tab").stop().animate({"max-height":"1000px"}).addClass("tab");            
+            $(this).stop().css({'transform' : 'rotate(0deg)','border-bottom-color':'#ccc'}).addClass("tab");
+        }
+    });
+    
 </script>
 </body>
 </html>
