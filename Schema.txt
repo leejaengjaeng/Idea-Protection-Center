@@ -111,4 +111,12 @@ CREATE TABLE `typeofinvent` (
   `type` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`tid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+CREATE TABLE `message` (
+  `mid` int(11) NOT NULL AUTO_INCREMENT,
+  `content` text,
+  `rid` varchar(45) DEFAULT NULL,
+  `date` datetime DEFAULT NULL,
+  `uid` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`mid`)
+) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8;
 
