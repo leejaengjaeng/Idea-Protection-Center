@@ -210,8 +210,8 @@ public class DocController {
 		System.out.println("downcome");
         String root_path=request.getSession().getServletContext().getRealPath("/");
         //String doc_name=request.getParameter("file_name");
-        String doc_name=file_name;
-        String fullPath = request.getSession().getServletContext().getRealPath("resources/uploadimgs/document/")+doc_name+".docx";
+        String doc_name=file_name+".docx";
+        String fullPath = request.getSession().getServletContext().getRealPath("resources/uploadimgs/document/")+doc_name;
         System.out.println(fullPath);
         File downloadFile = new File(fullPath);
         System.out.println(fullPath);

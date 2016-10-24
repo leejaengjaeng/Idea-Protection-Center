@@ -120,3 +120,13 @@ CREATE TABLE `message` (
   PRIMARY KEY (`mid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8;
 
+CREATE TABLE `documentforapply` (
+  `dfid` int(11) NOT NULL AUTO_INCREMENT,
+  `rid` int(11) DEFAULT NULL,
+  `patentscode` varchar(45) DEFAULT NULL,
+  `resident_registration` varchar(100) DEFAULT NULL,
+  `certificate` varchar(100) DEFAULT NULL,
+  `business_license` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`dfid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
