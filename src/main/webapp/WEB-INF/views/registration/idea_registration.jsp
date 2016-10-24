@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
-
+ 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="/resources/common/css/style.css">
 <title>Insert title here</title>
 <style>
-
+ 
  
 </style>
 <script>
@@ -69,7 +69,7 @@ function loadTempIdea(rid){
    }); 
    
 }
-
+ 
 function removeTempIdea(rid){
    var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
    var csrfToken = $("meta[name='_csrf']").attr("content"); 
@@ -143,9 +143,9 @@ function tempsave(){
    
    }); 
 }
-
-
-
+ 
+ 
+ 
 function closeload(){
    document.getElementById("bw").style.visibility="hidden";
    document.getElementById("pp").style.visibility="hidden";  
@@ -155,10 +155,10 @@ function formSubmit(file){
    //alert($("input[name=imgs]").length);
     var maxSize  = 5 * 1024 * 1024    
     var fileSize = 0;
-
+ 
    // 브라우저 확인
    var browser=navigator.appName;
-
+ 
    // 익스플로러일 경우
    if (browser=="Microsoft Internet Explorer")
    {
@@ -193,7 +193,7 @@ function changeType(value){
 </script>
 </head>
 <body onload='checkTemp();'>
-
+ 
 <div class="black_wall" id="bw" style="visibility:hidden"></div>
 <div class="popup" id="pp" style="visibility:hidden">
         <div class="pop_header">            
@@ -210,7 +210,7 @@ function changeType(value){
                 <td>${list.getRegistration_date() }</td> 
                 <td style="width:100px;"><button style="background:#45d4fe;" onclick="loadTempIdea(${list.getRid()})" id="load_data">불러오기</button></td>
                 <td style="width:100px;"><button style="background:#e9e9e9; color:#333;" onclick="removeTempIdea(${list.getRid()})">삭제하기</button></td>
-
+ 
              </tr>
          </c:forEach>
       </table>
@@ -229,7 +229,7 @@ function changeType(value){
                   <input type="text" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}" hidden> 
                 <div class="hiding_tab" style="position:relative;">
                     <select onChange=changeType(this.value);>
-                         <option>-</option>
+                         <option>발명분류</option>
                          <c:forEach items="${typeList}" var="list" varStatus="status">
                      		<option>${list.getType()}</option>
                   		 </c:forEach>                          
@@ -257,7 +257,7 @@ function changeType(value){
                         <div class="img_cover">                            
                             <img src="/resources/image/inventor_profile.jpg" alt="123">                       
                         </div>
-                        <textarea id="small_cont" name="summary"></textarea>
+                        <textarea id="small_cont" name="summary" tabindex="-1"></textarea>
                     </div>
                 </div>
                 <div class="hiding_tab">
@@ -373,13 +373,20 @@ function addfile(){
     $('#upimgdiv').append("<input type='file' id='upimg"+i+"' name='imgs' accept='image/gif, image/jpeg, image/png' style='padding-top:10px;'>");
     //var targetdiv=document.getElementById("uploaddiv");
     //targetdiv.innerHTML+="<input type='file' name='imgs' oncellchange='addfile()' accept='image/gif, image/jpeg, image/png'>";
-
+ 
 }
 $(function(){
-   $("textarea").attr("placeholder", "Comment.."); 
+   $("textarea,input,button").attr({"placeholder":"Comment..","tabindex":"-1"}); 
 });
 $(".popup_close, #load_data").click(function(){
    $("body").css("overflow","auto");   
+});
+
+$('#idea_title').keyup(function(){
+    if ($(this).val().length > 45) {
+        alert('제한길이 초과');
+        $(this).val($(this).val().substr(0, 45));
+    }
 });
     $(".arrow-up").click(function(){
        if($(this).parent().parent(".hiding_tab").hasClass("tab")){                                       
