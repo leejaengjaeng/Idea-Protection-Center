@@ -183,14 +183,14 @@ $(document).ready(function()
                         <span>제목</span>
                         <div class="arrow-up"></div>
                     </div>
-                    <div class="tab_contents">
+                    <div class="tab_contents" id="BeforeCommentTitle">
                         <div class="img_cover">                            
                             <img src="/resources/image/inventor_profile.jpg" alt="123">                      
                         </div>
-                        <input type="text" id="idea_title" name="title" required placeholder="45자 이내로 입력해주세요." class="disabled" disabled value="${currentAnswer.getTitle()}">  
+                        <input type="text" id="idea_title" name="title" required placeholder="45자 이내로 입력해주세요." class="disabled" disabled value="${beforeReg.getTitle()}">  
                     </div>
                     <div class="tab_comment">
-                        <div class="tab_in">
+                        <div class="tab_in" id="CurrentCommentTitle">
                             <div class="img_cover">                            
                                 <img src="/resources/image/val1.png" alt="123">
                             </div>
@@ -198,11 +198,11 @@ $(document).ready(function()
                         </div>                            
                     </div>
                     <div class="tab_recomment">
-                        <div class="tab_in">
+                        <div class="tab_in" id="AfterCommentTitle">
                             <div class="img_cover">                            
                                 <img src="/resources/image/inventor_profile.jpg" alt="123">
                             </div>
-                            <textarea class="disabled" disabled>${beforeReg.getTitle()}</textarea>
+                            <textarea class="disabled" disabled>${currentAnswer.getTitle()}</textarea>
                         </div>                            
                     </div>
                 </div>
@@ -211,14 +211,14 @@ $(document).ready(function()
                         <span>요약</span>
                         <div class="arrow-up"></div>
                     </div>
-                    <div class="tab_contents">
+                    <div class="tab_contents" id="BeforeCommentSummary">
                         <div class="img_cover">                            
                             <img src="/resources/image/inventor_profile.jpg" alt="123">                      
                         </div>
-                        <textarea name="summary" class="disabled" disabled>${currentAnswer.getSummary()}</textarea>
+                        <textarea name="summary" class="disabled" disabled>${beforeReg.getSummary()}</textarea>
                     </div>
                     <div class="tab_comment">
-                        <div class="tab_in">
+                        <div class="tab_in" id="CurrentrCommentSummary">
                             <div class="img_cover">                            
                                 <img src="/resources/image/val1.png" alt="123">
                             </div>
@@ -226,11 +226,11 @@ $(document).ready(function()
                         </div>                            
                     </div>
                     <div class="tab_recomment">
-                        <div class="tab_in">
+                        <div class="tab_in" id="AfterCommentSummary">
                             <div class="img_cover">                            
                                 <img src="/resources/image/inventor_profile.jpg" alt="123">
                             </div>
-                            <textarea class="disabled" disabled>${beforeReg.getSummary()}</textarea>
+                            <textarea class="disabled" disabled>${currentAnswer.getSummary()}</textarea>
                         </div>                            
                     </div>
                 </div>
@@ -239,14 +239,14 @@ $(document).ready(function()
                         <span>필요이유</span>
                         <div class="arrow-up"></div>
                     </div>
-                    <div class="tab_contents">
+                    <div class="tab_contents" id="BeforeCommentWhyInvent">
                         <div class="img_cover">                            
                             <img src="/resources/image/inventor_profile.jpg" alt="123">                       
                         </div>
-                        <textarea name="whyInvent" class="disabled" disabled>${currentAnswer.getWhyInvent()}</textarea>
+                        <textarea name="whyInvent" class="disabled" disabled>${beforeReg.getWhyInvent()}</textarea>
                     </div>
                     <div class="tab_comment">
-                        <div class="tab_in">
+                        <div class="tab_in" id="CurrentCommentWhyInvent">
                             <div class="img_cover">                            
                                 <img src="/resources/image/val1.png" alt="123">
                             </div>
@@ -254,16 +254,16 @@ $(document).ready(function()
                         </div>                            
                     </div>       
                     <div class="tab_recomment">
-                        <div class="tab_in">
+                        <div class="tab_in" id="AfterCommentWhyInvent">
                             <div class="img_cover">                            
                                 <img src="/resources/image/inventor_profile.jpg" alt="123">
                             </div>
-                            <textarea class="disabled" disabled>${beforeReg.getWhyInvent()}</textarea>
+                            <textarea class="disabled" disabled>${currentAnswer.getWhyInvent()}</textarea>
                         </div>                            
                     </div>             
                 </div>
                 <div class="hiding_tab">
-                    <div class="tab_title">
+                    <div class="tab_title" id="BeforeCommentProblem">
                         <span>기존제품설명 및 문제점</span>
                         <div class="arrow-up"></div>
                     </div>
@@ -271,22 +271,22 @@ $(document).ready(function()
                         <div class="img_cover">                            
                             <img src="/resources/image/inventor_profile.jpg" alt="123">                       
                         </div>
-                        <textarea name="problem" class="disabled" disabled>${currentAnswer.getProblem()}</textarea>
+                        <textarea name="problem" class="disabled" disabled>${beforeReg.getProblem()}</textarea>
                     </div>
                     <div class="tab_comment">
-                        <div class="tab_in">
+                        <div class="tab_in" id="CurrentCommentProblem">
                             <div class="img_cover">                            
                                 <img src="/resources/image/val1.png" alt="123">
                             </div>
                             <textarea class="disabled" disabled>${beforeReg.getRe_problem()}</textarea>
                         </div>                            
                     </div>
-                    <div class="tab_recomment">
-                        <div class="tab_in">
+                    <div class="tab_recomment" >
+                        <div class="tab_in" id="AfterCommentProblem">
                             <div class="img_cover">                            
                                 <img src="/resources/image/inventor_profile.jpg" alt="123">
                             </div>
-                            <textarea class="disabled" disabled>${beforeReg.getProblem()}</textarea>
+                            <textarea class="disabled" disabled>${currentAnswer.getProblem()}</textarea>
                         </div>                            
                     </div>
                 </div>
@@ -295,14 +295,14 @@ $(document).ready(function()
                         <span>문제해결방법</span>
                         <div class="arrow-up"></div>
                     </div>
-                    <div class="tab_contents">
+                    <div class="tab_contents" id="BeforeCommentSolution">
                         <div class="img_cover">                            
                             <img src="/resources/image/inventor_profile.jpg" alt="123">                       
                         </div>
-                        <textarea name="solution" class="disabled" disabled>${currentAnswer.getSolution()}</textarea>
+                        <textarea name="solution" class="disabled" disabled>${beforeReg.getSolution()}</textarea>
                     </div>
                     <div class="tab_comment">
-                        <div class="tab_in">
+                        <div class="tab_in" id="CurrentCommentSolution">
                             <div class="img_cover">                            
                                 <img src="/resources/image/val1.png" alt="123">
                             </div>
@@ -310,11 +310,11 @@ $(document).ready(function()
                         </div>                            
                     </div>
                     <div class="tab_recomment">
-                        <div class="tab_in">
+                        <div class="tab_in" id="AfterCommentSolution">
                             <div class="img_cover">                            
                                 <img src="/resources/image/inventor_profile.jpg" alt="123">
                             </div>
-                            <textarea class="disabled" disabled>${beforeReg.getSolution()}</textarea>
+                            <textarea class="disabled" disabled>${currentAnswer.getSolution()}</textarea>
                         </div>                            
                     </div>
                 </div>            
@@ -323,14 +323,14 @@ $(document).ready(function()
                         <span>발명의효과</span>
                         <div class="arrow-up"></div>
                     </div>
-                    <div class="tab_contents">
+                    <div class="tab_contents" id="BeforeCommentEffect">
                         <div class="img_cover">                            
                             <img src="/resources/image/inventor_profile.jpg" alt="123">                       
                         </div>
-                        <textarea name="solution" class="disabled" disabled>${currentAnswer.getEffect()}</textarea>
+                        <textarea name="effect" class="disabled" disabled>${beforeReg.getEffect()}</textarea>
                     </div>
                     <div class="tab_comment">
-                        <div class="tab_in">
+                        <div class="tab_in" id="CurrentCommentEffect">
                             <div class="img_cover">                            
                                 <img src="/resources/image/val1.png" alt="123">
                             </div>
@@ -338,11 +338,11 @@ $(document).ready(function()
                         </div>                            
                     </div>
                     <div class="tab_recomment">
-                        <div class="tab_in">
+                        <div class="tab_in" id="AfterCommentEffect">
                             <div class="img_cover">                            
                                 <img src="/resources/image/inventor_profile.jpg" alt="123">
                             </div>
-                            <textarea class="disabled" disabled>${beforeReg.getEffect()}</textarea>
+                            <textarea class="disabled" disabled>${currentAnswer.getEffect()}</textarea>
                         </div>                            
                     </div>
                 </div>
@@ -351,26 +351,26 @@ $(document).ready(function()
                         <span>핵심구성요소</span>
                         <div class="arrow-up"></div>
                     </div>
-                    <div class="tab_contents">
+                    <div class="tab_contents" id="BeforeCommentCore_element">
                         <div class="img_cover">                            
                             <img src="/resources/image/inventor_profile.jpg" alt="123">                       
                         </div>
-                        <textarea name="solution" class="disabled" disabled>${currentAnswer.getCore_element()}</textarea>
+                        <textarea name="core_element" class="disabled" disabled>${beforeReg.getCore_element()}</textarea>
                     </div>
                     <div class="tab_comment">
-                        <div class="tab_in">
+                        <div class="tab_in" id="CurrentCommentCore_element">
                             <div class="img_cover">                            
                                 <img src="/resources/image/val1.png" alt="123">
                             </div>
-                            <textarea class="disabled" disabled>${beforeReg.getRe_Core_element()}</textarea>
+                            <textarea class="disabled" disabled>${beforeReg.getRe_core_element()}</textarea>
                         </div>                            
                     </div>
                     <div class="tab_recomment">
-                        <div class="tab_in">
+                        <div class="tab_in" id="AfterCommentCore_element">
                             <div class="img_cover">                            
                                 <img src="/resources/image/inventor_profile.jpg" alt="123">
                             </div>
-                            <textarea class="disabled" disabled>${beforeReg.getCore_element()}</textarea>
+                            <textarea class="disabled" disabled>${currentAnswer.getCore_element()}</textarea>
                         </div>                            
                     </div>
                 </div>
@@ -379,26 +379,26 @@ $(document).ready(function()
                         <span>권리를 보장 받고자 하는 내용</span>
                         <div class="arrow-up"></div>
                     </div>
-                    <div class="tab_contents">
+                    <div class="tab_contents" id="BeforeCommentHope_content">
                         <div class="img_cover">                            
                             <img src="/resources/image/inventor_profile.jpg" alt="123">                       
                         </div>
-                        <textarea name="solution" class="disabled" disabled>${currentAnswer.getHope_content()}</textarea>
+                        <textarea name="hope_content" class="disabled" disabled>${beforeReg.getHope_content()}</textarea>
                     </div>
                     <div class="tab_comment">
-                        <div class="tab_in">
+                        <div class="tab_in" id="CurrentCommentHope_content">
                             <div class="img_cover">                            
                                 <img src="/resources/image/val1.png" alt="123">
                             </div>
-                            <textarea class="disabled" disabled>${beforeReg.getRe_Hope_content()}</textarea>
+                            <textarea class="disabled" disabled>${beforeReg.getRe_hope_content()}</textarea>
                         </div>                            
                     </div>
                     <div class="tab_recomment">
-                        <div class="tab_in">
+                        <div class="tab_in"id="AfterCommentHope_content">
                             <div class="img_cover">                            
                                 <img src="/resources/image/inventor_profile.jpg" alt="123">
                             </div>
-                            <textarea class="disabled" disabled>${beforeReg.getHope_content()}</textarea>
+                            <textarea class="disabled" disabled>${currentAnswer.getHope_content()}</textarea>
                         </div>                            
                     </div>
                 </div>
@@ -424,37 +424,21 @@ $(document).ready(function()
                             <img src="${list.getFile_path()}">
                         </div>     
                         </c:forEach>                  
-                    </div>
-                    <div class="tab_comment">
-                        <div class="tab_in">
-                            <div class="img_cover">                            
-                                <img src="/resources/image/val1.png" alt="123">
-                            </div>
-                            <textarea class="disabled" disabled></textarea>
-                        </div>                            
-                    </div>
-                    <div class="tab_recomment">
-                        <div class="tab_in">
-                            <div class="img_cover">                            
-                                <img src="/resources/image/inventor_profile.jpg" alt="123">
-                            </div>
-                            <textarea class="disabled" disabled>${beforeReg.getTitle()}</textarea>
-                        </div>                            
-                    </div>
-                </div>
+                    </div>     
+                </div>               
                 <div class="hiding_tab">
                     <div class="tab_title">
                         <span>도면에 대한 설명</span>
                         <div class="arrow-up"></div>
                     </div>
-                    <div class="tab_contents">
+                    <div class="tab_contents" id="BeforeCommentPicture_explain">
                         <div class="img_cover">                            
                             <img src="/resources/image/inventor_profile.jpg" alt="123">                       
                         </div>
-                        <textarea name="core_element" class="disabled" disabled>${currentAnswer.getPicture_explain()}</textarea>
+                        <textarea name="picture_explain" class="disabled" disabled>${beforeReg.getPicture_explain()}</textarea>
                     </div>
                     <div class="tab_comment">
-                        <div class="tab_in">
+                        <div class="tab_in" id="CurrentCommentPicture_explain">
                             <div class="img_cover">                            
                                 <img src="/resources/image/val1.png" alt="123">
                             </div>
@@ -462,11 +446,11 @@ $(document).ready(function()
                         </div>                            
                     </div>
                     <div class="tab_recomment">
-                        <div class="tab_in">
+                        <div class="tab_in" id="AfterCommentPicture_explain">
                             <div class="img_cover">                            
                                 <img src="/resources/image/inventor_profile.jpg" alt="123">
                             </div>
-                            <textarea class="disabled" disabled>${beforeReg.getPicture_explain()}</textarea>
+                            <textarea class="disabled" disabled>${currentAnswer.getPicture_explain()}</textarea>
                         </div>                            
                     </div>
                 </div>

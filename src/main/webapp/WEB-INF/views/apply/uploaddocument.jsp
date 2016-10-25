@@ -13,7 +13,12 @@
 <link rel="stylesheet" href="/resources/common/css/style.css">
 <title>Insert title here</title>
 <style>
-    
+    p{
+    	line-height:1.8em;
+    }
+    input[type=file]{
+    	padding-top:7px;
+    }
 </style>
 <script>
 	function changePersonal1(){
@@ -22,7 +27,7 @@
 	}
 	function changePersonal0(){
 		document.getElementById("personal").textContent="법인등기부 등본*";
-		document.getElementById("smallCompany").style="display:block";
+		document.getElementById("smallCompany").style="display:table-row";
 	}
 	function changeCode1(){
 		document.getElementById("patentsClientCode").style="display:block";
@@ -34,49 +39,51 @@
 </head>
 <body>
 <c:import url="/WEB-INF/views/import/header.jsp"/>
-<h2>특허 준비하기</h2>
-<p>제목 을(를) 출원하기 위한 과정을 안내해 드립니다.</p>
-<h3>Step1. 필요서류 업로드</h3>
-<p>미리 업로드하여 주시면 더욱 빠른 출원이 가능합니다.</p>
-<form action="" method="POST" enctype="multipart/form-data">
-	<input type="radio" name="is_personal" value="1" checked onclick='changePersonal1()'>개인
-	<input type="radio" name="is_personal" value="0" onclick='changePersonal0()'>법인
-	<table>
-		<tr>
-			<td><span id="personal">주민등록등본*</span>
-			<td><input type="file" name="resident_registration" accept="image/gif, image/jpeg, image/png"></td>
-		</tr>
-		<tr>
-			<td><span>인감증면서(포괄위임용)*</span>
-			<td><input type="file" name="cerificate" accept="image/gif, image/jpeg, image/png"></td>
-		</tr>
-		<tr>
-			<td><span>사업자등록증 <br>개인사업자이신 분은 업로드 하여 주세요</span>
-			<td><input type="file" name="business_license" accept="image/gif, image/jpeg, image/png"></td>
-		</tr>
-		<tr>
-			<td>포괄위임장(인감날인)*</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>
-				<span>포괄 위임장 양식을 다운로드 받으신 후, 내용을 기입하여 인감을 날인하시어 우편으로 발송하여 주세요 <br>우편봉투 서식에 주소를 기재하시고 출력하여 이용하시면 편리합니다.</span>
-			</td>
-		</tr>
-		<tr id="smallCompany" style="display:none">
-			<td>중소기업 감면서류</td>
-			<td><input type="file" name="smallsale" accept="image/gif, image/jpeg, image/png"></td>
-		</tr>
-	</table>
-	
-	<h3>Step2. 특허고객번호 입력</h3>
-	<p>기존의 "출원인 코드"를 의미합니다</p>
-	<input type="radio" name="patentsName" value="1" checked onclick="changeCode1()">있음 (직접입력)
-	<input type="radio" name="patentsName" value="0" onclick="changeCode0()">없음 (변리사 님께 맡김)<br>
-	<input type="text" name="patentsClientCode" id="patentsClientCode">
-	
-	<input type="submit" value="제출">
-</form>
+<div id="wrap_form">
+	<div style="width:100%; float:left;">
+		<h2 style="font-size:40px; margin-top:100px; display: block; font-weight:400; margin-bottom:30px;">특허 준비하기</h2>
+		<p>제목 을(를) 출원하기 위한 과정을 안내해 드립니다.</p>
+		<p>미리 업로드하여 주시면 더욱 빠른 출원이 가능합니다.</p>
+		<h3 style="float:left; margin:50px 0 0 0;">Step1. 필요서류 업로드</h3>
+		<form action="" method="POST" enctype="multipart/form-data" style="margin-bottom:100px;">
+			<span style="font-size:20px; display: inline-block; margin-right: 10px;"><input type="radio" name="is_personal" value="1" checked onclick='changePersonal1()'> 개인</span>
+			<span style="font-size:20px;"><input type="radio" name="is_personal" value="0" onclick='changePersonal0()'> 법인</span>
+			<table>
+				<tr>
+					<td><span id="personal">주민등록등본*</span>
+					<td><input type="file" name="resident_registration" accept="image/gif, image/jpeg, image/png"></td>
+				</tr>
+				<tr>
+					<td><span>인감증면서(포괄위임용)*</span>
+					<td><input type="file" name="cerificate" accept="image/gif, image/jpeg, image/png"></td>
+				</tr>
+				<tr>
+					<td><span>사업자등록증 <br>개인사업자이신 분은 업로드 하여 주세요</span>
+					<td><input type="file" name="business_license" accept="image/gif, image/jpeg, image/png"></td>
+				</tr>
+				<tr>
+					<td>포괄위임장(인감날인)*</td>
+					<td><input type="file" name="business_license" accept="image/gif, image/jpeg, image/png"></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<span>포괄 위임장 양식을 다운로드 받으신 후, 내용을 기입하여 인감을 날인하시어 우편으로 발송하여 주세요 <br>우편봉투 서식에 주소를 기재하시고 출력하여 이용하시면 편리합니다.</span>
+					</td>
+				</tr>
+				<tr id="smallCompany" style="display:none">
+					<td>중소기업 감면서류</td>
+					<td><input type="file" name="smallsale" accept="image/gif, image/jpeg, image/png"></td>
+				</tr>
+			</table>		
+			<h3 style="text-align:left; margin-top:100px;">Step2. 특허고객번호 입력</h3>
+			<span style="display: inline-block; margin:10px;">기존의 "출원인 코드"를 의미합니다</span><br>
+			<input type="radio" name="patentsName" value="1" checked onclick="changeCode1()">있음 (직접입력)
+			<input type="radio" name="patentsName" value="0" onclick="changeCode0()">없음 (변리사 님께 맡김)<br>
+			<input type="text" name="patentsClientCode" id="patentsClientCode" style="margin-top:10px; width:300px; height:35px; padding-left:5px;">			
+			<input type="submit" value="제출" style="width:60px; height:35px; background: none; border: 2px solid #555;">
+		</form>
+	</div>
+</div>
 <c:import url="/WEB-INF/views/import/footer.jsp"/>    
 </body>
 </html>
