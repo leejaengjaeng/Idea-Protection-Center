@@ -120,17 +120,8 @@ function addFile(){
                 <div id="nav_benner">
                     <ul>
                         <li onclick="loaction.href='/registration/addidea'">
-                            <img src="/resources/image/index_patent_1.jpg" alt="benner1">
-                        </li>
-                        <li>
-                            <img src="/resources/image/index_patent_2.jpg" alt="benner2">
-                        </li>
-                        <li>
-                            <img src="/resources/image/index_patent_3.jpg" alt="benner3">
-                        </li>
-                        <li>
-                            <img src="/resources/image/index_patent_4.jpg" alt="benner4">
-                        </li>
+                            <img src="/resources/image/sub_banner_1.jpg" alt="benner1">
+                        </li>                       
                     </ul>
                 </div>
             </nav>            
