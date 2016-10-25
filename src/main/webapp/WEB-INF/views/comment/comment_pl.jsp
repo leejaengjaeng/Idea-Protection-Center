@@ -565,7 +565,7 @@ function addFile(){
 	                <div id="fin"> 
 	                    <button type="button" id="tmpSave">임시저장</button>
 	                    <button type="button" id="agree">저장</button>  
-	                    <button type="button" id="gogogo">출원하기</button>                    
+	                    <button type="button" id="gogogo">최종작성본</button>                    
 	                </div>
 	            </form>
             </article>
