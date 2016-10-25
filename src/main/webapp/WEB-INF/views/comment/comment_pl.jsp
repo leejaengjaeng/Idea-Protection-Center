@@ -34,6 +34,10 @@ $(document).ready(function()
 		disableInputApply();
 		alert("가출원상태에서는 수정을 할 수 없습니다.");
 	}
+	else if ("${currentAnswer.getIscomplete()}"==3){
+		disableInputApply();
+		alert("발명가 회원님이 최종 확인중입니다.");
+	}
 	else 
 	{
 		disableInput();
@@ -49,17 +53,27 @@ $(document).ready(function()
 	{
 		ideaSave("${user}");
 	});
-	$('#gogogo').on("click",function(){
-		var q=confirm("출원을 선택하면 수정할 수 없습니다. 출원을 선택하시겠습니까?")
-    	if(q==true){
-    		alert("확인을 누르시면 가출원 양식 서류가 다운받아집니다.");
-    		tempApply("${user}");
-    	}
-    	else{
-    		return false;
-    	}
-		
-	});
+	$('#gogogo').on("click",function(){                         
+		var q=confirm("위의 내용을 최종 작성본으로 확인하시겠습니까?")       
+		if(q==true){                                                      
+			lastConfirm("${user}");                                 
+		}                                                         
+		else{                                                     
+			return false;                                         
+		}                                                         
+		                                                          
+	});                                                         
+	//$('#gogogo').on("click",function(){
+	//	var q=confirm("출원을 선택하면 수정할 수 없습니다. 출원을 선택하시겠습니까?")
+    //	if(q==true){
+    //		alert("확인을 누르시면 가출원 양식 서류가 다운받아집니다.");
+    //		tempApply("${user}");
+    //	}
+    //	else{
+    //		return false;
+    //	}
+	//	
+	//});
 	//클릭에 따라 내용 바꿔주기
 	$('#IdeaModifyList').on("click","tr",function()
 	{

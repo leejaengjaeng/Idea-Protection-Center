@@ -38,7 +38,7 @@
 <p>제목 을(를) 출원하기 위한 과정을 안내해 드립니다.</p>
 <h3>Step1. 필요서류 업로드</h3>
 <p>미리 업로드하여 주시면 더욱 빠른 출원이 가능합니다.</p>
-<form action="" method="POST" enctype="multipart/form-data">
+<form action="/upload/inputFile" method="POST" enctype="multipart/form-data">
 	<input type="radio" name="is_personal" value="1" checked onclick='changePersonal1()'>개인
 	<input type="radio" name="is_personal" value="0" onclick='changePersonal0()'>법인
 	<table>

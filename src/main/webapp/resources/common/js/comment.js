@@ -58,6 +58,9 @@ var disableInput = function()
 	$('#agree').hide();		
 
 }
+var disableInputConfirm = function(){
+	
+}
 var disableInputApply = function()
 {
 	$('#AfterCommentTypeOfInvent').children("textarea").addClass('disabled');
@@ -91,7 +94,38 @@ var disableInputApply = function()
 var btnHide=function(){
 	$('.removeBtn').hide();
 }
+var lastConfirm=function(role){
+	var csrfToken = $("meta[name='_csrf']").attr("content"); 
+	var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+	var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
+	var data = {};
+	var data2={};
+	var headers = {};
 
+	data[csrfParameter] = csrfToken;
+    headers[csrfHeader] = csrfToken;
+
+    data['rid'] = $('#IdeaModifyList').find('.clickedIdea').children('input').val();
+    
+    $.ajax({
+		url : "/lastConfirm",
+		type:"POST",
+		headers: headers,
+ 	    data : data,
+ 	    success:function(retVal)
+ 	    {
+	 	   	alert("저장을 확인하였습니다.");
+	 	   
+	 	   	//location.href ="/getFile?file_name="+retVal.file_name;
+	 	   //location.href ="/getFile/"+retVal.file_name;
+ 	    },
+ 	    error: function(request,status,error)
+		{
+ 			alert('실패하였습니다.')
+ 			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		}
+	});
+}
 var tempApply=function(role){
 	var csrfToken = $("meta[name='_csrf']").attr("content"); 
 	var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");

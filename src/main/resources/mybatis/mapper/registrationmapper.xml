@@ -115,6 +115,9 @@
 	<update id="tempApply" parameterType="Integer">
 		update registration_patent set iscomplete=2 where rid=(select start_rid from (select start_rid,rid from registration_patent) as temp where rid=#{rid})
 	</update>
+	<update id="lastConfirm" parameterType="Integer">
+		update registration_patent set iscomplete=3 where rid=(select start_rid from (select start_rid,rid from registration_patent) as temp where rid=#{rid})
+	</update>
 	<select id="getIscompleteByrid" parameterType="Integer" resultType="Integer">
 		select iscomplete from registration_patent where rid=#{rid}
 	</select>

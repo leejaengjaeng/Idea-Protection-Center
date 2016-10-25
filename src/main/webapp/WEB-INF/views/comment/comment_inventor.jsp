@@ -75,6 +75,11 @@ $(document).ready(function()
 		btnHide();
 		alert("가출원상태입니다.");
 	}
+	else if("${currentAnswer.getIscomplete()}"==3){
+		disableInput();
+		alert("변리사가 아래 내용으로 최종 확인하였습니다. 하단에서 최종확인을 해주세요");
+		  
+	}
 	else
 	{
 		disableInput();

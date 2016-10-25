@@ -63,4 +63,5 @@ public interface RegistrationDao {
 	public void updateRegCondition(HashMap<String,String> map);
 	
 	public int getStartRidByRid(int rid);
+	public void lastConfirm(int rid);
 }

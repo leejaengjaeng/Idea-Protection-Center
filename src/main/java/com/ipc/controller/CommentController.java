@@ -427,4 +427,24 @@ public class CommentController {
 		//dctl.downLoadFile(request,doc_name);
 		return retVal;
 	}
+	
+	@RequestMapping(value="/lastConfirm",method=RequestMethod.POST)
+	@ResponseBody
+	public HashMap<String,String> lastConfirm(HttpServletRequest request){
+		HashMap<String,String> retVal = new HashMap<String,String>();
+		HashMap<String,String> upCon=new HashMap<String,String>();
+
+		String rid=request.getParameter("rid");
+		String stRid=Integer.toString(regDao.getStartRidByRid(Integer.parseInt(rid)));
+		
+		upCon.put("rid", stRid);
+		upCon.put("ment","최종확인중");
+		
+		regDao.updateRegCondition(upCon);
+		
+		regDao.lastConfirm(Integer.parseInt(rid));
+		
+		retVal.put("retVal", "저장 성공");
+		return retVal;
+	}
 }
