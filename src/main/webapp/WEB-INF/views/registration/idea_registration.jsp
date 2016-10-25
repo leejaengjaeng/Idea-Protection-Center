@@ -220,6 +220,26 @@ function changeType(value){
 <c:import url="/WEB-INF/views/import/header.jsp"/>
     <div class="wrap_comment">
         <section>            
+        	<nav>
+                <div id="profile">
+                    <img src="/resources/image/attonrney_profile.jpg" alt="profile">
+                    <h4>${sessionScope.currentUser.getName()} 회원님</h4>
+                    <span>${sessionScope.currentUser.getId()}</span>
+                </div>
+                <div id="profile_menu">
+                    <ul>
+                        <li>아이디어 진행내역</li>
+                        <li>회원정보수정</li>                                                
+                    </ul>
+                </div>
+                <div id="nav_benner">
+                    <ul>
+                        <li onclick="loaction.href='/registration/addidea'">
+                            <img src="/resources/image/sub_banner_1.jpg" alt="benner1">
+                        </li>                      
+                    </ul>
+                </div>
+            </nav>
             <article class="sub_head" style="margin-top:100px;">                    
                 <h1><b>특허</b>등록</h1>                
             </article>                
@@ -376,7 +396,8 @@ function addfile(){
  
 }
 $(function(){
-   $("textarea,input,button").attr({"placeholder":"Comment..","tabindex":"-1"}); 
+   $("textarea,input,button").attr({"tabindex":"-1"});
+   $("textarea").attr({"placeholder":"Comment.."});
 });
 $(".popup_close, #load_data").click(function(){
    $("body").css("overflow","auto");   
