@@ -41,18 +41,30 @@ $(document).ready(function()
 		$(txtBoxList[8]).children('.after_cmt').children('.img_comt').css('float','left !important');				
 		
 	*/
-	//0 고객 작성중(변리사 작성 완료), 1 고객 작성 완료
-	if("${beforeReg.getIscomplete()}" == 0)
-	{
+	//0 고객 작성중(변리사 작성 완료), 1 고객 작성 완료	
+	if("${currentAnswer.getIscomplete()}" == 0)
+	{		
 		enableInput();	
 	}
-	else if("${beforeReg.getIscomplete()}"==2){
+	else if("${currentAnswer.getIscomplete()}"==2){
 		disableInput();
 		btnHide();
 		alert("가출원상태입니다.");
 	}
+	else if("${currentAnswer.getIscomplete()}"==3){
+    	 disableInput();
+    	 var q=confirm("변리사가 위의 내용으로 최종 확인하였습니다 출원 단계를 진행하시겠습니까?");
+    	 if(q==true){                                                      
+      	  gotoApply("${user}");                                 
+     	}                                                         
+     	else{
+     		enableInput();
+        	denyApply("${user}");
+        	return false;                                         
+  	 	  }
+	}
 	else
-	{
+	{				
 		disableInput();
 		alert('변리사의 답변을 기다려주세요');
 	}
@@ -77,7 +89,7 @@ $(document).ready(function()
 		$(this).parent().find('.clickedIdea').removeClass('clickedIdea');
 		var rid = $(this).children('input').attr('value');
 		
-		if(rid == ${lastRid} && ("${beforeReg.getIscomplete()}" == 0))
+		if(rid == ${lastRid} && ("${currentAnswer.getIscomplete()}" == 0))
 		{
 			enableInput();
 		}
@@ -169,7 +181,7 @@ $(document).ready(function()
 				</table>
             </article>                
             <article>
-                <input id="currentPosition" type="hidden" value="${beforeReg.getRid()}"/>           
+                <input id="currentPosition" type="hidden" value="${currentAnswer.getRid()}"/>           
                 <div class="hiding_tab" style="position:relative;">
                     <select onChange=changeType(this.value);>
                    		<option>-</option>
@@ -183,13 +195,13 @@ $(document).ready(function()
                         <span>제목</span>
                         <div class="arrow-up"></div>
                     </div>
-                    <div class="tab_contents" id="BeforeCommentTitle">
+                    <div class="tab_contents before_cmt" id="BeforeCommentTitle">
                         <div class="img_cover">                            
                             <img src="/resources/image/inventor_profile.jpg" alt="123">                      
                         </div>
                         <input type="text" id="idea_title" name="title" required placeholder="45자 이내로 입력해주세요." class="disabled" disabled value="${beforeReg.getTitle()}">  
                     </div>
-                    <div class="tab_comment">
+                    <div class="tab_comment current_cmt">
                         <div class="tab_in" id="CurrentCommentTitle">
                             <div class="img_cover">                            
                                 <img src="/resources/image/val1.png" alt="123">
@@ -211,13 +223,13 @@ $(document).ready(function()
                         <span>요약</span>
                         <div class="arrow-up"></div>
                     </div>
-                    <div class="tab_contents" id="BeforeCommentSummary">
+                    <div class="tab_contents before_cmt" id="BeforeCommentSummary">
                         <div class="img_cover">                            
                             <img src="/resources/image/inventor_profile.jpg" alt="123">                      
                         </div>
                         <textarea name="summary" class="disabled" disabled>${beforeReg.getSummary()}</textarea>
                     </div>
-                    <div class="tab_comment">
+                    <div class="tab_comment current_cmt">
                         <div class="tab_in" id="CurrentrCommentSummary">
                             <div class="img_cover">                            
                                 <img src="/resources/image/val1.png" alt="123">
@@ -239,13 +251,13 @@ $(document).ready(function()
                         <span>필요이유</span>
                         <div class="arrow-up"></div>
                     </div>
-                    <div class="tab_contents" id="BeforeCommentWhyInvent">
+                    <div class="tab_contents before_cmt" id="BeforeCommentWhyInvent">
                         <div class="img_cover">                            
                             <img src="/resources/image/inventor_profile.jpg" alt="123">                       
                         </div>
                         <textarea name="whyInvent" class="disabled" disabled>${beforeReg.getWhyInvent()}</textarea>
                     </div>
-                    <div class="tab_comment">
+                    <div class="tab_comment current_cmt">
                         <div class="tab_in" id="CurrentCommentWhyInvent">
                             <div class="img_cover">                            
                                 <img src="/resources/image/val1.png" alt="123">
@@ -267,13 +279,13 @@ $(document).ready(function()
                         <span>기존제품설명 및 문제점</span>
                         <div class="arrow-up"></div>
                     </div>
-                    <div class="tab_contents">
+                    <div class="tab_contents before_cmt">
                         <div class="img_cover">                            
                             <img src="/resources/image/inventor_profile.jpg" alt="123">                       
                         </div>
                         <textarea name="problem" class="disabled" disabled>${beforeReg.getProblem()}</textarea>
                     </div>
-                    <div class="tab_comment">
+                    <div class="tab_comment current_cmt">
                         <div class="tab_in" id="CurrentCommentProblem">
                             <div class="img_cover">                            
                                 <img src="/resources/image/val1.png" alt="123">
@@ -295,13 +307,13 @@ $(document).ready(function()
                         <span>문제해결방법</span>
                         <div class="arrow-up"></div>
                     </div>
-                    <div class="tab_contents" id="BeforeCommentSolution">
+                    <div class="tab_contents before_cmt" id="BeforeCommentSolution">
                         <div class="img_cover">                            
                             <img src="/resources/image/inventor_profile.jpg" alt="123">                       
                         </div>
                         <textarea name="solution" class="disabled" disabled>${beforeReg.getSolution()}</textarea>
                     </div>
-                    <div class="tab_comment">
+                    <div class="tab_comment current_cmt">
                         <div class="tab_in" id="CurrentCommentSolution">
                             <div class="img_cover">                            
                                 <img src="/resources/image/val1.png" alt="123">
@@ -323,13 +335,13 @@ $(document).ready(function()
                         <span>발명의효과</span>
                         <div class="arrow-up"></div>
                     </div>
-                    <div class="tab_contents" id="BeforeCommentEffect">
+                    <div class="tab_contents before_cmt" id="BeforeCommentEffect">
                         <div class="img_cover">                            
                             <img src="/resources/image/inventor_profile.jpg" alt="123">                       
                         </div>
                         <textarea name="effect" class="disabled" disabled>${beforeReg.getEffect()}</textarea>
                     </div>
-                    <div class="tab_comment">
+                    <div class="tab_comment current_cmt">
                         <div class="tab_in" id="CurrentCommentEffect">
                             <div class="img_cover">                            
                                 <img src="/resources/image/val1.png" alt="123">
@@ -351,14 +363,14 @@ $(document).ready(function()
                         <span>핵심구성요소</span>
                         <div class="arrow-up"></div>
                     </div>
-                    <div class="tab_contents" id="BeforeCommentCore_element">
+                    <div class="tab_contents before_cmt" id="BeforeCommentCore_Element">
                         <div class="img_cover">                            
                             <img src="/resources/image/inventor_profile.jpg" alt="123">                       
                         </div>
                         <textarea name="core_element" class="disabled" disabled>${beforeReg.getCore_element()}</textarea>
                     </div>
-                    <div class="tab_comment">
-                        <div class="tab_in" id="CurrentCommentCore_element">
+                    <div class="tab_comment current_cmt">
+                        <div class="tab_in" id="CurrentCommentCore_Element">
                             <div class="img_cover">                            
                                 <img src="/resources/image/val1.png" alt="123">
                             </div>
@@ -366,7 +378,7 @@ $(document).ready(function()
                         </div>                            
                     </div>
                     <div class="tab_recomment">
-                        <div class="tab_in" id="AfterCommentCore_element">
+                        <div class="tab_in"id="AfterCommentCore_Element">
                             <div class="img_cover">                            
                                 <img src="/resources/image/inventor_profile.jpg" alt="123">
                             </div>
@@ -379,13 +391,13 @@ $(document).ready(function()
                         <span>권리를 보장 받고자 하는 내용</span>
                         <div class="arrow-up"></div>
                     </div>
-                    <div class="tab_contents" id="BeforeCommentHope_content">
+                    <div class="tab_contents before_cmt" id="BeforeCommentHope_content">
                         <div class="img_cover">                            
                             <img src="/resources/image/inventor_profile.jpg" alt="123">                       
                         </div>
                         <textarea name="hope_content" class="disabled" disabled>${beforeReg.getHope_content()}</textarea>
                     </div>
-                    <div class="tab_comment">
+                    <div class="tab_comment current_cmt">
                         <div class="tab_in" id="CurrentCommentHope_content">
                             <div class="img_cover">                            
                                 <img src="/resources/image/val1.png" alt="123">
@@ -407,7 +419,7 @@ $(document).ready(function()
                         <span>도면첨부</span>
                         <div class="arrow-up"></div>
                     </div>
-                    <div class="tab_contents">                    
+                    <div class="tab_contents before_cmt">                    
                          <form id="commentForm" name="commentForm" action="/commentFileSave" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                             <input type="hidden" name="userID_file" value="${sessionScope.currentUser.getId()}">
@@ -431,13 +443,13 @@ $(document).ready(function()
                         <span>도면에 대한 설명</span>
                         <div class="arrow-up"></div>
                     </div>
-                    <div class="tab_contents" id="BeforeCommentPicture_explain">
+                    <div class="tab_contents before_cmt" id="BeforeCommentPicture_explain">
                         <div class="img_cover">                            
                             <img src="/resources/image/inventor_profile.jpg" alt="123">                       
                         </div>
                         <textarea name="picture_explain" class="disabled" disabled>${beforeReg.getPicture_explain()}</textarea>
                     </div>
-                    <div class="tab_comment">
+                    <div class="tab_comment current_cmt">
                         <div class="tab_in" id="CurrentCommentPicture_explain">
                             <div class="img_cover">                            
                                 <img src="/resources/image/val1.png" alt="123">
@@ -478,15 +490,17 @@ $(function(){
 $(".popup_close, #load_data").click(function(){
 	$("body").css("overflow","auto");	
 });
-    $(".arrow-up").click(function(){
-       if($(this).parent().parent(".hiding_tab").hasClass("tab")){                                       
-            $(this).parent().parent(".hiding_tab").stop().animate({"max-height":"70px"}).removeClass("tab");           
-            $(this).stop().css({'transform' : 'rotate(180deg)','border-bottom-color':'#036EB7'}).addClass("tab");
-        }else{            
-            $(this).parent().parent(".hiding_tab").stop().animate({"max-height":"1500px"}).addClass("tab");            
-            $(this).stop().css({'transform' : 'rotate(0deg)','border-bottom-color':'#ccc'}).addClass("tab");
-        }
-    });
+$(".tab_title").click(function(){
+	if($(this).parent(".hiding_tab").hasClass("tab")){
+    	$(this).removeClass("down"); 
+	    $(this).parent(".hiding_tab").stop().animate({"max-height":"55px"}).removeClass("tab");           
+        $(this).children(".arrow-up").stop().css({'transform' : 'rotate(180deg)','border-bottom-color':'#036EB7'}).removeClass("tab");
+    }else{            
+    	$(this).addClass("down"); 
+ 	    $(this).parent(".hiding_tab").stop().animate({"max-height":"1000px"}).addClass("tab");           
+        $(this).children(".arrow-up").stop().css({'transform' : 'rotate(0deg)','border-bottom-color':'#036EB7'}).addClass("tab");
+    }
+});
     
 </script>
 </body>

@@ -24,8 +24,6 @@ var enableInput = function()
 	$('#AfterCommentPicture_explain').children("textarea").removeClass('disabled');
 	$('#AfterCommentPicture_explain').children("textarea").attr('disabled',false);
 	
-	$(".tab_recomment>.tab_in").children("textarea").attr("disabled",false).removeClass("disabled");
-	
 	$('#tmpSave').show();
 	$('#agree').show();		
 
@@ -47,16 +45,14 @@ var disableInput = function()
 	$('#AfterCommentSolution').children("textarea").attr('disabled',true);
 	$('#AfterCommentEffect').children("textarea").addClass('disabled');
 	$('#AfterCommentEffect').children("textarea").attr('disabled',true);
-	$('#AfterCommentCore_Element').children("textarea").addClass('disabled');
-	$('#AfterCommentCore_Element').children("textarea").attr('disabled',true);
+	$('#AfterCommentCore_element').children("textarea").addClass('disabled');
+	$('#AfterCommentCore_element').children("textarea").attr('disabled',true);
 	$('#AfterCommentFiles').children("textarea").addClass('disabled');
 	$('#AfterCommentFiles').children("textarea").attr('disabled',true);
 	$('#AfterCommentHope_content').children("textarea").addClass('disabled');
 	$('#AfterCommentHope_content').children("textarea").attr('disabled',true);
 	$('#AfterCommentPicture_explain').children("textarea").addClass('disabled');
 	$('#AfterCommentPicture_explain').children("textarea").attr('disabled',true);
-	
-	$(".tab_recomment>.tab_in").children("textarea").attr("disabled",true).addClass("disabled");
 	
 	$('#tmpSave').hide();
 	$('#agree').hide();		
@@ -86,8 +82,6 @@ var disableInputApply = function()
 	$('#AfterCommentHope_content').children("textarea").attr('disabled',true);
 	$('#AfterCommentPicture_explain').children("textarea").addClass('disabled');
 	$('#AfterCommentPicture_explain').children("textarea").attr('disabled',true);
-	
-	$(".tab_recomment>.tab_in").children("textarea").attr("disabled",true).addClass("disabled");
 	
 	$('#tmpSave').hide();
 	$('#agree').hide();		
@@ -293,25 +287,25 @@ function imgsave(){
 }
 var hideBeforeCmt = function()
 {
-	var hideEl = document.getElementsByClassName('tab_recomment')
+	var hideEl = document.getElementsByClassName('before_cmt')
 	for(var i =0; i <hideEl.length ; i++)
 		hideEl[i].style.display="none";
 }
 var hideCurrentCmt = function()
 {
-	var hideEl = document.getElementsByClassName('tab_comment')
+	var hideEl = document.getElementsByClassName('current_cmt')
 	for(var i =0; i <hideEl.length ; i++)
 		hideEl[i].style.display="none";	
 }
 var showBeforeCmt = function()
 {
-	var hideEl = document.getElementsByClassName('tab_recomment')
+	var hideEl = document.getElementsByClassName('before_cmt')
 	for(var i =0; i <hideEl.length ; i++)
 		hideEl[i].style.display="";
 }
 var showCurrentCmt = function()
 {
-	var hideEl = document.getElementsByClassName('tab_comment')
+	var hideEl = document.getElementsByClassName('current_cmt')
 	for(var i =0; i <hideEl.length ; i++)
 		hideEl[i].style.display="";	
 }

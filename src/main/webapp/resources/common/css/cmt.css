@@ -44,11 +44,11 @@
   transition: .25s;
 }
 .hiding_tab .tab_title {
-  border: 2px solid #ccc;
   width: 100%;
   float: left;
   padding: 15px;
   height: 55px;
+  border-bottom: 1px solid #ccc;
 }
 .hiding_tab .tab_title span {
   font-size: 18px;
@@ -56,9 +56,7 @@
 .hiding_tab .tab_contents {
   width: 100%;
   float: left;
-  border-top: 2px solid #ccc;
   padding-top: 20px;
-  margin-top: 10px;
 }
 .hiding_tab .tab_contents button {
   width: 110px;
@@ -115,13 +113,12 @@
   height: 100px;
 }
 .hiding_tab .tab_comment {
-  width: 92%;
-  margin-top: 20px;
+  width: 100%;
+  margin-top: 30px;
   float: right;
   position: relative;
 }
 .hiding_tab .tab_comment::before {
-  content: "";
   position: absolute;
   width: 40px;
   height: 40px;
@@ -156,7 +153,7 @@
 }
 .hiding_tab .tab_comment textarea {
   resize: none;
-  width: 600px;
+  width: 660px;
   margin-left: 15px;
   border-radius: 6px;
   border: 2px solid #c5e3f6;
@@ -185,13 +182,12 @@
   width: 100%;
 }
 .hiding_tab .tab_recomment {
-  width: 92%;
-  margin-top: 20px;
+  width: 100%;
+  margin-top: 40px;
   float: right;
   position: relative;
 }
 .hiding_tab .tab_recomment::before {
-  content: "";
   position: absolute;
   width: 40px;
   height: 40px;
@@ -216,7 +212,7 @@
 }
 .hiding_tab .tab_recomment textarea {
   resize: none;
-  width: 600px;
+  width: 660px;
   border-radius: 6px;
   border: 2px solid #c5e3f6;
   padding: 10px;
