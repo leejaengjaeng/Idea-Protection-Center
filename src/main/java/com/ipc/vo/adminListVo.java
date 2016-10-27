@@ -10,8 +10,14 @@ public class adminListVo {
 	String registration_date;
 	String typeofinvent;
 	String title;
-	String r_condition;
+	String reg_condition;
 	
+	public String getReg_condition() {
+		return reg_condition;
+	}
+	public void setReg_condition(String reg_condition) {
+		this.reg_condition = reg_condition;
+	}
 	public int getRid() {
 		return rid;
 	}
@@ -65,12 +71,6 @@ public class adminListVo {
 	}
 	public void setTitle(String title) {
 		this.title = title;
-	}
-	public String getR_condition() {
-		return r_condition;
-	}
-	public void setR_condition(String r_condition) {
-		this.r_condition = r_condition;
 	}
 	
 	

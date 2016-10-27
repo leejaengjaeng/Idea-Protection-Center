@@ -11,7 +11,6 @@ import com.ipc.vo.adminListVo;
 import com.ipc.vo.adminNoticeVo;
 
 @Mapper
-@Transactional
 public interface RegistrationDao {
 	public void makeidea(RegistrationPatentVo rv);
 	public void maketempidea(HashMap<String,String> map);
@@ -58,4 +57,10 @@ public interface RegistrationDao {
 	public int countIngIdeaPl(int uid);
 	
 	public int counTotalIdea();
+	public RegistrationPatentVo getLastIdea(int rid);
+	
+	public int countNumOfEdit(int rid);
+	public void updateRegCondition(HashMap<String,String> map);
+	
+	public int getStartRidByRid(int rid);
 }

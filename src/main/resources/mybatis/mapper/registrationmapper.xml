@@ -3,22 +3,22 @@
 
 <mapper namespace="com.ipc.dao.RegistrationDao">
 	<insert id="makeidea" parameterType="com.ipc.vo.RegistrationPatentVo" useGeneratedKeys="true" keyProperty="rid">
-		insert into registration_patent(typeofinvent,title,summary,whyinvent,problem,solution,effect,core_element,registration_date,uid,iscomplete) values (#{typeOfInvent},#{title},#{summary},#{whyInvent},#{problem},#{solution},#{effect},#{core_element},#{registration_date},#{uid},"1")
+		insert into registration_patent(typeofinvent,title,summary,whyinvent,problem,solution,effect,core_element,registration_date,uid,iscomplete,hope_content,picture_explain) values (#{typeOfInvent},#{title},#{summary},#{whyInvent},#{problem},#{solution},#{effect},#{core_element},#{registration_date},#{uid},"1",#{hope_content},#{picture_explain})
 	</insert>
 	
 	<select id="getInventorProcessList" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
-		select rid, iscomplete,registration_date, title, r_condition, start_rid, typeofinvent, apply_date, pre_apply_date from registration_patent where uid=#{uid} and prev_rid=-1 
+		select rid, iscomplete,registration_date, title, start_rid, typeofinvent,hope_content,picture_explain from registration_patent where uid=#{uid} and prev_rid=-1 
 	</select>
 	<select id="getPlProcessList" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
-		select rid, iscomplete,registration_date, title, r_condition, start_rid, typeofinvent, apply_date, pre_apply_date from registration_patent where lid=#{uid} and prev_rid=-1 
+		select rid, iscomplete,registration_date, title, start_rid, typeofinvent,hope_content,picture_explain from registration_patent where lid=#{uid} and prev_rid=-1 
 	</select>
 	
 	<update id="updatetempidea" parameterType="Hashmap">
-		update registration_patent set typeOfInvent=#{typeOfInvent}, title=#{title}, whyInvent=#{whyInvent}, summary=#{summary}, problem=#{problem}, solution=#{solution}, effect=#{effect}, core_element=#{core_element} WHERE uid=#{uid} AND iscomplete=-1
+		update registration_patent set typeOfInvent=#{typeOfInvent}, title=#{title}, whyInvent=#{whyInvent}, summary=#{summary}, problem=#{problem}, solution=#{solution}, effect=#{effect}, core_element=#{core_element},hope_content=#{hope_content},picture_explain=#{picture_explain} WHERE uid=#{uid} AND iscomplete=-1
 	</update>
 	
-	<update id="inventorSave" parameterType="com.ipc.vo.RegistrationPatentVo">
-	 	update registration_patent set typeOfInvent=#{typeOfInvent}, title=#{title}, whyInvent=#{whyInvent}, summary=#{summary}, problem=#{problem}, solution=#{solution}, effect=#{effect}, core_element=#{core_element}, iscomplete=#{iscomplete} WHERE rid=#{rid}
+	<update id="inventorSave" parameterType="com.ipc.vo.RegistrationPatentVo" useGeneratedKeys="true" keyProperty="rid" keyColumn="rid">
+	 	update registration_patent set typeOfInvent=#{typeOfInvent}, title=#{title}, whyInvent=#{whyInvent}, summary=#{summary}, problem=#{problem}, solution=#{solution}, effect=#{effect}, core_element=#{core_element}, iscomplete=#{iscomplete},hope_content=#{hope_content},picture_explain=#{picture_explain} WHERE rid=#{rid}
 	
 	<!-- 
 	 	update registration_patent set iscomplete=#{iscomplete} WHERE rid=#{rid}
@@ -30,11 +30,11 @@
 	</select>
 
 	<update id="plUpdate" parameterType="com.ipc.vo.RegistrationPatentVo">
-		update registration_patent set re_typeOfInvent=#{re_typeOfInvent}, re_title=#{re_title}, re_whyInvent=#{re_whyInvent}, re_summary=#{re_summary}, re_problem=#{re_problem}, re_solution=#{re_solution}, re_effect=#{re_effect}, re_core_element=#{re_core_element},re_file=#{re_file}, iscomplete=#{iscomplete} WHERE rid=#{rid}
+		update registration_patent set re_typeOfInvent=#{re_typeOfInvent}, re_title=#{re_title}, re_whyInvent=#{re_whyInvent}, re_summary=#{re_summary}, re_problem=#{re_problem}, re_solution=#{re_solution}, re_effect=#{re_effect}, re_core_element=#{re_core_element},re_file=#{re_file}, iscomplete=#{iscomplete},re_core_element=#{re_core_element},re_hope_content=#{re_hope_content},re_picture_explain=#{re_picture_explain} WHERE rid=#{rid}
 	</update>
 	
 	<insert id="plSave" parameterType="com.ipc.vo.RegistrationPatentVo" useGeneratedKeys="true" keyProperty="rid">
-		insert into registration_patent(re_typeofinvent,re_title,re_summary,re_whyinvent,re_problem,re_solution,re_effect,re_core_element,uid,lid,prev_rid,start_rid,iscomplete,re_file) values (#{re_typeOfInvent},#{re_title},#{re_summary},#{re_whyInvent},#{re_problem},#{re_solution},#{re_effect},#{re_core_element},#{uid},#{lid},#{prev_rid},#{start_rid},#{iscomplete},#{re_file})
+		insert into registration_patent(re_typeofinvent,re_title,re_summary,re_whyinvent,re_problem,re_solution,re_effect,re_core_element,uid,lid,prev_rid,start_rid,iscomplete,re_file,re_hope_content,re_picture_explain) values (#{re_typeOfInvent},#{re_title},#{re_summary},#{re_whyInvent},#{re_problem},#{re_solution},#{re_effect},#{re_core_element},#{uid},#{lid},#{prev_rid},#{start_rid},#{iscomplete},#{re_file},#{re_hope_content},#{re_picture_explain})
 	</insert>
 
 	<select id="getResourceForPlSaveByRid" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
@@ -46,7 +46,7 @@
 	</select>
 	
 	<insert id="maketempidea" parameterType="Hashmap">
-		insert into registration_patent(typeOfInvent,title,summary,whyInvent,problem,solution,effect,core_element,registration_date,uid,iscomplete) values (#{typeOfInvent},#{title},#{summary},#{whyInvent},#{problem},#{solution},#{effect},#{core_element},#{registration_date},#{uid},"-1")
+		insert into registration_patent(typeOfInvent,title,summary,whyInvent,problem,solution,effect,core_element,registration_date,uid,iscomplete,hope_content,picture_explain) values (#{typeOfInvent},#{title},#{summary},#{whyInvent},#{problem},#{solution},#{effect},#{core_element},#{registration_date},#{uid},"-1",#{hope_content},#{picture_explain})
 	</insert>
 	<select id="countTempIdea" parameterType="Integer" resultType="Integer">
 		select count(*) from registration_patent where uid=#{uid} AND iscomplete=-1
@@ -66,7 +66,7 @@
 	<!-- (발명가<prevRid>, 변리사<Rid>) rid에 맞는 발명가 작성 내용 + 변리사 코멘트    -->
 	<select id="getRegistrationByRidOrPrevRid" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
 		select 
-			typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element, re_typeofinvent, re_title, re_summary, re_whyinvent, re_problem, re_solution, re_effect, re_core_element, prev_rid, re_file, iscomplete
+			typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element, re_typeofinvent, re_title, re_summary, re_whyinvent, re_problem, re_solution, re_effect, re_core_element, prev_rid, re_file, iscomplete,hope_content,picture_explain,re_hope_content,re_picture_explain,uid,lid,rid,registration_date
 		from 
 			registration_patent 
 		where 
@@ -76,7 +76,7 @@
 	<!-- (발명가) after칸에 들어갈 발명가 작성 내용  -->
 	<select id="getInventorModifyByRid" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
 		select 
-			typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element, prev_rid, iscomplete, re_file 
+			typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element, prev_rid, iscomplete, re_file,hope_content,picture_explain 
 		from 
 			registration_patent 
 		where 
@@ -86,7 +86,7 @@
 	<!-- (변리사) before칸에 들어갈 변리사 작성 내용 -->
 	<select id="getPrevPlCommentByPrevRid" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
 		select 
-			re_typeofinvent, re_title, re_summary, re_whyinvent, re_problem, re_solution, re_effect, re_core_element, re_file
+			re_typeofinvent, re_title, re_summary, re_whyinvent, re_problem, re_solution, re_effect, re_core_element, re_file,re_hope_content,re_picture_explain
 		from 
 			registration_patent 
 		where 
@@ -97,7 +97,7 @@
 	
 	
 	<select id="gettempidea" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
-		select rid, typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element, re_typeofinvent, re_title, re_summary, re_whyinvent, re_problem, re_solution, re_effect, re_core_element,re_file,registration_date from registration_patent where uid=#{uid} AND iscomplete=-1 order by registration_date desc
+		select rid, typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element, hope_content,picture_explain,re_typeofinvent, re_title, re_summary, re_whyinvent, re_problem, re_solution, re_effect, re_core_element,re_file,registration_date,re_hope_content,re_picture_explain from registration_patent where uid=#{uid} AND iscomplete=-1 order by registration_date desc
 	</select>
 	<delete id="removeTempIdea" parameterType="Integer">
 		delete from registration_patent where rid=#{rid} AND iscomplete=-1
@@ -107,13 +107,13 @@
 	</update>
 	
 	<select id="adminGetIdeaList" resultType="com.ipc.vo.adminListVo">
-		SELECT r.rid,u.id as iId,u.name as iName,l.name as pName,u.email,u.phone,r.typeofinvent,r.title,r.r_condition
+		SELECT r.rid,u.id as iId,u.name as iName,l.name as pName,u.email,u.phone,r.typeofinvent,r.title,mpri.reg_condition
 		FROM (registration_patent as r join user as u on r.uid=u.uid AND r.prev_rid=-1) left join (SELECT name,uid
 																						   FROM user
-																						   WHERE user.role="ROLE_PATIENTENTLAWYER") as l on  r.lid=l.uid
+																						   WHERE user.role="ROLE_PATIENTENTLAWYER") as l on  r.lid=l.uid join main_page_reg_info as mpri on r.rid=mpri.rid
 	</select>
 	<update id="tempApply" parameterType="Integer">
-		update registration_patent set iscomplete=2,r_condition="가출원대기" where rid=(select start_rid from (select start_rid,rid from registration_patent) as temp where rid=#{rid})
+		update registration_patent set iscomplete=2 where rid=(select start_rid from (select start_rid,rid from registration_patent) as temp where rid=#{rid})
 	</update>
 	<select id="getIscompleteByrid" parameterType="Integer" resultType="Integer">
 		select iscomplete from registration_patent where rid=#{rid}
@@ -134,6 +134,18 @@
 		SELECT count(1) FROM registration_patent where prev_rid=-1;
 	</select>
 	<select id="getloadtemp" resultType="com.ipc.vo.RegistrationPatentVo">
-		select rid, typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element, re_typeofinvent, re_title, re_summary, re_whyinvent, re_problem, re_solution, re_effect, re_core_element,re_file,registration_date from registration_patent where rid=#{rid} AND iscomplete=-1
+		select rid, typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element,hope_content,picture_explain,re_hope_content,re_picture_explain, re_typeofinvent, re_title, re_summary, re_whyinvent, re_problem, re_solution, re_effect, re_core_element,re_file,registration_date,re_hope_content,re_picture_explain from registration_patent where rid=#{rid} AND iscomplete=-1
+	</select>
+	<select id="getLastIdea" resultType="com.ipc.vo.RegistrationPatentVo" parameterType="Integer">
+		select typeofinvent,title,summary,whyinvent,problem,solution,effect,core_element,hope_content,picture_explain from registration_patent where start_rid=#{rid} order by prev_rid desc limit 1
+	</select>
+	<select id="countNumOfEdit" parameterType="Integer" resultType="Integer">
+		select count(rid) from registration_patent where start_rid=(select start_rid from registration_patent where rid=#{rid})
+	</select>
+	<update id="updateRegCondition" parameterType="Hashmap">
+		update main_page_reg_info set reg_condition=#{ment} where rid=#{rid} 
+	</update>
+	<select id="getStartRidByRid" parameterType="Integer" resultType="Integer">
+		select start_rid from registration_patent where rid=#{rid}
 	</select>
 </mapper>

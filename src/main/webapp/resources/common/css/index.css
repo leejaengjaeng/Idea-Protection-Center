@@ -33,23 +33,58 @@ header .header_wrap .header_menu {
   float: left;
 }
 header .header_wrap .header_menu img {
-  height: 70px;
+  height: 50px;
   float: left;
   margin-bottom: 10px;
 }
-header .header_wrap .header_menu ul {
+header .header_wrap .header_menu .menu {
   float: left;
-  margin-top: 40px;
+  margin-top: 20px;
   text-align: center;
 }
-header .header_wrap .header_menu ul li {
+header .header_wrap .header_menu .menu li {
   list-style: none;
   float: left;
-  font-size: 1em;
-  margin-left: 50px;
+  font-size: 0.9em;
+  margin-left: 30px;
   cursor: pointer;
   font-weight: bold;
   color: #666;
+  position: relative;
+  text-align: center;
+  width: 170px;
+  height: 40px;
+}
+header .header_wrap .header_menu .menu li ul {
+  float: left;
+  max-height: 0;
+  overflow: hidden;
+  transition: .4s;
+  color: #565656;
+  position: absolute;
+  background: #555;
+  z-index: 100;
+  top: 40px;
+}
+header .header_wrap .header_menu .menu li li {
+  margin: 0;
+  clear: both;
+  font-size: 13px;
+  height: 45px;
+  padding-top: 15px;
+  padding-bottom: 10px;
+  color: #fff;
+  border-bottom: 1px solid #444;
+  transition: .25s;
+}
+header .header_wrap .header_menu .menu li li:last-child {
+  border-bottom: none;
+}
+header .header_wrap .header_menu .menu li li:hover {
+  background: #444;
+}
+header .header_wrap .header_menu .menu li:hover ul {
+  max-height: 250px;
 }
 .ani {
   width: 100%;
@@ -479,16 +514,15 @@ footer #footer_fill #footer_wrap #footer_right span {
   }
   .header_wrap .header_menu ul {
     padding-left: 0;
-    width: 100%;
+    width: 100% !important;
     margin-top: 10px !important;
     border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
   }
   .header_wrap .header_menu ul li {
     margin: 0 !important;
-    width: 100%;
-    height: 40px;
-    padding-top: 10px;
+    width: 100% !important;
+    height: 50px !important;
+    padding-top: 20px;
   }
   .ani {
     height: 200px;

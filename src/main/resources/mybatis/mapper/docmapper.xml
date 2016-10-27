@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ipc.dao.DocumentDao">
+	<insert id="saveDocument" parameterType="Hashmap">
+		insert into document(start_rid,file_name) values (#{start_rid},#{file_name})
+	</insert>
+	
+</mapper>

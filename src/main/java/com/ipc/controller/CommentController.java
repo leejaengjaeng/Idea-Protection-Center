@@ -1,6 +1,7 @@
 package com.ipc.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +9,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +25,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.ipc.dao.DocumentDao;
+import com.ipc.dao.MainPageDao;
 import com.ipc.dao.RegistrationDao;
 import com.ipc.dao.RegistrationFileDao;
+import com.ipc.service.MessageService;
 import com.ipc.service.RegistrationService;
+import com.ipc.service.SignUpService;
 import com.ipc.vo.RegistrationFileVo;
 import com.ipc.vo.RegistrationPatentVo;
 import com.ipc.vo.userVo;
@@ -40,7 +46,16 @@ public class CommentController {
 	HttpSession session;
 	@Autowired
 	RegistrationFileDao regFileDao;
-	
+	@Autowired
+	MainPageDao mainPageDao;
+	@Autowired
+	DocumentDao docDao;
+	@Autowired
+	RegistrationFileDao regisFileMapper; 
+	@Autowired
+	MessageService mService;
+	@Autowired
+	RegistrationService ss;
 	
 	/*
 	발명가
@@ -67,7 +82,7 @@ public class CommentController {
 		RegistrationPatentVo assosiatedMemberId= regDao.getAssociatedMembersByRid(start_rid);		
 
 		Object isAuthenticated = session.getAttribute("currentUser");
-
+		
 		if(assosiatedMemberId != null && isAuthenticated != null )
 		{
 			int inventorId = assosiatedMemberId.getUid();
@@ -237,6 +252,8 @@ public class CommentController {
 		String role = req.getParameter("role");
 		//완료여부에 따른 체크 
 		//현재 페이지의 rid와 수정 요청한 rid가 같은지 확인 
+		userVo currentUser = (userVo) session.getAttribute("currentUser");
+		System.out.println("uid=========="+currentUser.getUid());
 		if((int)session.getAttribute("currentPosition") != regVo.getRid())
 		{
 			System.out.println(regVo.getRid()+","+(int)session.getAttribute("currentPosition"));
@@ -248,20 +265,47 @@ public class CommentController {
 			if(0 == regDao.checkIsCompletedByRid(regVo.getRid()))
 				return "이미 완료된 사항입니다.";
 			
-			
-			
 			//답변 달기
 			regVo.setIscomplete(0);
 			regDao.plUpdate(regVo);
+			
+			
+			//
+			int countOfRow=regDao.countNumOfEdit(regVo.getRid());
+			String ment;
+			
+			if(countOfRow==1){
+				ment = "초안수정";
+			}
+			else{
+				ment = Integer.toString(countOfRow-1)+"차 수정";
+			}
+			
+			int start_rid=regDao.getStartRidByRid(regVo.getRid());
+			
+			HashMap<String,String> map= new HashMap<String,String>();
+			map.put("ment", ment);
+			map.put("rid",Integer.toString(start_rid));
+			regDao.updateRegCondition(map);
+			
+			
+			
+			
 			
 			//새로운 ROW만들기
 			RegistrationPatentVo tmpVo = regDao.getResourceForPlSaveByRid(regVo.getRid());
 			tmpVo.setIscomplete(0);
 			tmpVo.setPrev_rid(regVo.getRid());
 			tmpVo.setRid(0); //autoIncrese
-
+			
+			
+			
 			regDao.plSave(tmpVo);
-
+			tmpVo.setTitle(regDao.getRegistrationByRidOrPrevRid(regVo.getRid()).getTitle());
+			tmpVo.setRegistration_date(ss.getToday(0));
+			mService.editInventor(tmpVo);
+			mService.editPL(tmpVo);
+			
 			return "저장 성공";
 
 		}
@@ -272,7 +316,24 @@ public class CommentController {
 		
 			regVo.setIscomplete(1);
 			
+			
+			
+			
+			
+			
+			
 			regDao.inventorSave(regVo);
+			
+			System.out.println("lid==============="+regVo.getLid());
+			RegistrationPatentVo rvo = regDao.getRegistrationByRidOrPrevRid(regVo.getRid());
+			rvo.setRegistration_date(ss.getToday(0));
+			mService.reviewLawerInventor(rvo);
+			mService.reviewLawerPL(rvo);
+			
+			//mainPage띄우는 테이블에 update
+			mainPageDao.updateMainPagerid(rvo);
+			
+			
 			
 			return "저장 성공";
 			
@@ -323,9 +384,47 @@ public class CommentController {
 	}
 	@RequestMapping(value="/tempApply",method=RequestMethod.POST)
 	@ResponseBody
-	public String tempApply(HttpServletRequest request){
+	public HashMap<String,String> tempApply(HttpServletRequest request) throws InvalidFormatException, IOException{
+		
+		HashMap<String,String> map= new HashMap<String,String>();
+		HashMap<String,String> retVal=new HashMap<String,String>();
+		HashMap<String,String> upCon=new HashMap<String,String>();
 		String rid=request.getParameter("rid");
+		String stRid=Integer.toString(regDao.getStartRidByRid(Integer.parseInt(rid)));
+		
+		upCon.put("rid", stRid);
+		upCon.put("ment","가출원상태");
+		
+		regDao.updateRegCondition(upCon);
+		
 		regDao.tempApply(Integer.parseInt(rid));
-		return "aa";
+		
+		System.out.println(rid);
+		
+		RegistrationPatentVo rv = regDao.getLastIdea(Integer.parseInt(stRid));
+		
+		rv.setStart_rid(Integer.parseInt(stRid));
+		
+		System.out.println(rv.getTitle()+","+rv.getEffect()+","+rv.getCore_element()+","+rv.getHope_content()+","+rv.getProblem()+",");
+		
+		DocController dc = new DocController();
+		String root_path=request.getSession().getServletContext().getRealPath("/");
+		
+		List<RegistrationFileVo> rfv = regisFileMapper.getImgListByStartRid(Integer.parseInt(stRid));
+		
+		String doc_name=dc.savefile(rv,root_path,rfv);
+		
+		
+		map.put("file_name", doc_name);
+		map.put("start_rid", stRid);
+		
+		docDao.saveDocument(map);
+		
+		//DocController dctl = new DocController();
+		
+		retVal.put("file_name", doc_name);
+		
+		//dctl.downLoadFile(request,doc_name);
+		return retVal;
 	}
 }

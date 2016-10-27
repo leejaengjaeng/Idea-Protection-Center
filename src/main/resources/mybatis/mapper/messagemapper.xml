@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ipc.dao.MessageDao">
+	<insert id="insertMessage" parameterType="com.ipc.vo.MessageVo">
+		insert into message(content,rid,date,uid) values (#{content},#{rid},#{date},#{uid})
+	</insert>
+	<select id="getMessageVoList" resultType="com.ipc.vo.MessageVo">
+		select mid,content,rid,date,uid from message where uid=#{uid} order by date desc
+	</select>
+	<select id="getMessageVoListPL" resultType="com.ipc.vo.MessageVo">
+		select mid,content,rid,date,uid from message where uid=#{lid} order by date desc
+	</select>
+</mapper>

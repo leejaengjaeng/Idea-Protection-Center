@@ -8,23 +8,29 @@ import java.util.Random;
 
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.ipc.dao.TypeOfInventDao;
 @Service
 public class SignUpService {
+	@Autowired 
+	TypeOfInventDao typeOfmapper; 
+	
 	public String sendhtmlmail(int uid,String key,String email) throws IOException, EmailException{
 		HtmlEmail sendemail = new HtmlEmail();
 		sendemail.setCharset("euc-kr");
 		sendemail.setHostName("smtp.worksmobile.com");
 		sendemail.addTo(email);
-		sendemail.setFrom("jinuk@ideaconcert.com", "김진욱");
-		sendemail.setSubject("아이디어 보호센터 가입 인증 메일 입니다.");
+		sendemail.setFrom("jinuk@ideaconcert.com", "源�吏꾩슧");
+		sendemail.setSubject("�븘�씠�뵒�뼱 蹂댄샇�꽱�꽣 媛��엯 �씤利� 硫붿씪 �엯�땲�떎.");
 		sendemail.setAuthentication("jinuk@ideaconcert.com", "tpxmapsb1");
 	    sendemail.setSmtpPort(465);
-	    sendemail.setSSL(true);   //모르겠음
+	    sendemail.setSSL(true);   //紐⑤Ⅴ寃좎쓬
 		sendemail.setTLS(true);
 		sendemail.setDebug(true);
-		String htmlmsg="<html><div style='width:1000px; float:left; border-bottom:2px solid #45d4fe; padding-bottom:5px;box-sizing:border-box;'></div><div style='width:1000px;float:left; box-sizing:border-box; padding:15px;'><h2>아이디어 보호센터에서 요청하신 인증메일을 발송해 드립니다.</h2><div style='width:100%; float:left; box-sizing:border-box; border:5px solid #f9f9f9; text-align:center; padding:40px 0 40px 0;'><span>아래 승인버튼을 클릭 해 주세요.</span><br><a href='http://localhost:8088/signup/permit?uid="+uid+"&key="+key+"'><button style='width:150px; height:40px; background:none; border:2px solid #45d4fe; font-size:1.1rem; text-decoration: none;font-weight:bold; margin-top:10px;'>승인</button></a></div></div></html>";
+		String htmlmsg="<html><div style='width:1000px; float:left; border-bottom:2px solid #45d4fe; padding-bottom:5px;box-sizing:border-box;'></div><div style='width:1000px;float:left; box-sizing:border-box; padding:15px;'><h2>�븘�씠�뵒�뼱 蹂댄샇�꽱�꽣�뿉�꽌 �슂泥��븯�떊 �씤利앸찓�씪�쓣 諛쒖넚�빐 �뱶由쎈땲�떎.</h2><div style='width:100%; float:left; box-sizing:border-box; border:5px solid #f9f9f9; text-align:center; padding:40px 0 40px 0;'><span>�븘�옒 �듅�씤踰꾪듉�쓣 �겢由� �빐 二쇱꽭�슂.</span><br><a href='http://localhost:8088/signup/permit?uid="+uid+"&key="+key+"'><button style='width:150px; height:40px; background:none; border:2px solid #45d4fe; font-size:1.1rem; text-decoration: none;font-weight:bold; margin-top:10px;'>�듅�씤</button></a></div></div></html>";
 		System.out.println(htmlmsg);
 		sendemail.setHtmlMsg(htmlmsg);
 		try{
@@ -41,14 +47,14 @@ public class SignUpService {
 		sendemail.setCharset("euc-kr");
 		sendemail.setHostName("smtp.worksmobile.com");
 		sendemail.addTo(email);
-		sendemail.setFrom("jinuk@ideaconcert.com", "김진욱");
-		sendemail.setSubject("아이디어 보호센터 비밀번호 확인 메일 입니다.");
+		sendemail.setFrom("jinuk@ideaconcert.com", "源�吏꾩슧");
+		sendemail.setSubject("�븘�씠�뵒�뼱 蹂댄샇�꽱�꽣 鍮꾨�踰덊샇 �솗�씤 硫붿씪 �엯�땲�떎.");
 		sendemail.setAuthentication("jinuk@ideaconcert.com", "tpxmapsb1");
 	    sendemail.setSmtpPort(465);
-	    sendemail.setSSL(true);   //모르겠음
+	    sendemail.setSSL(true);   //紐⑤Ⅴ寃좎쓬
 		sendemail.setTLS(true);
 		sendemail.setDebug(true);
-		String htmlmsg="<html><div style='width:1000px; float:left; border-bottom:2px solid #45d4fe; padding-bottom:5px;box-sizing:border-box;'></div><div style='width:1000px;float:left; box-sizing:border-box; padding:15px;'><h2>아이디어 보호센터에서 임시비밀번호를 발송해 드립니다.</h2><div style='width:100%; float:left; box-sizing:border-box; border:5px solid #f9f9f9; text-align:center; padding:40px 0 40px 0;'><span>임시비밀번호로 로그인 하시고 <br>반드시 비밀번호를 변경해주세요.<br>"+key+"</span></html>";
+		String htmlmsg="<html><div style='width:1000px; float:left; border-bottom:2px solid #45d4fe; padding-bottom:5px;box-sizing:border-box;'></div><div style='width:1000px;float:left; box-sizing:border-box; padding:15px;'><h2>�븘�씠�뵒�뼱 蹂댄샇�꽱�꽣�뿉�꽌 �엫�떆鍮꾨�踰덊샇瑜� 諛쒖넚�빐 �뱶由쎈땲�떎.</h2><div style='width:100%; float:left; box-sizing:border-box; border:5px solid #f9f9f9; text-align:center; padding:40px 0 40px 0;'><span>�엫�떆鍮꾨�踰덊샇濡� 濡쒓렇�씤 �븯�떆怨� <br>諛섎뱶�떆 鍮꾨�踰덊샇瑜� 蹂�寃쏀빐二쇱꽭�슂.<br>"+key+"</span></html>";
 		System.out.println(htmlmsg);
 		sendemail.setHtmlMsg(htmlmsg);
 		try{
@@ -85,14 +91,20 @@ public class SignUpService {
 		return buf.toString();
 	}
 	private FileOutputStream fos;
-	public String makeimageFile(MultipartFile file,String ID,String role,String root_path){
+	public String makeimageFile(MultipartFile file,String ID,String role,String root_path,String kind){
 		try {
 			
 			//Windows
 				//String dirpath=root_path+"\\resources\\uploadimgs\\profileImg\\";
 			//Linux
-				String dirpath=root_path+"/resources/uploadimgs/profileImg/";
-			
+			String dirpath=null;
+			if(kind.equals("profile"))
+			{
+				dirpath=root_path+"/resources/uploadimgs/profileImg/";
+			}
+			else{
+				dirpath=root_path+"/resources/uploadimgs/lawyer_scan/";
+			}
 			byte fileData[] = file.getBytes();
 			int pathPoint = file.getOriginalFilename().trim().lastIndexOf(".");
 			String filePoint = file.getOriginalFilename().trim().substring(pathPoint + 1,
@@ -122,5 +134,9 @@ public class SignUpService {
 			dir.mkdirs();
 		}
 		return "OK";
+	}
+	
+	public void list(){
+		System.out.println(typeOfmapper.getTypeList().size());
 	}
 }

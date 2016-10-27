@@ -9,12 +9,15 @@
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
 <meta name="_csrf" content="${_csrf.token}" />
 <meta name="_csrf_header" content="${_csrf.headerName}" />
-<script src="/resources/common/js/jquery-3.1.0.min.js"></script>
+<script src="/resources/js/jquery-3.1.0.min.js" type="text/javascript" ></script>
 
-<link rel="stylesheet" href="/resources/common/css/style.css">
-<link rel="stylesheet" href="/resources/common/css/index.css">
+<link rel="stylesheet" href="/resources/css/style.css">
+<link rel="stylesheet" href="/resources/css/index.css">
 <title>Insert title here</title>
 <script>
+function changeBank(value){
+	document.getElementById("bank_name").value=value;
+}
 	function changeEmail(emailvalue) {
 		if (emailvalue == "1") {
 			document.getElementById("email2").style.display = "block";
@@ -653,8 +656,8 @@ body {
 					</td>
 				</tr>
 				<tr>
-					<td>아이디</td>
-					<td><input type="text" name="id" id="id">
+					<td style="width:30%;">아이디</td>
+					<td style="width:70%;"><input type="text" name="id" id="id">
 						<button type="button" onclick="checkid()" required>중복확인</button></td>
 				</tr>
 				<tr>
@@ -695,15 +698,83 @@ body {
 								회원가입 인증을 위한 정보입니다.</span>
 						</div></td>
 				</tr>
-				<tr id="hide">
+				<tr class="hide">
 					<td>변리사 번호</td>
 					<td><input type="text" name="license_number"
 						id="license_number"></td>
 				</tr>
+				<tr class="hide">
+					<td>전문분야</td>
+					<td>
+						<ul>
+							<c:forEach items="${typeList}" var="list" varStatus="status">
+								<li><input type="checkbox" name="major" value="${list.getType()}">${list.getType()}</li>
+							</c:forEach>
+							<!-- 
+							<li><input type="checkbox" name="major" value="전자상거래">전자상거래</li>
+							<li><input type="checkbox" name="major" value="플랫폼서비스">플랫폼서비스</li>
+							<li><input type="checkbox" name="major" value="헬스케어">헬스케어</li>
+							<li><input type="checkbox" name="major" value="iot(사물인터넷)">iot(사물인터넷)</li>
+							<li><input type="checkbox" name="major" value="전자/전기">전자/전기</li>
+							<li><input type="checkbox" name="major" value="생명공학/의료">생명공학/의료</li>
+							<li><input type="checkbox" name="major" value="정보통신">정보통신</li>
+							<li><input type="checkbox" name="major" value="기계/금속">기계/금속</li>
+							<li><input type="checkbox" name="major" value="화학/바이오">화학/바이오</li>
+							<li><input type="checkbox" name="major" value="디자인(제품)">디자인(제품)</li>
+							<li><input type="checkbox" name="major" value="아이디어상품">아이디어상품  </li>							
+							 -->
+						</ul>
+					</td>
+				</tr>
+				<tr class="hide">
+					<td>변리사 등록증 사본</td>
+					<td><input type="file" name="license_scan_img"
+						id="license_scan_img"></td>
+				</tr>
+				<tr class="hide">
+					<td>경력기술(간단한 소개)</td>
+					<td><textarea name="introduce"
+						id="introduce"></textarea></td>
+				</tr>
+				<tr class="hide">
+					<td>계좌번호</td>
+					<c:forEach items="${qnaList}" var="list" varStatus="status">
+						<tr onclick="location.href='/qna/detail/${list.getQid()}'">
+    						<td>${status.count }</td>
+    						<td>${list.getTitle()}</td>
+    						<td>${list.getId()}</td>
+    						<td>${list.getDate()}</td>
+    					</tr>
+					</c:forEach>
+					<td>
+					<select name="bank" id="bank" onChange=changeBank(this.value); style="float: left;">
+						<option value="" selected>은행 선택 </option>
+						<option value="국민은행">국민은행</option>
+						<option value="우리은행">우리은행</option>
+						<option value="신한은행">신한은행</option>
+						<option value="하나은행">하나은행</option>
+						<option value="외환은행">외환은행</option>
+						<option value="SC제일은행">SC제일은행</option>
+						<option value="한국씨티은행">한국씨티은행</option>
+						<option value="부산은행">부산은행</option>
+						<option value="대구은행">대구은행</option>
+						<option value="경남은행">경남은행</option>
+						<option value="광주은행">광주은행</option>
+						<option value="전북은행">전북은행</option>
+						<option value="제주은행">제주은행</option>
+						<option value="농협은행">농협은행</option>
+						<option value="기업은행">기업은행</option>
+						<option value="산업은행">산업은행</option>
+						<option value="수출입은행">수출입은행</option>
+						<option value="수협은행">수협은행</option>
+					</select>
+					<input type="hidden" name="bank_name" id="bank_name">
+					<input type="text" name="account_number" id="account_number" placeholder="계좌번호"></td>
+				</tr>
+				
 			</table>
 			<!-- <input type="submit" value="가입" id="submit"> -->
 			<input type="submit" value="가입" id="submit">
-			</button>
 		</form>
 	</div>
 	<c:import url="/WEB-INF/views/import/footer.jsp" />
@@ -713,9 +784,9 @@ body {
 			$(this).siblings().removeClass("on");
 
 			if ($(this).data('no') == 1) {
-				$("#hide").css("display", "table-row");
+				$(".hide").css("display", "table-row");
 			} else {
-				$("#hide").css("display", "none");
+				$(".hide").css("display", "none");
 			}
 
 		});
@@ -735,6 +806,7 @@ body {
 		});
 
 		$(function() {
+			$(".hide").hide();
 			$("#imgInp").on('change', function() {
 				readURL(this);
 			});

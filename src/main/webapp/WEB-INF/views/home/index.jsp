@@ -152,6 +152,7 @@
             </div>
         </section>
     </article>
+    
     <c:import url="/WEB-INF/views/import/footer.jsp"/>       
 <script>
     var now=0;

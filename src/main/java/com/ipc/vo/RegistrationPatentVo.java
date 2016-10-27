@@ -22,12 +22,38 @@ public class RegistrationPatentVo {
 	String re_effect;
 	String re_core_element;
 	int lid;
-	String r_condition;
-	String pre_apply_date;
-	String apply_date;
 	String registration_date;
 	int prev_rid;
 	String re_file;
+	String hope_content;
+	String re_hope_content;
+	String picture_explain;
+	String re_picture_explain;
+	
+	public String getHope_content() {
+		return hope_content;
+	}
+	public void setHope_content(String hope_content) {
+		this.hope_content = hope_content;
+	}
+	public String getRe_hope_content() {
+		return re_hope_content;
+	}
+	public void setRe_hope_content(String re_hope_content) {
+		this.re_hope_content = re_hope_content;
+	}
+	public String getPicture_explain() {
+		return picture_explain;
+	}
+	public void setPicture_explain(String picture_explain) {
+		this.picture_explain = picture_explain;
+	}
+	public String getRe_picture_explain() {
+		return re_picture_explain;
+	}
+	public void setRe_picture_explain(String re_picture_explain) {
+		this.re_picture_explain = re_picture_explain;
+	}
 	
 	public String getRe_file() {
 		return re_file;
@@ -160,25 +186,6 @@ public class RegistrationPatentVo {
 	}
 	public void setLid(int lid) {
 		this.lid = lid;
-	}
-
-	public String getR_condition() {
-		return r_condition;
-	}
-	public void setR_condition(String r_condition) {
-		this.r_condition = r_condition;
-	}
-	public String getPre_apply_date() {
-		return pre_apply_date;
-	}
-	public void setPre_apply_date(String pre_apply_date) {
-		this.pre_apply_date = pre_apply_date;
-	}
-	public String getApply_date() {
-		return apply_date;
-	}
-	public void setApply_date(String apply_date) {
-		this.apply_date = apply_date;
 	}
 	public String getRegistration_date() {
 		return registration_date;

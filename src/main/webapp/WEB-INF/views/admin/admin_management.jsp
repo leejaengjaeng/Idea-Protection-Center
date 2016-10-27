@@ -172,7 +172,7 @@ body{
     </div>
 </div>
     <header>        
-        <img src="/resources/image/ideapc_logo.jpg" alt="logo">
+        <img src="/resources/image/ideapc_logo.jpg" alt="logo" "location.href='/'">
         <div id="header_info">
             <span><b>${currentUser.getName() }</b>님</span>
             <button onclick="location.href='/logoutProcess.do'">로그아웃</button>
@@ -242,7 +242,7 @@ body{
 	                    <td>${list.getPhone()}</td>
 	                    <td>${list.getTypeofinvent()}</td>
 	                    <td>${list.getTitle()}</td>
-	                    <td>${list.getR_condition()}</td>
+	                    <td>${list.getReg_condition()}</td>
 	                   <!--   <td><button>정보수정</button></td> -->
 	                </tr>	
 	            </c:forEach>
