@@ -2,13 +2,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
     <meta name="_csrf" content="${_csrf.token}" />
 	<meta name="_csrf_header" content="${_csrf.headerName}" />
-    <title>Idea Protectection Center</title>
+    <title>Idea Protection Center</title>
     <script src="/resources/common/js/jquery-3.1.0.min.js"></script>  
     <script src="/resources/common/js/comment.js"></script>  
     <link href="/resources/common/css/cmt.css" rel="stylesheet">
@@ -41,6 +41,7 @@ $(document).ready(function()
 		$(txtBoxList[8]).children('.after_cmt').children('.img_comt').css('float','left !important');				
 		
 	*/
+	
 	//0 고객 작성중(변리사 작성 완료), 1 고객 작성 완료	
 	if("${currentAnswer.getIscomplete()}" == 0)
 	{		
@@ -70,16 +71,13 @@ $(document).ready(function()
 	}
 	
 	//폼 버튼 이벤트 
-	$('#tmpSave').on("click",function()
+	$('#tmpAgree').on("click",function()
 	{
 		tmpSave("${user}");
 	});
 	$('#agree').on("click",function()
 	{
-		document.getElementById("commentForm").submit();
 		ideaSave("${user}");
-		
-
 	});
 
 	//클릭에 따라 내용 바꿔주기
@@ -467,8 +465,8 @@ $(document).ready(function()
                     </div>
                 </div>
                 <div class="fin">
-                    <button type ="button" onclick="tempsave();">임시저장</button>
-                    <input type="submit" value="제출" id="agree">
+                    <button type ="button" id="tmpAgree">임시저장</button>
+                    <button type="button" id="agree">제출</button>
                 </div>
                 </form>
             </article>
