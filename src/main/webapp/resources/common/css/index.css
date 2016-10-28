@@ -27,6 +27,7 @@ header .header_wrap ol li button {
   border: none;
   line-height: 32px;
   color: white;
+  border-radius: 4px;
 }
 header .header_wrap .header_menu {
   width: 100%;

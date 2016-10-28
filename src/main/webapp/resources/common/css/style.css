@@ -43,7 +43,7 @@
   margin-bottom: 100px;
 }
 .wrap_comment section .sub_head {
-  width: 750px;
+  width: 100%;
   float: left;
   margin-top: 50px;
   margin-left: 0;
@@ -92,7 +92,7 @@
   margin-top: 0;
 }
 .wrap_comment section article h1 {
-  width: 750px;
+  width: 100%;
   font-size: 1.6rem;
   color: #444444;
   border-bottom: 2px solid #f1f1f1;
@@ -271,9 +271,6 @@
   box-shadow: inset 0 -4px rgba(0, 0, 0, 0.1);
   line-height: 32px;
 }
-.wrap_comment section article #fin #agree {
-  background: #45d4fe !important;
-}
 .wrap_comment section article .box_comment1 {
   width: 100%;
   height: 150px;
@@ -414,8 +411,8 @@
   display: none;
 }
 #wrap_form form #submit {
-  width: 160px;
-  height: 50px;
+  width: 120px;
+  height: 45px;
   border: none;
   margin-bottom: 50px;
   color: #fff;
@@ -423,6 +420,7 @@
   font-size: 1.5rem;
   box-shadow: inset 0 -6px rgba(0, 0, 0, 0.2);
   background-color: #585858;
+  border-radius: 10px;
 }
 .on {
   background: #45d4fe !important;
@@ -1075,9 +1073,9 @@ section nav #nav_benner ul li img {
   transition: .25s;
   cursor: pointer;
 }
-.hiding_tab .tab_title W span {
+.hiding_tab .tab_title span {
   font-size: 18px;
-  color: #036eb7;
+  color: #036EB7;
   font-weight: 700;
 }
 .hiding_tab .down {
@@ -1091,7 +1089,7 @@ section nav #nav_benner ul li img {
 .hiding_tab .tab_contents button {
   width: 110px;
   height: 35px;
-  background: #036eb7;
+  background: #036EB7;
   color: white;
   border: none;
 }
@@ -1159,7 +1157,7 @@ section nav #nav_benner ul li img {
 }
 .fin input[type=submit] {
   width: 100px;
-  background: #036eb7;
+  background: #036EB7;
   border: none;
   height: 40px;
   color: white;

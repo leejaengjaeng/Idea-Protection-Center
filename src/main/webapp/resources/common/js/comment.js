@@ -45,8 +45,8 @@ var disableInput = function()
 	$('#AfterCommentSolution').children("textarea").attr('disabled',true);
 	$('#AfterCommentEffect').children("textarea").addClass('disabled');
 	$('#AfterCommentEffect').children("textarea").attr('disabled',true);
-	$('#AfterCommentCore_element').children("textarea").addClass('disabled');
-	$('#AfterCommentCore_element').children("textarea").attr('disabled',true);
+	$('#AfterCommentCore_Element').children("textarea").addClass('disabled');
+	$('#AfterCommentCore_Element').children("textarea").attr('disabled',true);
 	$('#AfterCommentFiles').children("textarea").addClass('disabled');
 	$('#AfterCommentFiles').children("textarea").attr('disabled',true);
 	$('#AfterCommentHope_content').children("textarea").addClass('disabled');
@@ -203,11 +203,11 @@ var ideaSave = function(role)
 {
 	if(role == "inventor")
 	{
-		alert('(확인, 취소로 바꾸기) 저장 후 변리사가 코멘트를 완료하기 전까지 수정 할 수 없습니다.');	
+		alert('저장 후 변리사가 코멘트를 완료하기 전까지 수정 할 수 없습니다.');	
 	}	
 	else if(role == "pl")
 	{
-		alert('(확인, 취소로 바꾸기) 저장 후 고객이 내용을 수정하기까지 수정 할 수 없습니다.');	
+		alert('저장 후 고객이 내용을 수정하기까지 수정 할 수 없습니다.');	
 	}
 	else
 	{
@@ -237,8 +237,7 @@ var ideaSave = function(role)
 		data['effect'] 			= $('#AfterCommentEffect').children("textarea").val();
 		data['core_element'] 	= $("#AfterCommentCore_Element").children("textarea").val();
 		data['hope_content'] 	= $("#AfterCommentHope_content").children("textarea").val();
-		data['picture_explain'] 	= $("#AfterCommentPicture_explain").children("textarea").val();
-		
+		data['picture_explain'] 	= $("#AfterCommentPicture_explain").children("textarea").val();	
 	}
 	//변리사인 경우
 	else if(role=="pl")
@@ -254,8 +253,7 @@ var ideaSave = function(role)
 		data['re_core_element'] = $('#AfterCommentCore_Element').children("textarea").val();
 		data['re_file']			= $('#AfterCommentFiles').children("textarea").val();
 		data['re_hope_content'] = $('#AfterCommentHope_content').children("textarea").val();
-		data['re_picture_explain']= $('#AfterCommentPicture_explain').children("textarea").val();
-		
+		data['re_picture_explain']= $('#AfterCommentPicture_explain').children("textarea").val();	
 	}
 	else
 	{
@@ -281,10 +279,7 @@ var ideaSave = function(role)
 	});	
  	
 }
-function imgsave(){
-	 alert("s");
-	 
-}
+
 var hideBeforeCmt = function()
 {
 	var hideEl = document.getElementsByClassName('before_cmt')

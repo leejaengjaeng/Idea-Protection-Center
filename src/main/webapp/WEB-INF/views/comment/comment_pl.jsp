@@ -144,7 +144,7 @@ $(document).ready(function()
 					</c:forEach>		
 				</table>                             
             </article>  
-            <article style="width: 75%;">
+            <article>
                <input id="currentPosition" type="hidden" value="${currentAnswer.getRid()}"/>
                <div class="hiding_tab" style="position:relative;">
                     <select onChange=changeType(this.value);>
@@ -155,33 +155,44 @@ $(document).ready(function()
                    	</select>        
                 </div>
                 <div class="full">
-                <div class="hiding_tab">
-                    <div class="tab_title">
-                        <span>제목</span>
-                        <div class="arrow-up"></div>
-                    </div>
-                    <div class="tab_contents before_cmt" id="BeforeCommentTitle">
-                        <div class="img_cover">                            
-                            <img src="/resources/image/inventor_profile.jpg" alt="123">                      
-                        </div>
-                        <input type="text" id="idea_title" name="title" required placeholder="45자 이내로 입력해주세요." class="disabled" disabled value="${beforeComment.getRe_title()}">  
-                    </div>
-                    <div class="tab_comment current_cmt">
-                        <div class="tab_in" id="CurrentCommentTitle">
-                            <div class="img_cover">                            
-                                <img src="/resources/image/val1.png" alt="123">
-                            </div>
-                            <textarea class="disabled" disabled>${currentAnswer.getTitle()}</textarea>
-                        </div>                            
-                    </div>                    
-                    <div class="tab_recomment">
-                        <div class="tab_in" id="AfterCommentTitle">
-                            <div class="img_cover">                            
-                                <img src="/resources/image/inventor_profile.jpg" alt="123">
-                            </div>
-                            <textarea class="disabled" disabled>${currentAnswer.getRe_title()}</textarea>
-                        </div>                            
-                    </div>
+	                <div class="hiding_tab">
+	                    <div class="tab_title">
+	                        <span>제목</span>
+	                        <div class="arrow-up"></div>
+	                    </div>
+	                    <div class="tab_contents before_cmt" id="BeforeCommentTitle">
+	                        <div class="img_cover">                            
+	                            <img src="/resources/image/inventor_profile.jpg" alt="123">                      
+	                        </div>
+	                        <input type="text" id="idea_title" name="title" required placeholder="45자 이내로 입력해주세요." class="disabled" disabled value="${beforeComment.getRe_title()}">  
+	                    </div>
+	                    <div class="tab_comment current_cmt">
+	                        <div class="tab_in" id="CurrentCommentTitle">
+	                            <div class="img_cover">                            
+	                                <img src="/resources/image/val1.png" alt="123">
+	                            </div>
+	                            <textarea class="disabled" disabled>${currentAnswer.getTitle()}</textarea>
+	                        </div>                            
+	                    </div>                    
+	                    <div class="tab_recomment">
+	                        <div class="tab_in" id="AfterCommentTitle">
+	                            <div class="img_cover">                            
+	                                <img src="/resources/image/inventor_profile.jpg" alt="123">
+	                            </div>
+	                            <textarea class="disabled" disabled>${currentAnswer.getRe_title()}</textarea>
+	                        </div>                            
+	                    </div>	                
+	                </div>
+	                <nav class="nav">
+			            <button type="button">작성 예시</button>
+			            <div class="modal">
+			            	<p>
+			            		발명의 내용을 용이하게 파악할 수<br> 
+			            		있도록 다음 내용에 관한 사항을<br>
+			            		기재합니다.
+			            	</p>
+			            </div>
+		            </nav>
                 </div>
                 <div class="full">
 	                <div class="hiding_tab">
@@ -212,6 +223,16 @@ $(document).ready(function()
 	                        </div>                            
 	                    </div>
 	                </div>
+	                <nav class="nav">
+			            <button type="button">작성 예시</button>
+			            <div class="modal">
+			            	<p>
+			            		발명의 내용을 용이하게 파악할 수<br> 
+			            		있도록 다음 내용에 관한 사항을<br>
+			            		기재합니다.
+			            	</p>
+			            </div>
+		            </nav>
                 </div>
                 <div class="full">
 	                <div class="hiding_tab">
@@ -242,6 +263,16 @@ $(document).ready(function()
 	                        </div>                            
 	                    </div>             
 	                </div>
+	                <nav class="nav">
+			            <button type="button">작성 예시</button>
+			            <div class="modal">
+			            	<p>
+			            		발명의 내용을 용이하게 파악할 수<br> 
+			            		있도록 다음 내용에 관한 사항을<br>
+			            		기재합니다.
+			            	</p>
+			            </div>
+		            </nav>
                 </div>
                 <div class="full">
 	                <div class="hiding_tab">
@@ -272,6 +303,16 @@ $(document).ready(function()
 	                        </div>                            
 	                    </div>
 	                </div>
+	                <nav class="nav">
+			            <button type="button">작성 예시</button>
+			            <div class="modal">
+			            	<p>
+			            		발명의 내용을 용이하게 파악할 수<br> 
+			            		있도록 다음 내용에 관한 사항을<br>
+			            		기재합니다.
+			            	</p>
+			            </div>
+		            </nav>
                 </div>
                 <div class="full">
 	                <div class="hiding_tab">
@@ -302,6 +343,16 @@ $(document).ready(function()
 	                        </div>                            
 	                    </div>
 	                </div>    
+	                <nav class="nav">
+			            <button type="button">작성 예시</button>
+			            <div class="modal">
+			            	<p>
+			            		발명의 내용을 용이하게 파악할 수<br> 
+			            		있도록 다음 내용에 관한 사항을<br>
+			            		기재합니다.
+			            	</p>
+			            </div>
+		            </nav>
                 </div>        
                 <div class="full">
 	                <div class="hiding_tab">
@@ -332,6 +383,16 @@ $(document).ready(function()
 	                        </div>                            
 	                    </div>
 	                </div>
+	                <nav class="nav">
+			            <button type="button">작성 예시</button>
+			            <div class="modal">
+			            	<p>
+			            		발명의 내용을 용이하게 파악할 수<br> 
+			            		있도록 다음 내용에 관한 사항을<br>
+			            		기재합니다.
+			            	</p>
+			            </div>
+		            </nav>
                 </div>
                 <div class="full">
 	                <div class="hiding_tab">
@@ -363,6 +424,16 @@ $(document).ready(function()
 	                        </div>                            
 	                    </div>
 	                </div>
+	                <nav class="nav">
+			            <button type="button">작성 예시</button>
+			            <div class="modal">
+			            	<p>
+			            		발명의 내용을 용이하게 파악할 수<br> 
+			            		있도록 다음 내용에 관한 사항을<br>
+			            		기재합니다.
+			            	</p>
+			            </div>
+		            </nav>
                 </div>
                 <div class="full">
 	                <div class="hiding_tab">
@@ -393,6 +464,16 @@ $(document).ready(function()
 	                        </div>                            
 	                    </div>
 	                </div>
+	                <nav class="nav">
+			            <button type="button">작성 예시</button>
+			            <div class="modal">
+			            	<p>
+			            		발명의 내용을 용이하게 파악할 수<br> 
+			            		있도록 다음 내용에 관한 사항을<br>
+			            		기재합니다.
+			            	</p>
+			            </div>
+		            </nav>
                 </div>
                 <div class="full">
 	                <div class="hiding_tab">
@@ -418,7 +499,17 @@ $(document).ready(function()
 	                        </div>     
 	                        </c:forEach>                  
 	                    </div>     
-	                </div>            
+	                </div>
+	                <nav class="nav">
+			            <button type="button">작성 예시</button>
+			            <div class="modal">
+			            	<p>
+			            		발명의 내용을 용이하게 파악할 수<br> 
+			            		있도록 다음 내용에 관한 사항을<br>
+			            		기재합니다.
+			            	</p>
+			            </div>
+		            </nav>            
                 </div>
                 <div class="full">   
 	                <div class="hiding_tab">
@@ -449,6 +540,16 @@ $(document).ready(function()
 	                        </div>                            
 	                    </div>
 	                </div>  
+	                <nav class="nav">
+			            <button type="button">작성 예시</button>
+			            <div class="modal">
+			            	<p>
+			            		발명의 내용을 용이하게 파악할 수<br> 
+			            		있도록 다음 내용에 관한 사항을<br>
+			            		기재합니다.
+			            	</p>
+			            </div>
+		            </nav>
                 </div>
                 <div class="fin">
                     <button type ="button" id="tmpSave">임시저장</button>

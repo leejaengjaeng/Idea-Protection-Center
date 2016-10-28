@@ -13,7 +13,7 @@
 
 <link rel="stylesheet" href="/resources/common/css/style.css">
 <link rel="stylesheet" href="/resources/common/css/index.css">
-<title>Insert title here</title>
+<title>Idea Protection Center</title>
 <script>
 function changeBank(value){
 	document.getElementById("bank_name").value=value;
