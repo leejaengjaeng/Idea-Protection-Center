@@ -10,12 +10,12 @@
 			<sec:authorize access="isAnonymous()">
 				<li>
 					<button onclick="location.href='/signup/signupPage'"
-						style="box-shadow: inset 0 -3px rgba(0, 0, 0, .1); background: #ccc;">
+						style="box-shadow: inset 0 -4px rgba(0, 0, 0, .1); background: #ccc;">
 						회원가입</button>
 				</li>
 				<li>
 					<button onclick="location.href='/login'"
-						style="box-shadow: inset 0 -3px rgba(0, 0, 0, .1); background: #45d4fe;">
+						style="box-shadow: inset 0 -4px rgba(0, 0, 0, .1); background: #45d4fe;">
 						로그인</button>
 				</li>
 			</sec:authorize>
@@ -52,11 +52,8 @@
 		<div class="header_menu">
 			<img src="/resources/image/logo.png" alt="Logo" onclick="location.href='/'" style="cursor: pointer;" draggable="false">
 			<ul class="menu">
-			<!-- 
-				<li>아이디어 권리확보 시스템</li>
-				<li>이용안내</li>
-			 -->
-			 	<li onclick="location.href='/comeOn'">
+			
+			 	<li>
 			 		아이디어 보호센터는
 			 		<ul>
 			 			<li>
@@ -67,7 +64,7 @@
 			 			</li>
 			 		</ul>
 			 	</li>
-			 	<li onclick="location.href='/'">
+			 	<li>
 			 		이용방법안내
 			 		<ul>
 			 			<li>
@@ -90,7 +87,7 @@
 			 			<li>
 			 				자주하는 질문
 			 			</li>
-			 			<li>
+			 			<li onclick="location.href='/comeOn'">
 			 				오시는길
 			 			</li>
 			 			<li>

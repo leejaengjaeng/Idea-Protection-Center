@@ -76,10 +76,7 @@ $(document).ready(function()
 	});
 	$('#agree').on("click",function()
 	{
-		document.getElementById("commentForm").submit();
 		ideaSave("${user}");
-		
-
 	});
 
 	//클릭에 따라 내용 바꿔주기
@@ -558,8 +555,8 @@ $(document).ready(function()
 		            </nav>
                 </div>
                 <div class="fin">
-                    <button type ="button" onclick="tempsave();">임시저장</button>
-                    <input type="submit" value="제출" id="agree">
+                    <button type ="button" id="tmpSave">임시저장</button>
+                    <button type="button" id="agree">제출</button>
                 </div>
                 </form>
             </article>

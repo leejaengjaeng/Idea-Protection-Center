@@ -546,7 +546,7 @@ $(document).ready(function()
 				</div>
 				<div class="fin">
 					<button type="button" id="tmpSave">임시저장</button>
-					<input type="submit" value="제출" id="agree">
+					<button type="button" id="agree">제출</button>
 					<button type="button" id="gogogo">출원하기</button>
 				</div>
 				</form>
