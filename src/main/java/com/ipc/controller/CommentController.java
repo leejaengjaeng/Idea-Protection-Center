@@ -29,11 +29,13 @@ import com.ipc.dao.DocumentDao;
 import com.ipc.dao.MainPageDao;
 import com.ipc.dao.RegistrationDao;
 import com.ipc.dao.RegistrationFileDao;
+import com.ipc.dao.TypeOfInventDao;
 import com.ipc.service.MessageService;
 import com.ipc.service.RegistrationService;
 import com.ipc.service.SignUpService;
 import com.ipc.vo.RegistrationFileVo;
 import com.ipc.vo.RegistrationPatentVo;
+import com.ipc.vo.TypeOfInventVo;
 import com.ipc.vo.userVo;
 
 
@@ -56,6 +58,8 @@ public class CommentController {
 	MessageService mService;
 	@Autowired
 	RegistrationService ss;
+	@Autowired
+	TypeOfInventDao typemapper;
 	
 	/*
 	발명가
@@ -82,7 +86,8 @@ public class CommentController {
 		RegistrationPatentVo assosiatedMemberId= regDao.getAssociatedMembersByRid(start_rid);		
 
 		Object isAuthenticated = session.getAttribute("currentUser");
-		
+		List<TypeOfInventVo> tv = typemapper.getTypeList();
+		model.addAttribute("typeList", tv);
 		if(assosiatedMemberId != null && isAuthenticated != null )
 		{
 			int inventorId = assosiatedMemberId.getUid();
@@ -100,6 +105,7 @@ public class CommentController {
 			model.addAttribute("processList",processList);
 			model.addAttribute("lastRid",lastRid);
 			model.addAttribute("start_iscomplete",start_iscomplete);
+			
 			//발명가가 보는 경우
 			if(inventorId==userId) 
 			{
@@ -152,7 +158,7 @@ public class CommentController {
 		//접근한 경로에 대한 권한 확인
 		RegistrationPatentVo assosiatedMemberId= regDao.getAssociatedMembersByRid(rid);		
 		Object isAuthenticated = session.getAttribute("currentUser");
-
+		
 		if(assosiatedMemberId != null && isAuthenticated != null )
 		{
 			int inventorId = assosiatedMemberId.getUid();
@@ -447,4 +453,27 @@ public class CommentController {
 		retVal.put("retVal", "저장 성공");
 		return retVal;
 	}
+	@RequestMapping(value="/gotoApply",method=RequestMethod.POST)
+	@ResponseBody
+	public HashMap<String,String> gotoApply(HttpServletRequest request){
+		HashMap<String,String> retVal = new HashMap<String,String>();
+		HashMap<String,String> upCon=new HashMap<String,String>();
+		
+		String rid=request.getParameter("rid");
+		String stRid=Integer.toString(regDao.getStartRidByRid(Integer.parseInt(rid)));
+		
+		session.setAttribute("start_rid", stRid);
+		
+		upCon.put("rid", stRid);
+		upCon.put("ment","서류업로드중");
+		
+		regDao.updateRegCondition(upCon);
+		
+		regDao.gotoApply(Integer.parseInt(rid));
+		
+		retVal.put("retVal", "저장 성공");
+		retVal.put("start_rid", Integer.toString(regDao.getStartRidByRid(Integer.parseInt(rid))));
+		return retVal;
+	}
+	
 }

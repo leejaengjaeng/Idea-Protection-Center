@@ -38,6 +38,10 @@ $(document).ready(function()
 		disableInputApply();
 		alert("발명가 회원님이 최종 확인중입니다.");
 	}
+	else if ("${currentAnswer.getIscomplete()}"==4){
+		disableInputApply();
+		alert("발명가 회원님이 최종 확인중입니다.");
+	}
 	else 
 	{
 		disableInput();

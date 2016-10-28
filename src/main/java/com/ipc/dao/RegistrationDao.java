@@ -64,4 +64,6 @@ public interface RegistrationDao {
 	
 	public int getStartRidByRid(int rid);
 	public void lastConfirm(int rid);
+	public void gotoApply(int rid);
+	public void apply(int rid);
 }
