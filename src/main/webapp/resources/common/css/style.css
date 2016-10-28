@@ -46,6 +46,7 @@
   width: 750px;
   float: left;
   margin-top: 50px;
+  margin-left: 0;
 }
 .wrap_comment section .sub_head h1 {
   font-size: 30px;
@@ -86,10 +87,9 @@
   color: #0fa4d4;
 }
 .wrap_comment section article {
-  width: 750px;
+  width: 100%;
   float: left;
   margin-top: 0;
-  margin-left: 50px;
 }
 .wrap_comment section article h1 {
   width: 750px;
@@ -104,7 +104,7 @@
   color: #1c4098;
 }
 .wrap_comment section article .txt_box {
-  width: 100%;
+  width: 750px;
   float: left;
   margin-top: 50px;
   position: relative;
@@ -1023,7 +1023,7 @@ section nav #nav_benner ul li img {
   margin-right: 5px;
 }
 .hiding_tab {
-  width: 100%;
+  width: 750px;
   float: left;
   margin-bottom: 40px;
   font-size: 18px;
@@ -1032,7 +1032,7 @@ section nav #nav_benner ul li img {
 }
 .hiding_tab:first-child {
   position: relative;
-  margin-bottom: 60px;
+  margin-bottom: 100px;
 }
 .hiding_tab:first-child::before {
   content: "";
@@ -1070,8 +1070,8 @@ section nav #nav_benner ul li img {
 .hiding_tab .tab_title {
   width: 100%;
   float: left;
-  padding: 10px 0 10px 10px;
-  height: 40px;
+  padding: 15px 0 10px 10px;
+  height: 55px;
   transition: .25s;
   cursor: pointer;
 }
@@ -1146,7 +1146,6 @@ section nav #nav_benner ul li img {
   width: 100%;
   float: left;
   text-align: center;
-  border-top: 2px solid #ccc;
   padding-top: 50px;
   margin-top: 50px;
 }

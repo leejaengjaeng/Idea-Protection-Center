@@ -13,7 +13,8 @@
 <script src="/resources/common/js/jquery-3.1.0.min.js"></script>
 <link rel="stylesheet" href="/resources/common/css/index.css">
 <link rel="stylesheet" href="/resources/common/css/style.css">
-<title>Insert title here</title>
+<link rel="stylesheet" href="/resources/common/css/cmt.css">
+<title>Idea Protection Center</title>
 <style>
  
  
@@ -219,165 +220,238 @@ function changeType(value){
  
 <c:import url="/WEB-INF/views/import/header.jsp"/>
     <div class="wrap_comment">
-        <section>            
-        	<nav>
-                <div id="profile">
-                    <img src="/resources/image/attonrney_profile.jpg" alt="profile">
-                    <h4>${sessionScope.currentUser.getName()} 회원님</h4>
-                    <span>${sessionScope.currentUser.getId()}</span>
-                </div>
-                <div id="profile_menu">
-                    <ul>
-                        <li>아이디어 진행내역</li>
-                        <li>회원정보수정</li>                                                
-                    </ul>
-                </div>
-                <div id="nav_benner">
-                    <ul>
-                        <li onclick="loaction.href='/registration/addidea'">
-                            <img src="/resources/image/sub_banner_1.jpg" alt="benner1">
-                        </li>                      
-                    </ul>
-                </div>
-            </nav>
+        <section>     
+        	             	
             <article class="sub_head" style="margin-top:100px;">                    
                 <h1><b>특허</b>출원</h1>                
-            </article>                
-            <article>
+            </article>    
+                 
+            <article style="margin-left:0;">
                 <form name = "regisForm" action="/registration/inputidea" method="POST" enctype="multipart/form-data" onsubmit="return formSubmit(document.regisForm.imgs);">
                   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                   <input type="text" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}" hidden> 
-                <div class="hiding_tab" style="position:relative;">
-                    <select onChange=changeType(this.value);>
-                         <option>발명분류</option>
-                         <c:forEach items="${typeList}" var="list" varStatus="status">
-                     		<option>${list.getType()}</option>
-                  		 </c:forEach>                          
-                      </select>
-                      <input type="hidden" value="-" name="typeOfInvent" id="idea_kind">        
+                <div class="full">
+	                <div class="hiding_tab" style="position:relative;">
+	                    <select onChange=changeType(this.value);>
+	                         <option>발명분류</option>
+	                         <c:forEach items="${typeList}" var="list" varStatus="status">
+	                     		<option>${list.getType()}</option>
+	                  		 </c:forEach>                          
+	                      </select>
+	                      <input type="hidden" value="-" name="typeOfInvent" id="idea_kind">        
+	                </div>
                 </div>
-                <div class="hiding_tab">
-                    <div class="tab_title">
-                        <span>제목</span>
-                        <div class="arrow-up"></div>
-                    </div>
-                    <div class="tab_contents">
-                        <div class="img_cover">                            
-                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
-                        </div>
-                        <input type="text" id="idea_title" name="title" required placeholder="45자 이내로 입력해주세요."> 
-                    </div>
+                <div class="full">
+	                <div class="hiding_tab">
+	                    <div class="tab_title">
+	                        <span>제목</span>
+	                        <div class="arrow-up"></div>
+	                    </div>
+	                    <div class="tab_contents">
+	                        <div class="img_cover">                            
+	                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
+	                        </div>
+	                        <input type="text" id="idea_title" name="title" required placeholder="45자 이내로 입력해주세요."> 
+	                    </div>	                    
+	                </div>
+	                <nav class="nav" style="margin-top:0;">
+			        	<button type="button">작성예시</button>
+			        	<div class="modal">
+			        		<p></p>
+			            </div>
+		            </nav>
                 </div>
-                <div class="hiding_tab">
-                    <div class="tab_title">
-                        <span>요약</span>
-                        <div class="arrow-up"></div>
-                    </div>
-                    <div class="tab_contents">
-                        <div class="img_cover">                            
-                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
-                        </div>
-                        <textarea id="small_cont" name="summary" tabindex="-1"></textarea>
-                    </div>
+                <div class="full">
+	                <div class="hiding_tab">
+	                    <div class="tab_title">
+	                        <span>요약</span>
+	                        <div class="arrow-up"></div>
+	                    </div>
+	                    <div class="tab_contents">
+	                        <div class="img_cover">                            
+	                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
+	                        </div>
+	                        <textarea id="small_cont" name="summary" tabindex="-1"></textarea>
+	                    </div>
+	                </div>
+	                <nav class="nav">
+			            <button type="button">작성 예시</button>
+			            <div class="modal">
+			            	<p>
+			            		발명의 내용을 용이하게 파악할 수<br> 
+			            		있도록 다음 내용에 관한 사항을<br>
+			            		기재합니다.
+			            	</p>
+			            </div>
+		            </nav>
                 </div>
-                <div class="hiding_tab">
-                    <div class="tab_title">
-                        <span>필요이유</span>
-                        <div class="arrow-up"></div>
-                    </div>
-                    <div class="tab_contents">
-                        <div class="img_cover">                            
-                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
-                        </div>
-                        <textarea id="why_cont" name="whyInvent"></textarea>
-                    </div>
-                </div>
-                <div class="hiding_tab">
-                    <div class="tab_title">
-                        <span>기존제품설명 및 문제점</span>
-                        <div class="arrow-up"></div>
-                    </div>
-                    <div class="tab_contents">
-                        <div class="img_cover">                            
-                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
-                        </div>
-                        <textarea id="col_cont" name="problem"></textarea>
-                    </div>
-                </div>
-                <div class="hiding_tab">
-                    <div class="tab_title">
-                        <span>문제해결방법</span>
-                        <div class="arrow-up"></div>
-                    </div>
-                    <div class="tab_contents">
-                        <div class="img_cover">                            
-                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
-                        </div>
-                        <textarea id="wel_cont" name="solution"></textarea>
-                    </div>
-                </div>            
-                <div class="hiding_tab">
-                    <div class="tab_title">
-                        <span>발명의효과</span>
-                        <div class="arrow-up"></div>
-                    </div>
-                    <div class="tab_contents">
-                        <div class="img_cover">                            
-                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
-                        </div>
-                        <textarea id = "bal_cont" name="effect"></textarea>
-                    </div>
-                </div>
-                <div class="hiding_tab">
-                    <div class="tab_title">
-                        <span>핵심구성요소</span>
-                        <div class="arrow-up"></div>
-                    </div>
-                    <div class="tab_contents">
-                        <div class="img_cover">                            
-                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
-                        </div>
-                        <textarea id="imp_cont"  name="core_element"></textarea>
-                    </div>
-                </div>
-                <div class="hiding_tab">
-                    <div class="tab_title">
-                        <span>권리를 보장 받고자 하는 내용</span>
-                        <div class="arrow-up"></div>
-                    </div>
-                    <div class="tab_contents">
-                        <div class="img_cover">                            
-                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
-                        </div>
-                        <textarea id="hope_content"  name="hope_content" required></textarea>
-                    </div>
-                </div>
-                <div class="hiding_tab">
-                    <div class="tab_title">
-                        <span>도면첨부</span>
-                        <div class="arrow-up"></div>
-                    </div>
-                    <div class="tab_contents">                    
-                        <div id="upimgdiv">
-                            <input type="file" id="upimg1" name="imgs" accept="image/gif, image/jpeg, image/png">               
-                        </div>
-                        <button type="button" onclick="addfile()">추가</button>
-                        <button type="button" onclick="delfile()">삭제</button>         
-                    </div>
-                </div>
-                <div class="hiding_tab">
-                    <div class="tab_title">
-                        <span>도면에 대한 설명</span>
-                        <div class="arrow-up"></div>
-                    </div>
-                    <div class="tab_contents">
-                        <div class="img_cover">                            
-                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
-                        </div>
-                        <textarea id="picture_explain"  name="picture_explain" required></textarea>
-                    </div>
-                </div>
-                <div class="fin">
+                <div class="full">
+	                <div class="hiding_tab">
+	                    <div class="tab_title">
+	                        <span>필요이유</span>
+	                        <div class="arrow-up"></div>
+	                    </div>
+	                    <div class="tab_contents">
+	                        <div class="img_cover">                            
+	                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
+	                        </div>
+	                        <textarea id="why_cont" name="whyInvent"></textarea>
+	                    </div>
+	                </div>
+	                <nav class="nav">
+			            <button type="button">작성 예시</button>
+			            <div class="modal">
+			            	<p>
+			            		발명이 속하는 기술분야 및 그 분야의
+			            		이전기술과 발명이 이루고자하는
+			            		목적을 기재함.
+			            	
+			            	</p>
+			            </div>
+		            </nav>
+	            </div>
+	            <div class="full">
+	                <div class="hiding_tab">
+	                    <div class="tab_title">
+	                        <span>기존제품설명 및 문제점</span>
+	                        <div class="arrow-up"></div>
+	                    </div>
+	                    <div class="tab_contents">
+	                        <div class="img_cover">                            
+	                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
+	                        </div>
+	                        <textarea id="col_cont" name="problem"></textarea>
+	                    </div>
+	                </div>
+	                <nav class="nav" style="margin-top:0;">
+			            <button type="button">작성 예시</button>
+			            <div class="modal">
+			            </div>
+		            </nav>
+	            </div>
+	            <div class="full">
+	                <div class="hiding_tab">
+	                    <div class="tab_title">
+	                        <span>문제해결방법</span>
+	                        <div class="arrow-up"></div>
+	                    </div>
+	                    <div class="tab_contents">
+	                        <div class="img_cover">                            
+	                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
+	                        </div>
+	                        <textarea id="wel_cont" name="solution"></textarea>
+	                    </div>
+	                </div>          
+	                <nav class="nav" style="margin-top:0;">
+			            <button type="button">작성 예시</button>
+			            <div class="modal">
+			            </div>
+		            </nav>  
+	            </div>
+	            <div class="full">
+	                <div class="hiding_tab">
+	                    <div class="tab_title">
+	                        <span>발명의효과</span>
+	                        <div class="arrow-up"></div>
+	                    </div>
+	                    <div class="tab_contents">
+	                        <div class="img_cover">                            
+	                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
+	                        </div>
+	                        <textarea id = "bal_cont" name="effect"></textarea>
+	                    </div>
+	                </div>
+	                <nav class="nav" style="margin-top:0;">
+			            <button type="button">작성 예시</button>
+			            <div class="modal">
+			            	<p>
+			            		효과는 발명의 목적달성을 확인
+			            		할 수 있는 효과, 종래기술과 비교하여
+			            		유리한 효과가 발생된다는 것을 
+			            		보여줄 수 있게 기재
+			            		
+			            	</p>
+			            </div>
+		            </nav>
+	            </div>
+	            <div class="full">
+	                <div class="hiding_tab">
+	                    <div class="tab_title">
+	                        <span>핵심구성요소</span>
+	                        <div class="arrow-up"></div>
+	                    </div>
+	                    <div class="tab_contents">
+	                        <div class="img_cover">                            
+	                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
+	                        </div>
+	                        <textarea id="imp_cont"  name="core_element"></textarea>
+	                    </div>
+	                </div>
+	                <nav class="nav" style="margin-top:0;">
+			            <button type="button">작성 예시</button>
+			            <div class="modal">
+			            </div>
+		            </nav>
+	            </div>
+		        <div class="full">
+	                <div class="hiding_tab">
+	                    <div class="tab_title">
+	                        <span>권리를 보장 받고자 하는 내용</span>
+	                        <div class="arrow-up"></div>
+	                    </div>
+	                    <div class="tab_contents">
+	                        <div class="img_cover">                            
+	                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
+	                        </div>
+	                        <textarea id="hope_content"  name="hope_content" required></textarea>
+	                    </div>
+	                </div>
+	                <nav class="nav" style="margin-top:0;">
+			            <button type="button">작성 예시</button>
+			            <div class="modal">
+			            </div>
+		            </nav>
+ 				</div>	  
+ 				<div class="full">              
+	                <div class="hiding_tab">
+	                    <div class="tab_title">
+	                        <span>도면첨부</span>
+	                        <div class="arrow-up"></div>
+	                    </div>
+	                    <div class="tab_contents">                    
+	                        <div id="upimgdiv">
+	                            <input type="file" id="upimg1" name="imgs" accept="image/gif, image/jpeg, image/png">               
+	                        </div>
+	                        <button type="button" onclick="addfile()">추가</button>
+	                        <button type="button" onclick="delfile()">삭제</button>         
+	                    </div>
+	                </div>
+	                <nav class="nav" style="margin-top:0;">
+			            <button type="button">작성 예시</button>
+			            <div class="modal">
+			            </div>
+		            </nav>
+				</div>
+				<div class="full">	                
+	                <div class="hiding_tab">
+	                    <div class="tab_title">
+	                        <span>도면에 대한 설명</span>
+	                        <div class="arrow-up"></div>
+	                    </div>
+	                    <div class="tab_contents">
+	                        <div class="img_cover">                            
+	                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
+	                        </div>
+	                        <textarea id="picture_explain"  name="picture_explain" required></textarea>
+	                    </div>	                    
+	                </div>
+	                <nav class="nav" style="margin-top:0;">
+			            <button type="button">작성 예시</button>
+			            <div class="modal">
+			            </div>
+		            </nav>
+	             </div>
+	             <div class="fin">
                     <button type ="button" onclick="tempsave();">임시저장</button>
                     <input type="submit" value="제출" id="agree">
                 </div>
@@ -421,7 +495,12 @@ $('#idea_title').keyup(function(){
         }
 	});
     
-    
+   $(".nav>button").click(function(){
+	  $(this).next(".modal").css("display","block");
+   });
+   $(".modal").click(function(){
+	  $(this).css("display","none"); 
+   });
 </script>
 </body>
 </html>

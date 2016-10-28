@@ -104,28 +104,7 @@ $(document).ready(function()
 <body>
     <c:import url="/WEB-INF/views/import/header.jsp"/>
     <div class="wrap_comment">       
-        <section>            
-           <nav>
-                <div id="profile">
-                    <img src="/resources/image/attonrney_profile.jpg" alt="profile">
-                    <h4>${sessionScope.currentUser.getName()} 회원님</h4>
-                    <span>${sessionScope.currentUser.getId()}</span>
-                </div>
-                <div id="profile_menu">
-                    <ul>
-                        <li>아이디어 진행내역</li>
-                        <li>회원정보수정</li>                                                
-                    </ul>
-                </div>
-                <div id="nav_benner">
-                    <ul>
-                        <li onclick="loaction.href='/registration/addidea'">
-                            <img src="/resources/image/sub_banner_1.jpg" alt="benner1">
-                        </li>
-                       
-                    </ul>
-                </div>
-            </nav>            
+        <section>                          
             <article class="modify_log" style="margin-top:100px; padding-bottom:65px;">                    
                 <h1>아이디어수정내역</h1>   
                 <table id="IdeaModifyList">
@@ -175,6 +154,7 @@ $(document).ready(function()
 						</c:forEach>                    		
                    	</select>        
                 </div>
+                <div class="full">
                 <div class="hiding_tab">
                     <div class="tab_title">
                         <span>제목</span>
@@ -193,7 +173,7 @@ $(document).ready(function()
                             </div>
                             <textarea class="disabled" disabled>${currentAnswer.getTitle()}</textarea>
                         </div>                            
-                    </div>
+                    </div>                    
                     <div class="tab_recomment">
                         <div class="tab_in" id="AfterCommentTitle">
                             <div class="img_cover">                            
@@ -203,255 +183,273 @@ $(document).ready(function()
                         </div>                            
                     </div>
                 </div>
-                <div class="hiding_tab">
-                    <div class="tab_title">
-                        <span>요약</span>
-                        <div class="arrow-up"></div>
-                    </div>
-                    <div class="tab_contents before_cmt" id="BeforeCommentSummary">
-                        <div class="img_cover">                            
-                            <img src="/resources/image/inventor_profile.jpg" alt="123">                      
-                        </div>
-                        <textarea name="summary" class="disabled" disabled>${beforeComment.getRe_summary()}</textarea>
-                    </div>
-                    <div class="tab_comment current_cmt">
-                        <div class="tab_in" id="CurrentrCommentSummary">
-                            <div class="img_cover">                            
-                                <img src="/resources/image/val1.png" alt="123">
-                            </div>
-                            <textarea class="disabled" disabled>${currentAnswer.getSummary()}</textarea>
-                        </div>                            
-                    </div>
-                    <div class="tab_recomment">
-                        <div class="tab_in" id="AfterCommentSummary">
-                            <div class="img_cover">                            
-                                <img src="/resources/image/inventor_profile.jpg" alt="123">
-                            </div>
-                            <textarea class="disabled" disabled>${currentAnswer.getRe_summary()}</textarea>
-                        </div>                            
-                    </div>
+                <div class="full">
+	                <div class="hiding_tab">
+	                    <div class="tab_title">
+	                        <span>요약</span>
+	                        <div class="arrow-up"></div>
+	                    </div>
+	                    <div class="tab_contents before_cmt" id="BeforeCommentSummary">
+	                        <div class="img_cover">                            
+	                            <img src="/resources/image/inventor_profile.jpg" alt="123">                      
+	                        </div>
+	                        <textarea name="summary" class="disabled" disabled>${beforeComment.getRe_summary()}</textarea>
+	                    </div>
+	                    <div class="tab_comment current_cmt">
+	                        <div class="tab_in" id="CurrentrCommentSummary">
+	                            <div class="img_cover">                            
+	                                <img src="/resources/image/val1.png" alt="123">
+	                            </div>
+	                            <textarea class="disabled" disabled>${currentAnswer.getSummary()}</textarea>
+	                        </div>                            
+	                    </div>
+	                    <div class="tab_recomment">
+	                        <div class="tab_in" id="AfterCommentSummary">
+	                            <div class="img_cover">                            
+	                                <img src="/resources/image/inventor_profile.jpg" alt="123">
+	                            </div>
+	                            <textarea class="disabled" disabled>${currentAnswer.getRe_summary()}</textarea>
+	                        </div>                            
+	                    </div>
+	                </div>
                 </div>
-                <div class="hiding_tab">
-                    <div class="tab_title">
-                        <span>필요이유</span>
-                        <div class="arrow-up"></div>
-                    </div>
-                    <div class="tab_contents before_cmt" id="BeforeCommentWhyInvent">
-                        <div class="img_cover">                            
-                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
-                        </div>
-                        <textarea name="whyInvent" class="disabled" disabled>${beforeComment.getRe_whyInvent()}</textarea>
-                    </div>
-                    <div class="tab_comment current_cmt">
-                        <div class="tab_in" id="CurrentCommentWhyInvent">
-                            <div class="img_cover">                            
-                                <img src="/resources/image/val1.png" alt="123">
-                            </div>
-                            <textarea class="disabled" disabled>${currentAnswer.getWhyInvent()}</textarea>
-                        </div>                            
-                    </div>       
-                    <div class="tab_recomment">
-                        <div class="tab_in" id="AfterCommentWhyInvent">
-                            <div class="img_cover">                            
-                                <img src="/resources/image/inventor_profile.jpg" alt="123">
-                            </div>
-                            <textarea class="disabled" disabled>${currentAnswer.getRe_whyInvent()}</textarea>
-                        </div>                            
-                    </div>             
+                <div class="full">
+	                <div class="hiding_tab">
+	                    <div class="tab_title">
+	                        <span>필요이유</span>
+	                        <div class="arrow-up"></div>
+	                    </div>
+	                    <div class="tab_contents before_cmt" id="BeforeCommentWhyInvent">
+	                        <div class="img_cover">                            
+	                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
+	                        </div>
+	                        <textarea name="whyInvent" class="disabled" disabled>${beforeComment.getRe_whyInvent()}</textarea>
+	                    </div>
+	                    <div class="tab_comment current_cmt">
+	                        <div class="tab_in" id="CurrentCommentWhyInvent">
+	                            <div class="img_cover">                            
+	                                <img src="/resources/image/val1.png" alt="123">
+	                            </div>
+	                            <textarea class="disabled" disabled>${currentAnswer.getWhyInvent()}</textarea>
+	                        </div>                            
+	                    </div>       
+	                    <div class="tab_recomment">
+	                        <div class="tab_in" id="AfterCommentWhyInvent">
+	                            <div class="img_cover">                            
+	                                <img src="/resources/image/inventor_profile.jpg" alt="123">
+	                            </div>
+	                            <textarea class="disabled" disabled>${currentAnswer.getRe_whyInvent()}</textarea>
+	                        </div>                            
+	                    </div>             
+	                </div>
                 </div>
-                <div class="hiding_tab">
-                    <div class="tab_title" id="BeforeCommentProblem">
-                        <span>기존제품설명 및 문제점</span>
-                        <div class="arrow-up"></div>
-                    </div>
-                    <div class="tab_contents before_cmt">
-                        <div class="img_cover">                            
-                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
-                        </div>
-                        <textarea name="problem" class="disabled" disabled>${beforeComment.getRe_problem()}</textarea>
-                    </div>
-                    <div class="tab_comment current_cmt">
-                        <div class="tab_in" id="CurrentCommentProblem">
-                            <div class="img_cover">                            
-                                <img src="/resources/image/val1.png" alt="123">
-                            </div>
-                            <textarea class="disabled" disabled>${currentAnswer.getProblem()}</textarea>
-                        </div>                            
-                    </div>
-                    <div class="tab_recomment" >
-                        <div class="tab_in" id="AfterCommentProblem">
-                            <div class="img_cover">                            
-                                <img src="/resources/image/inventor_profile.jpg" alt="123">
-                            </div>
-                            <textarea class="disabled" disabled>${currentAnswer.getRe_problem()}</textarea>
-                        </div>                            
-                    </div>
+                <div class="full">
+	                <div class="hiding_tab">
+	                    <div class="tab_title" id="BeforeCommentProblem">
+	                        <span>기존제품설명 및 문제점</span>
+	                        <div class="arrow-up"></div>
+	                    </div>
+	                    <div class="tab_contents before_cmt">
+	                        <div class="img_cover">                            
+	                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
+	                        </div>
+	                        <textarea name="problem" class="disabled" disabled>${beforeComment.getRe_problem()}</textarea>
+	                    </div>
+	                    <div class="tab_comment current_cmt">
+	                        <div class="tab_in" id="CurrentCommentProblem">
+	                            <div class="img_cover">                            
+	                                <img src="/resources/image/val1.png" alt="123">
+	                            </div>
+	                            <textarea class="disabled" disabled>${currentAnswer.getProblem()}</textarea>
+	                        </div>                            
+	                    </div>
+	                    <div class="tab_recomment" >
+	                        <div class="tab_in" id="AfterCommentProblem">
+	                            <div class="img_cover">                            
+	                                <img src="/resources/image/inventor_profile.jpg" alt="123">
+	                            </div>
+	                            <textarea class="disabled" disabled>${currentAnswer.getRe_problem()}</textarea>
+	                        </div>                            
+	                    </div>
+	                </div>
                 </div>
-                <div class="hiding_tab">
-                    <div class="tab_title">
-                        <span>문제해결방법</span>
-                        <div class="arrow-up"></div>
-                    </div>
-                    <div class="tab_contents before_cmt" id="BeforeCommentSolution">
-                        <div class="img_cover">                            
-                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
-                        </div>
-                        <textarea name="solution" class="disabled" disabled>${beforeComment.getRe_solution()}</textarea>
-                    </div>
-                    <div class="tab_comment current_cmt">
-                        <div class="tab_in" id="CurrentCommentSolution">
-                            <div class="img_cover">                            
-                                <img src="/resources/image/val1.png" alt="123">
-                            </div>
-                            <textarea class="disabled" disabled>${currentAnswer.getSolution()}</textarea>
-                        </div>                            
-                    </div>
-                    <div class="tab_recomment">
-                        <div class="tab_in" id="AfterCommentSolution">
-                            <div class="img_cover">                            
-                                <img src="/resources/image/inventor_profile.jpg" alt="123">
-                            </div>
-                            <textarea class="disabled" disabled>${currentAnswer.getRe_solution()}</textarea>
-                        </div>                            
-                    </div>
-                </div>            
-                <div class="hiding_tab">
-                    <div class="tab_title">
-                        <span>발명의효과</span>
-                        <div class="arrow-up"></div>
-                    </div>
-                    <div class="tab_contents before_cmt" id="BeforeCommentEffect">
-                        <div class="img_cover">                            
-                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
-                        </div>
-                        <textarea name="effect" class="disabled" disabled>${beforeComment.getRe_effect()}</textarea>
-                    </div>
-                    <div class="tab_comment current_cmt">
-                        <div class="tab_in" id="CurrentCommentEffect">
-                            <div class="img_cover">                            
-                                <img src="/resources/image/val1.png" alt="123">
-                            </div>
-                            <textarea class="disabled" disabled>${currentAnswer.getEffect()}</textarea>
-                        </div>                            
-                    </div>
-                    <div class="tab_recomment">
-                        <div class="tab_in" id="AfterCommentEffect">
-                            <div class="img_cover">                            
-                                <img src="/resources/image/inventor_profile.jpg" alt="123">
-                            </div>
-                            <textarea class="disabled" disabled>${currentAnswer.getRe_effect()}</textarea>
-                        </div>                            
-                    </div>
+                <div class="full">
+	                <div class="hiding_tab">
+	                    <div class="tab_title">
+	                        <span>문제해결방법</span>
+	                        <div class="arrow-up"></div>
+	                    </div>
+	                    <div class="tab_contents before_cmt" id="BeforeCommentSolution">
+	                        <div class="img_cover">                            
+	                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
+	                        </div>
+	                        <textarea name="solution" class="disabled" disabled>${beforeComment.getRe_solution()}</textarea>
+	                    </div>
+	                    <div class="tab_comment current_cmt">
+	                        <div class="tab_in" id="CurrentCommentSolution">
+	                            <div class="img_cover">                            
+	                                <img src="/resources/image/val1.png" alt="123">
+	                            </div>
+	                            <textarea class="disabled" disabled>${currentAnswer.getSolution()}</textarea>
+	                        </div>                            
+	                    </div>
+	                    <div class="tab_recomment">
+	                        <div class="tab_in" id="AfterCommentSolution">
+	                            <div class="img_cover">                            
+	                                <img src="/resources/image/inventor_profile.jpg" alt="123">
+	                            </div>
+	                            <textarea class="disabled" disabled>${currentAnswer.getRe_solution()}</textarea>
+	                        </div>                            
+	                    </div>
+	                </div>    
+                </div>        
+                <div class="full">
+	                <div class="hiding_tab">
+	                    <div class="tab_title">
+	                        <span>발명의효과</span>
+	                        <div class="arrow-up"></div>
+	                    </div>
+	                    <div class="tab_contents before_cmt" id="BeforeCommentEffect">
+	                        <div class="img_cover">                            
+	                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
+	                        </div>
+	                        <textarea name="effect" class="disabled" disabled>${beforeComment.getRe_effect()}</textarea>
+	                    </div>
+	                    <div class="tab_comment current_cmt">
+	                        <div class="tab_in" id="CurrentCommentEffect">
+	                            <div class="img_cover">                            
+	                                <img src="/resources/image/val1.png" alt="123">
+	                            </div>
+	                            <textarea class="disabled" disabled>${currentAnswer.getEffect()}</textarea>
+	                        </div>                            
+	                    </div>
+	                    <div class="tab_recomment">
+	                        <div class="tab_in" id="AfterCommentEffect">
+	                            <div class="img_cover">                            
+	                                <img src="/resources/image/inventor_profile.jpg" alt="123">
+	                            </div>
+	                            <textarea class="disabled" disabled>${currentAnswer.getRe_effect()}</textarea>
+	                        </div>                            
+	                    </div>
+	                </div>
                 </div>
-                <div class="hiding_tab">
-                    <div class="tab_title">
-                        <span>핵심구성요소</span>
-                        <div class="arrow-up"></div>
-                    </div>
-                    <div class="tab_contents before_cmt" id="BeforeCommentCore_element">
-                        <div class="img_cover">                            
-                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
-                        </div>
-                        <textarea name="core_element" class="disabled" disabled>${beforeComment.getRe_core_element()}</textarea>
-                    </div>
-                    <div class="tab_comment current_cmt">
-                        <div class="tab_in" id="CurrentCommentCore_element">
-                            <div class="img_cover">                            
-                                <img src="/resources/image/val1.png" alt="123">
-                            </div>
-                            <textarea class="disabled" disabled>${currentAnswer.getCore_element()}</textarea>
-                        </div>                            
-                    </div>
-                    <div class="tab_recomment">
-                    
-                        <div class="tab_in" id="AfterCommentCore_Element">
-                            <div class="img_cover">                            
-                                <img src="/resources/image/inventor_profile.jpg" alt="123">
-                            </div>
-                            <textarea class="disabled" disabled>${currentAnswer.getRe_core_element()}</textarea>
-                        </div>                            
-                    </div>
+                <div class="full">
+	                <div class="hiding_tab">
+	                    <div class="tab_title">
+	                        <span>핵심구성요소</span>
+	                        <div class="arrow-up"></div>
+	                    </div>
+	                    <div class="tab_contents before_cmt" id="BeforeCommentCore_element">
+	                        <div class="img_cover">                            
+	                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
+	                        </div>
+	                        <textarea name="core_element" class="disabled" disabled>${beforeComment.getRe_core_element()}</textarea>
+	                    </div>
+	                    <div class="tab_comment current_cmt">
+	                        <div class="tab_in" id="CurrentCommentCore_element">
+	                            <div class="img_cover">                            
+	                                <img src="/resources/image/val1.png" alt="123">
+	                            </div>
+	                            <textarea class="disabled" disabled>${currentAnswer.getCore_element()}</textarea>
+	                        </div>                            
+	                    </div>
+	                    <div class="tab_recomment">
+	                    
+	                        <div class="tab_in" id="AfterCommentCore_Element">
+	                            <div class="img_cover">                            
+	                                <img src="/resources/image/inventor_profile.jpg" alt="123">
+	                            </div>
+	                            <textarea class="disabled" disabled>${currentAnswer.getRe_core_element()}</textarea>
+	                        </div>                            
+	                    </div>
+	                </div>
                 </div>
-                <div class="hiding_tab">
-                    <div class="tab_title">
-                        <span>권리를 보장 받고자 하는 내용</span>
-                        <div class="arrow-up"></div>
-                    </div>
-                    <div class="tab_contents before_cmt" id="BeforeCommentHope_content">
-                        <div class="img_cover">                            
-                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
-                        </div>
-                        <textarea name="hope_content" class="disabled" disabled>${beforeComment.getRe_hope_content()}</textarea>
-                    </div>
-                    <div class="tab_comment current_cmt">
-                        <div class="tab_in" id="CurrentCommentHope_content">
-                            <div class="img_cover">                            
-                                <img src="/resources/image/val1.png" alt="123">
-                            </div>
-                            <textarea class="disabled" disabled>${currentAnswer.getHope_content()}</textarea>
-                        </div>                            
-                    </div>
-                    <div class="tab_recomment">
-                        <div class="tab_in"id="AfterCommentHope_content">
-                            <div class="img_cover">                            
-                                <img src="/resources/image/inventor_profile.jpg" alt="123">
-                            </div>
-                            <textarea class="disabled" disabled>${currentAnswer.getRe_hope_content()}</textarea>
-                        </div>                            
-                    </div>
+                <div class="full">
+	                <div class="hiding_tab">
+	                    <div class="tab_title">
+	                        <span>권리를 보장 받고자 하는 내용</span>
+	                        <div class="arrow-up"></div>
+	                    </div>
+	                    <div class="tab_contents before_cmt" id="BeforeCommentHope_content">
+	                        <div class="img_cover">                            
+	                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
+	                        </div>
+	                        <textarea name="hope_content" class="disabled" disabled>${beforeComment.getRe_hope_content()}</textarea>
+	                    </div>
+	                    <div class="tab_comment current_cmt">
+	                        <div class="tab_in" id="CurrentCommentHope_content">
+	                            <div class="img_cover">                            
+	                                <img src="/resources/image/val1.png" alt="123">
+	                            </div>
+	                            <textarea class="disabled" disabled>${currentAnswer.getHope_content()}</textarea>
+	                        </div>                            
+	                    </div>
+	                    <div class="tab_recomment">
+	                        <div class="tab_in"id="AfterCommentHope_content">
+	                            <div class="img_cover">                            
+	                                <img src="/resources/image/inventor_profile.jpg" alt="123">
+	                            </div>
+	                            <textarea class="disabled" disabled>${currentAnswer.getRe_hope_content()}</textarea>
+	                        </div>                            
+	                    </div>
+	                </div>
                 </div>
-                <div class="hiding_tab">
-                    <div class="tab_title">
-                        <span>도면첨부</span>
-                        <div class="arrow-up"></div>
-                    </div>
-                    <div class="tab_contents before_cmt">                    
-                         <form id="commentForm" name="commentForm" action="/commentFileSave" method="post" enctype="multipart/form-data">
-                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                            <input type="hidden" name="userID_file" value="${sessionScope.currentUser.getId()}">
-                            <input type="hidden" name="start_rid_file" value="${start_rid}">
-                        <div id="upimgdiv">
-                            <input type="file" id="upimg1" name="imgs" accept="image/gif, image/jpeg, image/png">               
-                        </div>
-                        <button type="button" onclick="addfile()">추가</button>
-                        <button type="button" onclick="delfile()">삭제</button>         
-                    </div>
-                    <div class="tab_imgs">
-                         <c:forEach items="${imgs}" var="list" varStatus="status">
-                           <div onclick="location.href='${list.getFile_path()}'" id="id${list.getRfid()}">
-                            <img src="${list.getFile_path()}">
-                        </div>     
-                        </c:forEach>                  
-                    </div>     
-                </div>               
-                <div class="hiding_tab">
-                    <div class="tab_title">
-                        <span>도면에 대한 설명</span>
-                        <div class="arrow-up"></div>
-                    </div>
-                    <div class="tab_contents before_cmt" id="BeforeCommentPicture_explain">
-                        <div class="img_cover">                            
-                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
-                        </div>
-                        <textarea name="picture_explain" class="disabled" disabled>${beforeComment.getRe_picture_explain()}</textarea>
-                    </div>
-                    <div class="tab_comment current_cmt">
-                        <div class="tab_in" id="CurrentCommentPicture_explain">
-                            <div class="img_cover">                            
-                                <img src="/resources/image/val1.png" alt="123">
-                            </div>
-                            <textarea class="disabled" disabled>${currentAnswer.getPicture_explain()}</textarea>
-                        </div>                            
-                    </div>
-                    <div class="tab_recomment">
-                        <div class="tab_in" id="AfterCommentPicture_explain">
-                            <div class="img_cover">                            
-                                <img src="/resources/image/inventor_profile.jpg" alt="123">
-                            </div>
-                            <textarea class="disabled" disabled>${currentAnswer.getRe_picture_explain()}</textarea>
-                        </div>                            
-                    </div>
-                </div>  
+                <div class="full">
+	                <div class="hiding_tab">
+	                    <div class="tab_title">
+	                        <span>도면첨부</span>
+	                        <div class="arrow-up"></div>
+	                    </div>
+	                    <div class="tab_contents before_cmt">                    
+	                         <form id="commentForm" name="commentForm" action="/commentFileSave" method="post" enctype="multipart/form-data">
+	                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+	                            <input type="hidden" name="userID_file" value="${sessionScope.currentUser.getId()}">
+	                            <input type="hidden" name="start_rid_file" value="${start_rid}">
+	                        <div id="upimgdiv">
+	                            <input type="file" id="upimg1" name="imgs" accept="image/gif, image/jpeg, image/png">               
+	                        </div>
+	                        <button type="button" onclick="addfile()">추가</button>
+	                        <button type="button" onclick="delfile()">삭제</button>         
+	                    </div>
+	                    <div class="tab_imgs">
+	                         <c:forEach items="${imgs}" var="list" varStatus="status">
+	                           <div onclick="location.href='${list.getFile_path()}'" id="id${list.getRfid()}">
+	                            <img src="${list.getFile_path()}">
+	                        </div>     
+	                        </c:forEach>                  
+	                    </div>     
+	                </div>            
+                </div>
+                <div class="full">   
+	                <div class="hiding_tab">
+	                    <div class="tab_title">
+	                        <span>도면에 대한 설명</span>
+	                        <div class="arrow-up"></div>
+	                    </div>
+	                    <div class="tab_contents before_cmt" id="BeforeCommentPicture_explain">
+	                        <div class="img_cover">                            
+	                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
+	                        </div>
+	                        <textarea name="picture_explain" class="disabled" disabled>${beforeComment.getRe_picture_explain()}</textarea>
+	                    </div>
+	                    <div class="tab_comment current_cmt">
+	                        <div class="tab_in" id="CurrentCommentPicture_explain">
+	                            <div class="img_cover">                            
+	                                <img src="/resources/image/val1.png" alt="123">
+	                            </div>
+	                            <textarea class="disabled" disabled>${currentAnswer.getPicture_explain()}</textarea>
+	                        </div>                            
+	                    </div>
+	                    <div class="tab_recomment">
+	                        <div class="tab_in" id="AfterCommentPicture_explain">
+	                            <div class="img_cover">                            
+	                                <img src="/resources/image/inventor_profile.jpg" alt="123">
+	                            </div>
+	                            <textarea class="disabled" disabled>${currentAnswer.getRe_picture_explain()}</textarea>
+	                        </div>                            
+	                    </div>
+	                </div>  
+                </div>
                 <div class="fin">
                     <button type ="button" id="tmpSave">임시저장</button>
                     <input type="submit" value="제출" id="agree">

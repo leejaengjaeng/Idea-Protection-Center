@@ -1,5 +1,5 @@
 .hiding_tab{
-    width: 100%;
+    width: 750px;
     float: left;
     margin-bottom: 40px;    
     font-size: 18px;
@@ -7,7 +7,7 @@
     max-height: 70px;
     &:first-child{
         position: relative;
-        margin-bottom:60px;
+        margin-bottom:100px;
         &::before{
             content: "";
             position: absolute;
@@ -25,6 +25,7 @@
         height: 55px;
         border:2px solid #ccc;
         position: relative;
+        margin-bottom: 40px;
         option{
             height: 55px;            
         }        
@@ -222,7 +223,6 @@
     width: 100%;
     float: left;
     text-align: center;
-    border-top: 2px solid #ccc;
     padding-top: 50px;
     margin-top: 50px;
     button{
@@ -265,6 +265,54 @@
             background: #f9f8f8;
             color: #0fa4d4;
 
+        }
+    }
+}
+.nav{
+    width: 230px;
+    float: left;
+    margin: 0 0 0 20px;
+    min-height: 0;
+    height: 55px;
+    &:first-child{
+        margin-top: 0 !important;
+    }
+    button{
+        height: 40px;
+        width: 120px;
+        background: #f1c40f;
+        margin-top: 10px;
+        border: none;
+        color: white;
+    }
+    .modal{
+        width: 100%;        
+        background: #383838;
+        float: left;
+        margin-top: 15px;
+        position: relative;
+        cursor: pointer;
+        display: none;
+        padding: 10px 5px 10px 5px;
+        color: white;
+        font-size: 13px;        
+        &:before{
+            content: "";
+            width: 0; 
+            height: 0; 
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 14px solid #383838;        
+            float: right;
+            margin-top: 5px;
+            cursor: pointer;
+            transition: .25s;
+            position: absolute;
+            left: 49%;
+            top: -17px;;
+        }
+        p{
+            line-height: 1.8em;
         }
     }
 }
