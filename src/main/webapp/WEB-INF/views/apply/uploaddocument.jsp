@@ -39,15 +39,19 @@
 </head>
 <body>
 <c:import url="/WEB-INF/views/import/header.jsp"/>
+
 <div id="wrap_form">
 	<div style="width:100%; float:left;">
 		<h2 style="font-size:40px; margin-top:100px; display: block; font-weight:400; margin-bottom:30px;">특허 준비하기</h2>
-		<p>제목 을(를) 출원하기 위한 과정을 안내해 드립니다.</p>
+		<p>${regis.getTitle()} 을(를) 출원하기 위한 과정을 안내해 드립니다.</p>
 		<p>미리 업로드하여 주시면 더욱 빠른 출원이 가능합니다.</p>
 		<h3 style="float:left; margin:50px 0 0 0;">Step1. 필요서류 업로드</h3>
-		<form action="" method="POST" enctype="multipart/form-data" style="margin-bottom:100px;">
+		<form action="/upload/inputFile" method="POST" enctype="multipart/form-data" style="margin-bottom:100px;">
+		<input type="hidden" name="${_csrf.parameterName}"
+				value="${_csrf.token}" />
 			<span style="font-size:20px; display: inline-block; margin-right: 10px;"><input type="radio" name="is_personal" value="1" checked onclick='changePersonal1()'> 개인</span>
 			<span style="font-size:20px;"><input type="radio" name="is_personal" value="0" onclick='changePersonal0()'> 법인</span>
+			<input type="hidden" value="${regis.getRid()}" name="rid">
 			<table>
 				<tr>
 					<td><span id="personal">주민등록등본*</span>
@@ -55,7 +59,7 @@
 				</tr>
 				<tr>
 					<td><span>인감증면서(포괄위임용)*</span>
-					<td><input type="file" name="cerificate" accept="image/gif, image/jpeg, image/png"></td>
+					<td><input type="file" name="certificate" accept="image/gif, image/jpeg, image/png"></td>
 				</tr>
 				<tr>
 					<td><span>사업자등록증 <br>개인사업자이신 분은 업로드 하여 주세요</span>
@@ -63,7 +67,7 @@
 				</tr>
 				<tr>
 					<td>포괄위임장(인감날인)*</td>
-					<td><input type="file" name="business_license" accept="image/gif, image/jpeg, image/png"></td>
+					<td>asdfasdf</td>
 				</tr>
 				<tr>
 					<td colspan="2">
@@ -84,6 +88,7 @@
 		</form>
 	</div>
 </div>
+
 <c:import url="/WEB-INF/views/import/footer.jsp"/>    
 </body>
 </html>
