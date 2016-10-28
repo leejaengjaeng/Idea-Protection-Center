@@ -11,13 +11,16 @@
 <script src="/resources/common/js/jquery-3.1.0.min.js"></script>
 <link rel="stylesheet" href="/resources/common/css/index.css">
 <link rel="stylesheet" href="/resources/common/css/style.css">
-<title>Insert title here</title>
+<title>Idea Protection Center</title>
 <style>
     p{
     	line-height:1.8em;
     }
     input[type=file]{
     	padding-top:7px;
+    }
+    #patentsClientCode{
+    	margin-top:10px; width:300px; height:35px; padding-left:5px;
     }
 </style>
 <script>
@@ -30,7 +33,7 @@
 		document.getElementById("smallCompany").style="display:table-row";
 	}
 	function changeCode1(){
-		document.getElementById("patentsClientCode").style="display:block";
+		document.getElementById("patentsClientCode").style="display:inline-block";
 	}
 	function changeCode0(){
 		document.getElementById("patentsClientCode").style="display:none";
@@ -67,11 +70,11 @@
 				</tr>
 				<tr>
 					<td>포괄위임장(인감날인)*</td>
-					<td>asdfasdf</td>
+					<td>??</td>
 				</tr>
 				<tr>
-					<td colspan="2">
-						<span>포괄 위임장 양식을 다운로드 받으신 후, 내용을 기입하여 인감을 날인하시어 우편으로 발송하여 주세요 <br>우편봉투 서식에 주소를 기재하시고 출력하여 이용하시면 편리합니다.</span>
+					<td colspan="2" style="text-align:center;">
+						<span style="line-height:1.8em;">포괄 위임장 양식을 다운로드 받으신 후, 내용을 기입하여 인감을 날인하시어 우편으로 발송하여 주세요 <br>우편봉투 서식에 주소를 기재하시고 출력하여 이용하시면 편리합니다.</span>
 					</td>
 				</tr>
 				<tr id="smallCompany" style="display:none">
@@ -80,11 +83,11 @@
 				</tr>
 			</table>		
 			<h3 style="text-align:left; margin-top:100px;">Step2. 특허고객번호 입력</h3>
-			<span style="display: inline-block; margin:10px;">기존의 "출원인 코드"를 의미합니다</span><br>
+			<span style="display: inline-block; margin:10px; margin-bottom:20px;">기존의 "출원인 코드"를 의미합니다</span><br>
 			<input type="radio" name="patentsName" value="1" checked onclick="changeCode1()">있음 (직접입력)
 			<input type="radio" name="patentsName" value="0" onclick="changeCode0()">없음 (변리사 님께 맡김)<br>
-			<input type="text" name="patentsClientCode" id="patentsClientCode" style="margin-top:10px; width:300px; height:35px; padding-left:5px;">			
-			<input type="submit" value="제출" style="width:60px; height:35px; background: none; border: 2px solid #555;">
+			<input type="text" name="patentsClientCode" id="patentsClientCode">			
+			<input type="submit" value="제출" style="width:60px; height:35px; background: none; border: 2px solid #555; margin-top:10px;">
 		</form>
 	</div>
 </div>
