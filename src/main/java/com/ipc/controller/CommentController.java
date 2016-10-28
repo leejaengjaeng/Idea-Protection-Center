@@ -2,6 +2,7 @@ package com.ipc.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -214,7 +215,7 @@ public class CommentController {
 	}
 	
 	//Ajax용
-	@RequestMapping(value="/tmpSave",method=RequestMethod.POST)
+	@RequestMapping(value="/tmpSave",method=RequestMethod.POST,produces="application/text;charset=utf8")
 	@ResponseBody
 	public String tmpSave(RegistrationPatentVo regVo, HttpServletRequest req)
 	{
@@ -251,18 +252,21 @@ public class CommentController {
 		return "임시 저장 성공";
 	}
 	
-	@RequestMapping(value="/ideaSave",method=RequestMethod.POST)
+	@RequestMapping(value="/ideaSave",method=RequestMethod.POST,produces="application/text;charset=utf8")
 	@ResponseBody
 	public String ideaSave(RegistrationPatentVo regVo, HttpServletRequest req)
 	{
+		try {
+			req.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 		String role = req.getParameter("role");
 		//완료여부에 따른 체크 
 		//현재 페이지의 rid와 수정 요청한 rid가 같은지 확인 
 		userVo currentUser = (userVo) session.getAttribute("currentUser");
-		System.out.println("uid=========="+currentUser.getUid());
 		if((int)session.getAttribute("currentPosition") != regVo.getRid())
 		{
-			System.out.println(regVo.getRid()+","+(int)session.getAttribute("currentPosition"));
 			return "잘못된 접근입니다.";
 		}
 			
@@ -274,7 +278,6 @@ public class CommentController {
 			//답변 달기
 			regVo.setIscomplete(0);
 			regDao.plUpdate(regVo);
-			
 			
 			//
 			int countOfRow=regDao.countNumOfEdit(regVo.getRid());
@@ -293,27 +296,21 @@ public class CommentController {
 			map.put("ment", ment);
 			map.put("rid",Integer.toString(start_rid));
 			regDao.updateRegCondition(map);
-			
-			
-			
-			
-			
+	
 			//새로운 ROW만들기
 			RegistrationPatentVo tmpVo = regDao.getResourceForPlSaveByRid(regVo.getRid());
 			tmpVo.setIscomplete(0);
 			tmpVo.setPrev_rid(regVo.getRid());
 			tmpVo.setRid(0); //autoIncrese
-			
-			
-			
 			regDao.plSave(tmpVo);
 			tmpVo.setTitle(regDao.getRegistrationByRidOrPrevRid(regVo.getRid()).getTitle());
 			tmpVo.setRegistration_date(ss.getToday(0));
 			mService.editInventor(tmpVo);
 			mService.editPL(tmpVo);
+		
+			System.out.println("hihi");
 			
 			return "저장 성공";
-
 		}
 		else if(role.equals("inventor"))
 		{
@@ -321,12 +318,6 @@ public class CommentController {
 				return "이미 완료된 사항입니다.";
 		
 			regVo.setIscomplete(1);
-			
-			
-			
-			
-			
-			
 			
 			regDao.inventorSave(regVo);
 			
@@ -338,9 +329,9 @@ public class CommentController {
 			
 			//mainPage띄우는 테이블에 update
 			mainPageDao.updateMainPagerid(rvo);
-			
-			
-			
+
+			System.out.println("hihi");
+
 			return "저장 성공";
 			
 		}

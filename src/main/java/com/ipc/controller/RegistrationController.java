@@ -128,7 +128,7 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 		
 		mService.payWait(rv);
 		
-		return "home/index";
+		return "redirect:/mainPage";
 	}
 	
 	@RequestMapping(value="/tempsave",method=RequestMethod.POST)

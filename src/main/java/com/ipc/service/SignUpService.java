@@ -6,17 +6,34 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Random;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ipc.dao.RegistrationDao;
 import com.ipc.dao.TypeOfInventDao;
+import com.ipc.dao.UserDao;
+import com.ipc.vo.userVo;
 @Service
 public class SignUpService {
 	@Autowired 
 	TypeOfInventDao typeOfmapper; 
+
+	@Autowired
+	UserDao userDao;
+	@Autowired
+	HttpSession session;
+	@Autowired
+	AuthenticationManager authManager;
+	
 	
 	public String sendhtmlmail(int uid,String key,String email) throws IOException, EmailException{
 		HtmlEmail sendemail = new HtmlEmail();
@@ -138,5 +155,25 @@ public class SignUpService {
 	
 	public void list(){
 		System.out.println(typeOfmapper.getTypeList().size());
+	}
+	
+	//회원 가입 후 자동 로그인
+	public String afterSignUp(String uid, String pw)
+	{
+		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(uid, pw);
+		Authentication auth;
+		try
+		{
+			auth = authManager.authenticate(token);
+		}
+		catch(Exception e)
+		{
+			return "redirect:/login.do";
+		}
+		SecurityContextHolder.getContext().setAuthentication(auth);
+		userVo currentUser = userDao.getUserById(uid);
+		session.setAttribute("currentUser", currentUser);
+		
+		return "redirect:/";
 	}
 }

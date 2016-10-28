@@ -42,7 +42,6 @@ public class UserAuthService implements UserDetailsService{
 	{
 		userVo userVo = userDao.getUserById(userid);
 
-
 		if(userVo == null)
 		{
 			throw new UsernameNotFoundException(userid);

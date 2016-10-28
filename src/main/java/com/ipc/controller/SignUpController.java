@@ -24,10 +24,12 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ipc.dao.TypeOfInventDao;
 import com.ipc.dao.UserDao;
-import com.ipc.service.SignUpService;
 import com.ipc.vo.TypeOfInventVo;
 import com.ipc.vo.patientent_lawyerVo;
 import com.ipc.vo.userVo;
+
+//TODO : 지우고 new 한 것들 Autowired한 signupService로 대체하기
+import com.ipc.service.SignUpService;
 
 @Controller
 @RequestMapping("/signup")
@@ -38,6 +40,8 @@ public class SignUpController {
 	HttpSession session;
 	@Autowired
 	TypeOfInventDao typemapper;
+	@Autowired
+	SignUpService signupService;
 	
 	private static final String roleAdmin = "ROLE_ADMIN";
 	private static final String roleInventor = "ROLE_INVENTOR";
@@ -122,8 +126,8 @@ public class SignUpController {
 		
 		//System.out.println("lawyerVo : "+lv.getIntroduce()+","+lv.getAccount_number()+","+lv.getLicense_number()+","+lv.getMajor());
 		
-		
-		return "redirect:/";
+		//에러 안나면 로그인 되고 , 에러나면 login 페이지 띄움 
+		return signupService.afterSignUp(uv.getId(), uv.getPw());
 	}
 	@RequestMapping(value="/checkid",method=RequestMethod.POST)
 	@ResponseBody

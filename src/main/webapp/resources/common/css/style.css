@@ -274,31 +274,6 @@
 .wrap_comment section article #fin #agree {
   background: #45d4fe !important;
 }
-.wrap_comment section article .before_cmt {
-  width: 100%;
-  height: 100px;
-  float: left;
-  margin-top: 30px;
-  border-radius: 4px;
-}
-.wrap_comment section article .before_cmt textarea {
-  height: 100%;
-  float: left;
-  width: 85%;
-}
-.wrap_comment section article .before_cmt p {
-  font-size: 0.9rem;
-  color: #383838;
-}
-.wrap_comment section article .before_cmt .img_comt {
-  width: 100px;
-  height: 100%;
-  border-radius: 4px;
-  float: right;
-  background: #f9f9f9;
-  padding: 25px;
-  border: 1px solid #ccc;
-}
 .wrap_comment section article .box_comment1 {
   width: 100%;
   height: 150px;
@@ -669,32 +644,6 @@ section nav #nav_benner ul li img {
   background: #f9f9f9;
   padding: 25px;
   border: 1px solid #ccc;
-}
-.current_cmt {
-  width: 100%;
-  float: left;
-  margin-top: 20px;
-}
-.current_cmt .img_comt {
-  float: left;
-}
-.current_cmt textarea {
-  float: right;
-  width: 640px !important;
-  height: 106px !important;
-}
-.after_cmt {
-  float: left;
-  width: 100%;
-  margin-top: 20px;
-}
-.after_cmt .img_comt {
-  float: right;
-}
-.after_cmt textarea {
-  width: 640px !important;
-  height: 106px !important;
-  float: left;
 }
 #gogogo {
   background: #f39800 !important;
@@ -1079,7 +1028,7 @@ section nav #nav_benner ul li img {
   margin-bottom: 40px;
   font-size: 18px;
   overflow: hidden;
-  max-height: 70px;
+  max-height: 55px;
 }
 .hiding_tab:first-child {
   position: relative;
@@ -1108,31 +1057,36 @@ section nav #nav_benner ul li img {
 .hiding_tab .arrow-up {
   width: 0;
   height: 0;
-  border-left: 9px solid transparent;
-  border-right: 9px solid transparent;
-  border-bottom: 14px solid #036EB7;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 10px solid #036EB7;
   transform: rotate(180deg);
-  float: right;
-  margin-top: 5px;
+  float: left;
+  margin-top: 6px;
   cursor: pointer;
   transition: .25s;
+  margin-right: 25px;
 }
 .hiding_tab .tab_title {
-  border: 2px solid #ccc;
   width: 100%;
   float: left;
-  padding: 15px;
-  height: 55px;
+  padding: 10px 0 10px 10px;
+  height: 40px;
+  transition: .25s;
+  cursor: pointer;
 }
-.hiding_tab .tab_title span {
+.hiding_tab .tab_title W span {
   font-size: 18px;
+  color: #036eb7;
+  font-weight: 700;
+}
+.hiding_tab .down {
+  background: #c5e3f6;
 }
 .hiding_tab .tab_contents {
   width: 100%;
   float: left;
-  border-top: 2px solid #ccc;
-  padding-top: 20px;
-  margin-top: 10px;
+  padding-top: 35px;
 }
 .hiding_tab .tab_contents button {
   width: 110px;
@@ -1160,7 +1114,7 @@ section nav #nav_benner ul li img {
   float: left;
 }
 .hiding_tab .tab_contents input[type=text] {
-  width: 680px;
+  width: 660px;
   height: 60px;
   float: right;
   border-radius: 6px;
@@ -1180,7 +1134,7 @@ section nav #nav_benner ul li img {
 }
 .hiding_tab .tab_contents textarea {
   resize: none;
-  width: 680px;
+  width: 660px;
   margin-left: 10px;
   border-radius: 6px;
   border: 2px solid #c5e3f6;
@@ -1272,7 +1226,9 @@ body {
   height: 30px;
   background: none;
   border: none;
-  box-shadow: inset 0 -4px rgba(0, 0, 0, 0.1);
+  padding-bottom: 3px;
+  box-shadow: inset 0 -3px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
   color: white;
 }
 .popup_close {
@@ -1285,7 +1241,5 @@ body {
 }
 .pop_cont table td {
   height: 50px;
-  border-bottom: 1px solid #ccc;
-  border-collapse: collapse;
   border-top: none;
 }
