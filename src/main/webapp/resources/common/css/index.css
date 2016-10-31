@@ -27,6 +27,7 @@ header .header_wrap ol li button {
   border: none;
   line-height: 32px;
   color: white;
+  border-radius: 4px;
 }
 header .header_wrap .header_menu {
   width: 100%;
@@ -102,7 +103,7 @@ header .header_wrap .header_menu .menu li:hover ul {
   background-position: 50% 50%;
 }
 .ani #fir_slide {
-  background-image: url(../../image/ideapc_1.jpg);
+  background-image: url(../../image/idex_banner.jpg);
 }
 .ani #sec_slide {
   background-image: url(../../image/ideapc_2.jpg);
@@ -111,7 +112,7 @@ header .header_wrap .header_menu .menu li:hover ul {
   background-image: url(../../image/ideapc_3.jpg);
 }
 .ani #fth_slide {
-  background-image: url(../../image/ideapc_4.jpg);
+  background-image: url(../../image//ideapc_4.jpg);
 }
 .ani .ani_wrap {
   width: 1000px;

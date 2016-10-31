@@ -109,7 +109,7 @@ $(document).ready(function()
                 	<c:forEach var="message" items="${MessageList}" varStatus="status">
                 		<tr>
                 			<td>${message.getDate()} <br> ${message.getContent()}</td>
-                			<td><img src="/resources/image/sub_banner_2.jpg"></td>
+                			<td><img src="/resources/image/msg.png"></td>
                 		</tr>
                 	</c:forEach>
                 	</table>
