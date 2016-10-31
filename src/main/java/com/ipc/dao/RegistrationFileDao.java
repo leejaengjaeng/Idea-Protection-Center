@@ -11,5 +11,6 @@ import com.ipc.vo.RegistrationFileVo;
 public interface RegistrationFileDao {
 	public void makeFile(HashMap<String,String> map);
 	public List<RegistrationFileVo> getImgListByStartRid(int start_rid);
-	public void deleteFile(String path);
+	public void deleteFile(int id);
+	public RegistrationFileVo getVoById(int id);
 }

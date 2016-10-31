@@ -345,11 +345,15 @@ public class CommentController {
 	}
 	@RequestMapping(value="/deleteFile",method=RequestMethod.POST)
 	@ResponseBody
-	public HashMap<String,String> deleteFile(HttpServletRequest request,@RequestParam HashMap<String, Object> param){
-		String path=param.get("path").toString();
-		File file=new File("../Idea-Protection-Center/src/main/webapp"+path);
+	public HashMap<String,String> deleteFile(HttpServletRequest request){
+		String rfid=request.getParameter("id");
+		System.out.println("rfid="+rfid);
+		int id=Integer.parseInt(rfid);
+		System.out.println("id="+id);
+		RegistrationFileVo rfv = regisFileMapper.getVoById(id);
+		File file=new File(request.getSession().getServletContext().getRealPath("/")+rfv.getFile_path());
 		file.delete();
-		regFileDao.deleteFile(path);
+		regFileDao.deleteFile(id);
 		
 		
 		HashMap<String,String> map=new HashMap<String,String>();

@@ -23,99 +23,13 @@
 </style>
 <script>
 $(document).ready(function()
-<<<<<<< HEAD
-{
-	if("${isFirst}" == "true")
-	{
-		hideBeforeCmt();
-	}
-
-	if("${currentAnswer.getIscomplete()}" == 1)
-		enableInput();
-	else if ("${currentAnswer.getIscomplete()}" == 2){
-		disableInputApply();
-		alert("가출원상태에서는 수정을 할 수 없습니다.");
-	}
-	else if ("${currentAnswer.getIscomplete()}"==3){
-		disableInputApply();
-		alert("발명가 회원님이 최종 확인중입니다.");
-	}
-	else if ("${currentAnswer.getIscomplete()}"==4){
-		disableInputApply();
-		alert("발명가 회원님이 최종 확인중입니다.");
-	}
-	else if("${currentAnswer.getIscomplete()}"==5){
-		disableInputApply();
-		location.href="/downLoadPage";
-	}
-	
-	else 
-	{
-		disableInput();
-		alert('고객이 작성을 완료하기를 기다려주세요');			
-	}
-	var optcnt = document.getElementById("selectBox").options.length;
-    for(i=0;i<optcnt;i++){
-		if(document.getElementById("selectBox").options[i].value=="${currentAnswer.getTypeOfInvent()}"){
-			document.getElementById("selectBox").options[i].selected=true;
-		}
-	}
-}
-	//폼 버튼 이벤트 
-	$('#tmpSave').on("click",function()
-	{
-		tmpSave("${user}");
-	});
-	$('#agree').on("click",function()
-	{
-		ideaSave("${user}");
-	});
-	$('#gogogo').on("click",function(){                         
-		var q=confirm("위의 내용을 최종 작성본으로 확인하시겠습니까?")       
-		if(q==true){                                                      
-			lastConfirm("${user}");                                 
-		}                                                         
-		else{                                                     
-			return false;                                         
-		}                                                         
-		                                                          
-	});                                                         
-	//$('#gogogo').on("click",function(){
-	//	var q=confirm("출원을 선택하면 수정할 수 없습니다. 출원을 선택하시겠습니까?")
-    //	if(q==true){
-    //		alert("확인을 누르시면 가출원 양식 서류가 다운받아집니다.");
-    //		tempApply("${user}");
-    //	}
-    //	else{
-    //		return false;
-    //	}
-	//	
-	//});
-	//클릭에 따라 내용 바꿔주기
-	$('#IdeaModifyList').on("click","tr",function()
-	{
-		//IdeaModifyList 내부의 tr중 clickedIdea를 가지고있는 요소의 clickedIdea를 제거 
-		$(this).parent().find('.clickedIdea').removeClass('clickedIdea');
-		var rid = $(this).children('input').attr('value');
-		
-		if(rid == ${lastRid} && ("${currentAnswer.getIscomplete()}" == 1))
-		{
-			enableInput();
-		}
-		else
-		{
-			if("${isFirst}" == "true")
-			{
-				hideBeforeCmt();
-			}
-=======
       {
          if("${isFirst}" == "true")
          {
             hideBeforeCmt();
+           
          }
->>>>>>> dc7707b4316b22b4b4b9f50d4a8ef80909919829
-
+        
          if("${currentAnswer.getIscomplete()}" == 1)
             enableInput();
          else if ("${currentAnswer.getIscomplete()}" == 2){
@@ -163,13 +77,11 @@ $(document).ready(function()
             {
                disableInput();
             }
-
             //현재 선택된 요소(tr)에 clickedIdea를 붙임
             $(this).addClass('clickedIdea');
             
             showClickedList(rid);   
          })
-
          //작성 예시 버튼 이벤트
           $(".txt_box > button").click(function(){
               $(this).nextAll(".hiding_box").fadeIn();
@@ -178,25 +90,14 @@ $(document).ready(function()
              
               $(this).parents(".hiding_box").fadeOut();
           });
-
-<<<<<<< HEAD
-		});
-	}
-		var i=0;
-		function addFile(){
-			$('#inputFileDiv').append("<div style='float:left;text-align:center;margin:40px 5px 20px 5px; width:230px;'><img style='width:50px' src='/resources/image/plus.png' alt='img' id='"+i+"'><br><input type='file' id='imgInp"+i+"' name='addupimgs' onchange='readURL(this,"+i+")' name='profileImg' style='padding-top:5px; font-size:12px;'></div>");
-			i++;
-		}
-=======
+          var optcnt = document.getElementById("selectBox").options.length;
+          for(i=0;i<optcnt;i++){
+      		if(document.getElementById("selectBox").options[i].value=="${currentAnswer.getTypeOfInvent()}"){
+      			document.getElementById("selectBox").options[i].selected=true;
+      		}
+      	}
       });
-
-      var i=0;
-      function addFile(){
-         $('#inputFileDiv').append("<div style='float:left;text-align:center;margin:40px 5px 20px 5px; width:230px;'><img style='width:50px' src='/resources/image/plus.png' alt='img' id='"+i+"'><br><input type='file' id='imgInp"+i+"' name='addupimgs' onchange='readURL(this,"+i+")' name='profileImg' style='padding-top:5px; font-size:12px;'></div>");
-         i++;
-      }
->>>>>>> dc7707b4316b22b4b4b9f50d4a8ef80909919829
-
+      
       </script>
 </head>
 <body>
@@ -234,23 +135,6 @@ $(document).ready(function()
 							</c:when>
 							<c:otherwise>
 								<tr>
-<<<<<<< HEAD
-									<input type="hidden" value="${list.getRid()}"/>
-									<td class="title_td">${status.index}차 전문가 검토 및 수정안</td>
-			                        <td class="date_td">${list.getRegistration_date()}</td>
-			                  	</tr>
-			               	</c:otherwise>
-			          	</c:choose>
-					</c:forEach>		
-				</table>                             
-            </article>  
-            <article style="width: 75%;">
-               <input id="currentPosition" type="hidden" value="${currentAnswer.getRid()}"/>
-               <div class="hiding_tab" style="position:relative;">
-                    <select onChange=changeType(this.value);>
-                   		<option>-</option>
-                   		<c:forEach items="${typeList}" var="list" varStatus="status" id="selectBox">
-=======
 									<input type="hidden" value="${list.getRid()}" />
 									<td class="title_td">${status.index}차전문가 검토 및 수정안</td>
 									<td class="date_td">${list.getRegistration_date()}</td>
@@ -264,10 +148,9 @@ $(document).ready(function()
 				<input id="currentPosition" type="hidden"
 					value="${currentAnswer.getRid()}" />
 				<div class="hiding_tab" style="position: relative;">
-					<select onChange=changeType(this.value);>
+					<select onChange=changeType(this.value); id="selectBox">
 						<option>-</option>
 						<c:forEach items="${typeList}" var="list" varStatus="status">
->>>>>>> dc7707b4316b22b4b4b9f50d4a8ef80909919829
 							<option>${list.getType()}</option>
 						</c:forEach>
 					</select>
@@ -307,7 +190,7 @@ $(document).ready(function()
 						<button type="button">작성 예시</button>
 						<div class="modal">
 							<p>
-								발명의 내용을 용이하게 파악할 수<br>  있도록 다음 내용에 관한 사항을<br> 기재합니다.
+								발명의 내용을 용이하게 파악할 수<br>  있도록 다음 내용에 관한 사항을<br> 기재합니다.
 							</p>
 						</div>
 					</nav>
@@ -345,7 +228,7 @@ $(document).ready(function()
 						<button type="button">작성 예시</button>
 						<div class="modal">
 							<p>
-								발명의 내용을 용이하게 파악할 수<br>  있도록 다음 내용에 관한 사항을<br> 기재합니다.
+								발명의 내용을 용이하게 파악할 수<br>  있도록 다음 내용에 관한 사항을<br> 기재합니다.
 							</p>
 						</div>
 					</nav>
@@ -383,7 +266,7 @@ $(document).ready(function()
 						<button type="button">작성 예시</button>
 						<div class="modal">
 							<p>
-								발명의 내용을 용이하게 파악할 수<br>  있도록 다음 내용에 관한 사항을<br> 기재합니다.
+								발명의 내용을 용이하게 파악할 수<br>  있도록 다음 내용에 관한 사항을<br> 기재합니다.
 							</p>
 						</div>
 					</nav>
@@ -421,7 +304,7 @@ $(document).ready(function()
 						<button type="button">작성 예시</button>
 						<div class="modal">
 							<p>
-								발명의 내용을 용이하게 파악할 수<br>  있도록 다음 내용에 관한 사항을<br> 기재합니다.
+								발명의 내용을 용이하게 파악할 수<br>  있도록 다음 내용에 관한 사항을<br> 기재합니다.
 							</p>
 						</div>
 					</nav>
@@ -459,7 +342,7 @@ $(document).ready(function()
 						<button type="button">작성 예시</button>
 						<div class="modal">
 							<p>
-								발명의 내용을 용이하게 파악할 수<br>  있도록 다음 내용에 관한 사항을<br> 기재합니다.
+								발명의 내용을 용이하게 파악할 수<br>  있도록 다음 내용에 관한 사항을<br> 기재합니다.
 							</p>
 						</div>
 					</nav>
@@ -497,7 +380,7 @@ $(document).ready(function()
 						<button type="button">작성 예시</button>
 						<div class="modal">
 							<p>
-								발명의 내용을 용이하게 파악할 수<br>  있도록 다음 내용에 관한 사항을<br> 기재합니다.
+								발명의 내용을 용이하게 파악할 수<br>  있도록 다음 내용에 관한 사항을<br> 기재합니다.
 							</p>
 						</div>
 					</nav>
@@ -537,7 +420,7 @@ $(document).ready(function()
 						<button type="button">작성 예시</button>
 						<div class="modal">
 							<p>
-								발명의 내용을 용이하게 파악할 수<br>  있도록 다음 내용에 관한 사항을<br> 기재합니다.
+								발명의 내용을 용이하게 파악할 수<br>  있도록 다음 내용에 관한 사항을<br> 기재합니다.
 							</p>
 						</div>
 					</nav>
@@ -576,7 +459,7 @@ $(document).ready(function()
 						<button type="button">작성 예시</button>
 						<div class="modal">
 							<p>
-								발명의 내용을 용이하게 파악할 수<br>  있도록 다음 내용에 관한 사항을<br> 기재합니다.
+								발명의 내용을 용이하게 파악할 수<br>  있도록 다음 내용에 관한 사항을<br> 기재합니다.
 							</p>
 						</div>
 					</nav>
@@ -588,19 +471,12 @@ $(document).ready(function()
 							<div class="arrow-up"></div>
 						</div>
 						<div class="tab_contents before_cmt">
-							<form id="commentForm" name="commentForm"
-								action="/commentFileSave" method="post"
-								enctype="multipart/form-data">
-								<input type="hidden" name="${_csrf.parameterName}"
-									value="${_csrf.token}" /> <input type="hidden"
-									name="userID_file" value="${sessionScope.currentUser.getId()}">
+							<form id="commentForm" name="commentForm" action="/commentFileSave" method="post" enctype="multipart/form-data">
+								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
+								<input type="hidden" name="userID_file" value="${sessionScope.currentUser.getId()}">
 								<input type="hidden" name="start_rid_file" value="${start_rid}">
-								<div id="upimgdiv">
-									<input type="file" id="upimg1" name="imgs"
-										accept="image/gif, image/jpeg, image/png">
-								</div>
-								<button type="button" onclick="addfile()">추가</button>
-								<button type="button" onclick="delfile()">삭제</button>
+								
+							</form>
 						</div>
 						<div class="tab_imgs">
 							<c:forEach items="${imgs}" var="list" varStatus="status">
@@ -615,7 +491,7 @@ $(document).ready(function()
 						<button type="button">작성 예시</button>
 						<div class="modal">
 							<p>
-								발명의 내용을 용이하게 파악할 수<br>  있도록 다음 내용에 관한 사항을<br> 기재합니다.
+								발명의 내용을 용이하게 파악할 수<br>  있도록 다음 내용에 관한 사항을<br> 기재합니다.
 							</p>
 						</div>
 					</nav>
@@ -654,7 +530,7 @@ $(document).ready(function()
 						<button type="button">작성 예시</button>
 						<div class="modal">
 							<p>
-								발명의 내용을 용이하게 파악할 수<br>  있도록 다음 내용에 관한 사항을<br> 기재합니다.
+								발명의 내용을 용이하게 파악할 수<br>  있도록 다음 내용에 관한 사항을<br> 기재합니다.
 							</p>
 						</div>
 					</nav>
@@ -664,7 +540,7 @@ $(document).ready(function()
 					<button type="button" id="agree">제출</button>
 					<button type="button" id="gogogo">출원하기</button>
 				</div>
-				</form>
+				
 			</article>
 		</section>
 	</div>
@@ -677,7 +553,6 @@ function addfile(){
     $('#upimgdiv').append("<input type='file' id='upimg"+i+"' name='imgs' accept='image/gif, image/jpeg, image/png' style='padding-top:10px;'>");
     //var targetdiv=document.getElementById("uploaddiv");
     //targetdiv.innerHTML+="<input type='file' name='imgs' oncellchange='addfile()' accept='image/gif, image/jpeg, image/png'>";
-
 }
 $(function(){
    $("textarea").attr("placeholder", "Comment.."); 

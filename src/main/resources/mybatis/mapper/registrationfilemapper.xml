@@ -7,7 +7,10 @@
 	<select id="getImgListByStartRid" parameterType="Integer" resultType="com.ipc.vo.RegistrationFileVo">
 		select rfid,start_rid,file_path from registration_files where start_rid=#{start_rid}
 	</select>
-	<delete id="deleteFile" parameterType="String">
-		delete from registration_files where file_path=#{path}
+	<delete id="deleteFile" parameterType="Integer">
+		delete from registration_files where rfid=#{id}
 	</delete>
+	<select id="getVoById" parameterType="Integer" resultType="com.ipc.vo.RegistrationFileVo">
+		select rfid,start_rid,file_path from registration_files where rfid=#{id}
+	</select>
 </mapper>
