@@ -42,12 +42,23 @@ $(document).ready(function()
 		disableInputApply();
 		alert("발명가 회원님이 최종 확인중입니다.");
 	}
+	else if("${currentAnswer.getIscomplete()}"==5){
+		disableInputApply();
+		location.href="/downLoadPage";
+	}
+	
 	else 
 	{
 		disableInput();
 		alert('고객이 작성을 완료하기를 기다려주세요');			
 	}
-	
+	var optcnt = document.getElementById("selectBox").options.length;
+    for(i=0;i<optcnt;i++){
+		if(document.getElementById("selectBox").options[i].value=="${currentAnswer.getTypeOfInvent()}"){
+			document.getElementById("selectBox").options[i].selected=true;
+		}
+	}
+}
 	//폼 버튼 이벤트 
 	$('#tmpSave').on("click",function()
 	{
@@ -90,8 +101,6 @@ $(document).ready(function()
 			enableInput();
 		}
 		else
-=======
->>>>>>> 4e39d813840da8955831149a7868a00d49deca0c
 		{
 			if("${isFirst}" == "true")
 			{
@@ -162,7 +171,7 @@ $(document).ready(function()
 		    });
 
 		});
-
+	}
 		var i=0;
 		function addFile(){
 			$('#inputFileDiv').append("<div style='float:left;text-align:center;margin:40px 5px 20px 5px; width:230px;'><img style='width:50px' src='/resources/image/plus.png' alt='img' id='"+i+"'><br><input type='file' id='imgInp"+i+"' name='addupimgs' onchange='readURL(this,"+i+")' name='profileImg' style='padding-top:5px; font-size:12px;'></div>");
@@ -240,7 +249,7 @@ $(document).ready(function()
                <div class="hiding_tab" style="position:relative;">
                     <select onChange=changeType(this.value);>
                    		<option>-</option>
-                   		<c:forEach items="${typeList}" var="list" varStatus="status">
+                   		<c:forEach items="${typeList}" var="list" varStatus="status" id="selectBox">
 							<option>${list.getType()}</option>
 						</c:forEach>                    		
                    	</select>        

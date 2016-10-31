@@ -4,5 +4,10 @@
 	<insert id="saveDocument" parameterType="Hashmap">
 		insert into document(start_rid,file_name) values (#{start_rid},#{file_name})
 	</insert>
-	
+	<select id="isPersonal" parameterType="Integer">
+		select is_personal from documentforapply where rid=#{rid}
+	</select>
+	<select id="getVoByrid" parameterType="Integer" resultType="com.ipc.vo.ApplyDocVo">
+		select dfid,rid,patentscode,resident_registration,certificate,business_license,is_personal,smallsale from documentforapply where rid=#{rid}
+	</select>
 </mapper>

@@ -13,11 +13,9 @@
 
 <link rel="stylesheet" href="/resources/common/css/style.css">
 <link rel="stylesheet" href="/resources/common/css/index.css">
-<<<<<<< HEAD
-<title>Insert title here</title>
-=======
+
 <title>Idea Protection Center</title>
->>>>>>> 4e39d813840da8955831149a7868a00d49deca0c
+
 <script>
 function changeBank(value){
 	document.getElementById("bank_name").value=value;
