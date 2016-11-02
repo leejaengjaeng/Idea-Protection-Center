@@ -9,6 +9,7 @@
 <meta name="_csrf" content="${_csrf.token}" />
 <meta name="_csrf_header" content="${_csrf.headerName}" />
 <script src="/resources/common/js/jquery-3.1.0.min.js"></script>
+<script src="/resources/common/js/util.js" type="text/javascript"></script>
 <link rel="stylesheet" href="/resources/common/css/style.css"> 
 <link rel="stylesheet" href="/resources/common/css/index.css">
 <title>Insert title here</title>
@@ -52,7 +53,6 @@ function editExecute(){
 	}
 	return true;
 }
-
 </script>
 </head>
 <body>
@@ -68,7 +68,7 @@ function editExecute(){
 					<td colspan="2" style="text-align:center; padding-left: 0;" class="join_img_td">						
 						<div>
 							<img src="${uv.getProfileimg()}" alt="img" id="blah"><br>
-							<input type="file" id="imgInp" name="profileImg" style="cursor:pointer;">
+							<input type="file" id="imgInp" name="profileImg" style="cursor:pointer;" onchange="fileCheck(this);">
 							<span>대표사진을 설정 해주세요</span>
 						</div>
 					</td>

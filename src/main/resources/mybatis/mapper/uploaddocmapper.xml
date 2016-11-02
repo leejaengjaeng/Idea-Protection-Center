@@ -5,5 +5,7 @@
 		insert into documentforapply(rid,patentscode,resident_registration,certificate,business_license,is_personal,smallsale) 
 			values (#{rid},#{patentscode},#{resident_registration},#{certificate},#{business_license},#{is_personal},#{smallsale})
 	</insert>
-	
+	<select id="getVoByRid" parameterType="Integer" resultType="com.ipc.vo.UpLoadDocVo">
+		select dfid, rid, patentscode, resident_registration, certificate, business_license, is_personal,smallsale from documentforapply where rid=#{rid}
+	</select>
 </mapper>

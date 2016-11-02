@@ -124,13 +124,11 @@ public class SignUpService {
 			}
 			byte fileData[] = file.getBytes();
 			int pathPoint = file.getOriginalFilename().trim().lastIndexOf(".");
-			String filePoint = file.getOriginalFilename().trim().substring(pathPoint + 1,
-					file.getOriginalFilename().trim().length());
+			String filePoint = file.getOriginalFilename().trim().substring(pathPoint + 1,file.getOriginalFilename().trim().length());
 			String fileType = filePoint.toLowerCase();
 			fos = new FileOutputStream(dirpath+ID+ "." + fileType);
 			fos.write(fileData);
 			return fileType;
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

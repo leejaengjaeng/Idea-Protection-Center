@@ -9,6 +9,8 @@
 <meta name="_csrf" content="${_csrf.token}" />
 <meta name="_csrf_header" content="${_csrf.headerName}" />
 <script src="/resources/common/js/jquery-3.1.0.min.js"></script>
+<script src="/resources/common/js/util.js" type="text/javascript"></script>
+
 <link rel="stylesheet" href="/resources/common/css/index.css">
 <link rel="stylesheet" href="/resources/common/css/style.css">
 <title>Idea Protection Center</title>
@@ -58,15 +60,15 @@
 			<table>
 				<tr>
 					<td><span id="personal">주민등록등본*</span>
-					<td><input type="file" name="resident_registration" accept="image/gif, image/jpeg, image/png"></td>
+					<td><input type="file" name="resident_registration" accept="image/gif, image/jpeg, image/png" onchange="fileCheck(this)"></td>
 				</tr>
 				<tr>
 					<td><span>인감증면서(포괄위임용)*</span>
-					<td><input type="file" name="certificate" accept="image/gif, image/jpeg, image/png"></td>
+					<td><input type="file" name="certificate" accept="image/gif, image/jpeg, image/png" onchange="fileCheck(this)"></td>
 				</tr>
 				<tr>
 					<td><span>사업자등록증 <br>개인사업자이신 분은 업로드 하여 주세요</span>
-					<td><input type="file" name="business_license" accept="image/gif, image/jpeg, image/png"></td>
+					<td><input type="file" name="business_license" accept="image/gif, image/jpeg, image/png" onchange="fileCheck(this)"></td>
 				</tr>
 				<tr>
 					<td>포괄위임장(인감날인)*</td>
@@ -79,7 +81,7 @@
 				</tr>
 				<tr id="smallCompany" style="display:none">
 					<td>중소기업 감면서류</td>
-					<td><input type="file" name="smallsale" accept="image/gif, image/jpeg, image/png"></td>
+					<td><input type="file" name="smallsale" accept="image/gif, image/jpeg, image/png" onchange="fileCheck(this)"></td>
 				</tr>
 			</table>		
 			<h3 style="text-align:left; margin-top:100px;">Step2. 특허고객번호 입력</h3>

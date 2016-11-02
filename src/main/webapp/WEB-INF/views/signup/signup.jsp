@@ -9,8 +9,8 @@
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
 <meta name="_csrf" content="${_csrf.token}" />
 <meta name="_csrf_header" content="${_csrf.headerName}" />
-<script src="/resources/common/js/jquery-3.1.0.min.js" type="text/javascript" ></script>
-
+<script src="/resources/common/js/jquery-3.1.0.min.js" type="text/javascript"></script>
+<script src="/resources/common/js/util.js" type="text/javascript"></script>
 <link rel="stylesheet" href="/resources/common/css/style.css">
 <link rel="stylesheet" href="/resources/common/css/index.css">
 
@@ -105,6 +105,7 @@ function changeBank(value){
 		}
 		return true;
 	}
+	
 </script>
 <style>
 body {
@@ -650,10 +651,9 @@ body {
 					<td colspan="2" style="text-align: center; padding-left: 0;"
 						class="join_img_td">
 						<div>
-							<img src="/resources/image/inventor_profile.jpg" alt="img"
-								id="blah"><br> <input type="file" id="imgInp"
-								name="profileImg" style="cursor: pointer;"> <span>대표사진을
-								설정 해주세요</span>
+							<img src="/resources/image/inventor_profile.jpg" alt="img" id="blah"><br> 
+							<input type="file" id="imgInp" onchange="fileCheck(this)" name="profileImg" style="cursor: pointer;" accept="image/gif, image/jpeg, image/png"> 
+							<span>대표사진을 설정 해주세요</span>
 						</div>
 					</td>
 				</tr>

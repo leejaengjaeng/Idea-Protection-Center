@@ -95,7 +95,7 @@ public class CommentController {
 			int plId = assosiatedMemberId.getLid();
 			int userId = ((userVo)isAuthenticated).getUid();
 			int lastRid = regDao.getLastRidInProcessList(start_rid);
-			
+			System.out.println("lastRid is "+lastRid);
 			//현재 나타내는 rid 저장
 			session.setAttribute("currentPosition", lastRid);
 
@@ -436,6 +436,7 @@ public class CommentController {
 		HashMap<String,String> upCon=new HashMap<String,String>();
 
 		String rid=request.getParameter("rid");
+		System.out.println("lastConfirm rid is "+rid);
 		String stRid=Integer.toString(regDao.getStartRidByRid(Integer.parseInt(rid)));
 		
 		upCon.put("rid", stRid);

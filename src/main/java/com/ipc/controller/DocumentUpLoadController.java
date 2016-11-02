@@ -1,5 +1,6 @@
 package com.ipc.controller;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -72,4 +73,20 @@ public class DocumentUpLoadController {
 		System.out.println("에에ㅔ에에에에에ㅔ에엥ㅇ에에에ㅔ에에에ㅔ에ㅔ에에에에ㅔ에에에ㅔ");
 		return "apply/uploaddocument";
 	}
+	private FileOutputStream fos;
+
+	@RequestMapping(value="/uploadfinalApplyDoc",method=RequestMethod.POST)
+	public String uploadfinalApplyDoc(HttpServletRequest request) throws IOException{
+		MultipartHttpServletRequest multipartRequest =  (MultipartHttpServletRequest)request;  //�떎以묓뙆�씪 �뾽濡쒕뱶
+		List<MultipartFile> apply_doc = multipartRequest.getFiles("finalApplyDoc");
+		String dirpath=request.getSession().getServletContext().getRealPath("resources/uploadimgs/apply_doc/");
+		String full_path=dirpath+apply_doc.get(0).getOriginalFilename();
+		byte fileData[] = apply_doc.get(0).getBytes();
+
+		fos = new FileOutputStream(full_path);
+		
+		fos.write(fileData);
+		return "redirect:/";
+	}
+	
 }
