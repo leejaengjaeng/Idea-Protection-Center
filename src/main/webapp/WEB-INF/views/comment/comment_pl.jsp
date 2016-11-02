@@ -36,6 +36,18 @@ $(document).ready(function()
             disableInputApply();
             alert("가출원상태에서는 수정을 할 수 없습니다.");
          }
+         else if ("${currentAnswer.getIscomplete()}"==3){
+     		disableInputApply();
+     		alert("발명가 회원님이 최종 확인중입니다.");
+     	}
+     	else if ("${currentAnswer.getIscomplete()}"==4){
+     		disableInputApply();
+     		alert("발명가 회원님이 서류 업로드 중입니다.");
+     	}
+     	else if ("${currentAnswer.getIscomplete()}"==5){
+     		disableInputApply();
+     		location.href="/downLoadPage";
+     	}
          else 
          {
             disableInput();
@@ -52,15 +64,24 @@ $(document).ready(function()
             ideaSave("${user}");
          });
          $('#gogogo').on("click",function(){
-            var q=confirm("출원을 선택하면 수정할 수 없습니다. 출원을 선택하시겠습니까?")
-             if(q==true){
-                alert("확인을 누르시면 가출원 양식 서류가 다운받아집니다.");
-                tempApply("${user}");
-             }
-             else{
-                return false;
-             }
-            
+            //var q=confirm("출원을 선택하면 수정할 수 없습니다. 출원을 선택하시겠습니까?")
+            // if(q==true){
+            //    alert("확인을 누르시면 가출원 양식 서류가 다운받아집니다.");
+            //    tempApply("${user}");
+            // }
+            // else{
+            //    return false;
+            // }
+            //
+        	 var q=confirm("출원을 선택하면 수정할 수 없습니다. 출원을 선택하시겠습니까?");      
+        	 if(q==true){                                            
+        	    alert("확인을 누르시면 출원단계가 진행되어집니다.");               
+        	    lastconfirm("${user}");                                
+        	 }                                                       
+        	 else{                                                   
+        	    return false;                                        
+        	 }                                                       
+        	                                                         
          });
          //클릭에 따라 내용 바꿔주기
          $('#IdeaModifyList').on("click","tr",function()
@@ -145,7 +166,7 @@ $(document).ready(function()
 				</table>
 			</article>
 			<article>
-				<input id="currentPosition" type="hidden"
+				<input id="currentPosition" type="text"
 					value="${currentAnswer.getRid()}" />
 				<div class="hiding_tab" style="position: relative;">
 					<select onChange=changeType(this.value); id="selectBox">

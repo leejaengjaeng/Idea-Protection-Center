@@ -9,5 +9,5 @@ import com.ipc.vo.UpLoadDocVo;
 @Mapper
 public interface UpLoadDocDao {
 	public void saveUpLoadDocument(UpLoadDocVo upv);
-
+	public UpLoadDocVo getVoByRid(int rid);
 }

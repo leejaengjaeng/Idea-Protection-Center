@@ -11,6 +11,8 @@
 <!-- <link rel="stylesheet"
    href="/webjars/bootstrap/3.3.7/dist/css/bootstrap.min.css"> -->
 <script src="/resources/common/js/jquery-3.1.0.min.js"></script>
+<script src="/resources/common/js/util.js" type="text/javascript"></script>
+
 <link rel="stylesheet" href="/resources/common/css/index.css">
 <link rel="stylesheet" href="/resources/common/css/style.css">
 <link rel="stylesheet" href="/resources/common/css/cmt.css">
@@ -420,7 +422,7 @@ function changeType(value){
 	                    </div>
 	                    <div class="tab_contents">                    
 	                        <div id="upimgdiv">
-	                            <input type="file" id="upimg1" name="imgs" accept="image/gif, image/jpeg, image/png">               
+	                            <input type="file" id="upimg1" name="imgs" accept="image/gif, image/jpeg, image/png" onchange="fileCheck(this)">               
 	                        </div>
 	                        <button type="button" onclick="addfile()">추가</button>
 	                        <button type="button" onclick="delfile()">삭제</button>         
@@ -464,7 +466,7 @@ function changeType(value){
     var i=1;
 function addfile(){
     i++;
-    $('#upimgdiv').append("<input type='file' id='upimg"+i+"' name='imgs' accept='image/gif, image/jpeg, image/png' style='padding-top:10px;'>");
+    $('#upimgdiv').append("<input type='file' id='upimg"+i+"' name='imgs' accept='image/gif, image/jpeg, image/png' style='padding-top:10px;' onchange='fileCheck(this)'>");
     //var targetdiv=document.getElementById("uploaddiv");
     //targetdiv.innerHTML+="<input type='file' name='imgs' oncellchange='addfile()' accept='image/gif, image/jpeg, image/png'>";
  

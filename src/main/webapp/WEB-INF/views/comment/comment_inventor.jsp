@@ -11,6 +11,8 @@
     <title>Idea Protectection Center</title>
     <script src="/resources/common/js/jquery-3.1.0.min.js"></script>  
     <script src="/resources/common/js/comment.js"></script>  
+    <script src="/resources/common/js/util.js" type="text/javascript"></script>
+    
     <link href="/resources/common/css/cmt.css" rel="stylesheet">
     <link href="/resources/common/css/style.css" rel="stylesheet">
     <link href="/resources/common/css/index.css" rel="stylesheet">
@@ -78,6 +80,13 @@ $(document).ready(function()
         	return false;                                         
   	 	  }
 	}
+	else if("${currentAnswer.getIscomplete()}"==4){
+		   alert("aa");   
+		   disableInput();
+		                                                     
+		         gotoApply("${user}");                                 
+		                                                               
+	   }     
 	else
 	{				
 		disableInput();
@@ -581,7 +590,7 @@ var i=0;
 function addfile()
 {
 	i++;
-	$('#inputFileDiv').append("<div id='div"+i+"' style='float:left;text-align:center;margin:40px 5px 20px 5px; width:230px;'><img style='width:200px; height:200px; border:1px solid #ccc;' src='/resources/image/plus2.png' alt='img' id='"+i+"'><br><input type='file' style='padding-top:5px; font-size:12px;' id='imgInp"+i+"' name='imgs' onchange='readURL(this,"+i+")' name='profileImg' style='width:180px;'></div>");
+	$('#inputFileDiv').append("<div id='div"+i+"' style='float:left;text-align:center;margin:40px 5px 20px 5px; width:230px;'><img style='width:200px; height:200px; border:1px solid #ccc;' src='/resources/image/plus2.png' alt='img' id='"+i+"'><br><input type='file' style='padding-top:5px; font-size:12px;' id='imgInp"+i+"' name='imgs' onchange='readURL(this,"+i+");fileCheck(this)' name='profileImg' style='width:180px;'></div>");
 	
 }
 function delfile(){

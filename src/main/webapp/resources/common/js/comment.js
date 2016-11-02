@@ -124,7 +124,74 @@ var tempApply=function(role){
    });   
     //location.href ="/mainPage";
 }
+var lastconfirm=function(role){
+	var csrfToken = $("meta[name='_csrf']").attr("content"); 
+	var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+	var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
+	var data = {};
+	var data2={};
+	var headers = {};
 
+	data[csrfParameter] = csrfToken;
+    headers[csrfHeader] = csrfToken;
+
+    data['rid'] = $('#IdeaModifyList').find('.clickedIdea').children('input').val();
+    
+    $.ajax({
+		url : "/lastConfirm",
+		type:"POST",
+		headers: headers,
+ 	    data : data,
+ 	    success:function(retVal)
+ 	    {
+ 	    	
+	 	   	alert("특허 준비하기 페이지로 넘어갑니다.");
+	 	    
+	 	   	//location.href ="/getFile?file_name="+retVal.file_name;
+	 	    //location.href ="/upload/uploadFile";
+ 	    },
+ 	    error: function(request,status,error)
+		{
+ 			alert('실패하였습니다.')
+ 			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		}
+	});
+	
+}
+var gotoApply=function(role){
+	var csrfToken = $("meta[name='_csrf']").attr("content"); 
+	var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+	var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
+	var data = {};
+	var data2={};
+	var headers = {};
+
+	data[csrfParameter] = csrfToken;
+    headers[csrfHeader] = csrfToken;
+
+    data['rid'] = $('#IdeaModifyList').find('.clickedIdea').children('input').val();
+    
+    $.ajax({
+		url : "/gotoApply",
+		type:"POST",
+		headers: headers,
+ 	    data : data,
+ 	    success:function(retVal)
+ 	    {
+ 	    	
+	 	   	alert("특허 준비하기 페이지로 넘어갑니다.");
+	 	    
+	 	   	//location.href ="/getFile?file_name="+retVal.file_name;
+	 	    location.href ="/upload/uploadFile";
+ 	    },
+ 	    error: function(request,status,error)
+		{
+ 			alert('실패하였습니다.')
+ 			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		}
+	});
+	
+}
 //임시 저장
 var tmpSave = function(role)
 {
@@ -426,46 +493,3 @@ var showClickedList = function(rid)
    });   
 }
 
-var delImg = function(path,id,btnid)
-{
-   var element= document.getElementById(id);
-   element.parentNode.removeChild(element);
-   var btnelement= document.getElementById(btnid);
-   btnelement.parentNode.removeChild(btnelement);
-   var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
-   var csrfToken = $("meta[name='_csrf']").attr("content"); 
-   var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
-   var data = {};
-   var headers = {};
-   data[csrfParameter] = csrfToken;
-    data["path"] = path;
-    headers[csrfHeader] = csrfToken;
-    $.ajax({
-       url : "/deleteFile",
-       dataType : "json",
-       type : "POST",
-       headers: headers,
-       data : data,
-       success: function(data) {
-          alert("삭제 되었습니다.");
-       },
-       error:function(request,status,error){
-          console.log("code:"+request.status+"\n"+"error:"+error);
-          alert("삭제에 실패하였습니다.");
-       }
-   }); 
-}
-
-var readUrl = function(input,id) 
-{   
-   //alert(id);
-    if (input.files && input.files[0]) {
-    var reader = new FileReader();
-
-    reader.onload = function (e) {
-            $('#'+id).attr('src', e.target.result);
-        }
-
-      reader.readAsDataURL(input.files[0]);
-    }
-}
