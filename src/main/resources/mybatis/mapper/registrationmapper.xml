@@ -157,4 +157,10 @@
 	<select id="getStartRidByRid" parameterType="Integer" resultType="Integer">
 		select start_rid from registration_patent where rid=#{rid}
 	</select>
+	<update id="upLoadApplyDoc" parameterType="Integer">
+		update registration_patent set iscomplete=6 where rid=#{rid}
+	</update>
+	<update id="updateApplyDate" parameterType="Hashmap">
+		update registration_patent set apply_date=#{apply_date},pre_apply_date=#{pre_apply_date} where rid=#{rid}
+	</update>
 </mapper>

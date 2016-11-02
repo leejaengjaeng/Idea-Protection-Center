@@ -66,4 +66,7 @@ public interface RegistrationDao {
 	public void lastConfirm(int rid);
 	public void gotoApply(int rid);
 	public void apply(int rid);
+	public void upLoadApplyDoc(int rid);
+	
+	public void updateApplyDate(HashMap<String,String> apply_date_map);
 }

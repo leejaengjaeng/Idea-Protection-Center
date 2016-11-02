@@ -7,7 +7,11 @@ public class UpLoadDocVo {
 	String resident_registration;
 	String certificate;
 	String business_license;
-	
+	String smallsale;
+	String finalApplyDoc;
+	public String getFinalApplyDoc() {
+		return finalApplyDoc;
+	}
 	public int getDfid() {
 		return dfid;
 	}
@@ -16,6 +20,9 @@ public class UpLoadDocVo {
 	}
 	public int getRid() {
 		return rid;
+	}
+	public void setFinalApplyDoc(String finalApplyDoc) {
+		this.finalApplyDoc = finalApplyDoc;
 	}
 	public void setRid(int rid) {
 		this.rid = rid;
@@ -57,5 +64,7 @@ public class UpLoadDocVo {
 		this.smallsale = smallsale;
 	}
 	String is_personal;
-	String smallsale;
+	
+
+	
 }

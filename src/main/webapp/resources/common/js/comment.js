@@ -336,7 +336,8 @@ var ideaSave = function(role)
         success:function(retVal)
         {
            alert(retVal);
-          location.href ="/mainPage";
+          //location.href ="/mainPage";
+           
         },
         error: function(request,status,error)
       {

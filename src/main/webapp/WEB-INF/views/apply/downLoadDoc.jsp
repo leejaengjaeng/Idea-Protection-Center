@@ -75,15 +75,35 @@ function downDoc(kindOfDocument){
 		중소기업감면서류 <button onclick="downDoc('small')">다운로드</button><br>
 	</c:when>
 </c:choose>
-
-
+<c:choose>
+	<c:when test="${docVo.getBusiness_license()!=null}">
+		사업자등록증 <button onclick="downDoc('business')">다운로드</button><br>
+	</c:when>
+</c:choose>
+특허고객번호 (출원인 코드) : 
+<c:choose>
+	<c:when test="${docVo.getPatentscode()!=null}">
+		${docVo.getPatentscode()}<br>
+	</c:when>
+	<c:otherwise>
+		없음..<br>
+	</c:otherwise>
+</c:choose>
 
 <form action="/upload/uploadfinalApplyDoc" enctype="multipart/form-data" method="post" >
 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 
-출원서 업로드<input type="file" name="finalApplyDoc" accept="image/gif, image/jpeg, image/png">
-
-<input type="submit" value="제출">
+<c:choose>
+	<c:when test="${docVo.getFinalApplyDoc()!=''}">
+		출원서를 이미 업로드 하였습니다.
+	</c:when>
+	<c:otherwise>
+		출원서 업로드<input type="file" name="finalApplyDoc" accept="image/gif, image/jpeg, image/png"><br>
+		출원일<br>
+		<input type="text" name="year">년  <input type="text" name="month">월 <input type="text" name="day">일
+		<input type="submit" value="제출">	
+	</c:otherwise>
+</c:choose>
 </form>
 <c:import url="/WEB-INF/views/import/footer.jsp"/>    
 </body>
