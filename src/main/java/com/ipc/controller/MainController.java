@@ -159,13 +159,13 @@ public class MainController {
 		return "admin/admin_management";
 		
 	}
-	@RequestMapping(value="/noticeList/{nid}",method=RequestMethod.GET)
+	@RequestMapping(value="/notice/noticeList/{nid}",method=RequestMethod.GET)
 	public String noticeList(Model model,@PathVariable int nid){
 		adminNoticeVo an = noticeDao.getNoticeByNid(nid);
 		model.addAttribute("noticeVo", an);
 		return "admin/noticeDetail";
 	}
-	@RequestMapping("/noticePage")
+	@RequestMapping("/notice/noticePage")
 	public String noticePage(Model model){
 		List<adminNoticeVo> noticeList=noticeDao.getNoticeListDesc();
 		model.addAttribute("noticeList", noticeList);

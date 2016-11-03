@@ -76,16 +76,16 @@
 			 			</li>
 			 		</ul>
 			 	</li>
-			 	<li onclick="location.href='/qna/qnaBoard'">
+			 	<li>
 			 		고객센터
 			 		<ul>
-			 			<li>
+			 			<li onclick="location.href='/notice/noticePage'">
 			 				공지사항
 			 			</li>
-			 			<li>
-			 				1:1문의
+			 			<li onclick="location.href='/qna/qnaBoard'">
+			 				문의 하기
 			 			</li>
-			 			<li>
+			 			<li onclick="location.href='/qna/regularQna'">
 			 				자주하는 질문
 			 			</li>
 			 			<li onclick="location.href='/comeOn'">
