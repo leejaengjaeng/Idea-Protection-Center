@@ -321,7 +321,14 @@ var ideaSave = function(role)
       success:function(retVal)
       {
     	  alert(retVal);
-          location.href ="/mainPage";
+    	  if(role=="inventor"){
+    		  document.getElementById("commentForm").submit();  
+    	  }
+          
+          if(role=="pl"){
+        	  location.href ="/mainPage";
+          }
+    	  //location.href ="/mainPage";
       },
       error: function(request,status,error)
       {

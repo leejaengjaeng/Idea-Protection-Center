@@ -168,10 +168,9 @@ $(document).ready(function()
             </article>                
             <article class="nt" style="display:block;">
 		<div class="full">
+
 		<div class="hiding_tab" style="position: relative; width: 100%;">
 		<div class="arrow-up ee"></div>
-		<form name="regisForm" action="/registration/inputidea" method="POST" 
-			enctype="multipart/form-data" onsubmit="return formSubmit(document.regisForm.imgs);">
 			<input type="hidden" name="${_csrf.parameterName}" 	value="${_csrf.token}" /> 
 			<input type="hidden" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}">
 			<select onChange=changeType(this.value);>
@@ -179,6 +178,7 @@ $(document).ready(function()
 			</select> 
 			<input type="hidden" value="-" name="typeOfInvent" id="idea_kind">
 		</div>
+
 		</div>
 		<div class="tab_box">
 			<div class="b0" style="background-color: #004a80; color: white;">
@@ -215,106 +215,58 @@ $(document).ready(function()
 		</div>
 		<div class="area_box a0" style="display: block;">
 			<div class="plc">
-				<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentTitle">
-					${beforeReg.getTitle()}
-				</textarea>
-				<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentTitle">
-					${beforeReg.getRe_title()}
-				</textarea>
-				<textarea class="disabled current " placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentTitle">
-					${currentAnswer.getTitle()}
-				</textarea>
+				<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentTitle">${beforeReg.getTitle()}</textarea>
+				<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentTitle">${beforeReg.getRe_title()}</textarea>
+				<textarea class="disabled current " placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentTitle">${currentAnswer.getTitle()}</textarea>
 			</div>
 		</div>
 		<div class="area_box a1">
 			<div class="plc">
-				<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentSummary" name="summary">
-					${beforeReg.getSummary()}
-				</textarea>
-				<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentSummary">
-					${beforeReg.getRe_summary()}
-				</textarea>
-				<textarea class="disabled current " placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentSummary">
-					${currentAnswer.getSummary()}
-				</textarea>
+				<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentSummary" name="summary">${beforeReg.getSummary()}</textarea>
+				<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentSummary">${beforeReg.getRe_summary()}</textarea>
+				<textarea class="disabled current " placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentSummary">${currentAnswer.getSummary()}</textarea>
 			</div>
 		</div>
 		<div class="area_box a2">
 			<div class="plc">
-				<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentWhyInvent" name="whyInvent">
-					${beforeReg.getWhyInvent()}
-				</textarea>
-				<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentWhyInvent">
-					${beforeReg.getRe_whyInvent()}
-				</textarea>
-				<textarea class="disabled current " placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentWhyInvent">
-					${currentAnswer.getWhyInvent()}
-				</textarea>
+				<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentWhyInvent" name="whyInvent">${beforeReg.getWhyInvent()}</textarea>
+				<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentWhyInvent">${beforeReg.getRe_whyInvent()}</textarea>
+				<textarea class="disabled current " placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentWhyInvent">${currentAnswer.getWhyInvent()}</textarea>
 			</div>
 		</div>
 		<div class="area_box a3">
 			<div class="plc">
-				<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentProblem">
-					${beforeReg.getProblem()}
-				</textarea>
-				<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentProblem">
-					${beforeReg.getRe_problem()}
-				</textarea>
-				<textarea class="disabled current " placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentProblem">
-					${currentAnswer.getProblem()}
-				</textarea>
+				<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentProblem">${beforeReg.getProblem()}</textarea>
+				<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentProblem">${beforeReg.getRe_problem()}</textarea>
+				<textarea class="disabled current " placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentProblem">${currentAnswer.getProblem()}</textarea>
 			</div>
 		</div>
 		<div class="area_box a4">
 			<div class="plc">
-				<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentSolution">
-					${beforeReg.getSolution()}
-				</textarea>
-				<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentSolution">
-					${beforeReg.getRe_solution()}
-				</textarea>
-				<textarea class="disabled current " placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentSolution">
-					${currentAnswer.getSolution()}
-				</textarea>
+				<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentSolution">${beforeReg.getSolution()}</textarea>
+				<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentSolution">${beforeReg.getRe_solution()}</textarea>
+				<textarea class="disabled current " placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentSolution">${currentAnswer.getSolution()}</textarea>
 			</div>
 		</div>
 		<div class="area_box a5">
 			<div class="plc">
-				<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentEffect">
-					${beforeReg.getEffect()}
-				</textarea>
-				<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentEffect">
-					${beforeReg.getRe_effect()}
-				</textarea>
-				<textarea class="disabled current " placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentEffect">
-					${currentAnswer.getEffect()}
-				</textarea>
+				<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentEffect">${beforeReg.getEffect()}</textarea>
+				<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentEffect">${beforeReg.getRe_effect()}</textarea>
+				<textarea class="disabled current " placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentEffect">${currentAnswer.getEffect()}</textarea>
 			</div>
 		</div>
 		<div class="area_box a6">
 			<div class="plc">
-				<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentCore_Element">
-					${beforeReg.getCore_element()}
-				</textarea>
-				<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentCore_Element">
-					${beforeReg.getRe_core_element()}
-				</textarea>
-				<textarea class="disabled current " placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentCore_Element">
-					${currentAnswer.getCore_element()}
-				</textarea>
+				<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentCore_Element">${beforeReg.getCore_element()}</textarea>
+				<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentCore_Element">${beforeReg.getRe_core_element()}</textarea>
+				<textarea class="disabled current " placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentCore_Element">${currentAnswer.getCore_element()}</textarea>
 			</div>
 		</div>
 		<div class="area_box a7">
 			<div class="plc">
-				<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentHope_content()">
-					${beforeReg.getHope_content()}
-				</textarea>
-				<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentHope_content()">
-					${beforeReg.getRe_hope_content()}
-				</textarea>
-				<textarea class="disabled current " placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentHope_content">
-					${currentAnswer.getHope_content()}
-				</textarea>
+				<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentHope_content()">${beforeReg.getHope_content()}</textarea>
+				<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentHope_content()">${beforeReg.getRe_hope_content()}</textarea>
+				<textarea class="disabled current " placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentHope_content">${currentAnswer.getHope_content()}</textarea>
 			</div>
 		</div>
 		<div class="area_box a8">
@@ -354,7 +306,6 @@ $(document).ready(function()
 			<button type="button" id="tmpSave">임시저장</button>
 			<input type="submit" id="agree">
 		</div>
-		</form>
 		</article> 
             
         </section>

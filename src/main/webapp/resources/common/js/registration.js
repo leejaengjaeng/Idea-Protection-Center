@@ -3,8 +3,9 @@ function delfile(){
    $('#upimg'+i+'').detach();
    i--;
 }
-function checkTemp(){  
-    if(${isTemp}=="1"){
+function checkTemp(isTemp){  
+    if(isTemp=="1")
+    {
       document.getElementById("bw").style.visibility="visible";
       document.getElementById("pp").style.visibility="visible";
      }
