@@ -123,14 +123,7 @@ function downDoc(kindOfDocument){
 			</tr>
 		</c:when>
 	</c:choose>
-	<c:choose>
-		<c:when test="${docVo.getBusiness_license()!=null}">
-			<tr>
-				<td>사업자등록증</td>
-				<td><button onclick="downDoc('business')">다운로드</button></td>
-			</tr>
-		</c:when>
-	</c:choose>
+	
 	<tr>
 		<td>특허고객번호 (출원인 코드) :</td>	
 	<c:choose>		
@@ -151,7 +144,7 @@ function downDoc(kindOfDocument){
 	
 	
 	<c:choose>
-		<c:when test="${docVo.getFinalApplyDoc()!=''}">
+		<c:when test="${docVo.getFinalApplyDoc()!=null}">
 			<tr>
 				<td colspan="2">출원서를 이미 업로드 하였습니다.</td>
 			</tr>
