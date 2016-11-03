@@ -98,6 +98,7 @@ public class downLoadDoc {
 		System.out.println("else");
 		return "false";
 	}
+	
 	@RequestMapping(value="/executeDownLoad/{file_kind}",method=RequestMethod.GET)
 	public ModelAndView executeDownLoad(HttpServletRequest request,@PathVariable String file_kind) throws InvalidFormatException, IOException{
 		int rid=(int) session.getAttribute("currentPosition");
@@ -131,6 +132,7 @@ public class downLoadDoc {
 			
 			String full_path=applyDocRootPath+"/resources/uploadimgs/document/"+file_name;
 			File downloadFile = new File(full_path);
+			
 			ModelAndView mav = new ModelAndView();
 			mav.addObject("downloadFile", downloadFile);
 		    mav.addObject("downloadFileName", file_name);
@@ -149,6 +151,7 @@ public class downLoadDoc {
         mav.setViewName("downloadFileView");
         return mav;
 	}
+	
 	@RequestMapping("/downApplyDoc")
 	public String downApplyDoc(Model model,HttpServletRequest request){
 		//session.setAttribute("currentPosition", lastRid);
@@ -162,6 +165,7 @@ public class downLoadDoc {
 		model.addAttribute("vo", regismapper.getRegistrationByRidOrPrevRid(rid));
 		return "apply/getApplyDoc";
 	}
+	
 	@RequestMapping("/getDoc")
 	public ModelAndView getDoc(HttpServletRequest request){
 		int rid=(int)session.getAttribute("currentPosition");
