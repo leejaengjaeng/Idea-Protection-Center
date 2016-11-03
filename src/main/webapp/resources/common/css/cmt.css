@@ -292,7 +292,6 @@
   height: 40px;
   width: 120px;
   background: #f1c40f;
-  margin-top: 3px;
   border: none;
   color: white;
 }
@@ -325,4 +324,99 @@
 }
 .nav .modal p {
   line-height: 1.8em;
+}
+.tab_box {
+  width: 100%;
+  float: left;
+  margin-top: 20px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-bottom: none;
+  border-right: none;
+}
+.tab_box div {
+  width: 20%;
+  height: 100px;
+  float: left;
+  border-collapse: collapse;
+  color: #464646;
+  position: relative;
+  font-size: 16px;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+}
+.tab_box div span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  -moz-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+}
+.area_box {
+  width: 100%;
+  float: left;
+  margin-top: 15px;
+  border-top: 1px solid #004a80;
+  border-bottom: 1px solid #004a80;
+  position: relative;
+  display: none;
+}
+.area_box div {
+  width: 100%;
+  float: left;
+}
+.area_box div textarea {
+  width: 96%;
+  margin-left: 2%;
+  resize: none;
+  border: none;
+  background: #f9f9f9;
+  height: 200px;
+  padding: 10px;
+}
+.fin {
+  width: 100%;
+}
+.nt {
+  display: none;
+}
+#chgbtn {
+  width: 110px;
+  text-align: center;
+  float: right;
+  margin-right: 40px;
+}
+#chgbtn button {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #ccc;
+  background: none;
+  margin-left: 5px;
+  float: left;
+}
+#plc {
+  width: 94%;
+  margin-left: 3%;
+  float: left;
+  padding: 10px;
+}
+#plc input {
+  width: 300px;
+  height: 35px;
+  border: 1px solid #ccc;
+  padding-top: 5px;
+  padding-left: 5px;
+}
+#plc button {
+  float: left;
+  width: 70px;
+  height: 30px;
+  margin-top: 20px;
+  margin-right: 5px;
+  border: none;
+  background: #004a80;
+  color: white;
 }

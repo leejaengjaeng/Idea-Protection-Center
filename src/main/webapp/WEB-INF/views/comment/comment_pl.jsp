@@ -123,6 +123,13 @@ $(document).ready(function()
       });
       
       </script>
+<style>
+	.tab_contents>textarea{
+        float: right !important;
+        width: 660px !important; 
+        border-radius: 6px !important;
+    }
+</style>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/import/header.jsp" />
@@ -169,9 +176,9 @@ $(document).ready(function()
 				</table>
 			</article>
 			<article>
-				<input id="currentPosition" type="text"
+				<input id="currentPosition" type="hidden"
 					value="${currentAnswer.getRid()}" />
-				<div class="hiding_tab" style="position: relative;">
+				<div class="hiding_tab" style="position: relative; margin-bottom:20px;">
 					<select onChange=changeType(this.value); id="selectBox">
 						<option>-</option>
 						<c:forEach items="${typeList}" var="list" varStatus="status">
@@ -586,17 +593,16 @@ $(".popup_close, #load_data").click(function(){
    $("body").css("overflow","auto");   
 });
 $(".tab_title").click(function(){
-   if($(this).parent(".hiding_tab").hasClass("tab")){
-       $(this).removeClass("down"); 
-       $(this).parent(".hiding_tab").stop().animate({"max-height":"55px"}).removeClass("tab");           
-        $(this).children(".arrow-up").stop().css({'transform' : 'rotate(180deg)','border-bottom-color':'#036EB7'}).removeClass("tab");
+	if($(this).parent(".hiding_tab").hasClass("tab")){                                       
+    	$(this).removeClass("down"); 
+	    $(this).parent(".hiding_tab").stop().animate({"max-height":"47px"}).removeClass("tab");           
+        $(this).children(".arrow-up").stop().css({'transform' : 'rotate(180deg)','border-bottom-color':'#fff'}).removeClass("tab");
     }else{            
-       $(this).addClass("down"); 
-        $(this).parent(".hiding_tab").stop().animate({"max-height":"1000px"}).addClass("tab");           
-        $(this).children(".arrow-up").stop().css({'transform' : 'rotate(0deg)','border-bottom-color':'#036EB7'}).addClass("tab");
+    	$(this).addClass("down"); 
+ 	    $(this).parent(".hiding_tab").stop().animate({"max-height":"2000px"}).addClass("tab");           
+        $(this).children(".arrow-up").stop().css({'transform' : 'rotate(0deg)','border-bottom-color':'#0fa4d4'}).addClass("tab");
     }
 });
-    
 </script>
 </body>
 </html>

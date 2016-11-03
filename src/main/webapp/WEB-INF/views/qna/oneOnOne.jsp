@@ -14,7 +14,13 @@
 <link rel="stylesheet" href="/resources/common/css/index.css">
 <link rel="stylesheet" href="/resources/common/css/style.css">
 
-<title>Insert title here</title>
+<title>Idea Protection Center</title>
+<style>
+	a{
+		text-decoration: none;
+		font-size:14px;
+	}
+</style>
 </head>
 <body>
 <c:import url="/WEB-INF/views/import/header.jsp"/>
@@ -22,9 +28,6 @@
 	<h1 style="margin-top:100px;">질문하기</h1>
 	<table id="notice_table">
 		<tr>
-			<th style="width:100px;">
-				no
-			</th>
 			<th>
 				제목
 			</th>
@@ -35,15 +38,21 @@
 				날짜
 			</th>
 		</tr>
-		<c:forEach items="${qnaList}" var="list" varStatus="status">
+		<c:forEach items="${qnaList}" var="list">
 			<tr onclick="location.href='/qna/detail/${list.getQid()}'">
-    			<td>${status.count }</td>
     			<td>${list.getTitle()}</td>
     			<td>${list.getId()}</td>
     			<td>${list.getDate()}</td>
     		</tr>
 		</c:forEach>
+
 	</table>
+	<a href="/qna/qnaBoard/${leftArrow}"> < </a>
+	<c:forEach items="${pages}" var="page">
+  			<a href="/qna/qnaBoard/${page}">${page} <a>
+	</c:forEach>
+	<a href="/qna/qnaBoard/${rightArrow}"> > </a>
+	<!-- End 페이지 네이션 디자인 고쳐줭 --><br>
 	<button onclick="location.href='/qna/addOneQna'" id="btn_add_notice" style="margin-bottom:100px;">등록</button>
 </div>
 <c:import url="/WEB-INF/views/import/footer.jsp"/>

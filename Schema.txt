@@ -119,7 +119,7 @@ CREATE TABLE `reply` (
 CREATE TABLE `user` (
   `uid` int(11) NOT NULL AUTO_INCREMENT,
   `id` varchar(45) NOT NULL,
-  `pw` varchar(45) NOT NULL,
+  `pw` text NOT NULL,
   `name` varchar(45) NOT NULL,
   `phone` varchar(45) DEFAULT NULL,
   `addr1` varchar(45) DEFAULT NULL,

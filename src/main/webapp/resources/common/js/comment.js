@@ -402,15 +402,15 @@ var showClickedList = function(rid)
                $('#BeforeCommentPicture_explain').children("textarea").text(beforeComment.picture_explain);
                
                $('#CurrentTypeOfInvent').children("textarea").text(beforeComment.re_typeOfInvent);
-               $('#CurrentTitle').children("textarea").text(beforeComment.re_title);
-               $('#CurrentSummary').children("textarea").text(beforeComment.re_summary);
-               $('#CurrentWhyInvent').children("textarea").text(beforeComment.re_whyInvent);
-               $('#CurrentProblem').children("textarea").text(beforeComment.re_problem);
-               $('#CurrentSolution').children("textarea").text(beforeComment.re_solution);
-               $('#CurrentEffect').children("textarea").text(beforeComment.re_effect);
-               $('#CurrentCore_Element').children("textarea").text(beforeComment.re_core_element);
-               $('#CurrentHope_content').children("textarea").text(beforeComment.re_hope_content);
-               $('#CurrentPicture_explain').children("textarea").text(beforeComment.re_picture_explain);
+               $('#CurrentCommentTitle').children("textarea").text(beforeComment.re_title);
+               $('#CurrentCommentSummary').children("textarea").text(beforeComment.re_summary);
+               $('#CurrentCommentWhyInvent').children("textarea").text(beforeComment.re_whyInvent);
+               $('#CurrentCommentProblem').children("textarea").text(beforeComment.re_problem);
+               $('#CurrentCommentSolution').children("textarea").text(beforeComment.re_solution);
+               $('#CurrentCommentEffect').children("textarea").text(beforeComment.re_effect);
+               $('#CurrentCommentCore_Element').children("textarea").text(beforeComment.re_core_element);
+               $('#CurrentCommentHope_content').children("textarea").text(beforeComment.re_hope_content);
+               $('#CurrentCommentPicture_explain').children("textarea").text(beforeComment.re_picture_explain);
                
                showBeforeCmt();
                showCurrentCmt();
@@ -461,15 +461,15 @@ var showClickedList = function(rid)
       
             var currentAnswer = retVal.currentAnswer;
             $('#CurrentTypeOfInvent').children("textarea").text(currentAnswer.typeOfInvent);
-            $('#CurrentTitle').children("textarea").text(currentAnswer.title);
-            $('#CurrentSummary').children("textarea").text(currentAnswer.summary);
-            $('#CurrentWhyInvent').children("textarea").text(currentAnswer.whyInvent);
-            $('#CurrentProblem').children("textarea").text(currentAnswer.problem);
-            $('#CurrentSolution').children("textarea").text(currentAnswer.solution);
-            $('#CurrentEffect').children("textarea").text(currentAnswer.effect);
-            $('#CurrentCore_Element').children("textarea").text(currentAnswer.core_element);
-            $('#CurrentHope_content').children("textarea").text(currentAnswer.hope_content);
-            $('#CurrentPicture_explain').children("textarea").text(currentAnswer.picture_explain);
+            $('#CurrentCommentTitle').children("textarea").text(currentAnswer.title);
+            $('#CurrentCommentSummary').children("textarea").text(currentAnswer.summary);
+            $('#CurrentCommentWhyInvent').children("textarea").text(currentAnswer.whyInvent);
+            $('#CurrentCommentProblem').children("textarea").text(currentAnswer.problem);
+            $('#CurrentCommentSolution').children("textarea").text(currentAnswer.solution);
+            $('#CurrentCommentEffect').children("textarea").text(currentAnswer.effect);
+            $('#CurrentCommentCore_Element').children("textarea").text(currentAnswer.core_element);
+            $('#CurrentCommentHope_content').children("textarea").text(currentAnswer.hope_content);
+            $('#CurrentCommentPicture_explain').children("textarea").text(currentAnswer.picture_explain);
             
             $('#AfterCommentTypeOfInvent').children('textarea').text(currentAnswer.re_typeOfInvent);
             $('#AfterCommentTitle').children('textarea').text(currentAnswer.re_title);

@@ -2,6 +2,8 @@ package com.ipc.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
@@ -13,6 +15,7 @@ import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 import org.apache.commons.mail.SimpleEmail;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -26,6 +29,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ipc.dao.TypeOfInventDao;
 import com.ipc.dao.UserDao;
+import com.ipc.security.SecAlgorithm;
 import com.ipc.vo.TypeOfInventVo;
 import com.ipc.vo.patientent_lawyerVo;
 import com.ipc.vo.userVo;
@@ -45,6 +49,9 @@ public class SignUpController{
 	TypeOfInventDao typemapper;
 	@Autowired
 	SignUpService signupService;
+	@Autowired
+	SecAlgorithm secAlgo;
+	
 	
 	//private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	private static final String roleAdmin = "ROLE_ADMIN";
@@ -68,10 +75,6 @@ public class SignUpController{
 			role="lawyer";
 		}
 		
-//		String rawPw=uv.getPw();
-//		String encodedPassword=new BCryptPasswordEncoder().encode(rawPw);
-//		uv.setPw(encodedPassword);
-		
 		String email = request.getParameter("email1") + request.getParameter("email2");
 		MultipartHttpServletRequest multipartRequest =  (MultipartHttpServletRequest)request;  //�떎以묓뙆�씪 �뾽濡쒕뱶
 		List<MultipartFile> files = multipartRequest.getFiles("profileImg");
@@ -86,7 +89,20 @@ public class SignUpController{
 		String fileType=ss.makeimageFile(files.get(0),uv.getId(),role,root_path,"profile");
 		
 		String fileTypeScan=ss.makeimageFile(filesScan.get(0), uv.getId(), role, root_path, "Scan");
-		
+
+		//패스워드 암호화 
+		String rawPwd = uv.getPw();
+		String hashedPwd ="";
+		try {
+			hashedPwd = secAlgo.createHash(rawPwd);
+		} catch (Exception e) {
+			System.out.println("ERROR] 회원가입 : pw암호화 잘못됨");
+			hashedPwd = rawPwd;
+		} finally
+		{
+			uv.setPw(hashedPwd);
+		}
+		System.out.println("hashPwd : " + hashedPwd);
 		HashMap<String,String> map=new HashMap<String,String>();
 		map.put("id", uv.getId());
 		map.put("pw", uv.getPw());
