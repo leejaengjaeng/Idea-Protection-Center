@@ -41,6 +41,8 @@
             </span>
         </div>
     </div>
+    
+    <!-- 상담 예약
     <div style="width:100%; float:left; text-align:left; margin-bottom:100px;">
         <h1 style="border-bottom:2px solid #ccc; padding-bottom:10px;">상담예약</h1>
     </div>
@@ -55,8 +57,10 @@
 			</form>           
         </div>        
     </div>
+     -->
 </div>
 <c:import url="/WEB-INF/views/import/footer.jsp"/>
+<!-- 
 <script>
 	$(function(){
 		$("#date_come").datepicker({
@@ -65,5 +69,6 @@
 		});	
 	});
 </script>
+ -->
 </body>
 </html>

@@ -19,9 +19,6 @@
 	<h1>공지사항</h1>
 	<table id="notice_table">
 		<tr>
-			<th style="width:100px;">
-				번호
-			</th>
 			<th>
 				제목
 			</th>
@@ -35,14 +32,27 @@
 		</tr>
 		<c:forEach items="${noticeList}" var="list" varStatus="status">
 			<tr onclick="location.href='/noticeList/${list.getNid()}'">
-    			<td>${status.count }</td>
     			<td>${list.getTitle()}</td>    		
     			<td>관리자</td>
-    			<td class="date">${list.getDate()}</td>    			
-    			    			
+    			<td class="date">${list.getDate()}</td>    			    			
     		</tr>
 		</c:forEach>
 	</table>
+	
+	<b onClick="location.href='/notice/noticePage/${leftArrow}'"> < </b>
+	<c:forEach items="${pages}" var="page">
+		<c:choose>
+			<c:when test="${page eq currentPage }">
+				<a href="/notice/noticePage/${page}"><b style="font-size:20px;">${page}</b><a>
+			</c:when>
+			<c:otherwise>
+				<a href="/notice/noticePage/${page}">${page}<a>
+			</c:otherwise>
+		</c:choose>
+  	</c:forEach>
+	<b onClick="location.href='/notice/noticePage/${rightArrow}'"> > </b>
+	<br>
+	
 </div>
 <c:import url="/WEB-INF/views/import/footer.jsp"/>
 <script>

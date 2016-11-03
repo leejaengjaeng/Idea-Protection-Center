@@ -15,6 +15,12 @@
 <link rel="stylesheet" href="/resources/common/css/style.css">
 
 <title>Idea Protection Center</title>
+<style>
+	a{
+		text-decoration: none;
+		font-size:14px;
+	}
+</style>
 </head>
 <body>
 <c:import url="/WEB-INF/views/import/header.jsp"/>
@@ -39,16 +45,20 @@
     			<td>${list.getDate()}</td>
     		</tr>
 		</c:forEach>
-		
-		<!-- 페이지 네이션 디자인 고쳐줭 -->
-		<a href="/qna/qnaBoard/${leftArrow}"> < </a>
-		<c:forEach items="${pages}" var="page">
-   			<a href="/qna/qnaBoard/${page}">${page} <a>
-		</c:forEach>
-		<a href="/qna/qnaBoard/${rightArrow}"> > </a>
-		<!-- End 페이지 네이션 디자인 고쳐줭 -->
-		
+
 	</table>
+	<b onClick="location.href='/qna/qnaBoard/${leftArrow}'"> < </b>
+	<c:forEach items="${pages}" var="page">
+		<c:choose>
+			<c:when test="${page eq currentPage }">
+				<a href="/qna/qnaBoard/${page}"><b style="font-size:20px;">${page}</b><a>
+			</c:when>
+			<c:otherwise>
+				<a href="/qna/qnaBoard/${page}">${page}<a>
+			</c:otherwise>
+		</c:choose>
+  	</c:forEach>
+	<b onClick="location.href='/qna/qnaBoard/${rightArrow}'"> > </b>
 	<button onclick="location.href='/qna/addOneQna'" id="btn_add_notice" style="margin-bottom:100px;">등록</button>
 </div>
 <c:import url="/WEB-INF/views/import/footer.jsp"/>

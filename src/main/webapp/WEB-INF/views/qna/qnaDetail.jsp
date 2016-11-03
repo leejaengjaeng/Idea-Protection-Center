@@ -25,7 +25,7 @@ function ddddd(){
 <body onload='ddddd();'>
 <c:import url="/WEB-INF/views/import/header.jsp"/>
 <div id="wrap_form" >
-	<h1>Q n A</h1>
+	<h1>질문하기</h1>
 	<div id="notice_detail">
 		<div class="title_detail">
 			<p>${qna.getTitle()}</p>

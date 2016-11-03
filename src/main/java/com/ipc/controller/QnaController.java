@@ -94,11 +94,12 @@ public class QnaController {
 		List<QnaVo> qnaList=qnaDao.getQuestions(startAndPPC);
 		
 		//방향 표들 
-		int leftArrow = (pageNum - pagesPerView)<0 ? 0:(pageNum - pagesPerView);
+		int leftArrow = (pageNum - pagesPerView)<0 ? 1:(pageNum - pagesPerView);
 		int rightArrow = (pageNum + pagesPerView)>=totalPages ? totalPages : pageNum + pagesPerView;
 		
 		model.addAttribute("qnaList",qnaList);
 		model.addAttribute("pages",pages);
+		model.addAttribute("currentPage",pageNum);
 		model.addAttribute("leftArrow",leftArrow);
 		model.addAttribute("rightArrow",rightArrow);
 

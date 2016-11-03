@@ -165,6 +165,6 @@
 	</update>
 	
 	<select id="getCurrentRegistration" resultType="com.ipc.vo.IndexVo">
-		select u.name as name,r.typeofinvent as type from registration_patent r inner join user u on r.uid=u.uid where r.rid=r.start_rid limit 5;
+		select u.name as name,r.typeofinvent as type from registration_patent r inner join user u on r.uid=u.uid where r.rid=r.start_rid order by registration_date desc limit 5;
 	</select>
 </mapper>

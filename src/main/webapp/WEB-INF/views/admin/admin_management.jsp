@@ -143,6 +143,7 @@ body{
 		document.getElementById("pp").style.visibility="hidden";
     }
     function viewLawyer(uid){
+    	//alert(uid);
     	var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
     	var csrfToken = $("meta[name='_csrf']").attr("content"); 
     	var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
@@ -152,20 +153,18 @@ body{
         data["uid"] = uid;
         headers[csrfHeader] = csrfToken;
         $.ajax({
-    	    url : "/viewLawyer",
+    	    url : "/IPC_admin/viewLawyer",
     	    dataType : "json",
     	    type : "POST",
     	    headers: headers,
     	    data : data,
     	    success: function(data) {
-    	    	alert(pId);
-    	    	var element = document.getElementById(buttonId);
-    	    	element.parentNode.removeChild(element);
-    	    	var inDiv=document.getElementById(pId);
-    	    	inDiv.innerHTML="<p>"+data.lawyerName+"</p>";
-    	        document.getElementById("bw").style.visibility="hidden";
-        		document.getElementById("pp").style.visibility="hidden";
-        		
+    	    	alert("이름 : "+data.name+"\n"+
+    	    			"아이디 : "+data.ID+"\n"+
+    	    			"전문분야 : "+data.major+"\n"+
+    	    			"소개 : "+data.introduce+"\n"+
+    	    			"이메일 : "+data.email);
+    	    	
     	    },
     	    error:function(request,status,error){
     	        alert("code:"+request.status+"\n"+"error:"+error);
@@ -217,7 +216,7 @@ body{
                 <li>문의사항 관리</li>
                 <li onclick="location.href='/IPC_admin/admin_notice'">공지사항 관리</li>
             	<li onclick="location.href='/qna/regularQnaAdd'">자주 묻는 질문 등록</li>
-            	
+            	<li onclick="location.href='/IPC_admin/manageType'">특허 분류 관리</li>
             	<!-- 
             	<li>게시판 관리</li>
                  -->
@@ -257,7 +256,7 @@ body{
 	                	<input type="hidden" value="${list.getRid() }"/>
 	                    <td>${status.count}</td>
 	                    <td>${list.getiId()}</td>
-	                    <td>${list.getiName()}</td>
+	                    <td >${list.getiName()}</td>
 						
 	                    <!-- pName 없으면 선택하게 버튼나오도록 -->
 	                    <c:choose>

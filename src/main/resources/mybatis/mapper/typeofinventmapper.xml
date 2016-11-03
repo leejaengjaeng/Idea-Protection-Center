@@ -5,5 +5,11 @@
     <select id="getTypeList" resultType="com.ipc.vo.TypeOfInventVo">
     	select tid,type from typeofinvent;
     </select>
+    <delete id="rmType" parameterType="Integer">
+    	delete from typeofinvent where tid=#{id}
+    </delete>
+    <insert id="addType" parameterType="Hashmap">
+    	insert into typeofinvent(type) values (#{type})
+    </insert>
 </mapper>
 

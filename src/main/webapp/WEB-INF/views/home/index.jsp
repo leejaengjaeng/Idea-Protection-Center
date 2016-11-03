@@ -142,21 +142,24 @@
                </c:forEach>
                
             </table>
-            <button>공지사항 확인하러 가기 ▶</button>
+            <button onclick="location.href='/notice/noticePage'">공지사항 확인하러 가기 ▶</button>
          </div>
          <div id="onair">
             <span id="onair_title">실시간 의뢰정보</span><br> <span
                style="line-height: 1.4rem;">아이디어 보호센터는 발명가님들의 여러 아이디어가<br>
                출원될 수 있도록 하는 강력한 파트너입니다.
             </span><br>
+            <!-- 
             <button>더보기 ▶</button>                                           
+             -->
          </div>
       </section>
    </article>
    <div class="bar">
       <span>${totalUser}명의 발명가님의 ${totalIdea}가지 아이디어와 함께 하고 있습니다</span>
    </div>
-   <div class="val">
+   <!-- TODO: 이거 height 어떻게 해야댕..?, height 안주면 너무 넓음 아래  -->
+   <div class="val" style="height:250px;">
       <c:forEach items="${current}" var="list" varStatus="status">      
          <div>
             <div class="cover">
