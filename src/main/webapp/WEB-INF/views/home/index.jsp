@@ -14,6 +14,7 @@
 <script src="/resources/common/js/jquery-3.1.0.min.js"></script>
 <link rel="stylesheet" href="/resources/common/css/index.css">
 <link rel="stylesheet" href="/resources/common/css/style.css">
+<link rel="icon" href="/resources/image/pavicon.png">
 <style>
 #header_benner {
 	display: none;
