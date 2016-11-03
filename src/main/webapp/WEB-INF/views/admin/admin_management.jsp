@@ -142,6 +142,37 @@ body{
     	document.getElementById("bw").style.visibility="hidden";
 		document.getElementById("pp").style.visibility="hidden";
     }
+    function viewLawyer(uid){
+    	var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+    	var csrfToken = $("meta[name='_csrf']").attr("content"); 
+    	var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
+    	var data = {};
+    	var headers = {};
+    	data[csrfParameter] = csrfToken;
+        data["uid"] = uid;
+        headers[csrfHeader] = csrfToken;
+        $.ajax({
+    	    url : "/viewLawyer",
+    	    dataType : "json",
+    	    type : "POST",
+    	    headers: headers,
+    	    data : data,
+    	    success: function(data) {
+    	    	alert(pId);
+    	    	var element = document.getElementById(buttonId);
+    	    	element.parentNode.removeChild(element);
+    	    	var inDiv=document.getElementById(pId);
+    	    	inDiv.innerHTML="<p>"+data.lawyerName+"</p>";
+    	        document.getElementById("bw").style.visibility="hidden";
+        		document.getElementById("pp").style.visibility="hidden";
+        		
+    	    },
+    	    error:function(request,status,error){
+    	        alert("code:"+request.status+"\n"+"error:"+error);
+    	    }
+    	 
+    	}); 
+    }
     </script>
 </head>
 <body>
@@ -163,7 +194,7 @@ body{
        	<c:forEach items="${lawyerList}" var="lawlist" varStatus="status">
        		<tr>
        			<td>${lawlist.getId()}</td>
-       			<td>${lawlist.getName()}</td>
+       			<td onclick="viewLawyer('${lawlist.getUid()}')">${lawlist.getName()}</td>
        			<td>${lawlist.getEmail()}</td>
        			<td><button onclick="assign('${lawlist.getUid()}')">지정</button><td>
        		</tr>

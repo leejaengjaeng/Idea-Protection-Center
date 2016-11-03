@@ -149,8 +149,31 @@ public class downLoadDoc {
         mav.setViewName("downloadFileView");
         return mav;
 	}
-	@RequestMapping("/test")
-	public String test(){
-		return "apply/downloaddocument";
+	@RequestMapping("/downApplyDoc")
+	public String downApplyDoc(Model model,HttpServletRequest request){
+		//session.setAttribute("currentPosition", lastRid);
+		int rid=(int)session.getAttribute("currentPosition");
+		
+		ApplyDocVo adv = docmapper.getVoByrid(rid);
+		if(adv.getFinalApplyDoc().equals("")||adv.getFinalApplyDoc().equals(null)){
+			return "redirect:/authError";
+		}
+		
+		model.addAttribute("vo", regismapper.getRegistrationByRidOrPrevRid(rid));
+		return "apply/getApplyDoc";
+	}
+	@RequestMapping("/getDoc")
+	public ModelAndView getDoc(HttpServletRequest request){
+		int rid=(int)session.getAttribute("currentPosition");
+		String root_path=request.getSession().getServletContext().getRealPath("resources/uploadimgs/apply_doc/");
+		ApplyDocVo adv = docDao.getVoByrid(rid);
+		String applyDocName=adv.getFinalApplyDoc();
+		File applyDoc=new File(root_path+applyDocName);
+        ModelAndView mav = new ModelAndView();
+
+		mav.addObject("downloadFile", applyDoc);
+        mav.addObject("downloadFileName", applyDocName);
+        mav.setViewName("downloadFileView");
+		return mav;
 	}
 }

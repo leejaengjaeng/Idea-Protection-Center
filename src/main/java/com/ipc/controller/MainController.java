@@ -29,6 +29,7 @@ import com.ipc.dao.UserDao;
 import com.ipc.service.MessageService;
 import com.ipc.service.RegistrationService;
 import com.ipc.service.SignUpService;
+import com.ipc.vo.IndexVo;
 import com.ipc.vo.RegistrationFileVo;
 import com.ipc.vo.RegistrationPatentVo;
 import com.ipc.vo.adminListVo;
@@ -67,9 +68,11 @@ public class MainController {
 		List<adminNoticeVo> an = noticeDao.getNoticeListDescLimit(5);
 		int totalUser = userDao.counTotalUser();
 		int totalIdea = regDao.counTotalIdea();
+		List<IndexVo> iv = regDao.getCurrentRegistration();
 		model.addAttribute("noticeList",an);
 		model.addAttribute("totalUser",totalUser);
 		model.addAttribute("totalIdea",totalIdea);
+		model.addAttribute("current", iv);
 		return "home/index";
 	}
 	

@@ -72,7 +72,7 @@
 				</tr>
 				<tr>
 					<td>포괄위임장(인감날인)*</td>
-					<td>??</td>
+					<td><img src="/resources/image/hwp.png" onclick="/downContents/attorney">양식 다운로드     <img src="/resources/image/hwp.png" onclick="/downContents/envelope">우편봉투 서식</td>
 				</tr>
 				<tr>
 					<td colspan="2" style="text-align:center;">

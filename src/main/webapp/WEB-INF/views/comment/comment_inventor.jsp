@@ -89,11 +89,14 @@ $(document).ready(function()
 	}
 	else if("${currentAnswer.getIscomplete()}"==4){
 		   alert("aa");   
+		   disableInput();                       
+		   gotoApply("${user}");                      
+	   }
+	else if("${currentAnswer.getIscomplete()}"==6){   
 		   disableInput();
-		                                                     
-		         gotoApply("${user}");                                 
-		                                                               
-	   }     
+		   alert("출원이 완료되었습니다. 출원서 다운로드 페이지로 넘어갑니다.");
+		   location.href="/downApplyDoc"                      
+	}
 	else
 	{				
 		disableInput();
@@ -132,6 +135,7 @@ $(document).ready(function()
 		showClickedList(rid);	
 	})
 });
+
 </script>
 <style>
 	.tab_contents>textarea{
@@ -191,7 +195,8 @@ $(document).ready(function()
                    		<c:forEach items="${typeList}" var="list" varStatus="status">
 							<option>${list.getType()}</option>
 						</c:forEach>                    		
-                   	</select>        
+                   	</select>
+                   	<input type="text" id="AfterCommentTypeOfInvent">        
                 </div>
                 <div class="full">
 	                <div class="hiding_tab">

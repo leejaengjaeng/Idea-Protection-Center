@@ -8,7 +8,6 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
-
 @EnableWebSecurity
 public class SecConfig extends WebSecurityConfigurerAdapter {
 	
@@ -41,10 +40,17 @@ public class SecConfig extends WebSecurityConfigurerAdapter {
 				.successForwardUrl("/loginProcess.do")
 				.and()
 			.logout()
-				.and()		
+				.and()
 			.exceptionHandling()
-				.accessDeniedPage("/authError");
+				.accessDeniedPage("/authError")
+				.and()
+			.sessionManagement()
+				.maximumSessions(1)
+				.expiredUrl("/authError");
+			
+			
 	}
+	
 	
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception
 	{

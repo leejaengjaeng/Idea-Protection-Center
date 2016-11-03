@@ -6,8 +6,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
 <meta name="_csrf" content="${_csrf.token}" />
 <meta name="_csrf_header" content="${_csrf.headerName}" />
 <title>Idea Protectection Center</title>
@@ -47,6 +46,10 @@ $(document).ready(function()
      	else if ("${currentAnswer.getIscomplete()}"==5){
      		disableInputApply();
      		location.href="/downLoadPage";
+     	}
+     	else if ("${currentAnswer.getIscomplete()}"==6){
+     		disableInputApply();
+     		alert("출원이 완료된 사항입니다.");
      	}
          else 
          {
