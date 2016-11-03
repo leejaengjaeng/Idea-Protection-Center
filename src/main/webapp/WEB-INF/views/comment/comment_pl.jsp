@@ -24,10 +24,8 @@
 
 $(document).ready(function()
 {
-	/*
-    if("${isFirst}" == "true")
-       hideBeforeCmt();
-    */
+    if("${isFirst}" == "true") hideBeforeCmt();
+    
     
     //상태에 따른 응답 보여주기
 	if("${currentAnswer.getIscomplete()}" == 1)	enableInput();
@@ -295,8 +293,8 @@ $(document).ready(function()
                   	</form>
                   	<div class="tab_imgs">
 	                	<c:forEach items="${imgs}" var="list" varStatus="status">
-	                    	<div onclick="location.href='${list.getFile_path()}'" id="id${list.getRfid()}">
-	                           <img src="${list.getFile_path()}">
+	                    	<div id="id${list.getRfid()}">
+	                           <a href="${list.getFile_path()}" target="_blank"><img src="${list.getFile_path()}"></a>
 	                        </div>
 	                    </c:forEach>
                   </div>
