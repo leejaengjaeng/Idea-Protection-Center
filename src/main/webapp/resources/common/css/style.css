@@ -47,9 +47,34 @@
   float: left;
   margin-top: 50px;
   margin-left: 0;
+  margin-bottom: 20px;
 }
 .wrap_comment section .sub_head h1 {
   font-size: 30px;
+  color: #1c4098;
+  font-weight: 300;
+  border-bottom: none;
+  margin-bottom: 0;
+  float: left;
+  width: 150px;
+}
+.wrap_comment section .sub_head span {
+  display: inline-block;
+  float: left;
+  margin-top: 15px;
+  color: #45d4fe;
+}
+.wrap_comment section .sub_head b {
+  font-weight: 700;
+  position: relative;
+}
+.wrap_comment section .sub_head b::before {
+  content: "";
+  width: 30px;
+  height: 4px;
+  position: absolute;
+  top: -10px;
+  background-color: #1c4098;
 }
 .wrap_comment section .modify_log {
   border-bottom: 2px solid #f1f1f1;
@@ -1023,14 +1048,12 @@ section nav #nav_benner ul li img {
 .hiding_tab {
   width: 750px;
   float: left;
-  margin-bottom: 40px;
   font-size: 18px;
   overflow: hidden;
   max-height: 55px;
 }
 .hiding_tab:first-child {
   position: relative;
-  margin-bottom: 100px;
 }
 .hiding_tab:first-child::before {
   content: "";
@@ -1040,17 +1063,6 @@ section nav #nav_benner ul li img {
   height: 2px;
   background: #ccc;
   left: 0;
-}
-.hiding_tab select {
-  width: 100%;
-  padding: 15px;
-  font-size: 18px;
-  height: 55px;
-  border: 2px solid #ccc;
-  position: relative;
-}
-.hiding_tab select option {
-  height: 55px;
 }
 .hiding_tab .arrow-up {
   width: 0;
@@ -1068,15 +1080,14 @@ section nav #nav_benner ul li img {
 .hiding_tab .tab_title {
   width: 100%;
   float: left;
-  padding: 15px 0 10px 10px;
-  height: 55px;
+  padding: 10px 0 5px 5px;
   transition: .25s;
   cursor: pointer;
 }
 .hiding_tab .tab_title span {
   font-size: 18px;
   color: #036EB7;
-  font-weight: 700;
+  font-weight: 400;
 }
 .hiding_tab .down {
   background: #c5e3f6;
@@ -1130,22 +1141,11 @@ section nav #nav_benner ul li img {
   padding-top: 10px;
   border: 1px solid #ccc;
 }
-.hiding_tab .tab_contents textarea {
-  resize: none;
-  width: 660px;
-  margin-left: 10px;
-  border-radius: 6px;
-  border: 2px solid #c5e3f6;
-  padding: 10px;
-  float: right;
-  height: 100px;
-}
 .fin {
   width: 100%;
   float: left;
   text-align: center;
   padding-top: 50px;
-  margin-top: 50px;
 }
 .fin button {
   width: 100px;

@@ -1,11 +1,15 @@
 package com.ipc.controller;
 
+import java.util.HashMap;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ipc.dao.NoticeDao;
 import com.ipc.dao.RegistrationDao;
@@ -50,5 +54,13 @@ public class AdminController {
 		List<userVo> userList = userDao.getAllUsers();
 		model.addAttribute("userList", userList);
 		return "/admin/userList";
+	}
+	
+	@RequestMapping("/viewLawyer")
+	@ResponseBody
+	public HashMap<String,String> viewLawyer(HttpServletRequest request){
+		int uid=Integer.parseInt(request.getParameter("uid"));
+		
+		return null;
 	}
 }

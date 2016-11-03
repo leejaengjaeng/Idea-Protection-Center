@@ -4,7 +4,8 @@ CREATE TABLE `document` (
   `start_rid` int(11) DEFAULT NULL,
   `file_name` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`did`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8;
+
 
 # 2
 CREATE TABLE `main_page_reg_info` (
@@ -14,12 +15,13 @@ CREATE TABLE `main_page_reg_info` (
   `reg_condition` varchar(45) DEFAULT NULL,
   `pre_apply_date` datetime DEFAULT NULL,
   `apply_date` datetime DEFAULT NULL,
-  `registration_date` datetime DEFAULT CURRENT_TIMESTAMP,
+  `registration_date` datetime DEFAULT NULL,
   `title` varchar(45) DEFAULT NULL,
   `typeOfInvent` varchar(45) DEFAULT NULL,
   `lid` int(11) DEFAULT NULL,
   PRIMARY KEY (`mprid`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+
 
 # 3
 CREATE TABLE `notice` (
@@ -29,6 +31,7 @@ CREATE TABLE `notice` (
   `date` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`nid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
 
 # 4
 CREATE TABLE `patientent_lawyer` (
@@ -41,7 +44,8 @@ CREATE TABLE `patientent_lawyer` (
   `bank_name` varchar(45) DEFAULT NULL,
   `introduce` text,
   PRIMARY KEY (`lid`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+
 
 # 5
 CREATE TABLE `qna` (
@@ -55,6 +59,7 @@ CREATE TABLE `qna` (
   PRIMARY KEY (`qid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
+
 # 6
 CREATE TABLE `registration_files` (
   `rfid` int(11) NOT NULL AUTO_INCREMENT,
@@ -62,7 +67,8 @@ CREATE TABLE `registration_files` (
   `rid` int(11) DEFAULT NULL,
   `file_path` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`rfid`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8;
+
 
 # 7
 CREATE TABLE `registration_patent` (
@@ -94,8 +100,11 @@ CREATE TABLE `registration_patent` (
   `picture_explain` text,
   `re_hope_content` text,
   `re_picture_explain` text,
+  `apply_date` datetime DEFAULT NULL,
+  `pre_apply_date` datetime DEFAULT NULL,
   PRIMARY KEY (`rid`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=99 DEFAULT CHARSET=utf8;
+
 
 # 8
 CREATE TABLE `reply` (
@@ -104,7 +113,7 @@ CREATE TABLE `reply` (
   `uid` int(11) DEFAULT NULL,
   `qid` int(11) DEFAULT NULL,
   PRIMARY KEY (`reid`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 # 9
 CREATE TABLE `user` (
@@ -121,7 +130,8 @@ CREATE TABLE `user` (
   `is_member` varchar(45) DEFAULT NULL,
   `profileimg` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
+
 
 # 10
 CREATE TABLE `typeofinvent` (
@@ -129,6 +139,7 @@ CREATE TABLE `typeofinvent` (
   `type` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`tid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+
 
 # 11
 CREATE TABLE `message` (
@@ -138,7 +149,8 @@ CREATE TABLE `message` (
   `date` datetime DEFAULT NULL,
   `uid` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`mid`)
-) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=120 DEFAULT CHARSET=utf8;
+
 
 # 12
 CREATE TABLE `documentforapply` (
@@ -148,6 +160,10 @@ CREATE TABLE `documentforapply` (
   `resident_registration` varchar(100) DEFAULT NULL,
   `certificate` varchar(100) DEFAULT NULL,
   `business_license` varchar(100) DEFAULT NULL,
+  `is_personal` int(11) DEFAULT NULL,
+  `smallsale` varchar(100) DEFAULT NULL,
+  `finalApplyDoc` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`dfid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
 

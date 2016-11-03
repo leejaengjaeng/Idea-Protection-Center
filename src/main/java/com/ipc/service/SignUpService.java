@@ -40,14 +40,14 @@ public class SignUpService {
 		sendemail.setCharset("euc-kr");
 		sendemail.setHostName("smtp.worksmobile.com");
 		sendemail.addTo(email);
-		sendemail.setFrom("jinuk@ideaconcert.com", "源�吏꾩슧");
-		sendemail.setSubject("�븘�씠�뵒�뼱 蹂댄샇�꽱�꽣 媛��엯 �씤利� 硫붿씪 �엯�땲�떎.");
+		sendemail.setFrom("jinuk@ideaconcert.com", "김진욱");
+		sendemail.setSubject("아이디어보호센터 가입 인증 메일입니다.");
 		sendemail.setAuthentication("jinuk@ideaconcert.com", "tpxmapsb1");
 	    sendemail.setSmtpPort(465);
 	    sendemail.setSSL(true);   //紐⑤Ⅴ寃좎쓬
 		sendemail.setTLS(true);
 		sendemail.setDebug(true);
-		String htmlmsg="<html><div style='width:1000px; float:left; border-bottom:2px solid #45d4fe; padding-bottom:5px;box-sizing:border-box;'></div><div style='width:1000px;float:left; box-sizing:border-box; padding:15px;'><h2>�븘�씠�뵒�뼱 蹂댄샇�꽱�꽣�뿉�꽌 �슂泥��븯�떊 �씤利앸찓�씪�쓣 諛쒖넚�빐 �뱶由쎈땲�떎.</h2><div style='width:100%; float:left; box-sizing:border-box; border:5px solid #f9f9f9; text-align:center; padding:40px 0 40px 0;'><span>�븘�옒 �듅�씤踰꾪듉�쓣 �겢由� �빐 二쇱꽭�슂.</span><br><a href='http://localhost:8088/signup/permit?uid="+uid+"&key="+key+"'><button style='width:150px; height:40px; background:none; border:2px solid #45d4fe; font-size:1.1rem; text-decoration: none;font-weight:bold; margin-top:10px;'>�듅�씤</button></a></div></div></html>";
+		String htmlmsg="<html><div style='width:1000px; float:left; border-bottom:2px solid #45d4fe; padding-bottom:5px;box-sizing:border-box;'></div><div style='width:1000px;float:left; box-sizing:border-box; padding:15px;'><h2>가입을 원하시면 아래 버튼을 눌러주세요.</h2><div style='width:100%; float:left; box-sizing:border-box; border:5px solid #f9f9f9; text-align:center; padding:40px 0 40px 0;'><span>�븘�옒 �듅�씤踰꾪듉�쓣 �겢由� �빐 二쇱꽭�슂.</span><br><a href='http://localhost:8088/signup/permit?uid="+uid+"&key="+key+"'><button style='width:150px; height:40px; background:none; border:2px solid #45d4fe; font-size:1.1rem; text-decoration: none;font-weight:bold; margin-top:10px;'>�듅�씤</button></a></div></div></html>";
 		System.out.println(htmlmsg);
 		sendemail.setHtmlMsg(htmlmsg);
 		try{
@@ -65,13 +65,13 @@ public class SignUpService {
 		sendemail.setHostName("smtp.worksmobile.com");
 		sendemail.addTo(email);
 		sendemail.setFrom("jinuk@ideaconcert.com", "源�吏꾩슧");
-		sendemail.setSubject("�븘�씠�뵒�뼱 蹂댄샇�꽱�꽣 鍮꾨�踰덊샇 �솗�씤 硫붿씪 �엯�땲�떎.");
+		sendemail.setSubject("아이디어보호센터 새로운 비밀번호입니다.");
 		sendemail.setAuthentication("jinuk@ideaconcert.com", "tpxmapsb1");
 	    sendemail.setSmtpPort(465);
 	    sendemail.setSSL(true);   //紐⑤Ⅴ寃좎쓬
 		sendemail.setTLS(true);
 		sendemail.setDebug(true);
-		String htmlmsg="<html><div style='width:1000px; float:left; border-bottom:2px solid #45d4fe; padding-bottom:5px;box-sizing:border-box;'></div><div style='width:1000px;float:left; box-sizing:border-box; padding:15px;'><h2>�븘�씠�뵒�뼱 蹂댄샇�꽱�꽣�뿉�꽌 �엫�떆鍮꾨�踰덊샇瑜� 諛쒖넚�빐 �뱶由쎈땲�떎.</h2><div style='width:100%; float:left; box-sizing:border-box; border:5px solid #f9f9f9; text-align:center; padding:40px 0 40px 0;'><span>�엫�떆鍮꾨�踰덊샇濡� 濡쒓렇�씤 �븯�떆怨� <br>諛섎뱶�떆 鍮꾨�踰덊샇瑜� 蹂�寃쏀빐二쇱꽭�슂.<br>"+key+"</span></html>";
+		String htmlmsg="<html><div style='width:1000px; float:left; border-bottom:2px solid #45d4fe; padding-bottom:5px;box-sizing:border-box;'></div><div style='width:1000px;float:left; box-sizing:border-box; padding:15px;'><h2>아이디어 보호센터 새로운 비밀번호입니다.</h2><div style='width:100%; float:left; box-sizing:border-box; border:5px solid #f9f9f9; text-align:center; padding:40px 0 40px 0;'><span>아래 비밀번호로 로그인 하셔서 <br>비밀번호를 바꿔주세요.<br>"+key+"</span></html>";
 		System.out.println(htmlmsg);
 		sendemail.setHtmlMsg(htmlmsg);
 		try{

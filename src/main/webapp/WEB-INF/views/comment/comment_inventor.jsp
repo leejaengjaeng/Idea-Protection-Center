@@ -128,6 +128,7 @@ $(document).ready(function()
 		showClickedList(rid);	
 	})
 });
+
 </script>
 </head>
 <body>
@@ -180,7 +181,8 @@ $(document).ready(function()
                    		<c:forEach items="${typeList}" var="list" varStatus="status">
 							<option>${list.getType()}</option>
 						</c:forEach>                    		
-                   	</select>        
+                   	</select>
+                   	<input type="text" id="AfterCommentTypeOfInvent">        
                 </div>
                 <div class="full">
 	                <div class="hiding_tab">

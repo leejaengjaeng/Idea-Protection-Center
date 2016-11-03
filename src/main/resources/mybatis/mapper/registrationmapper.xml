@@ -163,4 +163,8 @@
 	<update id="updateApplyDate" parameterType="Hashmap">
 		update registration_patent set apply_date=#{apply_date},pre_apply_date=#{pre_apply_date} where rid=#{rid}
 	</update>
+	
+	<select id="getCurrentRegistration" resultType="com.ipc.vo.IndexVo">
+		select u.name as name,r.typeofinvent as type from registration_patent r inner join user u on r.uid=u.uid where r.rid=r.start_rid limit 5;
+	</select>
 </mapper>

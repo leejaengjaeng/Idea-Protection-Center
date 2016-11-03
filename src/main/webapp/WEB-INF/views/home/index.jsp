@@ -8,8 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-   content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
 <title>Idea Protectection Center</title>
 <script src="/resources/common/js/jquery-3.1.0.min.js"></script>
 <link rel="stylesheet" href="/resources/common/css/index.css">
@@ -157,12 +156,12 @@
       <span>${totalUser}명의 발명가님의 ${totalIdea}가지 아이디어와 함께 하고 있습니다</span>
    </div>
    <div class="val">
-      <c:forEach items="${noticeList}" var="list" varStatus="status">      
+      <c:forEach items="${current}" var="list" varStatus="status">      
          <div>
             <div class="cover">
                <span>
-                  임희도님<br>
-                  모바일APP
+                  	${list.getName()}님<br>
+                  	${list.getType()}
                </span>
             </div>
             <img src="/resources/image/index_patent_1.jpg" alt="123">

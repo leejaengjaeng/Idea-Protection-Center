@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import com.ipc.vo.LawyerProfileVo;
 import com.ipc.vo.userVo;
 
 
@@ -44,4 +45,6 @@ public interface UserDao {
 	public String getUidByIdAndEmail(HashMap<String,String> map);
 	
 	public void updateKey(HashMap<String,String> map);
+	
+	public LawyerProfileVo getLawyerProfile(int uid);
 }

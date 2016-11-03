@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ipc.vo.IndexVo;
 import com.ipc.vo.RegistrationPatentVo;
 import com.ipc.vo.adminListVo;
 import com.ipc.vo.adminNoticeVo;
@@ -69,4 +70,6 @@ public interface RegistrationDao {
 	public void upLoadApplyDoc(int rid);
 	
 	public void updateApplyDate(HashMap<String,String> apply_date_map);
+	
+	public List<IndexVo> getCurrentRegistration();
 }
