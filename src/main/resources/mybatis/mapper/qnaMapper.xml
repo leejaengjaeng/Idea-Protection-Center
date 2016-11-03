@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ipc.dao.QnaDao">
+    
+    <select id="getRegularQuestions" resultType="com.ipc.vo.QnaVo">
+        SELECT qid,title FROM qna where isRegular = "TRUE";
+    </select>
+   
+    <select id="getQuestionByQid" resultType="com.ipc.vo.QnaVo" parameterType="Integer"	 >
+		SELECT qid,title,content,date FROM qna where qid=#{qid};
+	</select>
+	
+	<insert id="addRegularQuestion"	parameterType="com.ipc.vo.QnaVo">
+		INSERT INTO qna(title, content, isRegular, del_pw) 
+		VALUES (#{title},#{content},"TRUE",#{del_pw});
+	</insert>
+	<insert id="addQuestionWithIsRegularFlag" parameterType="com.ipc.vo.QnaVo">
+  		INSERT INTO qna(qid,title, content, isRegular, del_pw) 
+  		VALUES (#{qid},#{title},#{content},"TRUE",#{del_pw});
+  	</insert>     
+    <insert id="addOneQuestion" parameterType="com.ipc.vo.QnaVo">
+     	INSERT INTO qna(qid,title, content, isRegular, del_pw,uid,date) 
+ 		VALUES (#{qid},#{title},#{content},"FALSE",#{del_pw},#{uid},#{date});
+    </insert>
+    <insert id="addReply" parameterType="com.ipc.vo.ReplyVo">
+     	INSERT INTO reply(qid,content) VALUES (#{qid},#{content});
+    </insert>
+    <select id="getReplyByQid" parameterType="Integer" resultType="com.ipc.vo.ReplyVo">
+     	SELECT content from reply where qid=#{qid};
+    </select>
+
+     
+    <!-- pagenation  -->
+	<select id="getQuestions"	 resultType="com.ipc.vo.QnaVo"	parameterType="HashMap">
+     	SELECT qna.qid,qna.title,qna.uid,qna.date,user.id 
+     	FROM qna join user on qna.uid=user.uid 
+     	where isRegular = "FALSE" 
+     	order by date desc
+     	limit #{start},#{pagePerContents};
+    </select>
+
+	<select id="getTotalSize" resultType="Integer"	parameterType="Integer" >
+    	SELECT count(1) FROM qna;
+    </select>
+     
+</mapper>
+
