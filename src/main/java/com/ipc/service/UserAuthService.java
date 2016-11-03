@@ -12,15 +12,16 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.ipc.dao.UserDao;
+import com.ipc.security.SecAlgorithm;
 import com.ipc.vo.userVo;
-
-
 
 @Service("UserAuthService")
 public class UserAuthService implements UserDetailsService{
 
 	@Autowired
 	UserDao userDao;
+	@Autowired
+	SecAlgorithm secAlgo;
 	
 	//Return Spring Security User for authentication
 	private User buildUserForAuth(userVo user, List<GrantedAuthority> auths)

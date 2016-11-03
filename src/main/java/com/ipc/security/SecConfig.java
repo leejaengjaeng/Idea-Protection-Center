@@ -15,6 +15,8 @@ public class SecConfig extends WebSecurityConfigurerAdapter {
 	@Qualifier("UserAuthService")
 	private UserDetailsService UserAuthService;
 	
+	@Autowired
+	private CustomAuthProvider customAuthProvider;
 	
 	@Override
     public void configure(WebSecurity web) throws Exception {
@@ -47,18 +49,19 @@ public class SecConfig extends WebSecurityConfigurerAdapter {
 			.sessionManagement()
 				.maximumSessions(1)
 				.expiredUrl("/authError");
-			
-			
 	}
 	
-	
+	//authenticate with custom Service
+	/*
+	 *  login.do로 접근한 id ,pw로 
+	 *  Spring Security User를 만들고  Custom으로 인증 처리함
+	 */
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception
 	{
-		//authenticate with custom Service
-		/*
-		 *  login.do로 접근한 id ,pw로 만든 security의 User 객체와 
-		 *  UserAuthService로 만든 DB에서 가지고온 User 객체를 비교해서 로그인
-		 */
+		//UserDetailService를 내가 만든 서비스로 사용 : in-memory대신 DB사용
 		auth.userDetailsService(UserAuthService);	
+		
+		//인증을 내가 만들 서비스로함
+		auth.authenticationProvider(customAuthProvider);
 	}
 }

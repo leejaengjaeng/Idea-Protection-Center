@@ -103,8 +103,9 @@ $(document).ready(function()
 	});
 	$('#agree').on("click",function()
 	{
-		ideaSave("${user}");
-		document.getElementById("commentForm").submit();
+		$('#commentForm').submit(){
+			ideaSave("${user}");
+		}
 	});
     
 	//클릭에 따라 내용 바꿔주기

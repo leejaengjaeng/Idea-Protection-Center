@@ -60,6 +60,12 @@ public class AuthController {
 		return "error/noaccess";
 	}
 	
+	@RequestMapping("/beforeLogin.do")
+	public String beforeLogin()
+	{
+		return "redirect:/login";
+	}
+	
 	@RequestMapping("/loginProcess.do")
 	public String loginProcess()
 	{
