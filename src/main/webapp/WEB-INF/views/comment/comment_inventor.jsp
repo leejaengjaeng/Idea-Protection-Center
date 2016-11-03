@@ -16,6 +16,13 @@
     <link href="/resources/common/css/cmt.css" rel="stylesheet">
     <link href="/resources/common/css/style.css" rel="stylesheet">
     <link href="/resources/common/css/index.css" rel="stylesheet">
+<style>
+	.tab_contents textarea{
+        float: right !important;
+        width: 660px !important; 
+        border-radius: 6px !important;
+    }
+</style>
 <script>
 
 $(document).ready(function()
@@ -126,13 +133,20 @@ $(document).ready(function()
 	})
 });
 </script>
+<style>
+	.tab_contents>textarea{
+        float: right !important;
+        width: 660px !important; 
+        border-radius: 6px !important;
+    }
+</style>
 </head>
 <body>
     <c:import url="/WEB-INF/views/import/header.jsp"/>
      <div class="wrap_comment">       
         <section>                      
             <article class="sub_head" style="margin-top:100px;">                    
-                <h1>아이디어수정내역</h1>                
+                <h1 style="width:300px; margin-bottom:20px;">아이디어수정내역</h1>                
                 <table id="IdeaModifyList">
                 	<c:forEach items="${processList}" var="list" varStatus="status">
 						<c:choose>
@@ -171,7 +185,7 @@ $(document).ready(function()
             </article>                
             <article>
                 <input id="currentPosition" type="hidden" value="${currentAnswer.getRid()}"/>           
-                <div class="hiding_tab" style="position:relative;">
+                <div class="hiding_tab" style="position:relative; margin-bottom:20px;">
                     <select onChange=changeType(this.value); id="selectBox">
                    		<option>-</option>
                    		<c:forEach items="${typeList}" var="list" varStatus="status">
@@ -583,6 +597,7 @@ $(document).ready(function()
                 </div>
                 
             </article>
+            
         </section>
     </div>       
     <c:import url="/WEB-INF/views/import/footer.jsp"/>
@@ -647,14 +662,14 @@ $(".popup_close, #load_data").click(function(){
 	$("body").css("overflow","auto");	
 });
 $(".tab_title").click(function(){
-	if($(this).parent(".hiding_tab").hasClass("tab")){
+	if($(this).parent(".hiding_tab").hasClass("tab")){                                       
     	$(this).removeClass("down"); 
-	    $(this).parent(".hiding_tab").stop().animate({"max-height":"55px"}).removeClass("tab");           
-        $(this).children(".arrow-up").stop().css({'transform' : 'rotate(180deg)','border-bottom-color':'#036EB7'}).removeClass("tab");
+	    $(this).parent(".hiding_tab").stop().animate({"max-height":"47px"}).removeClass("tab");           
+        $(this).children(".arrow-up").stop().css({'transform' : 'rotate(180deg)','border-bottom-color':'#fff'}).removeClass("tab");
     }else{            
     	$(this).addClass("down"); 
- 	    $(this).parent(".hiding_tab").stop().animate({"max-height":"1000px"}).addClass("tab");           
-        $(this).children(".arrow-up").stop().css({'transform' : 'rotate(0deg)','border-bottom-color':'#036EB7'}).addClass("tab");
+ 	    $(this).parent(".hiding_tab").stop().animate({"max-height":"2000px"}).addClass("tab");           
+        $(this).children(".arrow-up").stop().css({'transform' : 'rotate(0deg)','border-bottom-color':'#0fa4d4'}).addClass("tab");
     }
 });
 $(".nav>button").click(function(){
