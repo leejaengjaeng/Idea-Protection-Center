@@ -212,11 +212,7 @@ public class DocController {
         //String doc_name=request.getParameter("file_name");
         String doc_name=file_name+".docx";
         String fullPath = request.getSession().getServletContext().getRealPath("resources/uploadimgs/document/")+doc_name;
-        System.out.println(fullPath);
         File downloadFile = new File(fullPath);
-        System.out.println(fullPath);
-        System.out.println(downloadFile.exists());
-        System.out.println(downloadFile.getName());
         ModelAndView mav = new ModelAndView();
         mav.addObject("downloadFile", downloadFile);
         mav.addObject("downloadFileName", doc_name);

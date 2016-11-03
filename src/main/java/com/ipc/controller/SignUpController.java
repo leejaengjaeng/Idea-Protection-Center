@@ -68,6 +68,7 @@ public class SignUpController{
 	@RequestMapping(value="/inputsignup", method=RequestMethod.POST)
 	public String inputsignup(Model model,HttpServletRequest request,userVo uv)throws IOException, EmailException{
 		String role;
+		String fileType="";
 		if(request.getParameter("role").equals("1")){
 			role="inventor";
 		}
@@ -82,12 +83,13 @@ public class SignUpController{
 		MultipartHttpServletRequest multipartRequestScan =  (MultipartHttpServletRequest)request;  //�떎以묓뙆�씪 �뾽濡쒕뱶
 		List<MultipartFile> filesScan = multipartRequestScan.getFiles("license_scan_img");
 		
-		
+		System.out.println();
 		
 		SignUpService ss=new SignUpService();
 		String root_path=request.getSession().getServletContext().getRealPath("/");
-		String fileType=ss.makeimageFile(files.get(0),uv.getId(),role,root_path,"profile");
-		
+		if(!files.get(0).isEmpty()){
+			fileType=ss.makeimageFile(files.get(0),uv.getId(),role,root_path,"profile");
+		}
 		String fileTypeScan=ss.makeimageFile(filesScan.get(0), uv.getId(), role, root_path, "Scan");
 
 		//패스워드 암호화 
@@ -108,8 +110,9 @@ public class SignUpController{
 		map.put("pw", uv.getPw());
 		map.put("email", email);
 		map.put("name", uv.getName());
-		System.out.println("filType: "+fileType);
-		if(fileType.equals("")){
+		//System.out.println("filType: "+fileType);
+		
+		if(files.get(0).isEmpty()){
 			map.put("profileimg", "/resources/image/attonrney_profile.jpg");
 		}
 		else{
@@ -201,14 +204,16 @@ public class SignUpController{
 		return "signup/EditUser";
 	}
 	@RequestMapping(value="/editinput",method=RequestMethod.POST)
-	public String editinput(HttpServletRequest request) throws IOException{
+	public String editinput(HttpServletRequest request) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException{
 		userVo currentUser = (userVo) session.getAttribute("currentUser");
 		HashMap<String,String> map = new HashMap<String,String>();
 		String pw=request.getParameter("pw");
+		String hashPw=secAlgo.createHash(pw);
 		String email = request.getParameter("email1") + request.getParameter("email3");
 		String role=request.getParameter("role");
+		String fileType="";
 		map.put("uid", Integer.toString(currentUser.getUid()));
-		map.put("pw", pw);
+		map.put("pw", hashPw);
 		map.put("email",email);
 		map.put("role", role);
 		if(role.equals("lawyer")){
@@ -218,25 +223,29 @@ public class SignUpController{
 		usermapper.editinput(map);
 		MultipartHttpServletRequest multipartRequest =  (MultipartHttpServletRequest)request;  //�떎以묓뙆�씪 �뾽濡쒕뱶
 		List<MultipartFile> files = multipartRequest.getFiles("profileImg");
+		System.out.println("File Size : "+files.get(0).getSize());
+		System.out.println("File idEmpty : "+files.get(0).isEmpty());
 		
-		int pathPoint = files.get(0).getOriginalFilename().trim().lastIndexOf(".");
-		String filePoint = files.get(0).getOriginalFilename().trim().substring(pathPoint + 1,
-				files.get(0).getOriginalFilename().trim().length());
-		String fileType = filePoint.toLowerCase();
-		System.out.println(fileType);
-		if(fileType.equals("")){
-			return "redirect:/mainPage";
+		
+		if(!files.get(0).isEmpty()){
+			int pathPoint = files.get(0).getOriginalFilename().trim().lastIndexOf(".");
+			String filePoint = files.get(0).getOriginalFilename().trim().substring(pathPoint + 1,
+					files.get(0).getOriginalFilename().trim().length());
+			fileType = filePoint.toLowerCase();
+			System.out.println(fileType);
+			HashMap<String,String> map2=new HashMap<String,String>();
+			userVo uv=usermapper.getUserByUid(Integer.toString(currentUser.getUid()));
+			File file=new File(request.getSession().getServletContext().getRealPath("/")+uv.getProfileimg());
+			file.delete();
+			SignUpService ss=new SignUpService();
+			String root_path=request.getSession().getServletContext().getRealPath("/");
+			ss.makeimageFile(files.get(0),currentUser.getId(),role,root_path,"profile");
+			map2.put("uid", Integer.toString(currentUser.getUid()));
+			map2.put("url", "/resources/uploadimgs/profileImg/"+currentUser.getId()+"."+fileType);
+			usermapper.updateProfileImg(map2);
 		}
-		HashMap<String,String> map2=new HashMap<String,String>();
-		userVo uv=usermapper.getUserByUid(Integer.toString(currentUser.getUid()));
-		File file=new File("../Idea-Protection-Center/src/main/webapp/"+uv.getProfileimg());
-		file.delete();
-		SignUpService ss=new SignUpService();
-		String root_path=request.getSession().getServletContext().getRealPath("/");
-		ss.makeimageFile(files.get(0),currentUser.getId(),role,root_path,"profile");
-		map2.put("uid", Integer.toString(currentUser.getUid()));
-		map2.put("url", "/resources/uploadimgs/profileImg/"+currentUser.getId()+"."+fileType);
-		usermapper.updateProfileImg(map2);
+		
+		
 		return "redirect:/mainPage";
 	}
 	@RequestMapping(value="/findAccount")
@@ -263,7 +272,7 @@ public class SignUpController{
 	}
 	@RequestMapping(value="/findPw",method=RequestMethod.POST)
 	@ResponseBody
-	public HashMap<String,String> findPw(HttpServletRequest request) throws IOException, EmailException{
+	public HashMap<String,String> findPw(HttpServletRequest request) throws IOException, EmailException, NoSuchAlgorithmException, InvalidKeySpecException{
 		HashMap<String,String> mapresult=new HashMap<String,String>();
 		String ID=request.getParameter("id");
 		String email=request.getParameter("email");
@@ -279,7 +288,7 @@ public class SignUpController{
 		}
 		return mapresult;
 	}
-	private String isExist(String ID,String email) throws IOException, EmailException{
+	private String isExist(String ID,String email) throws IOException, EmailException, NoSuchAlgorithmException, InvalidKeySpecException{
 		HashMap<String,String> parameter=new HashMap<String,String>();
 		parameter.put("ID",ID);
 		parameter.put("email", email);
@@ -292,7 +301,8 @@ public class SignUpController{
 			HashMap<String,String> param=new HashMap<String,String>();
 			SignUpService ss=new SignUpService();
 			String key=ss.makeNumber(7);
-			param.put("key", key);
+			String hashKey=secAlgo.createHash(key);
+			param.put("key", hashKey);
 			param.put("uid", uid);
 			usermapper.updateKey(param);
 			String condition=sendKey(key, uid);
@@ -304,7 +314,8 @@ public class SignUpController{
 		int uid2=Integer.parseInt(uid);
 		userVo uv=usermapper.getUserByUid(uid);
 		try{
-			ss.sendpwmail(uid2, key, uv.getEmail());
+			String aa=ss.sendpwmail(uid2, key, uv.getEmail());
+			System.out.println("aa : "+aa);
 		}
 		catch(Exception e){
 			return "NO";

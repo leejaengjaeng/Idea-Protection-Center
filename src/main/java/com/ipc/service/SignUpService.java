@@ -60,11 +60,12 @@ public class SignUpService {
 		return "OK";
 	}
 	public String sendpwmail(int uid,String key,String email) throws IOException, EmailException{
+		System.out.println("Email : "+email);
 		HtmlEmail sendemail = new HtmlEmail();
 		sendemail.setCharset("euc-kr");
 		sendemail.setHostName("smtp.worksmobile.com");
 		sendemail.addTo(email);
-		sendemail.setFrom("jinuk@ideaconcert.com", "源�吏꾩슧");
+		sendemail.setFrom("jinuk@ideaconcert.com", "김진욱");
 		sendemail.setSubject("아이디어보호센터 새로운 비밀번호입니다.");
 		sendemail.setAuthentication("jinuk@ideaconcert.com", "tpxmapsb1");
 	    sendemail.setSmtpPort(465);
