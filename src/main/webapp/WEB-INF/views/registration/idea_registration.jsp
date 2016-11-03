@@ -17,9 +17,12 @@
 <link rel="stylesheet" href="/resources/common/css/style.css">
 <link rel="stylesheet" href="/resources/common/css/cmt.css">
 <title>Idea Protection Center</title>
-<script src="/resources/common/js/registration.js"></script>
+<script src="/resources/common/js/registration.js" ></script>
+<script>
+
+</script>
 </head>
-<body onload='checkTemp();'>
+<body onload='checkTemp("${isTemp}");'>
 
 	<div class="black_wall" id="bw" style="visibility: hidden"></div>
 	<div class="popup" id="pp" style="visibility: hidden">
@@ -59,7 +62,7 @@
 		</h1>
 		<span>아이디어 보호센터에서 손쉽게 특허를 등록하세요.</span>		
 		 </article> 
-		<article class="nt">
+		<article class="nt" style="display:block;">
 		<div class="full">
 			<div class="hiding_tab" style="position: relative; width: 100%;">
 				<div class="arrow-up ee"></div>
