@@ -243,208 +243,16 @@ function changeType(value){
 			<button id="nt">2</button>
 		</div>
 		 </article> 
-		 <article style="margin-left:0;" class="ot">
-		<form name="regisForm" action="/registration/inputidea" method="POST"
-			enctype="multipart/form-data"
-			onsubmit="return formSubmit(document.regisForm.imgs);">
-			<input type="hidden" name="${_csrf.parameterName}"
-				value="${_csrf.token}" /> <input type="text" name="uid" id="uid"
-				value="${sessionScope.currentUser.getUid()}" hidden>
-			<div class="full">
-				<div class="hiding_tab" style="position: relative;">
-					<div class="arrow-up ee"></div>
-					<select onChange=changeType(this.value); id="selectBox">
-						<option>해당 산업에 맞는 카테고리를 선택해 주세요</option>
-						<c:forEach items="${typeList}" var="list" varStatus="status">
-							<option>${list.getType()}</option>
-						</c:forEach>
-					</select> <input type="hidden" value="-" name="typeOfInvent" id="idea_kind">
-				</div>
-			</div>
-			<div class="full">
-				<div class="hiding_tab">
-					<div class="tab_title">
-						<span>제목</span>
-						<div class="arrow-up"></div>
-					</div>
-					<div class="tab_contents">
-						<textarea id="idea_title" name="title"></textarea>
-					</div>
-				</div>
-				<nav class="nav" style="margin-top:0;">
-				<button type="button">작성예시</button>
-				<div class="modal">
-					<p></p>
-				</div>
-				</nav>
-			</div>
-			<div class="full">
-				<div class="hiding_tab">
-					<div class="tab_title">
-						<span>요약</span>
-						<div class="arrow-up"></div>
-					</div>
-					<div class="tab_contents">
-						<textarea id="small_cont" name="summary" tabindex="-1"></textarea>
-					</div>
-				</div>
-				<nav class="nav">
-				<button type="button">작성 예시</button>
-				<div class="modal">
-					<p>
-						발명의 내용을 용이하게 파악할 수<br>  있도록 다음 내용에 관한 사항을<br> 기재합니다.
-					</p>
-				</div>
-				</nav>
-			</div>
-			<div class="full">
-				<div class="hiding_tab">
-					<div class="tab_title">
-						<span>필요이유</span>
-						<div class="arrow-up"></div>
-					</div>
-					<div class="tab_contents">
-						<textarea id="why_cont" name="whyInvent"></textarea>
-					</div>
-				</div>
-				<nav class="nav">
-				<button type="button">작성 예시</button>
-				<div class="modal">
-					<p>발명이 속하는 기술분야 및 그 분야의 이전기술과 발명이 이루고자하는 목적을 기재함.</p>
-				</div>
-				</nav>
-			</div>
-			<div class="full">
-				<div class="hiding_tab">
-					<div class="tab_title">
-						<span>기존제품설명 및 문제점</span>
-						<div class="arrow-up"></div>
-					</div>
-					<div class="tab_contents">
-						<textarea id="col_cont" name="problem"></textarea>
-					</div>
-				</div>
-				<nav class="nav" style="margin-top:0;">
-				<button type="button">작성 예시</button>
-				<div class="modal"></div>
-				</nav>
-			</div>
-			<div class="full">
-				<div class="hiding_tab">
-					<div class="tab_title">
-						<span>문제해결방법</span>
-						<div class="arrow-up"></div>
-					</div>
-					<div class="tab_contents">
-						<textarea id="wel_cont" name="solution"></textarea>
-					</div>
-				</div>
-				<nav class="nav" style="margin-top:0;">
-				<button type="button">작성 예시</button>
-				<div class="modal"></div>
-				</nav>
-			</div>
-			<div class="full">
-				<div class="hiding_tab">
-					<div class="tab_title">
-						<span>발명의효과</span>
-						<div class="arrow-up"></div>
-					</div>
-					<div class="tab_contents">
-						<textarea id="bal_cont" name="effect"></textarea>
-					</div>
-				</div>
-				<nav class="nav" style="margin-top:0;">
-				<button type="button">작성 예시</button>
-				<div class="modal">
-					<p>효과는 발명의 목적달성을 확인 할 수 있는 효과, 종래기술과 비교하여 유리한 효과가 발생된다는 것을
-						보여줄 수 있게 기재</p>
-				</div>
-				</nav>
-			</div>
-			<div class="full">
-				<div class="hiding_tab">
-					<div class="tab_title">
-						<span>핵심구성요소</span>
-						<div class="arrow-up"></div>
-					</div>
-					<div class="tab_contents">
-						<textarea id="imp_cont" name="core_element"></textarea>
-					</div>
-				</div>
-				<nav class="nav" style="margin-top:0;">
-				<button type="button">작성 예시</button>
-				<div class="modal"></div>
-				</nav>
-			</div>
-			<div class="full">
-				<div class="hiding_tab">
-					<div class="tab_title">
-						<span>권리를 보장 받고자 하는 내용</span>
-						<div class="arrow-up"></div>
-					</div>
-					<div class="tab_contents">
-						<textarea id="hope_content" name="hope_content" required></textarea>
-					</div>
-				</div>
-				<nav class="nav" style="margin-top:0;">
-				<button type="button">작성 예시</button>
-				<div class="modal"></div>
-				</nav>
-			</div>
-			<div class="full">
-				<div class="hiding_tab">
-					<div class="tab_title">
-						<span>도면첨부</span>
-						<div class="arrow-up"></div>
-					</div>
-					<div class="tab_contents">
-						<div id="upimgdiv">
-							<input type="file" id="upimg1" name="imgs"
-								accept="image/gif, image/jpeg, image/png"
-								onchange="fileCheck(this)">
-						</div>
-						<button type="button" onclick="addfile()">추가</button>
-						<button type="button" onclick="delfile()">삭제</button>
-					</div>
-				</div>
-				<nav class="nav" style="margin-top:0;">
-				<button type="button">작성 예시</button>
-				<div class="modal"></div>
-				</nav>
-			</div>
-			<div class="full">
-				<div class="hiding_tab">
-					<div class="tab_title">
-						<span>도면에 대한 설명</span>
-						<div class="arrow-up"></div>
-					</div>
-					<div class="tab_contents">
-						<textarea id="picture_explain" name="picture_explain" required></textarea>
-					</div>
-				</div>
-				<nav class="nav" style="margin-top:0;">
-				<button type="button">작성 예시</button>
-				<div class="modal"></div>
-				</nav>
-			</div>
-			<div class="fin">
-				<button type="button" onclick="tempsave();">임시저장</button>
-				<input type="submit" value="제출" id="agree">
-			</div>
-		</form>
-		</article> 
+		 
 		<article class="nt">
 		<div class="full">
 			<div class="hiding_tab" style="position: relative; width: 100%;">
 				<div class="arrow-up ee"></div>
-				<form name="regisForm" action="/registration/inputidea" method="POST"
-				enctype="multipart/form-data"
-				onsubmit="return formSubmit(document.regisForm.imgs);">
+				<form name="regisForm" action="/registration/inputidea" method="POST" enctype="multipart/form-data" onsubmit="return formSubmit(document.regisForm.imgs);">
 				<input type="hidden" name="${_csrf.parameterName}"
 				value="${_csrf.token}" /> <input type="text" name="uid" id="uid"
 				value="${sessionScope.currentUser.getUid()}" hidden>				
-				<select onChange=changeType(this.value);>
+				<select onChange="changeType(this.value);" id="selectBox">
 					<option>해당 산업에 맞는 카테고리를 선택해 주세요</option>
 				</select> <input type="hidden" value="-" name="typeOfInvent" id="idea_kind">
 			</div>
@@ -643,10 +451,10 @@ $('#idea_title').keyup(function(){
    $("textarea").attr("placeholder","Comment");
    $("#nt").click(function(){
 	   $(".nt").css("display","block");
-	   $(".ot").css("display","none");
+	   $(".ot").css("display","block");
    });
    $("#ot").click(function(){
-	   $(".nt").css("display","none");
+	   $(".nt").css("display","block");
 	   $(".ot").css("display","block");
    });
    

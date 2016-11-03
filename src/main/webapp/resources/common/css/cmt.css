@@ -381,7 +381,7 @@
   width: 100%;
 }
 .nt {
-  display: none;
+  display: block;
 }
 #chgbtn {
   width: 110px;

@@ -191,9 +191,7 @@ $(document).ready(function()
 		<div class="full">
 			<div class="hiding_tab" style="position: relative; width: 100%;">
 				<div class="arrow-up ee"></div>
-				<form name="regisForm" action="/registration/inputidea" method="POST"
-				enctype="multipart/form-data"
-				onsubmit="return formSubmit(document.regisForm.imgs);">
+				<form name="regisForm" action="/registration/inputidea" method="POST" enctype="multipart/form-data" onsubmit="return formSubmit(document.regisForm.imgs);">
 				<input type="hidden" name="${_csrf.parameterName}"
 				value="${_csrf.token}" /> 
 				<input type="hidden" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}" >				
