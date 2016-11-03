@@ -24,6 +24,10 @@
     #patentsClientCode{
     	margin-top:10px; width:300px; height:35px; padding-left:5px;
     }
+    table img{
+    	width:50px;
+    	margin-left:10px;
+    }
 </style>
 <script>
 	function changePersonal1(){
@@ -72,7 +76,7 @@
 				</tr>
 				<tr>
 					<td>포괄위임장(인감날인)*</td>
-					<td><img src="/resources/image/hwp.png" onclick="/downContents/attorney">양식 다운로드     <img src="/resources/image/hwp.png" onclick="/downContents/envelope">우편봉투 서식</td>
+					<td style="font-size:14px;"><img src="/resources/image/hwp.png" onclick="/downContents/attorney">양식 다운로드     <img src="/resources/image/hwp.png" onclick="/downContents/envelope">우편봉투 서식</td>
 				</tr>
 				<tr>
 					<td colspan="2" style="text-align:center;">

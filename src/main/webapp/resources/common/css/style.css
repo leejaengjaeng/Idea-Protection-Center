@@ -1069,7 +1069,7 @@ section nav #nav_benner ul li img {
   height: 0;
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
-  border-bottom: 10px solid #036EB7;
+  border-bottom: 10px solid #fff;
   transform: rotate(180deg);
   float: left;
   margin-top: 6px;
@@ -1080,13 +1080,13 @@ section nav #nav_benner ul li img {
 .hiding_tab .tab_title {
   width: 100%;
   float: left;
-  padding: 10px 0 5px 5px;
+  padding: 10px 0 10px 5px;
   transition: .25s;
   cursor: pointer;
 }
 .hiding_tab .tab_title span {
-  font-size: 18px;
-  color: #036EB7;
+  font-size: 16px;
+  color: #fff;
   font-weight: 400;
 }
 .hiding_tab .down {
