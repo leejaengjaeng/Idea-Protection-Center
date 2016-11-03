@@ -223,6 +223,18 @@ public class DocController {
         mav.setViewName("downloadFileView");
         return mav;
     }
+	@RequestMapping(value="/downContents/{file_name}",method=RequestMethod.GET)
+	public ModelAndView downContents(HttpServletRequest request,@PathVariable String file_name){
+		String root_path=request.getSession().getServletContext().getRealPath("resources/downContents/");
+		String doc_name=file_name+".hwp";
+		String full_path=root_path+doc_name;
+		File downloadFile=new File(full_path);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("downloadFile", downloadFile);
+		mav.addObject("downloadFileName", doc_name);
+		mav.setViewName("downloadFileView");
+		return mav;
+	}
 //	public ModelAndView downLoadFile(HttpServletRequest request,String doc_name) {
 //        String root_path=request.getSession().getServletContext().getRealPath("/");
 //        String fullPath = root_path+"resources\\uploadimgs\\document\\"+doc_name;

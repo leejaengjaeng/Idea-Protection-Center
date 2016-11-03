@@ -13,6 +13,8 @@ import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 import org.apache.commons.mail.SimpleEmail;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,9 +33,10 @@ import com.ipc.vo.userVo;
 //TODO : 지우고 new 한 것들 Autowired한 signupService로 대체하기
 import com.ipc.service.SignUpService;
 
+
 @Controller
 @RequestMapping("/signup")
-public class SignUpController {
+public class SignUpController{
 	@Autowired
 	UserDao usermapper;
 	@Autowired
@@ -43,10 +46,12 @@ public class SignUpController {
 	@Autowired
 	SignUpService signupService;
 	
+	//private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	private static final String roleAdmin = "ROLE_ADMIN";
 	private static final String roleInventor = "ROLE_INVENTOR";
 	private static final String rolePatientntLawyer = "ROLE_PATIENTENTLAWYER";
 	private static final String roleGuest = "anonymousUser";
+	
 	@RequestMapping("/signupPage")
 	public String signupPage(Model model){
 		List<TypeOfInventVo> tvList = typemapper.getTypeList();
@@ -62,6 +67,11 @@ public class SignUpController {
 		else{
 			role="lawyer";
 		}
+		
+//		String rawPw=uv.getPw();
+//		String encodedPassword=new BCryptPasswordEncoder().encode(rawPw);
+//		uv.setPw(encodedPassword);
+		
 		String email = request.getParameter("email1") + request.getParameter("email2");
 		MultipartHttpServletRequest multipartRequest =  (MultipartHttpServletRequest)request;  //�떎以묓뙆�씪 �뾽濡쒕뱶
 		List<MultipartFile> files = multipartRequest.getFiles("profileImg");

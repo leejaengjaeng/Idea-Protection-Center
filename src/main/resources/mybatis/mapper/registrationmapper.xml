@@ -66,7 +66,7 @@
 	<!-- (발명가<prevRid>, 변리사<Rid>) rid에 맞는 발명가 작성 내용 + 변리사 코멘트    -->
 	<select id="getRegistrationByRidOrPrevRid" parameterType="Integer" resultType="com.ipc.vo.RegistrationPatentVo">
 		select 
-			typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element, re_typeofinvent, re_title, re_summary, re_whyinvent, re_problem, re_solution, re_effect, re_core_element, prev_rid, re_file, iscomplete,hope_content,picture_explain,re_hope_content,re_picture_explain,uid,lid,rid,registration_date
+			typeofinvent, title, summary, whyinvent, problem, solution, effect, core_element, re_typeofinvent, re_title, re_summary, re_whyinvent, re_problem, re_solution, re_effect, re_core_element, prev_rid, re_file, iscomplete,hope_content,picture_explain,re_hope_content,re_picture_explain,uid,lid,rid,registration_date,apply_date,pre_apply_date
 		from 
 			registration_patent 
 		where 
