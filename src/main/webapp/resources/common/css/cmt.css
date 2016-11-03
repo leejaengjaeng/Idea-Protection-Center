@@ -2,14 +2,13 @@
 .hiding_tab {
   width: 750px;
   float: left;
-  margin-bottom: 40px;
   font-size: 18px;
   overflow: hidden;
-  max-height: 70px;
+  max-height: 47px;
 }
 .hiding_tab:first-child {
   position: relative;
-  margin-bottom: 100px;
+  margin-bottom: 20px;
 }
 .hiding_tab:first-child::before {
   content: "";
@@ -22,25 +21,33 @@
 }
 .hiding_tab select {
   width: 100%;
-  padding: 15px;
-  font-size: 18px;
-  height: 55px;
-  border: 2px solid #ccc;
+  padding: 10px;
+  font-size: 15px;
+  height: 50px;
+  background: #0fa4d4;
+  color: white;
   position: relative;
+  border: none;
   margin-bottom: 40px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
-.hiding_tab select option {
-  height: 55px;
+.hiding_tab .ee {
+  position: absolute;
+  z-index: 19;
+  right: 15px;
+  top: 38%;
 }
 .hiding_tab .arrow-up {
   width: 0;
   height: 0;
-  border-left: 9px solid transparent;
-  border-right: 9px solid transparent;
-  border-bottom: 14px solid #036EB7;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 12px solid white;
   transform: rotate(180deg);
   float: right;
-  margin-top: 5px;
+  margin-top: 2px;
   cursor: pointer;
   transition: .25s;
 }
@@ -48,16 +55,17 @@
   width: 100%;
   float: left;
   padding: 15px;
-  height: 55px;
-  border-bottom: 1px solid #ccc;
+  background: #004a80;
+  border-left: 6px solid #0fa4d4;
 }
 .hiding_tab .tab_title span {
-  font-size: 18px;
+  font-size: 15px;
+  color: white;
 }
 .hiding_tab .tab_contents {
   width: 100%;
   float: left;
-  padding-top: 20px;
+  padding-top: 0px;
 }
 .hiding_tab .tab_contents button {
   width: 110px;
@@ -106,12 +114,13 @@
 }
 .hiding_tab .tab_contents textarea {
   resize: none;
-  width: 660px;
-  margin-left: 10px;
-  border-radius: 6px;
-  border: 2px solid #c5e3f6;
+  width: 94%;
   padding: 10px;
   height: 100px;
+  border: none;
+  background: #f1f1f1;
+  margin-left: 3%;
+  border-bottom: 2px solid #036eb7;
 }
 .hiding_tab .tab_comment {
   width: 100%;
@@ -225,19 +234,20 @@
   float: left;
   text-align: center;
   padding-top: 50px;
-  margin-top: 50px;
 }
 .fin button {
   width: 100px;
   height: 40px;
-  background: #c5e3f6;
+  background: #ccc;
   border: none;
   color: white;
   margin: 5px;
+  border-radius: 50px;
 }
 .fin input[type=submit] {
   width: 100px;
-  background: #036eb7;
+  background: #1e97d0;
+  border-radius: 50px;
   border: none;
   height: 40px;
   color: white;
@@ -282,7 +292,7 @@
   height: 40px;
   width: 120px;
   background: #f1c40f;
-  margin-top: 10px;
+  margin-top: 3px;
   border: none;
   color: white;
 }

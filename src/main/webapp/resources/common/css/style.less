@@ -1,6 +1,6 @@
 //web-font-import
-@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-//class
+ @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+//cl ass
 
 .tr25{
     transition: .25s;
@@ -55,8 +55,33 @@
             float: left;    
             margin-top: 50px;
             margin-left: 0;
+            margin-bottom: 20px;
             h1{
                 font-size: 30px;
+                color:#1c4098;
+                font-weight:300;
+                border-bottom: none;
+                margin-bottom: 0;
+                float: left;
+                width:150px;
+            }
+            span{
+                display: inline-block;
+                float: left;
+                margin-top:15px;
+                color: @light_blue;
+            }
+            b{
+                font-weight: 700;
+                position: relative;
+                &::before{
+                    content: "";
+                    width: 30px;
+                    height: 4px;
+                    position: absolute;
+                    top: -10px;
+                    background-color: #1c4098;
+                }
             }
         }
         .modify_log{
@@ -65,7 +90,7 @@
                 margin-bottom: 50px;
             h1{
                 float: left;
-                border-bottom: none;
+                border-bottom: none;                
             }
             table{
                 width: 100%;                
@@ -1088,13 +1113,11 @@ section{
 .hiding_tab{
     width: 750px;
     float: left;
-    margin-bottom: 40px;    
     font-size: 18px;
     overflow: hidden;
     max-height:55px;
     &:first-child{
         position: relative;
-        margin-bottom:100px;
         &::before{
             content: "";
             position: absolute;
@@ -1104,18 +1127,7 @@ section{
             background: #ccc;
             left: 0;
         }
-    }
-    select{
-        width: 100%;
-        padding: 15px;
-        font-size: 18px;
-        height: 55px;
-        border:2px solid #ccc;
-        position: relative;
-        option{
-            height: 55px;            
-        }        
-    }        
+    }           
     .arrow-up {
         width: 0; 
         height: 0; 
@@ -1132,14 +1144,13 @@ section{
     .tab_title{                
         width: 100%;
         float: left;
-        padding:15px 0 10px 10px;
-        height: 55px;
+        padding:10px 0 5px 5px;
         transition: .25s;
         cursor: pointer;
         span{
             font-size: 18px;
             color: #036EB7;
-            font-weight: 700;
+            font-weight: 400;
         }               
     }
     .down{
@@ -1192,17 +1203,7 @@ section{
             margin-bottom: 10px;
             padding-top: 10px;
             border: 1px solid #ccc;
-        }
-        textarea{
-            resize:none;
-            width:660px;
-            margin-left: 10px;
-            border-radius: 6px;
-            border: 2px solid #c5e3f6;
-            padding:10px;     
-            float: right;
-            height: 100px;
-        }        
+        }            
     }
 }
 .fin{
@@ -1210,7 +1211,6 @@ section{
     float: left;
     text-align: center;
     padding-top: 50px;
-    margin-top: 50px;
     button{
         width: 100px;
         height: 40px;        

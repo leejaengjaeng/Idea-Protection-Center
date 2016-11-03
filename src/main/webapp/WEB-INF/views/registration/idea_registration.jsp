@@ -225,17 +225,17 @@ function changeType(value){
         <section>     
         	             	
             <article class="sub_head" style="margin-top:100px;">                    
-                <h1><b>특허</b>출원</h1>                
-            </article>    
-                 
+            	<h1><b>특허</b>출원</h1><span>아이디어 보호센터에서 손쉽게 특허를 등록하세요.</span>
+            </article>                     
             <article style="margin-left:0;">
                 <form name = "regisForm" action="/registration/inputidea" method="POST" enctype="multipart/form-data" onsubmit="return formSubmit(document.regisForm.imgs);">
                   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                   <input type="text" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}" hidden> 
                 <div class="full">
 	                <div class="hiding_tab" style="position:relative;">
-	                    <select onChange=changeType(this.value);>
-	                         <option>발명분류</option>
+	                	  <div class="arrow-up ee"></div>
+	                      <select onChange=changeType(this.value);>	                         
+	                         <option>해당 산업에 맞는 카테고리를 선택해 주세요</option>
 	                         <c:forEach items="${typeList}" var="list" varStatus="status">
 	                     		<option>${list.getType()}</option>
 	                  		 </c:forEach>                          
@@ -250,10 +250,7 @@ function changeType(value){
 	                        <div class="arrow-up"></div>
 	                    </div>
 	                    <div class="tab_contents">
-	                        <div class="img_cover">                            
-	                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
-	                        </div>
-	                        <input type="text" id="idea_title" name="title" required placeholder="45자 이내로 입력해주세요."> 
+							<textarea></textarea>	                        
 	                    </div>	                    
 	                </div>
 	                <nav class="nav" style="margin-top:0;">
@@ -270,9 +267,6 @@ function changeType(value){
 	                        <div class="arrow-up"></div>
 	                    </div>
 	                    <div class="tab_contents">
-	                        <div class="img_cover">                            
-	                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
-	                        </div>
 	                        <textarea id="small_cont" name="summary" tabindex="-1"></textarea>
 	                    </div>
 	                </div>
@@ -294,9 +288,6 @@ function changeType(value){
 	                        <div class="arrow-up"></div>
 	                    </div>
 	                    <div class="tab_contents">
-	                        <div class="img_cover">                            
-	                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
-	                        </div>
 	                        <textarea id="why_cont" name="whyInvent"></textarea>
 	                    </div>
 	                </div>
@@ -319,9 +310,6 @@ function changeType(value){
 	                        <div class="arrow-up"></div>
 	                    </div>
 	                    <div class="tab_contents">
-	                        <div class="img_cover">                            
-	                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
-	                        </div>
 	                        <textarea id="col_cont" name="problem"></textarea>
 	                    </div>
 	                </div>
@@ -338,9 +326,6 @@ function changeType(value){
 	                        <div class="arrow-up"></div>
 	                    </div>
 	                    <div class="tab_contents">
-	                        <div class="img_cover">                            
-	                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
-	                        </div>
 	                        <textarea id="wel_cont" name="solution"></textarea>
 	                    </div>
 	                </div>          
@@ -356,10 +341,7 @@ function changeType(value){
 	                        <span>발명의효과</span>
 	                        <div class="arrow-up"></div>
 	                    </div>
-	                    <div class="tab_contents">
-	                        <div class="img_cover">                            
-	                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
-	                        </div>
+	                    <div class="tab_contents">	                       
 	                        <textarea id = "bal_cont" name="effect"></textarea>
 	                    </div>
 	                </div>
@@ -383,9 +365,6 @@ function changeType(value){
 	                        <div class="arrow-up"></div>
 	                    </div>
 	                    <div class="tab_contents">
-	                        <div class="img_cover">                            
-	                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
-	                        </div>
 	                        <textarea id="imp_cont"  name="core_element"></textarea>
 	                    </div>
 	                </div>
@@ -401,10 +380,7 @@ function changeType(value){
 	                        <span>권리를 보장 받고자 하는 내용</span>
 	                        <div class="arrow-up"></div>
 	                    </div>
-	                    <div class="tab_contents">
-	                        <div class="img_cover">                            
-	                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
-	                        </div>
+	                    <div class="tab_contents">	                        
 	                        <textarea id="hope_content"  name="hope_content" required></textarea>
 	                    </div>
 	                </div>
@@ -441,9 +417,6 @@ function changeType(value){
 	                        <div class="arrow-up"></div>
 	                    </div>
 	                    <div class="tab_contents">
-	                        <div class="img_cover">                            
-	                            <img src="/resources/image/inventor_profile.jpg" alt="123">                       
-	                        </div>
 	                        <textarea id="picture_explain"  name="picture_explain" required></textarea>
 	                    </div>	                    
 	                </div>
@@ -474,6 +447,7 @@ function addfile(){
 $(function(){
    $("textarea,input,button").attr({"tabindex":"-1"});
    $("textarea").attr({"placeholder":"Comment.."});
+   $(".tab_title:odd").css("background","#464646");
 });
 $(".popup_close, #load_data").click(function(){
    $("body").css("overflow","auto");   
@@ -488,12 +462,12 @@ $('#idea_title').keyup(function(){
 	$(".tab_title").click(function(){
 		if($(this).parent(".hiding_tab").hasClass("tab")){                                       
         	$(this).removeClass("down"); 
-    	    $(this).parent(".hiding_tab").stop().animate({"max-height":"70px"}).removeClass("tab");           
-            $(this).children(".arrow-up").stop().css({'transform' : 'rotate(180deg)','border-bottom-color':'#036EB7'}).removeClass("tab");
+    	    $(this).parent(".hiding_tab").stop().animate({"max-height":"47px"}).removeClass("tab");           
+            $(this).children(".arrow-up").stop().css({'transform' : 'rotate(180deg)','border-bottom-color':'#fff'}).removeClass("tab");
         }else{            
         	$(this).addClass("down"); 
      	    $(this).parent(".hiding_tab").stop().animate({"max-height":"2000px"}).addClass("tab");           
-            $(this).children(".arrow-up").stop().css({'transform' : 'rotate(0deg)','border-bottom-color':'#036EB7'}).addClass("tab");
+            $(this).children(".arrow-up").stop().css({'transform' : 'rotate(0deg)','border-bottom-color':'#0fa4d4'}).addClass("tab");
         }
 	});
     
