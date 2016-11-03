@@ -70,7 +70,8 @@ public class QnaController {
 			return "redirect:/authError";
 		
 		int start;
-		if(pageNum==totalPages) start = totalContents - 10; //마지막 페이지인 경우
+		if(totalPages==1) start=0;
+		else if(pageNum==totalPages) start = totalContents - 10; //마지막 페이지인 경우
 		else start = (pageNum-1)*10;
 	
 		//페이지 선택 리스트에 나올값들 
