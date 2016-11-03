@@ -35,7 +35,7 @@ $(document).ready(function()
 <div id="hide_nav">
 	<div id="hide_nav_cont">
 	    <div id="profile">	    
-	        <img src="${currentUser.getProfileimg()}" alt="profile">		                
+	        <img src="${userVo.getProfileimg()}" alt="profile">		                
 	        <h4>${currentUser.getName() }</h4>
 	        <span>ideaconcert</span>
 	    </div>
@@ -60,7 +60,7 @@ $(document).ready(function()
                 <!-- 프로필 이미지 없을때-->                              
                 <!-- <img src="/resources/image/attonrney_profile.jpg" alt="img1"> -->
                 <!-- 프로필 이미지 있을때-->
-                <img src="${currentUser.getProfileimg()}" alt="profile">
+                <img src="${userVo.getProfileimg()}" alt="profile">
                 <h4>${currentUser.getName() }</h4>
                 <span>${currentUser.getId() }</span>
             </div>

@@ -930,5 +930,11 @@ footer #footer_fill #footer_wrap #footer_right span {
   transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
-
+}
+.notYet {
+  cursor: auto !important;
+  background: #b9b6b6 !important;
+}
+#header_benner {
+  display: none;
 }

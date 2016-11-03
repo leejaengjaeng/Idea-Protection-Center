@@ -442,3 +442,20 @@
 #inputFileDiv button {
   margin-bottom: 20px;
 }
+.addbtns {
+  width: 80px;
+  height: 35px;
+  border: none;
+  background: #004a80;
+  color: white;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  margin-right: 5px;
+}
+#upimgdiv2 input[type=file] {
+  width: 240px;
+  height: 35px;
+  padding-top: 5px;
+  padding-left: 5px;
+  border: 1px solid #ccc;
+}

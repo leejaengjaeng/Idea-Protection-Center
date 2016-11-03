@@ -168,6 +168,7 @@ $(document).ready(function()
             </article>                
             <article class="nt" style="display:block;">
 		<div class="full">
+<<<<<<< HEAD
 		<div class="hiding_tab" style="position: relative; width: 100%;">
 		<div class="arrow-up ee"></div>
 		<form name="regisForm" action="/registration/inputidea" method="POST" 
@@ -179,6 +180,19 @@ $(document).ready(function()
 			</select> 
 			<input type="hidden" value="-" name="typeOfInvent" id="idea_kind">
 		</div>
+=======
+			<div class="hiding_tab" style="position: relative; width: 100%;">
+				<div class="arrow-up ee"></div>
+				<form name="regisForm" action="/registration/inputidea" method="POST" enctype="multipart/form-data" onsubmit="return formSubmit(document.regisForm.imgs);">
+				<input type="hidden" name="${_csrf.parameterName}"
+				value="${_csrf.token}" /> 
+				<input type="hidden" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}" >				
+				<select onChange=changeType(this.value);>
+					<option>해당 산업에 맞는 카테고리를 선택해 주세요</option>
+				</select> 
+				<input type="hidden" value="-" name="typeOfInvent" id="idea_kind">
+			</div>
+>>>>>>> 7ef6ad854d039a5b4b87f69bd8e08f1b7669ba96
 		</div>
 		<div class="tab_box">
 			<div class="b0" style="background-color: #004a80; color: white;">

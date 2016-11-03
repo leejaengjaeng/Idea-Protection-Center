@@ -203,10 +203,48 @@ got
 		$(".black_wall , .popup").css("display","block");
 		$("body").css("overflow","hidden");	
 	});
+	//findPw
 	$("#findPwBtn").click(function(){
+		var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+		var csrfToken = $("meta[name='_csrf']").attr("content");
+		var csrfHeader = $("meta[name='_csrf_header']").attr("content"); // THIS WAS ADDED
+		var name = document.getElementById("nameLostPw").value;
+		var email=document.getElementById("emailLostPw").value;
+		var data = {};
+		var headers = {};
+		data[csrfParameter] = csrfToken;
+		data["id"] = name;
+		data["email"]=email;
+		headers[csrfHeader] = csrfToken;
+		$.ajax({
+			url : "/signup/findPw",
+			dataType : "json",
+			type : "POST",
+			headers : headers,
+			data : data,
+			success : function(data) {		
+				//data.id
+				$("#pop_cont1").css("display","block");
+				if(data.result=="False"){
+					$("#isnull").css("display","none");
+					$("#data_id").css("display","inline-block");
+					$("#data_id").text("아이디와 이메일이 존재하지 않습니다.");
+				}else{
+					$("#isnull").css("display","none");
+					$("#data_id").css("display","inline-block");
+					$("#data_id").text("작성하신 이메일로 새로운 비밀번호가 발송되었습니다.");
+				}
+			},
+			error : function(request, status, error) {
+				alert("code:" + request.status + "\n" + "error:" + error);
+			}
+	
+		});
 		$(".black_wall , .popup").css("display","block");
 		$("body").css("overflow","hidden");	
 	});
+	//findPw
+
 </script>
 </body>
 </html>

@@ -39,7 +39,7 @@
 		update user set pw=#{pw},email=#{email} where uid=#{uid}
 	</update>
 	<update id="updateProfileImg" parameterType="Hashmap">
-		update user set profileimg=#{profileimg} where uid=#{uid}
+		update user set profileimg=#{url} where uid=#{uid}
 	</update>
 	<select id="getIdByNameAndEmail" parameterType="HashMap" resultType="String">
 		select user.id from user where name=#{name} and email=#{email}

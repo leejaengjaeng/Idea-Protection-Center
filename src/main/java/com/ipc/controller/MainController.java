@@ -89,6 +89,8 @@ public class MainController {
 				List<mainPageVo> processList;
 				int comIdea=0;
 				int ingIdea=0;
+				model.addAttribute("userVo",userDao.getUserByUid(Integer.toString(currentUser.getUid())));
+
 				if(currentUser.getRole().equals(roleInventor))
 				{
 					System.out.println("in");

@@ -11,4 +11,8 @@ public class ErrorController {
 	public String error404(){
 		return "error/404NotFound";
 	}
+	@RequestMapping("/500")
+	public String error500(){
+		return "error/500error";
+	}
 }
