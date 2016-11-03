@@ -17,187 +17,7 @@
 <link rel="stylesheet" href="/resources/common/css/style.css">
 <link rel="stylesheet" href="/resources/common/css/cmt.css">
 <title>Idea Protection Center</title>
-<script>
-var i=1;
-function delfile(){
-   $('#upimg'+i+'').detach();
-   i--;
-}
-function checkTemp(){  
-    if(${isTemp}=="1"){
-      document.getElementById("bw").style.visibility="visible";
-      document.getElementById("pp").style.visibility="visible";
-     }
-     else{
-                      
-     }
-}
-function loadTempIdea(rid){
-   var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
-   var csrfToken = $("meta[name='_csrf']").attr("content"); 
-   var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
-   var data = {};
-   var headers = {};
-   var optcnt;
-   data[csrfParameter] = csrfToken;
-   data["rid"]=rid;
-   headers[csrfHeader] = csrfToken;
-      $.ajax({
-       url : "/registration/loadTempIdea",
-       dataType : "json",
-       type : "POST",
-       headers: headers,
-       data : data,
-       success: function(data) {
-    	   	optcnt = document.getElementById("selectBox").options.length;
-    	   	
-    	   	for(i =0 ; i < optcnt; i++){
-	    	     if(document.getElementById("selectBox").options[i].value == data.typeOfInvent) {
-	    	          document.getElementById("selectBox").options[i].selected = true;
-	    	          break;
-	    	    }
-	    	}
-         	document.getElementById("idea_kind").value=data.typeOfInvent;
-            document.getElementById("idea_title").value=data.title;
-            document.getElementById("small_cont").value=data.summary;
-            document.getElementById("why_cont").value=data.whyInvent;
-            document.getElementById("col_cont").value=data.problem;
-            document.getElementById("wel_cont").value=data.solution;
-            document.getElementById("bal_cont").value=data.effect;
-            document.getElementById("imp_cont").value=data.core_element;
-            document.getElementById("hope_content").value=data.hope_content;
-            document.getElementById("picture_explain").value=data.picture_explain;
-            document.getElementById("bw").style.visibility="hidden";
-           	document.getElementById("pp").style.visibility="hidden";
-       },
-       error:function(request,status,error){
-           alert("code:"+request.status+"\n"+"error:"+error);
-       }
-   }); 
-   
-}
- 
-function removeTempIdea(rid){
-   var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
-   var csrfToken = $("meta[name='_csrf']").attr("content"); 
-   var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
-   var data = {};
-   var headers = {};
-   
-   data[csrfParameter] = csrfToken;
-   data["rid"]=rid;
-    headers[csrfHeader] = csrfToken;
-    $.ajax({
-        url : "/registration/removeTempIdea",
-        dataType : "json",
-        type : "POST",
-        headers: headers,
-        data : data,
-        success: function(data) {
-           document.getElementById("bw").style.visibility="hidden";
-          document.getElementById("pp").style.visibility="hidden";
-          location.href="/registration/addidea";
-        },
-       error:function(request,status,error){
-           alert("code:"+request.status+"\n"+"error:"+error);
-       }
-   });
-}
-function tempsave(){
-   var typeOfInvent=document.getElementById("idea_kind").value;
-   var title=document.getElementById("idea_title").value;
-   var summary=document.getElementById("small_cont").value;
-   var whyInvent=document.getElementById("why_cont").value;
-   var problem=document.getElementById("col_cont").value;
-   var solution=document.getElementById("wel_cont").value;
-   var effect=document.getElementById("bal_cont").value;
-   var core_element=document.getElementById("imp_cont").value;
-   var uid=document.getElementById("uid").value;
-   var hope_content=document.getElementById("hope_content").value;
-   var picture_explain=document.getElementById("picture_explain").value
-   
-   var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
-   var csrfToken = $("meta[name='_csrf']").attr("content"); 
-   var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
-   var data = {};
-   var headers = {};
-   
-   data[csrfParameter] = csrfToken;
-   data["typeOfInvent"] = typeOfInvent;
-   data["title"] = title;
-   data["summary"] = summary;
-   data["whyInvent"] = whyInvent;
-   data["problem"] = problem;
-   data["solution"] = solution;
-   data["effect"] = effect;
-   data["core_element"] = core_element;
-   data["uid"]=uid;
-   data["hope_content"]=hope_content;
-   data["picture_explain"]=picture_explain;
-   headers[csrfHeader] = csrfToken;
-   $.ajax({
-      url : "/registration/tempsave",
-      dataType : "json",
-      type : "POST",
-      headers: headers,
-      data : data,
-      success: function(data) {
-         alert("임시저장이 완료되었습니다");
-      },
-      error:function(request,status,error){
-          alert("code:"+request.status+"\n"+"error:"+error);
-      }
-   
-   }); 
-}
- 
- 
- 
-function closeload(){
-   document.getElementById("bw").style.visibility="hidden";
-   document.getElementById("pp").style.visibility="hidden";  
-   
-}
-function formSubmit(file){
-   //alert($("input[name=imgs]").length);
-    var maxSize  = 5 * 1024 * 1024    
-    var fileSize = 0;
- 
-   // 브라우저 확인
-   var browser=navigator.appName;
- 
-   // 익스플로러일 경우
-   if (browser=="Microsoft Internet Explorer")
-   {
-      alert("ie");
-      var oas = new ActiveXObject("Scripting.FileSystemObject");
-      fileSize = oas.getFile( file.value ).size;
-   }
-      // 익스플로러가 아닐경우
-   else
-   {
-      fileSize+= file.files[i].size;
-      alert(fileSize);
-   }
-   
-   
-   alert("파일사이즈 : "+ fileSize +", 최대파일사이즈 : 5MB");
-   
-   if(fileSize > maxSize)
-   {
-       alert("첨부파일 사이즈는 5MB 이내로 등록 가능합니다.    ");
-       return false;
-   }
-   
-   if(document.getElementById("typeOfInvent").value=="-"){
-      alert("발명분야를 선택해주세요");
-      return false;
-   }
-}
-function changeType(value){
-   document.getElementById("idea_kind").value=value;
-}
-</script>
+<script src="/resources/common/js/registration.js"></script>
 </head>
 <body onload='checkTemp();'>
 
@@ -253,7 +73,7 @@ function changeType(value){
 			<div class="full">
 				<div class="hiding_tab" style="position: relative;">
 					<div class="arrow-up ee"></div>
-					<select onChange=changeType(this.value); id="selectBox">
+					<select onChange=changeType(this.value);>
 						<option>해당 산업에 맞는 카테고리를 선택해 주세요</option>
 						<c:forEach items="${typeList}" var="list" varStatus="status">
 							<option>${list.getType()}</option>
@@ -524,15 +344,15 @@ function changeType(value){
 			</div>
 		</div>
 		<div class="area_box a8">
-			<div>
+			<div style="width:96%; margin-left:2%;">
 				<div id="plc">
 					<div id="upimgdiv2">
 						<input type="file" id="upimg1" name="imgs"
 						accept="image/gif, image/jpeg, image/png"
 						onchange="fileCheck(this)" style="margin-left:5px; margin-top:5px; float:left;">
 					</div>
-					<button type="button" onclick="addfile2()">추가</button>
-					<button type="button" onclick="delfile()">삭제</button>
+					<button type="button" onclick="addfile2()" class="addbtns">추가</button>
+					<button type="button" onclick="delfile()" class="addbtns">삭제</button>
 				</div>
 			</div>
 		</div>
@@ -549,107 +369,6 @@ function changeType(value){
 		</article> 
 	</section>	
 	<c:import url="/WEB-INF/views/import/footer.jsp" />
-	<script>
-    var i=1;
-function addfile(){
-    i++;
-    $('#upimgdiv').append("<input type='file' id='upimg"+i+"' name='imgs' accept='image/gif, image/jpeg, image/png' style='padding-top:10px;' onchange='fileCheck(this)'>");
-    //var targetdiv=document.getElementById("uploaddiv");
-    //targetdiv.innerHTML+="<input type='file' name='imgs' oncellchange='addfile()' accept='image/gif, image/jpeg, image/png'>";
- 
-}
-function addfile2(){
-    i++;
-    $('#upimgdiv2').append("<input type='file' id='upimg"+i+"' name='imgs' accept='image/gif, image/jpeg, image/png' style='padding-top:5px; margin-left:5px; margin-top:5px; float:left;' onchange='fileCheck(this)'>");
-}
-$(function(){
-   $("textarea,input,button").attr({"tabindex":"-1"});
-   $("textarea").attr({"placeholder":"Comment.."});
-   $(".tab_title:odd").css("background","#464646");
-});
-$(".popup_close, #load_data").click(function(){
-   $("body").css("overflow","auto");   
-});
-
-$('#idea_title').keyup(function(){
-    if ($(this).val().length > 45) {
-        alert('제한길이 초과');
-        $(this).val($(this).val().substr(0, 45));
-    }
-});
-	$(".tab_title").click(function(){
-		if($(this).parent(".hiding_tab").hasClass("tab")){                                       
-        	$(this).removeClass("down"); 
-    	    $(this).parent(".hiding_tab").stop().animate({"max-height":"47px"}).removeClass("tab");           
-            $(this).children(".arrow-up").stop().css({'transform' : 'rotate(180deg)','border-bottom-color':'#fff'}).removeClass("tab");
-        }else{            
-        	$(this).addClass("down"); 
-     	    $(this).parent(".hiding_tab").stop().animate({"max-height":"2000px"}).addClass("tab");           
-            $(this).children(".arrow-up").stop().css({'transform' : 'rotate(0deg)','border-bottom-color':'#0fa4d4'}).addClass("tab");
-        }
-	});
-    
-   $(".nav>button").click(function(){
-	  $(this).next(".modal").css("display","block");
-   });
-   $(".modal").click(function(){
-	  $(this).css("display","none"); 
-   });
-   
-   $(".tab_box div").click(function(){       
-       $(this).addClass("sel").siblings().removeClass("sel");
-       $(this).eq(0).css({backgroundColor:"#004a80",color:"#fff"}).siblings(0).css({backgroundColor:"#fff",color:"#464646"});                        
-   });    
-   $(".b0").click(function(){
-       $(".a0").css("display","block");
-       $(".a1,.a2,.a3,.a4,.a5,.a6,.a7,.a8,.a9").css("display","none");
-   });
-   $(".b1").click(function(){
-       $(".a1").css("display","block");
-       $(".a0,.a2,.a3,.a4,.a5,.a6,.a7,.a8,.a9").css("display","none");
-   });
-   $(".b2").click(function(){
-       $(".a2").css("display","block");
-       $(".a0,.a1,.a3,.a4,.a5,.a6,.a7,.a8,.a9").css("display","none");
-   });
-   $(".b3").click(function(){
-       $(".a3").css("display","block");
-       $(".a0,.a2,.a1,.a4,.a5,.a6,.a7,.a8,.a9").css("display","none");
-   });
-   $(".b4").click(function(){
-       $(".a4").css("display","block");
-       $(".a0,.a2,.a3,.a1,.a5,.a6,.a7,.a8,.a9").css("display","none");
-   });
-   $(".b5").click(function(){
-       $(".a5").css("display","block");
-       $(".a0,.a2,.a3,.a4,.a1,.a6,.a7,.a8,.a9").css("display","none");
-   });
-   $(".b6").click(function(){
-       $(".a6").css("display","block");
-       $(".a0,.a2,.a3,.a4,.a5,.a1,.a7,.a8,.a9").css("display","none");
-   });
-   $(".b7").click(function(){
-       $(".a7").css("display","block");
-       $(".a0,.a2,.a3,.a4,.a5,.a6,.a1,.a8,.a9").css("display","none");
-   });
-   $(".b8").click(function(){
-       $(".a8").css("display","block");
-       $(".a0,.a2,.a3,.a4,.a5,.a6,.a7,.a1,.a9").css("display","none");
-   });
-   $(".b9").click(function(){
-       $(".a9").css("display","block");
-       $(".a0,.a2,.a3,.a4,.a5,.a6,.a7,.a8,.a1").css("display","none");
-   });
-   $("textarea").attr("placeholder","Comment");
-   $("#nt").click(function(){
-	   $(".nt").css("display","block");
-	   $(".ot").css("display","none");
-   });
-   $("#ot").click(function(){
-	   $(".nt").css("display","none");
-	   $(".ot").css("display","block");
-   });
-   
-</script>
+<script src="/resources/common/js/cmts.js"></script>
 </body>
 </html>
