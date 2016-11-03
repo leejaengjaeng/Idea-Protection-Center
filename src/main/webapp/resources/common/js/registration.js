@@ -4,7 +4,7 @@ function delfile(){
    i--;
 }
 function checkTemp(){  
-    if(${isTemp}=="1"){
+    if("${isTemp}"=="1"){
       document.getElementById("bw").style.visibility="visible";
       document.getElementById("pp").style.visibility="visible";
      }
