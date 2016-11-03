@@ -17,8 +17,6 @@
 <link rel="stylesheet" href="/resources/common/css/style.css">
 <link rel="stylesheet" href="/resources/common/css/cmt.css">
 <title>Idea Protection Center</title>
-<style>
-</style>
 <script>
 var i=1;
 function delfile(){
@@ -634,7 +632,7 @@ $('#idea_title').keyup(function(){
        $(".a9").css("display","block");
        $(".a0,.a2,.a3,.a4,.a5,.a6,.a7,.a8,.a1").css("display","none");
    });
-   $("textarea").attr("placeholder","Comment")
+   $("textarea").attr("placeholder","Comment");
    $("#nt").click(function(){
 	   $(".nt").css("display","block");
 	   $(".ot").css("display","none");

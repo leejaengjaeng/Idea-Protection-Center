@@ -145,12 +145,10 @@ public class MainController {
 		resultMap.put("result", "aa");
 		resultMap.put("lawyerName", uv.getName());
 		
-		
-		
 		return resultMap;
 	}
-	
-	@RequestMapping("/comeOn")
+
+	@RequestMapping("/siteMap")
 	public String comeOn(){
 		return "sub/sitemap";
 	}

@@ -54,8 +54,10 @@
 			<img src="/resources/image/logo.png" alt="Logo" onclick="location.href='/'" style="cursor: pointer;" draggable="false">
 			<ul class="menu">
 			
+				<!-- 
+			 		
 			 	<li>
-			 		아이디어 보호센터는
+			 		아이디어 보호센터
 			 		<ul>
 			 			<li>
 			 				서비스 소개
@@ -65,35 +67,45 @@
 			 			</li>
 			 		</ul>
 			 	</li>
+			 	
+			 	 -->
+			 		
 			 	<li>
 			 		이용방법안내
 			 		<ul>
+			 			<li>
+			 				준비 중 입니다
+			 			</li>
+			 			<!-- 
 			 			<li>
 			 				사이트 이용안내
 			 			</li>
 			 			<li>
 			 				비용안내
 			 			</li>
+			 			 -->
 			 		</ul>
 			 	</li>
-			 	<li onclick="location.href='/qna/qnaBoard'">
+			 	<li>
 			 		고객센터
 			 		<ul>
-			 			<li>
+			 			<li onclick="location.href='/notice/noticePage'">
 			 				공지사항
 			 			</li>
-			 			<li>
-			 				1:1문의
+			 			<li onclick="location.href='/qna/qnaBoard'">
+			 				문의 하기
 			 			</li>
-			 			<li>
+			 			<li onclick="location.href='/qna/regularQna'">
 			 				자주하는 질문
 			 			</li>
-			 			<li onclick="location.href='/comeOn'">
+			 			<li onclick="location.href='/siteMap'">
 			 				오시는길
 			 			</li>
+			 			<!-- 
 			 			<li>
 			 				상담예약
 			 			</li>
+			 			 -->
 			 		</ul>
 			 	</li>				
 			</ul>

@@ -94,17 +94,19 @@ public class QnaController {
 		List<QnaVo> qnaList=qnaDao.getQuestions(startAndPPC);
 		
 		//방향 표들 
-		int leftArrow = (pageNum - pagesPerView)<0 ? 0:(pageNum - pagesPerView);
+		int leftArrow = (pageNum - pagesPerView)<0 ? 1:(pageNum - pagesPerView);
 		int rightArrow = (pageNum + pagesPerView)>=totalPages ? totalPages : pageNum + pagesPerView;
 		
 		model.addAttribute("qnaList",qnaList);
 		model.addAttribute("pages",pages);
+		model.addAttribute("currentPage",pageNum);
 		model.addAttribute("leftArrow",leftArrow);
 		model.addAttribute("rightArrow",rightArrow);
 
 		return "/qna/oneOnOne";
 	}
 	
+	//질문 등록 페이지 처리 하기
 	@RequestMapping(value="/regisOneQna",method=RequestMethod.POST)
 	public String regisOneQna(QnaVo qv){
 		RegistrationService rs=new RegistrationService();
@@ -114,11 +116,13 @@ public class QnaController {
 		return "redirect:/qna/qnaBoard";
 	}
 	
+	//질문 등록 페이지 띄우기
 	@RequestMapping(value="/addOneQna")
 	public String addOneQna(){
 		return "/qna/addOneQna";
 	}
 	
+	//질문에 댓글 달기
 	@RequestMapping(value="/regisreply",method=RequestMethod.POST)
 	public String regisreply(ReplyVo rv,HttpServletRequest request){
 		System.out.println(rv.getQid());
@@ -127,12 +131,14 @@ public class QnaController {
 		return "redirect:/qna/detail/"+rv.getQid();
 	}
 	
+	//
 	@RequestMapping(value="/regularQnaAdd",method=RequestMethod.GET)
 	public String showAddRegularQuestion()
 	{
 		return "/qna/addRegularQna";
 	}
 	
+	//
 	@RequestMapping(value="/regularQnaAddProcess",method=RequestMethod.POST)
 	public String addRegularQuestion(QnaVo qnaVo){
 		

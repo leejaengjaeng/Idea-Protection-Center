@@ -19,16 +19,12 @@
 	<h1 style="margin-top:100px;">자주하는 질문 모음</h1>
 	<table id="notice_table" style="margin-bottom:100px;">
 		<tr>
-			<th style="width:100px;">
-				no
-			</th>
 			<th>
 				제목
 			</th>
 		</tr>
 		<c:forEach items="${qnaList}" var="list" varStatus="status">
 			<tr onclick="location.href='/qna/detail/${list.getQid()}'">
-    			<td>${status.count }</td>
     			<td>${list.getTitle()}</td>
     		</tr>
 		</c:forEach>

@@ -4,15 +4,22 @@
 	<insert id="regisNotice" parameterType="com.ipc.vo.adminNoticeVo">
 		insert into notice(title,content,date) values (#{title},#{content},#{date})  
 	</insert>
-	<select id="getNoticeListDesc" resultType="com.ipc.vo.adminNoticeVo">
-		select nid,title,content,date from notice order by date desc
-	</select>
 	<select id="getNoticeByNid" parameterType="Integer" resultType="com.ipc.vo.adminNoticeVo">
 		select nid,title,content,date from notice where nid=#{nid}
 	</select>
 	<select id="getNoticeListDescLimit" resultType="com.ipc.vo.adminNoticeVo" parameterType="Integer">
 		select nid,title,content,date from notice order by date desc limit #{num}
 	</select>
+	
+	<!-- pagenation -->
+	<select id="getNotices" resultType="com.ipc.vo.adminNoticeVo" parameterType="HashMap">
+		SELECT nid,title,content,date 
+		FROM notice ORDER BY date DESC 
+		LIMIT #{start},#{pagePerContents};
+	</select>
+	<select id="getTotalSize" resultType="Integer" parameterType="Integer" >
+    	SELECT count(1) FROM notice;
+    </select>
 
 </mapper>
 
