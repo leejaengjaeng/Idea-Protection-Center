@@ -253,7 +253,10 @@ function changeType(value){
 				value="${_csrf.token}" /> <input type="text" name="uid" id="uid"
 				value="${sessionScope.currentUser.getUid()}" hidden>				
 				<select onChange="changeType(this.value);" id="selectBox">
-					<option>해당 산업에 맞는 카테고리를 선택해 주세요</option>
+					<option>-</option>
+					<c:forEach items="${typeList}" var="type">
+					<option>${type.getType()}</option>
+					</c:forEach>
 				</select> <input type="hidden" value="-" name="typeOfInvent" id="idea_kind">
 			</div>
 		</div>
