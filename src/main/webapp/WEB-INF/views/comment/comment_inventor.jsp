@@ -26,7 +26,7 @@
 <script>
 $(document).ready(function()
 {
-	/*
+	
 	if("${isFirst}" == "true")
 	{
 		hideBeforeCmt();
@@ -39,7 +39,7 @@ $(document).ready(function()
 	  		}
 	  	}
 	}
-	
+	/*
 	else{
 		var optcnt = document.getElementById("selectBox").options.length;
 		//alert("${beforeReg.getTypeOfInvent()}");
@@ -329,11 +329,11 @@ $(document).ready(function()
                    <button type="button" onclick="addfile()">추가</button>
                    <button type="button" onclick="delfile()">삭제</button>
                     <c:forEach items="${imgs}" var="list" varStatus="status">
-                    <div id="id ${list.getRfid()}">
-                    	<img src="${list.getFile_path()}" onclick="location.href='${list.getFile_path()}'">
-                  		<button type="button" onclick="delImg('${list.getRfid()}')">삭제</button>
-                  	</div>
-                    </c:forEach>     
+                   	<div id="id${list.getRfid()}">
+	                	<a href="${list.getFile_path()}" target="_blank"><img src="${list.getFile_path()}"></a>
+	              		<button type="button" onclick="delImg('${list.getRfid()}')">삭제</button>
+                    </div>
+	                </c:forEach>     
 				</div>
 			</div>
 		</div>
