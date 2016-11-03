@@ -88,6 +88,9 @@ function changeBank(value){
 		var repwd = document.getElementById("repassword");
 		var id = document.getElementById("id");
 		var email = document.getElementById("email1");
+		var cb1 = document.getElementById("cb1");
+		var cb2 = document.getElementById("cb2");
+		var cb3 = document.getElementById("cb3");
 		if (pwd.value != repwd.value) {
 			alert("비밀번호가 일치하지 않습니다.");
 			pwd.value = "";
@@ -103,7 +106,19 @@ function changeBank(value){
 			alert("아이디를 입력하세요");
 			return false;
 		}
-		if
+		if (cb1.checked==false){
+			alert("이용약관에 동의하여 주세요.");
+			return false;
+		}
+		if (cb2.checked==false){
+			alert("개인정보 수집 및 이용에 대한 안내에 동의하여 주세요.");
+			return false;
+		}
+		if (cb3.checked==false){
+			alert("이메일 수집 거부에 대한 안내에 동의하여 주세요.");
+			return false;
+		}
+			
 		return true;
 	}
 	

@@ -147,30 +147,7 @@ public class MainController {
 		
 		return resultMap;
 	}
-	@RequestMapping(value="/admin_notice_registration")
-	public String adminNotice(){
-		return "admin/admin_regis_notice";
-	}
-	@RequestMapping(value="/noticeRegistration",method=RequestMethod.POST)
-	public String noticeRegistration(adminNoticeVo an){
-		RegistrationService rs = new RegistrationService();
-		an.setDate(rs.getToday(0));
-		noticeDao.regisNotice(an);
-		return "admin/admin_management";
-		
-	}
-	@RequestMapping(value="/noticeList/{nid}",method=RequestMethod.GET)
-	public String noticeList(Model model,@PathVariable int nid){
-		adminNoticeVo an = noticeDao.getNoticeByNid(nid);
-		model.addAttribute("noticeVo", an);
-		return "admin/noticeDetail";
-	}
-	@RequestMapping("/noticePage")
-	public String noticePage(Model model){
-		List<adminNoticeVo> noticeList=noticeDao.getNoticeListDesc();
-		model.addAttribute("noticeList", noticeList);
-		return "/admin/noticeList";
-	}
+	
 	@RequestMapping("/comeOn")
 	public String comeOn(){
 		return "sub/sitemap";
