@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="/resources/common/css/index.css">
 <link rel="stylesheet" href="/resources/common/css/style.css">
 <link rel="stylesheet" href="/resources/common/css/cmt.css">
+<link rel="icon" href="/resources/image/pavicon.png">
 <title>Idea Protection Center</title>
 <script src="/resources/common/js/registration.js"></script>
 </head>

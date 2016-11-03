@@ -16,6 +16,7 @@
     <link href="/resources/common/css/cmt.css" rel="stylesheet">
     <link href="/resources/common/css/style.css" rel="stylesheet">
     <link href="/resources/common/css/index.css" rel="stylesheet">
+    <link rel="icon" href="/resources/image/pavicon.png">
 <style>
 	.tab_contents textarea{
         float: right !important;

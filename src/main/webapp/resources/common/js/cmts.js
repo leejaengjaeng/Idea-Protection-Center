@@ -11,8 +11,7 @@ function addfile2(){
     $('#upimgdiv2').append("<input type='file' id='upimg"+i+"' name='imgs' accept='image/gif, image/jpeg, image/png' style='padding-top:5px; margin-left:5px; margin-top:5px; float:left;' onchange='fileCheck(this)'>");
 }
 $(function(){
-   $("textarea,input,button").attr({"tabindex":"-1"});
-   $("textarea").attr({"placeholder":"Comment.."});
+   $("textarea,input,button").attr({"tabindex":"-1"});   
    $(".tab_title:odd").css("background","#464646");
 });
 $(".popup_close, #load_data").click(function(){
@@ -88,7 +87,7 @@ $('#idea_title').keyup(function(){
        $(".a9").css("display","block");
        $(".a0,.a2,.a3,.a4,.a5,.a6,.a7,.a8,.a1").css("display","none");
    });
-   $("textarea").attr("placeholder","Comment");
+ 
    $("#nt").click(function(){
 	   $(".nt").css("display","block");
 	   $(".ot").css("display","none");

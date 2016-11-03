@@ -12,6 +12,7 @@
 
 <link rel="stylesheet" href="/resources/common/css/index.css">
 <link rel="stylesheet" href="/resources/common/css/style.css">
+<link rel="icon" href="/resources/image/pavicon.png">
 <title>downLoad Document</title>
 <script>
 function downDoc(kindOfDocument){

@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="/resources/common/css/index.css">
 <link rel="stylesheet" href="/resources/common/css/style.css">
 <link rel="stylesheet" href="/resources/common/css/inventor.css">
-
+<link rel="icon" href="/resources/image/pavicon.png">
 <script>
 //js파일 밖으로 빼기 
 $(document).ready(function()

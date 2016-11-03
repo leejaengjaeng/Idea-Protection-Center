@@ -13,7 +13,7 @@
 <script src="/resources/common/js/util.js" type="text/javascript"></script>
 <link rel="stylesheet" href="/resources/common/css/style.css">
 <link rel="stylesheet" href="/resources/common/css/index.css">
-
+<link rel="icon" href="/resources/image/pavicon.png">
 <title>Idea Protection Center</title>
 
 <script>

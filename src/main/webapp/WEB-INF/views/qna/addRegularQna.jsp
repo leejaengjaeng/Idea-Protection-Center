@@ -10,6 +10,7 @@
 <meta name="_csrf_header" content="${_csrf.headerName}" />
 <link href="/resources/common/css/admin.css" rel="stylesheet">
 <link href="/resources/common/css/style.css" rel="stylesheet">
+<link rel="icon" href="/resources/image/pavicon.png">
 <title>Idea Protection Center</title>
 </head>
 <body style="background:#f9f9f9;">

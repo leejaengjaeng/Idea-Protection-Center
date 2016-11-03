@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <link href="/resources/common/css/index.css" rel="stylesheet">
 <link href="/resources/common/css/style.css" rel="stylesheet">
+<link rel="icon" href="/resources/image/pavicon.png">
 <link href="/resources/common/css/download.css" rel="stylesheet">
 <title>Idea Protection Center</title>
 </head>

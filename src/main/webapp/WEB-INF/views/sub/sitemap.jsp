@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="/resources/common/css/index.css">
 <link rel="stylesheet" href="/resources/common/css/style.css">
 <link rel="stylesheet" href="/resources/common/css/jquery-ui.min.css">
+<link rel="icon" href="/resources/image/pavicon.png">
 <title>SiteMap</title>
 </head>
 <body>

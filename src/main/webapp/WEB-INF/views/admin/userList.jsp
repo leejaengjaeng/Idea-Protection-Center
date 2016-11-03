@@ -11,7 +11,7 @@
 
 <link href="/resources/common/css/admin.css" rel="stylesheet">
 <link href="/resources/common/css/style.css" rel="stylesheet">
-
+<link rel="icon" href="/resources/image/pavicon.png">
 
 <title>IPC_AdminPage</title>
 <style>
