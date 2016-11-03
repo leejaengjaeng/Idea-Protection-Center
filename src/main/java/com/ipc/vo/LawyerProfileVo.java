@@ -31,5 +31,11 @@ public class LawyerProfileVo {
 	public void setMajor(String major) {
 		this.major = major;
 	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	
 }
