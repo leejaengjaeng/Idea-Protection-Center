@@ -15,4 +15,5 @@ public interface MainPageDao {
 	public List<mainPageVo> getPlMainPageList(int uid);
 	public void updateMainPageLid(HashMap<String,String> map);
 	public void updateMainPagerid(RegistrationPatentVo rv);
+	public void updateMainPageApplyDate(HashMap<String,String> apply_date_map);
 }

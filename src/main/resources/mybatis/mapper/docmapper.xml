@@ -8,6 +8,9 @@
 		select is_personal from documentforapply where rid=#{rid}
 	</select>
 	<select id="getVoByrid" parameterType="Integer" resultType="com.ipc.vo.ApplyDocVo">
-		select dfid,rid,patentscode,resident_registration,certificate,business_license,is_personal,smallsale from documentforapply where rid=#{rid}
+		select dfid,rid,patentscode,resident_registration,certificate,business_license,is_personal,smallsale,finalApplyDoc from documentforapply where rid=#{rid}
 	</select>
+	<update id="updateDocumentForApply" parameterType="Hashmap">
+		update documentforapply set finalApplyDoc=#{finalApplyDoc} where rid=#{rid}
+	</update>
 </mapper>

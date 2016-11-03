@@ -25,6 +25,7 @@ import com.ipc.dao.UpLoadDocDao;
 import com.ipc.vo.ApplyDocVo;
 import com.ipc.vo.RegistrationFileVo;
 import com.ipc.vo.RegistrationPatentVo;
+import com.ipc.vo.UpLoadDocVo;
 
 @Controller
 public class downLoadDoc {
@@ -52,7 +53,12 @@ public class downLoadDoc {
 //		else{
 //			model.addAttribute("first", "법인등기부등본");
 //		}
-		model.addAttribute("docVo",uploaddocmapper.getVoByRid(rid));
+		ApplyDocVo adv = docmapper.getVoByrid(rid);
+		model.addAttribute("docVo",adv);
+		
+		System.out.println(adv.getBusiness_license());
+		System.out.println(adv.getCertificate());
+		System.out.println(adv.getFinalApplyDoc());
 		return "apply/downLoadDoc";
 	}
 	

@@ -1,7 +1,11 @@
 package com.ipc.controller;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -20,6 +24,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ipc.dao.DocumentDao;
+import com.ipc.dao.MainPageDao;
 import com.ipc.dao.RegistrationDao;
 import com.ipc.service.UploadDocumentService;
 import com.ipc.vo.RegistrationPatentVo;
@@ -35,6 +41,11 @@ public class DocumentUpLoadController {
 	HttpSession session;
 	@Autowired
 	UploadDocumentService uploadService;
+	@Autowired
+	DocumentDao docmapper;
+	@Autowired
+	MainPageDao mainpagemapper;
+	
 	@RequestMapping(value="/inputFile",method=RequestMethod.POST)
 	public String inputFile(HttpServletRequest request) throws IOException{
 		MultipartHttpServletRequest multipartRequest =  (MultipartHttpServletRequest)request;  //�떎以묓뙆�씪 �뾽濡쒕뱶
@@ -77,15 +88,53 @@ public class DocumentUpLoadController {
 
 	@RequestMapping(value="/uploadfinalApplyDoc",method=RequestMethod.POST)
 	public String uploadfinalApplyDoc(HttpServletRequest request) throws IOException{
+		int year=Integer.parseInt(request.getParameter("year"));
+		int month=Integer.parseInt(request.getParameter("month"));
+		int day=Integer.parseInt(request.getParameter("day"));
+		int rid=(int) session.getAttribute("currentPosition");
+		HashMap<String,String> map = new HashMap<String,String>();
 		MultipartHttpServletRequest multipartRequest =  (MultipartHttpServletRequest)request;  //�떎以묓뙆�씪 �뾽濡쒕뱶
 		List<MultipartFile> apply_doc = multipartRequest.getFiles("finalApplyDoc");
 		String dirpath=request.getSession().getServletContext().getRealPath("resources/uploadimgs/apply_doc/");
-		String full_path=dirpath+apply_doc.get(0).getOriginalFilename();
+		String doc_name=apply_doc.get(0).getOriginalFilename();
+		String full_path=dirpath+doc_name;
 		byte fileData[] = apply_doc.get(0).getBytes();
-
+		
 		fos = new FileOutputStream(full_path);
 		
 		fos.write(fileData);
+		
+		map.put("rid", Integer.toString(rid));
+		map.put("finalApplyDoc", doc_name);
+		regDao.gotoApply(rid);
+		docmapper.updateDocumentForApply(map);
+		
+		regDao.upLoadApplyDoc(rid);
+		
+		Calendar applyDate = Calendar.getInstance();
+		applyDate.set(Calendar.YEAR,year);
+		applyDate.set(Calendar.MONTH,month-1);
+		applyDate.set(Calendar.DATE,day);
+		
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+		
+		String pre_apply_date = format1.format(applyDate.getTime());
+		applyDate.add(Calendar.DATE, 300);
+		String apply_date = format1.format(applyDate.getTime());
+		
+		HashMap<String,String> apply_date_map = new HashMap<String,String>();
+		apply_date_map.put("pre_apply_date", pre_apply_date);
+		apply_date_map.put("apply_date",apply_date);
+		apply_date_map.put("rid", Integer.toString(rid));
+		
+		regDao.updateApplyDate(apply_date_map);
+		mainpagemapper.updateMainPageApplyDate(apply_date_map);
+		
+		HashMap<String,String> upCon=new HashMap<String,String>();
+		upCon.put("rid", Integer.toString(regDao.getStartRidByRid(rid)));
+		upCon.put("ment","출원완료");
+		
+		regDao.updateRegCondition(upCon);
 		return "redirect:/";
 	}
 	

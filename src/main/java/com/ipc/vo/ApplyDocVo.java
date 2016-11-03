@@ -9,6 +9,13 @@ public class ApplyDocVo {
 	String business_license;
 	String is_personal;
 	String smallsale;
+	String finalApplyDoc;
+	public String getFinalApplyDoc() {
+		return finalApplyDoc;
+	}
+	public void setFinalApplyDoc(String finalApplyDoc) {
+		this.finalApplyDoc = finalApplyDoc;
+	}
 	public int getDfid() {
 		return dfid;
 	}
