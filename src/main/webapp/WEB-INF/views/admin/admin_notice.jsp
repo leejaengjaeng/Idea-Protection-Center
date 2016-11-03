@@ -65,9 +65,6 @@ function checkAdmin(){
 				   		<td>${list.getDate()}</td>
 				   	</tr>
 				</c:forEach>
-				
-				
-		<!-- TODO : 페이지 네이션 디자인 고쳐줭 -->
 				<a href="/IPC_admin/admin_notice/${leftArrow}"> < </a>
 				<c:forEach items="${pages}" var="page">
 					<c:choose>
@@ -80,8 +77,6 @@ function checkAdmin(){
 					</c:choose>
 			  	</c:forEach>
 				<a href="/IPC_admin/admin_notice/${rightArrow}"> > </a>
-		<!-- TODO : End 페이지 네이션 디자인 고쳐줭 -->
-
             </table>
             <button onclick="location.href='/admin_notice_registration'" id="btn_add_notice">등록</button>            
         </article>

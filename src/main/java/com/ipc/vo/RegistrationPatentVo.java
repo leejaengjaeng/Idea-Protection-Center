@@ -31,6 +31,7 @@ public class RegistrationPatentVo {
 	String re_picture_explain;
 	String apply_date;
 	String pre_apply_date;
+	
 	public String getApply_date() {
 		return apply_date;
 	}
@@ -188,6 +189,7 @@ public class RegistrationPatentVo {
 	public void setRe_effect(String re_effect) {
 		this.re_effect = re_effect;
 	}
+	
 	public String getRe_core_element() {
 		return re_core_element;
 	}

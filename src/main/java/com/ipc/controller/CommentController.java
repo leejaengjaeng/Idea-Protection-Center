@@ -84,13 +84,14 @@ public class CommentController {
 	public String detail(@PathVariable int start_rid,Model model)
 	{
 		//접근한 경로에 대한 권한 확인
-		RegistrationPatentVo assosiatedMemberId= regDao.getAssociatedMembersByRid(start_rid);		
+		RegistrationPatentVo assosiatedMemberId = regDao.getAssociatedMembersByRid(start_rid);		
 
 		Object isAuthenticated = session.getAttribute("currentUser");
 		List<TypeOfInventVo> tv = typemapper.getTypeList();
 		model.addAttribute("typeList", tv);
 		if(assosiatedMemberId != null && isAuthenticated != null )
 		{
+
 			int inventorId = assosiatedMemberId.getUid();
 			int plId = assosiatedMemberId.getLid();
 			int userId = ((userVo)isAuthenticated).getUid();
@@ -106,15 +107,14 @@ public class CommentController {
 			model.addAttribute("processList",processList);
 			model.addAttribute("lastRid",lastRid);
 			model.addAttribute("start_iscomplete",start_iscomplete);
-			
+
 			//발명가가 보는 경우
 			if(inventorId==userId) 
 			{
 				//getRegistrationByRidOrPrevRid(prevRid) + getInventorModifyByRid
-				
 				RegistrationPatentVo currentAnswer = regDao.getInventorModifyByRid(lastRid);
 				RegistrationPatentVo beforeReg = regDao.getRegistrationByRidOrPrevRid(currentAnswer.getPrev_rid());
-				
+					
 				model.addAttribute("user","inventor");
 				model.addAttribute("beforeReg",beforeReg);
 				model.addAttribute("currentAnswer", currentAnswer);
@@ -131,12 +131,10 @@ public class CommentController {
 			if(plId==userId)
 			{
 				//getRegistrationByRidOrPrevRid(rid) + getPrevPlCommentByPrevRid
-				
 				RegistrationPatentVo currentAnswer = regDao.getRegistrationByRidOrPrevRid(lastRid);
 				RegistrationPatentVo beforeComment = regDao.getPrevPlCommentByPrevRid(currentAnswer.getPrev_rid());
 					
 				model.addAttribute("user","pl");
-				
 				model.addAttribute("beforeComment", beforeComment);
 				model.addAttribute("currentAnswer", currentAnswer);
 				
@@ -144,7 +142,7 @@ public class CommentController {
 					model.addAttribute("isFirst","true");
 				else
 					model.addAttribute("isFirst","false");
-				
+			
 				return "comment/comment_pl";
 			}
 		}
@@ -169,7 +167,6 @@ public class CommentController {
 			session.setAttribute("currentPosition", rid);
 			
 			Map<String,Object> retVal = new HashMap<String,Object>();
-			
 			
 			//발명가가 보는 경우
 			if(inventorId==userId) 
