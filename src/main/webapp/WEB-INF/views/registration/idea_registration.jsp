@@ -38,7 +38,7 @@ function loadTempIdea(rid){
    var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
    var data = {};
    var headers = {};
-   
+   var optcnt;
    data[csrfParameter] = csrfToken;
    data["rid"]=rid;
    headers[csrfHeader] = csrfToken;
@@ -49,7 +49,15 @@ function loadTempIdea(rid){
        headers: headers,
        data : data,
        success: function(data) {
-          document.getElementById("idea_kind").value=data.typeOfInvent;
+    	   	optcnt = document.getElementById("selectBox").options.length;
+    	   	
+    	   	for(i =0 ; i < optcnt; i++){
+	    	     if(document.getElementById("selectBox").options[i].value == data.typeOfInvent) {
+	    	          document.getElementById("selectBox").options[i].selected = true;
+	    	          break;
+	    	    }
+	    	}
+         	document.getElementById("idea_kind").value=data.typeOfInvent;
             document.getElementById("idea_title").value=data.title;
             document.getElementById("small_cont").value=data.summary;
             document.getElementById("why_cont").value=data.whyInvent;
@@ -245,7 +253,7 @@ function changeType(value){
 			<div class="full">
 				<div class="hiding_tab" style="position: relative;">
 					<div class="arrow-up ee"></div>
-					<select onChange=changeType(this.value);>
+					<select onChange=changeType(this.value); id="selectBox">
 						<option>해당 산업에 맞는 카테고리를 선택해 주세요</option>
 						<c:forEach items="${typeList}" var="list" varStatus="status">
 							<option>${list.getType()}</option>

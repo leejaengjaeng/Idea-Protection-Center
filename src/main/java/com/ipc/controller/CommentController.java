@@ -363,7 +363,6 @@ public class CommentController {
 	@RequestMapping(value="/commentFileSave",method=RequestMethod.POST)
 	//@ResponseBody
 	public String commentFileSave(HttpServletRequest request){
-		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaas");
 		String userID=request.getParameter("userID_file");
 		String start_rid_file=request.getParameter("start_rid_file");
 		MultipartHttpServletRequest multipartRequest =  (MultipartHttpServletRequest)request;  //다중파일 업로드
