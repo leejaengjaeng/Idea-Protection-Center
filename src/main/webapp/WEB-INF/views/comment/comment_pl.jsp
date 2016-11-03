@@ -21,7 +21,7 @@
 }
 </style>
 <script>
-$(document).ready(function()
+/*$(document).ready(function()
       {
          if("${isFirst}" == "true")
          {
@@ -121,7 +121,7 @@ $(document).ready(function()
       		}
       	}
       });
-      
+      */
       </script>
 <style>
 	.tab_contents>textarea{
@@ -175,404 +175,132 @@ $(document).ready(function()
 					</c:forEach>
 				</table>
 			</article>
-			<article>
-				<input id="currentPosition" type="hidden"
-					value="${currentAnswer.getRid()}" />
-				<div class="hiding_tab" style="position: relative; margin-bottom:20px;">
-					<select onChange=changeType(this.value); id="selectBox">
-						<option>-</option>
-						<c:forEach items="${typeList}" var="list" varStatus="status">
-							<option>${list.getType()}</option>
-						</c:forEach>
-					</select>
+			<article class="nt" style="display:block;">
+		<div class="full">
+			<div class="hiding_tab" style="position: relative; width: 100%;">
+				<div class="arrow-up ee"></div>
+				<form name="regisForm" action="/registration/inputidea" method="POST"
+				enctype="multipart/form-data"
+				onsubmit="return formSubmit(document.regisForm.imgs);">
+				<input type="hidden" name="${_csrf.parameterName}"
+				value="${_csrf.token}" /> 
+				<input type="hidden" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}" >				
+				<select onChange=changeType(this.value);>
+					<option>해당 산업에 맞는 카테고리를 선택해 주세요</option>
+				</select> 
+				<input type="hidden" value="-" name="typeOfInvent" id="idea_kind">
+			</div>
+		</div>
+		<div class="tab_box">
+			<div class="b0" style="background-color: #004a80; color: white;">
+				<span>제목</span>
+			</div>
+			<div class="b1">
+				<span>요약</span>
+			</div>
+			<div class="b2">
+				<span>필요이유</span>
+			</div>
+			<div class="b3">
+				<span>기존제품설명<br>및 문제점
+				</span>
+			</div>
+			<div class="b4">
+				<span>문제해결방법</span>
+			</div>
+			<div class="b5">
+				<span>발명의 효과</span>
+			</div>
+			<div class="b6">
+				<span>핵심구성요소</span>
+			</div>
+			<div class="b7">
+				<span>권리를 보장받고자<br>하는 내용
+				</span>
+			</div>
+			<div class="b8">
+				<span>도면첨부</span>
+			</div>
+			<div class="b9">
+				<span>도면에 대한 설명</span>
+			</div>
+		</div>
+		<div class="area_box a0" style="display: block;">
+			<div class="plc">
+				<textarea id="idea_title" name="title" class="half disabled inventor" placeholder="발명가" disabled>${beforeReg.getTitle()}</textarea>
+				<textarea id="idea_title" name="title" class="half disabled pl" placeholder="변리사" disabled>${beforeReg.getRe_title()}</textarea>
+				<textarea id="idea_title" name="title" class="disabled current" placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;">${currentAnswer.getTitle()}</textarea>
+			</div>
+		</div>
+		<div class="area_box a1">
+			<div class="plc">
+				<textarea id="idea_title" name="title" class="half disabled inventor" placeholder="발명가" disabled>${beforeReg.getTitle()}</textarea>
+				<textarea id="idea_title" name="title" class="half disabled pl" placeholder="변리사" disabled>${beforeReg.getRe_title()}</textarea>
+				<textarea id="idea_title" name="title" class="disabled current" placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;">${currentAnswer.getTitle()}</textarea>
+			</div>
+		</div>
+		<div class="area_box a2">
+			<div class="plc">
+				<textarea id="idea_title" name="title" class="half disabled inventor" placeholder="발명가" disabled>${beforeReg.getTitle()}</textarea>
+				<textarea id="idea_title" name="title" class="half disabled pl" placeholder="변리사" disabled>${beforeReg.getRe_title()}</textarea>
+				<textarea id="idea_title" name="title" class="disabled current" placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;">${currentAnswer.getTitle()}</textarea>
+			</div>
+		</div>
+		<div class="area_box a3">
+			<div class="plc">
+				<textarea id="idea_title" name="title" class="half disabled inventor" placeholder="발명가" disabled>${beforeReg.getTitle()}</textarea>
+				<textarea id="idea_title" name="title" class="half disabled pl" placeholder="변리사" disabled>${beforeReg.getRe_title()}</textarea>
+				<textarea id="idea_title" name="title" class="disabled current" placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;">${currentAnswer.getTitle()}</textarea>
+			</div>
+		</div>
+		<div class="area_box a4">
+			<div class="plc">
+				<textarea id="idea_title" name="title" class="half disabled inventor" placeholder="발명가" disabled>${beforeReg.getTitle()}</textarea>
+				<textarea id="idea_title" name="title" class="half disabled pl" placeholder="변리사" disabled>${beforeReg.getRe_title()}</textarea>
+				<textarea id="idea_title" name="title" class="disabled current" placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;">${currentAnswer.getTitle()}</textarea>
+			</div>
+		</div>
+		<div class="area_box a5">
+			<div class="plc">
+				<textarea id="idea_title" name="title" class="half disabled inventor" placeholder="발명가" disabled>${beforeReg.getTitle()}</textarea>
+				<textarea id="idea_title" name="title" class="half disabled pl" placeholder="변리사" disabled>${beforeReg.getRe_title()}</textarea>
+				<textarea id="idea_title" name="title" class="disabled current" placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;">${currentAnswer.getTitle()}</textarea>
+			</div>
+		</div>
+		<div class="area_box a6">
+			<div class="plc">
+				<textarea id="idea_title" name="title" class="half disabled inventor" placeholder="발명가" disabled>${beforeReg.getTitle()}</textarea>
+				<textarea id="idea_title" name="title" class="half disabled pl" placeholder="변리사" disabled>${beforeReg.getRe_title()}</textarea>
+				<textarea id="idea_title" name="title" class="disabled current" placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;">${currentAnswer.getTitle()}</textarea>
+			</div>
+		</div>
+		<div class="area_box a7">
+			<div class="plc">
+				<textarea id="idea_title" name="title" class="half disabled inventor" placeholder="발명가" disabled>${beforeReg.getTitle()}</textarea>
+				<textarea id="idea_title" name="title" class="half disabled pl" placeholder="변리사" disabled>${beforeReg.getRe_title()}</textarea>
+				<textarea id="idea_title" name="title" class="disabled current" placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;">${currentAnswer.getTitle()}</textarea>
+			</div>
+		</div>
+		<div class="area_box a8">
+			<div>
+				<div class="plc">
+					
 				</div>
-				<div class="full">
-					<div class="hiding_tab">
-						<div class="tab_title">
-							<span>제목</span>
-							<div class="arrow-up"></div>
-						</div>
-						<div class="tab_contents before_cmt" id="BeforeCommentTitle">
-							<div class="img_cover">
-								<img src="/resources/image/inventor_profile.jpg" alt="123">
-							</div>
-							<input type="text" id="idea_title" name="title" required
-								placeholder="45자 이내로 입력해주세요." class="disabled" disabled
-								value="${beforeComment.getRe_title()}">
-						</div>
-						<div class="tab_comment current_cmt">
-							<div class="tab_in" id="CurrentCommentTitle">
-								<div class="img_cover">
-									<img src="/resources/image/val1.png" alt="123">
-								</div>
-								<textarea class="disabled" disabled>${currentAnswer.getTitle()}</textarea>
-							</div>
-						</div>
-						<div class="tab_recomment">
-							<div class="tab_in" id="AfterCommentTitle">
-								<div class="img_cover">
-									<img src="/resources/image/inventor_profile.jpg" alt="123">
-								</div>
-								<textarea class="disabled" disabled>${currentAnswer.getRe_title()}</textarea>
-							</div>
-						</div>
-					</div>
-					<nav class="nav">
-						<button type="button">작성 예시</button>
-						<div class="modal">
-							<p>
-								발명의 내용을 용이하게 파악할 수<br>  있도록 다음 내용에 관한 사항을<br> 기재합니다.
-							</p>
-						</div>
-					</nav>
-				</div>
-				<div class="full">
-					<div class="hiding_tab">
-						<div class="tab_title">
-							<span>요약</span>
-							<div class="arrow-up"></div>
-						</div>
-						<div class="tab_contents before_cmt" id="BeforeCommentSummary">
-							<div class="img_cover">
-								<img src="/resources/image/inventor_profile.jpg" alt="123">
-							</div>
-							<textarea name="summary" class="disabled" disabled>${beforeComment.getRe_summary()}</textarea>
-						</div>
-						<div class="tab_comment current_cmt">
-							<div class="tab_in" id="CurrentrCommentSummary">
-								<div class="img_cover">
-									<img src="/resources/image/val1.png" alt="123">
-								</div>
-								<textarea class="disabled" disabled>${currentAnswer.getSummary()}</textarea>
-							</div>
-						</div>
-						<div class="tab_recomment">
-							<div class="tab_in" id="AfterCommentSummary">
-								<div class="img_cover">
-									<img src="/resources/image/inventor_profile.jpg" alt="123">
-								</div>
-								<textarea class="disabled" disabled>${currentAnswer.getRe_summary()}</textarea>
-							</div>
-						</div>
-					</div>
-					<nav class="nav">
-						<button type="button">작성 예시</button>
-						<div class="modal">
-							<p>
-								발명의 내용을 용이하게 파악할 수<br>  있도록 다음 내용에 관한 사항을<br> 기재합니다.
-							</p>
-						</div>
-					</nav>
-				</div>
-				<div class="full">
-					<div class="hiding_tab">
-						<div class="tab_title">
-							<span>필요이유</span>
-							<div class="arrow-up"></div>
-						</div>
-						<div class="tab_contents before_cmt" id="BeforeCommentWhyInvent">
-							<div class="img_cover">
-								<img src="/resources/image/inventor_profile.jpg" alt="123">
-							</div>
-							<textarea name="whyInvent" class="disabled" disabled>${beforeComment.getRe_whyInvent()}</textarea>
-						</div>
-						<div class="tab_comment current_cmt">
-							<div class="tab_in" id="CurrentCommentWhyInvent">
-								<div class="img_cover">
-									<img src="/resources/image/val1.png" alt="123">
-								</div>
-								<textarea class="disabled" disabled>${currentAnswer.getWhyInvent()}</textarea>
-							</div>
-						</div>
-						<div class="tab_recomment">
-							<div class="tab_in" id="AfterCommentWhyInvent">
-								<div class="img_cover">
-									<img src="/resources/image/inventor_profile.jpg" alt="123">
-								</div>
-								<textarea class="disabled" disabled>${currentAnswer.getRe_whyInvent()}</textarea>
-							</div>
-						</div>
-					</div>
-					<nav class="nav">
-						<button type="button">작성 예시</button>
-						<div class="modal">
-							<p>
-								발명의 내용을 용이하게 파악할 수<br>  있도록 다음 내용에 관한 사항을<br> 기재합니다.
-							</p>
-						</div>
-					</nav>
-				</div>
-				<div class="full">
-					<div class="hiding_tab">
-						<div class="tab_title" id="BeforeCommentProblem">
-							<span>기존제품설명 및 문제점</span>
-							<div class="arrow-up"></div>
-						</div>
-						<div class="tab_contents before_cmt">
-							<div class="img_cover">
-								<img src="/resources/image/inventor_profile.jpg" alt="123">
-							</div>
-							<textarea name="problem" class="disabled" disabled>${beforeComment.getRe_problem()}</textarea>
-						</div>
-						<div class="tab_comment current_cmt">
-							<div class="tab_in" id="CurrentCommentProblem">
-								<div class="img_cover">
-									<img src="/resources/image/val1.png" alt="123">
-								</div>
-								<textarea class="disabled" disabled>${currentAnswer.getProblem()}</textarea>
-							</div>
-						</div>
-						<div class="tab_recomment">
-							<div class="tab_in" id="AfterCommentProblem">
-								<div class="img_cover">
-									<img src="/resources/image/inventor_profile.jpg" alt="123">
-								</div>
-								<textarea class="disabled" disabled>${currentAnswer.getRe_problem()}</textarea>
-							</div>
-						</div>
-					</div>
-					<nav class="nav">
-						<button type="button">작성 예시</button>
-						<div class="modal">
-							<p>
-								발명의 내용을 용이하게 파악할 수<br>  있도록 다음 내용에 관한 사항을<br> 기재합니다.
-							</p>
-						</div>
-					</nav>
-				</div>
-				<div class="full">
-					<div class="hiding_tab">
-						<div class="tab_title">
-							<span>문제해결방법</span>
-							<div class="arrow-up"></div>
-						</div>
-						<div class="tab_contents before_cmt" id="BeforeCommentSolution">
-							<div class="img_cover">
-								<img src="/resources/image/inventor_profile.jpg" alt="123">
-							</div>
-							<textarea name="solution" class="disabled" disabled>${beforeComment.getRe_solution()}</textarea>
-						</div>
-						<div class="tab_comment current_cmt">
-							<div class="tab_in" id="CurrentCommentSolution">
-								<div class="img_cover">
-									<img src="/resources/image/val1.png" alt="123">
-								</div>
-								<textarea class="disabled" disabled>${currentAnswer.getSolution()}</textarea>
-							</div>
-						</div>
-						<div class="tab_recomment">
-							<div class="tab_in" id="AfterCommentSolution">
-								<div class="img_cover">
-									<img src="/resources/image/inventor_profile.jpg" alt="123">
-								</div>
-								<textarea class="disabled" disabled>${currentAnswer.getRe_solution()}</textarea>
-							</div>
-						</div>
-					</div>
-					<nav class="nav">
-						<button type="button">작성 예시</button>
-						<div class="modal">
-							<p>
-								발명의 내용을 용이하게 파악할 수<br>  있도록 다음 내용에 관한 사항을<br> 기재합니다.
-							</p>
-						</div>
-					</nav>
-				</div>
-				<div class="full">
-					<div class="hiding_tab">
-						<div class="tab_title">
-							<span>발명의효과</span>
-							<div class="arrow-up"></div>
-						</div>
-						<div class="tab_contents before_cmt" id="BeforeCommentEffect">
-							<div class="img_cover">
-								<img src="/resources/image/inventor_profile.jpg" alt="123">
-							</div>
-							<textarea name="effect" class="disabled" disabled>${beforeComment.getRe_effect()}</textarea>
-						</div>
-						<div class="tab_comment current_cmt">
-							<div class="tab_in" id="CurrentCommentEffect">
-								<div class="img_cover">
-									<img src="/resources/image/val1.png" alt="123">
-								</div>
-								<textarea class="disabled" disabled>${currentAnswer.getEffect()}</textarea>
-							</div>
-						</div>
-						<div class="tab_recomment">
-							<div class="tab_in" id="AfterCommentEffect">
-								<div class="img_cover">
-									<img src="/resources/image/inventor_profile.jpg" alt="123">
-								</div>
-								<textarea class="disabled" disabled>${currentAnswer.getRe_effect()}</textarea>
-							</div>
-						</div>
-					</div>
-					<nav class="nav">
-						<button type="button">작성 예시</button>
-						<div class="modal">
-							<p>
-								발명의 내용을 용이하게 파악할 수<br>  있도록 다음 내용에 관한 사항을<br> 기재합니다.
-							</p>
-						</div>
-					</nav>
-				</div>
-				<div class="full">
-					<div class="hiding_tab">
-						<div class="tab_title">
-							<span>핵심구성요소</span>
-							<div class="arrow-up"></div>
-						</div>
-						<div class="tab_contents before_cmt"
-							id="BeforeCommentCore_element">
-							<div class="img_cover">
-								<img src="/resources/image/inventor_profile.jpg" alt="123">
-							</div>
-							<textarea name="core_element" class="disabled" disabled>${beforeComment.getRe_core_element()}</textarea>
-						</div>
-						<div class="tab_comment current_cmt">
-							<div class="tab_in" id="CurrentCommentCore_element">
-								<div class="img_cover">
-									<img src="/resources/image/val1.png" alt="123">
-								</div>
-								<textarea class="disabled" disabled>${currentAnswer.getCore_element()}</textarea>
-							</div>
-						</div>
-						<div class="tab_recomment">
-
-							<div class="tab_in" id="AfterCommentCore_Element">
-								<div class="img_cover">
-									<img src="/resources/image/inventor_profile.jpg" alt="123">
-								</div>
-								<textarea class="disabled" disabled>${currentAnswer.getRe_core_element()}</textarea>
-							</div>
-						</div>
-					</div>
-					<nav class="nav">
-						<button type="button">작성 예시</button>
-						<div class="modal">
-							<p>
-								발명의 내용을 용이하게 파악할 수<br>  있도록 다음 내용에 관한 사항을<br> 기재합니다.
-							</p>
-						</div>
-					</nav>
-				</div>
-				<div class="full">
-					<div class="hiding_tab">
-						<div class="tab_title">
-							<span>권리를 보장 받고자 하는 내용</span>
-							<div class="arrow-up"></div>
-						</div>
-						<div class="tab_contents before_cmt"
-							id="BeforeCommentHope_content">
-							<div class="img_cover">
-								<img src="/resources/image/inventor_profile.jpg" alt="123">
-							</div>
-							<textarea name="hope_content" class="disabled" disabled>${beforeComment.getRe_hope_content()}</textarea>
-						</div>
-						<div class="tab_comment current_cmt">
-							<div class="tab_in" id="CurrentCommentHope_content">
-								<div class="img_cover">
-									<img src="/resources/image/val1.png" alt="123">
-								</div>
-								<textarea class="disabled" disabled>${currentAnswer.getHope_content()}</textarea>
-							</div>
-						</div>
-						<div class="tab_recomment">
-							<div class="tab_in" id="AfterCommentHope_content">
-								<div class="img_cover">
-									<img src="/resources/image/inventor_profile.jpg" alt="123">
-								</div>
-								<textarea class="disabled" disabled>${currentAnswer.getRe_hope_content()}</textarea>
-							</div>
-						</div>
-					</div>
-					<nav class="nav">
-						<button type="button">작성 예시</button>
-						<div class="modal">
-							<p>
-								발명의 내용을 용이하게 파악할 수<br>  있도록 다음 내용에 관한 사항을<br> 기재합니다.
-							</p>
-						</div>
-					</nav>
-				</div>
-				<div class="full">
-					<div class="hiding_tab">
-						<div class="tab_title">
-							<span>도면첨부</span>
-							<div class="arrow-up"></div>
-						</div>
-						<div class="tab_contents before_cmt">
-							<form id="commentForm" name="commentForm" action="/commentFileSave" method="post" enctype="multipart/form-data">
-								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
-								<input type="hidden" name="userID_file" value="${sessionScope.currentUser.getId()}">
-								<input type="hidden" name="start_rid_file" value="${start_rid}">
-								
-							</form>
-						</div>
-						<div class="tab_imgs">
-							<c:forEach items="${imgs}" var="list" varStatus="status">
-								<div onclick="location.href='${list.getFile_path()}'"
-									id="id${list.getRfid()}">
-									<img src="${list.getFile_path()}">
-								</div>
-							</c:forEach>
-						</div>
-					</div>
-					<nav class="nav">
-						<button type="button">작성 예시</button>
-						<div class="modal">
-							<p>
-								발명의 내용을 용이하게 파악할 수<br>  있도록 다음 내용에 관한 사항을<br> 기재합니다.
-							</p>
-						</div>
-					</nav>
-				</div>
-				<div class="full">
-					<div class="hiding_tab">
-						<div class="tab_title">
-							<span>도면에 대한 설명</span>
-							<div class="arrow-up"></div>
-						</div>
-						<div class="tab_contents before_cmt"
-							id="BeforeCommentPicture_explain">
-							<div class="img_cover">
-								<img src="/resources/image/inventor_profile.jpg" alt="123">
-							</div>
-							<textarea name="picture_explain" class="disabled" disabled>${beforeComment.getRe_picture_explain()}</textarea>
-						</div>
-						<div class="tab_comment current_cmt">
-							<div class="tab_in" id="CurrentCommentPicture_explain">
-								<div class="img_cover">
-									<img src="/resources/image/val1.png" alt="123">
-								</div>
-								<textarea class="disabled" disabled>${currentAnswer.getPicture_explain()}</textarea>
-							</div>
-						</div>
-						<div class="tab_recomment">
-							<div class="tab_in" id="AfterCommentPicture_explain">
-								<div class="img_cover">
-									<img src="/resources/image/inventor_profile.jpg" alt="123">
-								</div>
-								<textarea class="disabled" disabled>${currentAnswer.getRe_picture_explain()}</textarea>
-							</div>
-						</div>
-					</div>
-					<nav class="nav">
-						<button type="button">작성 예시</button>
-						<div class="modal">
-							<p>
-								발명의 내용을 용이하게 파악할 수<br>  있도록 다음 내용에 관한 사항을<br> 기재합니다.
-							</p>
-						</div>
-					</nav>
-				</div>
-				<div class="fin">
-					<button type="button" id="tmpSave">임시저장</button>
-					<button type="button" id="agree">제출</button>
-					<button type="button" id="gogogo">출원하기</button>
-				</div>
-				
-			</article>
+			</div>
+		</div>
+		<div class="area_box a9">
+			<div class="plc">
+				<textarea id="idea_title" name="title" class="half disabled inventor" placeholder="발명가" disabled>${beforeReg.getTitle()}</textarea>
+				<textarea id="idea_title" name="title" class="half disabled pl" placeholder="변리사" disabled>${beforeReg.getRe_title()}</textarea>
+				<textarea id="idea_title" name="title" class="disabled current" placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;">${currentAnswer.getTitle()}</textarea>
+			</div>
+		</div>
+		<div class="fin">
+			<button type="button">임시저장</button>
+			<input type="submit">
+		</div>
+		</form>
+		</article>
 		</section>
 	</div>
 	<c:import url="/WEB-INF/views/import/footer.jsp" />
@@ -603,6 +331,53 @@ $(".tab_title").click(function(){
         $(this).children(".arrow-up").stop().css({'transform' : 'rotate(0deg)','border-bottom-color':'#0fa4d4'}).addClass("tab");
     }
 });
+
+$(".tab_box div").click(function(){       
+    $(this).addClass("sel").siblings().removeClass("sel");
+    $(this).eq(0).css({backgroundColor:"#004a80",color:"#fff"}).siblings(0).css({backgroundColor:"#fff",color:"#464646"});                        
+});    
+$(".b0").click(function(){
+    $(".a0").css("display","block");
+    $(".a1,.a2,.a3,.a4,.a5,.a6,.a7,.a8,.a9").css("display","none");
+});
+$(".b1").click(function(){
+    $(".a1").css("display","block");
+    $(".a0,.a2,.a3,.a4,.a5,.a6,.a7,.a8,.a9").css("display","none");
+});
+$(".b2").click(function(){
+    $(".a2").css("display","block");
+    $(".a0,.a1,.a3,.a4,.a5,.a6,.a7,.a8,.a9").css("display","none");
+});
+$(".b3").click(function(){
+    $(".a3").css("display","block");
+    $(".a0,.a2,.a1,.a4,.a5,.a6,.a7,.a8,.a9").css("display","none");
+});
+$(".b4").click(function(){
+    $(".a4").css("display","block");
+    $(".a0,.a2,.a3,.a1,.a5,.a6,.a7,.a8,.a9").css("display","none");
+});
+$(".b5").click(function(){
+    $(".a5").css("display","block");
+    $(".a0,.a2,.a3,.a4,.a1,.a6,.a7,.a8,.a9").css("display","none");
+});
+$(".b6").click(function(){
+    $(".a6").css("display","block");
+    $(".a0,.a2,.a3,.a4,.a5,.a1,.a7,.a8,.a9").css("display","none");
+});
+$(".b7").click(function(){
+    $(".a7").css("display","block");
+    $(".a0,.a2,.a3,.a4,.a5,.a6,.a1,.a8,.a9").css("display","none");
+});
+$(".b8").click(function(){
+    $(".a8").css("display","block");
+    $(".a0,.a2,.a3,.a4,.a5,.a6,.a7,.a1,.a9").css("display","none");
+});
+$(".b9").click(function(){
+    $(".a9").css("display","block");
+    $(".a0,.a2,.a3,.a4,.a5,.a6,.a7,.a8,.a1").css("display","none");
+});
+
+
 </script>
 </body>
 </html>
