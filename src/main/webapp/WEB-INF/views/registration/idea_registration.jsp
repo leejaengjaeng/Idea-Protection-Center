@@ -60,7 +60,7 @@
 		</h1>
 		<span>아이디어 보호센터에서 손쉽게 특허를 등록하세요.</span>		
 		 </article> 
-		<article class="nt">
+		<article class="nt" style="display:block;">
 		<div class="full">
 			<div class="hiding_tab" style="position: relative; width: 100%;">
 				<div class="arrow-up ee"></div>

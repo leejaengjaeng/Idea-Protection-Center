@@ -428,7 +428,7 @@
   color: white;
 }
 .plc .half {
-  width: 50%;
+  width: 100%;
   margin: 0;
   float: left;
 }
@@ -436,8 +436,43 @@
   margin-left: 0;
   width: 100%;
 }
-.plc .inventor {
+.plc img {
+  width: 200px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.plc .halfframe {
+  width: 50%;
+  float: left;
   border-right: 1px solid #fff;
+  background: #004a80;
+}
+.plc .halfframe h1 {
+  border-bottom: none;
+  margin-bottom: 0;
+  margin-top: 10px;
+  margin-left: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff ;
+}
+.plc .titframe {
+  width: 100%;
+  float: left;
+  background: #004a80;
+}
+.plc .titframe h1 {
+  border-bottom: none;
+  margin-bottom: 0;
+  margin-top: 10px;
+  margin-left: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff ;
+}
+.plc textarea {
+  width: 100%;
+  margin: 0;
 }
 #inputFileDiv button {
   margin-bottom: 20px;

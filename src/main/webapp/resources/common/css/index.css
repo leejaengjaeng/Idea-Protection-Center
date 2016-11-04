@@ -936,5 +936,5 @@ footer #footer_fill #footer_wrap #footer_right span {
   background: #b9b6b6 !important;
 }
 #header_benner {
-  display: none !important;
+  display: none;
 }
