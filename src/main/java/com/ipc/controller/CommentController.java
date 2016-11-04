@@ -439,6 +439,11 @@ public class CommentController {
 		upCon.put("rid", stRid);
 		upCon.put("ment","최종확인중");
 		
+		RegistrationPatentVo rvo = regDao.getRegistrationByRidOrPrevRid(Integer.parseInt(rid));
+		rvo.setRegistration_date(ss.getToday(0));
+		mService.editCompleteInventor(rvo);
+		mService.editCompletePL(rvo);
+		
 		regDao.updateRegCondition(upCon);
 		
 		regDao.lastConfirm(Integer.parseInt(rid));
@@ -456,6 +461,11 @@ public class CommentController {
 		String stRid=Integer.toString(regDao.getStartRidByRid(Integer.parseInt(rid)));
 		
 		session.setAttribute("start_rid", stRid);
+		
+		RegistrationPatentVo rvo = regDao.getRegistrationByRidOrPrevRid(Integer.parseInt(rid));
+		rvo.setRegistration_date(ss.getToday(0));
+		mService.uploadDocumentInventor(rvo);
+		mService.assignPL(rvo);
 		
 		upCon.put("rid", stRid);
 		upCon.put("ment","서류업로드중");

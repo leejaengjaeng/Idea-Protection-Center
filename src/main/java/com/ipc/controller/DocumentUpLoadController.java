@@ -27,6 +27,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ipc.dao.DocumentDao;
 import com.ipc.dao.MainPageDao;
 import com.ipc.dao.RegistrationDao;
+import com.ipc.service.MessageService;
+import com.ipc.service.RegistrationService;
+import com.ipc.service.SignUpService;
 import com.ipc.service.UploadDocumentService;
 import com.ipc.vo.RegistrationPatentVo;
 import com.ipc.vo.UpLoadDocVo;
@@ -45,6 +48,10 @@ public class DocumentUpLoadController {
 	DocumentDao docmapper;
 	@Autowired
 	MainPageDao mainpagemapper;
+	@Autowired
+	MessageService mService;
+	@Autowired
+	RegistrationService ss;
 	
 	@RequestMapping(value="/inputFile",method=RequestMethod.POST)
 	public String inputFile(HttpServletRequest request) throws IOException{
@@ -72,6 +79,12 @@ public class DocumentUpLoadController {
 		String root_path=request.getSession().getServletContext().getRealPath("/");
 		
 		uploadService.saveFile(map, root_path,upv);
+		
+		RegistrationPatentVo rvo = regDao.getRegistrationByRidOrPrevRid(Integer.parseInt(request.getParameter("rid")));
+		rvo.setRegistration_date(ss.getToday(0));
+		mService.applyingInventor(rvo);
+		mService.applyingPL(rvo);
+		
 		return "redirect:/";
 	}
 	@RequestMapping(value="/uploadFile")
