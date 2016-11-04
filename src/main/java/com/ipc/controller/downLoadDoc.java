@@ -166,9 +166,9 @@ public class downLoadDoc {
 		return "apply/getApplyDoc";
 	}
 	
-	@RequestMapping("/getDoc")
-	public ModelAndView getDoc(HttpServletRequest request){
-		int rid=(int)session.getAttribute("currentPosition");
+	@RequestMapping("/getDoc/{start_rid}")
+	public ModelAndView getDoc(HttpServletRequest request,@PathVariable int start_rid){
+		int rid=regismapper.getLastRidInProcessList(start_rid);
 		String root_path=request.getSession().getServletContext().getRealPath("resources/uploadimgs/apply_doc/");
 		ApplyDocVo adv = docDao.getVoByrid(rid);
 		String applyDocName=adv.getFinalApplyDoc();

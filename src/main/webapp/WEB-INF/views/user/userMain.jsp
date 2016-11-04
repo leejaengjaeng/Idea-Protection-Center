@@ -15,17 +15,7 @@
 <link rel="stylesheet" href="/resources/common/css/style.css">
 <link rel="stylesheet" href="/resources/common/css/inventor.css">
 <link rel="icon" href="/resources/image/pavicon.png">
-<script>
-//js파일 밖으로 빼기 
-$(document).ready(function()
-{
-	$('.ideaList').on("click",(function()
-	{
-		var r = $(this).children('input').attr('value');
-		location.href="/detail/"+r;
-	}));
-});
-</script>
+
 </head>
 <body>
 <c:import url="/WEB-INF/views/import/header.jsp"/>
@@ -155,20 +145,20 @@ $(document).ready(function()
                         <th>비고</th>
                     </tr>
                    	<c:forEach var="process" items="${processList}" varStatus="status">
-						<tr class="ideaList">
-							<input type="hidden" value="${process.getRid()}"/>
+						<tr>
+							<td style="display: none;"><input type="hidden" value="${process.getRid()}"/></td>
 							<td style="background:#f1f1f1;">${status.count }</td>
 	                        <td>${process.getRegistration_date() }</td>
 	                        <td>${process.getTypeOfInvent() }</td>
-	                        <td>${process.getTitle()}</td>
+	                        <td class="ideaList">${process.getTitle()}</td>
 	                        <td>${process.getReg_condition()}</td>
 	                        <td>${process.getPre_apply_date()}</td>
 	                        <td>${process.getApply_date()}</td>
 	                        <c:choose>
-		                        <c:when test="${process.getReg_condition() eq '가출원대기' }">
+		                        <c:when test="${process.getReg_condition() eq '출원완료' }">
 		                        	<c:choose>
 		                	        	<c:when test="${currentUser.getRole()=='ROLE_INVENTOR'}">
-		                    	    		<td><button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;" class="btn_chul">가출원하기</button></td>
+		                    	    		<td><button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;" class="btn_chul" onclick="location.href='/getDoc/${process.getRid()}'">출원서 다운로드</button></td>
 		                        		</c:when>
 		                        		<c:otherwise>
 		                        			<td>-</td>
@@ -207,6 +197,10 @@ $(document).ready(function()
 </div>
 <c:import url="/WEB-INF/views/import/footer.jsp"/>
 <script>
+function getApplyDoc(start_rid){
+	
+	location.href="/getDoc/"+start_rid;
+}
 	$("#hide_menu").click(function(){
 		$("#hide_nav").animate({width:"200px"});		
 	});
@@ -217,6 +211,14 @@ $(document).ready(function()
 			}
 		}
 	});
+	
+	//js파일 밖으로 빼기 
+	$('.ideaList').click(function(){	
+		var r = $(this).parent("tr").find("input").val();
+		location.href="/detail/"+r;
+	});
+		
+	
 </script>
 </body>
 </html>

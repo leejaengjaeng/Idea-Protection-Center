@@ -94,7 +94,7 @@ $(document).ready(function()
 			alert("변리사님이 발명가님의 서류를 검토하는 동안 기다려 주세요");
 		}
 		else if("${currentAnswer.getIscomplete()}"==6){
-			alert("변리사님이 출원을 완료하였습니다. \n하단에 출원서 받기 버튼을 눌러서 출원서를 받아주세요");
+			alert("변리사님이 출원을 완료하였습니다.");
 		}
 		else alert('변리사의 답변을 기다려주세요');
 	}
@@ -408,11 +408,7 @@ $(document).ready(function()
 				</c:when>
 				
 			</c:choose>
-			<c:choose>
-				<c:when test="${currentAnswer.getIscomplete()>=6}">
-					<button type="button" onclick="location.href='/downApplyDoc'">출원서 받기</button>
-				</c:when>
-			</c:choose>
+			
 		</div>
 		</article> 
             
