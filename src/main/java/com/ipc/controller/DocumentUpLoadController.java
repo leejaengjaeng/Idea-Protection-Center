@@ -151,6 +151,11 @@ public class DocumentUpLoadController {
 		upCon.put("ment","출원완료");
 		
 		regDao.updateRegCondition(upCon);
+		
+		RegistrationPatentVo rvo = regDao.getRegistrationByRidOrPrevRid(rid);
+		rvo.setRegistration_date(ss.getToday(0));
+		mService.completeApplyInventor(rvo);
+		mService.completeApplyPL(rvo);
 		return "redirect:/";
 	}
 	

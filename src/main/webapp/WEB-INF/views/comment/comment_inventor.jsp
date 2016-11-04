@@ -30,7 +30,7 @@ $(document).ready(function()
 	{
 		
 		hideBeforeCmt();
-		hideCurrentCmt();
+		//hideCurrentCmt();
 		//var optcnt = document.getElementById("selectBox").options.length;
 		//alert("${beforeReg.getTypeOfInvent()}");
 		//for(i=0;i<optcnt;i++){
