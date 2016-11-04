@@ -152,7 +152,7 @@ public class CommentController {
 	//Ajax용
 	@RequestMapping(value="/detailByRid/{rid}",method=RequestMethod.GET)
 	@ResponseBody
-	public Map detailByRid(@PathVariable int rid)
+	public Map<String,Object> detailByRid(@PathVariable int rid)
 	{
 		//접근한 경로에 대한 권한 확인
 		RegistrationPatentVo assosiatedMemberId= regDao.getAssociatedMembersByRid(rid);		
@@ -360,6 +360,7 @@ public class CommentController {
 	@RequestMapping(value="/commentFileSave",method=RequestMethod.POST)
 	//@ResponseBody
 	public String commentFileSave(HttpServletRequest request){
+		System.out.println("commentFileSaveComeIn@");
 		String userID=request.getParameter("userID_file");
 		String start_rid_file=request.getParameter("start_rid_file");
 		MultipartHttpServletRequest multipartRequest =  (MultipartHttpServletRequest)request;  //다중파일 업로드
@@ -438,6 +439,11 @@ public class CommentController {
 		upCon.put("rid", stRid);
 		upCon.put("ment","최종확인중");
 		
+		RegistrationPatentVo rvo = regDao.getRegistrationByRidOrPrevRid(Integer.parseInt(rid));
+		rvo.setRegistration_date(ss.getToday(0));
+		mService.editCompleteInventor(rvo);
+		mService.editCompletePL(rvo);
+		
 		regDao.updateRegCondition(upCon);
 		
 		regDao.lastConfirm(Integer.parseInt(rid));
@@ -456,12 +462,17 @@ public class CommentController {
 		
 		session.setAttribute("start_rid", stRid);
 		
+		RegistrationPatentVo rvo = regDao.getRegistrationByRidOrPrevRid(Integer.parseInt(rid));
+		rvo.setRegistration_date(ss.getToday(0));
+		mService.uploadDocumentInventor(rvo);
+		mService.assignPL(rvo);
+		
 		upCon.put("rid", stRid);
 		upCon.put("ment","서류업로드중");
 		
 		regDao.updateRegCondition(upCon);
 		
-		regDao.gotoApply(Integer.parseInt(rid));
+		//regDao.gotoApply(Integer.parseInt(rid));
 		
 		retVal.put("retVal", "저장 성공");
 		retVal.put("start_rid", Integer.toString(regDao.getStartRidByRid(Integer.parseInt(rid))));

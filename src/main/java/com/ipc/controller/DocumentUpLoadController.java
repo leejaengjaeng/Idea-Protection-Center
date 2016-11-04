@@ -27,6 +27,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ipc.dao.DocumentDao;
 import com.ipc.dao.MainPageDao;
 import com.ipc.dao.RegistrationDao;
+import com.ipc.service.MessageService;
+import com.ipc.service.RegistrationService;
+import com.ipc.service.SignUpService;
 import com.ipc.service.UploadDocumentService;
 import com.ipc.vo.RegistrationPatentVo;
 import com.ipc.vo.UpLoadDocVo;
@@ -45,6 +48,10 @@ public class DocumentUpLoadController {
 	DocumentDao docmapper;
 	@Autowired
 	MainPageDao mainpagemapper;
+	@Autowired
+	MessageService mService;
+	@Autowired
+	RegistrationService ss;
 	
 	@RequestMapping(value="/inputFile",method=RequestMethod.POST)
 	public String inputFile(HttpServletRequest request) throws IOException{
@@ -72,11 +79,20 @@ public class DocumentUpLoadController {
 		String root_path=request.getSession().getServletContext().getRealPath("/");
 		
 		uploadService.saveFile(map, root_path,upv);
+		
+		RegistrationPatentVo rvo = regDao.getRegistrationByRidOrPrevRid(Integer.parseInt(request.getParameter("rid")));
+		rvo.setRegistration_date(ss.getToday(0));
+		mService.applyingInventor(rvo);
+		mService.applyingPL(rvo);
+		
 		return "redirect:/";
 	}
 	@RequestMapping(value="/uploadFile")
 	public String uploadFile(Model model){
 		String start_rid=(String) session.getAttribute("start_rid");
+		
+		model.addAttribute("isExist", docmapper.countDocumentForApplyByRid(regDao.getLastRidInProcessList(Integer.parseInt(start_rid))));
+		
 		if(start_rid==null){
 			return "redirect:/authError";
 		}
@@ -135,6 +151,11 @@ public class DocumentUpLoadController {
 		upCon.put("ment","출원완료");
 		
 		regDao.updateRegCondition(upCon);
+		
+		RegistrationPatentVo rvo = regDao.getRegistrationByRidOrPrevRid(rid);
+		rvo.setRegistration_date(ss.getToday(0));
+		mService.completeApplyInventor(rvo);
+		mService.completeApplyPL(rvo);
 		return "redirect:/";
 	}
 	

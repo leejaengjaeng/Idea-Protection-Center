@@ -34,7 +34,7 @@ function downDoc(kindOfDocument){
  	    success:function(retVal)
  	    {
 	 	   	alert("다운로드가 실행됩니다. 오류가 있을 시 한번 더 누르거나 문의하여 주십시오");
-	 	   	alert(retVal);
+	 	   	//alert(retVal);
 	 	   	location.href="/executeDownLoad/"+retVal;
  	    },
  	    error: function(request,status,error)
@@ -124,14 +124,7 @@ function downDoc(kindOfDocument){
 			</tr>
 		</c:when>
 	</c:choose>
-	<c:choose>
-		<c:when test="${docVo.getBusiness_license()!=null}">
-			<tr>
-				<td>사업자등록증</td>
-				<td><button onclick="downDoc('business')">다운로드</button></td>
-			</tr>
-		</c:when>
-	</c:choose>
+	
 	<tr>
 		<td>특허고객번호 (출원인 코드) :</td>	
 	<c:choose>		
@@ -152,7 +145,7 @@ function downDoc(kindOfDocument){
 	
 	
 	<c:choose>
-		<c:when test="${docVo.getFinalApplyDoc()!=''}">
+		<c:when test="${docVo.getFinalApplyDoc()!=null}">
 			<tr>
 				<td colspan="2">출원서를 이미 업로드 하였습니다.</td>
 			</tr>

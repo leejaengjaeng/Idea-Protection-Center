@@ -103,7 +103,11 @@ public class MainController {
 				{
 					System.out.println("law");
 					System.out.println("aaasddd");
-					processList = mainPageDao.getPlMainPageList(currentUser.getUid());		
+					
+					processList = mainPageDao.getPlMainPageList(currentUser.getUid());
+					
+					
+					
 					comIdea=regDao.countCompleteIdeaPl(currentUser.getUid());
 					ingIdea=regDao.countIngIdeaPl(currentUser.getUid());
 					

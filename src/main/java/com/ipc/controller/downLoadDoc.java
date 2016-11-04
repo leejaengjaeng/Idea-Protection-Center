@@ -55,7 +55,7 @@ public class downLoadDoc {
 //		}
 		ApplyDocVo adv = docmapper.getVoByrid(rid);
 		model.addAttribute("docVo",adv);
-		
+		model.addAttribute("iscomplete",regismapper.getIscompleteByrid(rid));
 		System.out.println(adv.getBusiness_license());
 		System.out.println(adv.getCertificate());
 		System.out.println(adv.getFinalApplyDoc());
@@ -179,5 +179,19 @@ public class downLoadDoc {
         mav.addObject("downloadFileName", applyDocName);
         mav.setViewName("downloadFileView");
 		return mav;
+	}
+	@RequestMapping(value="/downContents/{file_name}",method=RequestMethod.GET)
+	public ModelAndView downContents(HttpServletRequest request,@PathVariable String file_name) throws InvalidFormatException, IOException{
+		String root_path=request.getSession().getServletContext().getRealPath("resources/downContents/");
+		String doc_name=file_name+".hwp";
+		
+		File downFile= new File(root_path+doc_name);
+		ModelAndView mav = new ModelAndView();
+
+		mav.addObject("downloadFile", downFile);
+        mav.addObject("downloadFileName", doc_name);
+        mav.setViewName("downloadFileView");
+		return mav;
+
 	}
 }

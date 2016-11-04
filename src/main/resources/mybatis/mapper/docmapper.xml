@@ -13,4 +13,7 @@
 	<update id="updateDocumentForApply" parameterType="Hashmap">
 		update documentforapply set finalApplyDoc=#{finalApplyDoc} where rid=#{rid}
 	</update>
+	<select id="countDocumentForApplyByRid" parameterType="Integer" resultType="Integer">
+		select count(*) from documentforapply where rid=#{rid}
+	</select>
 </mapper>

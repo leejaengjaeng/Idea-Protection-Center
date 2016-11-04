@@ -18,9 +18,12 @@
 <link rel="stylesheet" href="/resources/common/css/cmt.css">
 <link rel="icon" href="/resources/image/pavicon.png">
 <title>Idea Protection Center</title>
-<script src="/resources/common/js/registration.js"></script>
+<script src="/resources/common/js/registration.js" ></script>
+<script>
+
+</script>
 </head>
-<body onload='checkTemp();'>
+<body onload='checkTemp("${isTemp}");'>
 
 	<div class="black_wall" id="bw" style="visibility: hidden"></div>
 	<div class="popup" id="pp" style="visibility: hidden">

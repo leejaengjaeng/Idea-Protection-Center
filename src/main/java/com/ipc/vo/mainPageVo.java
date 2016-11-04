@@ -51,7 +51,7 @@ public class mainPageVo {
 		return registration_date;
 	}
 	public void setRegistration_date(String registration_date) {
-		this.registration_date = registration_date;
+		this.registration_date = registration_date.split(" ")[0];
 	}
 	public String getReg_condition() {
 		return reg_condition;
@@ -62,14 +62,14 @@ public class mainPageVo {
 	public String getPre_apply_date() {
 		return pre_apply_date;
 	}
-	public void setPre_apply_date(String pre_apply_date) {
-		this.pre_apply_date = pre_apply_date;
+	public void setPre_apply_date(String pre_apply_date){
+		this.pre_apply_date = pre_apply_date.split(" ")[0];
 	}
 	public String getApply_date() {
 		return apply_date;
 	}
 	public void setApply_date(String apply_date) {
-		this.apply_date = apply_date;
+		this.apply_date = apply_date.split(" ")[0];
 	}
 	
 }
