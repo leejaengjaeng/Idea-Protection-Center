@@ -152,7 +152,7 @@ public class CommentController {
 	//Ajax용
 	@RequestMapping(value="/detailByRid/{rid}",method=RequestMethod.GET)
 	@ResponseBody
-	public Map detailByRid(@PathVariable int rid)
+	public Map<String,Object> detailByRid(@PathVariable int rid)
 	{
 		//접근한 경로에 대한 권한 확인
 		RegistrationPatentVo assosiatedMemberId= regDao.getAssociatedMembersByRid(rid);		
@@ -462,7 +462,7 @@ public class CommentController {
 		
 		regDao.updateRegCondition(upCon);
 		
-		regDao.gotoApply(Integer.parseInt(rid));
+		//regDao.gotoApply(Integer.parseInt(rid));
 		
 		retVal.put("retVal", "저장 성공");
 		retVal.put("start_rid", Integer.toString(regDao.getStartRidByRid(Integer.parseInt(rid))));

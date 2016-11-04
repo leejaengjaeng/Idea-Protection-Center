@@ -64,36 +64,75 @@
 			<table>
 				<tr>
 					<td><span id="personal">주민등록등본*</span>
-					<td><input type="file" name="resident_registration" accept="image/gif, image/jpeg, image/png" onchange="fileCheck(this)"></td>
+					<c:choose>
+						<c:when test="${isExist>=1}">
+							<td>이미 업로드 하였음.</td>
+						</c:when>
+						<c:otherwise>
+							<td><input type="file" name="resident_registration" accept="image/gif, image/jpeg, image/png" onchange="fileCheck(this)"></td>
+						</c:otherwise>
+					</c:choose>
 				</tr>
 				<tr>
 					<td><span>인감증면서(포괄위임용)*</span>
-					<td><input type="file" name="certificate" accept="image/gif, image/jpeg, image/png" onchange="fileCheck(this)"></td>
+					<c:choose>
+						<c:when test="${isExist>=1}">
+							<td>이미 업로드 하였음.</td>
+						</c:when>
+						<c:otherwise>
+							<td><input type="file" name="certificate" accept="image/gif, image/jpeg, image/png" onchange="fileCheck(this)"></td>
+						</c:otherwise>
+					</c:choose>
 				</tr>
 				<tr>
 					<td><span>사업자등록증 <br>개인사업자이신 분은 업로드 하여 주세요</span>
-					<td><input type="file" name="business_license" accept="image/gif, image/jpeg, image/png" onchange="fileCheck(this)"></td>
+					<c:choose>
+						<c:when test="${isExist>=1}">
+							<td>이미 업로드 하였음.</td>
+						</c:when>
+						<c:otherwise>
+							<td><input type="file" name="business_license" accept="image/gif, image/jpeg, image/png" onchange="fileCheck(this)"></td>
+						</c:otherwise>
+					</c:choose>
+				</tr>
+				<tr id="smallCompany" style="display:none">
+					<td>중소기업 감면서류</td>
+					<c:choose>
+						<c:when test="${isExist>=1}">
+							<td>이미 업로드 하였음.</td>
+						</c:when>
+						<c:otherwise>
+							<td><input type="file" name="smallsale" accept="image/gif, image/jpeg, image/png" onchange="fileCheck(this)"></td>
+						</c:otherwise>
+					</c:choose>
+					
 				</tr>
 				<tr>
 					<td>포괄위임장(인감날인)*</td>
-					<td style="font-size:14px;"><img src="/resources/image/hwp.png" onclick="/downContents/attorney">양식 다운로드     <img src="/resources/image/hwp.png" onclick="/downContents/envelope">우편봉투 서식</td>
+					
+					<td style="font-size:14px;"><img src="/resources/image/hwp.png" onclick="location.href='/downContents/attorney'">양식 다운로드     <img src="/resources/image/hwp.png" onclick="location.href='/downContents/envelope'">우편봉투 서식</td>
 				</tr>
 				<tr>
 					<td colspan="2" style="text-align:center;">
 						<span style="line-height:1.8em;">포괄 위임장 양식을 다운로드 받으신 후, 내용을 기입하여 인감을 날인하시어 우편으로 발송하여 주세요 <br>우편봉투 서식에 주소를 기재하시고 출력하여 이용하시면 편리합니다.</span>
 					</td>
 				</tr>
-				<tr id="smallCompany" style="display:none">
-					<td>중소기업 감면서류</td>
-					<td><input type="file" name="smallsale" accept="image/gif, image/jpeg, image/png" onchange="fileCheck(this)"></td>
-				</tr>
+				
 			</table>		
 			<h3 style="text-align:left; margin-top:100px;">Step2. 특허고객번호 입력</h3>
 			<span style="display: inline-block; margin:10px; margin-bottom:20px;">기존의 "출원인 코드"를 의미합니다</span><br>
 			<input type="radio" name="patentsName" value="1" checked onclick="changeCode1()">있음 (직접입력)
 			<input type="radio" name="patentsName" value="0" onclick="changeCode0()">없음 (변리사 님께 맡김)<br>
-			<input type="text" name="patentsClientCode" id="patentsClientCode">			
-			<input type="submit" value="제출" style="width:60px; height:35px; background: none; border: 2px solid #555; margin-top:10px;">
+			<c:choose>
+						<c:when test="${isExist>=1}">
+							<td>이미 업로드 하였음.</td>
+						</c:when>
+						<c:otherwise>
+							<input type="text" name="patentsClientCode" id="patentsClientCode">	
+							<input type="submit" value="제출" style="width:60px; height:35px; background: none; border: 2px solid #555; margin-top:10px;">
+									
+						</c:otherwise>
+			</c:choose>
 		</form>
 	</div>
 </div>

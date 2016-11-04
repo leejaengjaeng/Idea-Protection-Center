@@ -130,7 +130,7 @@ var lastconfirm=function(role){
  	    success:function(retVal)
  	    {
  	    	
-	 	   	alert("특허 준비하기 페이지로 넘어갑니다.");
+	 	   	alert("발명가에게 필요 서류를 업로드 하도록 합니다.");
 	 	    
 	 	   	//location.href ="/getFile?file_name="+retVal.file_name;
 	 	    //location.href ="/upload/uploadFile";

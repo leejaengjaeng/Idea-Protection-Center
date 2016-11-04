@@ -24,8 +24,10 @@
 
 $(document).ready(function()
 {
-    if("${isFirst}" == "true") hideBeforeCmt();
-    
+	/*
+    if("${isFirst}" == "true")
+       hideBeforeCmt();
+    */
     
     //상태에 따른 응답 보여주기
 	if("${currentAnswer.getIscomplete()}" == 1)	enableInput();
@@ -107,12 +109,12 @@ $(document).ready(function()
              
               $(this).parents(".hiding_box").fadeOut();
           });
-          var optcnt = document.getElementById("selectBox").options.length;
-          for(i=0;i<optcnt;i++){
-      		if(document.getElementById("selectBox").options[i].value=="${currentAnswer.getTypeOfInvent()}"){
-      			document.getElementById("selectBox").options[i].selected=true;
-      		}
-      	}
+      //    var optcnt = document.getElementById("selectBox").options.length;
+      //    for(i=0;i<optcnt;i++){
+      //		if(document.getElementById("selectBox").options[i].value=="${currentAnswer.getTypeOfInvent()}"){
+      //			document.getElementById("selectBox").options[i].selected=true;
+      //		}
+      //	}
       });
       
       </script>
@@ -172,16 +174,14 @@ $(document).ready(function()
 		<div class="full">
 			<div class="hiding_tab" style="position: relative; width: 100%;">
 				<div class="arrow-up ee"></div>
-				<form name="regisForm" action="/registration/inputidea" method="POST"
-				enctype="multipart/form-data"
-				onsubmit="return formSubmit(document.regisForm.imgs);">
 				<input type="hidden" name="${_csrf.parameterName}"
 				value="${_csrf.token}" /> 
-				<input type="hidden" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}" >				
+				<input type="hidden" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}" >	
+							
 				<select onChange=changeType(this.value);>
-					<option>해당 산업에 맞는 카테고리를 선택해 주세요</option>
+					<option>${currentAnswer.getTypeOfInvent()}</option>
 				</select> 
-				<input type="hidden" value="-" name="typeOfInvent" id="idea_kind">
+				<input type="hidden" value="${currentAnswer.getTypeOfInvent()}" name="typeOfInvent" id="AfterCommentTypeOfInvent">
 			</div>
 		</div>
 		<div class="tab_box">
@@ -293,8 +293,8 @@ $(document).ready(function()
                   	</form>
                   	<div class="tab_imgs">
 	                	<c:forEach items="${imgs}" var="list" varStatus="status">
-	                    	<div id="id${list.getRfid()}">
-	                           <a href="${list.getFile_path()}" target="_blank"><img src="${list.getFile_path()}"></a>
+	                    	<div onclick="location.href='${list.getFile_path()}'" id="id${list.getRfid()}">
+	                           <img src="${list.getFile_path()}">
 	                        </div>
 	                    </c:forEach>
                   </div>

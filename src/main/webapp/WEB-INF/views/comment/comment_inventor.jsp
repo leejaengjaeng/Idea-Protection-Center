@@ -26,18 +26,18 @@
 <script>
 $(document).ready(function()
 {
-	
 	if("${isFirst}" == "true")
 	{
+		
 		hideBeforeCmt();
 		hideCurrentCmt();
-		var optcnt = document.getElementById("selectBox").options.length;
+		//var optcnt = document.getElementById("selectBox").options.length;
 		//alert("${beforeReg.getTypeOfInvent()}");
-		for(i=0;i<optcnt;i++){
-	  		if(document.getElementById("selectBox").options[i].value=="${currentAnswer.getTypeOfInvent()}"){
-	  			document.getElementById("selectBox").options[i].selected=true;
-	  		}
-	  	}
+		//for(i=0;i<optcnt;i++){
+	  	//	if(document.getElementById("selectBox").options[i].value=="${currentAnswer.getTypeOfInvent()}"){
+	  	//		document.getElementById("selectBox").options[i].selected=true;
+	  	//	}
+	  	//}
 	}
 	/*
 	else{
@@ -75,17 +75,25 @@ $(document).ready(function()
 	{
 		disableInput();
 		if("${currentAnswer.getIscomplete()}"==2) {	btnHide(); alert("가출원상태입니다."); }
-		else if("${currentAnswer.getIscomplete()}"==4) gotoApply("${user}");
+		//else if("${currentAnswer.getIscomplete()}"==4) gotoApply("${user}");
 		else if("${currentAnswer.getIscomplete()}"==3)
 		{
-			var q=confirm("변리사가 위의 내용으로 최종 확인하였습니다 출원 단계를 진행하시겠습니까?");
-	    	if(q==true)	gotoApply("${user}");                                 
-	     	else
-	     	{
-	     		enableInput();
-	        	denyApply("${user}");
-	        	return false;                                         
-	  	 	}
+			btnHide();disableInput();
+			alert("변리사가 위의 내용으로 최종확인하였습니다. \n출원 단계를 원하시면 하단의 출원 버튼을 눌러주세요");
+			//var q=confirm("변리사가 위의 내용으로 최종 확인하였습니다 출원 단계를 진행하시겠습니까?");
+	    	//if(q==true)	gotoApply("${user}");                                 
+	     	//else
+	     	//{
+	     	//	//enableInput();
+	        //	denyApply("${user}");
+	        //	return false;                                         
+	  	 	//}
+		}
+		else if("${currentAnswer.getIscomplete()}"==5){
+			alert("변리사님이 발명가님의 서류를 검토하는 동안 기다려 주세요");
+		}
+		else if("${currentAnswer.getIscomplete()}"==6){
+			alert("변리사님이 출원을 완료하였습니다. \n하단에 출원서 받기 버튼을 눌러서 출원서를 받아주세요");
 		}
 		else alert('변리사의 답변을 기다려주세요');
 	}
@@ -99,7 +107,10 @@ $(document).ready(function()
 	{
 		ideaSave("${user}");
 	});
-    
+	$('#gotoApply').on("click",function()
+	{
+		gotoApply("${user}");
+	});
 	//클릭에 따라 내용 바꿔주기
 	$('#IdeaModifyList').on("click","tr",function()
 	{
@@ -174,9 +185,9 @@ $(document).ready(function()
 			<input type="hidden" name="${_csrf.parameterName}" 	value="${_csrf.token}" /> 
 			<input type="hidden" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}">
 			<select onChange=changeType(this.value);>
-				<option>${currentAnswer.getTypeOfInvent()}</option>
+				<option>${beforeReg.getTypeOfInvent()}</option>
 			</select> 
-			<input type="hidden" value="-" name="typeOfInvent" id="idea_kind">
+			<input type="hidden" value="${beforeReg.getTypeOfInvent()}" name="typeOfInvent" id="AfterCommentTypeOfInvent">
 		</div>
 
 		</div>
@@ -305,7 +316,17 @@ $(document).ready(function()
 		<div class="fin">
 			<button type="button" id="tmpSave">임시저장</button>
 			<button type="button" id="agree">제출</button>
-			<button type="button" id="gogogo">출원하기</button>
+			<c:choose>
+				<c:when test="${currentAnswer.getIscomplete()>=3}">
+					<button type="button" id="gotoApply">필요 서류 업로드</button>
+				</c:when>
+				
+			</c:choose>
+			<c:choose>
+				<c:when test="${currentAnswer.getIscomplete()>=6}">
+					<button type="button" onclick="location.href='/downApplyDoc'">출원서 받기</button>
+				</c:when>
+			</c:choose>
 		</div>
 		</article> 
             

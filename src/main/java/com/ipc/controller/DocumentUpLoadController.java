@@ -77,6 +77,9 @@ public class DocumentUpLoadController {
 	@RequestMapping(value="/uploadFile")
 	public String uploadFile(Model model){
 		String start_rid=(String) session.getAttribute("start_rid");
+		
+		model.addAttribute("isExist", docmapper.countDocumentForApplyByRid(regDao.getLastRidInProcessList(Integer.parseInt(start_rid))));
+		
 		if(start_rid==null){
 			return "redirect:/authError";
 		}

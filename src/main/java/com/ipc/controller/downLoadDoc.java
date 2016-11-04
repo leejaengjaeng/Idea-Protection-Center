@@ -180,4 +180,18 @@ public class downLoadDoc {
         mav.setViewName("downloadFileView");
 		return mav;
 	}
+	@RequestMapping(value="/downContents/{file_name}",method=RequestMethod.GET)
+	public ModelAndView downContents(HttpServletRequest request,@PathVariable String file_name) throws InvalidFormatException, IOException{
+		String root_path=request.getSession().getServletContext().getRealPath("resources/downContents/");
+		String doc_name=file_name+".hwp";
+		
+		File downFile= new File(root_path+doc_name);
+		ModelAndView mav = new ModelAndView();
+
+		mav.addObject("downloadFile", downFile);
+        mav.addObject("downloadFileName", doc_name);
+        mav.setViewName("downloadFileView");
+		return mav;
+
+	}
 }
