@@ -55,7 +55,7 @@ public class downLoadDoc {
 //		}
 		ApplyDocVo adv = docmapper.getVoByrid(rid);
 		model.addAttribute("docVo",adv);
-		
+		model.addAttribute("iscomplete",regismapper.getIscompleteByrid(rid));
 		System.out.println(adv.getBusiness_license());
 		System.out.println(adv.getCertificate());
 		System.out.println(adv.getFinalApplyDoc());
