@@ -227,7 +227,6 @@ $(document).ready(function()
 		</div>
 		<div class="area_box a0" style="display: block;">
 			<div class="plc">
-<<<<<<< HEAD
 				<div class="halfframe">
 					<h1>이전 작성 내용</h1>
 					<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentTitle">${beforeReg.getTitle()}</textarea>
@@ -240,17 +239,11 @@ $(document).ready(function()
 					<h1>Comment를 작성 해 주세요</h1>
 				</div>
 				<textarea class="disabled current" placeholder="Comment" disabled style="border-top:1px solid #fff;" id="AfterCommentTitle">${currentAnswer.getTitle()}</textarea>				
-=======
-				<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentTitle">${beforeReg.getTitle()}</textarea>
-				<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentTitle">${beforeReg.getRe_title()}</textarea>
-				<textarea class="disabled current " placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentTitle">${currentAnswer.getTitle()}</textarea>
->>>>>>> 337ff4385c050e7fab3ca5e788f2e707b1dcbad3
 			</div>
 		</div>
 		<!-- 요약 -->
 		<div class="area_box a1">
 			<div class="plc">
-<<<<<<< HEAD
 				<div class="halfframe">
 					<h1>이전 작성 내용</h1>
 					<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentSummary" name="summary">${beforeReg.getSummary()}</textarea>
@@ -263,17 +256,11 @@ $(document).ready(function()
 					<h1>Comment를 작성 해 주세요</h1>
 				</div>
 				<textarea class="disabled current" placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentSummary">${currentAnswer.getSummary()}</textarea>
-=======
-				<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentSummary" name="summary">${beforeReg.getSummary()}</textarea>
-				<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentSummary">${beforeReg.getRe_summary()}</textarea>
-				<textarea class="disabled current " placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentSummary">${currentAnswer.getSummary()}</textarea>
->>>>>>> 337ff4385c050e7fab3ca5e788f2e707b1dcbad3
 			</div>
 		</div>
 		<!-- 필요이유 -->
 		<div class="area_box a2">
 			<div class="plc">
-<<<<<<< HEAD
 				<div class="halfframe">
 					<h1>이전 작성 내용</h1>
 					<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentWhyInvent" name="whyInvent">${beforeReg.getWhyInvent()}</textarea>
@@ -286,17 +273,11 @@ $(document).ready(function()
 					<h1>Comment를 작성 해 주세요</h1>
 				</div>
 				<textarea class="disabled current" placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentWhyInvent">${currentAnswer.getWhyInvent()}</textarea>
-=======
-				<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentWhyInvent" name="whyInvent">${beforeReg.getWhyInvent()}</textarea>
-				<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentWhyInvent">${beforeReg.getRe_whyInvent()}</textarea>
-				<textarea class="disabled current " placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentWhyInvent">${currentAnswer.getWhyInvent()}</textarea>
->>>>>>> 337ff4385c050e7fab3ca5e788f2e707b1dcbad3
 			</div>
 		</div>
 		<!-- 기존제품 설명 및 문제점 -->
 		<div class="area_box a3">
 			<div class="plc">
-<<<<<<< HEAD
 				<div class="halfframe">			
 					<h1>이전 작성 내용</h1>	
 					<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentProblem" name="problem">${beforeReg.getProblem()}</textarea>
@@ -309,17 +290,12 @@ $(document).ready(function()
 					<h1>Comment를 작성 해 주세요</h1>
 				</div>
 				<textarea class="disabled current" placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentProblem">${currentAnswer.getProblem()}</textarea>
-=======
-				<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentProblem">${beforeReg.getProblem()}</textarea>
-				<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentProblem">${beforeReg.getRe_problem()}</textarea>
-				<textarea class="disabled current " placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentProblem">${currentAnswer.getProblem()}</textarea>
->>>>>>> 337ff4385c050e7fab3ca5e788f2e707b1dcbad3
+
 			</div>
 		</div>
 		<!-- 문제 해결 방법 -->
 		<div class="area_box a4">
 			<div class="plc">
-<<<<<<< HEAD
 				<div class="halfframe">
 					<h1>이전 작성 내용</h1>
 					<textarea  class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentSolution" name="solution">${beforeReg.getSolution()}</textarea>
@@ -332,17 +308,11 @@ $(document).ready(function()
 					<h1>Comment를 작성 해 주세요</h1>
 				</div>
 				<textarea  class="disabled current" placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentSolution">${currentAnswer.getSolution()}</textarea>
-=======
-				<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentSolution">${beforeReg.getSolution()}</textarea>
-				<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentSolution">${beforeReg.getRe_solution()}</textarea>
-				<textarea class="disabled current " placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentSolution">${currentAnswer.getSolution()}</textarea>
->>>>>>> 337ff4385c050e7fab3ca5e788f2e707b1dcbad3
 			</div>
 		</div>
 		<!-- 발명의 효과 -->
 		<div class="area_box a5">
 			<div class="plc">
-<<<<<<< HEAD
 				<div class="halfframe">
 					<h1>이전 작성 내용</h1>
 					<textarea  class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentEffect" name="effect">${beforeReg.getEffect()}</textarea>
@@ -355,17 +325,11 @@ $(document).ready(function()
 					<h1>Comment를 작성 해 주세요</h1>
 				</div>
 				<textarea  class="disabled current" placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentEffect">${currentAnswer.getEffect()}</textarea>				
-=======
-				<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentEffect">${beforeReg.getEffect()}</textarea>
-				<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentEffect">${beforeReg.getRe_effect()}</textarea>
-				<textarea class="disabled current " placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentEffect">${currentAnswer.getEffect()}</textarea>
->>>>>>> 337ff4385c050e7fab3ca5e788f2e707b1dcbad3
 			</div>
 		</div>
 		<!-- 핵심 구성 요소 -->
 		<div class="area_box a6">
 			<div class="plc">
-<<<<<<< HEAD
 				<div class="halfframe">
 					<h1>이전 작성 내용</h1>
 					<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentCore_Element" name="core_element">${beforeReg.getCore_element()}</textarea>
@@ -378,17 +342,12 @@ $(document).ready(function()
 					<h1>Comment를 작성 해 주세요</h1>
 				</div>
 				<textarea class="disabled current" placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentCore_Element">${currentAnswer.getCore_element()}</textarea>					
-=======
-				<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentCore_Element">${beforeReg.getCore_element()}</textarea>
-				<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentCore_Element">${beforeReg.getRe_core_element()}</textarea>
-				<textarea class="disabled current " placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentCore_Element">${currentAnswer.getCore_element()}</textarea>
->>>>>>> 337ff4385c050e7fab3ca5e788f2e707b1dcbad3
+
 			</div>
 		</div>
 		<!-- 권리를 보장 받고자 하는 내용 -->
 		<div class="area_box a7">
 			<div class="plc">
-<<<<<<< HEAD
 				<div class="halfframe">
 					<h1>이전 작성 내용</h1>
 					<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentHope_content()" name="hope_content">${beforeReg.getHope_content()}</textarea>
@@ -401,11 +360,7 @@ $(document).ready(function()
 					<h1>Comment를 작성 해 주세요</h1>
 				</div>
 				<textarea class="disabled current" placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentHope_content">${currentAnswer.getHope_content()}</textarea>
-=======
-				<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentHope_content()">${beforeReg.getHope_content()}</textarea>
-				<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentHope_content()">${beforeReg.getRe_hope_content()}</textarea>
-				<textarea class="disabled current " placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentHope_content">${currentAnswer.getHope_content()}</textarea>
->>>>>>> 337ff4385c050e7fab3ca5e788f2e707b1dcbad3
+
 			</div>
 		</div>
 		<!-- 도면 첨부 -->
@@ -413,7 +368,6 @@ $(document).ready(function()
 			<div>
 				<div class="plc">
 					<form id="commentForm" name="commentForm" action="/commentFileSave" method="post" enctype="multipart/form-data">
-<<<<<<< HEAD
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
                         <input type="hidden" name="userID_file" value="${sessionScope.currentUser.getId()}">
                         <input type="hidden" name="start_rid_file" value="${start_rid}">                    
@@ -425,21 +379,6 @@ $(document).ready(function()
 	                        </div>
 	                    </c:forEach>
                   </div>
-=======
-                       <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                       <input type="hidden" name="userID_file" value="${sessionScope.currentUser.getId()}">
-                       <input type="hidden" name="start_rid_file" value="${start_rid}">
-                   	   <div id="inputFileDiv"></div>
-                   </form>
-                   <button type="button" onclick="addfile()">추가</button>
-                   <button type="button" onclick="delfile()">삭제</button>
-                    <c:forEach items="${imgs}" var="list" varStatus="status">
-                   	<div id="id${list.getRfid()}">
-	                	<a href="${list.getFile_path()}" target="_blank"><img src="${list.getFile_path()}"></a>
-	              		<button type="button" onclick="delImg('${list.getRfid()}')">삭제</button>
-                    </div>
-	                </c:forEach>     
->>>>>>> 337ff4385c050e7fab3ca5e788f2e707b1dcbad3
 				</div>
 			</div>
 		</div>
