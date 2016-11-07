@@ -16,7 +16,7 @@
 <body style="background:#f9f9f9;">
 <div class="notice_form">
 	<span>공지사항</span>
-	<form action="/noticeRegistration" name="noticeform" method="POST">
+	<form action="/notice/noticeRegistration" name="noticeform" method="POST">
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />	
 		<input type="text" name="title" id="title" placeholder="제목"><br/>
 		<textarea id="content" name="content" placeholder="내용"></textarea>

@@ -58,7 +58,7 @@ function checkAdmin(){
                     <th style="width:280px;">날짜</th>
                 </tr>
                	<c:forEach items="${noticeList}" var="list" varStatus="status">
-			   		<tr onclick="location.href='/noticeList/${list.getNid()}'">
+			   		<tr onclick="location.href='/notice/noticeList/${list.getNid()}'">
 				   		<td>${status.count}</td>
 				   		<td>${list.getTitle()}</td>
 				   		<td>관리자</td>
@@ -78,7 +78,7 @@ function checkAdmin(){
 			  	</c:forEach>
 				<a href="/IPC_admin/admin_notice/${rightArrow}"> > </a>
             </table>
-            <button onclick="location.href='/admin_notice_registration'" id="btn_add_notice">등록</button>            
+            <button onclick="location.href='/notice/admin_notice_registration'" id="btn_add_notice">등록</button>            
         </article>
     </div>
 <footer>
