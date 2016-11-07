@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<link rel="icon" href="/resources/image/pavicon.png">
 <title>Insert title here</title>
 </head>
 <body>

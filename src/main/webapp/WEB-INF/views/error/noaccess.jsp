@@ -8,6 +8,7 @@
 <title>Idea Protectection Center</title>
 <link rel="stylesheet" href="/resources/common/css/style.css"> 
 <link rel="stylesheet" href="/resources/common/css/index.css"> 
+<link rel="icon" href="/resources/image/pavicon.png">
 </head>
 <body>
 <c:import url="/WEB-INF/views/import/header.jsp"/>

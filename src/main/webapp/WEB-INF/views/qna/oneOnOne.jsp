@@ -12,6 +12,7 @@
 	href="/webjars/bootstrap/3.3.7/dist/css/bootstrap.min.css"> -->
 <script src="/resources/common/js/jquery-3.1.0.min.js"></script>
 <link rel="stylesheet" href="/resources/common/css/index.css">
+<link rel="icon" href="/resources/image/pavicon.png">
 <link rel="stylesheet" href="/resources/common/css/style.css">
 
 <title>Idea Protection Center</title>

@@ -14,6 +14,7 @@
     <link href="/resources/common/css/index.css" rel="stylesheet">
     <link href="/resources/common/css/style.css" rel="stylesheet">
     <script src="/resources/common/js/jquery-3.1.0.min.js"></script>
+    <link rel="icon" href="/resources/image/pavicon.png">
 </head>
 <body>
 	<c:import url="/WEB-INF/views/import/header.jsp"/>	

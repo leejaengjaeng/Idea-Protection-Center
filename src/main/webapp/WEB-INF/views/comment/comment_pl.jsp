@@ -15,13 +15,15 @@
 <link href="/resources/common/css/cmt.css" rel="stylesheet">
 <link href="/resources/common/css/style.css" rel="stylesheet">
 <link href="/resources/common/css/index.css" rel="stylesheet">
+<link rel="icon" href="/resources/image/pavicon.png">
 <style>
 .after_cmt>textarea {
 	margin-top: 0 !important;
 }
 </style>
-<script>
 
+<script src="/resources/common/js/cmt_pl.js"></script>
+<SCRIPT>
 $(document).ready(function()
 {
 	/*
@@ -118,6 +120,7 @@ $(document).ready(function()
       });
       
       </script>
+
 <style>
 	.tab_contents>textarea{
         float: right !important;
@@ -221,64 +224,137 @@ $(document).ready(function()
 		<!-- 제목 -->
 		<div class="area_box a0" style="display: block;">
 			<div class="plc">
-				<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentTitle">${beforeComment.getRe_title()}</textarea>
-				<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentTitle">${currentAnswer.getTitle()}</textarea>
-				<textarea class="disabled current" placeholder="Comment" disabled style="border-top:1px solid #fff;" id="AfterCommentTitle">${currentAnswer.getRe_title()}</textarea>
+				<div class="halfframe">
+					<h1>이전 작성 내용</h1>
+					<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentTitle">${beforeComment.getRe_title()}</textarea>
+				</div>
+				<div class="halfframe">
+					<h1>발명가 의견</h1>
+					<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentTitle">${currentAnswer.getTitle()}</textarea>
+				</div>
+				<div class="titframe">
+					<h1>Comment를 작성 해 주세요</h1>
+				</div>
+				<textarea class="disabled current" placeholder="Comment" disabled style="border-top:1px solid #fff;" id="AfterCommentTitle">${currentAnswer.getRe_title()}</textarea>				
 			</div>
 		</div>
 		<!-- 요약 -->
 		<div class="area_box a1">
 			<div class="plc">
-				<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentSummary" name="summary">${beforeComment.getRe_summary()}</textarea>
-				<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentSummary">${currentAnswer.getSummary()}</textarea>
+				<div class="halfframe">
+					<h1>이전 작성 내용</h1>
+					<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentSummary" name="summary">${beforeComment.getRe_summary()}</textarea>
+				</div>
+				<div class="halfframe">
+					<h1>발명가 의견</h1>
+					<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentSummary">${currentAnswer.getSummary()}</textarea>
+				</div>
+				<div class="titframe">
+					<h1>Comment를 작성 해 주세요</h1>
+				</div>
 				<textarea class="disabled current" placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentSummary">${currentAnswer.getRe_summary()}</textarea>
 			</div>
 		</div>
 		<!-- 필요이유 -->
 		<div class="area_box a2">
 			<div class="plc">
-				<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentWhyInvent" name="whyInvent">${beforeComment.getRe_whyInvent()}</textarea>
-				<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentWhyInvent">${currentAnswer.getWhyInvent()}</textarea>
+				<div class="halfframe">
+					<h1>이전 작성 내용</h1>
+					<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentWhyInvent" name="whyInvent">${beforeComment.getRe_whyInvent()}</textarea>
+				</div>
+				<div class="halfframe">
+					<h1>발명가 의견</h1>
+					<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentWhyInvent">${currentAnswer.getWhyInvent()}</textarea>
+				</div>
+				<div class="titframe">
+					<h1>Comment를 작성 해 주세요</h1>
+				</div>
 				<textarea class="disabled current" placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentWhyInvent">${currentAnswer.getRe_whyInvent()}</textarea>
 			</div>
 		</div>
 		<!-- 기존제품 설명 및 문제점 -->
 		<div class="area_box a3">
 			<div class="plc">
-				<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentProblem" name="problem">${beforeComment.getRe_problem()}</textarea>
-				<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentProblem">${currentAnswer.getProblem()}</textarea>
+				<div class="halfframe">			
+					<h1>이전 작성 내용</h1>	
+					<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentProblem" name="problem">${beforeComment.getRe_problem()}</textarea>
+				</div>
+				<div class="halfframe">
+					<h1>발명가 의견</h1>
+					<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentProblem">${currentAnswer.getProblem()}</textarea>
+				</div>
+				<div class="titframe">
+					<h1>Comment를 작성 해 주세요</h1>
+				</div>
 				<textarea class="disabled current" placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentProblem">${currentAnswer.getRe_problem()}</textarea>
 			</div>
 		</div>
 		<!-- 문제 해결 방법 -->
 		<div class="area_box a4">
 			<div class="plc">
-				<textarea  class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentSolution" name="solution">${beforeComment.getRe_solution()}</textarea>
-				<textarea  class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentSolution">${currentAnswer.getSolution()}</textarea>
+				<div class="halfframe">
+					<h1>이전 작성 내용</h1>
+					<textarea  class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentSolution" name="solution">${beforeComment.getRe_solution()}</textarea>
+				</div>
+				<div class="halfframe">
+					<h1>발명가 의견</h1>
+					<textarea  class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentSolution">${currentAnswer.getSolution()}</textarea>
+				</div>
+				<div class="titframe">
+					<h1>Comment를 작성 해 주세요</h1>
+				</div>
 				<textarea  class="disabled current" placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentSolution">${currentAnswer.getRe_solution()}</textarea>
 			</div>
 		</div>
 		<!-- 발명의 효과 -->
 		<div class="area_box a5">
 			<div class="plc">
-				<textarea  class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentEffect" name="effect">${beforeComment.getRe_effect()}</textarea>
-				<textarea  class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentEffect">${currentAnswer.getEffect()}</textarea>
-				<textarea  class="disabled current" placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentEffect">${currentAnswer.getRe_effect()}</textarea>
+				<div class="halfframe">
+					<h1>이전 작성 내용</h1>
+					<textarea  class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentEffect" name="effect">${beforeComment.getRe_effect()}</textarea>
+				</div>
+				<div class="halfframe">
+					<h1>발명가 의견</h1>
+					<textarea  class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentEffect">${currentAnswer.getEffect()}</textarea>
+				</div>
+				<div class="titframe">
+					<h1>Comment를 작성 해 주세요</h1>
+				</div>
+				<textarea  class="disabled current" placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentEffect">${currentAnswer.getRe_effect()}</textarea>				
+
 			</div>
 		</div>
 		<!-- 핵심 구성 요소 -->
 		<div class="area_box a6">
 			<div class="plc">
-				<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentCore_Element" name="core_element">${beforeComment.getRe_core_element()}</textarea>
-				<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentCore_Element">${currentAnswer.getCore_element()}</textarea>
-				<textarea class="disabled current" placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentCore_Element">${currentAnswer.getRe_core_element()}</textarea>
+				<div class="halfframe">
+					<h1>이전 작성 내용</h1>
+					<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentCore_Element" name="core_element">${beforeComment.getRe_core_element()}</textarea>
+				</div>
+				<div class="halfframe">
+					<h1>발명가 의견</h1>
+					<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentCore_Element">${currentAnswer.getCore_element()}</textarea>
+				</div>
+				<div class="titframe">
+					<h1>Comment를 작성 해 주세요</h1>
+				</div>
+				<textarea class="disabled current" placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentCore_Element">${currentAnswer.getRe_core_element()}</textarea>					
 			</div>
 		</div>
 		<!-- 권리를 보장 받고자 하는 내용 -->
 		<div class="area_box a7">
 			<div class="plc">
-				<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentHope_content()" name="hope_content">${beforeComment.getRe_hope_content()}</textarea>
-				<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentHope_content()">${currentAnswer.getHope_content()}</textarea>
+				<div class="halfframe">
+					<h1>이전 작성 내용</h1>
+					<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentHope_content()" name="hope_content">${beforeComment.getRe_hope_content()}</textarea>
+				</div>
+				<div class="halfframe">
+					<h1>발명가 의견</h1>
+					<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentHope_content()">${currentAnswer.getHope_content()}</textarea>
+				</div>
+				<div class="titframe">
+					<h1>Comment를 작성 해 주세요</h1>
+				</div>
 				<textarea class="disabled current" placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentHope_content">${currentAnswer.getRe_hope_content()}</textarea>
 			</div>
 		</div>
@@ -304,8 +380,17 @@ $(document).ready(function()
 		<!-- 도면 설명 -->
 		<div class="area_box a9">
 			<div class="plc">
-				<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentPicture_explain" name="picture_explain">${beforeComment.getRe_picture_explain()}</textarea>
-				<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentPicture_explain">${currentAnswer.getPicture_explain()}</textarea>
+				<div class="halfframe">
+					<h1>이전 작성 내용</h1>
+					<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentPicture_explain" name="picture_explain">${beforeComment.getRe_picture_explain()}</textarea>
+				</div>
+				<div class="halfframe">
+					<h1>발명가 의견</h1>
+					<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentPicture_explain">${currentAnswer.getPicture_explain()}</textarea>
+				</div>
+				<div class="titframe">
+					<h1>Comment를 작성 해 주세요</h1>
+				</div>
 				<textarea class="disabled current" placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentPicture_explain">${currentAnswer.getRe_picture_explain()}</textarea>
 			</div>
 		</div>
@@ -317,86 +402,13 @@ $(document).ready(function()
 		
 		<c:choose>
 			<c:when test="${currentAnswer.getIscomplete()>=5}">
-				<button onclick='location.href="/downLoadPage";'>서류다운받기</button>
+				<button type="button" onclick='location.href="/downLoadPage";'>서류다운받기</button>
 			</c:when>
 		</c:choose>
 		</article>
 		</section>
 	</div>
 	<c:import url="/WEB-INF/views/import/footer.jsp" />
-	<script>
-    
-var i=1;
-function addfile(){
-    i++;
-    $('#upimgdiv').append("<input type='file' id='upimg"+i+"' name='imgs' accept='image/gif, image/jpeg, image/png' style='padding-top:10px;'>");
-    //var targetdiv=document.getElementById("uploaddiv");
-    //targetdiv.innerHTML+="<input type='file' name='imgs' oncellchange='addfile()' accept='image/gif, image/jpeg, image/png'>";
-}
-$(function(){
-   $("textarea , input , button").attr("tabindex","-1");
-});
-$(".popup_close, #load_data").click(function(){
-   $("body").css("overflow","auto");   
-});
-$(".tab_title").click(function(){
-	if($(this).parent(".hiding_tab").hasClass("tab")){                                       
-    	$(this).removeClass("down"); 
-	    $(this).parent(".hiding_tab").stop().animate({"max-height":"47px"}).removeClass("tab");           
-        $(this).children(".arrow-up").stop().css({'transform' : 'rotate(180deg)','border-bottom-color':'#fff'}).removeClass("tab");
-    }else{            
-    	$(this).addClass("down"); 
- 	    $(this).parent(".hiding_tab").stop().animate({"max-height":"2000px"}).addClass("tab");           
-        $(this).children(".arrow-up").stop().css({'transform' : 'rotate(0deg)','border-bottom-color':'#0fa4d4'}).addClass("tab");
-    }
-});
-
-$(".tab_box div").click(function(){       
-    $(this).addClass("sel").siblings().removeClass("sel");
-    $(this).eq(0).css({backgroundColor:"#004a80",color:"#fff"}).siblings(0).css({backgroundColor:"#fff",color:"#464646"});                        
-});    
-$(".b0").click(function(){
-    $(".a0").css("display","block");
-    $(".a1,.a2,.a3,.a4,.a5,.a6,.a7,.a8,.a9").css("display","none");
-});
-$(".b1").click(function(){
-    $(".a1").css("display","block");
-    $(".a0,.a2,.a3,.a4,.a5,.a6,.a7,.a8,.a9").css("display","none");
-});
-$(".b2").click(function(){
-    $(".a2").css("display","block");
-    $(".a0,.a1,.a3,.a4,.a5,.a6,.a7,.a8,.a9").css("display","none");
-});
-$(".b3").click(function(){
-    $(".a3").css("display","block");
-    $(".a0,.a2,.a1,.a4,.a5,.a6,.a7,.a8,.a9").css("display","none");
-});
-$(".b4").click(function(){
-    $(".a4").css("display","block");
-    $(".a0,.a2,.a3,.a1,.a5,.a6,.a7,.a8,.a9").css("display","none");
-});
-$(".b5").click(function(){
-    $(".a5").css("display","block");
-    $(".a0,.a2,.a3,.a4,.a1,.a6,.a7,.a8,.a9").css("display","none");
-});
-$(".b6").click(function(){
-    $(".a6").css("display","block");
-    $(".a0,.a2,.a3,.a4,.a5,.a1,.a7,.a8,.a9").css("display","none");
-});
-$(".b7").click(function(){
-    $(".a7").css("display","block");
-    $(".a0,.a2,.a3,.a4,.a5,.a6,.a1,.a8,.a9").css("display","none");
-});
-$(".b8").click(function(){
-    $(".a8").css("display","block");
-    $(".a0,.a2,.a3,.a4,.a5,.a6,.a7,.a1,.a9").css("display","none");
-});
-$(".b9").click(function(){
-    $(".a9").css("display","block");
-    $(".a0,.a2,.a3,.a4,.a5,.a6,.a7,.a8,.a1").css("display","none");
-});
-
-
-</script>
+<script src="/resources/common/js/cmts.js"></script>
 </body>
 </html>

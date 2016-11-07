@@ -9,6 +9,7 @@
 
 <link href="/resources/common/css/style.css" rel="stylesheet">
 <link href="/resources/common/css/index.css" rel="stylesheet">
+<link rel="icon" href="/resources/image/pavicon.png">
 <meta name="_csrf" content="${_csrf.token}" />
 <meta name="_csrf_header" content="${_csrf.headerName}" />
 <title>IPC_AdminPage</title>

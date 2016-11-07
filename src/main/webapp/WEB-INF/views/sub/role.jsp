@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <link rel="stylesheet" href="/resources/common/css/index.css">
 <link rel="stylesheet" href="/resources/common/css/style.css">
+<link rel="icon" href="/resources/image/pavicon.png">
 <title>SiteMap</title>
 <style>
      #ContentsWrap{

@@ -1,7 +1,5 @@
 package com.ipc.controller;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -9,6 +7,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.imageio.spi.RegisterableService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -27,6 +26,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ipc.dao.DocumentDao;
 import com.ipc.dao.MainPageDao;
 import com.ipc.dao.RegistrationDao;
+import com.ipc.service.MessageService;
+import com.ipc.service.RegistrationService;
 import com.ipc.service.UploadDocumentService;
 import com.ipc.vo.RegistrationPatentVo;
 import com.ipc.vo.UpLoadDocVo;
@@ -45,6 +46,10 @@ public class DocumentUpLoadController {
 	DocumentDao docmapper;
 	@Autowired
 	MainPageDao mainpagemapper;
+	@Autowired
+	MessageService mService;
+	@Autowired
+	RegistrationService rService;
 	
 	@RequestMapping(value="/inputFile",method=RequestMethod.POST)
 	public String inputFile(HttpServletRequest request) throws IOException{
@@ -137,6 +142,11 @@ public class DocumentUpLoadController {
 		upCon.put("ment","출원완료");
 		
 		regDao.updateRegCondition(upCon);
+		
+		RegistrationPatentVo rvo = regDao.getRegistrationByRidOrPrevRid(rid);
+		rvo.setRegistration_date(rService.getToday(0));
+		mService.completeApplyInventor(rvo);
+		mService.completeApplyPL(rvo);
 		return "redirect:/";
 	}
 	

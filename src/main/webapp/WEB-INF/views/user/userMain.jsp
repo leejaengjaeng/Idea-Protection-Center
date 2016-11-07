@@ -14,6 +14,8 @@
 <link rel="stylesheet" href="/resources/common/css/index.css">
 <link rel="stylesheet" href="/resources/common/css/style.css">
 <link rel="stylesheet" href="/resources/common/css/inventor.css">
+<link rel="icon" href="/resources/image/pavicon.png">
+
 
 <script>
 //js파일 밖으로 빼기 
@@ -23,8 +25,7 @@ $(document).ready(function()
 	{
 		var r = $(this).parent().parent().children('input').attr('value');
 		if(r=="undefind") alert('mainPage] rid 찾기 에러, 관리자에게 문의하세요');
-		else .
-		location.href="/detail/"+r;
+		else location.href="/detail/"+r;
 	}));
 	$('.ideaList').on("click","button",function()
 	{
@@ -171,10 +172,10 @@ $(document).ready(function()
 	                        <td><p>${process.getPre_apply_date()}</p></td>
 	                        <td><p>${process.getApply_date()}</p></td>
 	                        <c:choose>
-		                        <c:when test="${process.getReg_condition() eq '가출원대기' }">
+		                        <c:when test="${process.getReg_condition() eq '출원완료' }">
 		                        	<c:choose>
 		                	        	<c:when test="${currentUser.getRole()=='ROLE_INVENTOR'}">
-		                    	    		<td><button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;" class="btn_chul">가출원하기</button></td>
+		                    	    		<td><button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;" class="btn_chul" onclick="location.href='/getDoc/${process.getRid()}'">출원서 다운로드</button></td>
 		                        		</c:when>
 		                        		<c:otherwise>
 		                        			<td>-</td>
@@ -222,6 +223,10 @@ $(document).ready(function()
 </div>
 <c:import url="/WEB-INF/views/import/footer.jsp"/>
 <script>
+function getApplyDoc(start_rid){
+	
+	location.href="/getDoc/"+start_rid;
+}
 	$("#hide_menu").click(function(){
 		$("#hide_nav").animate({width:"200px"});		
 	});

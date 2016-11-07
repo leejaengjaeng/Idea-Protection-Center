@@ -5,9 +5,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
+<title>404 ERROR</title>
 <link href="/resources/common/css/index.css" rel="stylesheet">
 <link href="/resources/common/css/style.css" rel="stylesheet">
+<link rel="icon" href="/resources/image/pavicon.png">
 </head>
 <body>
 <c:import url="/WEB-INF/views/import/header.jsp"/>

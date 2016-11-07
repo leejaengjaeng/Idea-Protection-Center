@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="/resources/common/css/index.css">
 <link rel="stylesheet" href="/resources/common/css/style.css">
 <link rel="stylesheet" href="/resources/common/css/cmt.css">
+<link rel="icon" href="/resources/image/pavicon.png">
 <title>Idea Protection Center</title>
 <script src="/resources/common/js/registration.js" ></script>
 <script>
@@ -63,10 +64,11 @@
 		<span>아이디어 보호센터에서 손쉽게 특허를 등록하세요.</span>		
 		 </article> 
 		<article class="nt" style="display:block;">
+		<form name="regisForm" action="/registration/inputidea" method="POST" enctype="multipart/form-data" onsubmit="return formSubmit(document.regisForm.imgs);">
+		
 		<div class="full">
 			<div class="hiding_tab" style="position: relative; width: 100%;">
 				<div class="arrow-up ee"></div>
-				<form name="regisForm" action="/registration/inputidea" method="POST" enctype="multipart/form-data" onsubmit="return formSubmit(document.regisForm.imgs);">
 				<input type="hidden" name="${_csrf.parameterName}"
 				value="${_csrf.token}" /> <input type="text" name="uid" id="uid"
 				value="${sessionScope.currentUser.getUid()}" hidden>				
@@ -156,9 +158,7 @@
 			<div style="width:96%; margin-left:2%;">
 				<div id="plc">
 					<div id="upimgdiv2">
-						<input type="file" id="upimg1" name="imgs"
-						accept="image/gif, image/jpeg, image/png"
-						onchange="fileCheck(this)" style="margin-left:5px; margin-top:5px; float:left;">
+						<input type="file" id="upimg1" name="imgs" accept="image/gif, image/jpeg, image/png" onchange="fileCheck(this)" style="margin-left:5px; margin-top:5px; float:left;">
 					</div>
 					<button type="button" onclick="addfile2()" class="addbtns">추가</button>
 					<button type="button" onclick="delfile()" class="addbtns">삭제</button>

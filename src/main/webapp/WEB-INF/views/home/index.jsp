@@ -108,7 +108,6 @@
             </div>
          </div>
          <div class="hr"></div>
-         <iframe src="https://www.youtube.com/embed/ePpPVE-GGJw?controls=1&showinfo=0&modestbranding=1&autoplay=1" frameborder="0"; style="width:100%; height:562px;"></iframe>
          <div id="table_notice">
             <h1>공지사항</h1>
             <span>

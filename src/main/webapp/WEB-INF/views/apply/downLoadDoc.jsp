@@ -12,6 +12,7 @@
 
 <link rel="stylesheet" href="/resources/common/css/index.css">
 <link rel="stylesheet" href="/resources/common/css/style.css">
+<link rel="icon" href="/resources/image/pavicon.png">
 <title>downLoad Document</title>
 <script>
 function downDoc(kindOfDocument){
@@ -33,7 +34,7 @@ function downDoc(kindOfDocument){
  	    success:function(retVal)
  	    {
 	 	   	alert("다운로드가 실행됩니다. 오류가 있을 시 한번 더 누르거나 문의하여 주십시오");
-	 	   	alert(retVal);
+	 	   	//alert(retVal);
 	 	   	location.href="/executeDownLoad/"+retVal;
  	    },
  	    error: function(request,status,error)
