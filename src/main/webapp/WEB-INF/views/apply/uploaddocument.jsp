@@ -45,6 +45,8 @@
 	function changeCode0(){
 		document.getElementById("patentsClientCode").style="display:none";
 	}
+	
+	$('#fileUploadForm')
 </script>
 </head>
 <body>
@@ -56,7 +58,7 @@
 		<p>${regis.getTitle()} 을(를) 출원하기 위한 과정을 안내해 드립니다.</p>
 		<p>미리 업로드하여 주시면 더욱 빠른 출원이 가능합니다.</p>
 		<h3 style="float:left; margin:50px 0 0 0;">Step1. 필요서류 업로드</h3>
-		<form action="/upload/inputFile" method="POST" enctype="multipart/form-data" style="margin-bottom:100px;">
+		<form id="fileUploadForm" action="/upload/inputFile" method="POST" enctype="multipart/form-data" style="margin-bottom:100px;">
 		<input type="hidden" name="${_csrf.parameterName}"
 				value="${_csrf.token}" />
 			<span style="font-size:20px; display: inline-block; margin-right: 10px;"><input type="radio" name="is_personal" value="1" checked onclick='changePersonal1()'> 개인</span>
@@ -131,7 +133,6 @@
 						<c:otherwise>
 							<input type="text" name="patentsClientCode" id="patentsClientCode">	
 							<input type="submit" value="제출" style="width:60px; height:35px; background: none; border: 2px solid #555; margin-top:10px;">
-									
 						</c:otherwise>
 			</c:choose>
 		</form>
