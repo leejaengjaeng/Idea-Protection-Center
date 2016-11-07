@@ -131,7 +131,7 @@ var lastconfirm=function(role){
  	    {
  	    	
 	 	   	alert("발명가에게 필요 서류를 업로드 하도록 합니다.");
-	 	    
+	 	    location.href="/mainPage";
 	 	   	//location.href ="/getFile?file_name="+retVal.file_name;
 	 	    //location.href ="/upload/uploadFile";
  	    },

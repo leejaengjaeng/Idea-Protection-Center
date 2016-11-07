@@ -402,7 +402,7 @@ $(document).ready(function()
 		
 		<c:choose>
 			<c:when test="${currentAnswer.getIscomplete()>=5}">
-				<button onclick='location.href="/downLoadPage";'>서류다운받기</button>
+				<button type="button" onclick='location.href="/downLoadPage";'>서류다운받기</button>
 			</c:when>
 		</c:choose>
 		</article>

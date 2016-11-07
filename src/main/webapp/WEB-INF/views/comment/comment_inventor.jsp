@@ -370,8 +370,10 @@ $(document).ready(function()
 					<form id="commentForm" name="commentForm" action="/commentFileSave" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
                         <input type="hidden" name="userID_file" value="${sessionScope.currentUser.getId()}">
-                        <input type="hidden" name="start_rid_file" value="${start_rid}">                    
+                        <input type="hidden" name="start_rid_file" value="${start_rid}">
+                        <div id="inputFileDiv"></div>                    
                   	</form>
+                  	<button onclick="addfile()">추가</button>
                   	<div class="tab_imgs">
 	                	<c:forEach items="${imgs}" var="list" varStatus="status">
 	                    	<div onclick="location.href='${list.getFile_path()}'" id="id${list.getRfid()}">

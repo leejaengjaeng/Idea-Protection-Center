@@ -102,6 +102,9 @@ public class downLoadDoc {
 	@RequestMapping(value="/executeDownLoad/{file_kind}",method=RequestMethod.GET)
 	public ModelAndView executeDownLoad(HttpServletRequest request,@PathVariable String file_kind) throws InvalidFormatException, IOException{
 		int rid=(int) session.getAttribute("currentPosition");
+		String applyDocRootPath= request.getSession().getServletContext().getRealPath("/");
+		System.out.println("applyDocRootPath : "+applyDocRootPath+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
 		String file_name="";
 		ApplyDocVo adv=docmapper.getVoByrid(rid);
 		if(file_kind.equals("resident")){
@@ -118,9 +121,7 @@ public class downLoadDoc {
 		}
 		else if(file_kind.equals("apply")){
 			RegistrationPatentVo rv=regismapper.getRegistrationByRidOrPrevRid(rid);
-			String applyDocRootPath= request.getSession().getServletContext().getRealPath("/");
 			List<RegistrationFileVo> imgList=regisfilemapper.getImgListByStartRid(regismapper.getStartRidByRid(rid));
-			
 			file_name=docController.savefile(rv, applyDocRootPath, imgList);
 			
 			HashMap<String,String> map= new HashMap<String,String>();
@@ -140,7 +141,7 @@ public class downLoadDoc {
 		    mav.setViewName("downloadFileView");
 		    return mav;
 		}
-		String root_path=request.getSession().getServletContext().getRealPath("resources/uploadimgs/uploadDocument/");
+		String root_path=applyDocRootPath+"/resources/uploadimgs/uploadDocument/";
 		String full_path=root_path+file_name;
 		File downloadFile = new File(full_path);
 		System.out.println(full_path);

@@ -1,7 +1,5 @@
 package com.ipc.controller;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
