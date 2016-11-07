@@ -19,7 +19,7 @@ apply plugin: 'spring-boot'
 
 war {
 	baseName = 'IPC'
-	version = 'v0.1'
+	version = 'v1.0'
 	
 	manifest {
        attributes 'Main-Class': 'com.ipc.IdeaProtectionCenterApplication'
