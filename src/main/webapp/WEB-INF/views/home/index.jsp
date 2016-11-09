@@ -125,7 +125,7 @@
                   <th>작성일</th>
                </tr>
                <c:forEach items="${noticeList}" var="list" varStatus="status">                  
-                  <tr onclick="location.href='/noticeList/${list.getNid()}'">
+                  <tr onclick="location.href='/notice/noticeList/${list.getNid()}'">
                      <td> ${status.count}</td>
                      <td>${list.getTitle()}</td>
                      <td>관리자</td>

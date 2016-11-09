@@ -206,14 +206,14 @@ $(document).ready(function()
                 <div id="table_notice">
                     <table>
                         <c:forEach items="${noticeList}" var="list" varStatus="status">
-    					<tr onclick="location.href='/noticeList/${list.getNid()}'">
+    					<tr onclick="location.href='/notice/noticeList/${list.getNid()}'">
     						<td>${list.getTitle()}</td>			    		
 			    			<td>관리자</td>			    			
 			    			<td>${list.getDate()}</td>			    			
 			    		</tr>
 					</c:forEach>
                     </table>
-                <button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;" onclick="location.href='/noticePage'">
+                <button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;" onclick="location.href='/notice/noticePage'">
                         더보기
                 </button>
             </div>                
