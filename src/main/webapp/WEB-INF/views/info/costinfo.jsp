@@ -6,10 +6,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Idea Protectection Center</title>
-<link rel="icon" href="/resources/image/pavcon.png">
 <link rel="stylesheet" href="/resources/common/css/style.css">
 <link rel="stylesheet" href="/resources/common/css/index.css">
 <link rel="stylesheet" href="/resources/common/css/costinfo.css">
+<link rel="icon" href="/resources/image/pavicon.png">
 </head>
 <body>
 	<c:import url="/WEB-INF/views/import/header.jsp" />

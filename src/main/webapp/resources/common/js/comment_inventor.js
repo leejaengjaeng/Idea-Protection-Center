@@ -117,4 +117,11 @@ $(".nav>button").click(function(){
      $(".a0,.a2,.a3,.a4,.a5,.a6,.a7,.a8,.a1").css("display","none");
  });
  
- 
+
+$("#IdeaModifyList tr").click(function(){	
+	if($(this).hasClass("headerhide")){
+		$(".halfframe").css("display","none");
+	}else{
+		$(".halfframe").css("display","block");
+	}
+})
