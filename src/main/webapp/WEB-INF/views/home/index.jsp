@@ -14,6 +14,9 @@
 <link rel="stylesheet" href="/resources/common/css/index.css">
 <link rel="stylesheet" href="/resources/common/css/style.css">
 <link rel="icon" href="/resources/image/pavicon.png">
+<style>
+	#header_benner{display:none;}
+</style>
 </head>
 <body>
    <c:import url="/WEB-INF/views/import/header.jsp" />
@@ -37,7 +40,7 @@
       <section>         
          <div id="cont_block1">
             <div class="cont_title">
-               <h1>iDea<br>출원하기</h1>
+               <h1>IDEA<br>출원하기</h1>
                <span>
                   아이디어 보호센터에서<br>
                   손쉽고 강력하게<br>
@@ -51,7 +54,7 @@
                         <b>특허</b><br>
                         출원<br>                        
                      </p>
-                     <span>198,000원</span>
+                     <span>298,000원</span>
                      <button>출원하러가기▶</button>
                   </div>
                   <img src="/resources/image/patent_apply_banner.jpg">
@@ -59,7 +62,7 @@
                <div class="design" onclick="notready();">
                   <div>
                      <span><b>디자인권</b> 출원</span><br>
-                     <span style="font-size:1.5em;">100,000원</span>
+                     <span style="font-size:1.5em;">99,000원</span>
                      <button>출원하러가기▶</button>
                   </div>
                   <img src="/resources/image/index_patent_2.jpg">
@@ -70,7 +73,7 @@
                         <b>상표</b> 출원<br>                        
                      </span>
                      <span style="display:inline-block; margin-top:5px; font-size:20px;">
-                        150,000원
+                        55,000원
                      </span><br>
                      <button>출원하러가기▶</button>
                   </div>               
@@ -84,7 +87,7 @@
                         <b>저작권</b> 출원<br>                        
                      </span>
                      <span style="display:inline-block; margin-top:5px; font-size:20px;">
-                        50,000원
+                        49,000원
                      </span><br>
                      <button>출원하러가기▶</button>
                   </div>
@@ -104,7 +107,7 @@
                   <b>아이디어</b>를 <b>보호</b>하는 방법!
                </span><br>
                <span id="sp_s">아이디어 보호센터 권리확보 시스템</span><br>
-               <button>내용보러가기▶</button>
+               <button onclick="location.href='/intro_service'">내용보러가기▶</button>
             </div>
          </div>
          <div class="hr"></div>
@@ -157,7 +160,7 @@
                   	${list.getType()}
                </span>
             </div>
-            <img src="/resources/image/index_patent_1.jpg" alt="123">
+            <img src="/resources/image/kind1.png" alt="123">
          </div>
       </c:forEach>      
    </div>

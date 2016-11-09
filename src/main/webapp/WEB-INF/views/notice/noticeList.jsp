@@ -40,7 +40,7 @@
 		</c:forEach>
 	</table>
 	
-	<b onClick="location.href='/notice/noticePage/${leftArrow}'"> < </b>
+	<b onClick="location.href='/notice/noticePage/${leftArrow}'" style="margin-bottom:100px; display:inline-block; "> < </b>
 	<c:forEach items="${pages}" var="page">
 		<c:choose>
 			<c:when test="${page eq currentPage }">
@@ -52,7 +52,6 @@
 		</c:choose>
   	</c:forEach>
 	<b onClick="location.href='/notice/noticePage/${rightArrow}'"> > </b>
-	<br>
 	
 </div>
 <c:import url="/WEB-INF/views/import/footer.jsp"/>

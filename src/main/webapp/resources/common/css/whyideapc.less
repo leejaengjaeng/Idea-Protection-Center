@@ -1,0 +1,51 @@
+.sub_tit{
+    text-align: left; 
+    font-weight: 500;
+    position: relative;
+    margin-top: 170px !important;
+    color: #004a80 !important;
+    &::before{
+        content: "";
+        position: absolute;
+        width: 100px;
+        height: 4px;
+        left: 0;
+        top: -20px;
+        background: #004a80;
+    }
+}
+.sub_con{
+    width: 100%;
+    float: left;
+    .sub_titles{
+        width: 100%;
+        float: left;
+        margin-top: 80px;
+        margin-bottom: 50px;
+        h1{
+            color: #004a80 !important;
+            float: left;
+            margin-top: 10px !important;
+            font-size: 40px;
+            &::before{
+                content: "";
+                display: none !important;
+            }
+        }
+    }
+    h1{
+        color: #004a80 !important;
+        text-align: center !important;
+         &::before{
+            content: "";
+            display: none !important;
+        }
+    }
+    span{
+        display: inline-block;
+        margin-top: 40px;
+        margin-bottom: 50px;
+        font-size: 18px;
+        line-height: 1.8em;
+    }
+}

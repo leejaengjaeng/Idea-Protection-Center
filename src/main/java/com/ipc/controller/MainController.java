@@ -165,4 +165,21 @@ public class MainController {
 	public String design(){
 		return "registration/idea_design";
 	}
+	@RequestMapping("/intro_service")
+	public String service_intro(){
+		return "intro/service_intro";
+	}
+	@RequestMapping("/intro_whyideapc")
+	public String whyideapc(){
+		return "intro/whyideapc";
+	}
+	@RequestMapping("/site_info")
+	public String siteinfo(){
+		return "info/siteinfo";
+	}
+	@RequestMapping("/costinfo")
+	public String costinfo(){
+		return "info/costinfo";
+	}
+	
 }
