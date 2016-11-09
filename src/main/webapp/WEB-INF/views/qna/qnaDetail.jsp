@@ -26,7 +26,7 @@ function ddddd(){
 <body onload='ddddd();'>
 <c:import url="/WEB-INF/views/import/header.jsp"/>
 <div id="wrap_form" >
-	<h1>질문하기</h1>
+	<h1>Q&A</h1>
 	<div id="notice_detail">
 		<div class="title_detail">
 			<p>${qna.getTitle()}</p>
@@ -43,13 +43,13 @@ function ddddd(){
 		
 		<c:forEach items="${replyList}" var="list" varStatus="status">
 			<tr style="border-top:1px solid #ccc;">
-    			<td>
+    			<td style="width:60px;">
     				<div style="width:60px; height:60px; padding:5px; border:1px solid #ccc; margin:10px; background:#e8e8e8;">
     					<img src="/resources/image/inventor.png">
     				</div>
     			</td>
-    			<td>관리자</td>
     			<td>${list.getContent()}</td>
+    			<td style="width:100px;">관리자</td>    			
     		</tr>
 		</c:forEach>
 	</table>
@@ -60,7 +60,7 @@ function ddddd(){
 
 			<input type="hidden" value="${qna.getQid()}" name="qid" style="width:88%; height:25px; padding-left:5px; float:left;">	
 			<textarea name="content" id="content" placeholder="답글달기" style="width:88%; height:50px; padding-left:5px; padding-top:5px; height:80px; float:left; resize: none;"></textarea>
-			<input type="submit" style="width:10%;height:80px;background:none; border:2px solid #ccc;">
+			<input type="submit" style="width:10%;height:80px;background:none; border:2px solid #ccc; float:right;">
 
 		</form>
 	</div>	

@@ -290,7 +290,7 @@
 .wrap_comment section article #fin button {
   width: 140px;
   height: 40px;
-  background: #c96;
+  background: #004a80;
   border: none;
   color: white;
   box-shadow: inset 0 -4px rgba(0, 0, 0, 0.1);
@@ -354,8 +354,20 @@
 #wrap_form h1 {
   float: left;
   width: 100%;
-  margin-top: 50px;
-  color: #555;
+  margin-top: 150px;
+  color: #004a80;
+  text-align: left;
+  position: relative;
+  font-weight: 500;
+}
+#wrap_form h1::before {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 4px;
+  left: 0;
+  top: -20px;
+  background: #004a80;
 }
 #wrap_form form {
   width: 100%;
@@ -677,13 +689,15 @@ section nav #nav_benner ul li img {
   margin-bottom: 50px;
 }
 #notice_table tr th {
-  height: 35px;
-  background: #ccc;
+  height: 50px;
+  background: #FEFBFF;
   text-align: center;
   color: #383838;
+  border-top: 1px solid #999;
+  border-bottom: 1px solid #999;
 }
 #notice_table tr td {
-  height: 35px;
+  height: 40px;
   text-align: center;
   font-size: 14px;
   border-bottom: 1px solid #ccc;
@@ -1149,7 +1163,7 @@ section nav #nav_benner ul li img {
 .fin button {
   width: 100px;
   height: 40px;
-  background: #c5e3f6;
+  background: #004a80;
   border: none;
   color: white;
   margin: 5px;
@@ -1238,4 +1252,10 @@ body {
 .pop_cont table td {
   height: 50px;
   border-top: none;
+}
+#wrap_form b {
+  text-decoration: none;
+}
+#wrap_form a {
+  text-decoration: none;
 }

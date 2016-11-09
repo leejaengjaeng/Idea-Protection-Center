@@ -60,37 +60,26 @@
 		<div class="header_menu">
 			<img src="/resources/image/logo.png" alt="Logo" onclick="location.href='/'" style="cursor: pointer;" draggable="false">
 			<ul class="menu">
-			
-				<!-- 
-			 		
 			 	<li>
 			 		아이디어 보호센터
 			 		<ul>
-			 			<li>
+			 			<li onclick="location.href='/intro_service'">
 			 				서비스 소개
 			 			</li>
-			 			<li>
+			 			<li onclick="location.href='/intro_whyideapc'">
 			 				왜 아이디어 보호센터 인가
 			 			</li>
 			 		</ul>
 			 	</li>
-			 	
-			 	 -->
-			 		
 			 	<li>
 			 		이용방법안내
-			 		<ul>
-			 			<li>
-			 				준비 중 입니다
-			 			</li>
-			 			<!-- 
-			 			<li>
+			 		<ul>			 			
+			 			<li onclick="location.href='/site_info'">
 			 				사이트 이용안내
 			 			</li>
-			 			<li>
+			 			<li onclick="location.href='/costinfo'">
 			 				비용안내
 			 			</li>
-			 			 -->
 			 		</ul>
 			 	</li>
 			 	<li>
@@ -118,7 +107,7 @@
 			</ul>
 		</div>		
 	</div>
-	<div id="header_benner">
+	<div id="header_benner" style="float:left;">
 		<img src="/resources/image/patent_apply_banner.jpg" alt="banner">
 	</div>
 </header>
