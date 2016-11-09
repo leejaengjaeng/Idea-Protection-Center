@@ -29,8 +29,6 @@ war {
 
 test.enabled=false
 
-bootRepackage.enabled = false
-
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
@@ -44,7 +42,6 @@ configurations {
 
 dependencies {
 
-	
 	//Spring
 	compile('org.springframework.boot:spring-boot-starter-web')
 	testCompile('org.springframework.boot:spring-boot-starter-test')

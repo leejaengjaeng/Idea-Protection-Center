@@ -32,7 +32,7 @@
 			
 		</tr>
 		<c:forEach items="${noticeList}" var="list" varStatus="status">
-			<tr onclick="location.href='/noticeList/${list.getNid()}'">
+			<tr onclick="location.href='/notice/noticeList/${list.getNid()}'">
     			<td>${list.getTitle()}</td>    		
     			<td>관리자</td>
     			<td class="date">${list.getDate()}</td>    			    			

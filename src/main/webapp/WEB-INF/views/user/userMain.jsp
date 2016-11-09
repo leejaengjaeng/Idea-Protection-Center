@@ -16,6 +16,23 @@
 <link rel="stylesheet" href="/resources/common/css/inventor.css">
 <link rel="icon" href="/resources/image/pavicon.png">
 
+
+<script>
+//js파일 밖으로 빼기 
+$(document).ready(function()
+{
+	$('.ideaList').on("click","p",(function()
+	{
+		var r = $(this).parent().parent().children('input').attr('value');
+		if(r=="undefind") alert('mainPage] rid 찾기 에러, 관리자에게 문의하세요');
+		else location.href="/detail/"+r;
+	}));
+	$('.ideaList').on("click","button",function()
+	{
+		
+	});
+});
+</script>
 </head>
 <body>
 <c:import url="/WEB-INF/views/import/header.jsp"/>
@@ -145,15 +162,15 @@
                         <th>비고</th>
                     </tr>
                    	<c:forEach var="process" items="${processList}" varStatus="status">
-						<tr>
-							<td style="display: none;"><input type="hidden" value="${process.getRid()}"/></td>
-							<td style="background:#f1f1f1;">${status.count }</td>
-	                        <td>${process.getRegistration_date() }</td>
-	                        <td>${process.getTypeOfInvent() }</td>
-	                        <td class="ideaList">${process.getTitle()}</td>
-	                        <td>${process.getReg_condition()}</td>
-	                        <td>${process.getPre_apply_date()}</td>
-	                        <td>${process.getApply_date()}</td>
+						<tr class="ideaList">
+							<input type="hidden" value="${process.getRid()}"/>
+							<td style="background:#f1f1f1;">${status.count }</p></td>
+	                        <td><p>${process.getRegistration_date() }</p></td>
+	                        <td><p>${process.getTypeOfInvent() }</p></td>
+	                        <td><p>${process.getTitle()}</p></td>
+	                        <td><p>${process.getReg_condition()}</p></td>
+	                        <td><p>${process.getPre_apply_date()}</p></td>
+	                        <td><p>${process.getApply_date()}</p></td>
 	                        <c:choose>
 		                        <c:when test="${process.getReg_condition() eq '출원완료' }">
 		                        	<c:choose>
@@ -164,9 +181,18 @@
 		                        			<td>-</td>
 		                        		</c:otherwise>
 		                        	</c:choose>
-		                        	
 		                        </c:when>
-	                     	    <c:otherwise>
+		                        <c:when test="${process.getReg_condition() eq '결제대기중' }">
+		                        	<c:choose>
+		                	        	<c:when test="${currentUser.getRole()=='ROLE_INVENTOR'}">
+		                    	    		<td><button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;" class="btn_chul">결제하기</button></td>
+		                        		</c:when>
+		                        		<c:otherwise>
+		                        			<td>-</td>
+		                        		</c:otherwise>
+		                        	</c:choose>
+		                        </c:when>
+		                        <c:otherwise>
 	                        		<td>-</td>
 	                        	</c:otherwise>
 	                        </c:choose>
@@ -211,14 +237,6 @@ function getApplyDoc(start_rid){
 			}
 		}
 	});
-	
-	//js파일 밖으로 빼기 
-	$('.ideaList').click(function(){	
-		var r = $(this).parent("tr").find("input").val();
-		location.href="/detail/"+r;
-	});
-		
-	
 </script>
 </body>
 </html>

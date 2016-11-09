@@ -111,6 +111,7 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 		int uid=rv.getUid();
 		userVo uv=usermapper.getUserByUid(Integer.toString(uid));
 		System.out.println("uid:"+uid);
+		System.out.println("File Size : "+files.size());
 		for(int i=0;i<files.size();i++){
 			String today=rs.getToday(1)+i;
 			String fileType=rs.makeimageFile(files.get(i),today ,uv.getId(),rv.getRid(),root_path);

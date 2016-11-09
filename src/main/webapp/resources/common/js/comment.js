@@ -129,11 +129,8 @@ var lastconfirm=function(role){
  	    data : data,
  	    success:function(retVal)
  	    {
- 	    	
-	 	   	alert("발명가에게 필요 서류를 업로드 하도록 합니다.");
-	 	    
-	 	   	//location.href ="/getFile?file_name="+retVal.file_name;
-	 	    //location.href ="/upload/uploadFile";
+	 	   	alert("발명가에게 필요 서류를 업로드 할때까지 기다려주시기 바랍니다.");
+	 	    location.href ="/mainPage";
  	    },
  	    error: function(request,status,error)
 		{
@@ -162,11 +159,8 @@ var gotoApply=function(role){
  	    data : data,
  	    success:function(retVal)
  	    {
- 	    	
-	 	   	alert("특허 준비하기 페이지로 넘어갑니다.");
-	 	    
-	 	   	//location.href ="/getFile?file_name="+retVal.file_name;
-	 	    location.href ="/upload/uploadFile";
+ 	     	alert("특허 준비하기 페이지로 넘어갑니다.");
+	  	    location.href ="/upload/uploadFile";
  	    },
  	    error: function(request,status,error)
 		{

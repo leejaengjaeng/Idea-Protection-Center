@@ -1,7 +1,5 @@
 package com.ipc.controller;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -9,6 +7,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.imageio.spi.RegisterableService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -29,7 +28,6 @@ import com.ipc.dao.MainPageDao;
 import com.ipc.dao.RegistrationDao;
 import com.ipc.service.MessageService;
 import com.ipc.service.RegistrationService;
-import com.ipc.service.SignUpService;
 import com.ipc.service.UploadDocumentService;
 import com.ipc.vo.RegistrationPatentVo;
 import com.ipc.vo.UpLoadDocVo;
@@ -51,7 +49,7 @@ public class DocumentUpLoadController {
 	@Autowired
 	MessageService mService;
 	@Autowired
-	RegistrationService ss;
+	RegistrationService rService;
 	
 	@RequestMapping(value="/inputFile",method=RequestMethod.POST)
 	public String inputFile(HttpServletRequest request) throws IOException{
@@ -79,12 +77,6 @@ public class DocumentUpLoadController {
 		String root_path=request.getSession().getServletContext().getRealPath("/");
 		
 		uploadService.saveFile(map, root_path,upv);
-		
-		RegistrationPatentVo rvo = regDao.getRegistrationByRidOrPrevRid(Integer.parseInt(request.getParameter("rid")));
-		rvo.setRegistration_date(ss.getToday(0));
-		mService.applyingInventor(rvo);
-		mService.applyingPL(rvo);
-		
 		return "redirect:/";
 	}
 	@RequestMapping(value="/uploadFile")
@@ -97,7 +89,6 @@ public class DocumentUpLoadController {
 			return "redirect:/authError";
 		}
 		model.addAttribute("regis", regDao.getRegistrationByRidOrPrevRid(regDao.getLastRidInProcessList(Integer.parseInt(start_rid))));
-		System.out.println("에에ㅔ에에에에에ㅔ에엥ㅇ에에에ㅔ에에에ㅔ에ㅔ에에에에ㅔ에에에ㅔ");
 		return "apply/uploaddocument";
 	}
 	private FileOutputStream fos;
@@ -153,7 +144,7 @@ public class DocumentUpLoadController {
 		regDao.updateRegCondition(upCon);
 		
 		RegistrationPatentVo rvo = regDao.getRegistrationByRidOrPrevRid(rid);
-		rvo.setRegistration_date(ss.getToday(0));
+		rvo.setRegistration_date(rService.getToday(0));
 		mService.completeApplyInventor(rvo);
 		mService.completeApplyPL(rvo);
 		return "redirect:/";

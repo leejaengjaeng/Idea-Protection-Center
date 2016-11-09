@@ -4,6 +4,7 @@ import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletCont
 import org.springframework.boot.web.servlet.ErrorPage;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
+
 @Configuration
 public class ErrorConfiguration extends ServerProperties{
 	@Override

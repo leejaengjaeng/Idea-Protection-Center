@@ -111,7 +111,6 @@
             </div>
          </div>
          <div class="hr"></div>
-         <iframe src="https://www.youtube.com/embed/ePpPVE-GGJw?controls=1&showinfo=0&modestbranding=1&autoplay=1" frameborder="0"; style="width:100%; height:562px;"></iframe>
          <div id="table_notice">
             <h1>공지사항</h1>
             <span>
@@ -127,7 +126,7 @@
                </tr>
                <c:forEach items="${noticeList}" var="list" varStatus="status">                  
                   <tr onclick="location.href='/noticeList/${list.getNid()}'">
-                     <td> ${status.count}</td>                     
+                     <td> ${status.count}</td>
                      <td>${list.getTitle()}</td>
                      <td>관리자</td>
                      <td>${list.getDate()}</td>

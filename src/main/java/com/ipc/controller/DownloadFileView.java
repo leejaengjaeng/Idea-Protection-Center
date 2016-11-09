@@ -36,6 +36,7 @@ public class DownloadFileView extends AbstractView{
         FileInputStream fis = null;
         try {
         	System.out.println("comeIn!");
+        	System.out.println("file path : "+file.getPath());
             fis = new FileInputStream(file);
             FileCopyUtils.copy(fis, out);
         } catch (Exception e) {
