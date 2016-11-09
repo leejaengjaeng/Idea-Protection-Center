@@ -23,7 +23,7 @@
 			<p>${noticeVo.getTitle()}</p>
 		</div>
 		<div class="date_detail">
-			<p>${noticeVo.getDate()}</p>
+			<p>${noticeVo.getDate()}</p> 
 		</div>
 		<div class="cont_detail">
 			<p>${noticeVo.getContent()}</p>

@@ -116,6 +116,7 @@ $(document).ready(function()
 	$('#IdeaModifyList').on("click","tr",function()
 	{
 		//IdeaModifyList 내부의 tr중 clickedIdea를 가지고있는 요소의 clickedIdea를 제거 
+		
 		$(this).parent().find('.clickedIdea').removeClass('clickedIdea');
 		var rid = $(this).children('input').attr('value');
 		
@@ -147,14 +148,14 @@ $(document).ready(function()
                 	<c:forEach items="${processList}" var="list" varStatus="status">
 						<c:choose>
 							<c:when test="${status.first and status.last }">
-								<tr class="clickedIdea">
+								<tr class="clickedIdea headerhide">
 									<input type="hidden" value="${list.getRid()}"/>
 								    <td class="title_td">아이디어 등록(초안)</td>
 							        <td class="date_td">${list.getRegistration_date()}</td>
 			                	</tr>
 							</c:when>
 							<c:when test="${status.first}">
-								<tr>
+								<tr class="headerhide">
 									<input type="hidden" value="${list.getRid()}"/>
 									<td class="title_td">아이디어 등록(초안)</td>
 							        <td class="date_td">${list.getRegistration_date()}</td>

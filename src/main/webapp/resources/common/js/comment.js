@@ -56,8 +56,7 @@ var disableInput = function()
    $('#AfterCommentPicture_explain').addClass('disabled');
    $('#AfterCommentPicture_explain').attr('disabled',true);
    $('#AfterCommentHope_content').addClass('disabled');
-   $('#AfterCommentHope_content').attr('disabled',true);
-   
+   $('#AfterCommentHope_content').attr('disabled',true);   
    $('#tmpSave').hide();
    $('#agree').hide();      
    $('#gogogo').hide();

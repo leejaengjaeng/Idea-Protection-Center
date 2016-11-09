@@ -17,7 +17,7 @@
 <c:import url="/WEB-INF/views/import/header.jsp"/>
 <div id="wrap_form">
     <div style="width:100%; float:left; text-align:left; margin-bottom:100px; margin-top:50px;">
-        <h1 style="border-bottom:2px solid #ccc; padding-bottom:10px;">오시는 길</h1>
+        <h1 style="padding-bottom:10px;">오시는 길</h1>
     </div>
     <div style="width:100%; float:left;">
         <nav style="width:200px; float:left; text-align:right; padding-right:20px; font-size:20px; padding-top:20px;">
