@@ -113,12 +113,15 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 		System.out.println("uid:"+uid);
 		System.out.println("File Size : "+files.size());
 		for(int i=0;i<files.size();i++){
-			String today=rs.getToday(1)+i;
-			String fileType=rs.makeimageFile(files.get(i),today ,uv.getId(),rv.getRid(),root_path);
-			HashMap<String,String> map = new HashMap<String,String>();
-			map.put("start_rid", Integer.toString(rv.getRid()));
-			map.put("file_path", "/resources/uploadimgs/inventor/"+uv.getId()+"/"+today+"."+fileType);
-			regisfilemapper.makeFile(map);
+			System.out.println("isEmpty : "+files.get(i).isEmpty());
+			if(!files.get(i).isEmpty()){
+				String today=rs.getToday(1)+i;
+				String fileType=rs.makeimageFile(files.get(i),today ,uv.getId(),rv.getRid(),root_path);
+				HashMap<String,String> map = new HashMap<String,String>();
+				map.put("start_rid", Integer.toString(rv.getRid()));
+				map.put("file_path", "/resources/uploadimgs/inventor/"+uv.getId()+"/"+today+"."+fileType);
+				regisfilemapper.makeFile(map);
+			}
 		}
 		
 		
