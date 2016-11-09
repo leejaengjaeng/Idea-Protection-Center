@@ -368,13 +368,15 @@ public class CommentController {
 		RegistrationService rs = new RegistrationService();
 		String root_path=request.getSession().getServletContext().getRealPath("/");
 		for(int i=0;i<files.size();i++){
-			String today=rs.getToday(1)+i;
-			String fileType=rs.makeimageFile(files.get(i),today ,userID,Integer.parseInt(start_rid_file),root_path);
-			System.out.println(fileType);
-			HashMap<String,String> map = new HashMap<String,String>();
-			map.put("start_rid", start_rid_file);
-			map.put("file_path", "/resources/uploadimgs/inventor/"+userID+"/"+today+"."+fileType);
-			regFileDao.makeFile(map);
+			if(!files.get(i).isEmpty()){
+				String today=rs.getToday(1)+i;
+				String fileType=rs.makeimageFile(files.get(i),today ,userID,Integer.parseInt(start_rid_file),root_path);
+				System.out.println(fileType);
+				HashMap<String,String> map = new HashMap<String,String>();
+				map.put("start_rid", start_rid_file);
+				map.put("file_path", "/resources/uploadimgs/inventor/"+userID+"/"+today+"."+fileType);
+				regFileDao.makeFile(map);
+			}
 		}
 		HashMap<String,String> map2=new HashMap<String,String>();
 		map2.put("aa","aa");
