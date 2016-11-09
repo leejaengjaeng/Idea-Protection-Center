@@ -29,7 +29,7 @@ $(document).ready(function()
 	}));
 	$('.ideaList').on("click","button",function()
 	{
-		alert('기능 넣기');
+		
 	});
 });
 </script>
