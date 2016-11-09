@@ -192,7 +192,9 @@ public class DocController {
 		//paragraph.setIndentationHanging(1000);
 		
 		//paragraph.setBorderBottom(Borders.BASIC_THIN_LINES);
-		String name=rv.getTitle()+ss.getToday(1)+".docx";
+		//String name=rv.getTitle()+ss.getToday(1)+".docx";
+		String name=ss.getToday(1)+".docx";
+		
 		String full_path=path+name;
 		try{
 			
