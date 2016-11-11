@@ -124,7 +124,7 @@ body{
     	    headers: headers,
     	    data : data,
     	    success: function(data) {
-    	    	alert(pId);
+    	    	//alert(pId);
     	    	var element = document.getElementById(buttonId);
     	    	element.parentNode.removeChild(element);
     	    	var inDiv=document.getElementById(pId);

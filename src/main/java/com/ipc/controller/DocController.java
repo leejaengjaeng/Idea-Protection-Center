@@ -26,10 +26,14 @@ import com.ipc.vo.RegistrationFileVo;
 import com.ipc.vo.RegistrationPatentVo;
 
 import java.awt.image.BufferedImage;
+import java.awt.image.Raster;
 import java.io.*;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.imageio.ImageIO;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
 import javax.servlet.http.HttpServletRequest;
 @Controller
 public class DocController {
@@ -39,6 +43,7 @@ public class DocController {
 	RegistrationDao regisMapper;
 	
 	public String savefile(RegistrationPatentVo rv,String root_path,List<RegistrationFileVo> rfv) throws InvalidFormatException, IOException{
+		System.out.println("rootpath in savefile : "+root_path);
 		RegistrationService ss = new RegistrationService();
 		XWPFDocument document = new XWPFDocument();
 		XWPFParagraph paragraph=document.createParagraph();
@@ -147,8 +152,35 @@ public class DocController {
 			//String imgFile="C:\\Users\\HP\\Desktop\\idea-Protection\\Idea-Protection-Center\\src\\main\\webapp\\resources\\uploadimgs\\inventor\\asdf\\201610141721170.jpg";
 			System.out.println("imgFilePath:"+imgFile);
 			File file=new File(imgFile);
-			
-			BufferedImage bi=ImageIO.read(file);
+			System.out.println("파일이름 : "+file.getName());
+			BufferedImage bi;
+			try{
+				bi=ImageIO.read(file);
+			}
+			catch(Exception e){
+				Iterator readers = ImageIO.getImageReadersByFormatName("JPEG");
+				ImageReader reader = null;
+				while(readers.hasNext()) {
+				    reader = (ImageReader)readers.next();
+				    if(reader.canReadRaster()) {
+				        break;
+				    }
+				}
+
+				//Stream the image file (the original CMYK image)
+				ImageInputStream input =   ImageIO.createImageInputStream(file); 
+				reader.setInput(input); 
+
+				//Read the image raster
+				Raster raster = reader.readRaster(0, null); 
+
+				//Create a new RGB image
+				bi = new BufferedImage(raster.getWidth(), raster.getHeight(), 
+				BufferedImage.TYPE_4BYTE_ABGR); 
+
+				//Fill the new image with the old raster
+				bi.getRaster().setRect(raster);
+			}
 			float width=bi.getWidth();
 			float height=bi.getHeight();
 			
@@ -173,11 +205,13 @@ public class DocController {
 			else if(fileType.equals("png")){
 				picture_type=XWPFDocument.PICTURE_TYPE_PNG;
 			}
-			else if(fileType.equals("png")){
+			else if(fileType.equals("bmp")){
 				picture_type=XWPFDocument.PICTURE_TYPE_BMP;
 			}
+			else if(fileType.equals("jpeg")){
+				picture_type=XWPFDocument.PICTURE_TYPE_JPEG;
+			}
 			run.addPicture(is, picture_type, imgFile,Units.toEMU(realWidth),Units.toEMU(realHeight)); // 200x200 pixels
-			
 		}
 		is.close();
 //		String imgFile="C:\\Users\\HP\\Desktop\\idea-Protection\\Idea-Protection-Center\\src\\main\\webapp\\resources\\uploadimgs\\inventor\\asdf\\201610141721170.jpg";

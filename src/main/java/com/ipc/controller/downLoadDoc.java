@@ -122,6 +122,7 @@ public class downLoadDoc {
 		else if(file_kind.equals("apply")){
 			RegistrationPatentVo rv=regismapper.getRegistrationByRidOrPrevRid(rid);
 			List<RegistrationFileVo> imgList=regisfilemapper.getImgListByStartRid(regismapper.getStartRidByRid(rid));
+			System.out.println("root path123 : "+applyDocRootPath);
 			file_name=docController.savefile(rv, applyDocRootPath, imgList);
 			
 			HashMap<String,String> map= new HashMap<String,String>();
