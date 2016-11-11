@@ -74,8 +74,13 @@ $(document).ready(function()
             <div id="profile_menu">
                 <ul style="padding-left:0;">
 		            <li onclick="location.href='/signup/editUser'">회원정보수정</li>
-		            <li>1:1질문하기</li>
-		            <li>아이디어 진행내역</li>
+		            <li onclick="location.href='/qna/qnaBoard'">1:1질문하기</li>
+		            <li onclick="location.href='#'">아이디어 진행내역</li>
+		            <c:choose>
+               	        	<c:when test="${currentUser.getRole()=='ROLE_PATIENTENTLAWYER'}">
+                   	    		<li onclick="location.href='#'">정산 내역</li>
+                       		</c:when>
+					</c:choose>                       		
 		         	<!-- 
 		            <li>임시저장함</li>
 		            <li>결제대기</li>
@@ -86,7 +91,11 @@ $(document).ready(function()
             <div id="nav_benner">
                 <ul style="padding-left:0;">
                     <li onclick="location.href='/registration/addidea'">
-                        <img src="/resources/image/sub_banner_1.jpg" alt="benner1" style="cursor:pointer" onclick='location.href="/registration/addidea"'>
+                    <c:choose>
+               	        	<c:when test="${currentUser.getRole()=='ROLE_INVENTOR'}">
+                   	    		<img src="/resources/image/sub_banner_1.jpg" alt="benner1" style="cursor:pointer" onclick='location.href="/registration/addidea"'>
+                       		</c:when>
+					</c:choose>                        
                     </li>
                     <!-- 
                     <li>
@@ -127,7 +136,7 @@ $(document).ready(function()
             </div>
             <div id="cont_table">
                 
-                <ol>
+                <!-- <ol>
                     <li style="font-size:1.3rem; font-weight:bold;">분류</li>
                     <li>                        
                         <select>
@@ -149,8 +158,8 @@ $(document).ready(function()
                             <option>가출원완료</option>                            
                         </select>
                     </li>
-                </ol>                
-                <table>
+                </ol> -->                
+                <table style="margin-top:50px;">
                     <tr> 
                         <th>번호</th>
                         <th>등록날짜</th>

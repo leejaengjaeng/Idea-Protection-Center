@@ -97,3 +97,11 @@ $('#idea_title').keyup(function(){
 	   $(".ot").css("display","block");
    });
    
+   
+   $("#IdeaModifyList tr").click(function(){	
+		if($(this).hasClass("headerhide")){
+			$(".halfframe").css("display","none");
+		}else{
+			$(".halfframe").css("display","block");
+		}
+	});

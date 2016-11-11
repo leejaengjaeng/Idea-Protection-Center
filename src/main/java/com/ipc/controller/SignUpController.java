@@ -113,7 +113,11 @@ public class SignUpController{
 		//System.out.println("filType: "+fileType);
 		
 		if(files.get(0).isEmpty()){
-			map.put("profileimg", "/resources/image/attonrney_profile.jpg");
+			if(request.getParameter("role").equals("1")){
+				map.put("profileimg", "/resources/image/attonrney_profile.jpg");
+			}else{
+				map.put("profileimg", "/resources/image/val1.png");
+			}			
 		}
 		else{
 			map.put("profileimg", "/resources/uploadimgs/profileImg/"+uv.getId()+"."+fileType);

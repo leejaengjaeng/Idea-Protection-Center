@@ -9,6 +9,10 @@
 <link rel="stylesheet" href="/resources/common/css/style.css"> 
 <link rel="stylesheet" href="/resources/common/css/index.css"> 
 <link rel="icon" href="/resources/image/pavicon.png">
+<style>
+	h1{text-align:center !important; margin-bottom:10px;}
+	h1::before{contants:"";display:none;}
+</style>
 </head>
 <body>
 <c:import url="/WEB-INF/views/import/header.jsp"/>

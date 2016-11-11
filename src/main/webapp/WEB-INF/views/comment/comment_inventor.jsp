@@ -237,7 +237,7 @@ $(document).ready(function()
 					<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentTitle">${beforeReg.getRe_title()}</textarea>
 				</div>
 				<div class="titframe">
-					<h1>Comment를 작성 해 주세요</h1>
+					<h1>변리사 의견을 참고하여 내용을 작성해 주세요.</h1>
 				</div>
 				<textarea class="disabled current" placeholder="Comment" disabled style="border-top:1px solid #fff;" id="AfterCommentTitle">${currentAnswer.getTitle()}</textarea>				
 			</div>
@@ -254,7 +254,7 @@ $(document).ready(function()
 					<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentSummary">${beforeReg.getRe_summary()}</textarea>
 				</div>
 				<div class="titframe">
-					<h1>Comment를 작성 해 주세요</h1>
+					<h1>변리사 의견을 참고하여 내용을 작성해 주세요.</h1>
 				</div>
 				<textarea class="disabled current" placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentSummary">${currentAnswer.getSummary()}</textarea>
 			</div>
@@ -271,7 +271,7 @@ $(document).ready(function()
 					<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentWhyInvent">${beforeReg.getRe_whyInvent()}</textarea>
 				</div>
 				<div class="titframe">
-					<h1>Comment를 작성 해 주세요</h1>
+					<h1>변리사 의견을 참고하여 내용을 작성해 주세요.</h1>
 				</div>
 				<textarea class="disabled current" placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentWhyInvent">${currentAnswer.getWhyInvent()}</textarea>
 			</div>
@@ -288,7 +288,7 @@ $(document).ready(function()
 					<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentProblem">${beforeReg.getRe_problem()}</textarea>
 				</div>
 				<div class="titframe">
-					<h1>Comment를 작성 해 주세요</h1>
+					<h1>변리사 의견을 참고하여 내용을 작성해 주세요.</h1>
 				</div>
 				<textarea class="disabled current" placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentProblem">${currentAnswer.getProblem()}</textarea>
 
@@ -306,7 +306,7 @@ $(document).ready(function()
 					<textarea  class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentSolution">${beforeReg.getRe_solution()}</textarea>
 				</div>
 				<div class="titframe">
-					<h1>Comment를 작성 해 주세요</h1>
+					<h1>변리사 의견을 참고하여 내용을 작성해 주세요.</h1>
 				</div>
 				<textarea  class="disabled current" placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentSolution">${currentAnswer.getSolution()}</textarea>
 			</div>
@@ -323,7 +323,7 @@ $(document).ready(function()
 					<textarea  class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentEffect">${beforeReg.getRe_effect()}</textarea>
 				</div>
 				<div class="titframe">
-					<h1>Comment를 작성 해 주세요</h1>
+					<h1>변리사 의견을 참고하여 내용을 작성해 주세요.</h1>
 				</div>
 				<textarea  class="disabled current" placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentEffect">${currentAnswer.getEffect()}</textarea>				
 			</div>
@@ -340,7 +340,7 @@ $(document).ready(function()
 					<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentCore_Element">${beforeReg.getRe_core_element()}</textarea>
 				</div>
 				<div class="titframe">
-					<h1>Comment를 작성 해 주세요</h1>
+					<h1>변리사 의견을 참고하여 내용을 작성해 주세요.</h1>
 				</div>
 				<textarea class="disabled current" placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentCore_Element">${currentAnswer.getCore_element()}</textarea>					
 
@@ -358,7 +358,7 @@ $(document).ready(function()
 					<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentHope_content()">${beforeReg.getRe_hope_content()}</textarea>
 				</div>
 				<div class="titframe">
-					<h1>Comment를 작성 해 주세요</h1>
+					<h1>변리사 의견을 참고하여 내용을 작성해 주세요.</h1>
 				</div>
 				<textarea class="disabled current" placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentHope_content">${currentAnswer.getHope_content()}</textarea>
 
@@ -397,7 +397,7 @@ $(document).ready(function()
 					<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentPicture_explain">${beforeReg.getRe_picture_explain()}</textarea>
 				</div>
 				<div class="titframe">
-					<h1>Comment를 작성 해 주세요</h1>
+					<h1>변리사 의견을 참고하여 내용을 작성해 주세요.</h1>
 				</div>
 				<textarea class="disabled current" placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentPicture_explain">${currentAnswer.getPicture_explain()}</textarea>
 			</div>
@@ -407,7 +407,7 @@ $(document).ready(function()
 			<button type="button" id="agree">제출</button>
 			<c:choose>
 				<c:when test="${currentAnswer.getIscomplete()>=3}">
-					<button type="button" id="gotoApply">필요 서류 업로드</button>
+					<button type="button" id="gotoApply">출원</button>
 				</c:when>
 				
 			</c:choose>
