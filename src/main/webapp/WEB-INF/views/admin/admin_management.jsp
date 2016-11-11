@@ -12,89 +12,7 @@
     <meta name="_csrf" content="${_csrf.token}" />
 	<meta name="_csrf_header" content="${_csrf.headerName}" />
     <script src="/resources/common/js/jquery-3.1.0.min.js"></script>
-    <style>
-body{
-    height: 100% !important;        
-}
-.black_wall{
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.7);
-    position:fixed;    
-    z-index:98;
-}    
-    .popup{
-        width: 600px;
-        background:#fff;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%,-50%);
-        -moz-transform: translate(-50%,-50%);
-        -webkit-transform: translate(-50%,-50%);
-        box-shadow: 0 0 10px 0 #000;                
-        position: fixed;        
-        z-index: 99;
-    }
-    .pop_header{
-        width: 100%;
-        float: left;
-        background: #696969;
-        color: white;
-        padding: 10px;    
-        box-shadow:0 0 5px 0 #000;
-    }
-    .pop_header>h2{
-        display: block;
-        float: left;
-        font-size: 1rem;
-        margin: 5px;
-    }
-    .pop_header>img{
-        width: 25px;
-        float: right;
-    }
-    .pop_cont{
-        width: 100%;
-        float: left;
-        text-align: center;
-        padding: 20px;
-        padding-top: 30px;
-    }
-    .pop_cont>span{
-        color: #595959;
-        font-size: 0.9;
-        display: inline-block;
-        width: 100%;
-    }
-    .pop_cont button{
-        width: 100px; 
-        height: 35px;    
-        margin:25px 5px 0 5px;
-        background: #333;
-        border: none;
-        box-shadow: inset 0 -4px rgba(0, 0, 0, .1);
-        color: white;        
-    }
-    .popup_close{
-        cursor: pointer;
-    }
-    .pop_cont table{
-    	margin-top:30px;
-    	width:100%;
-    }
-    .pop_cont table tr td{
-    	height:50px;
-    }
-    .pop_cont table tr td button{
-    	margin:0;
-    }
-    .pop_cont table tr:nth-child(1){
-		border-top:1px solid #ccc;
-		border-bottom:1px solid #ccc;    
-    }
  
-</style>
     <script>
     var RegisId;
     var buttonId;
@@ -202,27 +120,7 @@ body{
        	</table>
     </div>
 </div>
-    <header>        
-        <img src="/resources/image/ideapc_logo.jpg" alt="logo" "location.href='/'">
-        <div id="header_info">
-            <span><b>${currentUser.getName() }</b>님</span>
-            <button onclick="location.href='/logoutProcess.do'">로그아웃</button>
-        </div>        
-    </header>
-    <div id="admin_cont">
-        <nav>
-            <ul>
-                <li onclick="location.href='/IPC_admin/userList'">회원관리</li>
-                <li onclick="location.href='/IPC_admin/'">아이디어 관리</li>
-                <li>문의사항 관리</li>
-                <li onclick="location.href='/IPC_admin/admin_notice'">공지사항 관리</li>
-            	<li onclick="location.href='/qna/regularQnaAdd'">자주 묻는 질문 등록</li>
-            	<li onclick="location.href='/IPC_admin/manageType'">특허 분류 관리</li>
-            	<!-- 
-            	<li>게시판 관리</li>
-                 -->
-            </ul> 
-        </nav>
+    <c:import url="/WEB-INF/views/import/admin_header.jsp" />
         <article>
             <div id="table_header">
                 <h1>아이디어 관리</h1>
@@ -246,7 +144,6 @@ body{
                     <th style="width:100px;">이름</th>
                     <th style="width:130px;">지정변리사</th>
                     <th>이메일</th>                    
-                    <th>연락처</th>
                     <th>분류</th>
                     <th style="width:280px;">제목</th>
                     <th>진행상태</th>
@@ -270,21 +167,15 @@ body{
 	                    </c:choose>
 	                    
 	                    <td>${list.getEmail()}</td>
-	                    <td>${list.getPhone()}</td>
 	                    <td>${list.getTypeofinvent()}</td>
 	                    <td>${list.getTitle()}</td>
 	                    <td>${list.getReg_condition()}</td>
-	                   <!--   <td><button>정보수정</button></td> -->
+	                   <!--<td><button>정보수정</button></td> -->
 	                </tr>	
 	            </c:forEach>
             </table>            
         </article>
-    </div>
-<footer>
-    <div id="admin_footer">
-        <span>COPYRIGHT 2016 @ IDEAPROTECTIONCENTER ALL RIGHTS RESERVED</span>
-    </div>
-</footer>     
+    <c:import url="/WEB-INF/views/import/admin_footer.jsp" />
 <script>
     $(document).ready(function(){
       $('.manage_table tr:even').css("backgroundColor","#fff");     // odd 홀수

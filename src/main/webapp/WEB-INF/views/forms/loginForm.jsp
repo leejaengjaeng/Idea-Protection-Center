@@ -20,7 +20,7 @@
 					<button class="log_btn" style="cursor:pointer;background:#45d4fe">로그인</button>
 	       		</td>
 	       		<td>
-					<button type="button" class="lost_password" onclick="location.href='/signup/findAccount'" style="background:#585858">ID/PW 찾기 (준비중)</button>
+					<button type="button" class="lost_password" onclick="location.href='/signup/findAccount'" style="background:#585858">ID/PW 찾기</button>
 	       		</td>					
 			</tr>
 			<tr>

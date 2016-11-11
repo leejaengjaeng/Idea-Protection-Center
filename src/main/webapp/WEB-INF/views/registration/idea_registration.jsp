@@ -73,7 +73,7 @@
 				value="${_csrf.token}" /> <input type="text" name="uid" id="uid"
 				value="${sessionScope.currentUser.getUid()}" hidden>				
 				<select onChange="changeType(this.value);" id="selectBox">
-					<option>-</option>
+					<option>특허분야</option>
 					<c:forEach items="${typeList}" var="type">
 					<option>${type.getType()}</option>
 					</c:forEach>
@@ -172,7 +172,7 @@
 		</div>
 		<div class="fin">
 			<button type="button" onclick='tempsave()'>임시저장</button>
-			<input type="submit">
+			<input type="submit" value="제출하기">
 		</div>
 		</form>
 		</article> 

@@ -28,24 +28,7 @@ function checkAdmin(){
 </head>
 
 <body onload="checkAdmin()">
-    <header>        
-        <img src="/resources/image/ideapc_logo.jpg" alt="logo" onclick="location.href='/IPC_admin/'" style="cursor: pointer;">
-        <div id="header_info">
-            <span><b>${currentUser.getName() }</b>님</span>
-            <button onclick="location.href='/logoutProcess.do'">로그아웃</button>
-        </div>        
-    </header>
-    <div id="admin_cont">
-        <nav>
-            <ul>
-                <li onclick="location.href='/IPC_admin/userList'">회원관리</li>
-                <li onclick="location.href='/IPC_admin/'">아이디어 관리</li>
-                <li>문의사항 관리</li>
-                <li onclick="location.href='/IPC_admin/admin_notice'">공지사항 관리</li>
-            	<li onclick="location.href='/qna/regularQnaAdd'">자주 묻는 질문 등록</li>
-            
-            </ul>  
-        </nav>
+    <c:import url="/WEB-INF/views/import/admin_header.jsp" />
         <article>
             <div id="table_header">
                 <h1>공지사항</h1>                
@@ -77,20 +60,12 @@ function checkAdmin(){
 						</c:otherwise>
 					</c:choose>
 			  	</c:forEach>
-				<a href="/IPC_admin/admin_notice/${rightArrow}"> > </a>
-<<<<<<< HEAD
-            <button onclick="location.href='/admin_notice_registration'" id="btn_add_notice">등록</button>            
-=======
+
             </table>
             <button onclick="location.href='/notice/admin_notice_registration'" id="btn_add_notice">등록</button>            
->>>>>>> b02a8cd4c227632b0246df65cb3f5aed2bad6650
         </article>
     </div>
-<footer>
-    <div id="admin_footer">
-        <span>COPYRIGHT 2016 @ IDEAPROTECTIONCENTER ALL RIGHTS RESERVED</span>
-    </div>
-</footer>     
+<c:import url="/WEB-INF/views/import/admin_footer.jsp" />   
 <script>
     $(document).ready(function(){
       $('.manage_table tr:even').css("backgroundColor","#fff");     // odd 홀수

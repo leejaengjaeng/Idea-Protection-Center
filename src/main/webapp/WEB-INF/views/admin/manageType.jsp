@@ -9,45 +9,28 @@
 <meta name="_csrf" content="${_csrf.token}" />
 <meta name="_csrf_header" content="${_csrf.headerName}" />
 <script src="/resources/common/js/jquery-3.1.0.min.js"></script>
-
 <link href="/resources/common/css/admin.css" rel="stylesheet">
 <link href="/resources/common/css/style.css" rel="stylesheet">
 <link rel="icon" href="/resources/image/pavicon.png">
 
 <title>IPC_AdminPage</title>
 <style>
-
+	#addTypeBox{width:200px; height:35px; margin-top:50px; padding-left:10px;}
+	#addtype{width:50px;height:35px;margin-left:10px; background-color:#333; color:white; border:none;}
 </style>
 </head>
 
 <body>
-    <header>        
-        <img src="/resources/image/ideapc_logo.jpg" alt="logo" onclick="location.href='/IPC_admin/'" style="cursor: pointer;">
-        <div id="header_info">
-            <span><b>${currentUser.getName() }</b>님</span>
-            <button onclick="location.href='/logoutProcess.do'">로그아웃</button>
-        </div>        
-    </header>
-    <div id="admin_cont">
-        <nav>
-            <ul>
-                <li onclick="location.href='/IPC_admin/userList'">회원관리</li>
-                <li onclick="location.href='/IPC_admin/'">아이디어 관리</li>
-                <li>문의사항 관리</li>
-                <li onclick="location.href='/IPC_admin/admin_notice'">공지사항 관리</li>
-               	<li onclick="location.href='/qna/regularQnaAdd'">자주 묻는 질문 등록</li>
-            
-            </ul>  
-        </nav>
+     <c:import url="/WEB-INF/views/import/admin_header.jsp" />
         <article>
             <div id="table_header">
                 <h1>특허 분류 관리</h1>                
             </div>
             <table class="manage_table">
                 <tr>
-                    <th>No</th>
+                    <th style="width:100px;">No</th>
                     <th>TYPE</th>
-                    <th>-</th>
+                    <th style="width:150px;">-</th>
                 </tr>
                	<c:forEach items="${vo}" var="type" varStatus="status">
                		<div>
@@ -60,15 +43,9 @@
 				</c:forEach>
 				<div id="addtypeDiv"></div>
             </table>
-            <h3>타입 추가</h3>
-            <input type="text" id="addTypeBox"><button onclick="addType()">추가</button>
+            <input type="text" id="addTypeBox" placeholder="타입 추가" /><button onclick="addType()" id="addtype">추가</button>
         </article>
-    </div>
-<footer>
-    <div id="admin_footer">
-        <span>COPYRIGHT 2016 @ IDEAPROTECTIONCENTER ALL RIGHTS RESERVED</span>
-    </div>
-</footer>     
+    <c:import url="/WEB-INF/views/import/admin_footer.jsp" />     
 <script>
 
     $(document).ready(function(){

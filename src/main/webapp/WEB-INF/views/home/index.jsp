@@ -151,7 +151,7 @@
       <span>${totalUser}명의 발명가님의 ${totalIdea}가지 아이디어와 함께 하고 있습니다</span>
    </div>
    <!-- TODO: 이거 height 어떻게 해야댕..?, height 안주면 너무 넓음 아래  -->
-   <div class="val" style="height:250px;">
+   <div class="val">
       <c:forEach items="${current}" var="list" varStatus="status">      
          <div>
             <div class="cover">

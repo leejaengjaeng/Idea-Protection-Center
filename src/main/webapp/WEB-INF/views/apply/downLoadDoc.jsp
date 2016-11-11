@@ -164,7 +164,7 @@ function downDoc(kindOfDocument){
 					출원일
 				</td>
 				<td>
-					<input type="text" name="year">년  <input type="text" name="month">월 <input type="text" name="day">일
+					<input type="text" name="year" placeholder="0000" required> 년  <input type="text" name="month"placeholder="00" required> 월 <input type="text" name="day" placeholder="00" required> 일
 					<input type="submit" value="제출">	
 				</td>
 			</tr>			
