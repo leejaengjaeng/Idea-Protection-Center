@@ -284,7 +284,7 @@ public class CommentController {
 				ment = "초안수정";
 			}
 			else{
-				ment = Integer.toString(countOfRow-1)+"차 수정";
+				ment = "발명가 수정중";
 			}
 			
 			int start_rid=regDao.getStartRidByRid(regVo.getRid());
@@ -328,7 +328,24 @@ public class CommentController {
 			mainPageDao.updateMainPagerid(rvo);
 
 			System.out.println("hihi");
+			int countOfRow=regDao.countNumOfEdit(regVo.getRid());
 
+			String ment;
+			
+			if(countOfRow==1){
+				ment = "초안수정";
+			}
+			else{
+				ment = "변리사 검토중";
+			}
+			
+			int start_rid=regDao.getStartRidByRid(regVo.getRid());
+			
+			HashMap<String,String> map= new HashMap<String,String>();
+			map.put("ment", ment);
+			map.put("rid",Integer.toString(start_rid));
+			regDao.updateRegCondition(map);
+			
 			return "저장 성공";
 			
 		}

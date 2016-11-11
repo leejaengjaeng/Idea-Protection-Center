@@ -157,7 +157,7 @@ function downDoc(kindOfDocument){
 					출원서 업로드
 				</td>
 				<td>
-					<input type="file" name="finalApplyDoc" accept="image/gif, image/jpeg, image/png">
+					<input type="file" name="finalApplyDoc" onchange="fileCheckApply(this)" accept="image/gif, image/jpeg, image/png, application/msword, application/pdf,.doc,.docx,.hwp">
 				</td>
 			</tr>
 			<tr>
@@ -173,7 +173,7 @@ function downDoc(kindOfDocument){
 	</c:choose>
 	</form>
 	</table>
-	<span style="display:inline-block; margin-top:30px;">특허 출원서 </span><button onclick="downDoc('apply')" style="border: none;background:#1e97d0; width:80px; height:35px; color:white; margin-left:10px;">다운로드</button><br>
+	<span style="display:inline-block; margin-top:30px;">최종작성본 </span><button onclick="downDoc('apply')" style="border: none;background:#1e97d0; width:80px; height:35px; color:white; margin-left:10px;">다운로드</button><br>
 	</div>
 </div>
 <c:import url="/WEB-INF/views/import/footer.jsp"/>    

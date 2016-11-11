@@ -134,10 +134,10 @@
 		select count(rid) from registration_patent where uid=#{uid} AND iscomplete!=2 AND prev_rid=-1
 	</select>
 	<select id="countCompleteIdeaPl" parameterType="Integer" resultType="Integer">
-		select count(rid) from registration_patent where lid=#{uid} AND iscomplete=2 
+		select count(rid) from registration_patent where lid=#{uid} AND iscomplete=6
 	</select>
 	<select id="countIngIdeaPl" parameterType="Integer" resultType="Integer">
-		select count(rid) from registration_patent where lid=#{uid} AND iscomplete!=2 AND prev_rid=-1
+		select count(rid) from registration_patent where lid=#{uid} AND iscomplete!=6 AND prev_rid=-1
 	</select>
 	<select id="counTotalIdea" resultType="Integer">
 		SELECT count(1) FROM registration_patent where prev_rid=-1;

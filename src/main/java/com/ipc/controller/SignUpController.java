@@ -195,9 +195,12 @@ public class SignUpController{
 	@RequestMapping(value="/editUser")
 	public String editUser(Model model){
 		userVo currentUser = (userVo) session.getAttribute("currentUser");
+		model.addAttribute("email1",currentUser.getEmail().split("@")[0]);
+		model.addAttribute("email2",currentUser.getEmail().split("@")[1]);
 		if(currentUser.getRole().equals(roleInventor)){
 			model.addAttribute("uv",currentUser); 
-			model.addAttribute("role","inventor");                                                                                                                                      
+			model.addAttribute("role","inventor");
+			
 		}                                
 		else if(currentUser.getRole().equals(rolePatientntLawyer)){
 			model.addAttribute("uv",currentUser); 

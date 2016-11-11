@@ -15,7 +15,8 @@
 <link rel="stylesheet" href="/resources/common/css/style.css">
 <link rel="stylesheet" href="/resources/common/css/inventor.css">
 <link rel="icon" href="/resources/image/pavicon.png">
-
+<meta name="_csrf" content="${_csrf.token}" />
+<meta name="_csrf_header" content="${_csrf.headerName}" />
 
 <script>
 //js파일 밖으로 빼기 
@@ -123,9 +124,20 @@ $(document).ready(function()
                 <div id="now_msg">
                 	<table>
                 	<c:forEach var="message" items="${MessageList}" varStatus="status">
-                		<tr>
+                		<tr onclick="changeIsread('${message.getMid()}','msgIconDiv${status.count}')">
                 			<td>${message.getDate()} <br> ${message.getContent()}</td>
-                			<td><img src="/resources/image/msg.png"></td>
+                			<td>
+                				<div id="msgIconDiv${status.count}">
+                					<c:choose>
+                						<c:when test="${message.getIsread() eq '0'}">
+                							<img src="/resources/image/msg.png">	
+                						</c:when>
+                						<c:otherwise>
+                							<img src="/resources/image/msg_read.png">
+                						</c:otherwise>
+                					</c:choose>
+                				</div>
+                			</td>
                 		</tr>
                 	</c:forEach>
                 	</table>
@@ -158,57 +170,117 @@ $(document).ready(function()
                             <option>가출원완료</option>                            
                         </select>
                     </li>
-                </ol> -->                
-                <table style="margin-top:50px;">
-                    <tr> 
-                        <th>번호</th>
-                        <th>등록날짜</th>
-                        <th>분류</th>
-                        <th>제목</th>
-                        <th>상태</th>
-                        <th>가출원일</th>
-                        <th>출원일</th>
-                        <th>비고</th>
-                    </tr>
-                   	<c:forEach var="process" items="${processList}" varStatus="status">
-						<tr class="ideaList">
-							<input type="hidden" value="${process.getRid()}"/>
-							<td style="background:#f1f1f1;">${status.count }</p></td>
-	                        <td><p>${process.getRegistration_date() }</p></td>
-	                        <td><p>${process.getTypeOfInvent() }</p></td>
-	                        <td><p>${process.getTitle()}</p></td>
-	                        <td><p>${process.getReg_condition()}</p></td>
-	                        <td><p>${process.getPre_apply_date()}</p></td>
-	                        <td><p>${process.getApply_date()}</p></td>
-	                        <c:choose>
-		                        <c:when test="${process.getReg_condition() eq '출원완료' }">
-		                        	<c:choose>
-		                	        	<c:when test="${currentUser.getRole()=='ROLE_INVENTOR'}">
-		                    	    		<td><button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;" class="btn_chul" onclick="location.href='/getDoc/${process.getRid()}'">출원서 다운로드</button></td>
-		                        		</c:when>
-		                        		<c:otherwise>
-		                        			<td>-</td>
-		                        		</c:otherwise>
-		                        	</c:choose>
-		                        </c:when>
-		                        <c:when test="${process.getReg_condition() eq '결제대기중' }">
-		                        	<c:choose>
-		                	        	<c:when test="${currentUser.getRole()=='ROLE_INVENTOR'}">
-		                    	    		<td><button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;" class="btn_chul">결제하기</button></td>
-		                        		</c:when>
-		                        		<c:otherwise>
-		                        			<td>-</td>
-		                        		</c:otherwise>
-		                        	</c:choose>
-		                        </c:when>
-		                        <c:otherwise>
-	                        		<td>-</td>
-	                        	</c:otherwise>
-	                        </c:choose>
-	                        
-						</tr>
-					</c:forEach>
-                </table>                
+                </ol> -->
+                <c:choose>
+                	<c:when test="${isLawyer eq '0'}">
+                		<table style="margin-top:50px;">
+		                    <tr> 
+		                        <th>번호</th>
+		                        <th>등록날짜</th>
+		                        <th>분류</th>
+		                        <th>제목</th>
+		                        <th>상태</th>
+		                        <th>지정변리사</th>
+		                        <th>가출원일</th>
+		                        <th>출원일</th>
+		                        <th>비고</th>
+		                    </tr>
+		                   	<c:forEach var="process" items="${processList}" varStatus="status">
+								<tr class="ideaList">
+									<input type="hidden" value="${process.getRid()}"/>
+									<td style="background:#f1f1f1;">${status.count }</p></td>
+			                        <td><p>${process.getRegistration_date() }</p></td>
+			                        <td><p>${process.getTypeOfInvent() }</p></td>
+			                        <td><p>${process.getTitle()}</p></td>
+			                        <td><p>${process.getReg_condition()}</p></td>
+			                        <td><p>${process.getlName()}변리사님</p></td>
+			                        <td><p>${process.getPre_apply_date()}</p></td>
+			                        <td><p>${process.getApply_date()}</p></td>
+			                        <c:choose>
+				                        <c:when test="${process.getReg_condition() eq '출원완료' }">
+				                        	<c:choose>
+				                	        	<c:when test="${currentUser.getRole()=='ROLE_INVENTOR'}">
+				                    	    		<td><button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;" class="btn_chul" onclick="location.href='/getDoc/${process.getRid()}'">출원서 다운로드</button></td>
+				                        		</c:when>
+				                        		<c:otherwise>
+				                        			<td>-</td>
+				                        		</c:otherwise>
+				                        	</c:choose>
+				                        </c:when>
+				                        <c:when test="${process.getReg_condition() eq '결제대기중' }">
+				                        	<c:choose>
+				                	        	<c:when test="${currentUser.getRole()=='ROLE_INVENTOR'}">
+				                    	    		<td><button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;" class="btn_chul">결제하기</button></td>
+				                        		</c:when>
+				                        		<c:otherwise>
+				                        			<td>-</td>
+				                        		</c:otherwise>
+				                        	</c:choose>
+				                        </c:when>
+				                        <c:otherwise>
+			                        		<td>-</td>
+			                        	</c:otherwise>
+			                        </c:choose>
+			                        
+								</tr>
+							</c:forEach>
+		                </table>                
+                	</c:when>
+                	<c:otherwise>
+                		<table style="margin-top:50px;">
+		                    <tr> 
+		                        <th>번호</th>
+		                        <th>등록날짜</th>
+		                        <th>분류</th>
+		                        <th>제목</th>
+		                        <th>상태</th>
+		                        
+		                        <th>가출원일</th>
+		                        <th>출원일</th>
+		                        <th>비고</th>
+		                    </tr>
+		                   	<c:forEach var="process" items="${processList}" varStatus="status">
+								<tr class="ideaList">
+									<input type="hidden" value="${process.getRid()}"/>
+									<td style="background:#f1f1f1;">${status.count }</p></td>
+			                        <td><p>${process.getRegistration_date() }</p></td>
+			                        <td><p>${process.getTypeOfInvent() }</p></td>
+			                        <td><p>${process.getTitle()}</p></td>
+			                        <td><p>${process.getReg_condition()}</p></td>
+			                        
+			                        <td><p>${process.getPre_apply_date()}</p></td>
+			                        <td><p>${process.getApply_date()}</p></td>
+			                        <c:choose>
+				                        <c:when test="${process.getReg_condition() eq '출원완료' }">
+				                        	<c:choose>
+				                	        	<c:when test="${currentUser.getRole()=='ROLE_INVENTOR'}">
+				                    	    		<td><button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;" class="btn_chul" onclick="location.href='/getDoc/${process.getRid()}'">출원서 다운로드</button></td>
+				                        		</c:when>
+				                        		<c:otherwise>
+				                        			<td>-</td>
+				                        		</c:otherwise>
+				                        	</c:choose>
+				                        </c:when>
+				                        <c:when test="${process.getReg_condition() eq '결제대기중' }">
+				                        	<c:choose>
+				                	        	<c:when test="${currentUser.getRole()=='ROLE_INVENTOR'}">
+				                    	    		<td><button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;" class="btn_chul">결제하기</button></td>
+				                        		</c:when>
+				                        		<c:otherwise>
+				                        			<td>-</td>
+				                        		</c:otherwise>
+				                        	</c:choose>
+				                        </c:when>
+				                        <c:otherwise>
+			                        		<td>-</td>
+			                        	</c:otherwise>
+			                        </c:choose>
+			                        
+								</tr>
+							</c:forEach>
+		                </table>
+                	</c:otherwise>
+                </c:choose>       
                 <div id="notice_title">
                     <h2>공지사항</h2>
                 </div>
@@ -246,6 +318,34 @@ function getApplyDoc(start_rid){
 			}
 		}
 	});
+	function changeIsread(mid,divid){
+		   var csrfToken = $("meta[name='_csrf']").attr("content"); 
+		   var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+		   var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
+		   var data = {};
+		   var data2={};
+		   var headers = {};
+
+		   data[csrfParameter] = csrfToken;
+		    headers[csrfHeader] = csrfToken;
+
+		    data['mid'] = mid;
+		    $.ajax({
+		      url : "/changeIsread",
+		      type:"POST",
+		      headers: headers,
+		        data : data,
+		        success:function(retVal)
+		        {
+		        	$('#'+divid).empty();
+		         	$('#'+divid).append("<img src='/resources/image/msg_read.png'>");
+		        },
+		        error: function(request,status,error)
+		      	{
+		          alert('실패하였습니다.')
+		     	}
+		   });   
+	}
 </script>
 </body>
 </html>
