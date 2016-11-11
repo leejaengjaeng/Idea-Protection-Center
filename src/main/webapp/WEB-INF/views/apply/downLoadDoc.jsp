@@ -79,6 +79,7 @@ function downDoc(kindOfDocument){
 <c:import url="/WEB-INF/views/import/header.jsp"/>
 <div id="wrap_form">
 	<div style="width:100%; float:left; padding-top:50px; padding-bottom:100px;">	
+	<h2 style="font-size:30px; margin-top:100px; display: block; font-weight:400; margin-bottom:30px;">최종 출원 진행</h2>
 	<table style="width:80%;">		
 	<c:choose>
 		<c:when test="${docVo.getResident_registration()!=null}">
