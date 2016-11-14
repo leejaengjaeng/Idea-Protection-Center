@@ -47,6 +47,8 @@ public interface RegistrationDao {
 	public void updateStartId(int rid);
 	
 	public List<adminListVo> adminGetIdeaList();
+	public List<adminListVo> getIdeaListInBound(HashMap<String,Integer> map);
+	
 	public void regisNotice(adminNoticeVo an);
 	public void tempApply(int rid);
 	

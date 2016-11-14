@@ -27,7 +27,6 @@
             </div>
             <table class="manage_table">
                 <tr>
-                    <th>No</th>
                     <th>ID</th>
                     <th>이름</th>
                     <th>이메일</th>
@@ -35,7 +34,6 @@
                 </tr>
                	<c:forEach items="${userList}" var="user" varStatus="status">
 			   		<tr>
-				   		<td>${status.count}</td>
 				   		<td>${user.getId()}</td>
 				   		<td>${user.getName()}</td>				   		
 						<td>${user.getEmail()}</td>
@@ -56,6 +54,20 @@
 				   	</tr>
 				</c:forEach>
             </table>
+            </table>
+            <a href="/IPC_admin/userList/${leftArrow}"> < </a>
+				<c:forEach items="${pageNationButtons}" var="btn">
+					<c:choose>
+						<c:when test="${btns eq currentPage }">
+							<a href="/IPC_admin/userList/${btn}"><b style="font-size:20px;">${btn}</b><a>
+						</c:when>
+						<c:otherwise>
+							<a href="/IPC_admin/userList/${btn}">${btn}<a>
+						</c:otherwise>
+					</c:choose>
+			  	</c:forEach>
+    		<a href="/IPC_admin/userList/${rightArrow}"> > </a>
+			</table>
         </article>
     <c:import url="/WEB-INF/views/import/admin_footer.jsp" />
 <script>

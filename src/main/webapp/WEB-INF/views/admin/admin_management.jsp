@@ -139,7 +139,6 @@
             </div>
             <table class="manage_table">
                 <tr>
-                    <th style="width:50px;">No</th>
                     <th>사용자</th>
                     <th style="width:100px;">이름</th>
                     <th style="width:130px;">지정변리사</th>
@@ -152,7 +151,6 @@
                 <c:forEach items="${ideaList }" var="list" varStatus="status">
 	                <tr>
 	                	<input type="hidden" value="${list.getRid() }"/>
-	                    <td>${status.count}</td>
 	                    <td>${list.getiId()}</td>
 	                    <td >${list.getiName()}</td>
 						
@@ -173,7 +171,21 @@
 	                   <!--<td><button>정보수정</button></td> -->
 	                </tr>	
 	            </c:forEach>
-            </table>            
+            </table>          
+            </table>
+            <a href="/IPC_admin/ideas/${leftArrow}"> < </a>
+				<c:forEach items="${pageNationButtons}" var="btn">
+					<c:choose>
+						<c:when test="${btns eq currentPage }">
+							<a href="/IPC_admin/ideas/${btn}"><b style="font-size:20px;">${btn}</b><a>
+						</c:when>
+						<c:otherwise>
+							<a href="/IPC_admin/ideas/${btn}">${btn}<a>
+						</c:otherwise>
+					</c:choose>
+			  	</c:forEach>
+    		<a href="/IPC_admin/ideas/${rightArrow}"> > </a>
+			</table>  
         </article>
     <c:import url="/WEB-INF/views/import/admin_footer.jsp" />
 <script>

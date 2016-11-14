@@ -48,7 +48,10 @@ public interface UserDao {
 	
 	public LawyerProfileVo getLawyerProfile(int uid);
 	
+
 	
 	
 	public void makeuserTemp(userVo uv);
+
+	public List<userVo> getUsersInBounds(HashMap<String,Integer> map);
 }

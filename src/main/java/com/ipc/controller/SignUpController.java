@@ -104,7 +104,7 @@ public class SignUpController{
 		{
 			uv.setPw(hashedPwd);
 		}
-		System.out.println("hashPwd : " + hashedPwd);
+		
 		HashMap<String,String> map=new HashMap<String,String>();
 		map.put("id", uv.getId());
 		map.put("pw", uv.getPw());
@@ -160,7 +160,7 @@ public class SignUpController{
 		//System.out.println("lawyerVo : "+lv.getIntroduce()+","+lv.getAccount_number()+","+lv.getLicense_number()+","+lv.getMajor());
 		
 		//에러 안나면 로그인 되고 , 에러나면 login 페이지 띄움 
-		return signupService.afterSignUp(uv.getId(), uv.getPw());
+		return signupService.afterSignUp(uv.getId(), rawPwd);
 	}
 	@RequestMapping(value="/checkid",method=RequestMethod.POST)
 	@ResponseBody

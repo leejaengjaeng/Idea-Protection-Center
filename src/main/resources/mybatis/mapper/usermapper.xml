@@ -53,10 +53,18 @@
 	<select id="getLawyerProfile" parameterType="Integer" resultType="com.ipc.vo.LawyerProfileVo">
 		select u.id as id,u.name as name,u.email as email,p.major as major,p.introduce as introduce from user u inner join patientent_lawyer p on u.uid=p.uid where u.uid=#{uid}
 	</select>
-	
+
 	
 	<insert id="makeuserTemp" parameterType="com.ipc.vo.userVo">
 		insert into user(id,pw,name,email) values (#{id},#{pw},#{name},#{email})
 	</insert>
+
+	<select id="getUsersInBounds" resultType="com.ipc.vo.userVo" parameterType="HashMap">
+		SELECT id,name,phone,addr1,addr2,addr3,email,role,is_member,profileimg
+		FROM user 
+		ORDER BY uid DESC 
+		LIMIT #{start},#{pagePerContents};
+	</select>
+
 </mapper>
 

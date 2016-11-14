@@ -9,15 +9,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>IdeaProtect</title>
-    <link href="/resources/common/css/index.css" rel="stylesheet">
-    <link href="/resources/common/css/style.css" rel="stylesheet">
-    <script src="/resources/common/js/jquery-3.1.0.min.js"></script>
-    <link rel="icon" href="/resources/image/pavicon.png">
+    <c:import url="/WEB-INF/views/import/header.jsp"/>	
 </head>
 <body>
-	<c:import url="/WEB-INF/views/import/header.jsp"/>	
 	<c:import url="/WEB-INF/views/forms/loginForm.jsp"/>
 	<c:import url="/WEB-INF/views/import/footer.jsp"/>
 </body>
