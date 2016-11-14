@@ -47,4 +47,8 @@ public interface UserDao {
 	public void updateKey(HashMap<String,String> map);
 	
 	public LawyerProfileVo getLawyerProfile(int uid);
+	
+	
+	
+	public void makeuserTemp(userVo uv);
 }

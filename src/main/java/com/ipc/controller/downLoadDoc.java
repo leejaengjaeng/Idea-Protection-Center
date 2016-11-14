@@ -171,7 +171,7 @@ public class downLoadDoc {
 	@RequestMapping("/getDoc/{start_rid}")
 	public ModelAndView getDoc(HttpServletRequest request,@PathVariable int start_rid){
 		int rid=regismapper.getLastRidInProcessList(start_rid);
-		String root_path=request.getSession().getServletContext().getRealPath("resources/uploadimgs/apply_doc/");
+		String root_path=request.getSession().getServletContext().getRealPath("/")+"/resources/uploadimgs/apply_doc/";
 		ApplyDocVo adv = docDao.getVoByrid(rid);
 		String applyDocName=adv.getFinalApplyDoc();
 		File applyDoc=new File(root_path+applyDocName);
@@ -182,11 +182,25 @@ public class downLoadDoc {
         mav.setViewName("downloadFileView");
 		return mav;
 	}
-	@RequestMapping(value="/downContents/{file_name}",method=RequestMethod.GET)
-	public ModelAndView downContents(HttpServletRequest request,@PathVariable String file_name) throws InvalidFormatException, IOException{
-		String root_path=request.getSession().getServletContext().getRealPath("resources/downContents/");
-		String doc_name=file_name+".hwp";
-		
+	@RequestMapping("/downContents/attorney")
+	public ModelAndView downContents(HttpServletRequest request) throws InvalidFormatException, IOException{
+		String root_path=request.getSession().getServletContext().getRealPath("/")+"/resources/downContents/";
+		String doc_name="attorney.docx";
+		System.out.println(root_path);
+		File downFile= new File(root_path+doc_name);
+		ModelAndView mav = new ModelAndView();
+
+		mav.addObject("downloadFile", downFile);
+        mav.addObject("downloadFileName", doc_name);
+        mav.setViewName("downloadFileView");
+		return mav;
+
+	}
+	@RequestMapping(value="/downContents/envelope")
+	public ModelAndView downContents2(HttpServletRequest request) throws InvalidFormatException, IOException{
+		String root_path=request.getSession().getServletContext().getRealPath("/")+"/resources/downContents/";
+		String doc_name="envelope.docx";
+		System.out.println(root_path);
 		File downFile= new File(root_path+doc_name);
 		ModelAndView mav = new ModelAndView();
 

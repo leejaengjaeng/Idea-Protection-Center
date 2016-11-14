@@ -84,7 +84,12 @@ public class DocumentUpLoadController {
 		String start_rid=(String) session.getAttribute("start_rid");
 		
 		model.addAttribute("isExist", docmapper.countDocumentForApplyByRid(regDao.getLastRidInProcessList(Integer.parseInt(start_rid))));
-		
+		if(docmapper.countDocumentForApplyByRid(regDao.getLastRidInProcessList(Integer.parseInt(start_rid)))==0){
+			RegistrationPatentVo rvo = regDao.getRegistrationByRidOrPrevRid((int) session.getAttribute("currentPosition"));
+			rvo.setRegistration_date(rService.getToday(0));
+			mService.uploadDocumentInventor(rvo);
+			mService.assignPL(rvo);
+		}
 		if(start_rid==null){
 			return "redirect:/authError";
 		}

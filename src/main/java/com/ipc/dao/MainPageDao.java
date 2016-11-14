@@ -16,4 +16,6 @@ public interface MainPageDao {
 	public void updateMainPageLid(HashMap<String,String> map);
 	public void updateMainPagerid(RegistrationPatentVo rv);
 	public void updateMainPageApplyDate(HashMap<String,String> apply_date_map);
+	public void insertCIdea(HashMap<String,String> map);
+	public String selectUid(String userID);
 }

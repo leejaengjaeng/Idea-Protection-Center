@@ -54,7 +54,8 @@ public class MainController {
 	SignUpService ss;
 	@Autowired
 	MessageService ms;
-
+	@Autowired
+	RegistrationService rs;
 	
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	
@@ -190,5 +191,5 @@ public class MainController {
 	public String costinfo(){
 		return "info/costinfo";
 	}
-	
 }
+	
