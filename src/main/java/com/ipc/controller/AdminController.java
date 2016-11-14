@@ -17,6 +17,7 @@ import com.ipc.dao.NoticeDao;
 import com.ipc.dao.RegistrationDao;
 import com.ipc.dao.TypeOfInventDao;
 import com.ipc.dao.UserDao;
+import com.ipc.util.ViewUtils;
 import com.ipc.vo.LawyerProfileVo;
 import com.ipc.vo.QnaVo;
 import com.ipc.vo.TypeOfInventVo;
@@ -29,7 +30,7 @@ import com.ipc.vo.userVo;
 public class AdminController {
 
 	private static final int pagePerContents = 10;
-	private static final int pagesPerView = 5;
+	private static final int pagePerbuttons = 5;
 
 	@Autowired
 	RegistrationDao regDao;
@@ -39,16 +40,49 @@ public class AdminController {
 	NoticeDao noticeDao;
 	@Autowired
 	TypeOfInventDao typeDao;
+	@Autowired
+	ViewUtils viewUtils;
 
 	// 아이디어 관리
 	@RequestMapping("/")
 	public String admin2(Model model) {
-		// 권한 검사하기 -> security가 해줌
-		List<adminListVo> ideaList = regDao.adminGetIdeaList();
-		List<userVo> lawyers = userDao.getLawyerList();
-		model.addAttribute("ideaList", ideaList);
-		model.addAttribute("lawyerList", lawyers);
-		return "admin/admin_management";
+		
+		return ideaList(model,1);
+	}
+
+	@RequestMapping("/ideas/{pageNum}")
+	public String ideaList(Model model, @PathVariable int pageNum) {
+		
+		// 페이지 네이션
+		int totalIdea = regDao.counTotalIdea();
+		try {
+			/*
+			 * List<Integer> pageButtons : 페이지네이션 버튼 값 리스트
+			 * HashMap<String,Integer> arrows : 페이지네이션 버튼 양 옆 화살표의 값 맵
+			 * HashMap<String,Integer> bounds : Dao에서 사용할 시작~끝 범위
+			 */
+			HashMap<String, Object> pageNationAttrs 
+			= viewUtils.getPageNationAttributes(pageNum, totalIdea,	pagePerContents, pagePerbuttons);
+
+			List<Integer> pageButtons = (List<Integer>) pageNationAttrs.get("pageButtons");
+			HashMap<String, Integer> arrows = (HashMap<String, Integer>) pageNationAttrs.get("arrows");
+			HashMap<String, Integer> bounds = (HashMap<String, Integer>) pageNationAttrs.get("bounds");
+
+			List<adminListVo> ideaList = regDao.getIdeaListInBound(bounds);
+			List<userVo> lawyers = userDao.getLawyerList();
+
+			model.addAttribute("ideaList", ideaList);
+			model.addAttribute("lawyerList", lawyers);
+			model.addAttribute("pageNationButtons", pageButtons);
+			model.addAttribute("currentPage", pageNum);
+			model.addAttribute("leftArrow", arrows.get("leftArrow"));
+			model.addAttribute("rightArrow", arrows.get("rightArrow"));
+			return "admin/admin_management";
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "redirect:/authError";
+		}
 	}
 
 	// 공지사항 관리
@@ -59,62 +93,73 @@ public class AdminController {
 
 	@RequestMapping("/admin_notice/{pageNum}")
 	public String admin_notice(Model model, @PathVariable int pageNum) {
-		// 전체 페이지 수 계산
-		int totalContents = noticeDao.getTotalSize();
-		int totalPages;
-		if (totalContents % pagePerContents == 0)
-			totalPages = totalContents / pagePerContents;
-		else
-			totalPages = totalContents / pagePerContents + 1;
-		// 이상한 경로로 접근했다 권한에러
-		if (pageNum > totalPages || pageNum <= 0)
+		// 페이지 네이션
+		int totalNotice = noticeDao.getTotalSize();
+		try {
+			/*
+			 * List<Integer> pageButtons : 페이지네이션 버튼 값 리스트
+			 * HashMap<String,Integer> arrows : 페이지네이션 버튼 양 옆 화살표의 값 맵
+			 * HashMap<String,Integer> bounds : Dao에서 사용할 시작~끝 범위
+			 */
+			HashMap<String, Object> pageNationAttrs = viewUtils.getPageNationAttributes(pageNum, totalNotice,
+					pagePerContents, pagePerbuttons);
+
+			List<Integer> pageButtons = (List<Integer>) pageNationAttrs.get("pageButtons");
+			HashMap<String, Integer> arrows = (HashMap<String, Integer>) pageNationAttrs.get("arrows");
+			HashMap<String, Integer> bounds = (HashMap<String, Integer>) pageNationAttrs.get("bounds");
+
+			List<QnaVo> noticeList = noticeDao.getNotices(bounds);
+
+			model.addAttribute("noticeList", noticeList);
+			model.addAttribute("pageNationButtons", pageButtons);
+			model.addAttribute("currentPage", pageNum);
+			model.addAttribute("leftArrow", arrows.get("leftArrow"));
+			model.addAttribute("rightArrow", arrows.get("rightArrow"));
+			return "/admin/admin_notice";
+
+		} catch (Exception e) {
+			e.printStackTrace();
 			return "redirect:/authError";
-
-		// 시작 글 위치 계산
-		int start;
-		if (totalPages == 1)
-			start = 0;
-		else if (pageNum == totalPages)
-			start = totalContents - 10; // 마지막 페이지인 경우
-		else
-			start = (pageNum - 1) * 10;
-
-		// 페이지네이션 버튼 값 들
-		// if 총 페이지가 5개 안되면 : < 1 2 >
-		// if 총 페이지가 충분하면 : < 3 4 5 6 7 >
-		List<Integer> pages = new ArrayList();
-		if (totalPages < 5) {
-			for (int i = 1; i <= totalPages; i++)
-				pages.add(i);
-		} else {
-			for (int i = pageNum; i <= pagesPerView && i <= totalPages; i++)
-				pages.add(i);
 		}
-
-		// notice리스트 받아오기
-		HashMap<String, Integer> startAndPPC = new HashMap<String, Integer>();
-		startAndPPC.put("start", start);
-		startAndPPC.put("pagePerContents", pagePerContents);
-		List<QnaVo> noticeList = noticeDao.getNotices(startAndPPC);
-
-		// 방향 표들
-		int leftArrow = (pageNum - pagesPerView) < 0 ? 1 : (pageNum - pagesPerView);
-		int rightArrow = (pageNum + pagesPerView) >= totalPages ? totalPages : pageNum + pagesPerView;
-
-		model.addAttribute("noticeList", noticeList);
-		model.addAttribute("pages", pages);
-		model.addAttribute("currentPage", pageNum);
-		model.addAttribute("leftArrow", leftArrow);
-		model.addAttribute("rightArrow", rightArrow);
-		return "/admin/admin_notice";
 	}
 
 	// 회원 관리
 	@RequestMapping("/userList")
-	public String userList(Model model) {
-		List<userVo> userList = userDao.getAllUsers();
-		model.addAttribute("userList", userList);
-		return "/admin/userList";
+	public String defaultUserList(Model model) {
+		return userList(model, 1);
+	}
+
+	@RequestMapping("/userList/{pageNum}")
+	public String userList(Model model, @PathVariable int pageNum) {
+
+		// 페이지 네이션
+		int totalUser = userDao.counTotalUser();
+		try {
+			/*
+			 * List<Integer> pageButtons : 페이지네이션 버튼 값 리스트
+			 * HashMap<String,Integer> arrows : 페이지네이션 버튼 양 옆 화살표의 값 맵
+			 * HashMap<String,Integer> bounds : Dao에서 사용할 시작~끝 범위
+			 */
+			HashMap<String, Object> pageNationAttrs = viewUtils.getPageNationAttributes(pageNum, totalUser,
+					pagePerContents, pagePerbuttons);
+
+			List<Integer> pageButtons = (List<Integer>) pageNationAttrs.get("pageButtons");
+			HashMap<String, Integer> arrows = (HashMap<String, Integer>) pageNationAttrs.get("arrows");
+			HashMap<String, Integer> bounds = (HashMap<String, Integer>) pageNationAttrs.get("bounds");
+
+			List<userVo> userList = userDao.getUsersInBounds(bounds);
+
+			model.addAttribute("userList", userList);
+			model.addAttribute("pageNationButtons", pageButtons);
+			model.addAttribute("currentPage", pageNum);
+			model.addAttribute("leftArrow", arrows.get("leftArrow"));
+			model.addAttribute("rightArrow", arrows.get("rightArrow"));
+			return "/admin/userList";
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "redirect:/authError";
+		}
 	}
 
 	@RequestMapping("/viewLawyer")

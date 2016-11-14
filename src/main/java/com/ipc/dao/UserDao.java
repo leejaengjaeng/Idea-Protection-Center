@@ -47,4 +47,6 @@ public interface UserDao {
 	public void updateKey(HashMap<String,String> map);
 	
 	public LawyerProfileVo getLawyerProfile(int uid);
+	
+	public List<userVo> getUsersInBounds(HashMap<String,Integer> map);
 }

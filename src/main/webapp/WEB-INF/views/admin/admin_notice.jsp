@@ -50,18 +50,18 @@ function checkAdmin(){
 				</c:forEach>				
             </table>
             <a href="/IPC_admin/admin_notice/${leftArrow}"> < </a>
-				<c:forEach items="${pages}" var="page">
+				<c:forEach items="${pageNationButtons}" var="page">
 					<c:choose>
 						<c:when test="${page eq currentPage }">
-							<a href="/notice/noticePage/${page}"><b style="font-size:20px;">${page}</b><a>
+							<a href="/IPC_admin/admin_notice/${page}"><b style="font-size:20px;">${page}</b><a>
 						</c:when>
 						<c:otherwise>
-							<a href="/notice/noticePage/${page}">${page}<a>
+							<a href="/IPC_admin/admin_notice/${page}">${page}<a>
 						</c:otherwise>
 					</c:choose>
 			  	</c:forEach>
-
-            </table>
+    		<a href="/IPC_admin/admin_notice/${rightArrow}"> > </a>
+			</table>
             <button onclick="location.href='/notice/admin_notice_registration'" id="btn_add_notice">등록</button>            
         </article>
     </div>
