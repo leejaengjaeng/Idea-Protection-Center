@@ -23,6 +23,7 @@
         width: 660px !important; 
         border-radius: 6px !important;
     }
+    
 </style>
 <script>
 $(document).ready(function()
@@ -194,34 +195,34 @@ $(document).ready(function()
 					</c:forEach>		
 				</table> --%>
 				<div class="dropdown">
-					<span>아이디어 등록 (초안)</span>
+					<span id="drop_sp">아이디어 등록 (초안)</span>
 					<div class="arrow-up ee"></div>					
 					<ul id="IdeaModifyList_top">
 						<c:forEach items="${processList}" var="list" varStatus="status">
 							<c:choose>
 								<c:when test="${status.first and status.last }">
-									<li>
+									<li data-val="아이디어 등록 (초안) ${list.getRegistration_date()}">
 										<input type="hidden" value="${list.getRid()}"/>
-										아이디어 등록(초안)
+										아이디어 등록 (초안)
 										${list.getRegistration_date()}
 									</li>
 								</c:when>
 								<c:when test="${status.first }">
-									<li>
+									<li data-val="아이디어 등록 (초안) ${list.getRegistration_date()}">
 										<input type="hidden" value="${list.getRid()}"/>
-										아이디어 등록(초안)
+										아이디어 등록 (초안)
 										${list.getRegistration_date()}
 									</li>
 								</c:when>
 								<c:when test="${status.last }">
-									<li>
+									<li data-val="${status.index}차 전문가 검토 및 수정안 ${list.getRegistration_date()}">
 										<input type="hidden" value="${list.getRid()}"/>
 										${status.index}차 전문가 검토 및 수정안
 										${list.getRegistration_date()}
 									</li>
 								</c:when>
 								<c:otherwise>
-									<li>
+									<li data-val="${status.index}차 전문가 검토 및 수정안 ${list.getRegistration_date()}">
 										<input type="hidden" value="${list.getRid()}"/>
 										${status.index}차 전문가 검토 및 수정안
 										${list.getRegistration_date()}

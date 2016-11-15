@@ -469,4 +469,3 @@ var showClickedList = function(rid)
       }
    });   
 }
-
