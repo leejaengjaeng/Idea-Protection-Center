@@ -58,17 +58,15 @@ var disableInput = function()
    $('#AfterCommentHope_content').addClass('disabled');
    $('#AfterCommentHope_content').attr('disabled',true);   
    $('#tmpSave').hide();
-   $('#agree').hide();      
+   $('#agree').hide();    
+   $('#gogogo').hide();
 
 }
 var enableApplyBtn = function()
 {
 	$('#gogogo').show();
 }
-var disableApplyBtn = function()
-{
-	$('#gogogo').hide();
-}
+
 
 var btnHide=function(){
    $('.removeBtn').hide();
