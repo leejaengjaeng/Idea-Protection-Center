@@ -10,7 +10,6 @@
 <title>Idea Protectection Center</title>
 <link rel="icon" href="/resources/image/pavicon.png">
 </head>
-
 <header>
 	<div class="header_wrap">
 		<ol>
@@ -108,6 +107,6 @@
 		</div>		
 	</div>
 	<div id="header_benner" style="float:left;">
-		<img src="/resources/image/patent_apply_banner.jpg" alt="banner">
+		<img src="/resources/image/patent_apply_benner.jpg" alt="banner">
 	</div>
 </header>

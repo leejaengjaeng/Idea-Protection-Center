@@ -144,7 +144,7 @@ $(document).ready(function()
         <section>                      
             <article class="sub_head" style="margin-top:100px;">                    
                 <h1 style="width:300px; margin-bottom:20px;">아이디어수정내역</h1>                
-                <table id="IdeaModifyList">
+                <%-- <table id="IdeaModifyList">
                 	<c:forEach items="${processList}" var="list" varStatus="status">
 						<c:choose>
 							<c:when test="${status.first and status.last }">
@@ -177,8 +177,18 @@ $(document).ready(function()
 			               	</c:otherwise>
 			          	</c:choose>
 					</c:forEach>		
-				</table>
-            </article>                
+				</table> --%>
+				<div class="dropdown">
+					<span>아이디어 등록 (초안)</span>
+					<div class="arrow-up ee"></div>					
+					<ul>
+						<li>아이디어 등록(초안)</li>
+						<li>아이디어 등록(초안)</li>
+						<li>${status.index}차 전문가 검토 및 수정안</li>
+						<li>${status.index}차 전문가 검토 및 수정안</li>						
+					</ul>					
+				</div> 
+			</article>                
             <article class="nt" style="display:block;">
 		<div class="full">
 
@@ -228,13 +238,14 @@ $(document).ready(function()
 		</div>
 		<div class="area_box a0" style="display: block;">
 			<div class="plc">
+				<div class="title_cmt"></div>
 				<div class="halfframe">
 					<h1>이전 작성 내용</h1>
 					<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentTitle">${beforeReg.getTitle()}</textarea>
 				</div>
 				<div class="halfframe">
 					<h1>변리사 의견</h1>
-					<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentTitle">${beforeReg.getRe_title()}</textarea>
+					<textarea class="half disabled pl before_cmt" placeholder="이전에 작성한 의견이 없습니다." disabled id="CurrentCommentTitle">${beforeReg.getRe_title()}</textarea>
 				</div>
 				<div class="titframe">
 					<h1>변리사 의견을 참고하여 내용을 작성해 주세요.</h1>
@@ -245,13 +256,16 @@ $(document).ready(function()
 		<!-- 요약 -->
 		<div class="area_box a1">
 			<div class="plc">
+				<div class="title_cmt">	
+					<h3>제목</h3>
+				</div>
 				<div class="halfframe">
 					<h1>이전 작성 내용</h1>
 					<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentSummary" name="summary">${beforeReg.getSummary()}</textarea>
 				</div>
 				<div class="halfframe">
 					<h1>변리사 의견</h1>
-					<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentSummary">${beforeReg.getRe_summary()}</textarea>
+					<textarea class="half disabled pl before_cmt" placeholder="이전에 작성한 의견이 없습니다." disabled id="CurrentCommentSummary">${beforeReg.getRe_summary()}</textarea>
 				</div>
 				<div class="titframe">
 					<h1>변리사 의견을 참고하여 내용을 작성해 주세요.</h1>
@@ -262,13 +276,14 @@ $(document).ready(function()
 		<!-- 필요이유 -->
 		<div class="area_box a2">
 			<div class="plc">
+				<div class="title_cmt"></div>
 				<div class="halfframe">
 					<h1>이전 작성 내용</h1>
 					<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentWhyInvent" name="whyInvent">${beforeReg.getWhyInvent()}</textarea>
 				</div>
 				<div class="halfframe">
 					<h1>변리사 의견</h1>
-					<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentWhyInvent">${beforeReg.getRe_whyInvent()}</textarea>
+					<textarea class="half disabled pl before_cmt" placeholder="이전에 작성한 의견이 없습니다." disabled id="CurrentCommentWhyInvent">${beforeReg.getRe_whyInvent()}</textarea>
 				</div>
 				<div class="titframe">
 					<h1>변리사 의견을 참고하여 내용을 작성해 주세요.</h1>
@@ -279,13 +294,14 @@ $(document).ready(function()
 		<!-- 기존제품 설명 및 문제점 -->
 		<div class="area_box a3">
 			<div class="plc">
+				<div class="title_cmt"></div>
 				<div class="halfframe">			
 					<h1>이전 작성 내용</h1>	
 					<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentProblem" name="problem">${beforeReg.getProblem()}</textarea>
 				</div>
 				<div class="halfframe">
 					<h1>변리사 의견</h1>
-					<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentProblem">${beforeReg.getRe_problem()}</textarea>
+					<textarea class="half disabled pl before_cmt" placeholder="이전에 작성한 의견이 없습니다." disabled id="CurrentCommentProblem">${beforeReg.getRe_problem()}</textarea>
 				</div>
 				<div class="titframe">
 					<h1>변리사 의견을 참고하여 내용을 작성해 주세요.</h1>
@@ -297,13 +313,14 @@ $(document).ready(function()
 		<!-- 문제 해결 방법 -->
 		<div class="area_box a4">
 			<div class="plc">
+				<div class="title_cmt"></div>
 				<div class="halfframe">
 					<h1>이전 작성 내용</h1>
 					<textarea  class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentSolution" name="solution">${beforeReg.getSolution()}</textarea>
 				</div>
 				<div class="halfframe">
 					<h1>변리사 의견</h1>
-					<textarea  class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentSolution">${beforeReg.getRe_solution()}</textarea>
+					<textarea  class="half disabled pl before_cmt" placeholder="이전에 작성한 의견이 없습니다." disabled id="CurrentCommentSolution">${beforeReg.getRe_solution()}</textarea>
 				</div>
 				<div class="titframe">
 					<h1>변리사 의견을 참고하여 내용을 작성해 주세요.</h1>
@@ -314,13 +331,14 @@ $(document).ready(function()
 		<!-- 발명의 효과 -->
 		<div class="area_box a5">
 			<div class="plc">
+				<div class="title_cmt"></div>
 				<div class="halfframe">
 					<h1>이전 작성 내용</h1>
 					<textarea  class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentEffect" name="effect">${beforeReg.getEffect()}</textarea>
 				</div>
 				<div class="halfframe">
 					<h1>변리사 의견</h1>
-					<textarea  class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentEffect">${beforeReg.getRe_effect()}</textarea>
+					<textarea  class="half disabled pl before_cmt" placeholder="이전에 작성한 의견이 없습니다." disabled id="CurrentCommentEffect">${beforeReg.getRe_effect()}</textarea>
 				</div>
 				<div class="titframe">
 					<h1>변리사 의견을 참고하여 내용을 작성해 주세요.</h1>
@@ -331,13 +349,14 @@ $(document).ready(function()
 		<!-- 핵심 구성 요소 -->
 		<div class="area_box a6">
 			<div class="plc">
+				<div class="title_cmt"></div>
 				<div class="halfframe">
 					<h1>이전 작성 내용</h1>
 					<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentCore_Element" name="core_element">${beforeReg.getCore_element()}</textarea>
 				</div>
 				<div class="halfframe">
 					<h1>변리사 의견</h1>
-					<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentCore_Element">${beforeReg.getRe_core_element()}</textarea>
+					<textarea class="half disabled pl before_cmt" placeholder="이전에 작성한 의견이 없습니다." disabled id="CurrentCommentCore_Element">${beforeReg.getRe_core_element()}</textarea>
 				</div>
 				<div class="titframe">
 					<h1>변리사 의견을 참고하여 내용을 작성해 주세요.</h1>
@@ -349,13 +368,14 @@ $(document).ready(function()
 		<!-- 권리를 보장 받고자 하는 내용 -->
 		<div class="area_box a7">
 			<div class="plc">
+				<div class="title_cmt"></div>
 				<div class="halfframe">
 					<h1>이전 작성 내용</h1>
 					<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentHope_content()" name="hope_content">${beforeReg.getHope_content()}</textarea>
 				</div>
 				<div class="halfframe">
 					<h1>변리사 의견</h1>
-					<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentHope_content()">${beforeReg.getRe_hope_content()}</textarea>
+					<textarea class="half disabled pl before_cmt" placeholder="이전에 작성한 의견이 없습니다." disabled id="CurrentCommentHope_content()">${beforeReg.getRe_hope_content()}</textarea>
 				</div>
 				<div class="titframe">
 					<h1>변리사 의견을 참고하여 내용을 작성해 주세요.</h1>
@@ -367,7 +387,7 @@ $(document).ready(function()
 		<!-- 도면 첨부 -->
 		<div class="area_box a8">
 			<div>
-				<div class="plc">
+				<div class="plc"><div class="title_cmt"></div>
 					<form id="commentForm" name="commentForm" action="/commentFileSave" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
                         <input type="hidden" name="userID_file" value="${sessionScope.currentUser.getId()}">
@@ -388,13 +408,14 @@ $(document).ready(function()
 		<!-- 도면 설명 -->
 		<div class="area_box a9">
 			<div class="plc">
+				<div class="title_cmt"></div>
 				<div class="halfframe">
 					<h1>이전 작성 내용</h1>
 					<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentPicture_explain" name="picture_explain">${beforeReg.getPicture_explain()}</textarea>
 				</div>
 				<div class="halfframe">
 					<h1>변리사 의견</h1>
-					<textarea class="half disabled pl before_cmt" placeholder="변리사" disabled id="CurrentCommentPicture_explain">${beforeReg.getRe_picture_explain()}</textarea>
+					<textarea class="half disabled pl before_cmt" placeholder="이전에 작성한 의견이 없습니다." disabled id="CurrentCommentPicture_explain">${beforeReg.getRe_picture_explain()}</textarea>
 				</div>
 				<div class="titframe">
 					<h1>변리사 의견을 참고하여 내용을 작성해 주세요.</h1>
@@ -402,22 +423,29 @@ $(document).ready(function()
 				<textarea class="disabled current" placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentPicture_explain">${currentAnswer.getPicture_explain()}</textarea>
 			</div>
 		</div>
+		<div class="dropdown">
+			<span>아이디어 등록 (초안)</span>
+			<div class="arrow-up ee"></div>					
+			<ul>
+				<li>아이디어 등록(초안)</li>
+				<li>아이디어 등록(초안)</li>
+				<li>${status.index}차 전문가 검토 및 수정안</li>
+				<li>${status.index}차 전문가 검토 및 수정안</li>						
+			</ul>					
+		</div>
 		<div class="fin">
 			<button type="button" id="tmpSave">임시저장</button>
 			<button type="button" id="agree">제출</button>
 			<c:choose>
 				<c:when test="${currentAnswer.getIscomplete()>=3}">
 					<button type="button" id="gotoApply">출원</button>
-				</c:when>
-				
-			</c:choose>
-			
+				</c:when>				
+			</c:choose>			
 		</div>
-		</article> 
-            
-        </section>
-    </div>       
-    <c:import url="/WEB-INF/views/import/footer.jsp"/>
+		</article>             
+    </section>
+</div>       
+<c:import url="/WEB-INF/views/import/footer.jsp"/>
 <script src="/resources/common/js/comment_inventor.js"></script>
 </body>
 </html>

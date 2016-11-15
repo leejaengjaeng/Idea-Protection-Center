@@ -125,3 +125,10 @@ $("#IdeaModifyList tr").click(function(){
 		$(".halfframe").css("display","block");
 	}
 })
+$(".dropdown").click(function(){		
+	if($(this).height() < 100){
+	    $(this).css('max-height', '500px'); //set max height
+	}else{
+	    $(this).css('max-height', '50px'); //delete attribute
+	}
+});
