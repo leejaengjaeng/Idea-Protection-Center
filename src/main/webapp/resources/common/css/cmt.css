@@ -22,7 +22,7 @@
 .hiding_tab select {
   width: 100%;
   padding: 10px;
-  font-size: 15px;
+  font-size: 18px;
   height: 50px;
   background: #0fa4d4;
   color: white;
@@ -36,8 +36,8 @@
 .hiding_tab .ee {
   position: absolute;
   z-index: 19;
-  right: 15px;
-  top: 38%;
+  right: -10px;
+  top: 28%;
 }
 .hiding_tab .arrow-up {
   width: 0;
@@ -336,7 +336,7 @@
 }
 .tab_box div {
   width: 20%;
-  height: 100px;
+  height: 70px;
   float: left;
   border-collapse: collapse;
   color: #464646;
@@ -359,8 +359,6 @@
   width: 100%;
   float: left;
   margin-top: 15px;
-  border-top: 1px solid #004a80;
-  border-bottom: 1px solid #004a80;
   position: relative;
   display: none;
 }
@@ -369,13 +367,24 @@
   float: left;
 }
 .area_box div textarea {
-  width: 96%;
-  margin-left: 2%;
+  width: 100%;
   resize: none;
   border: none;
   background: #f9f9f9;
   height: 200px;
   padding: 10px;
+}
+.area_box .title_cmt {
+  width: 100%;
+  height: 50px;
+  background: #004a80;
+  float: left;
+  margin-bottom: 10px;
+}
+.area_box .title_cmt h3 {
+  font-size: 18px;
+  font-weight: 500;
+  float: left;
 }
 .fin {
   width: 100%;
@@ -398,8 +407,7 @@
   float: left;
 }
 .plc {
-  width: 96% !important;
-  margin-left: 2%;
+  width: 100% !important;
   float: left;
   background: #f9f9f9;
 }
@@ -444,35 +452,52 @@
 .plc .halfframe {
   width: 50%;
   float: left;
-  border-right: 1px solid #fff;
-  background: #004a80;
+  text-align: center;
 }
 .plc .halfframe h1 {
-  border-bottom: none;
   margin-bottom: 0;
-  margin-top: 10px;
-  margin-left: 10px;
-  font-size: 20px;
-  font-weight: 600;
+  border-bottom: none;
+  font-size: 16px;
+  font-weight: 500;
   color: #fff ;
+  background: #7b7b7b;
+  padding-top: 10px;
+  padding-left: 5px;
+}
+.plc .halfframe textarea {
+  font-size: 18px;
+  border: 2px solid #7b7b7b !important;
+}
+.plc .halfframe:nth-child(2) {
+  padding-right: 15px;
+  padding-bottom: 15px;
+}
+.plc .halfframe:nth-child(2) h1 {
+  background: #639cbf;
+}
+.plc .halfframe:nth-child(2) textarea {
+  border: 2px solid #639cbf !important;
 }
 .plc .titframe {
   width: 100%;
   float: left;
-  background: #004a80;
+  background: #639cbf;
 }
 .plc .titframe h1 {
   border-bottom: none;
   margin-bottom: 0;
+  text-align: center;
   margin-top: 10px;
   margin-left: 10px;
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 500;
   color: #fff ;
 }
 .plc textarea {
   width: 100%;
   margin: 0;
+  border: 2px solid #639cbf !important;
+  font-size: 18px;
 }
 #inputFileDiv button {
   margin-bottom: 20px;
@@ -500,4 +525,67 @@
   background: #004a80;
   border: none;
   color: white;
+}
+.dropdown {
+  width: 100%;
+  max-height: 50px;
+  background: #639cbf ;
+  float: left;
+  margin: 30px 0 20px 0;
+  padding-top: 0;
+  text-align: left;
+  color: white;
+  font-size: 18px;
+  overflow: hidden;
+  transition: .25s;
+  position: relative;
+}
+.dropdown span {
+  height: 50px !important;
+  margin-top: 0 !important;
+  color: white !important;
+  padding-left: 10px;
+  padding-top: 13px;
+  font-size: 18px;
+  width: 100%;
+  border-bottom: 1px solid #598aa7;
+  float: left;
+}
+.dropdown .ee {
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 10px solid white;
+  transform: rotate(180deg);
+  float: right;
+  margin-top: 2px;
+  cursor: pointer;
+  transition: .25s;
+  position: absolute;
+  z-index: 919;
+  right: 15px !important;
+  top: 15px;
+  margin-top: 6px;
+}
+.dropdown ul {
+  overflow: hidden;
+  float: left;
+}
+.dropdown ul li {
+  font-size: 18px;
+  list-style: none;
+  height: 50px;
+  border-top: 1px solid #598aa7;
+  background: #639cbf ;
+  color: white;
+  text-align: left;
+  width: 1000px;
+  position: relative;
+  z-index: 510;
+  padding-top: 13px;
+  padding-left: 11px;
+}
+.dropdown ul li:first-child {
+  border-top: none;
 }

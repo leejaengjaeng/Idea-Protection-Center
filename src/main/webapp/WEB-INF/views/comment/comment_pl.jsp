@@ -226,7 +226,7 @@ $(document).ready(function()
 			<div class="plc">
 				<div class="halfframe">
 					<h1>이전 작성 내용</h1>
-					<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentTitle">${beforeComment.getRe_title()}</textarea>
+					<textarea class="half disabled inventor before_cmt" placeholder="이전에 작성한 의견이 없습니다." disabled id="BeforeCommentTitle">${beforeComment.getRe_title()}</textarea>
 				</div>
 				<div class="halfframe">
 					<h1>발명가 의견</h1>
@@ -243,7 +243,7 @@ $(document).ready(function()
 			<div class="plc">
 				<div class="halfframe">
 					<h1>이전 작성 내용</h1>
-					<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentSummary" name="summary">${beforeComment.getRe_summary()}</textarea>
+					<textarea class="half disabled inventor before_cmt" placeholder="이전에 작성한 의견이 없습니다." disabled id="BeforeCommentSummary" name="summary">${beforeComment.getRe_summary()}</textarea>
 				</div>
 				<div class="halfframe">
 					<h1>발명가 의견</h1>
@@ -260,7 +260,7 @@ $(document).ready(function()
 			<div class="plc">
 				<div class="halfframe">
 					<h1>이전 작성 내용</h1>
-					<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentWhyInvent" name="whyInvent">${beforeComment.getRe_whyInvent()}</textarea>
+					<textarea class="half disabled inventor before_cmt" placeholder="이전에 작성한 의견이 없습니다." disabled id="BeforeCommentWhyInvent" name="whyInvent">${beforeComment.getRe_whyInvent()}</textarea>
 				</div>
 				<div class="halfframe">
 					<h1>발명가 의견</h1>
@@ -277,7 +277,7 @@ $(document).ready(function()
 			<div class="plc">
 				<div class="halfframe">			
 					<h1>이전 작성 내용</h1>	
-					<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentProblem" name="problem">${beforeComment.getRe_problem()}</textarea>
+					<textarea class="half disabled inventor before_cmt" placeholder="이전에 작성한 의견이 없습니다." disabled id="BeforeCommentProblem" name="problem">${beforeComment.getRe_problem()}</textarea>
 				</div>
 				<div class="halfframe">
 					<h1>발명가 의견</h1>
@@ -294,7 +294,7 @@ $(document).ready(function()
 			<div class="plc">
 				<div class="halfframe">
 					<h1>이전 작성 내용</h1>
-					<textarea  class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentSolution" name="solution">${beforeComment.getRe_solution()}</textarea>
+					<textarea  class="half disabled inventor before_cmt" placeholder="이전에 작성한 의견이 없습니다." disabled id="BeforeCommentSolution" name="solution">${beforeComment.getRe_solution()}</textarea>
 				</div>
 				<div class="halfframe">
 					<h1>발명가 의견</h1>
@@ -311,7 +311,7 @@ $(document).ready(function()
 			<div class="plc">
 				<div class="halfframe">
 					<h1>이전 작성 내용</h1>
-					<textarea  class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentEffect" name="effect">${beforeComment.getRe_effect()}</textarea>
+					<textarea  class="half disabled inventor before_cmt" placeholder="이전에 작성한 의견이 없습니다." disabled id="BeforeCommentEffect" name="effect">${beforeComment.getRe_effect()}</textarea>
 				</div>
 				<div class="halfframe">
 					<h1>발명가 의견</h1>
@@ -329,7 +329,7 @@ $(document).ready(function()
 			<div class="plc">
 				<div class="halfframe">
 					<h1>이전 작성 내용</h1>
-					<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentCore_Element" name="core_element">${beforeComment.getRe_core_element()}</textarea>
+					<textarea class="half disabled inventor before_cmt" placeholder="이전에 작성한 의견이 없습니다." disabled id="BeforeCommentCore_Element" name="core_element">${beforeComment.getRe_core_element()}</textarea>
 				</div>
 				<div class="halfframe">
 					<h1>발명가 의견</h1>
@@ -346,7 +346,7 @@ $(document).ready(function()
 			<div class="plc">
 				<div class="halfframe">
 					<h1>이전 작성 내용</h1>
-					<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentHope_content()" name="hope_content">${beforeComment.getRe_hope_content()}</textarea>
+					<textarea class="half disabled inventor before_cmt" placeholder="이전에 작성한 의견이 없습니다." disabled id="BeforeCommentHope_content()" name="hope_content">${beforeComment.getRe_hope_content()}</textarea>
 				</div>
 				<div class="halfframe">
 					<h1>발명가 의견</h1>
@@ -382,7 +382,7 @@ $(document).ready(function()
 			<div class="plc">
 				<div class="halfframe">
 					<h1>이전 작성 내용</h1>
-					<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentPicture_explain" name="picture_explain">${beforeComment.getRe_picture_explain()}</textarea>
+					<textarea class="half disabled inventor before_cmt" placeholder="이전에 작성한 의견이 없습니다." disabled id="BeforeCommentPicture_explain" name="picture_explain">${beforeComment.getRe_picture_explain()}</textarea>
 				</div>
 				<div class="halfframe">
 					<h1>발명가 의견</h1>

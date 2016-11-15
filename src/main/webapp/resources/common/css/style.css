@@ -339,12 +339,13 @@
 #header_benner {
   width: 100%;
   float: left;
-  height: 350px;
+  height: 470px;
   overflow: hidden;
   border-bottom: 3px solid #1c4098;
+  border-top: 3px solid #1c4098;
 }
 #header_benner img {
-  height: 100%;
+  width: 110%;
   float: left;
 }
 #wrap_form {

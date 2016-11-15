@@ -14,7 +14,6 @@
 <link href="/resources/common/css/style.css" rel="stylesheet">
 <script src="/resources/common/js/jquery-3.1.0.min.js"></script>
 </head>
-
 <header>
 	<div class="header_wrap">
 		<ol>
@@ -112,6 +111,6 @@
 		</div>		
 	</div>
 	<div id="header_benner" style="float:left;">
-		<img src="/resources/image/patent_apply_banner.jpg" alt="banner">
+		<img src="/resources/image/patent_apply_benner.jpg" alt="banner">
 	</div>
 </header>

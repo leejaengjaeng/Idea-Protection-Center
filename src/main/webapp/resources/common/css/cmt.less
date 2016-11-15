@@ -20,7 +20,7 @@
     select{
         width: 100%;
         padding: 10px;
-        font-size: 15px;
+        font-size: 18px;
         height: 50px;
         background: #0fa4d4;
         color: white;
@@ -34,8 +34,8 @@
     .ee{
         position: absolute;
         z-index: 19;
-        right: 15px;
-        top: 38%;      
+        right: -10px;
+        top: 28%;      
     }
     .arrow-up {
         width: 0; 
@@ -335,7 +335,7 @@
     border-right: none;
     div{
         width: 20%;
-        height: 100px;
+        height: 70px;
         float: left;        
         border-collapse: collapse;
         color: #464646;
@@ -358,22 +358,31 @@
 .area_box{
     width: 100%;
     float: left;
-    margin-top:15px;
-    border-top: 1px solid #004a80;
-    border-bottom: 1px solid #004a80;
+    margin-top:15px;    
     position: relative;   
     display: none;
     div{
         width: 100%;
         float: left;
         textarea{
-            width: 96%;
-            margin-left: 2%;
+            width: 100%;            
             resize: none;
             border: none;
             background: #f9f9f9;
             height: 200px;
             padding: 10px;            
+        }
+    }
+    .title_cmt{
+        width: 100%;
+        height: 50px;
+        background: #004a80;
+        float: left;
+        margin-bottom: 10px;
+        h3{
+            font-size: 18px;
+            font-weight: 500;
+            float: left;
         }
     }
 }
@@ -399,8 +408,7 @@
     }
 }
 .plc{
-    width: 96% !important;
-    margin-left: 2%;
+    width: 100% !important;    
     float: left;    
     background: #f9f9f9;
     input[type=text]{
@@ -445,37 +453,55 @@
         margin-bottom: 20px;
     }   
     .halfframe{
-        width: 50%;
-        float: left;
-        border-right: 1px solid #fff;
-        background: #004a80;
+        width: 50%;        
+        float: left;  
+        text-align: center;
         h1{
-            border-bottom: none;
             margin-bottom: 0;
-            margin-top: 10px;
-            margin-left: 10px;            
-            font-size: 20px;
-            font-weight: 600;
-            color:#fff ;
+            border-bottom: none;            
+            font-size: 16px;
+            font-weight: 500;
+            color:#fff ;            
+            background:#7b7b7b;
+            padding-top: 10px;            
+            padding-left: 5px;                   
+        }
+        textarea{
+            font-size: 18px;
+            border:2px solid #7b7b7b !important;
+        }
+        &:nth-child(2){
+            padding-right: 15px;     
+            padding-bottom: 15px;
+            h1{
+                 background: #639cbf;
+            }
+            textarea{
+                border:2px solid #639cbf !important;
+            }
         }
     }
     .titframe{
         width:100%;
         float: left;
-        background: #004a80;
+        background: #639cbf;
         h1{
             border-bottom: none;
             margin-bottom: 0;
+            text-align: center;
             margin-top: 10px;
             margin-left: 10px;            
-            font-size: 20px;
-            font-weight: 600;
+            font-size: 16px;
+            font-weight: 500;
             color:#fff ;
         }
+        
     }
     textarea{
         width: 100%;
-        margin: 0;
+        margin: 0;       
+        border:2px solid #639cbf !important;
+        font-size: 18px;
     }
 }
 
@@ -512,4 +538,69 @@
     background: #004a80;
     border: none;
     color: white;
+}
+
+.dropdown{
+    width: 100%;
+    max-height: 50px;
+    background:#639cbf ;
+    float: left;
+    margin: 30px 0 20px 0;
+    position: relative;
+    padding-top: 0;
+    text-align: left;
+    color: white;
+    font-size: 18px;
+    overflow: hidden;
+    transition: .25s;
+    position: relative;    
+    span{
+        height: 50px !important;
+        margin-top: 0 !important;
+        color: white !important;
+        padding-left: 10px;
+        padding-top: 13px;
+        font-size: 18px;
+        width: 100%;
+        border-bottom:1px solid #598aa7;
+        float: left;
+    }
+    .ee{   
+        width: 0; 
+        height: 0; 
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-bottom: 10px solid white;
+        transform: rotate(180deg);
+        float: right;
+        margin-top: 2px;
+        cursor: pointer;
+        transition: .25s;    
+        position: absolute;
+        z-index: 919;
+        right: 15px !important;
+        top: 15px;    
+        margin-top: 6px;
+    }
+    ul{        
+        overflow: hidden;  
+        float: left;
+        li{            
+            font-size: 18px;
+            list-style: none;
+            height: 50px;
+            border-top: 1px solid #598aa7;
+            background:#639cbf ;
+            color: white;
+            text-align: left;
+            width: 1000px;
+            position: relative;
+            z-index: 510;      
+            padding-top: 13px;
+            padding-left: 11px;
+            &:first-child{
+                border-top: none;
+            }
+        }       
+    }
 }

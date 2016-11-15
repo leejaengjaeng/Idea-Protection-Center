@@ -57,7 +57,7 @@
                      <span>298,000원</span>
                      <button>출원하러가기▶</button>
                   </div>
-                  <img src="/resources/image/patent_apply_banner.jpg">
+                  <img src=/resources/image/patent_apply_benner.jpg">
                </div>
                <div class="design" onclick="notready();">
                   <div>
