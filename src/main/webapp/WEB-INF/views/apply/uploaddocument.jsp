@@ -158,7 +158,7 @@
 							<td>이미 업로드 하였음.</td>
 						</c:when>
 						<c:otherwise>
-							<input type="text" name="patentsClientCode" id="patentsClientCode" pattern="[0-9]{10}" maxlength="12" placeholder="숫자 12자리를 입력해주세요">  	<br>
+							<input type="text" name="patentsClientCode" id="patentsClientCode" pattern="[0-9]{12}" maxlength="12" placeholder="숫자 12자리를 입력해주세요">  	<br>
 							<input type="submit" value="제출" style="width:300px; height:35px; background: none; border: 2px solid #01609a; ; margin-top:10px; color:#01609a; margin-right:4px;" onsubmit="return checkdoc();">
 						</c:otherwise>
 			</c:choose>
