@@ -132,3 +132,6 @@ $(".dropdown").click(function(){
 	    $(this).css('max-height', '50px'); //delete attribute
 	}
 });
+function removeTag( html ) {
+	return str.replace(/(<([^>]+)>)/gi, "");
+}
