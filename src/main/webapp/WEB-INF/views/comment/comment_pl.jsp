@@ -32,7 +32,22 @@ $(document).ready(function()
     */
     
     //상태에 따른 응답 보여주기
-	if("${currentAnswer.getIscomplete()}" == 1)	enableInput();
+    $('#IdeaModifyList').on("click","li",function()
+	{
+	    $('#IdeaModifyList').find('.clickedIdea').removeClass('clickedIdea');
+	   	var rid = $(this).children('input').attr('value');
+			
+		if(rid == ${lastRid} && ("${currentAnswer.getIscomplete()}" == 1)) enableInput();
+		else disableInput();
+		
+		//현재 선택된 요소(tr)에 clickedIdea를 붙임
+		$(this).addClass('clickedIdea');
+		showClickedList(rid);	
+			
+		$('#drop_sp').text($(this).text());
+	   	 
+	});
+	if("${currentAnswer.getIscomplete()}" == 1)	{enableInput();}
 	else
 	{
 		disableInput();
@@ -66,17 +81,6 @@ $(document).ready(function()
 
     $('#gogogo').on("click",function()
 	{
-    
-		//var q=confirm("출원을 선택하면 수정할 수 없습니다. 출원을 선택하시겠습니까?")
-            // if(q==true){
-            //    alert("확인을 누르시면 가출원 양식 서류가 다운받아집니다.");
-            //    tempApply("${user}");
-            // }
-            // else{
-            //    return false;
-            // }
-         //
-
     	var q=confirm("출원을 선택하면 수정할 수 없습니다. 출원을 선택하시겠습니까?");      
         
         if(q==true){                                            
@@ -88,36 +92,8 @@ $(document).ready(function()
         	 }                                                       
    });
    //클릭에 따라 내용 바꿔주기
-         $('#IdeaModifyList').on("click","li",function()
-         {
-        	 $('#IdeaModifyList').find('.clickedIdea').removeClass('clickedIdea');
-     		var rid = $(this).children('input').attr('value');
-     		
-     		if(rid == ${lastRid} && ("${currentAnswer.getIscomplete()}" == 1)) enableInput();
-     		else disableInput();
-     	
-     		//현재 선택된 요소(tr)에 clickedIdea를 붙임
-     		$(this).addClass('clickedIdea');
-     		showClickedList(rid);	
-     		
-     		$('#drop_sp').text($(this).text());
-        	 
-         })
-       
-         //작성 예시 버튼 이벤트
-          $(".txt_box > button").click(function(){
-              $(this).nextAll(".hiding_box").fadeIn();
-          });
-          $(".close_btn").click(function(){
-             
-              $(this).parents(".hiding_box").fadeOut();
-          });
-      //    var optcnt = document.getElementById("selectBox").options.length;
-      //    for(i=0;i<optcnt;i++){
-      //		if(document.getElementById("selectBox").options[i].value=="${currentAnswer.getTypeOfInvent()}"){
-      //			document.getElementById("selectBox").options[i].selected=true;
-      //		}
-      //	}
+         
+     
       });
 
 	$('#drop_sp').text($('#IdeaModifyList').find('.clickedIdea').text());
@@ -181,7 +157,7 @@ $(document).ready(function()
 						<c:forEach items="${processList}" var="list" varStatus="status">
 							<c:choose>
 								<c:when test="${status.first and status.last }">
-									<li data-val="아이디어 등록 (초안) ${list.getRegistration_date()}">
+									<li class="clickedIdea" data-val="아이디어 등록 (초안) ${list.getRegistration_date()}">
 										<input type="hidden" value="${list.getRid()}"/>
 										아이디어 등록 (초안)
 										${list.getRegistration_date()}
@@ -195,7 +171,7 @@ $(document).ready(function()
 									</li>
 								</c:when>
 								<c:when test="${status.last }">
-									<li data-val="${status.index}차 전문가 검토 및 수정안 ${list.getRegistration_date()}">
+									<li class="clickedIdea" data-val="${status.index}차 전문가 검토 및 수정안 ${list.getRegistration_date()}">
 										<input type="hidden" value="${list.getRid()}"/>
 										${status.index}차 전문가 검토 및 수정안
 										${list.getRegistration_date()}

@@ -24,7 +24,7 @@
 </script>
 </head>
 <body onload='checkTemp("${isTemp}");'>
-
+	
 	<div class="black_wall" id="bw" style="visibility: hidden"></div>
 	<div class="popup" id="pp" style="visibility: hidden">
 		<div class="pop_header">

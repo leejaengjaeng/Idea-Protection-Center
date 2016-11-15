@@ -34,6 +34,7 @@ import com.ipc.dao.TypeOfInventDao;
 import com.ipc.service.MessageService;
 import com.ipc.service.RegistrationService;
 import com.ipc.service.SignUpService;
+import com.ipc.util.PathUtils;
 import com.ipc.vo.RegistrationFileVo;
 import com.ipc.vo.RegistrationPatentVo;
 import com.ipc.vo.TypeOfInventVo;
@@ -383,7 +384,7 @@ public class CommentController {
 		MultipartHttpServletRequest multipartRequest =  (MultipartHttpServletRequest)request;  //다중파일 업로드
 		List<MultipartFile> files = multipartRequest.getFiles("imgs");
 		RegistrationService rs = new RegistrationService();
-		String root_path=request.getSession().getServletContext().getRealPath("/");
+		String root_path=PathUtils.getRootPath(request);
 		for(int i=0;i<files.size();i++){
 			if(!files.get(i).isEmpty()){
 				String today=rs.getToday(1)+i;
@@ -425,7 +426,7 @@ public class CommentController {
 		System.out.println(rv.getTitle()+","+rv.getEffect()+","+rv.getCore_element()+","+rv.getHope_content()+","+rv.getProblem()+",");
 		
 		DocController dc = new DocController();
-		String root_path=request.getSession().getServletContext().getRealPath("/");
+		String root_path=PathUtils.getRootPath(request);
 		
 		List<RegistrationFileVo> rfv = regisFileMapper.getImgListByStartRid(Integer.parseInt(stRid));
 		

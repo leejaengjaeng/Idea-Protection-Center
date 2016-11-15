@@ -41,7 +41,6 @@ function changeBank(value){
 		if(match==null||id.length<4||id.length>12){
 			alert("아이디는 영문숫자 혼용 혹은 영문, 첫글자는 영문, 4자이상 12자 이하이여야 합니다.");
 			document.getElementById("id").value = "";
-			
 			return false;
 		}
 		var data = {};

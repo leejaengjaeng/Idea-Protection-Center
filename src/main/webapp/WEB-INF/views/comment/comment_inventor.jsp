@@ -41,20 +41,14 @@ $(document).ready(function()
 			btnHide();
 			disableInput();
 			alert("변리사가 위의 내용으로 최종확인하였습니다. \n출원 단계를 원하시면 하단의 출원 버튼을 눌러주세요");
-			//var q=confirm("변리사가 위의 내용으로 최종 확인하였습니다 출원 단계를 진행하시겠습니까?");
-	    	//if(q==true)	gotoApply("${user}");                                 
-	     	//else
-	     	//{
-	     	//	//enableInput();
-	        //	denyApply("${user}");
-	        //	return false;                                         
-	  	 	//}
+			
 		}
 		else if("${currentAnswer.getIscomplete()}"==5){
 			alert("변리사님이 발명가님의 서류를 검토하는 동안 기다려 주세요");
 		}
 		else if("${currentAnswer.getIscomplete()}"==6){
 			alert("변리사님이 출원을 완료하였습니다.");
+			$('#gotoApply').hide();
 		}
 		else alert('변리사의 답변을 기다려주세요');
 	}
@@ -154,11 +148,19 @@ $(document).ready(function()
 			<input type="hidden" name="${_csrf.parameterName}" 	value="${_csrf.token}" /> 
 			<input type="hidden" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}">
 			<select onChange=changeType(this.value);>
-				<option>${beforeReg.getTypeOfInvent()}</option>
+				<c:choose>
+					<c:when test="${isFirst eq 'true'}">
+						<option>${currentAnswer.getTypeOfInvent()}</option>
+					</c:when>
+					<c:otherwise>
+						<option>${beforeReg.getTypeOfInvent()}</option>
+					</c:otherwise>
+				</c:choose>
 			</select> 
+			
 			<input type="hidden" value="${beforeReg.getTypeOfInvent()}" name="typeOfInvent" id="AfterCommentTypeOfInvent">
 		</div>
-
+	
 		</div>
 		<div class="tab_box">
 			<div class="b0" style="background-color: #004a80; color: white;">

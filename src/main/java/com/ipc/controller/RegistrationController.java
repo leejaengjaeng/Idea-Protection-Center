@@ -23,6 +23,7 @@ import com.ipc.dao.TypeOfInventDao;
 import com.ipc.dao.UserDao;
 import com.ipc.service.MessageService;
 import com.ipc.service.RegistrationService;
+import com.ipc.util.PathUtils;
 import com.ipc.vo.RegistrationPatentVo;
 import com.ipc.vo.TypeOfInventVo;
 import com.ipc.vo.mainPageVo;
@@ -56,7 +57,8 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 	@RequestMapping("/addidea")
 	public String addidea(Model model,HttpSession session, HttpServletRequest request)
 	{
-		
+		String root_path=request.getSession().getServletContext().getRealPath("/");
+		System.out.println(PathUtils.getRootPath(request));
 		if(request.getSession().getAttribute("currentUser")==null)
 		{
 			return "redirect:/login";
