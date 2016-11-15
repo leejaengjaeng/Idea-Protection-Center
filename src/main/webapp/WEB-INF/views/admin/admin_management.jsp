@@ -137,7 +137,7 @@
                 </div>
                  -->
             </div>
-            <table class="manage_table">
+            <table class="manage_table" style="margin-bottom:20px; ">
                 <tr>
                     <th>사용자</th>
                     <th style="width:100px;">이름</th>
@@ -162,17 +162,15 @@
 	                    	<c:otherwise>
 	                    		<td>${list.getpName()}</td>
 	                    	</c:otherwise>
-	                    </c:choose>
-	                    
+	                    </c:choose>	                   
 	                    <td>${list.getEmail()}</td>
 	                    <td>${list.getTypeofinvent()}</td>
 	                    <td>${list.getTitle()}</td>
 	                    <td>${list.getReg_condition()}</td>
 	                   <!--<td><button>정보수정</button></td> -->
-	                </tr>	
+	                </tr>		               
 	            </c:forEach>
-            </table>          
-            </table>
+            </table>     
             <a href="/IPC_admin/ideas/${leftArrow}"> < </a>
 				<c:forEach items="${pageNationButtons}" var="btn">
 					<c:choose>
@@ -184,10 +182,10 @@
 						</c:otherwise>
 					</c:choose>
 			  	</c:forEach>
-    		<a href="/IPC_admin/ideas/${rightArrow}"> > </a>
-			</table>  
-        </article>
-    <c:import url="/WEB-INF/views/import/admin_footer.jsp" />
+    		<a href="/IPC_admin/ideas/${rightArrow}"> > </a>   
+		</article>
+	</div>       
+ <c:import url="/WEB-INF/views/import/admin_footer.jsp" />
 <script>
     $(document).ready(function(){
       $('.manage_table tr:even').css("backgroundColor","#fff");     // odd 홀수
