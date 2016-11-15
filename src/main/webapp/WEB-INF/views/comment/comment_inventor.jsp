@@ -86,7 +86,10 @@ $(document).ready(function()
 		//현재 선택된 요소(tr)에 clickedIdea를 붙임
 		$(this).addClass('clickedIdea');
 		showClickedList(rid);	
+		
+		$('#drop_sp').text($(this).text());
 	})	
+	$('#drop_sp').text($('#IdeaModifyList').find('.clickedIdea').text());
 });
 
 </script>
