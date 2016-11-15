@@ -28,49 +28,7 @@
 <script>
 $(document).ready(function()
 {
-	if("${isFirst}" == "true")
-	{
-		
-		hideBeforeCmt();
-		//hideCurrentCmt();
-		//var optcnt = document.getElementById("selectBox").options.length;
-		//alert("${beforeReg.getTypeOfInvent()}");
-		//for(i=0;i<optcnt;i++){
-	  	//	if(document.getElementById("selectBox").options[i].value=="${currentAnswer.getTypeOfInvent()}"){
-	  	//		document.getElementById("selectBox").options[i].selected=true;
-	  	//	}
-	  	//}
-	}
-	/*
-	else{
-		var optcnt = document.getElementById("selectBox").options.length;
-		//alert("${beforeReg.getTypeOfInvent()}");
-		for(i=0;i<optcnt;i++){
-	  		if(document.getElementById("selectBox").options[i].value=="${beforeReg.getTypeOfInvent()}"){
-	  			document.getElementById("selectBox").options[i].selected=true;
-	  		}
-	  	}
-	}
-	*/
-	/*
-		//배치 변경
-		var txtBoxList = $('.txt_box');
-		for(var i=0; i<8; i++) //9개 항목, 마지막 항목은 current_Cmt가 없음
-		{
-			$(txtBoxList[i]).children('.before_cmt').children('textarea').css('float','right');
-			$(txtBoxList[i]).children('.before_cmt').children('.img_comt').css('float','left');
-			$(txtBoxList[i]).children('.current_cmt').children('.img_comt').css('cssText','float:right !important; margin:0 0 0 10px;');
-			$(txtBoxList[i]).children('.after_cmt').children('.img_comt').css('float','left');				
-			$(txtBoxList[i]).children('.after_cmt').children('textarea').css('cssText','float:right !important');				
-		}
-		$(txtBoxList[8]).children('.before_cmt').children('textarea').css('float','right !important');
-		$(txtBoxList[8]).children('.before_cmt').children('.img_comt').css('float','left !important');
-		$(txtBoxList[8]).children('.after_cmt').children('.img_comt').css('float','left !important');				
-		
-	*/
-	
-	//0 고객 작성중(변리사 작성 완료), 1 고객 작성 완료	
-	
+	if("${isFirst}" == "true")	hideBeforeCmt();
 	
 	if("${currentAnswer.getIscomplete()}" == 0)	enableInput();	
 	else
@@ -80,7 +38,8 @@ $(document).ready(function()
 		//else if("${currentAnswer.getIscomplete()}"==4) gotoApply("${user}");
 		else if("${currentAnswer.getIscomplete()}"==3)
 		{
-			btnHide();disableInput();
+			btnHide();
+			disableInput();
 			alert("변리사가 위의 내용으로 최종확인하였습니다. \n출원 단계를 원하시면 하단의 출원 버튼을 눌러주세요");
 			//var q=confirm("변리사가 위의 내용으로 최종 확인하였습니다 출원 단계를 진행하시겠습니까?");
 	    	//if(q==true)	gotoApply("${user}");                                 
@@ -118,31 +77,19 @@ $(document).ready(function()
 	{
 		//IdeaModifyList 내부의 tr중 clickedIdea를 가지고있는 요소의 clickedIdea를 제거 
 		
-		//$(this).parent().find('.clickedIdea').removeClass('clickedIdea');
+		$('#IdeaModifyList').find('.clickedIdea').removeClass('clickedIdea');
 		var rid = $(this).children('input').attr('value');
 		
 		if(rid == ${lastRid} && ("${currentAnswer.getIscomplete()}" == 0)) enableInput();
 		else disableInput();
 	
 		//현재 선택된 요소(tr)에 clickedIdea를 붙임
-		//$(this).addClass('clickedIdea');
+		$(this).addClass('clickedIdea');
 		showClickedList(rid);	
-	})
-	$('#IdeaModifyList_bottom').on("click","li",function()
-	{
-		//IdeaModifyList 내부의 tr중 clickedIdea를 가지고있는 요소의 clickedIdea를 제거 
-			
-		//$(this).parent().find('.clickedIdea').removeClass('clickedIdea');
-		var rid = $(this).children('input').attr('value');
-				
-		if(rid == ${lastRid} && ("${currentAnswer.getIscomplete()}" == 0)) enableInput();
-		else disableInput();
-			
-		//현재 선택된 요소(tr)에 clickedIdea를 붙임
-		//$(this).addClass('clickedIdea');
-		showClickedList(rid);	
-	})
-			
+		
+		$('#drop_sp').text($(this).text());
+	})	
+	$('#drop_sp').text($('#IdeaModifyList').find('.clickedIdea').text());
 });
 
 </script>
@@ -160,48 +107,14 @@ $(document).ready(function()
         <section>                      
             <article class="sub_head" style="margin-top:100px;">                    
                 <h1 style="width:300px; margin-bottom:20px;">아이디어수정내역</h1>                
-                <%-- <table id="IdeaModifyList">
-                	<c:forEach items="${processList}" var="list" varStatus="status">
-						<c:choose>
-							<c:when test="${status.first and status.last }">
-								<tr class="clickedIdea headerhide">
-									<input type="hidden" value="${list.getRid()}"/>
-								    <td class="title_td">아이디어 등록(초안)</td>
-							        <td class="date_td">${list.getRegistration_date()}</td>
-			                	</tr>
-							</c:when>
-							<c:when test="${status.first}">
-								<tr class="headerhide">
-									<input type="hidden" value="${list.getRid()}"/>
-									<td class="title_td">아이디어 등록(초안)</td>
-							        <td class="date_td">${list.getRegistration_date()}</td>
-			                	</tr>
-							</c:when>
-							<c:when test="${status.last}">
-								<tr class="clickedIdea">
-									<input type="hidden" value="${list.getRid()}"/>
-									<td class="title_td">${status.index}차 전문가 검토 및 수정안</td>
-			                        <td class="date_td">${list.getRegistration_date()}</td>
-			                  	</tr>
-							</c:when>
-							<c:otherwise>	
-								<tr>
-									<input type="hidden" value="${list.getRid()}"/>
-									<td class="title_td">${status.index}차 전문가 검토 및 수정안</td>
-			                        <td class="date_td">${list.getRegistration_date()}</td>
-			                  	</tr>
-			               	</c:otherwise>
-			          	</c:choose>
-					</c:forEach>		
-				</table> --%>
 				<div class="dropdown">
 					<span id="drop_sp">아이디어 등록 (초안)</span>
 					<div class="arrow-up ee"></div>					
-					<ul id="IdeaModifyList_top">
+					<ul id="IdeaModifyList">
 						<c:forEach items="${processList}" var="list" varStatus="status">
 							<c:choose>
 								<c:when test="${status.first and status.last }">
-									<li data-val="아이디어 등록 (초안) ${list.getRegistration_date()}">
+									<li class ="clickedIdea" data-val="아이디어 등록 (초안) ${list.getRegistration_date()}">
 										<input type="hidden" value="${list.getRid()}"/>
 										아이디어 등록 (초안)
 										${list.getRegistration_date()}
@@ -215,7 +128,7 @@ $(document).ready(function()
 									</li>
 								</c:when>
 								<c:when test="${status.last }">
-									<li data-val="${status.index}차 전문가 검토 및 수정안 ${list.getRegistration_date()}">
+									<li class="clickedIdea" data-val="${status.index}차 전문가 검토 및 수정안 ${list.getRegistration_date()}">
 										<input type="hidden" value="${list.getRid()}"/>
 										${status.index}차 전문가 검토 및 수정안
 										${list.getRegistration_date()}
@@ -441,7 +354,7 @@ $(document).ready(function()
                   	<button onclick="addfile()">추가</button>
                   	<div class="tab_imgs">
 	                	<c:forEach items="${imgs}" var="list" varStatus="status">
-	                    	<div onclick="location.href='${list.getFile_path()}'" id="id${list.getRfid()}">
+	                    	<div onclick="window.open('${list.getFile_path()}')" id="id${list.getRfid()}">
 	                           <img src="${list.getFile_path()}">
 	                        </div>
 	                    </c:forEach>

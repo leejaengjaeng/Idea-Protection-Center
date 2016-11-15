@@ -39,8 +39,16 @@ $(document).ready(function()
 		if ("${currentAnswer.getIscomplete()}" == 2) 	alert("가출원상태에서는 수정을 할 수 없습니다.");
 		else if ("${currentAnswer.getIscomplete()}"==3) alert("발명가 회원님이 최종 확인중입니다.");
 		else if ("${currentAnswer.getIscomplete()}"==4) alert("발명가 회원님이 서류 업로드 중입니다.");
-		else if ("${currentAnswer.getIscomplete()}"==5) alert("발명가 회원님의 서류 업로드가 완료되었습니다.\n 하단의 서류 다운로드 버튼을 눌러주세요");
-		else if ("${currentAnswer.getIscomplete()}"==6) alert("출원이 완료된 사항입니다.");
+		else if ("${currentAnswer.getIscomplete()}"==5)
+		{
+			disableApplyBtn();
+		//	alert("발명가 회원님의 서류 업로드가 완료되었습니다.\n 하단의 서류 다운로드 버튼을 눌러주세요");
+		}
+		else if ("${currentAnswer.getIscomplete()}"==6)
+		{
+			disableApplyBtn();
+			//alert("출원이 완료된 사항입니다.");
+		}
 		else alert('고객이 작성을 완료하기를 기다려주세요');         
 	}
 	
@@ -56,9 +64,6 @@ $(document).ready(function()
 	});
     
 
-	///
-	///
-	///
     $('#gogogo').on("click",function()
 	{
     
@@ -71,8 +76,7 @@ $(document).ready(function()
             //    return false;
             // }
          //
-        
-            
+
     	var q=confirm("출원을 선택하면 수정할 수 없습니다. 출원을 선택하시겠습니까?");      
         
         if(q==true){                                            
@@ -83,26 +87,23 @@ $(document).ready(function()
         	    return false;                                        
         	 }                                                       
    });
-         //클릭에 따라 내용 바꿔주기
-         $('#IdeaModifyList').on("click","tr",function()
+   //클릭에 따라 내용 바꿔주기
+         $('#IdeaModifyList').on("click","li",function()
          {
-            //IdeaModifyList 내부의 tr중 clickedIdea를 가지고있는 요소의 clickedIdea를 제거 
-            $(this).parent().find('.clickedIdea').removeClass('clickedIdea');
-            var rid = $(this).children('input').attr('value');
-            
-            if(rid == ${lastRid} && ("${currentAnswer.getIscomplete()}" == 1))
-            {
-               enableInput();
-            }
-            else
-            {
-               disableInput();
-            }
-            //현재 선택된 요소(tr)에 clickedIdea를 붙임
-            $(this).addClass('clickedIdea');
-            
-            showClickedList(rid);   
+        	 $('#IdeaModifyList').find('.clickedIdea').removeClass('clickedIdea');
+     		var rid = $(this).children('input').attr('value');
+     		
+     		if(rid == ${lastRid} && ("${currentAnswer.getIscomplete()}" == 1)) enableInput();
+     		else disableInput();
+     	
+     		//현재 선택된 요소(tr)에 clickedIdea를 붙임
+     		$(this).addClass('clickedIdea');
+     		showClickedList(rid);	
+     		
+     		$('#drop_sp').text($(this).text());
+        	 
          })
+       
          //작성 예시 버튼 이벤트
           $(".txt_box > button").click(function(){
               $(this).nextAll(".hiding_box").fadeIn();
@@ -118,8 +119,9 @@ $(document).ready(function()
       //		}
       //	}
       });
-      
-      </script>
+
+	$('#drop_sp').text($('#IdeaModifyList').find('.clickedIdea').text());
+</script>
 
 <style>
 	.tab_contents>textarea{
@@ -175,7 +177,7 @@ $(document).ready(function()
 				<div class="dropdown">
 					<span id="drop_sp">아이디어 등록 (초안)</span>
 					<div class="arrow-up ee"></div>					
-					<ul id="IdeaModifyList_top">
+					<ul id="IdeaModifyList">
 						<c:forEach items="${processList}" var="list" varStatus="status">
 							<c:choose>
 								<c:when test="${status.first and status.last }">
