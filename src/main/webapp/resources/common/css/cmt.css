@@ -412,6 +412,8 @@
   background: #f9f9f9;
   position: absolute;
   padding: 30px;
+  display: none;
+  cursor: pointer;
   text-align: left;
 }
 .area_box .title_cmt .example h3 {

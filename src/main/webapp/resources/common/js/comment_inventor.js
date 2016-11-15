@@ -137,3 +137,19 @@ $(".dropdown").click(function(){
 $("#IdeaModifyList_top li").click(function(){
 	$("#drop_sp").text($(this).data("val"));
 });
+$(".exbtn").click(function(){
+	var ex = $('.example'); 
+		
+	if($(this).hasClass('good')){
+		$(this).next(ex).css({display:'none'});
+		$(this).removeClass('good');
+	}else{
+		$(this).next('.example').css({display:'block'});
+		$(this).addClass('good');
+		
+	}
+});
+$(".example").click(function(){
+	$(this).css({display:'none'});
+	$(this).prev(ex).removeClass('good');
+});

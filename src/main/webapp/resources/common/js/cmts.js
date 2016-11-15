@@ -126,3 +126,4 @@ $('#idea_title').keyup(function(){
 	$("#IdeaModifyList_top li").click(function(){
 		$("#drop_sp").text($(this).data("val"));
 	});
+	
