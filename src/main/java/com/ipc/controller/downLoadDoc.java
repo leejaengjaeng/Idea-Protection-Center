@@ -22,6 +22,7 @@ import com.ipc.dao.DocumentDao;
 import com.ipc.dao.RegistrationDao;
 import com.ipc.dao.RegistrationFileDao;
 import com.ipc.dao.UpLoadDocDao;
+import com.ipc.util.PathUtils;
 import com.ipc.vo.ApplyDocVo;
 import com.ipc.vo.RegistrationFileVo;
 import com.ipc.vo.RegistrationPatentVo;
@@ -102,7 +103,7 @@ public class downLoadDoc {
 	@RequestMapping(value="/executeDownLoad/{file_kind}",method=RequestMethod.GET)
 	public ModelAndView executeDownLoad(HttpServletRequest request,@PathVariable String file_kind) throws InvalidFormatException, IOException{
 		int rid=(int) session.getAttribute("currentPosition");
-		String applyDocRootPath= request.getSession().getServletContext().getRealPath("/");
+		String applyDocRootPath= PathUtils.getRootPath(request);
 		System.out.println("applyDocRootPath : "+applyDocRootPath+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 
 		String file_name="";
@@ -171,7 +172,7 @@ public class downLoadDoc {
 	@RequestMapping("/getDoc/{start_rid}")
 	public ModelAndView getDoc(HttpServletRequest request,@PathVariable int start_rid){
 		int rid=regismapper.getLastRidInProcessList(start_rid);
-		String root_path=request.getSession().getServletContext().getRealPath("/")+"/resources/uploadimgs/apply_doc/";
+		String root_path=PathUtils.getRootPath(request)+"/resources/uploadimgs/apply_doc/";
 		ApplyDocVo adv = docDao.getVoByrid(rid);
 		String applyDocName=adv.getFinalApplyDoc();
 		File applyDoc=new File(root_path+applyDocName);
@@ -184,7 +185,7 @@ public class downLoadDoc {
 	}
 	@RequestMapping("/downContents/attorney")
 	public ModelAndView downContents(HttpServletRequest request) throws InvalidFormatException, IOException{
-		String root_path=request.getSession().getServletContext().getRealPath("/")+"/resources/downContents/";
+		String root_path=PathUtils.getRootPath(request)+"/resources/downContents/";
 		String doc_name="attorney.docx";
 		System.out.println(root_path);
 		File downFile= new File(root_path+doc_name);
@@ -198,7 +199,7 @@ public class downLoadDoc {
 	}
 	@RequestMapping(value="/downContents/envelope")
 	public ModelAndView downContents2(HttpServletRequest request) throws InvalidFormatException, IOException{
-		String root_path=request.getSession().getServletContext().getRealPath("/")+"/resources/downContents/";
+		String root_path=PathUtils.getRootPath(request)+"/resources/downContents/";
 		String doc_name="envelope.docx";
 		System.out.println(root_path);
 		File downFile= new File(root_path+doc_name);

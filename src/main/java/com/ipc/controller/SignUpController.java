@@ -36,6 +36,7 @@ import com.ipc.vo.userVo;
 
 //TODO : 지우고 new 한 것들 Autowired한 signupService로 대체하기
 import com.ipc.service.SignUpService;
+import com.ipc.util.PathUtils;
 
 
 @Controller
@@ -86,7 +87,7 @@ public class SignUpController{
 		System.out.println();
 		
 		SignUpService ss=new SignUpService();
-		String root_path=request.getSession().getServletContext().getRealPath("/");
+		String root_path=PathUtils.getRootPath(request);
 		if(!files.get(0).isEmpty()){
 			fileType=ss.makeimageFile(files.get(0),uv.getId(),role,root_path,"profile");
 		}
@@ -249,7 +250,7 @@ public class SignUpController{
 				
 			}
 			SignUpService ss=new SignUpService();
-			String root_path=request.getSession().getServletContext().getRealPath("/");
+			String root_path=PathUtils.getRootPath(request);
 			ss.makeimageFile(files.get(0),currentUser.getId(),role,root_path,"profile");
 			map2.put("uid", Integer.toString(currentUser.getUid()));
 			map2.put("url", "/resources/uploadimgs/profileImg/"+currentUser.getId()+"."+fileType);

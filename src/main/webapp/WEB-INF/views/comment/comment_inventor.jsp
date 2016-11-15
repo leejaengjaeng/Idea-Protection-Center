@@ -55,6 +55,7 @@ $(document).ready(function()
 		}
 		else if("${currentAnswer.getIscomplete()}"==6){
 			alert("변리사님이 출원을 완료하였습니다.");
+			$('#gotoApply').hide();
 		}
 		else alert('변리사의 답변을 기다려주세요');
 	}
@@ -154,11 +155,19 @@ $(document).ready(function()
 			<input type="hidden" name="${_csrf.parameterName}" 	value="${_csrf.token}" /> 
 			<input type="hidden" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}">
 			<select onChange=changeType(this.value);>
-				<option>${beforeReg.getTypeOfInvent()}</option>
+				<c:choose>
+					<c:when test="${isFirst eq 'true'}">
+						<option>${currentAnswer.getTypeOfInvent()}</option>
+					</c:when>
+					<c:otherwise>
+						<option>${beforeReg.getTypeOfInvent()}</option>
+					</c:otherwise>
+				</c:choose>
 			</select> 
+			
 			<input type="hidden" value="${beforeReg.getTypeOfInvent()}" name="typeOfInvent" id="AfterCommentTypeOfInvent">
 		</div>
-
+	
 		</div>
 		<div class="tab_box">
 			<div class="b0" style="background-color: #004a80; color: white;">

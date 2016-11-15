@@ -181,7 +181,7 @@ $(document).ready(function()
 						<c:forEach items="${processList}" var="list" varStatus="status">
 							<c:choose>
 								<c:when test="${status.first and status.last }">
-									<li data-val="아이디어 등록 (초안) ${list.getRegistration_date()}">
+									<li class="clickedIdea" data-val="아이디어 등록 (초안) ${list.getRegistration_date()}">
 										<input type="hidden" value="${list.getRid()}"/>
 										아이디어 등록 (초안)
 										${list.getRegistration_date()}
@@ -195,7 +195,7 @@ $(document).ready(function()
 									</li>
 								</c:when>
 								<c:when test="${status.last }">
-									<li data-val="${status.index}차 전문가 검토 및 수정안 ${list.getRegistration_date()}">
+									<li class="clickedIdea" data-val="${status.index}차 전문가 검토 및 수정안 ${list.getRegistration_date()}">
 										<input type="hidden" value="${list.getRid()}"/>
 										${status.index}차 전문가 검토 및 수정안
 										${list.getRegistration_date()}

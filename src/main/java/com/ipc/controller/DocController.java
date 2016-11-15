@@ -22,6 +22,7 @@ import com.ipc.dao.RegistrationDao;
 import com.ipc.dao.RegistrationFileDao;
 import com.ipc.service.RegistrationService;
 import com.ipc.service.SignUpService;
+import com.ipc.util.PathUtils;
 import com.ipc.vo.RegistrationFileVo;
 import com.ipc.vo.RegistrationPatentVo;
 
@@ -244,10 +245,11 @@ public class DocController {
 	@RequestMapping(value="/getFile/{file_name}",method=RequestMethod.GET)
 	public ModelAndView downLoadFile(HttpServletRequest request,@PathVariable String file_name) {
 		System.out.println("downcome");
-        String root_path=request.getSession().getServletContext().getRealPath("/");
+        String root_path=PathUtils.getRootPath(request);
         //String doc_name=request.getParameter("file_name");
         String doc_name=file_name+".docx";
-        String fullPath = request.getSession().getServletContext().getRealPath("resources/uploadimgs/document/")+doc_name;
+        //String fullPath = request.getSession().getServletContext().getRealPath("resources/uploadimgs/document/")+doc_name;
+        String fullPath=PathUtils.getRootPath(request)+"/resources/uploadimgs/document/"+doc_name;
         File downloadFile = new File(fullPath);
         ModelAndView mav = new ModelAndView();
         mav.addObject("downloadFile", downloadFile);

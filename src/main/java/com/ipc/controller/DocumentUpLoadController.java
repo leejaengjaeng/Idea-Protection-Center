@@ -29,6 +29,7 @@ import com.ipc.dao.RegistrationDao;
 import com.ipc.service.MessageService;
 import com.ipc.service.RegistrationService;
 import com.ipc.service.UploadDocumentService;
+import com.ipc.util.PathUtils;
 import com.ipc.vo.RegistrationPatentVo;
 import com.ipc.vo.UpLoadDocVo;
 import com.ipc.vo.userVo;
@@ -74,7 +75,7 @@ public class DocumentUpLoadController {
 		}
 		upv.setIs_personal(request.getParameter("is_personal"));
 		upv.setRid(Integer.parseInt(request.getParameter("rid")));
-		String root_path=request.getSession().getServletContext().getRealPath("/");
+		String root_path=PathUtils.getRootPath(request);
 		
 		uploadService.saveFile(map, root_path,upv);
 		return "redirect:/";
@@ -107,8 +108,10 @@ public class DocumentUpLoadController {
 		HashMap<String,String> map = new HashMap<String,String>();
 		MultipartHttpServletRequest multipartRequest =  (MultipartHttpServletRequest)request;  //�떎以묓뙆�씪 �뾽濡쒕뱶
 		List<MultipartFile> apply_doc = multipartRequest.getFiles("finalApplyDoc");
-		String dirpath=request.getSession().getServletContext().getRealPath("resources/uploadimgs/apply_doc/");
-		String doc_name=apply_doc.get(0).getOriginalFilename();
+		//String dirpath=request.getSession().getServletContext().getRealPath("resources/uploadimgs/apply_doc/");
+		String dirpath=PathUtils.getRootPath(request)+"/resources/uploadimgs/apply_doc/";
+		
+		String doc_name="applydoc"+rService.getToday(1)+"."+PathUtils.getFileType(apply_doc.get(0).getOriginalFilename());
 		String full_path=dirpath+doc_name;
 		byte fileData[] = apply_doc.get(0).getBytes();
 		
