@@ -41,14 +41,7 @@ $(document).ready(function()
 			btnHide();
 			disableInput();
 			alert("변리사가 위의 내용으로 최종확인하였습니다. \n출원 단계를 원하시면 하단의 출원 버튼을 눌러주세요");
-			//var q=confirm("변리사가 위의 내용으로 최종 확인하였습니다 출원 단계를 진행하시겠습니까?");
-	    	//if(q==true)	gotoApply("${user}");                                 
-	     	//else
-	     	//{
-	     	//	//enableInput();
-	        //	denyApply("${user}");
-	        //	return false;                                         
-	  	 	//}
+			
 		}
 		else if("${currentAnswer.getIscomplete()}"==5){
 			alert("변리사님이 발명가님의 서류를 검토하는 동안 기다려 주세요");
