@@ -81,7 +81,7 @@ DROP TABLE registration_patent;
 CREATE TABLE `registration_patent` (
   `rid` int(11) NOT NULL AUTO_INCREMENT,
   `typeofinvent` varchar(45) DEFAULT NULL,
-  `title` varchar(45) DEFAULT NULL,
+  `title` text DEFAULT NULL,
   `summary` text,
   `whyinvent` text,
   `problem` text,
@@ -159,6 +159,7 @@ CREATE TABLE `message` (
   `rid` varchar(45) DEFAULT NULL,
   `date` datetime DEFAULT NULL,
   `uid` varchar(45) DEFAULT NULL,
+  `isread` int(11) DEFAULT 0,
   PRIMARY KEY (`mid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=120 DEFAULT CHARSET=utf8;
 

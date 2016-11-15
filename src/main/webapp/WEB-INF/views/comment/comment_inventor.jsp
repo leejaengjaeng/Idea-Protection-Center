@@ -23,6 +23,7 @@
         width: 660px !important; 
         border-radius: 6px !important;
     }
+    
 </style>
 <script>
 $(document).ready(function()
@@ -113,20 +114,35 @@ $(document).ready(function()
 		gotoApply("${user}");
 	});
 	//클릭에 따라 내용 바꿔주기
-	$('#IdeaModifyList').on("click","tr",function()
+	$('#IdeaModifyList').on("click","li",function()
 	{
 		//IdeaModifyList 내부의 tr중 clickedIdea를 가지고있는 요소의 clickedIdea를 제거 
 		
-		$(this).parent().find('.clickedIdea').removeClass('clickedIdea');
+		//$(this).parent().find('.clickedIdea').removeClass('clickedIdea');
 		var rid = $(this).children('input').attr('value');
 		
 		if(rid == ${lastRid} && ("${currentAnswer.getIscomplete()}" == 0)) enableInput();
 		else disableInput();
 	
 		//현재 선택된 요소(tr)에 clickedIdea를 붙임
-		$(this).addClass('clickedIdea');
+		//$(this).addClass('clickedIdea');
 		showClickedList(rid);	
 	})
+	$('#IdeaModifyList_bottom').on("click","li",function()
+	{
+		//IdeaModifyList 내부의 tr중 clickedIdea를 가지고있는 요소의 clickedIdea를 제거 
+			
+		//$(this).parent().find('.clickedIdea').removeClass('clickedIdea');
+		var rid = $(this).children('input').attr('value');
+				
+		if(rid == ${lastRid} && ("${currentAnswer.getIscomplete()}" == 0)) enableInput();
+		else disableInput();
+			
+		//현재 선택된 요소(tr)에 clickedIdea를 붙임
+		//$(this).addClass('clickedIdea');
+		showClickedList(rid);	
+	})
+			
 });
 
 </script>
@@ -179,13 +195,41 @@ $(document).ready(function()
 					</c:forEach>		
 				</table> --%>
 				<div class="dropdown">
-					<span>아이디어 등록 (초안)</span>
+					<span id="drop_sp">아이디어 등록 (초안)</span>
 					<div class="arrow-up ee"></div>					
-					<ul>
-						<li>아이디어 등록(초안)</li>
-						<li>아이디어 등록(초안)</li>
-						<li>${status.index}차 전문가 검토 및 수정안</li>
-						<li>${status.index}차 전문가 검토 및 수정안</li>						
+					<ul id="IdeaModifyList_top">
+						<c:forEach items="${processList}" var="list" varStatus="status">
+							<c:choose>
+								<c:when test="${status.first and status.last }">
+									<li data-val="아이디어 등록 (초안) ${list.getRegistration_date()}">
+										<input type="hidden" value="${list.getRid()}"/>
+										아이디어 등록 (초안)
+										${list.getRegistration_date()}
+									</li>
+								</c:when>
+								<c:when test="${status.first }">
+									<li data-val="아이디어 등록 (초안) ${list.getRegistration_date()}">
+										<input type="hidden" value="${list.getRid()}"/>
+										아이디어 등록 (초안)
+										${list.getRegistration_date()}
+									</li>
+								</c:when>
+								<c:when test="${status.last }">
+									<li data-val="${status.index}차 전문가 검토 및 수정안 ${list.getRegistration_date()}">
+										<input type="hidden" value="${list.getRid()}"/>
+										${status.index}차 전문가 검토 및 수정안
+										${list.getRegistration_date()}
+									</li>
+								</c:when>
+								<c:otherwise>
+									<li data-val="${status.index}차 전문가 검토 및 수정안 ${list.getRegistration_date()}">
+										<input type="hidden" value="${list.getRid()}"/>
+										${status.index}차 전문가 검토 및 수정안
+										${list.getRegistration_date()}
+									</li>
+								</c:otherwise>
+				          	</c:choose>
+						</c:forEach>
 					</ul>					
 				</div> 
 			</article>                
@@ -423,16 +467,7 @@ $(document).ready(function()
 				<textarea class="disabled current" placeholder="Comment" disabled="disabled" style="border-top:1px solid #fff;" id="AfterCommentPicture_explain">${currentAnswer.getPicture_explain()}</textarea>
 			</div>
 		</div>
-		<div class="dropdown">
-			<span>아이디어 등록 (초안)</span>
-			<div class="arrow-up ee"></div>					
-			<ul>
-				<li>아이디어 등록(초안)</li>
-				<li>아이디어 등록(초안)</li>
-				<li>${status.index}차 전문가 검토 및 수정안</li>
-				<li>${status.index}차 전문가 검토 및 수정안</li>						
-			</ul>					
-		</div>
+		
 		<div class="fin">
 			<button type="button" id="tmpSave">임시저장</button>
 			<button type="button" id="agree">제출</button>
