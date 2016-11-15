@@ -162,7 +162,7 @@ function formSubmit(file){
        return false;
    }
    
-   if(document.getElementById("typeOfInvent").value=="-"){
+   if(document.getElementById("typeOfInvent").value=="발명분야"){
       alert("발명분야를 선택해주세요");
       return false;
    }
