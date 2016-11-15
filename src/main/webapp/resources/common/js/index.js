@@ -62,3 +62,7 @@ var now = 0;
          alert("준비중 입니다.");
       }
    
+   $(function(){
+	   $(".cover:even").addClass("even");
+	   $(".cover:odd").addClass("odd");
+   });

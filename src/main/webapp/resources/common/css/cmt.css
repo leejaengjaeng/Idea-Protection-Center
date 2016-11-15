@@ -255,7 +255,7 @@
 }
 #IdeaModifyList {
   width: 100%;
-  margin-bottom: 100px;
+  margin-bottom: 0 !important;
 }
 #IdeaModifyList tr {
   border-bottom: 1px solid #fff;
@@ -380,11 +380,49 @@
   background: #004a80;
   float: left;
   margin-bottom: 10px;
+  position: relative;
 }
 .area_box .title_cmt h3 {
   font-size: 18px;
   font-weight: 500;
   float: left;
+  height: 50px;
+  padding-top: 13px;
+  padding-left: 10px;
+  color: white;
+}
+.area_box .title_cmt span {
+  color: white;
+  height: 50px;
+  display: inline-block;
+  padding-top: 18px;
+  font-size: 14px;
+  padding-left: 15px;
+}
+.area_box .title_cmt button {
+  float: right;
+  margin: 0;
+  height: 50px;
+}
+.area_box .title_cmt .example {
+  width: 50%;
+  right: 0;
+  border: 2px solid #004a80;
+  border-top: none;
+  background: #f9f9f9;
+  position: absolute;
+  padding: 30px;
+  text-align: left;
+}
+.area_box .title_cmt .example h3 {
+  color: #004a80 ;
+  font-weight: 600;
+  padding: 0;
+  height: auto;
+  margin-bottom: 10px;
+}
+.area_box .title_cmt .example p {
+  line-height: 1.7em;
 }
 .fin {
   width: 100%;
@@ -528,6 +566,7 @@
 }
 .dropdown {
   width: 100%;
+  cursor: pointer;
   max-height: 50px;
   background: #639cbf ;
   float: left;

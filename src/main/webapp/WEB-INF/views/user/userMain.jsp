@@ -174,8 +174,7 @@ $(document).ready(function()
                 <c:choose>
                 	<c:when test="${isLawyer eq '0'}">
                 		<table style="margin-top:50px;">
-		                    <tr> 
-		                        <th>번호</th>
+		                    <tr> 		                        
 		                        <th>등록날짜</th>
 		                        <th>분류</th>
 		                        <th>제목</th>
@@ -187,8 +186,7 @@ $(document).ready(function()
 		                    </tr>
 		                   	<c:forEach var="process" items="${processList}" varStatus="status">
 								<tr class="ideaList">
-									<input type="hidden" value="${process.getRid()}"/>
-									<td style="background:#f1f1f1;">${status.count }</p></td>
+									<input type="hidden" value="${process.getRid()}"/>								
 			                        <td><p>${process.getRegistration_date() }</p></td>
 			                        <td><p>${process.getTypeOfInvent() }</p></td>
 			                        <td><p>${process.getTitle()}</p></td>

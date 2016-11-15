@@ -195,7 +195,21 @@ $(document).ready(function()
 		</div>
 		<div class="area_box a0" style="display: block;">
 			<div class="plc">
-				<div class="title_cmt"></div>
+				<div class="title_cmt">
+					<h3>제목</h3>
+					<span>여러분의 아이디어의 이름을 적어 주세요</span>
+					<button>작성예시</button>
+					<div class="example">
+						<div class="extitle">
+							<h3>제목</h3>
+						</div>
+						<p>
+							제목은 아이디어를 구체적으로 표현할 수 있는 단어들을 <br>조합하면 됩니다.<br><br>
+							분야+기술의 명사형+해결하는 방식 명사형<br><br>
+							예시) 전자상거래에서의 매매보호 방법
+						</p>
+					</div>
+				</div>
 				<div class="halfframe">
 					<h1>이전 작성 내용</h1>
 					<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentTitle">${beforeReg.getTitle()}</textarea>
@@ -214,7 +228,21 @@ $(document).ready(function()
 		<div class="area_box a1">
 			<div class="plc">
 				<div class="title_cmt">	
-					<h3>제목</h3>
+					<h3>요약</h3>		
+					<span>아이디어에 대한 요약을 설명해 주세요</span>	
+					<button>작성예시</button>
+					<div class="example">
+						<div class="extitle">
+							<h3>요약</h3>
+						</div>
+						<p>
+							요약은 본인이 만들고자 하는 아이디어의 제목을 기본으로 하여 <br>
+							기존의 방법을 통해서 이루어진 방법을 기술하고<br>
+							 이때 기존기술의 불편한 요소를 기술하면 됩니다.<br>
+							해당 불편요소를 해결하는 핵심적인 기술과 그 기술로<br> 
+							이루어지는 혜택을 서술하시면 됩니다.
+						</p>
+					</div>		
 				</div>
 				<div class="halfframe">
 					<h1>이전 작성 내용</h1>
@@ -233,7 +261,17 @@ $(document).ready(function()
 		<!-- 필요이유 -->
 		<div class="area_box a2">
 			<div class="plc">
-				<div class="title_cmt"></div>
+				<div class="title_cmt">
+					<h3>필요이유</h3>		
+					<span>이 아이디어가 왜 필요한지 알려 주세요</span>
+					<button>작성예시</button>
+					<div class="example">
+						<div class="extitle">
+							<h3>제목</h3>
+						</div>
+						<p>제목은 아이디어를 구체적으로 표현할 수 있는 단어들을 조합하면 됩니다.</p>
+					</div>
+				</div>
 				<div class="halfframe">
 					<h1>이전 작성 내용</h1>
 					<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentWhyInvent" name="whyInvent">${beforeReg.getWhyInvent()}</textarea>
@@ -251,7 +289,17 @@ $(document).ready(function()
 		<!-- 기존제품 설명 및 문제점 -->
 		<div class="area_box a3">
 			<div class="plc">
-				<div class="title_cmt"></div>
+				<div class="title_cmt">
+					<h3>기존제품설명 및 문제점</h3>		
+					<span>기존제품의 간단한 설명 및 문제점을 알려 주세요</span>
+					<button>작성예시</button>s
+					<div class="example">
+						<div class="extitle">
+							<h3>제목</h3>
+						</div>
+						<p>제목은 아이디어를 구체적으로 표현할 수 있는 단어들을 조합하면 됩니다.</p>
+					</div>
+				</div>
 				<div class="halfframe">			
 					<h1>이전 작성 내용</h1>	
 					<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentProblem" name="problem">${beforeReg.getProblem()}</textarea>
@@ -270,7 +318,17 @@ $(document).ready(function()
 		<!-- 문제 해결 방법 -->
 		<div class="area_box a4">
 			<div class="plc">
-				<div class="title_cmt"></div>
+				<div class="title_cmt">
+					<h3>문제해결방법</h3>		
+					<span>기존제품의 문제점을 어떻게 해결했는지를 알려주세요</span>
+					<button>작성예시</button>
+					<div class="example">
+						<div class="extitle">
+							<h3>제목</h3>
+						</div>
+						<p>제목은 아이디어를 구체적으로 표현할 수 있는 단어들을 조합하면 됩니다.</p>
+					</div>
+				</div>
 				<div class="halfframe">
 					<h1>이전 작성 내용</h1>
 					<textarea  class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentSolution" name="solution">${beforeReg.getSolution()}</textarea>
@@ -288,7 +346,17 @@ $(document).ready(function()
 		<!-- 발명의 효과 -->
 		<div class="area_box a5">
 			<div class="plc">
-				<div class="title_cmt"></div>
+				<div class="title_cmt">
+					<h3>발명의 효과</h3>		
+					<span>아이디어로 얻을 수 있는 혜택이나 효과를 알려주세요</span>
+					<button>작성예시</button>
+					<div class="example">
+						<div class="extitle">
+							<h3>제목</h3>
+						</div>
+						<p>제목은 아이디어를 구체적으로 표현할 수 있는 단어들을 조합하면 됩니다.</p>
+					</div>
+				</div>
 				<div class="halfframe">
 					<h1>이전 작성 내용</h1>
 					<textarea  class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentEffect" name="effect">${beforeReg.getEffect()}</textarea>
@@ -306,7 +374,17 @@ $(document).ready(function()
 		<!-- 핵심 구성 요소 -->
 		<div class="area_box a6">
 			<div class="plc">
-				<div class="title_cmt"></div>
+				<div class="title_cmt">
+					<h3>핵심구성요소</h3>		
+					<span>아이디어를 구성하는 기술 및 기능적 구성요소와 작동순서를 알려주세요</span>
+					<button>작성예시</button>
+					<div class="example">
+						<div class="extitle">
+							<h3>제목</h3>
+						</div>
+						<p>제목은 아이디어를 구체적으로 표현할 수 있는 단어들을 조합하면 됩니다.</p>
+					</div>
+				</div>
 				<div class="halfframe">
 					<h1>이전 작성 내용</h1>
 					<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentCore_Element" name="core_element">${beforeReg.getCore_element()}</textarea>
@@ -325,7 +403,17 @@ $(document).ready(function()
 		<!-- 권리를 보장 받고자 하는 내용 -->
 		<div class="area_box a7">
 			<div class="plc">
-				<div class="title_cmt"></div>
+				<div class="title_cmt">
+					<h3>권리를 보장받고자 하는 내용</h3>		
+					<span>아이디어를 보호받고자 하는 내용을 적어 주세요</span>
+					<button>작성예시</button>
+					<div class="example">
+						<div class="extitle">
+							<h3>제목</h3>
+						</div>
+						<p>제목은 아이디어를 구체적으로 표현할 수 있는 단어들을 조합하면 됩니다.</p>
+					</div>				
+				</div>
 				<div class="halfframe">
 					<h1>이전 작성 내용</h1>
 					<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentHope_content()" name="hope_content">${beforeReg.getHope_content()}</textarea>
@@ -344,7 +432,18 @@ $(document).ready(function()
 		<!-- 도면 첨부 -->
 		<div class="area_box a8">
 			<div>
-				<div class="plc"><div class="title_cmt"></div>
+				<div class="plc">
+				<div class="title_cmt">
+					<h3>도면첨부도면</h3>		
+					<span>아이디어에 대한 밑그림이나 도면을 업로드 해주세요</span>
+					<button>작성예시</button>
+					<div class="example">
+						<div class="extitle">
+							<h3>제목</h3>
+						</div>
+						<p>제목은 아이디어를 구체적으로 표현할 수 있는 단어들을 조합하면 됩니다.</p>
+					</div>
+				</div>
 					<form id="commentForm" name="commentForm" action="/commentFileSave" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
                         <input type="hidden" name="userID_file" value="${sessionScope.currentUser.getId()}">
@@ -365,7 +464,17 @@ $(document).ready(function()
 		<!-- 도면 설명 -->
 		<div class="area_box a9">
 			<div class="plc">
-				<div class="title_cmt"></div>
+				<div class="title_cmt">
+					<h3>도면에 대한 설명</h3>		
+					<span>도면에 대한 설명을 작성해 주세요</span>
+					<button>작성예시</button>
+					<div class="example">
+						<div class="extitle">
+							<h3>제목</h3>
+						</div>
+						<p>제목은 아이디어를 구체적으로 표현할 수 있는 단어들을 조합하면 됩니다.</p>
+					</div>
+				</div>
 				<div class="halfframe">
 					<h1>이전 작성 내용</h1>
 					<textarea class="half disabled inventor before_cmt" placeholder="발명가" disabled id="BeforeCommentPicture_explain" name="picture_explain">${beforeReg.getPicture_explain()}</textarea>

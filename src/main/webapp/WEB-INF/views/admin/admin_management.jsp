@@ -134,7 +134,7 @@
                     </select>
                     <input type="text">
                     <button>검색</button>
-                </div>
+                </div>z
                  -->
             </div>
             <table class="manage_table" style="margin-bottom:20px; ">

@@ -57,12 +57,13 @@
                      <span>298,000원</span>
                      <button>출원하러가기▶</button>
                   </div>
-                  <img src=/resources/image/patent_apply_benner.jpg">
+                  <img src="/resources/image/patent_apply_benner.jpg">
+                  
                </div>
                <div class="design" onclick="notready();">
                   <div>
-                     <span><b>디자인권</b> 출원</span><br>
-                     <span style="font-size:1.5em;">99,000원</span>
+                     <span><b>상표</b> 출원</span><br>
+                     <span style="font-size:1.5em;">55,000원</span>
                      <button>출원하러가기▶</button>
                   </div>
                   <img src="/resources/image/index_patent_2.jpg">
@@ -70,10 +71,10 @@
                <div class="brand" onclick="notready();">                  
                   <div class="abb">
                      <span style="font-size:26px; display:inline-block; margin-top:10px;">
-                        <b>상표</b> 출원<br>                        
+                        <b>디자인권</b> 출원<br>                        
                      </span>
                      <span style="display:inline-block; margin-top:5px; font-size:20px;">
-                        55,000원
+                        99,000원
                      </span><br>
                      <button>출원하러가기▶</button>
                   </div>               
@@ -153,6 +154,87 @@
    <!-- TODO: 이거 height 어떻게 해야댕..?, height 안주면 너무 넓음 아래  -->
    <div class="val">
       <c:forEach items="${current}" var="list" varStatus="status">      
+         <div>
+            <div class="cover">
+               <span>
+                  	${list.getName()}님<br>
+                  	${list.getType()}
+               </span>
+            </div>
+            <img src="/resources/image/kind1.png" alt="123">
+         </div>
+         <div>
+            <div class="cover">
+               <span>
+                  	${list.getName()}님<br>
+                  	${list.getType()}
+               </span>
+            </div>
+            <img src="/resources/image/kind1.png" alt="123">
+         </div>
+         <div>
+            <div class="cover">
+               <span>
+                  	${list.getName()}님<br>
+                  	${list.getType()}
+               </span>
+            </div>
+            <img src="/resources/image/kind1.png" alt="123">
+         </div>
+         <div>
+            <div class="cover">
+               <span>
+                  	${list.getName()}님<br>
+                  	${list.getType()}
+               </span>
+            </div>
+            <img src="/resources/image/kind1.png" alt="123">
+         </div>
+         <div>
+            <div class="cover">
+               <span>
+                  	${list.getName()}님<br>
+                  	${list.getType()}
+               </span>
+            </div>
+            <img src="/resources/image/kind1.png" alt="123">
+         </div>
+         <div>
+            <div class="cover">
+               <span>
+                  	${list.getName()}님<br>
+                  	${list.getType()}
+               </span>
+            </div>
+            <img src="/resources/image/kind1.png" alt="123">
+         </div>
+         <div>
+            <div class="cover">
+               <span>
+                  	${list.getName()}님<br>
+                  	${list.getType()}
+               </span>
+            </div>
+            <img src="/resources/image/kind1.png" alt="123">
+         </div>
+         <div>
+            <div class="cover">
+               <span>
+                  	${list.getName()}님<br>
+                  	${list.getType()}
+               </span>
+            </div>
+            <img src="/resources/image/kind1.png" alt="123">
+         </div>
+         <div>
+            <div class="cover">
+               <span>
+                  	${list.getName()}님<br>
+                  	${list.getType()}
+               </span>
+            </div>
+            <img src="/resources/image/kind1.png" alt="123">
+         </div>
          <div>
             <div class="cover">
                <span>
