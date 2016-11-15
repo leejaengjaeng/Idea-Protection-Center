@@ -466,4 +466,3 @@ var showClickedList = function(rid)
       }
    });   
 }
-

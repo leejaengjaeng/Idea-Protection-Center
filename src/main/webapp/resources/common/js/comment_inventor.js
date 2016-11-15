@@ -132,3 +132,8 @@ $(".dropdown").click(function(){
 	    $(this).css('max-height', '50px'); //delete attribute
 	}
 });
+
+
+$("#IdeaModifyList_top li").click(function(){
+	$("#drop_sp").text($(this).data("val"));
+});

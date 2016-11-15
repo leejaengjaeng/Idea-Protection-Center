@@ -6,8 +6,10 @@ $(document).ready(function()
     */
     
     //상태에 따른 응답 보여주기
-	if("${currentAnswer.getIscomplete()}" == 1)	enableInput();
-	else
+	if("${currentAnswer.getIscomplete()}" == 1){	
+		enableInput();
+	}
+		else
 	{
 		disableInput();
 		if ("${currentAnswer.getIscomplete()}" == 2) 	alert("가출원상태에서는 수정을 할 수 없습니다.");
@@ -33,8 +35,7 @@ $(document).ready(function()
 	///
 	///
 	///
-    $('#gogogo').on("click",function()
-	{
+    $('#gogogo').on("click",function(){
     
 		//var q=confirm("출원을 선택하면 수정할 수 없습니다. 출원을 선택하시겠습니까?")
             // if(q==true){
@@ -50,20 +51,22 @@ $(document).ready(function()
     	var q=confirm("출원을 선택하면 수정할 수 없습니다. 출원을 선택하시겠습니까?");      
         
         if(q==true){                                            
-        	    alert("확인을 누르시면 출원단계가 진행되어집니다.");               
-        	    lastconfirm("${user}");                                
-        	 }                                                       
-        	 else{                                                   
-        	    return false;                                        
-        	 }                                                       
+    	    alert("확인을 누르시면 출원단계가 진행되어집니다.");               
+    	    lastconfirm("${user}");                                
+    	 }                                                       
+    	 else{                                                   
+    	    return false;                                        
+    	 }                                                       
    });
-         //클릭에 따라 내용 바꿔주기
+});
+    
+/*         //클릭에 따라 내용 바꿔주기
          $('#IdeaModifyList').on("click","tr",function()
          {
             //IdeaModifyList 내부의 tr중 clickedIdea를 가지고있는 요소의 clickedIdea를 제거 
             $(this).parent().find('.clickedIdea').removeClass('clickedIdea');
             var rid = $(this).children('input').attr('value');
-            
+         
             if(rid == ${lastRid} && ("${currentAnswer.getIscomplete()}" == 1))
             {
                enableInput();
@@ -91,4 +94,5 @@ $(document).ready(function()
       			document.getElementById("selectBox").options[i].selected=true;
       		}
       	}
-      });
+      });*/
+    

@@ -24,6 +24,7 @@ $('#idea_title').keyup(function(){
         $(this).val($(this).val().substr(0, 45));
     }
 });
+
 	$(".tab_title").click(function(){
 		if($(this).parent(".hiding_tab").hasClass("tab")){                                       
         	$(this).removeClass("down"); 
@@ -104,4 +105,24 @@ $('#idea_title').keyup(function(){
 		}else{
 			$(".halfframe").css("display","block");
 		}
+	});
+   var reg = /(<([^>]+)>)/ig;   
+   $("textarea").keyup(function(){
+	  if(reg.test($(this).val())) {
+		  alert("html 태그 ㅈㅅ");
+		  $(this).val($(this).val().replace(reg,""));
+	  }
+   });
+   
+   
+   $(".dropdown").click(function(){		
+		if($(this).height() < 100){
+		    $(this).css('max-height', '500px'); //set max height
+		}else{
+		    $(this).css('max-height', '50px'); //delete attribute
+		}
+	});
+
+	$("#IdeaModifyList_top li").click(function(){
+		$("#drop_sp").text($(this).data("val"));
 	});

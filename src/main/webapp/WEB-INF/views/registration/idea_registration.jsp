@@ -172,7 +172,7 @@
 		</div>
 		<div class="fin">
 			<button type="button" onclick='tempsave()'>임시저장</button>
-			<input type="submit" value="제출하기">
+			<input type="submit" value="제출하기" id="submit">
 		</div>
 		</form>
 		</article> 
