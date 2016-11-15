@@ -12,7 +12,8 @@
     <script src="/resources/common/js/jquery-3.1.0.min.js"></script>  
     <script src="/resources/common/js/comment.js"></script>  
     <script src="/resources/common/js/util.js" type="text/javascript"></script>
-    
+        
+    <link href="/resources/common/css/title_cmt.css" rel="stylesheet">
     <link href="/resources/common/css/cmt.css" rel="stylesheet">
     <link href="/resources/common/css/style.css" rel="stylesheet">
     <link href="/resources/common/css/index.css" rel="stylesheet">
@@ -23,7 +24,10 @@
         width: 660px !important; 
         border-radius: 6px !important;
     }
-    
+    #header_benner{
+		display: none;
+	}
+	
 </style>
 <script>
 $(document).ready(function()
