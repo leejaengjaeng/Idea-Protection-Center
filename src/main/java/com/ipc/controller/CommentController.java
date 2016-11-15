@@ -476,12 +476,12 @@ public class CommentController {
 		HashMap<String,String> retVal = new HashMap<String,String>();
 		HashMap<String,String> upCon=new HashMap<String,String>();
 		
-		String rid=request.getParameter("rid");
-		String stRid=Integer.toString(regDao.getStartRidByRid(Integer.parseInt(rid)));
+		int rid=(int)session.getAttribute("currentPosition");
+		String stRid=Integer.toString(regDao.getStartRidByRid(rid));
 		
 		session.setAttribute("start_rid", stRid);
 		
-		RegistrationPatentVo rvo = regDao.getRegistrationByRidOrPrevRid(Integer.parseInt(rid));
+		RegistrationPatentVo rvo = regDao.getRegistrationByRidOrPrevRid(rid);
 		rvo.setRegistration_date(ss.getToday(0));
 		mService.uploadDocumentInventor(rvo);
 		mService.assignPL(rvo);
@@ -494,7 +494,7 @@ public class CommentController {
 		//regDao.gotoApply(Integer.parseInt(rid));
 		
 		retVal.put("retVal", "저장 성공");
-		retVal.put("start_rid", Integer.toString(regDao.getStartRidByRid(Integer.parseInt(rid))));
+		retVal.put("start_rid", Integer.toString(regDao.getStartRidByRid(rid)));
 		return retVal;
 	}
 	

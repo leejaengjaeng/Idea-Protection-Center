@@ -30,12 +30,20 @@ function changeBank(value){
 		}
 	}
 	function checkid() {
-
+		
 		//var id = document.getElementById("id").value;
 		var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
 		var csrfToken = $("meta[name='_csrf']").attr("content");
 		var csrfHeader = $("meta[name='_csrf_header']").attr("content"); // THIS WAS ADDED
 		var id = document.getElementById("id").value;
+		var reg_exp=new RegExp("^[a-zA-Z][a-zA-Z0-9]{3,11}$","g");
+		var match=reg_exp.exec(id);
+		if(match==null||id.length<4||id.length>12){
+			alert("아이디는 영문숫자 혼용 혹은 영문, 첫글자는 영문, 4자이상 12자 이하이여야 합니다.");
+			document.getElementById("id").value = "";
+			
+			return false;
+		}
 		var data = {};
 		var headers = {};
 		data[csrfParameter] = csrfToken;
@@ -636,9 +644,9 @@ body {
 					</td>
 				</tr>
 				<tr>
-					<td style="width:30%;">아이디</td>
-					<td style="width:70%;"><input type="text" name="id" id="id">
-						<button type="button" onclick="checkid()" required>중복확인</button></td>
+					<td style="width:30%;" >아이디</td>
+					<td style="width:70%;"><input type="text" name="id" id="id" placeholder="아이디는 영문숫자 혼용 혹은 영문, 첫글자는 영문, 4자이상 12자 이하">
+					<button type="button" onclick="return checkid();" required>중복확인</button></td>
 				</tr>
 				<tr>
 					<td>비밀번호</td>
@@ -652,7 +660,7 @@ body {
 				</tr>
 				<tr>
 					<td>이름</td>
-					<td><input name="name" id="name" required></td>
+					<td><input name="name" id="name" pattern="[가-힣]{2,4}" placeholder="한글, 2자~4자" required></td>
 				</tr>
 				<tr>
 					<td>이메일</td>
@@ -796,7 +804,21 @@ body {
 			alert("이메일 수집 거부에 대한 안내에 동의하여 주세요.");
 			return false;
 		}
-			
+		if(document.getElementById("role").value==2){
+			var sum=0;
+			var count=signupform.major.length;
+			for(var i=0;i<count;i++){
+				if(signupform.major[i].checked==true){
+					sum+=1;
+				}
+			}
+			if(sum<4){
+				alert("전문분야는 3개 이상 체크해 주세요");
+				sum=0;
+				return false;
+			}
+		}
+		
 		return true;
 	}
 		$(".hill").click(function() {
