@@ -47,6 +47,33 @@
 	}
 	
 	$('#fileUploadForm')
+	
+	function checkdoc(){
+		if($('#radiopersonal').is(":checked")){
+			if(!document.getElementById("wnals").value){
+				alert("주민등록 등본을 업로드해 주세요");
+				return false;
+			}
+			else if(!document.getElementById("dlsrka").value){
+				alert("인감증명서를 업로드해 주세요");
+				return false;
+			}
+		}
+		else{
+			if(!document.getElementById("wnals").value){
+				alert("법인등기부 등본을 업로드해 주세요");
+				return false;
+			}
+			else if(!document.getElementById("dlsrka").value){
+				alert("인감증명서를 업로드해 주세요");
+				return false;
+			}
+			else if(!document.getElementById("tkdjq").value){
+				alert("사업자등록증을 업로드해 주세요");
+				return false;
+			}
+		}
+	}
 </script>
 </head>
 <body>
@@ -61,8 +88,8 @@
 		<form id="fileUploadForm" action="/upload/inputFile" method="POST" enctype="multipart/form-data" style="margin-bottom:100px;">
 		<input type="hidden" name="${_csrf.parameterName}"
 				value="${_csrf.token}" />
-			<span style="font-size:20px; display: inline-block; margin-right: 10px;"><input type="radio" name="is_personal" value="1" checked onclick='changePersonal1()'> 개인</span>
-			<span style="font-size:20px;"><input type="radio" name="is_personal" value="0" onclick='changePersonal0()'> 법인</span>
+			<span style="font-size:20px; display: inline-block; margin-right: 10px;"><input type="radio" id="radiopersonal" name="is_personal" value="1" checked onclick='changePersonal1()'> 개인</span>
+			<span style="font-size:20px;"><input type="radio" name="is_personal" value="0" id="radiocompany" onclick='changePersonal0()'> 법인</span>
 			<input type="hidden" value="${regis.getRid()}" name="rid">
 			<table>
 				<tr>
@@ -72,7 +99,7 @@
 							<td>이미 업로드 하였음.</td>
 						</c:when>
 						<c:otherwise>
-							<td><input type="file" name="resident_registration" accept="image/gif, image/jpeg, image/png" onchange="fileCheck(this)"></td>
+							<td><input type="file" id="wnals" name="resident_registration" accept="image/gif, image/jpeg, image/png" onchange="fileCheck(this)"></td>
 						</c:otherwise>
 					</c:choose>
 				</tr>
@@ -83,18 +110,18 @@
 							<td>이미 업로드 하였음.</td>
 						</c:when>
 						<c:otherwise>
-							<td><input type="file" name="certificate" accept="image/gif, image/jpeg, image/png" onchange="fileCheck(this)"></td>
+							<td><input type="file" id="dlsrka" name="certificate" accept="image/gif, image/jpeg, image/png" onchange="fileCheck(this)"></td>
 						</c:otherwise>
 					</c:choose>
 				</tr>
 				<tr>
-					<td><span>사업자등록증</span>
+					<td><span>사업자등록증*</span>
 					<c:choose>
 						<c:when test="${isExist>=1}">
 							<td>이미 업로드 하였음.</td>
 						</c:when>
 						<c:otherwise>
-							<td><input type="file" name="business_license" accept="image/gif, image/jpeg, image/png" onchange="fileCheck(this)"></td>
+							<td><input id="tkdjq" type="file" name="business_license" accept="image/gif, image/jpeg, image/png" onchange="fileCheck(this)"></td>
 						</c:otherwise>
 					</c:choose>
 				</tr>
@@ -131,8 +158,13 @@
 							<td>이미 업로드 하였음.</td>
 						</c:when>
 						<c:otherwise>
+<<<<<<< HEAD
 							<input type="text" name="patentsClientCode" id="patentsClientCode" pattern="[0-9]{12}" maxlength="12" placeholder="숫자 12자리를 입력해주세요">  	<br>
 							<input type="submit" value="제출" style="width:300px; height:35px; background: none; border: 2px solid #01609a; ; margin-top:10px; color:#01609a; margin-right:4px;" >
+=======
+							<input type="text" name="patentsClientCode" id="patentsClientCode" pattern="[0-9]{10}" maxlength="12" placeholder="숫자 12자리를 입력해주세요">  	<br>
+							<input type="submit" value="제출" style="width:300px; height:35px; background: none; border: 2px solid #01609a; ; margin-top:10px; color:#01609a; margin-right:4px;" onsubmit="return checkdoc();">
+>>>>>>> c723412f622167ebd0fa02913608ce3ea6c5cf61
 						</c:otherwise>
 			</c:choose>
 		</form>

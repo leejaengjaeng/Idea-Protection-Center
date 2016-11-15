@@ -11,6 +11,14 @@ public class mainPageVo {
 	String title;
 	String typeOfInvent;
 	int lid;
+	String lName;
+	
+	public String getlName() {
+		return lName;
+	}
+	public void setlName(String lName) {
+		this.lName = lName;
+	}
 	public int getLid() {
 		return lid;
 	}

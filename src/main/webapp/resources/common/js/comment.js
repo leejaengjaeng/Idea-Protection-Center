@@ -248,11 +248,23 @@ var ideaSave = function(role)
 {
    if(role == "inventor")
    {
-      alert('저장 후 변리사가 코멘트를 완료하기 전까지 수정 할 수 없습니다.');   
+	   var q = confirm("확인 버튼을 누르시면 변리사가 코멘트를 완료하기 전까지 수정할 수 없습니다.")
+		if (q == true) {
+			
+		} else {
+			return false;
+		}
+      //alert('저장 후 변리사가 코멘트를 완료하기 전까지 수정 할 수 없습니다.');   
    }   
    else if(role == "pl")
    {
-      alert('저장 후 고객이 내용을 수정하기까지 수정 할 수 없습니다.');   
+	   var p = confirm("확인 버튼을 누르시면 고객이 내용을 수정하기까지 수정 할 수 없습니다.")
+		if (p == true) {
+			
+		} else {
+			return false;
+		}
+      //alert('저장 후 고객이 내용을 수정하기까지 수정 할 수 없습니다.');   
    }
    else
    {

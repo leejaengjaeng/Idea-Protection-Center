@@ -112,6 +112,18 @@
 																						   FROM user
 																						   WHERE user.role="ROLE_PATIENTENTLAWYER") as l on  r.lid=l.uid join main_page_reg_info as mpri on r.rid=mpri.rid
 	</select>
+
+	<select id="getIdeaListInBound" resultType="com.ipc.vo.adminListVo">
+		SELECT r.rid,u.id as iId,u.name as iName,l.name as pName,u.email,u.phone,r.typeofinvent,r.title,mpri.reg_condition
+		FROM (registration_patent as r join user as u on r.uid=u.uid AND r.prev_rid=-1) 
+		left join (SELECT name,uid FROM user WHERE user.role="ROLE_PATIENTENTLAWYER") 
+		as l on  r.lid=l.uid join main_page_reg_info as mpri on r.rid=mpri.rid
+		LIMIT #{start},#{pagePerContents};
+	</select>
+
+
+
+
 	<update id="tempApply" parameterType="Integer">
 		update registration_patent set iscomplete=2 where rid=(select start_rid from (select start_rid,rid from registration_patent) as temp where rid=#{rid})
 	</update>
@@ -134,10 +146,10 @@
 		select count(rid) from registration_patent where uid=#{uid} AND iscomplete!=2 AND prev_rid=-1
 	</select>
 	<select id="countCompleteIdeaPl" parameterType="Integer" resultType="Integer">
-		select count(rid) from registration_patent where lid=#{uid} AND iscomplete=2 
+		select count(rid) from registration_patent where lid=#{uid} AND iscomplete=6
 	</select>
 	<select id="countIngIdeaPl" parameterType="Integer" resultType="Integer">
-		select count(rid) from registration_patent where lid=#{uid} AND iscomplete!=2 AND prev_rid=-1
+		select count(rid) from registration_patent where lid=#{uid} AND iscomplete!=6 AND prev_rid=-1
 	</select>
 	<select id="counTotalIdea" resultType="Integer">
 		SELECT count(1) FROM registration_patent where prev_rid=-1;

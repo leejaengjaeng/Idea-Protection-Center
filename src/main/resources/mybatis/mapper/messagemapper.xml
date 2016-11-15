@@ -5,9 +5,12 @@
 		insert into message(content,rid,date,uid) values (#{content},#{rid},#{date},#{uid})
 	</insert>
 	<select id="getMessageVoList" resultType="com.ipc.vo.MessageVo">
-		select mid,content,rid,date,uid from message where uid=#{uid} order by date desc
+		select mid,content,rid,date,uid,isread from message where uid=#{uid} order by date desc limit 100
 	</select>
 	<select id="getMessageVoListPL" resultType="com.ipc.vo.MessageVo">
-		select mid,content,rid,date,uid from message where uid=#{lid} order by date desc
+		select mid,content,rid,date,uid,isread from message where uid=#{lid} order by date desc limit 100
 	</select>
+	<update id="changeIsread" parameterType="String">
+		update message set isread='1' where mid=#{mid}
+	</update>
 </mapper>

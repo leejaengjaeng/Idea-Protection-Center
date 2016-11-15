@@ -12,4 +12,5 @@ public interface MessageDao {
 	public void insertMessage(MessageVo rv);
 	public List<MessageVo> getMessageVoList(String uid);
 	public List<MessageVo> getMessageVoListPL(String uid);
+	public void changeIsread(String mid);
 }

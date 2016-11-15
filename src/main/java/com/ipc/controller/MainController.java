@@ -54,7 +54,8 @@ public class MainController {
 	SignUpService ss;
 	@Autowired
 	MessageService ms;
-
+	@Autowired
+	RegistrationService rs;
 	
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	
@@ -90,7 +91,7 @@ public class MainController {
 				int comIdea=0;
 				int ingIdea=0;
 				model.addAttribute("userVo",userDao.getUserByUid(Integer.toString(currentUser.getUid())));
-
+				int isLawyer;
 				if(currentUser.getRole().equals(roleInventor))
 				{
 					System.out.println("in");
@@ -98,6 +99,7 @@ public class MainController {
 					comIdea=regDao.countCompleteIdeaIn(currentUser.getUid());
 					ingIdea=regDao.countIngIdeaIn(currentUser.getUid());
 					model.addAttribute("MessageList",ms.getMessageList(Integer.toString(currentUser.getUid())));
+					isLawyer=0;
 				}
 				else if(currentUser.getRole().equals(rolePatientntLawyer))
 				{
@@ -109,6 +111,7 @@ public class MainController {
 					ingIdea=regDao.countIngIdeaPl(currentUser.getUid());
 					
 					model.addAttribute("MessageList",ms.getMessageListPL(Integer.toString(currentUser.getUid())));
+					isLawyer=1;
 				}
 				// 발명가나 변리사가 아니면 리다이렉트
 				// If not only Inventor but patientLawyer, Redirecting to root path
@@ -120,7 +123,7 @@ public class MainController {
 				model.addAttribute("comIdea",comIdea);
 				model.addAttribute("ingIdea",ingIdea);
 				model.addAttribute("processList",processList);
-				
+				model.addAttribute("isLawyer",isLawyer);
 				return "user/userMain";
 
 			}
@@ -148,7 +151,14 @@ public class MainController {
 		
 		return resultMap;
 	}
-
+	@RequestMapping("/changeIsread")
+	@ResponseBody
+	public String changeIsread(HttpServletRequest request){
+		String mid=request.getParameter("mid");
+		
+		ms.changeIsread(mid);
+		return "OK";
+	}
 	@RequestMapping("/siteMap")
 	public String comeOn(){
 		return "sub/sitemap";
@@ -181,5 +191,5 @@ public class MainController {
 	public String costinfo(){
 		return "info/costinfo";
 	}
-	
 }
+	

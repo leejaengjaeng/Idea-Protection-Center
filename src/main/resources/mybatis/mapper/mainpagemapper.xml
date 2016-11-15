@@ -5,10 +5,10 @@
 		insert into main_page_reg_info(rid,uid,reg_condition,registration_date,title,typeOfInvent) values (#{rid},#{uid},#{reg_condition},#{registration_date},#{title},#{typeOfInvent})
 	</insert>
 	<select id="getMainPageList" parameterType="Integer" resultType="com.ipc.vo.mainPageVo">
-		select lid,mprid,rid,uid,reg_condition,pre_apply_date,apply_date,registration_date,title,typeOfInvent from main_page_reg_info where uid=#{uid}
+		select u.name as lName,m.mprid as mprid,m.rid as rid,m.uid as uid,m.reg_condition as reg_condition,m.pre_apply_date as pre_apply_date,m.apply_date as apply_date,m.registration_date as registration_date,m.title as title,m.typeOfInvent as typeOfInvent from main_page_reg_info as m left join user as u on m.lid=u.uid where m.uid=#{uid} order by m.registration_date desc
 	</select>
 	<select id="getPlMainPageList" parameterType="Integer" resultType="com.ipc.vo.mainPageVo">
-		select lid,mprid,rid,uid,reg_condition,pre_apply_date,apply_date,registration_date,title,typeOfInvent from main_page_reg_info where lid=#{uid}
+		select lid,mprid,rid,uid,reg_condition,pre_apply_date,apply_date,registration_date,title,typeOfInvent from main_page_reg_info where lid=#{uid} order by registration_date desc
 	</select>
 	<update id="updateMainPageLid" parameterType="Hashmap">
 		update main_page_reg_info set lid=#{uid} where rid=#{rid}
@@ -19,4 +19,11 @@
 	<update id="updateMainPageApplyDate" parameterType="Hashmap">
 		update main_page_reg_info set pre_apply_date=#{pre_apply_date},apply_date=#{apply_date} where rid=(select start_rid from registration_patent where rid=#{rid})
 	</update>
+	
+	<insert id="insertCIdea" parameterType="Hashmap">
+		insert into registration_patent(title,summary,whyinvent,problem,core_element,effect,solution,uid,iscomplete,prev_rid,registration_date) values (#{title},#{summary},#{whyinvent},#{problem},#{core_element},#{effect},#{solution},#{user_ID},0,-1,#{registration_date})
+	</insert>
+	<select id="selectUid" parameterType="String" resultType="String">
+		select uid from user where id=#{userID}
+	</select>
 </mapper>

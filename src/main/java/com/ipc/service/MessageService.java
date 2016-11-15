@@ -14,6 +14,9 @@ public class MessageService {
 	@Autowired
 	MessageDao messagemapper;
 	
+	public void changeIsread(String mid){
+		messagemapper.changeIsread(mid);
+	}
 	public List<MessageVo> getMessageList(String uid){
 		return messagemapper.getMessageVoList(uid);
 	}

@@ -104,7 +104,7 @@ public class SignUpController{
 		{
 			uv.setPw(hashedPwd);
 		}
-		System.out.println("hashPwd : " + hashedPwd);
+		
 		HashMap<String,String> map=new HashMap<String,String>();
 		map.put("id", uv.getId());
 		map.put("pw", uv.getPw());
@@ -160,7 +160,7 @@ public class SignUpController{
 		//System.out.println("lawyerVo : "+lv.getIntroduce()+","+lv.getAccount_number()+","+lv.getLicense_number()+","+lv.getMajor());
 		
 		//에러 안나면 로그인 되고 , 에러나면 login 페이지 띄움 
-		return signupService.afterSignUp(uv.getId(), uv.getPw());
+		return signupService.afterSignUp(uv.getId(), rawPwd);
 	}
 	@RequestMapping(value="/checkid",method=RequestMethod.POST)
 	@ResponseBody
@@ -195,9 +195,12 @@ public class SignUpController{
 	@RequestMapping(value="/editUser")
 	public String editUser(Model model){
 		userVo currentUser = (userVo) session.getAttribute("currentUser");
+		model.addAttribute("email1",currentUser.getEmail().split("@")[0]);
+		model.addAttribute("email2",currentUser.getEmail().split("@")[1]);
 		if(currentUser.getRole().equals(roleInventor)){
 			model.addAttribute("uv",currentUser); 
-			model.addAttribute("role","inventor");                                                                                                                                      
+			model.addAttribute("role","inventor");
+			
 		}                                
 		else if(currentUser.getRole().equals(rolePatientntLawyer)){
 			model.addAttribute("uv",currentUser); 

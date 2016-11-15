@@ -6,6 +6,14 @@ public class MessageVo {
 	String rid;
 	String date;
 	String uid;
+	int isread;
+	public int getIsread() {
+		return isread;
+	}
+	public void setIsread(int isread) {
+		this.isread = isread;
+	}
+	
 	public String getMid() {
 		return mid;
 	}

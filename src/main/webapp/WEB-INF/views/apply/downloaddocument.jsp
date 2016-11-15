@@ -30,10 +30,10 @@
 				</tr>
 				<tr>
 					<td>
-						<h3 style="font-weight: 300">출원서다운로드</h3>
+						<h3 style="font-weight: 300">최종작성본 다운로드</h3>
 					</td>
 					<td>
-						<button>출원서다운로드</button>
+						<button>최종작성본 다운로드</button>
 					</td>
 				</tr>
 			</table>
