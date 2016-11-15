@@ -118,7 +118,8 @@
 		FROM (registration_patent as r join user as u on r.uid=u.uid AND r.prev_rid=-1) 
 		left join (SELECT name,uid FROM user WHERE user.role="ROLE_PATIENTENTLAWYER") 
 		as l on  r.lid=l.uid join main_page_reg_info as mpri on r.rid=mpri.rid
-		LIMIT #{start},#{pagePerContents};
+		ORDER BY rid DESC
+        LIMIT #{start},#{pagePerContents};
 	</select>
 
 

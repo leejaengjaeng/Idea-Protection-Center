@@ -117,31 +117,16 @@ $(document).ready(function()
 	{
 		//IdeaModifyList 내부의 tr중 clickedIdea를 가지고있는 요소의 clickedIdea를 제거 
 		
-		//$(this).parent().find('.clickedIdea').removeClass('clickedIdea');
+		$('#IdeaModifyList').find('.clickedIdea').removeClass('clickedIdea');
 		var rid = $(this).children('input').attr('value');
 		
 		if(rid == ${lastRid} && ("${currentAnswer.getIscomplete()}" == 0)) enableInput();
 		else disableInput();
 	
 		//현재 선택된 요소(tr)에 clickedIdea를 붙임
-		//$(this).addClass('clickedIdea');
+		$(this).addClass('clickedIdea');
 		showClickedList(rid);	
-	})
-	$('#IdeaModifyList_bottom').on("click","li",function()
-	{
-		//IdeaModifyList 내부의 tr중 clickedIdea를 가지고있는 요소의 clickedIdea를 제거 
-			
-		//$(this).parent().find('.clickedIdea').removeClass('clickedIdea');
-		var rid = $(this).children('input').attr('value');
-				
-		if(rid == ${lastRid} && ("${currentAnswer.getIscomplete()}" == 0)) enableInput();
-		else disableInput();
-			
-		//현재 선택된 요소(tr)에 clickedIdea를 붙임
-		//$(this).addClass('clickedIdea');
-		showClickedList(rid);	
-	})
-			
+	})	
 });
 
 </script>
@@ -159,48 +144,14 @@ $(document).ready(function()
         <section>                      
             <article class="sub_head" style="margin-top:100px;">                    
                 <h1 style="width:300px; margin-bottom:20px;">아이디어수정내역</h1>                
-                <%-- <table id="IdeaModifyList">
-                	<c:forEach items="${processList}" var="list" varStatus="status">
-						<c:choose>
-							<c:when test="${status.first and status.last }">
-								<tr class="clickedIdea headerhide">
-									<input type="hidden" value="${list.getRid()}"/>
-								    <td class="title_td">아이디어 등록(초안)</td>
-							        <td class="date_td">${list.getRegistration_date()}</td>
-			                	</tr>
-							</c:when>
-							<c:when test="${status.first}">
-								<tr class="headerhide">
-									<input type="hidden" value="${list.getRid()}"/>
-									<td class="title_td">아이디어 등록(초안)</td>
-							        <td class="date_td">${list.getRegistration_date()}</td>
-			                	</tr>
-							</c:when>
-							<c:when test="${status.last}">
-								<tr class="clickedIdea">
-									<input type="hidden" value="${list.getRid()}"/>
-									<td class="title_td">${status.index}차 전문가 검토 및 수정안</td>
-			                        <td class="date_td">${list.getRegistration_date()}</td>
-			                  	</tr>
-							</c:when>
-							<c:otherwise>	
-								<tr>
-									<input type="hidden" value="${list.getRid()}"/>
-									<td class="title_td">${status.index}차 전문가 검토 및 수정안</td>
-			                        <td class="date_td">${list.getRegistration_date()}</td>
-			                  	</tr>
-			               	</c:otherwise>
-			          	</c:choose>
-					</c:forEach>		
-				</table> --%>
 				<div class="dropdown">
 					<span>아이디어 등록 (초안)</span>
 					<div class="arrow-up ee"></div>					
-					<ul id="IdeaModifyList_top">
+					<ul id="IdeaModifyList">
 						<c:forEach items="${processList}" var="list" varStatus="status">
 							<c:choose>
 								<c:when test="${status.first and status.last }">
-									<li>
+									<li class ="clickedIdea">
 										<input type="hidden" value="${list.getRid()}"/>
 										아이디어 등록(초안)
 										${list.getRegistration_date()}
@@ -214,7 +165,7 @@ $(document).ready(function()
 									</li>
 								</c:when>
 								<c:when test="${status.last }">
-									<li>
+									<li class="clickedIdea">
 										<input type="hidden" value="${list.getRid()}"/>
 										${status.index}차 전문가 검토 및 수정안
 										${list.getRegistration_date()}
@@ -440,7 +391,7 @@ $(document).ready(function()
                   	<button onclick="addfile()">추가</button>
                   	<div class="tab_imgs">
 	                	<c:forEach items="${imgs}" var="list" varStatus="status">
-	                    	<div onclick="location.href='${list.getFile_path()}'" id="id${list.getRfid()}">
+	                    	<div onclick="window.open('${list.getFile_path()}')" id="id${list.getRfid()}">
 	                           <img src="${list.getFile_path()}">
 	                        </div>
 	                    </c:forEach>

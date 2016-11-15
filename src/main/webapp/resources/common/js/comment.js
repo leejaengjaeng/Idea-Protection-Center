@@ -59,20 +59,17 @@ var disableInput = function()
    $('#AfterCommentHope_content').attr('disabled',true);   
    $('#tmpSave').hide();
    $('#agree').hide();      
-   $('#gogogo').hide();
 
 }
 var enableApplyBtn = function()
 {
 	$('#gogogo').show();
 }
-/*
-var disableInputApply = function()
+var disableApplyBtn = function()
 {
-	disableInput();
 	$('#gogogo').hide();
 }
-*/
+
 var btnHide=function(){
    $('.removeBtn').hide();
 }
