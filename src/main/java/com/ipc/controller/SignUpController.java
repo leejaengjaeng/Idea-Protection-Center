@@ -242,8 +242,12 @@ public class SignUpController{
 			System.out.println(fileType);
 			HashMap<String,String> map2=new HashMap<String,String>();
 			userVo uv=usermapper.getUserByUid(Integer.toString(currentUser.getUid()));
-			File file=new File(request.getSession().getServletContext().getRealPath("/")+uv.getProfileimg());
-			file.delete();
+			try{
+				File file=new File(request.getSession().getServletContext().getRealPath("/")+uv.getProfileimg());
+				file.delete();
+			}catch(Exception e){
+				
+			}
 			SignUpService ss=new SignUpService();
 			String root_path=request.getSession().getServletContext().getRealPath("/");
 			ss.makeimageFile(files.get(0),currentUser.getId(),role,root_path,"profile");
