@@ -190,8 +190,16 @@ $(document).ready(function()
 			                        <td><p>${process.getRegistration_date() }</p></td>
 			                        <td><p>${process.getTypeOfInvent() }</p></td>
 			                        <td><p>${process.getTitle()}</p></td>
-			                        <td><p>${process.getReg_condition()}</p></td>
-			                        <td><p>${process.getlName()}변리사님</p></td>
+			                       	<td><p>${process.getReg_condition()}</p></td>
+			                        <c:choose>
+			                        	<c:when test="${process.getlName() eq null}">
+			                        		<td><p>아직 매칭되지 않았습니다.</p></td>
+			                        	</c:when>
+			                        	<c:otherwise>
+			                        		<td><p>${process.getlName()}변리사님</p></td>
+			                        	</c:otherwise>
+			                        </c:choose>
+			                        
 			                        <td><p>${process.getPre_apply_date()}</p></td>
 			                        <td><p>${process.getApply_date()}</p></td>
 			                        <c:choose>
