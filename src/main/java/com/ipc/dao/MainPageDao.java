@@ -18,4 +18,6 @@ public interface MainPageDao {
 	public void updateMainPageApplyDate(HashMap<String,String> apply_date_map);
 	public void insertCIdea(HashMap<String,String> map);
 	public String selectUid(String userID);
+	public int countIdeas();
+	
 }
