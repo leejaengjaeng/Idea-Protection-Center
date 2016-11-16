@@ -716,7 +716,7 @@ body {
 				<tr class="hide">
 					<td>변리사 등록증 사본</td>
 					<td><input type="file" name="license_scan_img"
-						id="license_scan_img"></td>
+						id="license_scan_img" onchange="fileCheck(this)" accept="image/gif, image/jpeg, image/png"></td>
 				</tr>
 				<tr class="hide">
 					<td>경력기술(간단한 소개)</td>
