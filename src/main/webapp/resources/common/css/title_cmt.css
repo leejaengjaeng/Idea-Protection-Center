@@ -25,9 +25,9 @@
   padding-left: 15px;
 }
 .title_cmt button {
-  float: right;
-  margin: 0;
-  height: 50px;
+  float: right !important;
+  margin: 0 !important;
+  height: 50px !important;
 }
 .title_cmt .example {
   width: 50%;
