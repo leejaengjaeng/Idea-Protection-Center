@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ipc.dao.MainPageDao;
 import com.ipc.dao.NoticeDao;
 import com.ipc.dao.RegistrationDao;
 import com.ipc.dao.TypeOfInventDao;
@@ -42,6 +43,8 @@ public class AdminController {
 	TypeOfInventDao typeDao;
 	@Autowired
 	ViewUtils viewUtils;
+	@Autowired
+	MainPageDao mainPageDao;
 
 	// 아이디어 관리
 	@RequestMapping("/")
@@ -54,7 +57,7 @@ public class AdminController {
 	public String ideaList(Model model, @PathVariable int pageNum) {
 		
 		// 페이지 네이션
-		int totalIdea = regDao.counTotalIdea();
+		int totalIdea = mainPageDao.countIdeas();
 		try {
 			/*
 			 * List<Integer> pageButtons : 페이지네이션 버튼 값 리스트

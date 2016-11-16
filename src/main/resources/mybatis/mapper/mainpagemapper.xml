@@ -26,4 +26,8 @@
 	<select id="selectUid" parameterType="String" resultType="String">
 		select uid from user where id=#{userID}
 	</select>
+	<select id="countIdeas" resultType="Integer">
+		select count(1) from main_page_reg_info;
+	</select>
+	
 </mapper>
