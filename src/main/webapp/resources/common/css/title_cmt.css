@@ -28,6 +28,10 @@
   float: right;
   margin: 0;
   height: 50px;
+  background:none;
+  color:white;
+  border: none;
+  padding-right:10px;
 }
 .title_cmt .example {
   width: 50%;
