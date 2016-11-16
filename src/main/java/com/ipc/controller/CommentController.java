@@ -275,6 +275,7 @@ public class CommentController {
 			
 			//답변 달기
 			regVo.setIscomplete(0);
+			regVo.setRegistration_date(ss.getToday(0));
 			regDao.plUpdate(regVo);
 			
 			//
@@ -316,7 +317,8 @@ public class CommentController {
 				return "이미 완료된 사항입니다.";
 		
 			regVo.setIscomplete(1);
-			
+			regVo.setRegistration_date(ss.getToday(0));
+
 			regDao.inventorSave(regVo);
 			
 			System.out.println("lid==============="+regVo.getLid());

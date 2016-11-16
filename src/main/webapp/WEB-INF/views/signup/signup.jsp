@@ -636,7 +636,7 @@ body {
 					<td colspan="2" style="text-align: center; padding-left: 0;"
 						class="join_img_td">
 						<div>
-							<img src="/resources/image/inventor_profile.jpg" alt="img" id="blah"><br> 
+							<img src="/resources/image/attonrney_profile.jpg" alt="img" id="blah"><br> 
 							<input type="file" id="imgInp" onchange="fileCheck(this)" name="profileImg" style="cursor: pointer;" accept="image/gif, image/jpeg, image/png"> 
 							<span>대표사진을 설정 해주세요</span>
 						</div>

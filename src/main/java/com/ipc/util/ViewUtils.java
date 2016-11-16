@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ViewUtils {
-
 	/*
 	 * params : 
 	 * 		int currentPage		: 현재 페이지 

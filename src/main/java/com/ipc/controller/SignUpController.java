@@ -154,9 +154,9 @@ public class SignUpController{
 			usermapper.makelawyer(map2);
 		}
 		System.out.println("uid is "+uv2.getUid());
-		if(ss.sendhtmlmail(uv2.getUid(),key.toString(),uv2.getEmail()).equals("NOTOK")){
-			return "signup/emailError";
-		}
+		//if(ss.sendhtmlmail(uv2.getUid(),key.toString(),uv2.getEmail()).equals("NOTOK")){
+		//	return "signup/emailError";
+		//}
 		
 		//System.out.println("lawyerVo : "+lv.getIntroduce()+","+lv.getAccount_number()+","+lv.getLicense_number()+","+lv.getMajor());
 		

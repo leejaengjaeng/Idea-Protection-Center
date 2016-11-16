@@ -145,7 +145,7 @@ public class DocController {
 		
 		//int start_rid=regisMapper.getStartRidByRid(rv.getRid());
 		
-		
+		try{
 		System.out.println(rfv.get(0).getFile_path());
 		FileInputStream is = null;
 		for(int i=0;i<rfv.size();i++){
@@ -214,7 +214,9 @@ public class DocController {
 			}
 			run.addPicture(is, picture_type, imgFile,Units.toEMU(realWidth),Units.toEMU(realHeight)); // 200x200 pixels
 		}
+		
 		is.close();
+		}catch(Exception e){}
 //		String imgFile="C:\\Users\\HP\\Desktop\\idea-Protection\\Idea-Protection-Center\\src\\main\\webapp\\resources\\uploadimgs\\inventor\\asdf\\201610141721170.jpg";
 //
 //		FileInputStream is = new FileInputStream(imgFile);

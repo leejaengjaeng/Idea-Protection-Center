@@ -150,6 +150,7 @@ $(".exbtn").click(function(){
 	}
 });
 $(".example").click(function(){
+	var ex = $('.example'); 
 	$(this).css({display:'none'});
 	$(this).prev(ex).removeClass('good');
 });

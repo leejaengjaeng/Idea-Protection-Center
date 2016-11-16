@@ -25,13 +25,14 @@
   padding-left: 15px;
 }
 .title_cmt button {
-  float: right;
-  margin: 0;
-  height: 50px;
-  background:none;
-  color:white;
+  float: right !important;
+  margin: 0 !important;
+  height: 50px !important;
+  background: none;
+  color: white;
+  width: 75px !important;
   border: none;
-  padding-right:10px;
+  padding: 0 10px 0 10px;
 }
 .title_cmt .example {
   width: 50%;

@@ -109,7 +109,7 @@ $('#idea_title').keyup(function(){
    var reg = /(<([^>]+)>)/ig;   
    $("textarea").keyup(function(){
 	  if(reg.test($(this).val())) {
-		  alert("html 태그 ㅈㅅ");
+		  alert("html 태그는 사용할 수 없습니다.");
 		  $(this).val($(this).val().replace(reg,""));
 	  }
    });
@@ -139,6 +139,7 @@ $('#idea_title').keyup(function(){
 		}
 	});
 	$(".example").click(function(){
+		var ex = $('.example'); 
 		$(this).css({display:'none'});
 		$(this).prev(ex).removeClass('good');
 	});
