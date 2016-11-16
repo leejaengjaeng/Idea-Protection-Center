@@ -35,7 +35,7 @@ public class ViewUtils {
 		int totalPages=1;
 		if (totalContents % pagePerContents == 0) 	totalPages = totalContents / pagePerContents;
 		else totalPages = totalContents / pagePerContents + 1;
-		
+
 		// TODO : 범위와 관련된 예외로 변경해야함 
 		if (currentPage > totalPages || currentPage <= 0) throw new Exception();
 		
@@ -55,18 +55,18 @@ public class ViewUtils {
 		 * 		총 페이지가 충분하면 	: < 3 4 5 6 7 >
 		 */
 		List<Integer> pageButtons = new ArrayList();
-		if (totalPages < 5) 
+		if (totalPages < pagePerbuttons) 
 		{
 			for (int i = 1; i <= totalPages; i++)
 				pageButtons.add(i);
 		} 
 		else 
 		{
-			for (int i = currentPage; i <= currentPage && i <= totalPages; i++)
+			for (int i = currentPage; i < (currentPage+pagePerbuttons) && i <= totalPages; i++)
 				pageButtons.add(i);
 		}
 		retValue.put("pageButtons", pageButtons);
-		
+
 		/*
 		 * 페이지네이션 버튼 양옆에 들어갈 방향표의 값 들
 		 */
