@@ -127,7 +127,6 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 		}
 		
 		
-		//mainPage �뀒�씠釉붿뿉 異붽�
 		mainPageVo mpv=new mainPageVo();
 		mpv=mpc.shiftData(rv, "결제대기중");
 		mainpagemapper.insertFirstRow(mpv);
@@ -217,6 +216,11 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 	@RequestMapping("/addDesign")
 	public String addDesign(){
 		return "registration/idea_design";
+	}
+	
+	@RequestMapping(value="/designInput", method=RequestMethod.POST)
+	public String designInput(){
+		return "aa";
 	}
 }
 	
