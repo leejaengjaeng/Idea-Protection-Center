@@ -5,14 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<meta name="_csrf" content="${_csrf.token}" />
-<meta name="_csrf_header" content="${_csrf.headerName}" />
-<script src="/resources/common/js/jquery-3.1.0.min.js"></script>
-<link rel="stylesheet" href="/resources/common/css/index.css">
-<link rel="stylesheet" href="/resources/common/css/style.css">
-<link rel="icon" href="/resources/image/pavicon.png">
-<title>Insert title here</title>
+<c:import url="/WEB-INF/views/import/header.jsp"/>
 <style>
     .txt_box>input{
         border: 1px solid #ccc !important;
@@ -50,7 +43,6 @@
 </style>
 </head>
 <body>
-<c:import url="/WEB-INF/views/import/header.jsp"/>
 <div class="wrap_comment">
         <section>            
             <article class="sub_head">                    

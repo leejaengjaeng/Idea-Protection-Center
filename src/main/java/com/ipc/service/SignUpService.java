@@ -42,6 +42,9 @@ public class SignUpService {
 	CreateFileUtils createFileObj;
 	@Autowired
 	SecAlgorithm secAlgo;
+	@Autowired
+	UserDao userDao;
+	
 	public void makeUser(HttpServletRequest request,userVo uv){
 		String role;
 		if(request.getParameter("role").equals("1")){
