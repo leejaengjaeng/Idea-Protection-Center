@@ -13,12 +13,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ipc.dao.DesignDao;
 import com.ipc.dao.MainPageDao;
 import com.ipc.dao.NoticeDao;
 import com.ipc.dao.RegistrationDao;
 import com.ipc.dao.TypeOfInventDao;
 import com.ipc.dao.UserDao;
 import com.ipc.util.ViewUtils;
+import com.ipc.vo.DesignAdminVo;
 import com.ipc.vo.LawyerProfileVo;
 import com.ipc.vo.QnaVo;
 import com.ipc.vo.TypeOfInventVo;
@@ -45,14 +47,21 @@ public class AdminController {
 	ViewUtils viewUtils;
 	@Autowired
 	MainPageDao mainPageDao;
-
+	@Autowired
+	DesignDao designmapper;
+	
 	// 아이디어 관리
 	@RequestMapping("/")
 	public String admin2(Model model) {
 		
 		return ideaList(model,1);
 	}
-
+	@RequestMapping("/design")
+	public String design(Model model){
+		List<DesignAdminVo> designAdminList = designmapper.getDesignListAdmin();
+		model.addAttribute("designAdminList", designAdminList);
+		return "admin/admin_design";
+	}
 	@RequestMapping("/ideas/{pageNum}")
 	public String ideaList(Model model, @PathVariable int pageNum) {
 		

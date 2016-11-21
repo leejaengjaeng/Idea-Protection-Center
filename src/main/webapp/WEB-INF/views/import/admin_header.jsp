@@ -28,7 +28,8 @@
         <nav>
             <ul>
                 <li onclick="location.href='/IPC_admin/userList'">회원관리</li>
-                <li onclick="location.href='/IPC_admin/'">아이디어 관리</li>                
+                <li onclick="location.href='/IPC_admin/'">아이디어 관리</li>
+                <li onclick="location.href='/IPC_admin/design'">디자인 관리</li>                                
                 <li onclick="location.href='/IPC_admin/admin_notice'">공지사항 관리</li>
                	<li onclick="location.href='/qna/regularQnaAdd'">자주 묻는 질문 등록</li>     
                	<li onclick="location.href='/IPC_admin/manageType'">특허 분류 관리</li>            

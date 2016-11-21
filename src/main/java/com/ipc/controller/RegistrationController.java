@@ -24,6 +24,7 @@ import com.ipc.dao.UserDao;
 import com.ipc.service.MessageService;
 import com.ipc.service.RegistrationService;
 import com.ipc.util.PathUtils;
+import com.ipc.vo.DesignVo;
 import com.ipc.vo.RegistrationPatentVo;
 import com.ipc.vo.TypeOfInventVo;
 import com.ipc.vo.mainPageVo;
@@ -46,6 +47,8 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 	TypeOfInventDao typemapper;
 	@Autowired
 	MessageService mService;
+	@Autowired
+	RegistrationService rService;
 	
 	MainPageController mpc=new MainPageController();
 	private static final String roleAdmin = "ROLE_ADMIN";
@@ -214,13 +217,26 @@ public class RegistrationController {	//localhost:8088/registration/inventor_mai
 		return hashmap;
 	}
 	@RequestMapping("/addDesign")
-	public String addDesign(){
+	public String addDesign(HttpServletRequest request){
+		if(request.getSession().getAttribute("currentUser")==null)
+		{
+			return "redirect:/login";
+		}
+		
+		userVo uv=(userVo) request.getSession().getAttribute("currentUser");
+		
+		if(uv.getRole().equals("ROLE_PATIENTENTLAWYER"))
+		{
+			return "redirect:/authError";
+		}
 		return "registration/idea_design";
 	}
 	
 	@RequestMapping(value="/designInput", method=RequestMethod.POST)
-	public String designInput(){
-		return "aa";
+	public String designInput(HttpServletRequest request){
+		
+		rService.designInput(request);
+		return "redirect:/mainPage";
 	}
 }
 	
