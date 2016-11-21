@@ -36,6 +36,7 @@ import com.ipc.vo.userVo;
 
 //TODO : 지우고 new 한 것들 Autowired한 signupService로 대체하기
 import com.ipc.service.SignUpService;
+import com.ipc.util.CreateFileUtils;
 import com.ipc.util.PathUtils;
 
 
@@ -52,7 +53,8 @@ public class SignUpController{
 	SignUpService signupService;
 	@Autowired
 	SecAlgorithm secAlgo;
-	
+	@Autowired
+	CreateFileUtils createFileObj;
 	
 	//private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	private static final String roleAdmin = "ROLE_ADMIN";
@@ -67,9 +69,8 @@ public class SignUpController{
 		return "signup/signup";
 	}
 	@RequestMapping(value="/inputsignup", method=RequestMethod.POST)
-	public String inputsignup(Model model,HttpServletRequest request,userVo uv)throws IOException, EmailException{
+	public String inputsignup(HttpServletRequest request,userVo uv)throws IOException, EmailException{
 		String role;
-		String fileType="";
 		if(request.getParameter("role").equals("1")){
 			role="inventor";
 		}
@@ -78,20 +79,20 @@ public class SignUpController{
 		}
 		
 		String email = request.getParameter("email1") + request.getParameter("email2");
+		
 		MultipartHttpServletRequest multipartRequest =  (MultipartHttpServletRequest)request;  //�떎以묓뙆�씪 �뾽濡쒕뱶
 		List<MultipartFile> files = multipartRequest.getFiles("profileImg");
+		List<MultipartFile> filesScan = multipartRequest.getFiles("license_scan_img");
 		
-		MultipartHttpServletRequest multipartRequestScan =  (MultipartHttpServletRequest)request;  //�떎以묓뙆�씪 �뾽濡쒕뱶
-		List<MultipartFile> filesScan = multipartRequestScan.getFiles("license_scan_img");
-		
-		System.out.println();
-		
+		String profileImgFileType=CreateFileUtils.getFileType(files.get(0).getOriginalFilename());
+		String licenseScanImgFileType=CreateFileUtils.getFileType(filesScan.get(0).getOriginalFilename());
+				
 		SignUpService ss=new SignUpService();
-		String root_path=PathUtils.getRootPath(request);
 		if(!files.get(0).isEmpty()){
-			fileType=ss.makeimageFile(files.get(0),uv.getId(),role,root_path,"profile");
+			//fileType=ss.makeimageFile(files.get(0),uv.getId(),role,root_path,"profile");
+			createFileObj.CreateFile(files.get(0), request, "/resources/uploadimgs/profileImg/", uv.getId()+"."+profileImgFileType);
 		}
-		String fileTypeScan=ss.makeimageFile(filesScan.get(0), uv.getId(), role, root_path, "Scan");
+		createFileObj.CreateFile(filesScan.get(0), request,"/resources/lawyer_scan/",uv.getId()+"."+licenseScanImgFileType);
 
 		//패스워드 암호화 
 		String rawPwd = uv.getPw();
@@ -121,7 +122,7 @@ public class SignUpController{
 			}			
 		}
 		else{
-			map.put("profileimg", "/resources/uploadimgs/profileImg/"+uv.getId()+"."+fileType);
+			map.put("profileimg", "/resources/uploadimgs/profileImg/"+uv.getId()+"."+profileImgFileType);
 		}
 		StringBuffer key=ss.makekey();
 		map.put("is_member", key.toString());
@@ -150,15 +151,12 @@ public class SignUpController{
 			map2.put("account_number", request.getParameter("account_number"));
 			map2.put("bank_name", request.getParameter("bank_name"));
 			map2.put("introduce", request.getParameter("introduce"));
-			map2.put("license_scan_img", "/resources/uploadimgs/lawyer_scan/"+uv.getId()+"."+fileTypeScan);
+			map2.put("license_scan_img", "/resources/uploadimgs/lawyer_scan/"+uv.getId()+"."+licenseScanImgFileType);
 			usermapper.makelawyer(map2);
 		}
-		System.out.println("uid is "+uv2.getUid());
 		//if(ss.sendhtmlmail(uv2.getUid(),key.toString(),uv2.getEmail()).equals("NOTOK")){
 		//	return "signup/emailError";
 		//}
-		
-		//System.out.println("lawyerVo : "+lv.getIntroduce()+","+lv.getAccount_number()+","+lv.getLicense_number()+","+lv.getMajor());
 		
 		//에러 안나면 로그인 되고 , 에러나면 login 페이지 띄움 
 		return signupService.afterSignUp(uv.getId(), rawPwd);
@@ -231,6 +229,7 @@ public class SignUpController{
 		usermapper.editinput(map);
 		MultipartHttpServletRequest multipartRequest =  (MultipartHttpServletRequest)request;  //�떎以묓뙆�씪 �뾽濡쒕뱶
 		List<MultipartFile> files = multipartRequest.getFiles("profileImg");
+		String profileImgFileType = CreateFileUtils.getFileType(files.get(0).getOriginalFilename());
 		System.out.println("File Size : "+files.get(0).getSize());
 		System.out.println("File idEmpty : "+files.get(0).isEmpty());
 		
@@ -249,9 +248,8 @@ public class SignUpController{
 			}catch(Exception e){
 				
 			}
-			SignUpService ss=new SignUpService();
-			String root_path=PathUtils.getRootPath(request);
-			ss.makeimageFile(files.get(0),currentUser.getId(),role,root_path,"profile");
+			
+			createFileObj.CreateFile(files.get(0), request, "/resources/uploadimgs/profileImg/", uv.getId()+"."+profileImgFileType);
 			map2.put("uid", Integer.toString(currentUser.getUid()));
 			map2.put("url", "/resources/uploadimgs/profileImg/"+currentUser.getId()+"."+fileType);
 			usermapper.updateProfileImg(map2);

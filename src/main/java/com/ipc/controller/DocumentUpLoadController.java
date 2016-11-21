@@ -29,6 +29,7 @@ import com.ipc.dao.RegistrationDao;
 import com.ipc.service.MessageService;
 import com.ipc.service.RegistrationService;
 import com.ipc.service.UploadDocumentService;
+import com.ipc.util.CreateFileUtils;
 import com.ipc.util.PathUtils;
 import com.ipc.vo.RegistrationPatentVo;
 import com.ipc.vo.UpLoadDocVo;
@@ -111,7 +112,7 @@ public class DocumentUpLoadController {
 		//String dirpath=request.getSession().getServletContext().getRealPath("resources/uploadimgs/apply_doc/");
 		String dirpath=PathUtils.getRootPath(request)+"/resources/uploadimgs/apply_doc/";
 		
-		String doc_name="applydoc"+rService.getToday(1)+"."+PathUtils.getFileType(apply_doc.get(0).getOriginalFilename());
+		String doc_name="applydoc"+rService.getToday(1)+"."+CreateFileUtils.getFileType(apply_doc.get(0).getOriginalFilename());
 		String full_path=dirpath+doc_name;
 		byte fileData[] = apply_doc.get(0).getBytes();
 		

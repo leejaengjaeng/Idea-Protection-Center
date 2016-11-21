@@ -4,8 +4,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.mail.EmailException;
@@ -17,10 +19,13 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ipc.dao.RegistrationDao;
 import com.ipc.dao.TypeOfInventDao;
 import com.ipc.dao.UserDao;
+import com.ipc.security.SecAlgorithm;
+import com.ipc.util.CreateFileUtils;
 import com.ipc.vo.userVo;
 @Service
 public class SignUpService {
@@ -28,13 +33,109 @@ public class SignUpService {
 	TypeOfInventDao typeOfmapper; 
 
 	@Autowired
-	UserDao userDao;
+	UserDao usermapper;
 	@Autowired
 	HttpSession session;
 	@Autowired
 	AuthenticationManager authManager;
-	
-	
+	@Autowired
+	CreateFileUtils createFileObj;
+	@Autowired
+	SecAlgorithm secAlgo;
+	public void makeUser(HttpServletRequest request,userVo uv){
+		String role;
+		if(request.getParameter("role").equals("1")){
+			role="inventor";
+		}
+		else{
+			role="lawyer";
+		}
+		//이메일 문자열 합치기
+		String email = request.getParameter("email1") + request.getParameter("email2");
+		
+		//첨부파일 MultipartFile로 받기
+		MultipartHttpServletRequest multipartRequest =  (MultipartHttpServletRequest)request;
+		List<MultipartFile> files = multipartRequest.getFiles("profileImg");
+		List<MultipartFile> filesScan = multipartRequest.getFiles("license_scan_img");
+		
+		//프로필 이미지와 변리사등록증 첨부파일 확장자 저장
+		String profileImgFileType=CreateFileUtils.getFileType(files.get(0).getOriginalFilename());
+		String licenseScanImgFileType=CreateFileUtils.getFileType(filesScan.get(0).getOriginalFilename());
+				
+		SignUpService ss=new SignUpService();
+		
+		//프로필 이미지와 변리사등록증 첨부파일 저장(com.ipc.util.CreateFileUtils)
+		if(!files.get(0).isEmpty()){
+			//fileType=ss.makeimageFile(files.get(0),uv.getId(),role,root_path,"profile");
+			createFileObj.CreateFile(files.get(0), request, "/resources/uploadimgs/profileImg/", uv.getId()+"."+profileImgFileType);
+		}
+		createFileObj.CreateFile(filesScan.get(0), request,"/resources/lawyer_scan/",uv.getId()+"."+licenseScanImgFileType);
+
+		//패스워드 암호화 
+		String rawPwd = uv.getPw();
+		String hashedPwd ="";
+		try {
+			hashedPwd = secAlgo.createHash(rawPwd);
+		} catch (Exception e) {
+			System.out.println("ERROR] 회원가입 : pw암호화 잘못됨");
+			hashedPwd = rawPwd;
+		} finally
+		{
+			uv.setPw(hashedPwd);
+		}
+		
+		HashMap<String,String> map=new HashMap<String,String>();
+		map.put("id", uv.getId());
+		map.put("pw", uv.getPw());
+		map.put("email", email);
+		map.put("name", uv.getName());
+		
+		if(files.get(0).isEmpty()){
+			if(request.getParameter("role").equals("1")){
+				map.put("profileimg", "/resources/image/attonrney_profile.jpg");
+			}else{
+				map.put("profileimg", "/resources/image/val1.png");
+			}			
+		}
+		else{
+			map.put("profileimg", "/resources/uploadimgs/profileImg/"+uv.getId()+"."+profileImgFileType);
+		}
+		StringBuffer key=ss.makekey();
+		map.put("is_member", key.toString());
+		
+		System.out.println("key is "+key.toString());
+		HashMap<String,String> map2=new HashMap<String,String>();
+		if(request.getParameter("role").equals("1")){
+			System.out.println("role is 1");
+			map.put("role", "ROLE_INVENTOR");
+		}
+		else{
+			System.out.println("role is 2");
+			map.put("role", "ROLE_PATIENTENTLAWYER");
+		}
+		usermapper.makeuser(map);
+		userVo uv2=usermapper.getUserById(uv.getId());
+		if(request.getParameter("role").equals("2")){
+			String[] majorArr=request.getParameterValues("major");
+			String major="";
+			for(int i=0;i<majorArr.length;i++){
+				major+=majorArr[i]+" ";
+			}
+			map2.put("uid", Integer.toString(uv2.getUid()));
+			map2.put("license_number", request.getParameter("license_number"));
+			map2.put("major", major);
+			map2.put("account_number", request.getParameter("account_number"));
+			map2.put("bank_name", request.getParameter("bank_name"));
+			map2.put("introduce", request.getParameter("introduce"));
+			map2.put("license_scan_img", "/resources/uploadimgs/lawyer_scan/"+uv.getId()+"."+licenseScanImgFileType);
+			usermapper.makelawyer(map2);
+		}
+		//if(ss.sendhtmlmail(uv2.getUid(),key.toString(),uv2.getEmail()).equals("NOTOK")){
+		//	return "signup/emailError";
+		//}
+		
+		//에러 안나면 로그인 되고 , 에러나면 login 페이지 띄움 
+	}
 	public String sendhtmlmail(int uid,String key,String email) throws IOException, EmailException{
 		HtmlEmail sendemail = new HtmlEmail();
 		sendemail.setCharset("euc-kr");
@@ -107,53 +208,6 @@ public class SignUpService {
 		    }
 		}
 		return buf.toString();
-	}
-	private FileOutputStream fos;
-	public String makeimageFile(MultipartFile file,String ID,String role,String root_path,String kind){
-		try {
-			
-			//Windows
-				//String dirpath=root_path+"\\resources\\uploadimgs\\profileImg\\";
-			//Linux
-			String dirpath=null;
-			if(kind.equals("profile"))
-			{
-				dirpath=root_path+"/resources/uploadimgs/profileImg/";
-			}
-			else{
-				dirpath=root_path+"/resources/uploadimgs/lawyer_scan/";
-			}
-			byte fileData[] = file.getBytes();
-			int pathPoint = file.getOriginalFilename().trim().lastIndexOf(".");
-			String filePoint = file.getOriginalFilename().trim().substring(pathPoint + 1,file.getOriginalFilename().trim().length());
-			String fileType = filePoint.toLowerCase();
-			fos = new FileOutputStream(dirpath+ID+ "." + fileType);
-			fos.write(fileData);
-			return fileType;
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (fos != null) {
-				try {
-					fos.close();
-				} catch (Exception e) {
-				}
-			}
-		} // try end;
-		return "..";
-	}
-	public String mkdir(String ID){
-		String path="../IdeaProtectionCenter/src/main/webapp/resources/uploadimgs/inventor/"+ID;
-		File dir=new File(path);
-		if(!dir.exists())
-		{	
-			dir.mkdirs();
-		}
-		return "OK";
-	}
-	
-	public void list(){
-		System.out.println(typeOfmapper.getTypeList().size());
 	}
 	
 	//회원 가입 후 자동 로그인
