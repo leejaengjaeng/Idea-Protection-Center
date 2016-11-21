@@ -78,7 +78,7 @@ public class DocumentUpLoadController {
 		upv.setRid(Integer.parseInt(request.getParameter("rid")));
 		String root_path=PathUtils.getRootPath(request);
 		
-		uploadService.saveFile(map, root_path,upv);
+		uploadService.saveFile(map, root_path,upv,request);
 		return "redirect:/";
 	}
 	@RequestMapping(value="/uploadFile")

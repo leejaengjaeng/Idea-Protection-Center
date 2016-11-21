@@ -224,11 +224,12 @@ got
 			data : data,
 			success : function(data) {		
 				//data.id
+				alert(data.result);
 				$("#pop_cont1").css("display","block");
 				if(data.result=="False"){
 					$("#isnull").css("display","none");
 					$("#data_id").css("display","inline-block");
-					$("#data_id").text("아이디와 이메일이 존재하지 않습니다.");
+					$("#data_id").text("아이디와 이메일이 일치하지 않습니다.");
 				}else{
 					$("#isnull").css("display","none");
 					$("#data_id").css("display","inline-block");

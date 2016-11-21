@@ -76,6 +76,7 @@ select {
 </head>
 <body>
 	<c:import url="/WEB-INF/views/import/header.jsp" />
+	<form action="/registration/designInput" method="POST" enctype="multipart/form-data">
 	<div class="wrap_comment">
 		<section> <article class="sub_head">
 		<h1>
@@ -290,10 +291,11 @@ select {
 		</div>
 		<div id="fin">
 			<button>임시저장</button>
-			<button id="agree">등록하기</button>
+			<input type="submit" value="등록하기">
 		</div>
 		</article> </section>
 	</div>
+	</form>
 	<c:import url="/WEB-INF/views/import/footer.jsp" />
 	<script>
 		$("#ex1").click(function() {

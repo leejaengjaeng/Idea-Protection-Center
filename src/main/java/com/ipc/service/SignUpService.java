@@ -3,6 +3,8 @@ package com.ipc.service;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
@@ -39,20 +41,12 @@ public class SignUpService {
 	@Autowired
 	AuthenticationManager authManager;
 	@Autowired
-	CreateFileUtils createFileObj;
-	@Autowired
 	SecAlgorithm secAlgo;
 	@Autowired
 	UserDao userDao;
 	
 	public void makeUser(HttpServletRequest request,userVo uv){
-		String role;
-		if(request.getParameter("role").equals("1")){
-			role="inventor";
-		}
-		else{
-			role="lawyer";
-		}
+		CreateFileUtils createFileObj = new CreateFileUtils();
 		//이메일 문자열 합치기
 		String email = request.getParameter("email1") + request.getParameter("email2");
 		
@@ -87,12 +81,12 @@ public class SignUpService {
 			uv.setPw(hashedPwd);
 		}
 		
+		//HashMap에  유저 정보 담기
 		HashMap<String,String> map=new HashMap<String,String>();
 		map.put("id", uv.getId());
 		map.put("pw", uv.getPw());
 		map.put("email", email);
 		map.put("name", uv.getName());
-		
 		if(files.get(0).isEmpty()){
 			if(request.getParameter("role").equals("1")){
 				map.put("profileimg", "/resources/image/attonrney_profile.jpg");
@@ -116,7 +110,11 @@ public class SignUpService {
 			System.out.println("role is 2");
 			map.put("role", "ROLE_PATIENTENTLAWYER");
 		}
+		
+		//유저 만듬
 		usermapper.makeuser(map);
+		
+		//변리사 정보
 		userVo uv2=usermapper.getUserById(uv.getId());
 		if(request.getParameter("role").equals("2")){
 			String[] majorArr=request.getParameterValues("major");
@@ -138,6 +136,49 @@ public class SignUpService {
 		//}
 		
 		//에러 안나면 로그인 되고 , 에러나면 login 페이지 띄움 
+	}
+	
+	public void editUser(HttpServletRequest request, userVo currentUser) throws NoSuchAlgorithmException, InvalidKeySpecException{
+		CreateFileUtils createFileObj = new CreateFileUtils();
+		
+		HashMap<String,String> map = new HashMap<String,String>();
+		String pw=request.getParameter("pw");
+		String hashPw=secAlgo.createHash(pw);
+		String email = request.getParameter("email1") + request.getParameter("email3");
+		String role=request.getParameter("role");
+		String fileType="";
+		map.put("uid", Integer.toString(currentUser.getUid()));
+		map.put("pw", hashPw);
+		map.put("email",email);
+		map.put("role", role);
+		if(role.equals("lawyer")){
+			String license_number=request.getParameter("license_number");
+			map.put("license_number", license_number);
+		}
+		usermapper.editinput(map);
+		MultipartHttpServletRequest multipartRequest =  (MultipartHttpServletRequest)request;  //�떎以묓뙆�씪 �뾽濡쒕뱶
+		List<MultipartFile> files = multipartRequest.getFiles("profileImg");
+		String profileImgFileType = CreateFileUtils.getFileType(files.get(0).getOriginalFilename());
+		System.out.println("File Size : "+files.get(0).getSize());
+		System.out.println("File idEmpty : "+files.get(0).isEmpty());
+		
+		
+		if(!files.get(0).isEmpty()){
+			
+			HashMap<String,String> map2=new HashMap<String,String>();
+			userVo uv=usermapper.getUserByUid(Integer.toString(currentUser.getUid()));
+			createFileObj.CreateFile(files.get(0), request, "/resources/uploadimgs/profileImg/", uv.getId()+"."+profileImgFileType);
+			try{
+				File file=new File(request.getSession().getServletContext().getRealPath("/")+uv.getProfileimg());
+				file.delete();
+			}catch(Exception e){
+				
+			}
+			
+			map2.put("uid", Integer.toString(currentUser.getUid()));
+			map2.put("url", "/resources/uploadimgs/profileImg/"+currentUser.getId()+"."+profileImgFileType);
+			usermapper.updateProfileImg(map2);
+		}
 	}
 	public String sendhtmlmail(int uid,String key,String email) throws IOException, EmailException{
 		HtmlEmail sendemail = new HtmlEmail();
@@ -227,7 +268,7 @@ public class SignUpService {
 			return "redirect:/login.do";
 		}
 		SecurityContextHolder.getContext().setAuthentication(auth);
-		userVo currentUser = userDao.getUserById(uid);
+		userVo currentUser = usermapper.getUserById(uid);
 		session.setAttribute("currentUser", currentUser);
 		
 		return "redirect:/";
