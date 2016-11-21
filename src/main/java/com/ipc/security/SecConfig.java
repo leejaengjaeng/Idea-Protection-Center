@@ -33,7 +33,7 @@ public class SecConfig extends WebSecurityConfigurerAdapter {
 			.authorizeRequests()
 			.antMatchers("/IPC_admin/**","/qna/regularQnaAdd").hasRole("ADMIN")
 			.antMatchers("/qna/addOneQna").authenticated()
-			.antMatchers("/","/notice/**","/signup/**","/signup/inputsignup").permitAll()
+			.antMatchers("/","/notice/**","/signup/**","/signup/inputsignup","/registration/designInput").permitAll()
 			.and()
 			.formLogin()
 				.loginPage("/login").permitAll() 

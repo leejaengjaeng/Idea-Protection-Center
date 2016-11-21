@@ -9,6 +9,8 @@
 <meta name="_csrf" content="${_csrf.token}" />
 <meta name="_csrf_header" content="${_csrf.headerName}" />
 <script src="/resources/common/js/jquery-3.1.0.min.js"></script>
+<meta name="_csrf" content="${_csrf.token}" />
+<meta name="_csrf_header" content="${_csrf.headerName}" />
 <link rel="stylesheet" href="/resources/common/css/index.css">
 <link rel="stylesheet" href="/resources/common/css/style.css">
 <link rel="icon" href="/resources/image/pavicon.png">
@@ -76,7 +78,9 @@ select {
 </head>
 <body>
 	<c:import url="/WEB-INF/views/import/header.jsp" />
-	<form action="/registration/designInput" method="POST" enctype="multipart/form-data">
+	<form action="/registration/designInput" method="POST" enctype="multipart/form-data" onsubmit="return checkDesign();">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+	
 	<div class="wrap_comment">
 		<section> <article class="sub_head">
 		<h1>
@@ -84,10 +88,9 @@ select {
 		</h1>
 		</article> <article>
 		<div class="txt_box">
-			<h2>디자인 명칭</h2>
+			<h2>디자인 명칭*</h2>
 			<button>작성예시 보기</button>
-			<input type="text" id="idea_kind"
-				placeholder="본인이 창작한 저작물의 이름을 정해 주세요 / 물품명 + 사용용도 or 사용용도 + 적용물품">
+			<input type="text" id="title" name="title" placeholder="본인이 창작한 저작물의 이름을 정해 주세요 / 물품명 + 사용용도 or 사용용도 + 적용물품">
 			<div class="hiding_box">
 				<div class="hiding_box_header">
 					<h3>저작물 명칭</h3>
@@ -99,10 +102,9 @@ select {
 			</div>
 		</div>
 		<div class="txt_box">
-			<h2>디자인 명칭</h2>
+			<h2>디자인이 적용된 곳*</h2>
 			<button>작성예시 보기</button>
-			<input type="text" id="idea_kind"
-				placeholder="본인이 창작한 디자인이 사용되는 품목을 넣어 주시면 됩니다. 예)모니터받침, 모니터 보드">
+			<input type="text" id="whereapply" name="whereapply" placeholder="본인이 창작한 디자인이 사용되는 품목을 넣어 주시면 됩니다. 예)모니터받침, 모니터 보드">
 			<div class="hiding_box">
 				<div class="hiding_box_header">
 					<h3>저작물 명칭</h3>
@@ -114,9 +116,9 @@ select {
 			</div>
 		</div>
 		<div class="txt_box" style="margin-top: 100px;">
-			<h2>디자인의 의미</h2>
+			<h2>디자인의 의미*</h2>
 			<button>작성예시 보기</button>
-			<textarea></textarea>
+			<textarea name="mean" id="mean"></textarea>
 			<span style="font-size: 0.8rem; color: #45d7c2;">본인이 창작한 디자인의
 				의미를 적어 주시기 바랍니다.</span>
 			<div class="hiding_box">
@@ -130,7 +132,7 @@ select {
 			</div>
 		</div>
 		<div class="txt_box">
-			<h2>디자인 시안 첨부</h2>
+			<h2>디자인 시안 첨부*</h2>
 			<ol>
 				<li id="ex1">사시도</li>
 				<li id="ex2">정면도</li>
@@ -218,73 +220,73 @@ select {
 		<div class="txt_box">
 			<table>
 				<tr>
-					<td>사시도</td>
+					<td>사시도*</td>
 					<td style="padding-left: 15px;"><input type="file" name="sasi"
 						id="sasi"></td>
 					<td style="padding-left: 10px;"><label for="sasi">첨부하기</label>
 					</td>
 					<td>
-						<button class="btn_del" data-no="1">삭제하기</button>
+						<button class="btn_del" data-no="1" type="button">삭제하기</button>
 					</td>
 				</tr>
 				<tr>
-					<td>정면도</td>
+					<td>정면도*</td>
 					<td style="padding-left: 15px;"><input type="file"
 						name="front" id="front"></td>
 					<td style="padding-left: 10px;"><label for="front">첨부하기</label>
 					</td>
 					<td>
-						<button class="btn_del" data-no="2">삭제하기</button>
+						<button class="btn_del" data-no="2" type="button">삭제하기</button>
 					</td>
 				</tr>
 				<tr>
-					<td>배면도</td>
+					<td>배면도*</td>
 					<td style="padding-left: 15px;"><input type="file" name="bae"
 						id="bae"></td>
 					<td style="padding-left: 10px;"><label for="bae">첨부하기</label>
 					</td>
 					<td>
-						<button class="btn_del" data-no="3">삭제하기</button>
+						<button class="btn_del" data-no="3" type="button">삭제하기</button>
 					</td>
 				</tr>
 				<tr>
-					<td>좌측면도</td>
+					<td>좌측면도*</td>
 					<td style="padding-left: 15px;"><input type="file"
 						name="left_side" id="left_side"></td>
 					<td style="padding-left: 10px;"><label for="left_side">첨부하기</label>
 					</td>
 					<td>
-						<button class="btn_del" data-no="4">삭제하기</button>
+						<button class="btn_del" data-no="4" type="button">삭제하기</button>
 					</td>
 				</tr>
 				<tr>
-					<td>우측면도</td>
+					<td>우측면도*</td>
 					<td style="padding-left: 15px;"><input type="file"
 						name="right_side" id="right_side"></td>
 					<td style="padding-left: 10px;"><label for="right_side">첨부하기</label>
 					</td>
 					<td>
-						<button class="btn_del" data-no="5">삭제하기</button>
+						<button class="btn_del" data-no="5" type="button">삭제하기</button>
 					</td>
 				</tr>
 				<tr>
-					<td>평면도</td>
+					<td>평면도*</td>
 					<td style="padding-left: 15px;"><input type="file"
 						name="plane" id="plane"></td>
 					<td style="padding-left: 10px;"><label for="plane">첨부하기</label>
 					</td>
 					<td>
-						<button class="btn_del" data-no="6">삭제하기</button>
+						<button class="btn_del" data-no="6" type="button">삭제하기</button>
 					</td>
 				</tr>
 				<tr>
-					<td>저면도</td>
+					<td>저면도*</td>
 					<td style="padding-left: 15px;"><input type="file"
 						name="inside" id="inside"></td>
 					<td style="padding-left: 10px;"><label for="inside">첨부하기</label>
 					</td>
 					<td>
-						<button class="btn_del" data-no="7">삭제하기</button>
+						<button class="btn_del" data-no="7" type="button">삭제하기</button>
 					</td>
 				</tr>
 			</table>
@@ -494,6 +496,99 @@ select {
 				readURL7(this);
 			});
 		});
+		$(".btn_del").click(function(){
+		       if($(this).data("no") == 1){
+		           $("#sasi").val('');
+		           $("#blah1").attr('src','/resources/image/check.png');
+		       }else if($(this).data("no") == 2){
+		           $("#front").val('');
+		           $("#blah2").attr('src','/resources/image/check.png');
+
+		       }else if($(this).data("no") == 3){
+		           $("#bae").val('');
+		           $("#blah3").attr('src','/resources/image/check.png');
+		           
+		       }else if($(this).data("no") == 4){
+		           $("#left_side").val('');
+		           $("#blah4").attr('src','/resources/image/check.png');
+		           
+		       }else if($(this).data("no") == 5){
+		           $("#right_side").val('');
+		           $("#blah5").attr('src','/resources/image/check.png');
+		           
+		       }else if($(this).data("no") == 6){
+		           $("#plane").val('');
+		           $("#blah6").attr('src','/resources/image/check.png');
+		           
+		       }else if($(this).data("no") == 7){
+		           $("#inside").val('');
+		           $("#blah7").attr('src','/resources/image/check.png');
+		           
+		       }
+		    });
+		function checkDesign(){
+			var title=document.getElementById("title");
+			var whereapply=document.getElementById("whereapply");
+			var mean=document.getElementById("mean");
+			var sasi=document.getElementById("sasi");
+			var front=document.getElementById("front");
+			var bae=document.getElementById("bae");
+			var left_side=document.getElementById("left_side");
+			var right_side=document.getElementById("right_side");
+			var plane=document.getElementById("plane");
+			var inside=document.getElementById("inside");
+			
+			if(title.value==""){
+				alert("제목을 입력하세요");
+				title.focus();
+				return false;
+			}
+			else if(whereapply.value==""){
+				alert("디자인이 적용된 곳을 입력하세요");
+				whereapply.focus();
+				return false;
+			}
+			else if(mean.value==""){
+				alert("디자인이 적용된 곳을 입력하세요");
+				mean.focus();
+				return false;
+			}
+			else if(sasi.value==""){
+				alert("사시도를 첨부해 주세요");
+				sasi.focus();
+				return false;
+			}
+			else if(front.value==""){
+				alert("정면도를 첨부해 주세요");
+				front.focus();
+				return false;
+			}
+			else if(bae.value==""){
+				alert("배면도를 첨부해 주세요");
+				bae.focus();
+				return false;
+			}
+			else if(left_side.value==""){
+				alert("좌측면도를 첨부해 주세요");
+				left_side.focus();
+				return false;
+			}
+			else if(right_side.value==""){
+				alert("우측면도를 첨부해 주세요");
+				right_side.focus();
+				return false;
+			}
+			else if(plane.value==""){
+				alert("평면도를 첨부해 주세요");
+				plane.focus();
+				return false;
+			}
+			else if(inside.value==""){
+				alert("저면도를 첨부해 주세요");
+				inside.focus();
+				return false;
+			}
+		}
 	</script>
 </body>
 </html>

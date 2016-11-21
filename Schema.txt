@@ -178,5 +178,33 @@ CREATE TABLE `documentforapply` (
   `finalApplyDoc` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`dfid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+CREATE TABLE `design_patent` (
+  `deid` int(11) NOT NULL AUTO_INCREMENT,
+  `title` text DEFAULT NULL,
+  `whereapply` text DEFAULT NULL,
+  `mean` text DEFAULT NULL,
+  `sasi` text DEFAULT NULL,
+  `front` text DEFAULT NULL,
+  `bae` text DEFAULT NULL,
+  `left_side` text DEFAULT NULL,
+  `right_side` text DEFAULT NULL,
+  `plane` text DEFAULT NULL,
+  `inside` text DEFAULT NULL,
+  `iscomplete` int(11) DEFAULT NULL,
+  `start_deid` int(11) DEFAULT NULL,
+  `prev_deid` int(11) DEFAULT NULL,
+  `re_title` text DEFAULT NULL,
+  `re_whereapply` text DEFAULT NULL,
+  `re_mean` text DEFAULT NULL,
+  `re_sasi` text DEFAULT NULL,
+  `re_front` text DEFAULT NULL,
+  `re_bae` text DEFAULT NULL,
+  `re_leftside` text DEFAULT NULL,
+  `re_rightside` text DEFAULT NULL,
+  `re_plane` text DEFAULT NULL,
+  `re_inside` text DEFAULT NULL,
+  `apply_date` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`deid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
