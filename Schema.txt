@@ -178,34 +178,41 @@ CREATE TABLE `documentforapply` (
   `finalApplyDoc` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`dfid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+
 CREATE TABLE `design_patent` (
   `deid` int(11) NOT NULL AUTO_INCREMENT,
-  `title` text DEFAULT NULL,
-  `whereapply` text DEFAULT NULL,
-  `mean` text DEFAULT NULL,
-  `sasi` text DEFAULT NULL,
-  `front` text DEFAULT NULL,
-  `bae` text DEFAULT NULL,
-  `left_side` text DEFAULT NULL,
-  `right_side` text DEFAULT NULL,
-  `plane` text DEFAULT NULL,
-  `inside` text DEFAULT NULL,
+  `title` text,
+  `whereapply` text,
+  `mean` text,
+  `sasi` text,
+  `front` text,
+  `bae` text,
+  `left_side` text,
+  `right_side` text,
+  `plane` text,
+  `inside` text,
   `iscomplete` int(11) DEFAULT NULL,
   `start_deid` int(11) DEFAULT NULL,
   `prev_deid` int(11) DEFAULT NULL,
-  `re_title` text DEFAULT NULL,
-  `re_whereapply` text DEFAULT NULL,
-  `re_mean` text DEFAULT NULL,
-  `re_sasi` text DEFAULT NULL,
-  `re_front` text DEFAULT NULL,
-  `re_bae` text DEFAULT NULL,
-  `re_leftside` text DEFAULT NULL,
-  `re_rightside` text DEFAULT NULL,
-  `re_plane` text DEFAULT NULL,
-  `re_inside` text DEFAULT NULL,
+  `re_title` text,
+  `re_whereapply` text,
+  `re_mean` text,
+  `re_sasi` text,
+  `re_front` text,
+  `re_bae` text,
+  `re_leftside` text,
+  `re_rightside` text,
+  `re_plane` text,
+  `re_inside` text,
   `apply_date` varchar(45) DEFAULT NULL,
+  `pre_apply_date` varchar(45) DEFAULT NULL,
+  `uid` int(11) DEFAULT NULL,
+  `luid` int(11) DEFAULT NULL,
+  `d_condition` text,
   PRIMARY KEY (`deid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
 
 #13
 CREATE TABLE `reg_copyright` (

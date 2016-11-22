@@ -17,4 +17,6 @@ public interface DesignDao {
 	public List<DesignAdminVo> getDesignListIn(int uid);
 	public int getStart_deid(int deid);
 	public DesignVo getDesignByDeid(int deid);
+	public int countDesignByStart_deid(int start_deid);
+	public List<DesignAdminVo> getDesignListPl(int uid);
 }

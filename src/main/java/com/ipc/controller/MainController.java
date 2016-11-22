@@ -116,7 +116,8 @@ public class MainController {
 					processList = mainPageDao.getPlMainPageList(currentUser.getUid());
 					comIdea=regDao.countCompleteIdeaPl(currentUser.getUid());
 					ingIdea=regDao.countIngIdeaPl(currentUser.getUid());
-					
+					designList=designDao.getDesignListPl(currentUser.getUid());
+					model.addAttribute("designList",designList);
 					model.addAttribute("MessageList",ms.getMessageListPL(Integer.toString(currentUser.getUid())));
 					isLawyer=1;
 				}
