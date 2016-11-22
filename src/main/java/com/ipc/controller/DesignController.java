@@ -52,6 +52,7 @@ public class DesignController {
 			}
 			if(currentUser.getRole().equals(roleInventor))
 			{
+				System.out.println("IN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 				if(currentUser.getUid()!=nowDv.getUid()){
 					return "redirect:/authError";
 				}
@@ -59,6 +60,7 @@ public class DesignController {
 			}
 			else if(currentUser.getRole().equals(rolePatientntLawyer))
 			{
+				System.out.println("PL!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 				if(currentUser.getUid()!=nowDv.getLuid()){
 					return "redirect:/authError";
 				}
@@ -72,9 +74,9 @@ public class DesignController {
 			return "redirect:/login";
 	}
 	@RequestMapping(value="inputCommentDesign",method=RequestMethod.POST)
-	public String inputCommentDesign(HttpServletRequest request){
+	public String inputCommentDesign(HttpServletRequest request,DesignVo dv){
 		userVo currentUser = (userVo) session.getAttribute("currentUser");
-		designService.designInput(request,currentUser);
+		designService.designInput(request,currentUser,dv);
 		return "user/userMain";
 	}
 }

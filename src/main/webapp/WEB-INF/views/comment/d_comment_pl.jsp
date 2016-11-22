@@ -23,7 +23,7 @@
 		enctype="multipart/form-data" onsubmit="return checkDesign();">
 		<input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />
-
+		<input type="hidden" name="uid" value="nowDv.getUid()"><input type="hidden" name="luid" value="nowDv.getLuid()">
 		<div class="wrap_comment">
 			<section> <article class="sub_head">
 			<h1>
@@ -38,7 +38,7 @@
 					class="disabled"
 					disabled
 					placeholder="본인이 창작한 저작물의 이름을 정해 주세요 / 물품명 + 사용용도 or 사용용도 + 적용물품">		
-				<textarea class="cmt_de"></textarea>
+				<textarea class="cmt_de" name="re_title"></textarea>
 			</div>
 			<div class="txt_box">
 				<h2>디자인이 적용된 곳*</h2>
@@ -48,12 +48,12 @@
 					class="disabled"
 					disabled
 					placeholder="본인이 창작한 디자인이 사용되는 품목을 넣어 주시면 됩니다. 예)모니터받침, 모니터 보드">
-				<textarea class="cmt_de"></textarea>
+				<textarea class="cmt_de" name="re_whereapply"></textarea>
 			</div>
 			<div class="txt_box" style="margin-top: 100px;">
 				<h2>디자인의 의미*</h2>
 				<button>작성예시 보기</button>
-				<textarea name="mean" id="mean" class="disabled" disabled>${nowDv.getMean()}</textarea>
+				<textarea id="mean" class="disabled" name="re_mean" disabled>${nowDv.getMean()}</textarea>
 				<span style="font-size: 0.8rem; color: rgba(0, 102, 203, 1);">본인이 창작한 디자인의
 					의미를 적어 주시기 바랍니다.</span>
 				<div class="hiding_box">
@@ -65,6 +65,7 @@
 						<span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
 					</div>
 				</div>
+				<textarea class="cmt_de" name="mean" ></textarea>
 			</div>
 			<div class="txt_box">
 				<h2>디자인 시안 첨부*</h2>
@@ -95,7 +96,7 @@
 							style="background-image: url(${nowDv.getSasi()}); "></div>
 					</div>
 					<!-- <img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다." id="blah1"> -->
-					<textarea class="cmt_img"> </textarea>
+					<textarea class="cmt_img" name="re_sasi"> </textarea>
 				</div>
 				<div class="txt_box" id="exe2">
 					<span>정면도</span>
@@ -103,7 +104,7 @@
 						<div style="background-image: url(${nowDv.getFront()});"></div>
 					</div>
 					<!-- <img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다." id="blah2"> -->
-					<textarea class="cmt_img"> </textarea>
+					<textarea class="cmt_img" name="re_front"> </textarea>
 				</div>
 				<div class="txt_box" id="exe3">
 					<span>배면도</span>
@@ -111,7 +112,7 @@
 						<div style="background-image: url(${nowDv.getBae()}); "></div>
 					</div>
 					<!-- <img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다." id="blah3"> -->
-					<textarea class="cmt_img"> </textarea>
+					<textarea class="cmt_img" name="re_bae"> </textarea>
 				</div>
 				<div class="txt_box" id="exe4">
 					<span>좌측면도</span>
@@ -119,7 +120,7 @@
 						<div style="background-image: url(${nowDv.getLeft_side()}); "></div>
 					</div>
 					<!-- <img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다." id="blah4"> -->
-					<textarea class="cmt_img"> </textarea>
+					<textarea class="cmt_img" name="re_leftside"> </textarea>
 				</div>
 				<div class="txt_box" id="exe5">
 					<span>우측면도</span>
@@ -127,7 +128,7 @@
 						<div style="background-image: url(${nowDv.getRight_side()}); "></div>
 					</div>
 					<!-- <img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다." id="blah5"> -->
-					<textarea class="cmt_img"> </textarea>
+					<textarea class="cmt_img" name="re_rightside"> </textarea>
 				</div>
 				<div class="txt_box" id="exe6">
 					<span>평면도</span>
@@ -135,7 +136,7 @@
 						<div style="background-image: url(${nowDv.getPlane()}); "></div>
 					</div>
 					<!-- <img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다." id="blah6"> -->
-					<textarea class="cmt_img"> </textarea>
+					<textarea class="cmt_img" name="re_plane"> </textarea>
 				</div>
 				<div class="txt_box" id="exe7">
 					<span>저면도</span>
@@ -143,7 +144,7 @@
 						<div style="background-image: url(${nowDv.getInside()}); "></div>
 					</div>
 					<!-- <img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다." id="blah7"> -->
-					<textarea class="cmt_img"> </textarea>
+					<textarea class="cmt_img" name="re_inside"> </textarea>
 				</div>
 			</div>
 			<!-- <div class="txt_box">

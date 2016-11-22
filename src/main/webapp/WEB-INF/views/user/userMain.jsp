@@ -245,7 +245,7 @@ $(document).ready(function()
 		                        <th>비고</th>
 		                    </tr>
 		                   	<c:forEach var="design" items="${designList}" varStatus="status">
-								<tr class="ideaList" onclick="location.href='/design/detail/${design.getDeid()}'">
+								<tr onclick="location.href='/design/detail/${design.getDeid()}'">
 									<input type="hidden" value="${design.getDeid()}"/>								
 			                        <td><p>${design.getTitle()}</p></td>
 			                        <td><p>${design.getD_condition()}</p></td>
@@ -357,7 +357,7 @@ $(document).ready(function()
 		                        <th>비고</th>
 		                    </tr>
 		                   	<c:forEach var="design" items="${designList}" varStatus="status">
-								<tr class="ideaList" onclick="location.href='/design/detail/${design.getDeid()}'">
+								<tr onclick="location.href='/design/detail/${design.getDeid()}'">
 									<input type="hidden" value="${design.getDeid()}"/>								
 			                        <td><p>${design.getTitle()}</p></td>
 			                        <td><p>${design.getD_condition()}</p></td>
