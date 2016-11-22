@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ipc.dao.DesignDao">
+	<insert id="insertFirstDesign" parameterType="com.ipc.vo.DesignVo" useGeneratedKeys="true" keyProperty="deid">
+		insert into design_patent(title,whereapply,mean,sasi,front,bae,left_side,right_side,plane,inside,iscomplete,prev_deid,uid,d_condition) values (#{title},#{whereapply},#{mean},#{sasi},#{front},#{bae},#{left_side},#{right_side},#{plane},#{inside},0,-1,#{uid},"결제대기중")
+	</insert>
+	<update id="updatedeid" parameterType="Integer">
+		update design_patent set start_deid=#{deid} where deid=#{deid}
+	</update>
+	<select id="getDesignListAdmin" resultType="com.ipc.vo.DesignAdminVo">
+		select c.start_deid ,c.id as userID,c.name as userName, u2.name as patentName,c.email as userEmail,c.title ,c.d_condition ,c.deid 
+FROM ((select u.id ,u.name ,u.email,d.title ,d.mean,d.luid ,d.d_condition ,d.deid ,d.start_deid 
+		from user as u join design_patent as d on u.uid=d.uid) as c left join user as u2 on c.luid=u2.uid)
+where deid IN (select max(deid)  FROM ((select u.id ,u.name ,u.email,d.title ,d.mean,d.luid ,d.d_condition ,d.deid ,d.start_deid 
+		from user as u join design_patent as d on u.uid=d.uid) as c left join user as u2 on c.luid=u2.uid) group by start_deid)
+	</select>
+</mapper>

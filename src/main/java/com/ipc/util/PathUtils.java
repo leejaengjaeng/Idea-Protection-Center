@@ -18,10 +18,5 @@ public class PathUtils {
 			return linuxRootPath;
 		}
 	}
-	public static String getFileType(String fileName){
-		int pathPoint = fileName.trim().lastIndexOf(".");
-		String filePoint = fileName.trim().substring(pathPoint + 1,fileName.trim().length());
-		String fileType = filePoint.toLowerCase();
-		return fileType;
-	}
+	
 }

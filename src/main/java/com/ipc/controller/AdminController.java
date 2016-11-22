@@ -13,11 +13,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ipc.dao.DesignDao;
+import com.ipc.dao.MainPageDao;
 import com.ipc.dao.NoticeDao;
 import com.ipc.dao.RegistrationDao;
 import com.ipc.dao.TypeOfInventDao;
 import com.ipc.dao.UserDao;
 import com.ipc.util.ViewUtils;
+import com.ipc.vo.DesignAdminVo;
 import com.ipc.vo.LawyerProfileVo;
 import com.ipc.vo.QnaVo;
 import com.ipc.vo.TypeOfInventVo;
@@ -42,19 +45,28 @@ public class AdminController {
 	TypeOfInventDao typeDao;
 	@Autowired
 	ViewUtils viewUtils;
-
+	@Autowired
+	MainPageDao mainPageDao;
+	@Autowired
+	DesignDao designmapper;
+	
 	// 아이디어 관리
 	@RequestMapping("/")
 	public String admin2(Model model) {
 		
 		return ideaList(model,1);
 	}
-
+	@RequestMapping("/design")
+	public String design(Model model){
+		List<DesignAdminVo> designAdminList = designmapper.getDesignListAdmin();
+		model.addAttribute("designAdminList", designAdminList);
+		return "admin/admin_design";
+	}
 	@RequestMapping("/ideas/{pageNum}")
 	public String ideaList(Model model, @PathVariable int pageNum) {
 		
 		// 페이지 네이션
-		int totalIdea = regDao.counTotalIdea();
+		int totalIdea = mainPageDao.countIdeas();
 		try {
 			/*
 			 * List<Integer> pageButtons : 페이지네이션 버튼 값 리스트

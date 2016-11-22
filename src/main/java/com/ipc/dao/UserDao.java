@@ -14,6 +14,8 @@ import com.ipc.vo.userVo;
 @Mapper
 public interface UserDao {
 	
+	public int getUidById(String id);
+	
 	public userVo getUserById(String id);
 	
 	public userVo getUserByUid(String uid);

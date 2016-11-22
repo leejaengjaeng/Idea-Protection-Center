@@ -636,7 +636,7 @@ body {
 					<td colspan="2" style="text-align: center; padding-left: 0;"
 						class="join_img_td">
 						<div>
-							<img src="/resources/image/inventor_profile.jpg" alt="img" id="blah"><br> 
+							<img src="/resources/image/attonrney_profile.jpg" alt="img" id="blah"><br> 
 							<input type="file" id="imgInp" onchange="fileCheck(this)" name="profileImg" style="cursor: pointer;" accept="image/gif, image/jpeg, image/png"> 
 							<span>대표사진을 설정 해주세요</span>
 						</div>
@@ -716,7 +716,7 @@ body {
 				<tr class="hide">
 					<td>변리사 등록증 사본</td>
 					<td><input type="file" name="license_scan_img"
-						id="license_scan_img"></td>
+						id="license_scan_img" onchange="fileCheck(this)" accept="image/gif, image/jpeg, image/png"></td>
 				</tr>
 				<tr class="hide">
 					<td>경력기술(간단한 소개)</td>

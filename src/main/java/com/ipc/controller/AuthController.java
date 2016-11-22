@@ -71,6 +71,7 @@ public class AuthController {
 	{
 		try{
 			String userId = SecurityContextHolder.getContext().getAuthentication().getName();		
+			System.out.println(userId);
 			userVo currentUser = userDao.getUserById(userId);
 			// 인증 정보가 없으면 userId = anonymousUser
 			// currnetUser = null

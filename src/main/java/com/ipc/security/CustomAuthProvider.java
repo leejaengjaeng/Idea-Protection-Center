@@ -25,7 +25,7 @@ public class CustomAuthProvider implements AuthenticationProvider
 	@Override
 	public Authentication authenticate(Authentication auth) throws AuthenticationException {
 		//auth에는 현재 로그인 시도한 정보가 담김
-		String id = auth.getName();
+		String id  = auth.getName();
 		String pwd = (String)auth.getCredentials();
 		
 		User validUser = userAuthService.loadUserByUsername(id);

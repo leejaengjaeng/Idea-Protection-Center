@@ -36,7 +36,9 @@ import com.ipc.vo.userVo;
 
 //TODO : 지우고 new 한 것들 Autowired한 signupService로 대체하기
 import com.ipc.service.SignUpService;
+import com.ipc.util.CreateFileUtils;
 import com.ipc.util.PathUtils;
+import com.ipc.util.SendEmailUtils;
 
 
 @Controller
@@ -53,7 +55,6 @@ public class SignUpController{
 	@Autowired
 	SecAlgorithm secAlgo;
 	
-	
 	//private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	private static final String roleAdmin = "ROLE_ADMIN";
 	private static final String roleInventor = "ROLE_INVENTOR";
@@ -66,103 +67,17 @@ public class SignUpController{
 		model.addAttribute("typeList", tvList);
 		return "signup/signup";
 	}
+	
+	
 	@RequestMapping(value="/inputsignup", method=RequestMethod.POST)
-	public String inputsignup(Model model,HttpServletRequest request,userVo uv)throws IOException, EmailException{
-		String role;
-		String fileType="";
-		if(request.getParameter("role").equals("1")){
-			role="inventor";
-		}
-		else{
-			role="lawyer";
-		}
-		
-		String email = request.getParameter("email1") + request.getParameter("email2");
-		MultipartHttpServletRequest multipartRequest =  (MultipartHttpServletRequest)request;  //�떎以묓뙆�씪 �뾽濡쒕뱶
-		List<MultipartFile> files = multipartRequest.getFiles("profileImg");
-		
-		MultipartHttpServletRequest multipartRequestScan =  (MultipartHttpServletRequest)request;  //�떎以묓뙆�씪 �뾽濡쒕뱶
-		List<MultipartFile> filesScan = multipartRequestScan.getFiles("license_scan_img");
-		
-		System.out.println();
-		
-		SignUpService ss=new SignUpService();
-		String root_path=PathUtils.getRootPath(request);
-		if(!files.get(0).isEmpty()){
-			fileType=ss.makeimageFile(files.get(0),uv.getId(),role,root_path,"profile");
-		}
-		String fileTypeScan=ss.makeimageFile(filesScan.get(0), uv.getId(), role, root_path, "Scan");
-
-		//패스워드 암호화 
-		String rawPwd = uv.getPw();
-		String hashedPwd ="";
-		try {
-			hashedPwd = secAlgo.createHash(rawPwd);
-		} catch (Exception e) {
-			System.out.println("ERROR] 회원가입 : pw암호화 잘못됨");
-			hashedPwd = rawPwd;
-		} finally
-		{
-			uv.setPw(hashedPwd);
-		}
-		
-		HashMap<String,String> map=new HashMap<String,String>();
-		map.put("id", uv.getId());
-		map.put("pw", uv.getPw());
-		map.put("email", email);
-		map.put("name", uv.getName());
-		//System.out.println("filType: "+fileType);
-		
-		if(files.get(0).isEmpty()){
-			if(request.getParameter("role").equals("1")){
-				map.put("profileimg", "/resources/image/attonrney_profile.jpg");
-			}else{
-				map.put("profileimg", "/resources/image/val1.png");
-			}			
-		}
-		else{
-			map.put("profileimg", "/resources/uploadimgs/profileImg/"+uv.getId()+"."+fileType);
-		}
-		StringBuffer key=ss.makekey();
-		map.put("is_member", key.toString());
-		
-		System.out.println("key is "+key.toString());
-		HashMap<String,String> map2=new HashMap<String,String>();
-		if(request.getParameter("role").equals("1")){
-			System.out.println("role is 1");
-			map.put("role", "ROLE_INVENTOR");
-		}
-		else{
-			System.out.println("role is 2");
-			map.put("role", "ROLE_PATIENTENTLAWYER");
-		}
-		usermapper.makeuser(map);
-		userVo uv2=usermapper.getUserById(uv.getId());
-		if(request.getParameter("role").equals("2")){
-			String[] majorArr=request.getParameterValues("major");
-			String major="";
-			for(int i=0;i<majorArr.length;i++){
-				major+=majorArr[i]+" ";
-			}
-			map2.put("uid", Integer.toString(uv2.getUid()));
-			map2.put("license_number", request.getParameter("license_number"));
-			map2.put("major", major);
-			map2.put("account_number", request.getParameter("account_number"));
-			map2.put("bank_name", request.getParameter("bank_name"));
-			map2.put("introduce", request.getParameter("introduce"));
-			map2.put("license_scan_img", "/resources/uploadimgs/lawyer_scan/"+uv.getId()+"."+fileTypeScan);
-			usermapper.makelawyer(map2);
-		}
-		System.out.println("uid is "+uv2.getUid());
-		if(ss.sendhtmlmail(uv2.getUid(),key.toString(),uv2.getEmail()).equals("NOTOK")){
-			return "signup/emailError";
-		}
-		
-		//System.out.println("lawyerVo : "+lv.getIntroduce()+","+lv.getAccount_number()+","+lv.getLicense_number()+","+lv.getMajor());
+	public String inputsignup(HttpServletRequest request,userVo uv)throws IOException, EmailException{
+		signupService.makeUser(request, uv);
 		
 		//에러 안나면 로그인 되고 , 에러나면 login 페이지 띄움 
-		return signupService.afterSignUp(uv.getId(), rawPwd);
+		return signupService.afterSignUp(request.getParameter("id"), request.getParameter("pw"));
 	}
+	
+	
 	@RequestMapping(value="/checkid",method=RequestMethod.POST)
 	@ResponseBody
 	public HashMap<String, Object> checkid(HttpServletRequest request,@RequestParam HashMap<String, Object> param){
@@ -177,6 +92,8 @@ public class SignUpController{
 		}
 		return hashmap;
 	}
+	
+	
 	@RequestMapping(value="/permit",method=RequestMethod.GET)
 	public String permit(@RequestParam("uid") String uid,@RequestParam("key") String key){
 		userVo uv=usermapper.getUserByUid(uid);
@@ -189,15 +106,21 @@ public class SignUpController{
 		}
 		return "home/index";
 	}
+	
+	
 	@RequestMapping(value="/compeletesignup")
 	public String compeletesignup(){
 		return "home/index";
 	}
+	
+	
 	@RequestMapping(value="/editUser")
 	public String editUser(Model model){
 		userVo currentUser = (userVo) session.getAttribute("currentUser");
-		model.addAttribute("email1",currentUser.getEmail().split("@")[0]);
-		model.addAttribute("email2",currentUser.getEmail().split("@")[1]);
+		try{
+			model.addAttribute("email1","@"+currentUser.getEmail().split("@")[0]);
+			model.addAttribute("email2","@"+currentUser.getEmail().split("@")[1]);
+		}catch(Exception e){}
 		if(currentUser.getRole().equals(roleInventor)){
 			model.addAttribute("uv",currentUser); 
 			model.addAttribute("role","inventor");
@@ -211,59 +134,21 @@ public class SignUpController{
 		}
 		return "signup/EditUser";
 	}
+	
+	
 	@RequestMapping(value="/editinput",method=RequestMethod.POST)
 	public String editinput(HttpServletRequest request) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException{
 		userVo currentUser = (userVo) session.getAttribute("currentUser");
-		HashMap<String,String> map = new HashMap<String,String>();
-		String pw=request.getParameter("pw");
-		String hashPw=secAlgo.createHash(pw);
-		String email = request.getParameter("email1") + request.getParameter("email3");
-		String role=request.getParameter("role");
-		String fileType="";
-		map.put("uid", Integer.toString(currentUser.getUid()));
-		map.put("pw", hashPw);
-		map.put("email",email);
-		map.put("role", role);
-		if(role.equals("lawyer")){
-			String license_number=request.getParameter("license_number");
-			map.put("license_number", license_number);
-		}
-		usermapper.editinput(map);
-		MultipartHttpServletRequest multipartRequest =  (MultipartHttpServletRequest)request;  //�떎以묓뙆�씪 �뾽濡쒕뱶
-		List<MultipartFile> files = multipartRequest.getFiles("profileImg");
-		System.out.println("File Size : "+files.get(0).getSize());
-		System.out.println("File idEmpty : "+files.get(0).isEmpty());
-		
-		
-		if(!files.get(0).isEmpty()){
-			int pathPoint = files.get(0).getOriginalFilename().trim().lastIndexOf(".");
-			String filePoint = files.get(0).getOriginalFilename().trim().substring(pathPoint + 1,
-					files.get(0).getOriginalFilename().trim().length());
-			fileType = filePoint.toLowerCase();
-			System.out.println(fileType);
-			HashMap<String,String> map2=new HashMap<String,String>();
-			userVo uv=usermapper.getUserByUid(Integer.toString(currentUser.getUid()));
-			try{
-				File file=new File(request.getSession().getServletContext().getRealPath("/")+uv.getProfileimg());
-				file.delete();
-			}catch(Exception e){
-				
-			}
-			SignUpService ss=new SignUpService();
-			String root_path=PathUtils.getRootPath(request);
-			ss.makeimageFile(files.get(0),currentUser.getId(),role,root_path,"profile");
-			map2.put("uid", Integer.toString(currentUser.getUid()));
-			map2.put("url", "/resources/uploadimgs/profileImg/"+currentUser.getId()+"."+fileType);
-			usermapper.updateProfileImg(map2);
-		}
-		
-		
+		signupService.editUser(request, currentUser);
+
 		return "redirect:/mainPage";
 	}
 	@RequestMapping(value="/findAccount")
 	public String findAccount(){
 		return "signup/findidpw";
 	}
+	
+	
 	@RequestMapping(value="/findId",method=RequestMethod.POST)
 	@ResponseBody
 	public HashMap<String,String> findId(HttpServletRequest request){
@@ -274,6 +159,8 @@ public class SignUpController{
 		mapresult.put("id", reId(name,email));
 		return mapresult;
 	}
+	
+	
 	private String reId(String name, String email){
 		HashMap<String,String> parameter=new HashMap<String,String>();
 		parameter.put("name", name);
@@ -282,6 +169,8 @@ public class SignUpController{
 		System.out.println(ID);
 		return ID;
 	}
+	
+	
 	@RequestMapping(value="/findPw",method=RequestMethod.POST)
 	@ResponseBody
 	public HashMap<String,String> findPw(HttpServletRequest request) throws IOException, EmailException, NoSuchAlgorithmException, InvalidKeySpecException{
@@ -300,6 +189,8 @@ public class SignUpController{
 		}
 		return mapresult;
 	}
+	
+	
 	private String isExist(String ID,String email) throws IOException, EmailException, NoSuchAlgorithmException, InvalidKeySpecException{
 		HashMap<String,String> parameter=new HashMap<String,String>();
 		parameter.put("ID",ID);
@@ -321,13 +212,19 @@ public class SignUpController{
 		}
 		return uid;
 	}
+	
+	
 	private String sendKey(String key,String uid) throws IOException, EmailException{
 		SignUpService ss=new SignUpService();
 		int uid2=Integer.parseInt(uid);
 		userVo uv=usermapper.getUserByUid(uid);
+		String htmlmsg="<html><div style='width:1000px; float:left; border-bottom:2px solid #45d4fe; padding-bottom:5px;box-sizing:border-box;'></div><div style='width:1000px;float:left; box-sizing:border-box; padding:15px;'><h2>아이디어 보호센터 새로운 비밀번호입니다.</h2><div style='width:100%; float:left; box-sizing:border-box; border:5px solid #f9f9f9; text-align:center; padding:40px 0 40px 0;'><span>아래 비밀번호로 로그인 하셔서 <br>비밀번호를 바꿔주세요.<br>"+key+"</span></html>";
+		
+		
 		try{
-			String aa=ss.sendpwmail(uid2, key, uv.getEmail());
-			System.out.println("aa : "+aa);
+			SendEmailUtils emailObj = new SendEmailUtils();
+			System.out.println(uv.getEmail());
+			emailObj.sendEmail(uv.getEmail(), "아이디어보호센터 새로운 메일 입니다.", htmlmsg);
 		}
 		catch(Exception e){
 			return "NO";

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ipc.dao.TypeOfCopyrightDao">
+    <select id="getTypeList" resultType="com.ipc.vo.TypeOfCopyrightVo">
+    	select tid,type from type_of_copyright;
+    </select>
+    <delete id="rmType" parameterType="Integer">
+    	delete from type_of_copyright where tid=#{id}
+    </delete>
+    <insert id="addType" parameterType="Hashmap">
+    	insert into type_of_copyright(type) values (#{type})
+    </insert>
+</mapper>
+

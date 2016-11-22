@@ -16,7 +16,7 @@ apply plugin: 'eclipse-wtp'
 	//apply plugin: 'eclipse'
 apply plugin: 'spring-boot'
 
-bootRepackage.enabled = false
+test.enabled=false
 
 war {
 	baseName = 'IPC'
@@ -28,7 +28,6 @@ war {
 	
 }
 
-test.enabled=false
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8

@@ -56,13 +56,13 @@
             </table>
             </table>
             <a href="/IPC_admin/userList/${leftArrow}"> < </a>
-				<c:forEach items="${pageNationButtons}" var="btn">
+				<c:forEach items="${pageNationButtons}" var="pgnBtn">
 					<c:choose>
-						<c:when test="${btns eq currentPage }">
-							<a href="/IPC_admin/userList/${btn}"><b style="font-size:20px;">${btn}</b><a>
+						<c:when test="${pgnBtn eq currentPage }">
+							<a href="/IPC_admin/userList/${pgnBtn}"><b style="font-size:20px;">${pgnBtn}</b><a>
 						</c:when>
 						<c:otherwise>
-							<a href="/IPC_admin/userList/${btn}">${btn}<a>
+							<a href="/IPC_admin/userList/${pgnBtn}">${pgnBtn}<a>
 						</c:otherwise>
 					</c:choose>
 			  	</c:forEach>

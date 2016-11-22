@@ -18,6 +18,8 @@ function fileCheck(obj){
 		upload=confirm('BMP 파일은 웹상에서 사용하기엔 적절한 이미지 포맷이 아닙니다.\n 그래도 계속 하시겠습니까?');
 		if(!upload) return false;
 	}
+	
+	
 }
 
 function fileCheckApply(obj){
