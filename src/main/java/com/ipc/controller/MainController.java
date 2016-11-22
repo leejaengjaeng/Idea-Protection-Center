@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.ipc.dao.DesignDao;
 import com.ipc.dao.MainPageDao;
 import com.ipc.dao.NoticeDao;
 import com.ipc.dao.RegistrationDao;
@@ -29,6 +30,7 @@ import com.ipc.dao.UserDao;
 import com.ipc.service.MessageService;
 import com.ipc.service.RegistrationService;
 import com.ipc.service.SignUpService;
+import com.ipc.vo.DesignAdminVo;
 import com.ipc.vo.IndexVo;
 import com.ipc.vo.RegistrationFileVo;
 import com.ipc.vo.RegistrationPatentVo;
@@ -56,7 +58,8 @@ public class MainController {
 	MessageService ms;
 	@Autowired
 	RegistrationService rs;
-	
+	@Autowired
+	DesignDao designDao;
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	
 	private static final String roleAdmin = "ROLE_ADMIN";
@@ -88,6 +91,7 @@ public class MainController {
 			if(currentUser != null)
 			{
 				List<mainPageVo> processList;
+				List<DesignAdminVo> designList;
 				int comIdea=0;
 				int ingIdea=0;
 				model.addAttribute("userVo",userDao.getUserByUid(Integer.toString(currentUser.getUid())));
@@ -98,6 +102,9 @@ public class MainController {
 					processList = mainPageDao.getMainPageList(currentUser.getUid());	
 					comIdea=regDao.countCompleteIdeaIn(currentUser.getUid());
 					ingIdea=regDao.countIngIdeaIn(currentUser.getUid());
+					designList=designDao.getDesignListIn(currentUser.getUid());
+					model.addAttribute("designList",designList);
+					
 					model.addAttribute("MessageList",ms.getMessageList(Integer.toString(currentUser.getUid())));
 					isLawyer=0;
 				}

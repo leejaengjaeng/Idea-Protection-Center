@@ -59,6 +59,8 @@ public class AdminController {
 	@RequestMapping("/design")
 	public String design(Model model){
 		List<DesignAdminVo> designAdminList = designmapper.getDesignListAdmin();
+		List<userVo> lawyers = userDao.getLawyerList();
+		model.addAttribute("lawyerList",lawyers);
 		model.addAttribute("designAdminList", designAdminList);
 		return "admin/admin_design";
 	}
@@ -214,5 +216,22 @@ public class AdminController {
 		typeDao.addType(map);
 
 		return map;
+	}
+	
+	@RequestMapping("/assignDesign")
+	@ResponseBody
+	public HashMap<String,String> assignDesign(HttpServletRequest request){
+		String deid=request.getParameter("deid");
+		String uid = request.getParameter("uid");
+		HashMap<String,String> map = new HashMap<String,String>();
+		map.put("deid", deid);
+		map.put("uid", uid);
+		
+		designmapper.updatePatent(map);
+		
+		
+		HashMap<String,String> resultMap = new HashMap<String,String>();
+		resultMap.put("lawyerName", userDao.getUserByUid(uid).getName());
+		return resultMap;
 	}
 }

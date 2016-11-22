@@ -14,18 +14,20 @@
     <script src="/resources/common/js/jquery-3.1.0.min.js"></script>
  
     <script>
-    var RegisId;
+    var designId;
     var buttonId;
     var pId;
-    function giveLawyer(rid,btnid,pid){
+    function giveLawyer(deid,btnid,pid){
     	//alert("aa");
-    	RegisId=rid;
+    	designId=deid;
     	buttonId=btnid;
     	pId=pid;
     	document.getElementById("bw").style.visibility="visible";
 		document.getElementById("pp").style.visibility="visible";
     }
     function assign(uid){
+    	alert(uid+","+designId);
+
     	var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
     	var csrfToken = $("meta[name='_csrf']").attr("content"); 
     	var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
@@ -33,10 +35,10 @@
     	var headers = {};
     	data[csrfParameter] = csrfToken;
         data["uid"] = uid;
-        data["rid"]=RegisId;
+        data["deid"]=designId;
         headers[csrfHeader] = csrfToken;
         $.ajax({
-    	    url : "/assign",
+    	    url : "/IPC_admin/assignDesign",
     	    dataType : "json",
     	    type : "POST",
     	    headers: headers,
@@ -62,7 +64,6 @@
 		document.getElementById("pp").style.visibility="hidden";
     }
     function viewLawyer(uid){
-    	//alert(uid);
     	var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
     	var csrfToken = $("meta[name='_csrf']").attr("content"); 
     	var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
