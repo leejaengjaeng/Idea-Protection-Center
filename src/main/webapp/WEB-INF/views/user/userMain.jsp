@@ -173,7 +173,7 @@ $(document).ready(function()
                 </ol> -->
                 <c:choose>
                 	<c:when test="${isLawyer eq '0'}">
-                		<table style="margin-top:50px;">designList
+                		<table style="margin-top:50px;">
 		                    <tr> 		                        
 		                        <th>등록날짜</th>
 		                        <th>분류</th>
