@@ -90,7 +90,7 @@ select {
 		<div class="txt_box">
 			<h2>디자인 명칭*</h2>
 			<button>작성예시 보기</button>
-			<input type="text" id="title" name="title" placeholder="본인이 창작한 저작물의 이름을 정해 주세요 / 물품명 + 사용용도 or 사용용도 + 적용물품">
+			<input type="text" id="title" name="title" value="${nowDv.getTitle()}" placeholder="본인이 창작한 저작물의 이름을 정해 주세요 / 물품명 + 사용용도 or 사용용도 + 적용물품">
 			<div class="hiding_box">
 				<div class="hiding_box_header">
 					<h3>저작물 명칭</h3>
@@ -104,7 +104,7 @@ select {
 		<div class="txt_box">
 			<h2>디자인이 적용된 곳*</h2>
 			<button>작성예시 보기</button>
-			<input type="text" id="whereapply" name="whereapply" placeholder="본인이 창작한 디자인이 사용되는 품목을 넣어 주시면 됩니다. 예)모니터받침, 모니터 보드">
+			<input type="text" id="whereapply" name="whereapply" value="${nowDv.getWhereapply()}" placeholder="본인이 창작한 디자인이 사용되는 품목을 넣어 주시면 됩니다. 예)모니터받침, 모니터 보드">
 			<div class="hiding_box">
 				<div class="hiding_box_header">
 					<h3>저작물 명칭</h3>
@@ -118,7 +118,7 @@ select {
 		<div class="txt_box" style="margin-top: 100px;">
 			<h2>디자인의 의미*</h2>
 			<button>작성예시 보기</button>
-			<textarea name="mean" id="mean"></textarea>
+			<textarea name="mean" id="mean"  value="${nowDv.getMean()}"></textarea>
 			<span style="font-size: 0.8rem; color: #45d7c2;">본인이 창작한 디자인의
 				의미를 적어 주시기 바랍니다.</span>
 			<div class="hiding_box">
@@ -155,64 +155,65 @@ select {
 		<div class="tot">
 			<div class="txt_box" id="exe1">
 				<span
-					style="display: inline-block; float: left; width: 100%; color: rgba(1, 102, 156, 1); font-weight: bold;">작성예시</span>
+					style="display: inline-block; float: left; width: 100%; color: rgba(1, 102, 156, 1); font-weight: bold;">사시도</span>
 				<div class="eximg" style="padding: 10px;">
 					<div
 						style="background-image: url(${nowDv.getSasi()}); width: 100%; float: left; height: 100%;"></div>
 				</div>
-				<img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다." id="blah1">
+				<!-- <img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다." id="blah1"> -->
+				<textarea> </textarea>
 			</div>
 			<div class="txt_box" id="exe2">
 				<span
-					style="display: inline-block; float: left; width: 100%; color: rgba(1, 102, 156, 1); font-weight: bold;">작성예시</span>
+					style="display: inline-block; float: left; width: 100%; color: rgba(1, 102, 156, 1); font-weight: bold;">정면도</span>
 				<div class="eximg">
 					<div
-						style="background-image: url(/resources/image/ex2.jpg); width: 100%; float: left; height: 100%;"></div>
+						style="background-image: url(${nowDv.getFront()}); width: 100%; float: left; height: 100%;"></div>
 				</div>
 				<img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다." id="blah2">
 			</div>
 			<div class="txt_box" id="exe3">
 				<span
-					style="display: inline-block; float: left; width: 100%; color: rgba(1, 102, 156, 1); font-weight: bold;">작성예시</span>
+					style="display: inline-block; float: left; width: 100%; color: rgba(1, 102, 156, 1); font-weight: bold;">배면도</span>
 				<div class="eximg">
 					<div
-						style="background-image: url(/resources/image/ex3.jpg); width: 100%; float: left; height: 100%;"></div>
+						style="background-image: url(${nowDv.getBae()}); width: 100%; float: left; height: 100%;"></div>
 				</div>
 				<img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다." id="blah3">
 			</div>
 			<div class="txt_box" id="exe4">
 				<span
-					style="display: inline-block; float: left; width: 100%; color: rgba(1, 102, 156, 1); font-weight: bold;">작성예시</span>
+					style="display: inline-block; float: left; width: 100%; color: rgba(1, 102, 156, 1); font-weight: bold;">좌측면도</span>
 				<div class="eximg">
 					<div
-						style="background-image: url(/resources/image/ex4.jpg); width: 100%; float: left; height: 100%;"></div>
+						style="background-image: url(${nowDv.getLeft_side()}); width: 100%; float: left; height: 100%;"></div>
 				</div>
 				<img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다." id="blah4">
 			</div>
 			<div class="txt_box" id="exe5">
 				<span
-					style="display: inline-block; float: left; width: 100%; color: rgba(1, 102, 156, 1); font-weight: bold;">작성예시</span>
+					style="display: inline-block; float: left; width: 100%; color: rgba(1, 102, 156, 1); font-weight: bold;">우측면도</span>
 				<div class="eximg">
 					<div
-						style="background-image: url(/resources/image/ex5.jpg); width: 100%; float: left; height: 100%;"></div>
+						style="background-image: url(${nowDv.getRight_side()}); width: 100%; float: left; height: 100%;"></div>
 				</div>
 				<img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다." id="blah5">
 			</div>
 			<div class="txt_box" id="exe6">
 				<span
-					style="display: inline-block; float: left; width: 100%; color: rgba(1, 102, 156, 1); font-weight: bold;">작성예시</span>
+					style="display: inline-block; float: left; width: 100%; color: rgba(1, 102, 156, 1); font-weight: bold;">평면도</span>
 				<div class="eximg">
 					<div
-						style="background-image: url(/resources/image/ex6.jpg); width: 100%; float: left; height: 100%;"></div>
+						style="background-image: url(${nowDv.getPlane()}); width: 100%; float: left; height: 100%;"></div>
 				</div>
 				<img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다." id="blah6">
 			</div>
 			<div class="txt_box" id="exe7">
 				<span
-					style="display: inline-block; float: left; width: 100%; color: rgba(1, 102, 156, 1); font-weight: bold;">작성예시</span>
+					style="display: inline-block; float: left; width: 100%; color: rgba(1, 102, 156, 1); font-weight: bold;">저면도</span>
 				<div class="eximg">
 					<div
-						style="background-image: url(/resources/image/ex7.jpg); width: 100%; float: left; height: 100%;"></div>
+						style="background-image: url(${nowDv.getInside()}); width: 100%; float: left; height: 100%;"></div>
 				</div>
 				<img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다." id="blah7">
 			</div>
