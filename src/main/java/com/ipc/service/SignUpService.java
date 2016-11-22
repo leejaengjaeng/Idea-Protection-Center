@@ -42,6 +42,9 @@ public class SignUpService {
 	AuthenticationManager authManager;
 	@Autowired
 	SecAlgorithm secAlgo;
+	@Autowired
+	UserDao userDao;
+	
 	public void makeUser(HttpServletRequest request,userVo uv){
 		CreateFileUtils createFileObj = new CreateFileUtils();
 		//이메일 문자열 합치기

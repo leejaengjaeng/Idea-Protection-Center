@@ -207,4 +207,46 @@ CREATE TABLE `design_patent` (
   PRIMARY KEY (`deid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+#13
+CREATE TABLE `reg_copyright` (
+  `cid` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) DEFAULT NULL,
+  `lid` int(11) DEFAULT NULL,
+  `iscomplete` tinyint(4) DEFAULT '0',
+  `start_cid` int(11) DEFAULT NULL,
+  `prev_cid` int(11) DEFAULT '-1',
+  `title` text DEFAULT NULL,
+  `field` text,
+  `type` text,
+  `meaning` text,
+  `re_title` text DEFAULT NULL,
+  `re_field` text,
+  `re_type` text,
+  `re_meaning` text,
+  `registration_date` datetime DEFAULT NULL,
+  `file` text,
+  `re_file` text,
+  PRIMARY KEY (`cid`)
+) ENGINE=InnoDB AUTO_INCREMENT=99 DEFAULT CHARSET=utf8;
+
+#14
+CREATE TABLE `main_page_copyright_info` (
+  `mpcid` int(11) NOT NULL AUTO_INCREMENT,
+  `cid` int(11) NOT NULL,
+  `uid` int(11) DEFAULT NULL,
+  `reg_condition` varchar(45) DEFAULT NULL,
+  `pre_apply_date` datetime DEFAULT NULL,
+  `apply_date` datetime DEFAULT NULL,
+  `registration_date` datetime DEFAULT NULL,
+  `title` varchar(45) DEFAULT NULL,
+  `lid` int(11) DEFAULT NULL,
+  PRIMARY KEY (`mpcid`)
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+
+#15
+CREATE TABLE `type_of_copyright` (
+  `tid` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`tid`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
