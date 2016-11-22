@@ -19,4 +19,5 @@ public interface DesignDao {
 	public DesignVo getDesignByDeid(int deid);
 	public int countDesignByStart_deid(int start_deid);
 	public List<DesignAdminVo> getDesignListPl(int uid);
+	public void updateRowComment(DesignVo dv);
 }
