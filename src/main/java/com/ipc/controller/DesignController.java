@@ -73,10 +73,11 @@ public class DesignController {
 		else
 			return "redirect:/login";
 	}
-	@RequestMapping(value="inputCommentDesign",method=RequestMethod.POST)
-	public String inputCommentDesign(HttpServletRequest request,DesignVo dv){
+	@RequestMapping(value="/inputCommentDesign",method=RequestMethod.POST)
+	public String inputCommentDesign(HttpServletRequest request){
+		System.out.println("Good");
 		userVo currentUser = (userVo) session.getAttribute("currentUser");
-		designService.designInput(request,currentUser,dv);
-		return "user/userMain";
+		designService.designInput(request,currentUser);
+		return "redirect:/userMain";
 	}
 }

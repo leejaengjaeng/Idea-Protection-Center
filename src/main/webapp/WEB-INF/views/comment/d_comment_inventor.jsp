@@ -23,6 +23,7 @@
 	<c:import url="/WEB-INF/views/import/header.jsp" />
 	<form action="/registration/designInput" method="POST" enctype="multipart/form-data" onsubmit="return checkDesign();">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+			<input type="hidden" name="uid" value="${nowDv.getUid()}"><input type="hidden" name="luid" value="${nowDv.getLuid()}"><input type="hidden" name="deid" value="${nowDv.getDeid()}">
 	
 	<div class="wrap_comment">
 		<section> <article class="sub_head">

@@ -43,6 +43,9 @@
 		from user as u join design_patent as d on u.uid=d.uid) as c left join user as u2 on c.luid=u2.uid) group by start_deid)
 	</select>
 	<update id="updateRowComment" parameterType="com.ipc.vo.DesignVo">
-		update design_patent set re_title=#{re_title},re_whereapply={re_whereapply},re_mean=#{re_mean},re_sasi=#{re_sasi},re_front=#{re_front},re_bae=#{re_bae},re_leftside=#{re_leftside},re_rightside=#{re_rightside},re_plane=#{re_plane},re_inside=#{re_inside} where deid=#{deid}
+		update design_patent set re_title=#{re_title},re_whereapply=#{re_whereapply},re_mean=#{re_mean},re_sasi=#{re_sasi},re_front=#{re_front},re_bae=#{re_bae},re_leftside=#{re_leftside},re_rightside=#{re_rightside},re_plane=#{re_plane},re_inside=#{re_inside},d_condition="발명가 수정중" where deid=#{deid}
 	</update>
+	<insert id="insertNewRow" parameterType="com.ipc.vo.DesignVo">
+		insert design_patent(uid,luid) values (#{uid},#{luid})
+	</insert>
 </mapper>

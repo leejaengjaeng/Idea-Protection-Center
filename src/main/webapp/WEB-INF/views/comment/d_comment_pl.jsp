@@ -19,11 +19,11 @@
 </head>
 <body>
 	<c:import url="/WEB-INF/views/import/header.jsp" />
-	<form action="/registration/designInput" method="POST"
+	<form action="/design/inputCommentDesign" method="POST"
 		enctype="multipart/form-data" onsubmit="return checkDesign();">
 		<input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />
-		<input type="hidden" name="uid" value="nowDv.getUid()"><input type="hidden" name="luid" value="nowDv.getLuid()">
+		<input type="hidden" name="uid" value="${nowDv.getUid()}"><input type="hidden" name="luid" value="${nowDv.getLuid()}"><input type="hidden" name="deid" value="${nowDv.getDeid()}">
 		<div class="wrap_comment">
 			<section> <article class="sub_head">
 			<h1>
@@ -65,7 +65,8 @@
 						<span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
 					</div>
 				</div>
-				<textarea class="cmt_de" name="mean" ></textarea>
+				<textarea class="cmt_de" name="re_mean"></textarea>
+				
 			</div>
 			<div class="txt_box">
 				<h2>디자인 시안 첨부*</h2>
