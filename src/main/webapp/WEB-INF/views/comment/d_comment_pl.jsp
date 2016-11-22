@@ -39,6 +39,7 @@
 					disabled
 					placeholder="본인이 창작한 저작물의 이름을 정해 주세요 / 물품명 + 사용용도 or 사용용도 + 적용물품">		
 				<textarea class="cmt_de" name="re_title"></textarea>
+				<textarea class="cmt_de"></textarea>
 			</div>
 			<div class="txt_box">
 				<h2>디자인이 적용된 곳*</h2>
@@ -49,23 +50,16 @@
 					disabled
 					placeholder="본인이 창작한 디자인이 사용되는 품목을 넣어 주시면 됩니다. 예)모니터받침, 모니터 보드">
 				<textarea class="cmt_de" name="re_whereapply"></textarea>
+				<textarea class="cmt_de"></textarea>
 			</div>
 			<div class="txt_box" style="margin-top: 100px;">
 				<h2>디자인의 의미*</h2>
 				<button>작성예시 보기</button>
 				<textarea id="mean" class="disabled" name="re_mean" disabled>${nowDv.getMean()}</textarea>
 				<span style="font-size: 0.8rem; color: rgba(0, 102, 203, 1);">본인이 창작한 디자인의
-					의미를 적어 주시기 바랍니다.</span>
-				<div class="hiding_box">
-					<div class="hiding_box_header">
-						<h3>저작물 명칭</h3>
-						<img src="image/close.png" alt="close" class="close_btn">
-					</div>
-					<div class="hiding_box_content">
-						<span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
-					</div>
-				</div>
+					의미를 적어 주시기 바랍니다.</span>				
 				<textarea class="cmt_de" name="mean" ></textarea>
+				<textarea class="cmt_de"></textarea>
 			</div>
 			<div class="txt_box">
 				<h2>디자인 시안 첨부*</h2>
