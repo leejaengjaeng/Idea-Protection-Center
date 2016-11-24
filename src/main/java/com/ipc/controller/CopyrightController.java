@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ipc.dao.CopyrightDao;
+import com.ipc.dao.CopyrightInfoDao;
 import com.ipc.dao.TypeOfCopyrightDao;
 import com.ipc.dao.UserDao;
+import com.ipc.vo.CopyRightInfoVo;
 import com.ipc.vo.CopyRightVo;
 import com.ipc.vo.userVo;
 
@@ -27,6 +29,8 @@ public class CopyrightController {
 	UserDao userDao;
 	@Autowired
 	CopyrightDao copyrightDao;
+	@Autowired
+	CopyrightInfoDao copyrightInfoDao;
 	
 	@RequestMapping("/showRegPage")
 	public String copyRightShow(Model model)
@@ -52,8 +56,13 @@ public class CopyrightController {
 		cv.setMeaning(meaning);
 		cv.setUid(uid);
 		
-		copyrightDao.addCopyright(cv);
+		CopyRightInfoVo civ = new CopyRightInfoVo();
+		civ.setUid(uid);
+		civ.setTitle(title);
 
+		copyrightDao.addCopyright(cv);
+		copyrightInfoDao.addCopyrightInfo(civ);
+		
 		return "redirect:/";
 	}
 	

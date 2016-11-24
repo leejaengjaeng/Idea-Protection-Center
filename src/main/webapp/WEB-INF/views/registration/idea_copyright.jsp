@@ -35,9 +35,8 @@ var submitFunc = function()
 		</article> 
 		<article>
 		<form action="/copyRight/regCopyright" method="POST" enctype="multipart/form-data">
-		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
-		<input type="hidden" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}" />				
-				
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
+			<input type="hidden" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}" />				
 <!-- 명칭 -->
 			<div class="txt_box">
 				<h2>저작물 명칭</h2>

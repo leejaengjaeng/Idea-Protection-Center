@@ -58,6 +58,7 @@ var now = 0;
             start();
          }
       }
+      
       function notready(){
          alert("준비중 입니다.");
       }

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ipc.dao.CopyrightDao">
 	<insert id="addCopyright" parameterType="com.ipc.vo.CopyRightVo">
-		insert into reg_copyright(uid,title,field,type,meaning) values (#{uid},#{title},#{field},#{type},#{meaning})
+		insert into reg_copyright(cid,uid,title,field,type,meaning) values(#{cid},#{uid},#{title},#{field},#{type},#{meaning})
 	</insert>
 	
 </mapper>
