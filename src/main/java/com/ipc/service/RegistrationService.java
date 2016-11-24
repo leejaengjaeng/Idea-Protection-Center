@@ -127,13 +127,13 @@ public class RegistrationService {
 		dv.setTitle(request.getParameter("title"));
 		dv.setWhereapply(request.getParameter("whereapply"));
 		dv.setMean(request.getParameter("mean"));
-		dv.setSasi("/resources/uploadimgs/design/sasi/sasi"+file_name_default+CreateFileUtils.getFileType(sasiFile.getOriginalFilename()));
-		dv.setFront("/resources/uploadimgs/design/front/front"+file_name_default+CreateFileUtils.getFileType(frontFile.getOriginalFilename()));
-		dv.setBae("/resources/uploadimgs/design/bae/bae"+file_name_default+CreateFileUtils.getFileType(baeFile.getOriginalFilename()));
-		dv.setLeft_side("/resources/uploadimgs/design/left_side/left_side"+file_name_default+CreateFileUtils.getFileType(left_sideFile.getOriginalFilename()));
-		dv.setRight_side("/resources/uploadimgs/design/right_side/right_side"+file_name_default+CreateFileUtils.getFileType(right_sideFile.getOriginalFilename()));
-		dv.setPlane("/resources/uploadimgs/design/plane/plane"+file_name_default+CreateFileUtils.getFileType(planeFile.getOriginalFilename()));
-		dv.setInside("/resources/uploadimgs/design/inside/inside"+file_name_default+CreateFileUtils.getFileType(insideFile.getOriginalFilename()));
+		dv.setSasi("/resources/uploadimgs/design/sasi/sasi"+file_name_default+"."+CreateFileUtils.getFileType(sasiFile.getOriginalFilename()));
+		dv.setFront("/resources/uploadimgs/design/front/front"+file_name_default+"."+CreateFileUtils.getFileType(frontFile.getOriginalFilename()));
+		dv.setBae("/resources/uploadimgs/design/bae/bae"+file_name_default+"."+CreateFileUtils.getFileType(baeFile.getOriginalFilename()));
+		dv.setLeft_side("/resources/uploadimgs/design/left_side/left_side"+file_name_default+"."+CreateFileUtils.getFileType(left_sideFile.getOriginalFilename()));
+		dv.setRight_side("/resources/uploadimgs/design/right_side/right_side"+file_name_default+"."+CreateFileUtils.getFileType(right_sideFile.getOriginalFilename()));
+		dv.setPlane("/resources/uploadimgs/design/plane/plane"+file_name_default+"."+CreateFileUtils.getFileType(planeFile.getOriginalFilename()));
+		dv.setInside("/resources/uploadimgs/design/inside/inside"+file_name_default+"."+CreateFileUtils.getFileType(insideFile.getOriginalFilename()));
 		
 		
 		designmapper.insertFirstDesign(dv);

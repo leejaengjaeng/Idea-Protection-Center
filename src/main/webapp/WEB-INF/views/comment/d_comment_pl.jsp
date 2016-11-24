@@ -9,13 +9,13 @@
 <meta name="_csrf" content="${_csrf.token}" />
 <meta name="_csrf_header" content="${_csrf.headerName}" />
 <script src="/resources/common/js/jquery-3.1.0.min.js"></script>
-<meta name="_csrf" content="${_csrf.token}" />
-<meta name="_csrf_header" content="${_csrf.headerName}" />
+<script src="/resources/common/js/design_comment.js"></script>
+
 <link rel="stylesheet" href="/resources/common/css/index.css">
 <link rel="stylesheet" href="/resources/common/css/style.css">
 <link rel="stylesheet" href="/resources/common/css/design.css">
 <link rel="icon" href="/resources/image/pavicon.png">
-<title>디자인등록</title>
+<title>디자인권 수정내역</title>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/import/header.jsp" />
@@ -23,58 +23,43 @@
 		enctype="multipart/form-data" onsubmit="return checkDesign();">
 		<input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />
-
+		<input type="hidden" name="uid" value="nowDv.getUid()"><input type="hidden" name="luid" value="nowDv.getLuid()">
 		<div class="wrap_comment">
 			<section> <article class="sub_head">
 			<h1>
-				<b style="color: rgba(1, 102, 156, 1);">디자인권</b>출원
+				<b style="color: rgba(1, 102, 156, 1);">디자인권</b>수정
 			</h1>
 			</article> <article>
 			<div class="txt_box">
 				<h2>디자인 명칭*</h2>
 				<button>작성예시 보기</button>
 				<input type="text" id="title" name="title"
-					placeholder="본인이 창작한 저작물의 이름을 정해 주세요 / 물품명 + 사용용도 or 사용용도 + 적용물품">
-				<div class="hiding_box">
-					<div class="hiding_box_header">
-						<h3>저작물 명칭</h3>
-						<img src="image/close.png" alt="close" class="close_btn">
-					</div>
-					<div class="hiding_box_content">
-						<span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
-					</div>
-				</div>
+					value="${nowDv.getTitle()}"
+					class="disabled"
+					disabled
+					placeholder="본인이 창작한 저작물의 이름을 정해 주세요 / 물품명 + 사용용도 or 사용용도 + 적용물품">		
+				<textarea class="cmt_de" name="re_title"></textarea>
+				<textarea class="cmt_de"></textarea>
 			</div>
 			<div class="txt_box">
 				<h2>디자인이 적용된 곳*</h2>
 				<button>작성예시 보기</button>
 				<input type="text" id="whereapply" name="whereapply"
+					value="${nowDv.getWhereapply()}"
+					class="disabled"
+					disabled
 					placeholder="본인이 창작한 디자인이 사용되는 품목을 넣어 주시면 됩니다. 예)모니터받침, 모니터 보드">
-				<div class="hiding_box">
-					<div class="hiding_box_header">
-						<h3>저작물 명칭</h3>
-						<img src="image/close.png" alt="close" class="close_btn">
-					</div>
-					<div class="hiding_box_content">
-						<span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
-					</div>
-				</div>
+				<textarea class="cmt_de" name="re_whereapply"></textarea>
+				<textarea class="cmt_de"></textarea>
 			</div>
 			<div class="txt_box" style="margin-top: 100px;">
 				<h2>디자인의 의미*</h2>
 				<button>작성예시 보기</button>
-				<textarea name="mean" id="mean"></textarea>
-				<span style="font-size: 0.8rem; color: #45d7c2;">본인이 창작한 디자인의
-					의미를 적어 주시기 바랍니다.</span>
-				<div class="hiding_box">
-					<div class="hiding_box_header">
-						<h3>저작물 명칭</h3>
-						<img src="image/close.png" alt="close" class="close_btn">
-					</div>
-					<div class="hiding_box_content">
-						<span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
-					</div>
-				</div>
+				<textarea id="mean" class="disabled" name="re_mean" disabled>${nowDv.getMean()}</textarea>
+				<span style="font-size: 0.8rem; color: rgba(0, 102, 203, 1);">본인이 창작한 디자인의
+					의미를 적어 주시기 바랍니다.</span>				
+				<textarea class="cmt_de" name="mean" ></textarea>
+				<textarea class="cmt_de"></textarea>
 			</div>
 			<div class="txt_box">
 				<h2>디자인 시안 첨부*</h2>
@@ -99,63 +84,64 @@
 			</div>
 			<div class="tot">
 				<div class="txt_box" id="exe1">
-					<span>작성예시</span>
+					<span>사시도</span>
 					<div class="eximg" style="padding: 10px;">
-						<div style="background-image: url(/resources/image/ex1.jpg);"></div>
+						<div
+							style="background-image: url(${nowDv.getSasi()}); "></div>
 					</div>
-					<img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다."
-						id="blah1">
+					<!-- <img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다." id="blah1"> -->
+					<textarea class="cmt_img" name="re_sasi"> </textarea>
 				</div>
 				<div class="txt_box" id="exe2">
-					<span>작성예시</span>
+					<span>정면도</span>
 					<div class="eximg">
-						<div style="background-image: url(/resources/image/ex2.jpg);"></div>
+						<div style="background-image: url(${nowDv.getFront()});"></div>
 					</div>
-					<img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다."
-						id="blah2">
+					<!-- <img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다." id="blah2"> -->
+					<textarea class="cmt_img" name="re_front"> </textarea>
 				</div>
 				<div class="txt_box" id="exe3">
-					<span>작성예시</span>
+					<span>배면도</span>
 					<div class="eximg">
-						<div style="background-image: url(/resources/image/ex3.jpg);"></div>
+						<div style="background-image: url(${nowDv.getBae()}); "></div>
 					</div>
-					<img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다."
-						id="blah3">
+					<!-- <img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다." id="blah3"> -->
+					<textarea class="cmt_img" name="re_bae"> </textarea>
 				</div>
 				<div class="txt_box" id="exe4">
-					<span>작성예시</span>
+					<span>좌측면도</span>
 					<div class="eximg">
-						<div style="background-image: url(/resources/image/ex4.jpg);"></div>
+						<div style="background-image: url(${nowDv.getLeft_side()}); "></div>
 					</div>
-					<img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다."
-						id="blah4">
+					<!-- <img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다." id="blah4"> -->
+					<textarea class="cmt_img" name="re_leftside"> </textarea>
 				</div>
 				<div class="txt_box" id="exe5">
-					<span>작성예시</span>
+					<span>우측면도</span>
 					<div class="eximg">
-						<div style="background-image: url(/resources/image/ex5.jpg);"></div>
+						<div style="background-image: url(${nowDv.getRight_side()}); "></div>
 					</div>
-					<img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다."
-						id="blah5">
+					<!-- <img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다." id="blah5"> -->
+					<textarea class="cmt_img" name="re_rightside"> </textarea>
 				</div>
 				<div class="txt_box" id="exe6">
-					<span>작성예시</span>
+					<span>평면도</span>
 					<div class="eximg">
-						<div style="background-image: url(/resources/image/ex6.jpg);"></div>
+						<div style="background-image: url(${nowDv.getPlane()}); "></div>
 					</div>
-					<img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다."
-						id="blah6">
+					<!-- <img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다." id="blah6"> -->
+					<textarea class="cmt_img" name="re_plane"> </textarea>
 				</div>
 				<div class="txt_box" id="exe7">
-					<span>작성예시</span>
+					<span>저면도</span>
 					<div class="eximg">
-						<div style="background-image: url(/resources/image/ex7.jpg);"></div>
+						<div style="background-image: url(${nowDv.getInside()}); "></div>
 					</div>
-					<img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다."
-						id="blah7">
+					<!-- <img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다." id="blah7"> -->
+					<textarea class="cmt_img" name="re_inside"> </textarea>
 				</div>
 			</div>
-			<div class="txt_box">
+			<!-- <div class="txt_box">
 				<table>
 					<tr>
 						<td>사시도*</td>
@@ -228,10 +214,10 @@
 						</td>
 					</tr>
 				</table>
-			</div>
+			</div> -->
 			<div id="fin">
 				<button>임시저장</button>
-				<input type="submit" value="등록하기">
+				<input type="submit" value="등록하기" class="add_design">
 			</div>
 			</article> </section>
 		</div>

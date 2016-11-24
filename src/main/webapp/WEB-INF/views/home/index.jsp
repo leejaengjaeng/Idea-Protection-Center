@@ -68,7 +68,7 @@
                   </div>
                   <img src="/resources/image/index_patent_2.jpg">
                </div>
-               <div class="brand" onclick="notready();">                  
+               <div class="brand"  onclick="location.href='/design'">                  
                   <div class="abb">
                      <span style="font-size:26px; display:inline-block; margin-top:10px;">
                         <b>디자인권</b> 출원<br>                        

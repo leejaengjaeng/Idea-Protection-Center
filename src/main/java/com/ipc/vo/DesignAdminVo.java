@@ -7,8 +7,22 @@ public class DesignAdminVo {
 	String userEmail;
 	String title;
 	String d_condition;
+	String apply_date;
+	String pre_apply_date;
 	int deid;
 	
+	public String getApply_date() {
+		return apply_date;
+	}
+	public void setApply_date(String apply_date) {
+		this.apply_date = apply_date;
+	}
+	public String getPre_apply_date() {
+		return pre_apply_date;
+	}
+	public void setPre_apply_date(String pre_apply_date) {
+		this.pre_apply_date = pre_apply_date;
+	}
 	public int getDeid() {
 		return deid;
 	}

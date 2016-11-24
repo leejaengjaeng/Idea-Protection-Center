@@ -8,10 +8,41 @@
 		update design_patent set start_deid=#{deid} where deid=#{deid}
 	</update>
 	<select id="getDesignListAdmin" resultType="com.ipc.vo.DesignAdminVo">
-		select c.start_deid ,c.id as userID,c.name as userName, u2.name as patentName,c.email as userEmail,c.title ,c.d_condition ,c.deid 
-FROM ((select u.id ,u.name ,u.email,d.title ,d.mean,d.luid ,d.d_condition ,d.deid ,d.start_deid 
+		select c.start_deid ,c.id as userID,c.name as userName, u2.name as patentName,c.email as userEmail,c.title ,c.d_condition ,c.deid ,c.pre_apply_date,c.apply_date
+		FROM ((select u.id ,u.name ,u.email,d.title ,d.mean,d.luid ,d.d_condition ,d.deid ,d.start_deid ,d.apply_date,d.pre_apply_date
 		from user as u join design_patent as d on u.uid=d.uid) as c left join user as u2 on c.luid=u2.uid)
-where deid IN (select max(deid)  FROM ((select u.id ,u.name ,u.email,d.title ,d.mean,d.luid ,d.d_condition ,d.deid ,d.start_deid 
+		where deid IN (select max(deid)  FROM ((select u.id ,u.name ,u.email,d.title ,d.mean,d.luid ,d.d_condition ,d.deid ,d.start_deid 
 		from user as u join design_patent as d on u.uid=d.uid) as c left join user as u2 on c.luid=u2.uid) group by start_deid)
 	</select>
+	<update id="updatePatent" parameterType="Hashmap">
+		update design_patent set luid=#{uid} where deid=#{deid}
+	</update>
+	<select id="getDesignListIn" parameterType="Integer" resultType="com.ipc.vo.DesignAdminVo">
+		select c.start_deid ,c.id as userID,c.name as userName, u2.name as patentName,c.email as userEmail,c.title ,c.d_condition ,c.deid,c.pre_apply_date,c.apply_date
+		FROM ((select u.id ,u.name ,u.email,d.title ,d.mean,d.luid ,d.d_condition ,d.deid ,d.start_deid ,d.apply_date,d.pre_apply_date
+		from user as u join design_patent as d on u.uid=d.uid AND u.uid=#{uid}) as c left join user as u2 on c.luid=u2.uid)
+		where deid IN (select max(deid)  FROM ((select u.id ,u.name ,u.email,d.title ,d.mean,d.luid ,d.d_condition ,d.deid ,d.start_deid 
+		from user as u join design_patent as d on u.uid=d.uid) as c left join user as u2 on c.luid=u2.uid) group by start_deid)
+	</select>
+	<select id="getDesignByDeid" parameterType="Integer" resultType="com.ipc.vo.DesignVo">
+		select deid,title,whereapply,mean,sasi,front,bae,left_side,right_side,plane,inside,iscomplete,start_deid,prev_deid,re_title,re_whereapply,re_mean,re_sasi,re_front,re_bae,re_leftside,re_rightside,re_plane,re_inside,apply_date,pre_apply_date,uid,luid,d_condition
+		from design_patent
+		where deid=#{deid}
+	</select>
+	<select id="getStart_deid" parameterType="Integer" resultType="Integer">
+		select start_deid from design_patent where deid=#{deid}
+	</select>
+	<select id="countDesignByStart_deid" parameterType="Integer" resultType="Integer">
+		select count(deid) from design_patent where start_deid=#{start_deid}
+	</select>
+	<select id="getDesignListPl" parameterType="Integer" resultType="com.ipc.vo.DesignAdminVo">
+		select c.start_deid ,c.id as userID,c.name as userName, u2.name as patentName,c.email as userEmail,c.title ,c.d_condition ,c.deid,c.pre_apply_date,c.apply_date
+		FROM ((select u.id ,u.name ,u.email,d.title ,d.mean,d.luid ,d.d_condition ,d.deid ,d.start_deid ,d.apply_date,d.pre_apply_date
+		from user as u join design_patent as d on u.uid=d.uid AND d.luid=#{uid}) as c left join user as u2 on c.luid=u2.uid)
+		where deid IN (select max(deid)  FROM ((select u.id ,u.name ,u.email,d.title ,d.mean,d.luid ,d.d_condition ,d.deid ,d.start_deid 
+		from user as u join design_patent as d on u.uid=d.uid) as c left join user as u2 on c.luid=u2.uid) group by start_deid)
+	</select>
+	<update id="updateRowComment" parameterType="com.ipc.vo.DesignVo">
+		update design_patent set re_title=#{re_title},re_whereapply={re_whereapply},re_mean=#{re_mean},re_sasi=#{re_sasi},re_front=#{re_front},re_bae=#{re_bae},re_leftside=#{re_leftside},re_rightside=#{re_rightside},re_plane=#{re_plane},re_inside=#{re_inside} where deid=#{deid}
+	</update>
 </mapper>
