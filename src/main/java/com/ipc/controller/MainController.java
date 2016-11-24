@@ -199,5 +199,13 @@ public class MainController {
 	public String costinfo(){
 		return "info/costinfo";
 	}
+	@RequestMapping("/designcmt/inventor")
+	public String design_cmt_inventor(){
+		return "comment/copy_comment_inventor";
+	}
+	@RequestMapping("/designcmt/pl")
+	public String design_cmt_pl(){
+		return "comment/copy_comment_pl";
+	}
 }
 	
