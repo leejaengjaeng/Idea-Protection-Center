@@ -1261,3 +1261,25 @@ body {
 #wrap_form a {
   text-decoration: none;
 }
+.btx {
+  width: 150px;
+  height: 35px;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  margin-left: 30px;
+  color: #fff;
+  border-radius: 15px;
+  border: none;
+}
+.pat_btn {
+  background: #274397;
+}
+.design_btn {
+  background: #00ccfe;
+}
+.copy_btn {
+  background: #45d7c2;
+}
+.brand_btn {
+  background: #0066cb;
+}

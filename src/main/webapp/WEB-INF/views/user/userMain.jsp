@@ -143,8 +143,12 @@ $(document).ready(function()
                 	</table>
                 </div>               
             </section>
-            <div id="cont_header">
-                <h2>아이디어 진행내역</h2>
+            <button class="pat_btn btx">특허 진행내역</button>
+            <button class="design_btn btx">디자인권 진행내역</button>
+            <button class="copy_btn btx">저작권 진행내역</button>
+            <button class="brand_btn btx">상표권 진행내역</button>
+            <div id="cont_header" class="patent" style="margin-top:120px;">
+                <h2>특허 진행내역</h2>
             </div>
             <div id="cont_table">
                 
@@ -173,7 +177,7 @@ $(document).ready(function()
                 </ol> -->
                 <c:choose>
                 	<c:when test="${isLawyer eq '0'}">
-                		<table style="margin-top:50px;">
+                		<table style="margin-top:50px;" class="patent">
 		                    <tr> 		                        
 		                        <th>등록날짜</th>
 		                        <th>분류</th>
@@ -231,10 +235,10 @@ $(document).ready(function()
 								</tr>
 							</c:forEach>
 		                </table>
-		                <div id="cont_header">
+		                <div id="cont_header" class="design">
                 			<h2>디자인권 진행내역</h2>
             			</div>
-		                <table style="margin-top:50px;">
+		                <table style="margin-top:50px;" class="design">
 		                    <tr> 		                        
 		                       
 		                        <th>제목</th>
@@ -288,10 +292,126 @@ $(document).ready(function()
 			                        
 								</tr>
 							</c:forEach>
-		                </table>                              
-                	</c:when>
+		                </table>
+		                <!-- 여기부터 수정 부탁드립니당 -->
+		                <div id="cont_header" class="copyright">
+                			<h2>저작권 진행내역</h2>
+            			</div>
+		                <table style="margin-top:50px;" class="copyright">
+		                    <tr> 		                        
+		                       
+		                        <th>제목</th>
+		                        <th>상태</th>
+		                        <th>지정변리사</th>
+		                        <th>가출원일</th>
+		                        <th>출원일</th>
+		                        <th>비고</th>
+		                    </tr>
+		                   	<c:forEach var="design" items="${designList}" varStatus="status">
+								<tr onclick="location.href='/design/detail/${design.getDeid()}'">
+									<input type="hidden" value="${design.getDeid()}"/>								
+			                        <td><p>${design.getTitle()}</p></td>
+			                        <td><p>${design.getD_condition()}</p></td>
+			                        
+			                       <c:choose>
+			                        	<c:when test="${design.getPatentName() eq null}">
+			                        		<td><p>아직 매칭되지 않았습니다.</p></td>
+			                        	</c:when>
+			                        	<c:otherwise>
+			                        		<td><p>${design.getPatentName()}변리사님</p></td>
+			                        	</c:otherwise>
+			                        </c:choose>
+			                        <td><p>${design.getPre_apply_date()}</p></td>
+			                        <td><p>${design.getApply_date()}</p></td>
+			                        <c:choose>
+				                        <c:when test="${design.getD_condition() eq '출원완료' }">
+				                        	<c:choose>
+				                	        	<c:when test="${currentUser.getRole()=='ROLE_INVENTOR'}">
+				                    	    		<td><button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;" class="btn_chul" onclick="location.href='/getDoc/${design.getDeid()}'">출원서 다운로드</button></td>
+				                        		</c:when>
+				                        		<c:otherwise>
+				                        			<td>-</td>
+				                        		</c:otherwise>
+				                        	</c:choose>
+				                        </c:when>
+				                        <c:when test="${design.getD_condition() eq '결제대기중' }">
+				                        	<c:choose>
+				                	        	<c:when test="${currentUser.getRole()=='ROLE_INVENTOR'}">
+				                    	    		<td><button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;" class="btn_chul">결제하기</button></td>
+				                        		</c:when>
+				                        		<c:otherwise>
+				                        			<td>-</td>
+				                        		</c:otherwise>
+				                        	</c:choose>
+				                        </c:when>
+				                        <c:otherwise>
+			                        		<td>-</td>
+			                        	</c:otherwise>
+			                        </c:choose>			                        
+								</tr>
+							</c:forEach>
+		                </table>   
+		                <div id="cont_header" class="brand">
+                			<h2>상표권 진행내역</h2>
+            			</div>
+		                <table style="margin-top:50px;" class="brand"> 
+		                    <tr> 		                        
+		                       
+		                        <th>제목</th>
+		                        <th>상태</th>
+		                        <th>지정변리사</th>
+		                        <th>가출원일</th>
+		                        <th>출원일</th>
+		                        <th>비고</th>
+		                    </tr>
+		                   	<c:forEach var="design" items="${designList}" varStatus="status">
+								<tr onclick="location.href='/design/detail/${design.getDeid()}'">
+									<input type="hidden" value="${design.getDeid()}"/>								
+			                        <td><p>${design.getTitle()}</p></td>
+			                        <td><p>${design.getD_condition()}</p></td>
+			                        
+			                       <c:choose>
+			                        	<c:when test="${design.getPatentName() eq null}">
+			                        		<td><p>아직 매칭되지 않았습니다.</p></td>
+			                        	</c:when>
+			                        	<c:otherwise>
+			                        		<td><p>${design.getPatentName()}변리사님</p></td>
+			                        	</c:otherwise>
+			                        </c:choose>
+			                        <td><p>${design.getPre_apply_date()}</p></td>
+			                        <td><p>${design.getApply_date()}</p></td>
+			                        <c:choose>
+				                        <c:when test="${design.getD_condition() eq '출원완료' }">
+				                        	<c:choose>
+				                	        	<c:when test="${currentUser.getRole()=='ROLE_INVENTOR'}">
+				                    	    		<td><button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;" class="btn_chul" onclick="location.href='/getDoc/${design.getDeid()}'">출원서 다운로드</button></td>
+				                        		</c:when>
+				                        		<c:otherwise>
+				                        			<td>-</td>
+				                        		</c:otherwise>
+				                        	</c:choose>
+				                        </c:when>
+				                        <c:when test="${design.getD_condition() eq '결제대기중' }">
+				                        	<c:choose>
+				                	        	<c:when test="${currentUser.getRole()=='ROLE_INVENTOR'}">
+				                    	    		<td><button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;" class="btn_chul">결제하기</button></td>
+				                        		</c:when>
+				                        		<c:otherwise>
+				                        			<td>-</td>
+				                        		</c:otherwise>
+				                        	</c:choose>
+				                        </c:when>
+				                        <c:otherwise>
+			                        		<td>-</td>
+			                        	</c:otherwise>
+			                        </c:choose>
+			                        
+								</tr>
+							</c:forEach>
+		                </table>   		                                           
+                	</c:when>                	                	                           
                 	<c:otherwise>
-                		<table style="margin-top:50px;">
+                		<table style="margin-top:50px;" class="patent">
 		                    <tr> 
 		                        <th>번호</th>
 		                        <th>등록날짜</th>
@@ -343,10 +463,10 @@ $(document).ready(function()
 								</tr>
 							</c:forEach>
 		                </table>
-		                <div id="cont_header">
+		                <div id="cont_header" class="design">
                 			<h2>디자인권 진행내역</h2>
             			</div>
-		                <table style="margin-top:50px;">
+		                <table style="margin-top:50px;" class="design">
 		                    <tr> 		                        
 		                       
 		                        <th>제목</th>
@@ -397,10 +517,124 @@ $(document).ready(function()
 			                        		<td>-</td>
 			                        	</c:otherwise>
 			                        </c:choose>
-			                        
 								</tr>
-							</c:forEach>
-		                </table>                   
+							</c:forEach>							
+		                </table>        
+		                <!-- 여기부터 수정 부탁드립니당 -->
+		                <div id="cont_header" class="copyright">
+                			<h2>저작권 진행내역</h2>
+            			</div>
+		                <table style="margin-top:50px;" class="copyright">
+		                    <tr> 		                        
+		                       
+		                        <th>제목</th>
+		                        <th>상태</th>
+		                        <th>지정변리사</th>
+		                        <th>가출원일</th>
+		                        <th>출원일</th>
+		                        <th>비고</th>
+		                    </tr>
+		                   	<c:forEach var="design" items="${designList}" varStatus="status">
+								<tr onclick="location.href='/design/detail/${design.getDeid()}'">
+									<input type="hidden" value="${design.getDeid()}"/>								
+			                        <td><p>${design.getTitle()}</p></td>
+			                        <td><p>${design.getD_condition()}</p></td>
+			                        
+			                       <c:choose>
+			                        	<c:when test="${design.getPatentName() eq null}">
+			                        		<td><p>아직 매칭되지 않았습니다.</p></td>
+			                        	</c:when>
+			                        	<c:otherwise>
+			                        		<td><p>${design.getPatentName()}변리사님</p></td>
+			                        	</c:otherwise>
+			                        </c:choose>
+			                        <td><p>${design.getPre_apply_date()}</p></td>
+			                        <td><p>${design.getApply_date()}</p></td>
+			                        <c:choose>
+				                        <c:when test="${design.getD_condition() eq '출원완료' }">
+				                        	<c:choose>
+				                	        	<c:when test="${currentUser.getRole()=='ROLE_INVENTOR'}">
+				                    	    		<td><button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;" class="btn_chul" onclick="location.href='/getDoc/${design.getDeid()}'">출원서 다운로드</button></td>
+				                        		</c:when>
+				                        		<c:otherwise>
+				                        			<td>-</td>
+				                        		</c:otherwise>
+				                        	</c:choose>
+				                        </c:when>
+				                        <c:when test="${design.getD_condition() eq '결제대기중' }">
+				                        	<c:choose>
+				                	        	<c:when test="${currentUser.getRole()=='ROLE_INVENTOR'}">
+				                    	    		<td><button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;" class="btn_chul">결제하기</button></td>
+				                        		</c:when>
+				                        		<c:otherwise>
+				                        			<td>-</td>
+				                        		</c:otherwise>
+				                        	</c:choose>
+				                        </c:when>
+				                        <c:otherwise>
+			                        		<td>-</td>
+			                        	</c:otherwise>
+			                        </c:choose>
+								</tr>
+							</c:forEach>							
+		                </table>         
+		                <div id="cont_header" class="brand">
+                			<h2>상표권 진행내역</h2>
+            			</div>
+		                <table style="margin-top:50px;" class="brand">
+		                    <tr> 		                        
+		                       
+		                        <th>제목</th>
+		                        <th>상태</th>
+		                        <th>지정변리사</th>
+		                        <th>가출원일</th>
+		                        <th>출원일</th>
+		                        <th>비고</th>
+		                    </tr>
+		                   	<c:forEach var="design" items="${designList}" varStatus="status">
+								<tr onclick="location.href='/design/detail/${design.getDeid()}'">
+									<input type="hidden" value="${design.getDeid()}"/>								
+			                        <td><p>${design.getTitle()}</p></td>
+			                        <td><p>${design.getD_condition()}</p></td>
+			                        
+			                       <c:choose>
+			                        	<c:when test="${design.getPatentName() eq null}">
+			                        		<td><p>아직 매칭되지 않았습니다.</p></td>
+			                        	</c:when>
+			                        	<c:otherwise>
+			                        		<td><p>${design.getPatentName()}변리사님</p></td>
+			                        	</c:otherwise>
+			                        </c:choose>
+			                        <td><p>${design.getPre_apply_date()}</p></td>
+			                        <td><p>${design.getApply_date()}</p></td>
+			                        <c:choose>
+				                        <c:when test="${design.getD_condition() eq '출원완료' }">
+				                        	<c:choose>
+				                	        	<c:when test="${currentUser.getRole()=='ROLE_INVENTOR'}">
+				                    	    		<td><button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;" class="btn_chul" onclick="location.href='/getDoc/${design.getDeid()}'">출원서 다운로드</button></td>
+				                        		</c:when>
+				                        		<c:otherwise>
+				                        			<td>-</td>
+				                        		</c:otherwise>
+				                        	</c:choose>
+				                        </c:when>
+				                        <c:when test="${design.getD_condition() eq '결제대기중' }">
+				                        	<c:choose>
+				                	        	<c:when test="${currentUser.getRole()=='ROLE_INVENTOR'}">
+				                    	    		<td><button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;" class="btn_chul">결제하기</button></td>
+				                        		</c:when>
+				                        		<c:otherwise>
+				                        			<td>-</td>
+				                        		</c:otherwise>
+				                        	</c:choose>
+				                        </c:when>
+				                        <c:otherwise>
+			                        		<td>-</td>
+			                        	</c:otherwise>
+			                        </c:choose>
+								</tr>
+							</c:forEach>							
+		                </table>                  
                 	</c:otherwise>
                 </c:choose>       
                 <div id="notice_title">
@@ -467,7 +701,36 @@ function getApplyDoc(start_rid){
 		          alert('실패하였습니다.')
 		     	}
 		   });   
-	}
+	}	
+	$(function(){		
+		$(".design").css("display","none");
+		$(".copyright").css("display","none");
+		$(".brand").css("display","none");
+	});
+	$(".pat_btn").click(function(){
+		$(".patent").css("display","table");
+		$(".design").css("display","none");
+		$(".copyright").css("display","none");
+		$(".brand").css("display","none");
+	});
+	$(".design_btn").click(function(){
+		$(".patent").css("display","none");
+		$(".design").css("display","table");
+		$(".copyright").css("display","none");
+		$(".brand").css("display","none");
+	});
+	$(".copy_btn").click(function(){
+		$(".patent").css("display","none");
+		$(".design").css("display","none");
+		$(".copyright").css("display","table");
+		$(".brand").css("display","none");
+	});
+	$(".brand_btn").click(function(){
+		$(".patent").css("display","none");
+		$(".design").css("display","none");
+		$(".copyright").css("display","none");
+		$(".brand").css("display","table");
+	});
 </script>
 </body>
 </html>
