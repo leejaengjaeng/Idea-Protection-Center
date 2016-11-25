@@ -6,4 +6,11 @@
 		insert into main_page_copyright_info(cid,uid,title) values(LAST_INSERT_ID(),#{uid},#{title})
 	</insert>
 	
+	<select id="getCopyrightListInventer" parameterType="Integer" resultType="com.ipc.vo.CopyRightInfoVo">
+		select cid,reg_condition,pre_apply_date,apply_date,registration_date,title,inventor_name,pl_name from main_page_copyright_info where uid = #{uid};
+	</select>
+	
+	<select id="getCopyrightListPl" parameterType="Integer" resultType="com.ipc.vo.CopyRightInfoVo">
+		select cid,reg_condition,pre_apply_date,apply_date,registration_date,title,inventor_name,pl_name from main_page_copyright_info where lid = #{uid};
+	</select>
 </mapper>

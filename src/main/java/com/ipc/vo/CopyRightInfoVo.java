@@ -6,12 +6,26 @@ public class CopyRightInfoVo {
 	int cid;
 	int uid;
 	int lid;
-	int reg_condition;
+	String reg_condition;
 	String pre_apply_date;
 	String apply_date;
 	String registration_date;
 	String title;
+	String inventor_name;
+	String pl_name;
 
+	public String getInventor_name() {
+		return inventor_name;
+	}
+	public void setInventor_name(String inventor_name) {
+		this.inventor_name = inventor_name;
+	}
+	public String getPl_name() {
+		return pl_name;
+	}
+	public void setPl_name(String pl_name) {
+		this.pl_name = pl_name;
+	}
 	public int getMpcid() {
 		return mpcid;
 	}
@@ -36,10 +50,10 @@ public class CopyRightInfoVo {
 	public void setLid(int lid) {
 		this.lid = lid;
 	}
-	public int getReg_condition() {
+	public String getReg_condition() {
 		return reg_condition;
 	}
-	public void setReg_condition(int reg_condition) {
+	public void setReg_condition(String reg_condition) {
 		this.reg_condition = reg_condition;
 	}
 	public String getPre_apply_date() {

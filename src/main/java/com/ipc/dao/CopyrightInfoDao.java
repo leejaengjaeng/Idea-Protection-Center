@@ -16,5 +16,7 @@ import com.ipc.vo.adminNoticeVo;
 @Mapper
 public interface CopyrightInfoDao {
 	public void addCopyrightInfo(CopyRightInfoVo cv);
+	public List getCopyrightListInventer(int uid);
+	public List getCopyrightListPl(int uid);
 	
 }

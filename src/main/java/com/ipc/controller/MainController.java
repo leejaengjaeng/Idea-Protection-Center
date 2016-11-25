@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.ipc.dao.CopyrightInfoDao;
 import com.ipc.dao.DesignDao;
 import com.ipc.dao.MainPageDao;
 import com.ipc.dao.NoticeDao;
@@ -30,6 +31,7 @@ import com.ipc.dao.UserDao;
 import com.ipc.service.MessageService;
 import com.ipc.service.RegistrationService;
 import com.ipc.service.SignUpService;
+import com.ipc.vo.CopyRightInfoVo;
 import com.ipc.vo.DesignAdminVo;
 import com.ipc.vo.IndexVo;
 import com.ipc.vo.RegistrationFileVo;
@@ -60,6 +62,9 @@ public class MainController {
 	RegistrationService rs;
 	@Autowired
 	DesignDao designDao;
+	@Autowired
+	CopyrightInfoDao copyrightInfoDao;
+	
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	
 	private static final String roleAdmin = "ROLE_ADMIN";
@@ -92,34 +97,30 @@ public class MainController {
 			{
 				List<mainPageVo> processList;
 				List<DesignAdminVo> designList;
-				int comIdea=0;
-				int ingIdea=0;
-				model.addAttribute("userVo",userDao.getUserByUid(Integer.toString(currentUser.getUid())));
-				int isLawyer;
+				List<CopyRightInfoVo> copyrightList;
+				int currentUserUid = currentUser.getUid();
+				
 				if(currentUser.getRole().equals(roleInventor))
 				{
-					System.out.println("in");
-					processList = mainPageDao.getMainPageList(currentUser.getUid());	
-					comIdea=regDao.countCompleteIdeaIn(currentUser.getUid());
-					ingIdea=regDao.countIngIdeaIn(currentUser.getUid());
-					designList=designDao.getDesignListIn(currentUser.getUid());
-					model.addAttribute("designList",designList);
+					processList = mainPageDao.getMainPageList(currentUserUid);	
+					designList=designDao.getDesignListIn(currentUserUid);
+					copyrightList = copyrightInfoDao.getCopyrightListInventer(currentUserUid);
 					
+					model.addAttribute("comIdea",regDao.countCompleteIdeaIn(currentUserUid));
+					model.addAttribute("ingIdea",regDao.countIngIdeaIn(currentUserUid));
 					model.addAttribute("MessageList",ms.getMessageList(Integer.toString(currentUser.getUid())));
-					isLawyer=0;
+					model.addAttribute("isLawyer",0);
 				}
 				else if(currentUser.getRole().equals(rolePatientntLawyer))
 				{
-					System.out.println("law");
-					System.out.println("aaasddd");
-					
-					processList = mainPageDao.getPlMainPageList(currentUser.getUid());
-					comIdea=regDao.countCompleteIdeaPl(currentUser.getUid());
-					ingIdea=regDao.countIngIdeaPl(currentUser.getUid());
+					processList = mainPageDao.getPlMainPageList(currentUserUid);
 					designList=designDao.getDesignListPl(currentUser.getUid());
-					model.addAttribute("designList",designList);
+					copyrightList = copyrightInfoDao.getCopyrightListPl(currentUserUid);
+				
+					model.addAttribute("comIdea",regDao.countCompleteIdeaPl(currentUserUid));
+					model.addAttribute("ingIdea",regDao.countIngIdeaPl(currentUserUid));
 					model.addAttribute("MessageList",ms.getMessageListPL(Integer.toString(currentUser.getUid())));
-					isLawyer=1;
+					model.addAttribute("isLawyer",1);
 				}
 				// 발명가나 변리사가 아니면 리다이렉트
 				// If not only Inventor but patientLawyer, Redirecting to root path
@@ -128,10 +129,13 @@ public class MainController {
 					System.out.println("re");
 					return "redirect:/";			
 				}
-				model.addAttribute("comIdea",comIdea);
-				model.addAttribute("ingIdea",ingIdea);
+				
 				model.addAttribute("processList",processList);
-				model.addAttribute("isLawyer",isLawyer);
+				model.addAttribute("processList",processList);
+				model.addAttribute("trademarkList",null);
+				model.addAttribute("designList",designList);
+				model.addAttribute("copyrightList",copyrightList);
+				model.addAttribute("userVo",userDao.getUserByUid(Integer.toString(currentUser.getUid())));
 				return "user/userMain";
 
 			}

@@ -5,4 +5,8 @@
 		insert into reg_copyright(cid,uid,title,field,type,meaning) values(#{cid},#{uid},#{title},#{field},#{type},#{meaning})
 	</insert>
 	
+	<select id="getOneRowByCid" parameterType="Integer" resultType="com.ipc.vo.CopyRightVo">
+		select * from reg_copyright where cid = #{cid};
+	</select>
+	
 </mapper>
