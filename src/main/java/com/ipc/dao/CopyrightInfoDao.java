@@ -14,7 +14,9 @@ import com.ipc.vo.adminListVo;
 import com.ipc.vo.adminNoticeVo;
 
 @Mapper
-public interface CopyrightDao {
-	public void addCopyright(CopyRightVo cv);
-	public CopyRightVo getOneRowByCid(int cid);
+public interface CopyrightInfoDao {
+	public void addCopyrightInfo(CopyRightInfoVo cv);
+	public List getCopyrightListInventer(int uid);
+	public List getCopyrightListPl(int uid);
+	
 }

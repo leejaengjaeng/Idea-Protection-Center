@@ -697,6 +697,9 @@
 				return false;
 			}
 		}
+		$(function(){
+			$(".txt_box>button").attr("type","button");
+		});
 	</script>
 </body>
 </html>

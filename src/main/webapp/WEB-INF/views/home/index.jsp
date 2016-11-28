@@ -60,7 +60,7 @@
                   <img src="/resources/image/patent_apply_benner.jpg">
                   
                </div>
-               <div class="design" onclick="notready();">
+               <div class="design" onclick="location.href='/mark'">
                   <div>
                      <span><b>상표</b> 출원</span><br>
                      <span style="font-size:1.5em;">55,000원</span>
@@ -82,7 +82,7 @@
                      <img src="/resources/image/index_patent_3.jpg">
                   </div>
                </div>
-               <div class="copyright" onclick="notready();">
+               <div class="copyright" onclick="location.href='/copyRight/showRegPage'">
                   <div class="abb">
                      <span style="font-size:26px; display:inline-block; margin-top:10px;">
                         <b>저작권</b> 출원<br>                        

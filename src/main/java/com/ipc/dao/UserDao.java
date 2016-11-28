@@ -16,6 +16,8 @@ public interface UserDao {
 	
 	public int getUidById(String id);
 	
+	public String getNameByUid(int uid);
+	
 	public userVo getUserById(String id);
 	
 	public userVo getUserByUid(String uid);

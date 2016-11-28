@@ -5,7 +5,7 @@ public class CopyRightVo {
 	int cid;
 	int uid;
 	int lid;
-	int iscomplete;
+	int flag;
 	int start_cid;
 	int prev_cid;
 	String title;
@@ -38,11 +38,11 @@ public class CopyRightVo {
 	public void setLid(int lid) {
 		this.lid = lid;
 	}
-	public int getIscomplete() {
-		return iscomplete;
+	public int getFlag() {
+		return flag;
 	}
-	public void setIscomplete(int iscomplete) {
-		this.iscomplete = iscomplete;
+	public void setFlag(int flag) {
+		this.flag = flag;
 	}
 	public int getStart_cid() {
 		return start_cid;

@@ -1,0 +1,77 @@
+#header_benner{
+    display: none !important;
+}
+.sub_head{    
+    margin-top: 100px !important;
+    h1{
+        color: #535353 !important;                
+    }
+    b{
+        &::before{
+            content: "";
+            background: rgba(0, 204, 254, 1) !important;
+        }
+    } 
+}
+.txt_box{
+    width: 100% !important;
+    button{
+        background-color: rgba(0, 204, 254, 1) !important;
+    }
+    input{
+        border: 1px solid #ccc !important;
+        border-radius: 0 !important;
+    }
+    textarea{
+        border: 1px solid #ccc !important;
+        margin-top: 20px !important;
+        border-radius: 0 !important;
+    }
+    .mark_form{
+        width: 100%;
+        float: left;
+        margin-top: 10px;
+        .name_mark{
+            width: 30.3333333% !important;
+            margin-right:4.5% !important;
+            float: left;
+            border-radius: 0;
+            &:last-child{
+                margin-right: 0 !important;
+            }
+        }
+    }   
+    .add_imgs{
+        width: 300px;
+        height: 300px;
+        float: left;
+        background: #f9f9f9;
+        border: 1px solid #ccc;
+        position: relative;
+        margin-top: 10px;
+        img{
+            position: absolute;
+            left:0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+        input[type=file]{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%; 
+            margin: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+    }
+    .logo_cmt{
+        width: 670px !important;
+        float: left;
+        height: 300px !important;
+        margin-left: 30px !important;
+        margin-top: 10px !important;
+    }
+}

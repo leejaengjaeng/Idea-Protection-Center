@@ -25,7 +25,7 @@
 			value="${_csrf.token}" />
 
 		<div class="wrap_comment">
-			<section> <article class="sub_head">
+			<section> <article class="sub_head" style="margin-top:100px;">
 			<h1>
 				<b style="color: rgba(1, 102, 156, 1);">디자인권</b>출원
 			</h1>
@@ -64,7 +64,7 @@
 				<h2>디자인의 의미*</h2>
 				<button>작성예시 보기</button>
 				<textarea name="mean" id="mean"></textarea>
-				<span style="font-size: 0.8rem; color: #45d7c2;">본인이 창작한 디자인의
+				<span style="font-size: 0.8rem; color: rgba(0,102,203,1);">본인이 창작한 디자인의
 					의미를 적어 주시기 바랍니다.</span>
 				<div class="hiding_box">
 					<div class="hiding_box_header">
@@ -518,6 +518,9 @@
 				return false;
 			}
 		}
+		$(function(){
+			$(".txt_box>button").attr("type","button");
+		});
 	</script>
 </body>
 </html>
