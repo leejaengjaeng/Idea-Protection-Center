@@ -60,7 +60,7 @@
                   <img src="/resources/image/patent_apply_benner.jpg">
                   
                </div>
-               <div class="design" onclick="notready();">
+               <div class="design" onclick="location.href='/mark'">
                   <div>
                      <span><b>상표</b> 출원</span><br>
                      <span style="font-size:1.5em;">55,000원</span>

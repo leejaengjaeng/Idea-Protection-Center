@@ -211,5 +211,17 @@ public class MainController {
 	public String design_cmt_pl(){
 		return "comment/copy_comment_pl";
 	}
+	@RequestMapping("/mark")
+	public String mark(){
+		return "registration/idea_mark";
+	}
+	@RequestMapping("/mark_inventor")
+	public String mark_inventor(){
+		return "comment/mark_comment_inventor";
+	}
+	@RequestMapping("/mark_pl")
+	public String mark_pl(){
+		return "comment/mark_comment_pl";
+	}
 }
 	

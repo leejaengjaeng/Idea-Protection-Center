@@ -10,40 +10,36 @@
 }
 .sub_head b::before {
   content: "";
-  background: #45d7c2 !important;
+  background: #00ccfe !important;
 }
 .txt_box {
   width: 100% !important;
 }
 .txt_box button {
-  background-color: #45d7c2 !important;
+  background-color: #00ccfe !important;
 }
 .txt_box input {
   border: 1px solid #ccc !important;
+  border-radius: 0 !important;
 }
 .txt_box textarea {
   border: 1px solid #ccc !important;
   margin-top: 20px !important;
+  border-radius: 0 !important;
 }
-.txt_box #add_btn {
-  width: 100px;
-  height: 30px;
-  background: #ccc;
-  float: left;
-  color: white;
-  margin-left: 10px;
-  padding: 5px;
-  text-align: center;
-}
-.txt_box img {
-  width: 300px;
-  height: 300px;
-  float: left;
-  margin: 0;
-}
-.txt_box .inp_add {
+.txt_box .mark_form {
   width: 100%;
   float: left;
+  margin-top: 10px;
+}
+.txt_box .mark_form .name_mark {
+  width: 30.3333333% !important;
+  margin-right: 4.5% !important;
+  float: left;
+  border-radius: 0;
+}
+.txt_box .mark_form .name_mark:last-child {
+  margin-right: 0 !important;
 }
 .txt_box .add_imgs {
   width: 300px;
@@ -52,6 +48,7 @@
   background: #f9f9f9;
   border: 1px solid #ccc;
   position: relative;
+  margin-top: 10px;
 }
 .txt_box .add_imgs img {
   position: absolute;
@@ -69,4 +66,11 @@
   margin: 0;
   opacity: 0;
   cursor: pointer;
+}
+.txt_box .logo_cmt {
+  width: 670px !important;
+  float: left;
+  height: 300px !important;
+  margin-left: 30px !important;
+  margin-top: 10px !important;
 }

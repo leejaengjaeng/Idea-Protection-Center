@@ -1271,3 +1271,15 @@ body {
   border-radius: 15px;
   border: none;
 }
+.pat_btn {
+  background: #274397;
+}
+.design_btn {
+  background: #0066cb;
+}
+.copy_btn {
+  background: #45d7c2;
+}
+.brand_btn {
+  background: #00ccfe;
+}
