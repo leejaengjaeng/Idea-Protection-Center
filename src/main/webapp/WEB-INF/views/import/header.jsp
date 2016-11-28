@@ -72,6 +72,9 @@
 			 			<li onclick="location.href='/intro_whyideapc'">
 			 				왜 아이디어 보호센터 인가
 			 			</li>
+			 			<li onclick="location.href='/toon'">
+			 				소개 웹툰
+			 			</li>
 			 		</ul>
 			 	</li>
 			 	<li>

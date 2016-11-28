@@ -223,5 +223,9 @@ public class MainController {
 	public String mark_pl(){
 		return "comment/mark_comment_pl";
 	}
+	@RequestMapping("/toon")
+	public String webtoon(){
+		return "sub/webtoon";
+	}
 }
 	
