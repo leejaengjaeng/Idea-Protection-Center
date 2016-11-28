@@ -19,11 +19,14 @@
 </head>
 <body>
 	<c:import url="/WEB-INF/views/import/header.jsp" />
+	<c:forEach var="j" begin="1" end="${count}" step="1">
+		<button class="loadBtn" data-num="${j}">${j}차 수정안</button><br/>
+	</c:forEach>
 	<form action="/design/inputCommentDesign" method="POST"
 		enctype="multipart/form-data" onsubmit="return checkDesign();">
 		<input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />
-		<input type="hidden" name="uid" value="${nowDv.getUid()}"><input type="hidden" name="luid" value="${nowDv.getLuid()}"><input type="hidden" name="deid" value="${nowDv.getDeid()}">
+		<input type="hidden" name="uid" value="${nowDv.getUid()}"><input type="hidden" name="luid" value="${nowDv.getLuid()}"><input type="hidden" id="deid" name="deid" value="${nowDv.getDeid()}">
 		<div class="wrap_comment">
 			<section> <article class="sub_head">
 			<h1>
@@ -33,40 +36,36 @@
 			<div class="txt_box">
 				<h2>디자인 명칭*</h2>
 				<button>작성예시 보기</button>
+				<textarea class="cmt_de disabled first" id="before_re_title" disabled>${prevDv.getRe_title()}</textarea>
 				<input type="text" id="title" name="title"
 					value="${nowDv.getTitle()}"
-					class="disabled"
+					class="disabled second"
 					disabled
 					placeholder="본인이 창작한 저작물의 이름을 정해 주세요 / 물품명 + 사용용도 or 사용용도 + 적용물품">		
-				<textarea class="cmt_de" name="re_title"></textarea>
+				<textarea class="cmt_de disabled third" name="re_title" id="re_title" disabled>${nowDv.getRe_title()}</textarea>
 			</div>
 			<div class="txt_box">
 				<h2>디자인이 적용된 곳*</h2>
 				<button>작성예시 보기</button>
+				<textarea class="cmt_de disabled first" id="before_re_whereapply" disabled>${prevDv.getRe_whereapply()}</textarea>
+				
 				<input type="text" id="whereapply" name="whereapply"
 					value="${nowDv.getWhereapply()}"
-					class="disabled"
+					class="disabled second"
 					disabled
 					placeholder="본인이 창작한 디자인이 사용되는 품목을 넣어 주시면 됩니다. 예)모니터받침, 모니터 보드">
-				<textarea class="cmt_de" name="re_whereapply"></textarea>
+				<textarea class="cmt_de disabled third" name="re_whereapply" id="re_whereapply" disabled>${nowDv.getRe_whereapply()}</textarea>
 			</div>
 			<div class="txt_box" style="margin-top: 100px;">
 				<h2>디자인의 의미*</h2>
 				<button>작성예시 보기</button>
-				<textarea id="mean" class="disabled" name="re_mean" disabled>${nowDv.getMean()}</textarea>
-				<span style="font-size: 0.8rem; color: rgba(0, 102, 203, 1);">본인이 창작한 디자인의
-					의미를 적어 주시기 바랍니다.</span>
-				<div class="hiding_box">
-					<div class="hiding_box_header">
-						<h3>저작물 명칭</h3>
-						<img src="image/close.png" alt="close" class="close_btn">
-					</div>
-					<div class="hiding_box_content">
-						<span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
-					</div>
-				</div>
-				<textarea class="cmt_de" name="re_mean"></textarea>
+				<textarea class="cmt_de disabled first" id="before_re_mean" disabled>${prevDv.getRe_mean()}</textarea>
 				
+				<textarea id="mean" class="disabled second" disabled>${nowDv.getMean()}</textarea>
+				<span style="font-size: 0.8rem; color: rgba(0, 102, 203, 1);">본인이 창작한 디자인의
+
+					의미를 적어 주시기 바랍니다.</span>				
+				<textarea class="cmt_de disabled third" name="re_mean" id="re_mean" disabled>${nowDv.getRe_mean()}</textarea>
 			</div>
 			<div class="txt_box">
 				<h2>디자인 시안 첨부*</h2>
@@ -92,145 +91,348 @@
 			<div class="tot">
 				<div class="txt_box" id="exe1">
 					<span>사시도</span>
-					<div class="eximg" style="padding: 10px;">
-						<div
-							style="background-image: url(${nowDv.getSasi()}); "></div>
+					<textarea class="cmt_img disabled first" id="before_re_sasi" disabled>${prevDv.getRe_sasi()}</textarea>
+					<div class="eximg" style="padding: 10px">
+						<div style="background-image: url(${nowDv.getSasi()}); " id="sasi"></div>
 					</div>
 					<!-- <img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다." id="blah1"> -->
-					<textarea class="cmt_img" name="re_sasi"> </textarea>
+					<textarea class="cmt_img disabled third" name="re_sasi" id="re_sasi" disabled>${nowDv.getRe_sasi()}</textarea>
 				</div>
 				<div class="txt_box" id="exe2">
 					<span>정면도</span>
+					<textarea class="cmt_img disabled first" id="before_re_front" disabled>${prevDv.getRe_front()}</textarea>
 					<div class="eximg">
-						<div style="background-image: url(${nowDv.getFront()});"></div>
+						<div style="background-image: url(${nowDv.getFront()});" id="front"></div>
 					</div>
 					<!-- <img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다." id="blah2"> -->
-					<textarea class="cmt_img" name="re_front"> </textarea>
+					<textarea class="cmt_img disabled third" name="re_front" id="re_front" disabled>${nowDv.getRe_front()}</textarea>
 				</div>
 				<div class="txt_box" id="exe3">
 					<span>배면도</span>
+					<textarea class="cmt_img disabled first" id="before_re_bae" disabled>${prevDv.getRe_bae()}</textarea>
 					<div class="eximg">
-						<div style="background-image: url(${nowDv.getBae()}); "></div>
+						<div style="background-image: url(${nowDv.getBae()}); " id="bae"></div>
 					</div>
 					<!-- <img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다." id="blah3"> -->
-					<textarea class="cmt_img" name="re_bae"> </textarea>
+					<textarea class="cmt_img disabled third" name="re_bae" id="re_bae" disabled>${nowDv.getRe_bae()}</textarea>
 				</div>
 				<div class="txt_box" id="exe4">
 					<span>좌측면도</span>
+					<textarea class="cmt_img disabled first" id="before_re_leftside" disabled>${prevDv.getRe_leftside()}</textarea>
 					<div class="eximg">
-						<div style="background-image: url(${nowDv.getLeft_side()}); "></div>
+						<div style="background-image: url(${nowDv.getLeft_side()}); " id="left_side"></div>
 					</div>
 					<!-- <img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다." id="blah4"> -->
-					<textarea class="cmt_img" name="re_leftside"> </textarea>
+					<textarea class="cmt_img disabled third" name="re_leftside" id="re_leftside" disabled>${nowDv.getRe_leftside()}</textarea>
 				</div>
 				<div class="txt_box" id="exe5">
 					<span>우측면도</span>
+					<textarea class="cmt_img disabled first" id="before_re_rightside" disabled>${prevDv.getRe_rightside()}</textarea>
 					<div class="eximg">
-						<div style="background-image: url(${nowDv.getRight_side()}); "></div>
+						<div style="background-image: url(${nowDv.getRight_side()}); " id="right_side"></div>
 					</div>
 					<!-- <img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다." id="blah5"> -->
-					<textarea class="cmt_img" name="re_rightside"> </textarea>
+					<textarea class="cmt_img disabled third" name="re_rightside" id="re_rightside" disabled>${nowDv.getRe_rightside()}</textarea>
 				</div>
 				<div class="txt_box" id="exe6">
 					<span>평면도</span>
+					<textarea class="cmt_img disabled first" id="before_re_plane" disabled>${prevDv.getRe_plane()}</textarea>
 					<div class="eximg">
-						<div style="background-image: url(${nowDv.getPlane()}); "></div>
+						<div style="background-image: url(${nowDv.getPlane()}); " id="plane"></div>
 					</div>
 					<!-- <img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다." id="blah6"> -->
-					<textarea class="cmt_img" name="re_plane"> </textarea>
+					<textarea class="cmt_img disabled third" name="re_plane" id="re_plane" disabled>${nowDv.getRe_plane()}</textarea>
 				</div>
 				<div class="txt_box" id="exe7">
 					<span>저면도</span>
+					<textarea class="cmt_img disabled first" id="before_re_inside" disabled>${prevDv.getRe_inside()}</textarea>
 					<div class="eximg">
-						<div style="background-image: url(${nowDv.getInside()}); "></div>
+						<div style="background-image: url(${nowDv.getInside()}); " id="inside"></div>
 					</div>
 					<!-- <img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다." id="blah7"> -->
-					<textarea class="cmt_img" name="re_inside"> </textarea>
+					<textarea class="cmt_img disabled third" name="re_inside" id="re_inside" disabled>${nowDv.getRe_inside()}</textarea>
 				</div>
 			</div>
-			<!-- <div class="txt_box">
-				<table>
-					<tr>
-						<td>사시도*</td>
-						<td style="padding-left: 15px;"><input type="file"
-							name="sasi" id="sasi"></td>
-						<td style="padding-left: 10px;"><label for="sasi">첨부하기</label>
-						</td>
-						<td>
-							<button class="btn_del" data-no="1" type="button">삭제하기</button>
-						</td>
-					</tr>
-					<tr>
-						<td>정면도*</td>
-						<td style="padding-left: 15px;"><input type="file"
-							name="front" id="front"></td>
-						<td style="padding-left: 10px;"><label for="front">첨부하기</label>
-						</td>
-						<td>
-							<button class="btn_del" data-no="2" type="button">삭제하기</button>
-						</td>
-					</tr>
-					<tr>
-						<td>배면도*</td>
-						<td style="padding-left: 15px;"><input type="file" name="bae"
-							id="bae"></td>
-						<td style="padding-left: 10px;"><label for="bae">첨부하기</label>
-						</td>
-						<td>
-							<button class="btn_del" data-no="3" type="button">삭제하기</button>
-						</td>
-					</tr>
-					<tr>
-						<td>좌측면도*</td>
-						<td style="padding-left: 15px;"><input type="file"
-							name="left_side" id="left_side"></td>
-						<td style="padding-left: 10px;"><label for="left_side">첨부하기</label>
-						</td>
-						<td>
-							<button class="btn_del" data-no="4" type="button">삭제하기</button>
-						</td>
-					</tr>
-					<tr>
-						<td>우측면도*</td>
-						<td style="padding-left: 15px;"><input type="file"
-							name="right_side" id="right_side"></td>
-						<td style="padding-left: 10px;"><label for="right_side">첨부하기</label>
-						</td>
-						<td>
-							<button class="btn_del" data-no="5" type="button">삭제하기</button>
-						</td>
-					</tr>
-					<tr>
-						<td>평면도*</td>
-						<td style="padding-left: 15px;"><input type="file"
-							name="plane" id="plane"></td>
-						<td style="padding-left: 10px;"><label for="plane">첨부하기</label>
-						</td>
-						<td>
-							<button class="btn_del" data-no="6" type="button">삭제하기</button>
-						</td>
-					</tr>
-					<tr>
-						<td>저면도*</td>
-						<td style="padding-left: 15px;"><input type="file"
-							name="inside" id="inside"></td>
-						<td style="padding-left: 10px;"><label for="inside">첨부하기</label>
-						</td>
-						<td>
-							<button class="btn_del" data-no="7" type="button">삭제하기</button>
-						</td>
-					</tr>
-				</table>
-			</div> -->
+			
 			<div id="fin">
-				<button>임시저장</button>
-				<input type="submit" value="등록하기" class="add_design">
+				
+				<input type="submit" id="submit_btn" value="등록하기" class="add_design">
+				<button type="button" id="gotoApply">출원하기</button>
 			</div>
+			<button type="button" id="gotoDownLoad" style="display:none">다운받기</button>
+			
 			</article> </section>
 		</div>
 	</form>
 	<c:import url="/WEB-INF/views/import/footer.jsp" />
 	<script>
+	$(document).ready(function()
+	{
+		if("${count}"=="1"){
+			$("#before_re_title").css("display","none");
+			$("#before_re_whereapply").css("display","none");
+			$("#before_re_mean").css("display","none");
+			$("#before_re_sasi").css("display","none");
+			$("#before_re_front").css("display","none");
+			$("#before_re_bae").css("display","none");
+			$("#before_re_plane").css("display","none");
+			$("#before_re_inside").css("display","none");
+			$("#before_re_leftside").css("display","none");
+			$("#before_re_rightside").css("display","none");
+		}
+		
+		if("${nowDv.getIscomplete()}"=="0"){
+			$("#re_title").removeClass("disabled");
+			$("#re_title").attr("disabled",false);
+			$("#re_whereapply").removeClass("disabled");
+			$("#re_whereapply").attr("disabled",false);
+			$("#re_mean").removeClass("disabled");
+			$("#re_mean").attr("disabled",false);
+			$("#re_sasi").removeClass("disabled");
+			$("#re_sasi").attr("disabled",false);
+			$("#re_front").removeClass("disabled");
+			$("#re_front").attr("disabled",false);
+			$("#re_bae").removeClass("disabled");
+			$("#re_bae").attr("disabled",false);
+			$("#re_leftside").removeClass("disabled");
+			$("#re_leftside").attr("disabled",false);
+			$("#re_rightside").removeClass("disabled");
+			$("#re_rightside").attr("disabled",false);
+			$("#re_plane").removeClass("disabled");
+			$("#re_plane").attr("disabled",false);
+			$("#re_inside").removeClass("disabled");
+			$("#re_inside").attr("disabled",false);
+		}
+		else if("${nowDv.getIscomplete()}"=="1"){
+			alert("발명가 수정중입니다.");
+			$("#fin").css("display","none");
+		}
+		else if("${nowDv.getIscomplete()}"=="3"){
+			alert("발명가 회원이 서류 업로드 중입니다.");
+			$("#fin").css("display","none");
+		}
+		else if("${nowDv.getIscomplete()}"=="4")
+		{
+			alert("발명가 회원이 서류 업로드를 완료하였습니다. 하단의 다운받기 버튼을 클릭해주세요.");
+			$("#fin").css("display","none");
+			$("#gotoDownLoad").css("display","inline");
+			
+		}
+		$("#gotoDownLoad").click(function(){
+			location.href="/downLoadDoc/Design";
+		});
+		$("#gotoApply").click(function(){
+			                                          
+	        	 alert("확인을 누르시면 출원단계가 진행되어집니다.");               
+	        	var deid= $("#deid").val();
+	        	var csrfToken = $("meta[name='_csrf']").attr("content"); 
+	 			var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+	 			var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
+	 			var data = {};
+	 			
+	 			var headers = {};
+
+	 			data[csrfParameter] = csrfToken;
+	 			headers[csrfHeader] = csrfToken;
+
+	 			 
+	 			 data['deid'] = deid;
+	 			 
+	 			 $.ajax({
+	 			   url : "/design/gotoApply",
+	 			   type:"POST",
+	 			   headers: headers,
+	 			   data : data,
+	 			   success:function(retVal)
+	 			   {
+	 					alert("발명가 회원이 최종확인 후, 서류를 업로드 시키면 나머지 출원 단계가 진행됩니다.");
+	 					location.href="/mainPage";
+	 			   },
+	 			   error: function(request,status,error)
+	 			   {
+	 			       alert('실패하였습니다.')
+	 			       console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	 			   }
+	 			});   
+		});
+		
+		$(".loadBtn").click(function(){
+			var num=$(this).data("num");
+			var deid=$("#deid").val();
+			var csrfToken = $("meta[name='_csrf']").attr("content"); 
+			var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+			var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
+			var data = {};
+			
+			var headers = {};
+
+			data[csrfParameter] = csrfToken;
+			headers[csrfHeader] = csrfToken;
+
+			 data['num'] = num;
+			 data['deid'] = deid;
+			 data['count']="${count}";
+			 $.ajax({
+			   url : "/design/changeDesignPL",
+			   type:"POST",
+			   headers: headers,
+			     data : data,
+			     success:function(retVal)
+			     {
+						
+			    	if(num==1){
+			    		$(".first").css("display","none");
+			    		var cu=retVal.cuVo;
+			     		$("#title").val(cu.title);
+			     		$("#whereapply").val(cu.whereapply);
+			     		$("#mean").val(cu.mean);
+			     		$("#sasi").css("background-image","url("+cu.sasi+")");
+			     		$("#front").css("background-image","url("+cu.front+")");
+			     		$("#bae").css("background-image","url("+cu.bae+")");
+			     		$("#left_side").css("background-image","url("+cu.left_side+")");
+			     		$("#right_side").css("background-image","url("+cu.right_side+")");
+			     		$("#plane").css("background-image","url("+cu.plane+")");
+			     		$("#inside").css("background-image","url("+cu.inside+")");
+			     		
+			     		$("#re_title").val(cu.re_title);
+			     		$("#re_whereapply").val(cu.re_whereapply);
+			     		$("#re_mean").val(cu.re_mean);
+			     		$("#re_sasi").val(cu.re_sasi);
+			     		$("#re_front").val(cu.re_front);
+			     		$("#re_bae").val(cu.re_bae);
+			     		$("#re_leftside").val(cu.re_leftside);
+			     		$("#re_rightside").val(cu.re_rightside);
+			     		$("#re_plane").val(cu.re_plane);
+			     		$("#re_inside").val(cu.re_inside);
+			     		
+			     		$(".third").addClass("disabled");
+			     		$(".third").attr("disabled",true);
+			     		$("#submit_btn").css("display","none");
+			    	}
+			    	else if(num<"${count}"){
+			    		$(".first").css("display","inline");
+			     		var cur=retVal.cuVo;
+			     		var be = retVal.beVo;
+						
+			     		
+			     		$("#title").val(cur.title);
+			     		$("#whereapply").val(cur.whereapply);
+			     		$("#mean").val(cur.mean);
+			     		$("#sasi").css("background-image","url("+cur.sasi+")");
+			     		$("#front").css("background-image","url("+cur.front+")");
+			     		$("#bae").css("background-image","url("+cur.bae+")");
+			     		$("#left_side").css("background-image","url("+cur.left_side+")");
+			     		$("#right_side").css("background-image","url("+cur.right_side+")");
+			     		$("#plane").css("background-image","url("+cur.plane+")");
+			     		$("#inside").css("background-image","url("+cur.inside+")");
+			     		
+			     		$("#re_title").val(cur.re_title);
+			     		$("#re_whereapply").val(cur.re_whereapply);
+			     		$("#re_mean").val(cur.re_mean);
+			     		$("#re_sasi").val(cur.re_sasi);
+			     		$("#re_front").val(cur.re_front);
+			     		$("#re_bae").val(cur.re_bae);
+			     		$("#re_leftside").val(cur.re_leftside);
+			     		$("#re_rightside").val(cur.re_rightside);
+			     		$("#re_plane").val(cur.re_plane);
+			     		$("#re_inside").val(cur.re_inside);
+			     		
+			     		$("#before_re_title").val(be.re_title);
+			     		$("#before_re_whereapply").val(be.re_whereapply);
+			     		$("#before_re_mean").val(be.re_mean);
+			     		$("#before_re_sasi").val(be.re_sasi);
+			     		$("#before_re_front").val(be.re_front);
+			     		$("#before_re_bae").val(be.re_bae);
+			     		$("#before_re_left_side").val(be.re_leftside);
+			     		$("#before_re_right_side").val(be.re_rightside);
+			     		$("#before_re_plane").val(be.re_plane);
+			     		$("#before_re_inside").val(be.re_inside);
+			     		
+			     		$(".third").addClass("disabled");
+			     		$(".third").attr("disabled",true);
+			     		
+			     		$(".second").addClass("disabled");
+			     		$(".second").attr("disabled",true);
+			     		
+			     		$("#submit_btn").css("display","none");
+			     	}
+			     	else{
+			     		var be = retVal.beVo;
+			     		var cur=retVal.cuVo;
+			    		$(".first").css("display","inline");
+
+			     		$("#re_title").val(cur.re_title);
+			     		$("#re_whereapply").val(cur.re_whereapply);
+			     		$("#re_mean").val(cur.re_mean);
+			     		$("#re_sasi").val(cur.re_sasi);
+			     		$("#re_front").val(cur.re_front);
+			     		$("#re_bae").val(cur.re_bae);
+			     		$("#re_leftside").val(cur.re_leftside);
+			     		$("#re_rightside").val(cur.re_rightside);
+			     		$("#re_plane").val(cur.re_plane);
+			     		$("#re_inside").val(cur.re_inside);
+			     		
+			     		$("#before_re_title").val(be.re_title);
+			     		$("#before_re_whereapply").val(be.re_whereapply);
+			     		$("#before_re_mean").val(be.re_mean);
+			     		$("#before_re_sasi").val(be.re_sasi);
+			     		$("#before_re_front").val(be.re_front);
+			     		$("#before_re_bae").val(be.re_bae);
+			     		$("#before_re_leftside").val(be.re_leftside);
+			     		$("#before_re_rightside").val(be.re_rightside);
+			     		$("#before_re_plane").val(be.re_plane);
+			     		$("#before_re_inside").val(be.re_inside);
+			     		
+			     		
+			     		$("#title").val(cur.title);
+			     		$("#whereapply").val(cur.whereapply);
+			     		$("#mean").val(cur.mean);
+			     		$("#sasi").css("background-image","url("+cur.sasi+")");
+			     		$("#front").css("background-image","url("+cur.front+")");
+			     		$("#bae").css("background-image","url("+cur.bae+")");
+			     		$("#left_side").css("background-image","url("+cur.left_side+")");
+			     		$("#right_side").css("background-image","url("+cur.right_side+")");
+			     		$("#plane").css("background-image","url("+cur.plane+")");
+			     		$("#inside").css("background-image","url("+cur.inside+")");
+			     		
+			     		
+			     		
+			     		
+			     		$(".third").removeClass("disabled");
+			     		$(".third").attr("disabled",false);
+			     		
+			     		$(".second").addClass("disabled");
+			     		$(".second").attr("disabled",true);
+			     		
+			     		
+			     		
+			     		$("#submit_btn").css("display","inline");
+			     		
+			     		if("${nowDv.getIscomplete()}"=="1"){
+			     			$(".third").addClass("disabled");
+				     		$(".third").attr("disabled",true);
+				     		$("#submit_btn").css("display","none");
+			     		}
+			     		
+			     	}
+			     },
+			     error: function(request,status,error)
+			   {
+			       alert('실패하였습니다.')
+			       console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			   }
+			});   
+			 //location.href ="/mainPage";
+		});
+	});
+	
+	
+	
+	
+	
+	
+	
+	
 		$("#ex1").click(function() {
 			$("#exe1").css("display", "block");
 			$("#exe2").css("display", "none");

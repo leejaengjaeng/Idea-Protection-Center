@@ -8,4 +8,13 @@
 	<select id="getVoByRid" parameterType="Integer" resultType="com.ipc.vo.UpLoadDocVo">
 		select dfid, rid, patentscode, resident_registration, certificate, business_license, is_personal,smallsale from documentforapply where rid=#{rid}
 	</select>
+	
+	<insert id="saveUpLoadDocumentOther" parameterType="com.ipc.vo.UpLoadDocVoOther">
+		insert into documentforapplyOther(seq,patentscode,resident_registration,certificate,business_license,is_personal,smallsale,patent_kind)
+		values (#{seq},#{patentscode},#{resident_registration},#{certificate},#{business_license},#{is_personal},#{smallsale},#{patent_kind})
+	</insert>
+	
+	<select id="isExist" parameterType="Hashmap" resultType="Integer">
+		select count(dfoid) from documentforapplyother where seq=#{seq} AND patent_kind=#{patent_kind}
+	</select>
 </mapper>

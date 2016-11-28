@@ -23,6 +23,7 @@ import com.ipc.dao.RegistrationFileDao;
 import com.ipc.service.RegistrationService;
 import com.ipc.service.SignUpService;
 import com.ipc.util.PathUtils;
+import com.ipc.vo.DesignVo;
 import com.ipc.vo.RegistrationFileVo;
 import com.ipc.vo.RegistrationPatentVo;
 
@@ -42,7 +43,206 @@ public class DocController {
 	RegistrationFileDao regisFileMapper;
 	@Autowired
 	RegistrationDao regisMapper;
-	
+	public String saveDesignFile(DesignVo dv,String root_path){
+		String dir_path=root_path+"/resources/uploadimgs/document/";
+		RegistrationService ss = new RegistrationService();
+		XWPFDocument document = new XWPFDocument();
+		XWPFParagraph paragraph=document.createParagraph();
+		XWPFRun run = paragraph.createRun();
+		
+		File sasiFile=new File(root_path+dv.getSasi());
+		File frontFile=new File(root_path+dv.getFront());
+		File baeFile=new File(root_path+dv.getBae());
+		File left_sideFile=new File(root_path+dv.getLeft_side());
+		File right_sideFile=new File(root_path+dv.getRight_side());
+		File planeFile=new File(root_path+dv.getPlane());
+		File insideFile=new File(root_path+dv.getInside());
+		
+		run.setText("디자인 제목");
+		run.addBreak();
+		run.setText(dv.getTitle());
+		run.addBreak();
+		run.setText("디자인이 적용된 곳");
+		run.addBreak();
+		if(dv.getWhereapply().contains("\n")){
+			String[] stringline = dv.getWhereapply().split("\n");
+			for(int i=0;i<stringline.length;i++){
+				run.setText(stringline[i]);
+				run.addBreak();
+			}
+		}
+		else{
+			run.setText(dv.getWhereapply());
+		}
+		run.addBreak();
+		run.setText("디자인의 의미");
+		run.addBreak();
+		if(dv.getMean().contains("\n")){
+			String[] stringline = dv.getMean().split("\n");
+			for(int i=0;i<stringline.length;i++){
+				run.setText(stringline[i]);
+				run.addBreak();
+			}
+		}
+		else{
+			run.setText(dv.getMean());
+		}
+		run.addBreak();
+		run.setText("사시도");
+		run.addBreak();
+		try{
+			FileInputStream is = null;
+			
+				
+				System.out.println("파일이름 : "+sasiFile.getName());
+				BufferedImage bi;
+				try{
+					bi=ImageIO.read(sasiFile);
+				}
+				catch(Exception e){
+					Iterator readers = ImageIO.getImageReadersByFormatName("JPEG");
+					ImageReader reader = null;
+					while(readers.hasNext()) {
+					    reader = (ImageReader)readers.next();
+					    if(reader.canReadRaster()) {
+					        break;
+					    }
+					}
+
+					//Stream the image file (the original CMYK image)
+					ImageInputStream input =   ImageIO.createImageInputStream(sasiFile); 
+					reader.setInput(input); 
+
+					//Read the image raster
+					Raster raster = reader.readRaster(0, null); 
+
+					//Create a new RGB image
+					bi = new BufferedImage(raster.getWidth(),raster.getHeight(),BufferedImage.TYPE_4BYTE_ABGR); 
+
+					//Fill the new image with the old raster
+					bi.getRaster().setRect(raster);
+				}
+				float width=bi.getWidth();
+				float height=bi.getHeight();
+				
+				float rate = height/width;
+				int realWidth=200;
+				int realHeight=(int) (realWidth*rate);
+				System.out.println("realHeight : "+realHeight);
+				System.out.println("width : "+bi.getWidth()+", height : "+bi.getHeight());
+				is = new FileInputStream(root_path+dv.getSasi());
+			    run.addBreak();
+			    System.out.println("fileName : "+sasiFile.getName());
+			    int pathPoint = sasiFile.getName().trim().lastIndexOf(".");
+			    String filePoint = sasiFile.getName().trim().substring(pathPoint + 1,
+			    		sasiFile.getName().trim().length());
+				String fileType = filePoint.toLowerCase();
+				int picture_type=0;
+				System.out.println("fileType:"+fileType);
+				if(fileType.equals("jpg")){
+					System.out.println("jpg!!");
+					picture_type=XWPFDocument.PICTURE_TYPE_JPEG;
+				}
+				else if(fileType.equals("png")){
+					picture_type=XWPFDocument.PICTURE_TYPE_PNG;
+				}
+				else if(fileType.equals("bmp")){
+					picture_type=XWPFDocument.PICTURE_TYPE_BMP;
+				}
+				else if(fileType.equals("jpeg")){
+					picture_type=XWPFDocument.PICTURE_TYPE_JPEG;
+				}
+				run.addPicture(is, picture_type, root_path+dv.getSasi(),Units.toEMU(realWidth),Units.toEMU(realHeight)); // 200x200 pixels
+			
+			
+			is.close();
+			}catch(Exception e){}
+			run.addBreak();
+			run.setText("전면도");
+			run.addBreak();
+			try{
+				FileInputStream is = null;
+				
+					
+					System.out.println("파일이름 : "+frontFile.getName());
+					BufferedImage bi;
+					try{
+						bi=ImageIO.read(frontFile);
+					}
+					catch(Exception e){
+						Iterator readers = ImageIO.getImageReadersByFormatName("JPEG");
+						ImageReader reader = null;
+						while(readers.hasNext()) {
+						    reader = (ImageReader)readers.next();
+						    if(reader.canReadRaster()) {
+						        break;
+						    }
+						}
+
+						//Stream the image file (the original CMYK image)
+						ImageInputStream input =   ImageIO.createImageInputStream(frontFile); 
+						reader.setInput(input); 
+
+						//Read the image raster
+						Raster raster = reader.readRaster(0, null); 
+
+						//Create a new RGB image
+						bi = new BufferedImage(raster.getWidth(),raster.getHeight(),BufferedImage.TYPE_4BYTE_ABGR); 
+
+						//Fill the new image with the old raster
+						bi.getRaster().setRect(raster);
+					}
+					float width=bi.getWidth();
+					float height=bi.getHeight();
+					
+					float rate = height/width;
+					int realWidth=200;
+					int realHeight=(int) (realWidth*rate);
+					System.out.println("realHeight : "+realHeight);
+					System.out.println("width : "+bi.getWidth()+", height : "+bi.getHeight());
+					is = new FileInputStream(root_path+dv.getFront());
+				    run.addBreak();
+				    System.out.println("fileName : "+frontFile.getName());
+				    int pathPoint = frontFile.getName().trim().lastIndexOf(".");
+				    String filePoint = frontFile.getName().trim().substring(pathPoint + 1,
+				    		frontFile.getName().trim().length());
+					String fileType = filePoint.toLowerCase();
+					int picture_type=0;
+					System.out.println("fileType:"+fileType);
+					if(fileType.equals("jpg")){
+						System.out.println("jpg!!");
+						picture_type=XWPFDocument.PICTURE_TYPE_JPEG;
+					}
+					else if(fileType.equals("png")){
+						picture_type=XWPFDocument.PICTURE_TYPE_PNG;
+					}
+					else if(fileType.equals("bmp")){
+						picture_type=XWPFDocument.PICTURE_TYPE_BMP;
+					}
+					else if(fileType.equals("jpeg")){
+						picture_type=XWPFDocument.PICTURE_TYPE_JPEG;
+					}
+					run.addPicture(is, picture_type, root_path+dv.getSasi(),Units.toEMU(realWidth),Units.toEMU(realHeight)); // 200x200 pixels
+				
+				
+				is.close();
+				}catch(Exception e){}
+			paragraph.setAlignment(ParagraphAlignment.LEFT);
+			
+			String name=ss.getToday(1)+".docx";
+			
+			String full_path=dir_path+name;
+			try{
+				
+				FileOutputStream output = new FileOutputStream(full_path);
+				System.out.println("full path: "+full_path);
+				document.write(output);
+				output.close();
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		return name;
+	}
 	public String savefile(RegistrationPatentVo rv,String root_path,List<RegistrationFileVo> rfv) throws InvalidFormatException, IOException{
 		System.out.println("rootpath in savefile : "+root_path);
 		RegistrationService ss = new RegistrationService();
@@ -176,8 +376,7 @@ public class DocController {
 				Raster raster = reader.readRaster(0, null); 
 
 				//Create a new RGB image
-				bi = new BufferedImage(raster.getWidth(), raster.getHeight(), 
-				BufferedImage.TYPE_4BYTE_ABGR); 
+				bi = new BufferedImage(raster.getWidth(),raster.getHeight(),BufferedImage.TYPE_4BYTE_ABGR); 
 
 				//Fill the new image with the old raster
 				bi.getRaster().setRect(raster);
@@ -217,19 +416,9 @@ public class DocController {
 		
 		is.close();
 		}catch(Exception e){}
-//		String imgFile="C:\\Users\\HP\\Desktop\\idea-Protection\\Idea-Protection-Center\\src\\main\\webapp\\resources\\uploadimgs\\inventor\\asdf\\201610141721170.jpg";
-//
-//		FileInputStream is = new FileInputStream(imgFile);
-//		run.addBreak();
-//		run.addPicture(is, XWPFDocument.PICTURE_TYPE_JPEG, imgFile, Units.toEMU(200), Units.toEMU(200)); // 200x200 pixels
-//		is.close();
-			//정렬
+
 		paragraph.setAlignment(ParagraphAlignment.LEFT);
-		//들여쓰기..?
-		//paragraph.setIndentationHanging(1000);
 		
-		//paragraph.setBorderBottom(Borders.BASIC_THIN_LINES);
-		//String name=rv.getTitle()+ss.getToday(1)+".docx";
 		String name=ss.getToday(1)+".docx";
 		
 		String full_path=path+name;

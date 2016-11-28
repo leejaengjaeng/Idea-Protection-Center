@@ -43,9 +43,19 @@
 		from user as u join design_patent as d on u.uid=d.uid) as c left join user as u2 on c.luid=u2.uid) group by start_deid)
 	</select>
 	<update id="updateRowComment" parameterType="com.ipc.vo.DesignVo">
-		update design_patent set re_title=#{re_title},re_whereapply=#{re_whereapply},re_mean=#{re_mean},re_sasi=#{re_sasi},re_front=#{re_front},re_bae=#{re_bae},re_leftside=#{re_leftside},re_rightside=#{re_rightside},re_plane=#{re_plane},re_inside=#{re_inside},d_condition="발명가 수정중" where deid=#{deid}
+		update design_patent set re_title=#{re_title},re_whereapply=#{re_whereapply},re_mean=#{re_mean},re_sasi=#{re_sasi},re_front=#{re_front},re_bae=#{re_bae},re_leftside=#{re_leftside},re_rightside=#{re_rightside},re_plane=#{re_plane},re_inside=#{re_inside},d_condition="발명가 수정중",iscomplete=1 where deid=#{deid}
 	</update>
 	<insert id="insertNewRow" parameterType="com.ipc.vo.DesignVo">
-		insert design_patent(uid,luid) values (#{uid},#{luid})
+		insert into design_patent(title,whereapply,mean,sasi,front,bae,left_side,right_side,plane,inside,iscomplete,prev_deid,uid,d_condition,start_deid,luid) values (#{title},#{whereapply},#{mean},#{sasi},#{front},#{bae},#{left_side},#{right_side},#{plane},#{inside},0,#{deid},#{uid},"변리사 수정중",#{start_deid},#{luid})
 	</insert>
+	<select id="getDesignByNum" parameterType="Hashmap" resultType="com.ipc.vo.DesignVo">
+		select * from design_patent where start_deid=#{start_deid} order by deid asc limit #{num},1
+	</select>
+	<update id="changeIsCompleteByHashMap" parameterType="Hashmap">
+		update design_patent set iscomplete=#{iscomplete} where deid=#{deid} 
+	</update>
+	<update id="updateApplyDate" parameterType="Hashmap">
+		update design_patent set pre_apply_date=#{pre_apply_date},apply_date=#{apply_date} where deid=#{seq}
+	</update>
+	
 </mapper>

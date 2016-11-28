@@ -256,4 +256,17 @@ CREATE TABLE `type_of_copyright` (
   `type` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`tid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+CREATE TABLE `documentforapplyother` (
+  `dfoid` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) DEFAULT NULL,
+  `patentscode` text,
+  `resident_registration` text,
+  `certificate` text,
+  `business_license` text,
+  `smallsale` text,
+  `finalApplyDoc` text,
+  `is_personal` text,
+  `patent_kind` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`dfoid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
