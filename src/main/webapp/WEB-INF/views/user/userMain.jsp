@@ -630,7 +630,7 @@ function downPaper(died){
 		                        <th>비고</th>
 		                    </tr>
 		                   	<c:forEach var="copyright" items="${copyrightList}" varStatus="status">
-								<tr onclick="location.href='/copyright/detail/${copyright.getCid()}'">
+								<tr onclick="location.href='/copyRight/detail/${copyright.getCid()}'">
 									<input type="hidden" value="${copyright.getCid()}"/>								
 			                        <td><p>${copyright.getTitle()}</p></td>
 			                        <td><p>${copyright.getReg_condition()}</p></td>
