@@ -16,7 +16,6 @@
   background: #0066cb !important;
 }
 .txt_box .cmt_de {
-  border: 1px solid #0066cb !important;
   margin-top: 20px !important;
 }
 .txt_box .cmt_img {
@@ -181,4 +180,7 @@ select {
 }
 .dropdown ul li:first-child {
   border-top: none;
+}
+.dropdown {
+  margin-bottom: 100px;
 }

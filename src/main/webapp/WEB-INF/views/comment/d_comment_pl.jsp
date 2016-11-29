@@ -19,9 +19,7 @@
 </head>
 <body>
 	<c:import url="/WEB-INF/views/import/header.jsp" />
-	<c:forEach var="j" begin="1" end="${count}" step="1">
-		<button class="loadBtn" data-num="${j}">${j}차 수정안</button><br/>
-	</c:forEach>
+	
 	<form action="/design/inputCommentDesign" method="POST"
 		enctype="multipart/form-data" onsubmit="return checkDesign();">
 		<input type="hidden" name="${_csrf.parameterName}"
@@ -35,40 +33,11 @@
 			</article> <article>
 			<div class="txt_box">
 				<div class="dropdown">
-					<span id="drop_sp">아이디어 등록 (초안)</span>
+					<span id="drop_sp">디자인권 등록 (초안)</span>
 					<div class="arrow-up ee"></div>					
 						<ul id="IdeaModifyList">
-							<c:forEach items="${processList}" var="list" varStatus="status">
-								<c:choose>
-									<c:when test="${status.first and status.last }">
-										<li class ="clickedIdea" data-val="아이디어 등록 (초안) ${list.getRegistration_date()}">
-											<input type="hidden" value="${list.getRid()}"/>
-											아이디어 등록 (초안)
-											${list.getRegistration_date()}
-										</li>
-									</c:when>
-									<c:when test="${status.first }">
-										<li data-val="아이디어 등록 (초안) ${list.getRegistration_date()}">
-											<input type="hidden" value="${list.getRid()}"/>
-											아이디어 등록 (초안)
-											${list.getRegistration_date()}
-										</li>
-									</c:when>
-									<c:when test="${status.last }">
-										<li class="clickedIdea" data-val="${status.index}차 전문가 검토 및 수정안 ${list.getRegistration_date()}">
-											<input type="hidden" value="${list.getRid()}"/>
-											${status.index}차 전문가 검토 및 수정안
-											${list.getRegistration_date()}
-										</li>
-									</c:when>
-									<c:otherwise>
-										<li data-val="${status.index}차 전문가 검토 및 수정안 ${list.getRegistration_date()}">
-											<input type="hidden" value="${list.getRid()}"/>
-											${status.index}차 전문가 검토 및 수정안
-											${list.getRegistration_date()}
-										</li>
-									</c:otherwise>
-					          	</c:choose>
+							<c:forEach var="j" begin="1" end="${count}" step="1">
+								<li class="loadBtn" data-num="${j}">${j}차 수정안</li>
 							</c:forEach>
 						</ul>					
 					</div>
