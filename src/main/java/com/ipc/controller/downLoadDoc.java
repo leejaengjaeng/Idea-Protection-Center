@@ -18,15 +18,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ipc.dao.DesignDao;
 import com.ipc.dao.DocumentDao;
 import com.ipc.dao.RegistrationDao;
 import com.ipc.dao.RegistrationFileDao;
 import com.ipc.dao.UpLoadDocDao;
+import com.ipc.util.CreateFileUtils;
 import com.ipc.util.PathUtils;
 import com.ipc.vo.ApplyDocVo;
+import com.ipc.vo.DesignVo;
 import com.ipc.vo.RegistrationFileVo;
 import com.ipc.vo.RegistrationPatentVo;
 import com.ipc.vo.UpLoadDocVo;
+import com.ipc.vo.UpLoadDocVoOther;
 
 @Controller
 public class downLoadDoc {
@@ -44,7 +48,67 @@ public class downLoadDoc {
 	DocController docController;
 	@Autowired
 	DocumentDao docDao;
+	@Autowired
+	DesignDao designDao;
 	
+	@RequestMapping("/downLoadDoc/{apply_kind}")
+	public String downLoadDocOther(Model model,HttpServletRequest request,@PathVariable String apply_kind){
+		int seq=0;
+		if(apply_kind.equals("Design")){
+			seq=(int)session.getAttribute("DesignId");
+		}
+		System.out.println("apply_kind,seq : "+apply_kind+","+seq);
+		HashMap<String,String> map = new HashMap<String,String>();
+		
+		map.put("seq",Integer.toString(seq));
+		map.put("patent_kind", apply_kind);
+		
+		int isExist=docmapper.countFinalDoc(map);
+		
+		model.addAttribute("isExist", isExist);
+		
+		UpLoadDocVoOther uldoVo= docDao.getUpLoadDocVoOtherByHashMap(map);
+		System.out.println(uldoVo.getBusiness_license());
+		model.addAttribute("docVo", uldoVo);
+		return "apply/downloaddocument";
+	}
+	@RequestMapping("/execute/{file_name}")
+	public ModelAndView execute(HttpServletRequest request,@PathVariable String file_name){
+		System.out.println(file_name);
+		file_name=file_name.replace("ideaconcert", ".");
+		System.out.println("file_name : "+file_name);
+		ModelAndView mav = new ModelAndView();
+		String root_path = PathUtils.getRootPath(request);
+		File file=new File(root_path+"/resources/uploadimgs/uploadDocument/"+file_name);
+		mav.addObject("downloadFile", file);
+        mav.addObject("downloadFileName", file_name);
+        mav.setViewName("downloadFileView");
+		
+		
+		return mav;
+	}
+	@RequestMapping("/makeDoc")
+	public ModelAndView makeDoc(HttpServletRequest request){
+		ModelAndView mav = new ModelAndView();
+		String apply_kind = (String)session.getAttribute("currentApply");
+		String file_name="";
+		HashMap<String,String> map = new HashMap<String,String>();
+		if(apply_kind.equals("Design")){
+			map.put("patent_kind", "Design");
+			map.put("seq", Integer.toString((int)session.getAttribute("DesignId")));
+			
+			DesignVo dv = designDao.getDesignByDeid((int)session.getAttribute("DesignId"));
+			file_name=docController.saveDesignFile(dv, PathUtils.getRootPath(request));
+				
+			
+		}
+		String full_path=PathUtils.getRootPath(request)+"/resources/uploadimgs/document/"+file_name;
+		File file = new File(full_path);
+		mav.addObject("downloadFile", file);
+        mav.addObject("downloadFileName", file_name);
+        mav.setViewName("downloadFileView");
+		return mav;
+	}
 	@RequestMapping("/downLoadPage")
 	public String downLoadPage(Model model){
 		int rid=(int) session.getAttribute("currentPosition");
@@ -210,5 +274,17 @@ public class downLoadDoc {
         mav.setViewName("downloadFileView");
 		return mav;
 
+	}
+	@RequestMapping("/downPaperDesign/{died}")
+	public ModelAndView downPaper(HttpServletRequest request,@PathVariable int died){
+		ModelAndView mav=new ModelAndView();
+		String finalApplyDoc = docDao.getFinalDocDesign(died);
+		String root_path=PathUtils.getRootPath(request)+"/resources/uploadimgs/apply_doc/";
+		File downFile=new File(root_path+finalApplyDoc);
+		
+		mav.addObject("downloadFile", downFile);
+        mav.addObject("downloadFileName", finalApplyDoc);
+        mav.setViewName("downloadFileView");
+		return mav;
 	}
 }

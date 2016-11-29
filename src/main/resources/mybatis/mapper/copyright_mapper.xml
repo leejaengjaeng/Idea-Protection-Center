@@ -1,12 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ipc.dao.CopyrightDao">
-	<insert id="addCopyright" parameterType="com.ipc.vo.CopyRightVo">
-		insert into reg_copyright(cid,uid,title,field,type,meaning) values(#{cid},#{uid},#{title},#{field},#{type},#{meaning})
+	<insert id="addCopyright" parameterType="com.ipc.vo.CopyRightVo" useGeneratedKeys="true" keyProperty="cid">
+		insert into reg_copyright(cid,prev_cid,uid,lid,title,field,type,meaning,start_cid) values(#{cid},#{prev_cid},#{uid},#{lid},#{title},#{field},#{type},#{meaning},#{start_cid})
 	</insert>
+	
+	<select id ="getStartCidByCid" parameterType="Integer" resultType="com.ipc.vo.CopyRightVo" >
+		SELECT start_cid FROM reg_copyright WHERE cid = #{cid};
+	</select>
+	
+	
+	<select id ="getAssosiatedList" parameterType="Integer" resultType="com.ipc.vo.CopyRightVo" >
+		SELECT cid,registration_date FROM reg_copyright WHERE start_cid = #{start_cid} ORDER BY registration_date;
+	</select>
 	
 	<select id="getOneRowByCid" parameterType="Integer" resultType="com.ipc.vo.CopyRightVo">
 		select * from reg_copyright where cid = #{cid};
 	</select>
+	
+	<update id="updateStartCid" parameterType="com.ipc.vo.CopyRightVo">
+		UPDATE reg_copyright SET start_cid = #{cid} where cid = #{cid}
+	</update>
+	
+	<update id="updateCopyright_pl" parameterType="com.ipc.vo.CopyRightVo">
+		UPDATE reg_copyright SET re_title = #{re_title}, re_field = #{re_field}, re_type = #{re_type}, re_meaning = #{re_meaning}, flag=#{flag} where cid = #{cid}
+	</update>
+	
 	
 </mapper>

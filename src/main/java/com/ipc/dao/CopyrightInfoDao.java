@@ -18,5 +18,6 @@ public interface CopyrightInfoDao {
 	public void addCopyrightInfo(CopyRightInfoVo cv);
 	public List getCopyrightListInventer(int uid);
 	public List getCopyrightListPl(int uid);
-	
+	public CopyRightInfoVo getMpcidByCid(int cid);
+	public void updateInfoByMpcid(CopyRightInfoVo cv);
 }

@@ -16,4 +16,19 @@
 	<select id="countDocumentForApplyByRid" parameterType="Integer" resultType="Integer">
 		select count(*) from documentforapply where rid=#{rid}
 	</select>
+	<select id="getUpLoadDocVoOtherByHashMap" parameterType="Hashmap" resultType="com.ipc.vo.UpLoadDocVoOther">
+		select * from documentforapplyother where patent_kind=#{patent_kind} and seq=#{seq}
+	</select>
+	<select id="updateDocumentForApplyOther" parameterType="Hashmap">
+		update documentforapplyOther set finalApplyDoc=#{finalApplyDoc} where patent_kind=#{patent_kind} AND seq=#{seq}
+	</select>
+	<select id="countFinalDoc" parameterType="Hashmap" resultType="Integer">
+	 	select count(finalApplyDoc) from documentforapplyOther where seq=#{seq} AND patent_kind=#{patent_kind}
+	</select>
+	<select id="getFinalDocDesign" parameterType="Integer" resultType="String">
+		select finalApplyDoc from documentforapplyother where seq=#{deid} AND patent_kind='Design'
+	</select>
+	<select id="getDocumentName" parameterType="Hashmap" resultType="Integer">
+		select finalApplyDoc from documentforapplyother where patent_kind=#{patent_kind} AND seq=#{seq}
+	</select>
 </mapper>

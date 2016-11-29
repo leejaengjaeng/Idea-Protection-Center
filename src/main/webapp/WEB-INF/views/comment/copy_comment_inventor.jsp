@@ -18,17 +18,56 @@
 		</h1>
 		</article> 
 		<article>
+			<div class="dropdown">
+				<div class="arrow-up ee"></div>					
+				<ul id="IdeaModifyList">
+					<c:forEach items="${chasuList}" var="chasu" varStatus="status">
+							<c:choose>
+								<c:when test="${status.first and status.last }">
+									<li class ="clickedIdea" data-val="아이디어 등록 (초안) ${chasu.getRegistration_date()}">
+										<input type="hidden" value="${chasu.getCid()}"/>
+										저작권  등록 (초안)
+										${chasu.getRegistration_date()}
+									</li>
+								</c:when>
+								<c:when test="${status.first }">
+									<li data-val="아이디어 등록 (초안) ${chasu.getRegistration_date()}">
+										<input type="hidden" value="${chasu.getCid()}"/>
+										저작권  등록 (초안)
+										${chasu.getRegistration_date()}
+									</li>
+								</c:when>
+								<c:when test="${status.last }">
+									<li class="clickedIdea" data-val="${status.index}차 전문가 검토 및 수정안 ${chasu.getRegistration_date()}">
+										<input type="hidden" value="${chasu.getCid()}"/>
+										${status.index}차 전문가 검토 및 수정안
+										${chasu.getRegistration_date()}
+									</li>
+								</c:when>
+								<c:otherwise>
+									<li data-val="${status.index}차 전문가 검토 및 수정안 ${chasu.getRegistration_date()}">
+										<input type="hidden" value="${chasu.getCid()}"/>
+										${status.index}차 전문가 검토 및 수정안
+										${chasu.getRegistration_date()}
+									</li>
+								</c:otherwise>
+				         	</c:choose>
+					</c:forEach>
+				</ul>					
+			</div>
 		<form action="/copyRight/regCopyright_inventor" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
-			<input type="hidden" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}" />				
+			<input type="hidden" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}" />
+			<input type="hidden" name="cid" id="cid" value="${copyrightVo.getCid()}" />
+							
 <!-- 명칭 -->
 			<div class="txt_box">
 				<h2>저작물 명칭</h2>
 				<button>작성예시 보기</button>
 				<input type="text" id="idea_kind" name="idea_kind" placeholder="본인이 창작한 저작물의 이름을 정해 주세요 / 물품명 + 사용용도 or 사용용도 + 적용물품"
 					value=${copyrightVo.getTitle() }>
-				<textarea id="re_idea_kind_pl">${copyrightVo.getRe_title() }</textarea>		
-				<textarea id="re_idea_kind_inventor"></textarea>					
+				<textarea>${copyrightVo.getRe_title() }</textarea>		
+				<textarea id="re_idea_kind_inventor" name="re_idea_kind_inventor"></textarea>					
 			</div>
 <!-- 분야 -->
 			<div class="txt_box">
@@ -80,13 +119,13 @@
 				<button>작성예시 보기</button>
 				<textarea id="meaning" name="meaning">${copyrightVo.getMeaning() }</textarea>
 				<textarea>${copyrightVo.getRe_meaning() }</textarea>			
-				<textarea id="re_meaning"></textarea>		
+				<textarea id="re_meaning" name="re_meaning"></textarea>		
 			</div>
 <!-- 첨부 -->
 			<div class="txt_box">
 				<h2>저작물 첨부</h2>
 				<button>작성예시 보기</button>
-				<input type="file" style="float: left; margin: 10px; opacity: 1; padding-top: 5px;">				
+				<input type="file" style="float: left; margin: 10px; opacity: 1; padding-top: 5px;" name="copyright_imgs">				
 				<div id="add_btn" onclick="addfile2()">추가하기</div>
 				<div class="hiding_box">
 					<div class="hiding_box_header">

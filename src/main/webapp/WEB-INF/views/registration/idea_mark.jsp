@@ -18,7 +18,7 @@
 		</h1>
 		</article> 
 		<article>
-		<form action="/copyRight/regCopyright" method="POST" enctype="multipart/form-data">
+		<form action="/mark/regMark" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
 			<input type="hidden" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}" />				
 <!-- 명칭 -->
@@ -26,9 +26,9 @@
 				<h2>사용할 상표(명칭)</h2>
 				<button>작성예시 보기</button>
 				<div class="mark_form">
-					<input type="text" class="name_mark" placeholder="1안">
-					<input type="text" class="name_mark" placeholder="2안">
-					<input type="text" class="name_mark" placeholder="3안">
+					<input type="text" name="title1" class="name_mark" placeholder="1안">
+					<input type="text" name="title2" class="name_mark" placeholder="2안">
+					<input type="text" name="title3" class="name_mark" placeholder="3안">
 				</div>				
 			</div>
 <!-- 사용처 -->
@@ -73,14 +73,16 @@
 				<button>작성예시 보기</button>											
 			</div>
 			<div class="txt_box" style="margin-top:10px;">
-				<span style="font-size: 0.8rem; color: rgba(0, 204, 254, 1); display: inline-block; float: left;">
-				만드신 저작물의 첨부파일을 넣어 주세요 10mb이상의 파일은 이후 지정된 전문가의 메일로 제출하여 주세요.
-				</span>
-				<br><br>				
-				<div class="add_imgs">
-					<img src="/resources/image/noimg_sum.png" id="imgkkk">
-					<input type="file" id="plan_img">
+									
+				<div style="width:100%; float:left;">
+					<div class="add_imgs">
+						<img src="/resources/image/noimg_sum.png" id="imgkkk">
+						<input type="file" id="plan_img">
+					</div>
 				</div>				
+				<span style="font-size: 0.8rem; color: rgba(0, 204, 254, 1); display: inline-block; float: left;">
+					만드신 저작물의 첨부파일을 넣어 주세요 10mb이상의 파일은 이후 지정된 전문가의 메일로 제출하여 주세요.
+				</span>
 			</div>
 			<div id="fin">
 				<!-- <button>임시저장</button>	 -->

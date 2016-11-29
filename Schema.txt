@@ -182,6 +182,7 @@ CREATE TABLE `documentforapply` (
 #13
 CREATE TABLE `reg_copyright` (
   `cid` int(11) NOT NULL AUTO_INCREMENT,
+  `start_cid` int(11),
   `uid` int(11) DEFAULT NULL,
   `lid` int(11) DEFAULT NULL,
   `flag` tinyint(4) DEFAULT '0',
@@ -194,7 +195,7 @@ CREATE TABLE `reg_copyright` (
   `re_field` text,
   `re_type` text,
   `re_meaning` text,
-  `registration_date` datetime DEFAULT NULL,
+  `registration_date` datetime DEFAULT CURRENT_TIMESTAMP,
   `file` text,
   `re_file` text,
   PRIMARY KEY (`cid`)
@@ -204,6 +205,7 @@ CREATE TABLE `reg_copyright` (
 CREATE TABLE `main_page_copyright_info` (
   `mpcid` int(11) NOT NULL AUTO_INCREMENT,
   `cid` int(11) NOT NULL,
+  `start_cid` int(11),
   `uid` int(11) DEFAULT NULL,
   `reg_condition` varchar(45) DEFAULT '결제대기중',
   `pre_apply_date` datetime DEFAULT NULL,
@@ -222,6 +224,19 @@ CREATE TABLE `type_of_copyright` (
   `type` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`tid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+CREATE TABLE `documentforapplyother` (
+  `dfoid` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) DEFAULT NULL,
+  `patentscode` text,
+  `resident_registration` text,
+  `certificate` text,
+  `business_license` text,
+  `smallsale` text,
+  `finalApplyDoc` text,
+  `is_personal` text,
+  `patent_kind` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`dfoid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `design_patent` (
   `deid` int(11) NOT NULL AUTO_INCREMENT,

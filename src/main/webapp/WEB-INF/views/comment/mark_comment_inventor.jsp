@@ -63,7 +63,7 @@
 			<div class="txt_box" style="margin-top:10px;">							
 				<div class="add_imgs">
 					<img src="/resources/image/noimg_sum.png" id="imgkkk">
-					<input type="file" id="plan_img">
+					<input type="file" id="plan_img" name="plan_img">
 				</div>	
 				<textarea class="logo_cmt disabled" disabled="disabled">이전내용</textarea>
 				<textarea></textarea>

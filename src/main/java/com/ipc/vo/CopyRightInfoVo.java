@@ -4,6 +4,13 @@ public class CopyRightInfoVo {
 	
 	int mpcid;
 	int cid;
+	int start_cid;
+	public int getStart_cid() {
+		return start_cid;
+	}
+	public void setStart_cid(int start_cid) {
+		this.start_cid = start_cid;
+	}
 	int uid;
 	int lid;
 	String reg_condition;

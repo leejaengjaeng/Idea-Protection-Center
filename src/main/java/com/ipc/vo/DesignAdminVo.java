@@ -9,8 +9,15 @@ public class DesignAdminVo {
 	String d_condition;
 	String apply_date;
 	String pre_apply_date;
+	String iscomplete;
 	int deid;
 	
+	public String getIscomplete() {
+		return iscomplete;
+	}
+	public void setIscomplete(String iscomplete) {
+		this.iscomplete = iscomplete;
+	}
 	public String getApply_date() {
 		return apply_date;
 	}

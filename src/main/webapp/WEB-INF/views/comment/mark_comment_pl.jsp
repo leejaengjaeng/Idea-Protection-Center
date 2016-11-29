@@ -18,6 +18,7 @@
 		</h1>
 		</article> 
 		<article>
+		
 		<form action="/copyRight/regCopyright" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
 			<input type="hidden" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}" />				
