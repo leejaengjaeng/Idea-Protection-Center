@@ -3,7 +3,7 @@
 <mapper namespace="com.ipc.dao.CopyrightInfoDao">
 
 	<insert id="addCopyrightInfo" parameterType="com.ipc.vo.CopyRightInfoVo">
-		insert into main_page_copyright_info(cid,uid,title) values(LAST_INSERT_ID(),#{uid},#{title})
+		insert into main_page_copyright_info(start_cid,cid,uid,title) values(#{cid},#{cid},#{uid},#{title})
 	</insert>
 	
 	<select id="getCopyrightListInventer" parameterType="Integer" resultType="com.ipc.vo.CopyRightInfoVo">
@@ -13,4 +13,13 @@
 	<select id="getCopyrightListPl" parameterType="Integer" resultType="com.ipc.vo.CopyRightInfoVo">
 		select cid,reg_condition,pre_apply_date,apply_date,registration_date,title,inventor_name,pl_name from main_page_copyright_info where lid = #{uid};
 	</select>
+	
+	<select id="getMpcidByCid" parameterType="Integer" resultType="com.ipc.vo.CopyRightInfoVo">
+		select mpcid from main_page_copyright_info where cid = #{cid};
+	</select>
+	
+	<update id="updateInfoByMpcid" parameterType="com.ipc.vo.CopyRightInfoVo">
+		update main_page_copyright_info set cid = #{cid}, title = #{title} where mpcid = #{mpcid}
+	</update>
+	
 </mapper>

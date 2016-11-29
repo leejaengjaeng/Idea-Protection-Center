@@ -74,12 +74,87 @@ public class CopyrightController {
 		cv.setUid(uid);
 		
 		CopyRightInfoVo civ = new CopyRightInfoVo();
+		civ.setCid(cv.getCid());
 		civ.setUid(uid);
 		civ.setTitle(title);
 		civ.setInventor_name(userDao.getNameByUid(uid));
 		
 		copyrightDao.addCopyright(cv);
+		copyrightDao.updateStartCid(cv);
 		copyrightInfoDao.addCopyrightInfo(civ);
+		
+		return "redirect:/";
+	}
+	
+	@RequestMapping(value="/regCopyright_inventor", method=RequestMethod.POST)
+	public String copyRightUpdate_Inventor(HttpServletRequest req, Model model)
+	{
+		/*
+		 *  XXX
+		 *  cid가 무조건 가장 마지막 cid를 가지고 와야함
+		 *  안그러면 개박살!
+		 */
+		
+		int cid = Integer.parseInt(req.getParameter("cid"));
+		CopyRightVo cv = copyrightDao.getOneRowByCid(cid);
+		CopyRightInfoVo civ = new CopyRightInfoVo();
+
+		civ.setMpcid(copyrightInfoDao.getMpcidByCid(cid).getMpcid());
+		
+		String title	= req.getParameter("re_idea_kind_inventor");
+		if(!title.equals(""))
+		{
+			cv.setTitle(title);
+			civ.setTitle(title);
+		}
+		
+		String field	= req.getParameter("re_field_selected");
+		if(!field.equals("")) cv.setField(field);
+		
+		String type 	= req.getParameter("re_kind");
+		if(!type.equals("")) cv.setType(type);
+		
+		String meaning  = req.getParameter("re_meaning");
+		if(!meaning.equals("")) cv.setMeaning(meaning);
+
+		cv.setCid(0);
+		cv.setPrev_cid(cid);
+		copyrightDao.addCopyright(cv);
+		
+		System.out.println(cv.getCid());
+		civ.setCid(cv.getCid());
+		copyrightInfoDao.updateInfoByMpcid(civ);
+		
+		return "redirect:/";
+	}
+	
+	@RequestMapping(value="/regCopyright_pl", method=RequestMethod.POST)
+	public String copyRightUpdate_pl(HttpServletRequest req, Model model)
+	{
+		
+		int cid = Integer.parseInt(req.getParameter("cid"));
+		
+		String title	= req.getParameter("re_idea_kind");
+		String field	= req.getParameter("re_field_selected");
+		String type 	= req.getParameter("re_kind");
+		String meaning  = req.getParameter("re_meaning");
+		int uid			= Integer.parseInt(req.getParameter("uid"));
+
+		CopyRightVo cv = new CopyRightVo();
+		cv.setCid(cid);
+		cv.setRe_title(title);
+		cv.setRe_field(field);
+		cv.setRe_type(type);
+		cv.setRe_meaning(meaning);
+		cv.setFlag(1); 	
+		
+		/*
+		 * Flag
+		 * 0 : 변리사 작성 차례
+		 * 1 : 완료된 row
+		 */
+		
+		copyrightDao.updateCopyright_pl(cv);
 		
 		return "redirect:/";
 	}
@@ -92,22 +167,29 @@ public class CopyrightController {
 		if(cv==null) return "redirect:/authError";
 		
 		List typeList = typeOfCopyrightDao.getTypeList();
-
+		List<CopyRightVo> chasuList = copyrightDao.getAssosiatedList(cv.getStart_cid());
+		
 		if(currentUser.getRole().equals("ROLE_INVENTOR"))
 		{
 			if(cv.getUid()!=currentUser.getUid()) return "redirect:/authError";
 			
 			model.addAttribute("copyrightVo",cv);
 			model.addAttribute("typeList", typeList);
+			model.addAttribute("chasuList", chasuList);
 			
 			return "comment/copy_comment_inventor";
 		}
 		else if(currentUser.getRole().equals("ROLE_PATIENTENTLAWYER"))
 		{
 			if(cv.getLid()!=currentUser.getUid()) return "redirect:/authError";
+		
+			CopyRightVo beforeCv = copyrightDao.getOneRowByCid(cv.getPrev_cid());
 			
 			model.addAttribute("copyrightVo",cv);
+			model.addAttribute("beforeCv",beforeCv);
+			
 			model.addAttribute("typeList", typeList);
+			model.addAttribute("chasuList", chasuList);
 			
 			return "comment/copy_comment_pl";
 		}
