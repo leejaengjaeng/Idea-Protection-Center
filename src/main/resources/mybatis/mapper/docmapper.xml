@@ -25,4 +25,10 @@
 	<select id="countFinalDoc" parameterType="Hashmap" resultType="Integer">
 	 	select count(finalApplyDoc) from documentforapplyOther where seq=#{seq} AND patent_kind=#{patent_kind}
 	</select>
+	<select id="getFinalDocDesign" parameterType="Integer" resultType="String">
+		select finalApplyDoc from documentforapplyother where seq=#{deid} AND patent_kind='Design'
+	</select>
+	<select id="getDocumentName" parameterType="Hashmap" resultType="Integer">
+		select finalApplyDoc from documentforapplyother where patent_kind=#{patent_kind} AND seq=#{seq}
+	</select>
 </mapper>

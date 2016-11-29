@@ -216,7 +216,11 @@
 			alert("발명가 회원이 서류 업로드를 완료하였습니다. 하단의 다운받기 버튼을 클릭해주세요.");
 			$("#fin").css("display","none");
 			$("#gotoDownLoad").css("display","inline");
-			
+		}
+		else if("${nowDv.getIscomplete()}"=="5"){
+			alert("출원이 완료된 사항입니다.");
+			$("#fin").css("display","none");
+			$("#gotoDownLoad").css("display","none");
 		}
 		$("#gotoDownLoad").click(function(){
 			location.href="/downLoadDoc/Design";

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ipc.dao.DesignDao">
 	<insert id="insertFirstDesign" parameterType="com.ipc.vo.DesignVo" useGeneratedKeys="true" keyProperty="deid">
-		insert into design_patent(title,whereapply,mean,sasi,front,bae,left_side,right_side,plane,inside,iscomplete,prev_deid,uid,d_condition) values (#{title},#{whereapply},#{mean},#{sasi},#{front},#{bae},#{left_side},#{right_side},#{plane},#{inside},0,-1,#{uid},"결제대기중")
+		insert into design_patent(title,whereapply,mean,sasi,front,bae,left_side,right_side,plane,inside,iscomplete,prev_deid,uid,d_condition) values (#{title},#{whereapply},#{mean},#{sasi},#{front},#{bae},#{left_side},#{right_side},#{plane},#{inside},2,-1,#{uid},"결제대기중")
 	</insert>
 	<update id="updatedeid" parameterType="Integer">
 		update design_patent set start_deid=#{deid} where deid=#{deid}
@@ -18,8 +18,8 @@
 		update design_patent set luid=#{uid} where deid=#{deid}
 	</update>
 	<select id="getDesignListIn" parameterType="Integer" resultType="com.ipc.vo.DesignAdminVo">
-		select c.start_deid ,c.id as userID,c.name as userName, u2.name as patentName,c.email as userEmail,c.title ,c.d_condition ,c.deid,c.pre_apply_date,c.apply_date
-		FROM ((select u.id ,u.name ,u.email,d.title ,d.mean,d.luid ,d.d_condition ,d.deid ,d.start_deid ,d.apply_date,d.pre_apply_date
+		select c.start_deid ,c.id as userID,c.name as userName, u2.name as patentName,c.email as userEmail,c.title ,c.d_condition ,c.deid,c.pre_apply_date,c.apply_date,c.iscomplete as iscomplete
+		FROM ((select u.id ,u.name ,u.email,d.title ,d.mean,d.luid ,d.d_condition ,d.deid ,d.start_deid ,d.apply_date,d.pre_apply_date,d.iscomplete as iscomplete
 		from user as u join design_patent as d on u.uid=d.uid AND u.uid=#{uid}) as c left join user as u2 on c.luid=u2.uid)
 		where deid IN (select max(deid)  FROM ((select u.id ,u.name ,u.email,d.title ,d.mean,d.luid ,d.d_condition ,d.deid ,d.start_deid 
 		from user as u join design_patent as d on u.uid=d.uid) as c left join user as u2 on c.luid=u2.uid) group by start_deid)
@@ -36,8 +36,8 @@
 		select count(deid) from design_patent where start_deid=#{start_deid}
 	</select>
 	<select id="getDesignListPl" parameterType="Integer" resultType="com.ipc.vo.DesignAdminVo">
-		select c.start_deid ,c.id as userID,c.name as userName, u2.name as patentName,c.email as userEmail,c.title ,c.d_condition ,c.deid,c.pre_apply_date,c.apply_date
-		FROM ((select u.id ,u.name ,u.email,d.title ,d.mean,d.luid ,d.d_condition ,d.deid ,d.start_deid ,d.apply_date,d.pre_apply_date
+		select c.start_deid ,c.id as userID,c.name as userName, u2.name as patentName,c.email as userEmail,c.title ,c.d_condition ,c.deid,c.pre_apply_date,c.apply_date,c.iscomplete as iscomplete
+		FROM ((select u.id ,u.name ,u.email,d.title ,d.mean,d.luid ,d.d_condition ,d.deid ,d.start_deid ,d.apply_date,d.pre_apply_date,d.iscomplete
 		from user as u join design_patent as d on u.uid=d.uid AND d.luid=#{uid}) as c left join user as u2 on c.luid=u2.uid)
 		where deid IN (select max(deid)  FROM ((select u.id ,u.name ,u.email,d.title ,d.mean,d.luid ,d.d_condition ,d.deid ,d.start_deid 
 		from user as u join design_patent as d on u.uid=d.uid) as c left join user as u2 on c.luid=u2.uid) group by start_deid)

@@ -276,10 +276,20 @@
 			alert("변리사 수정중입니다.");
 			$("#submit_btn").css("display","none");
 		}
-		else if("${nowDv.getIscomplete()}">"3"){
+		else if("${nowDv.getIscomplete()}"=="3"){
 			$("#submit_btn").css("display","none");
 			$("#gotoUpLoad").css("display","inline");
 			alert("변리사님이 최종 확인을 하였습니다. 하단의 서류 업로드 버튼을 눌러 서류업로드를 해주세요");
+		}
+		else if("${nowDv.getIscomplete()}"=="4"){
+			$("#submit_btn").css("display","none");
+			$("#gotoUpLoad").css("display","none");
+			alert("변리사님이 출원중입니다.");
+		}
+		else if("${nowDv.getIscomplete()}"=="5"){
+			$("#submit_btn").css("display","none");
+			$("#gotoUpLoad").css("display","none");
+			alert("출원이 완료된 사항입니다.");
 		}
  		$(".curimg").css("display","none");
 		

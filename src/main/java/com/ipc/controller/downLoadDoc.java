@@ -91,13 +91,22 @@ public class downLoadDoc {
 	public ModelAndView makeDoc(HttpServletRequest request){
 		ModelAndView mav = new ModelAndView();
 		String apply_kind = (String)session.getAttribute("currentApply");
-		String file_name;
+		String file_name="";
 		HashMap<String,String> map = new HashMap<String,String>();
 		if(apply_kind.equals("Design")){
+			map.put("patent_kind", "Design");
+			map.put("seq", Integer.toString((int)session.getAttribute("DesignId")));
+			
 			DesignVo dv = designDao.getDesignByDeid((int)session.getAttribute("DesignId"));
 			file_name=docController.saveDesignFile(dv, PathUtils.getRootPath(request));
+				
+			
 		}
-		
+		String full_path=PathUtils.getRootPath(request)+"/resources/uploadimgs/document/"+file_name;
+		File file = new File(full_path);
+		mav.addObject("downloadFile", file);
+        mav.addObject("downloadFileName", file_name);
+        mav.setViewName("downloadFileView");
 		return mav;
 	}
 	@RequestMapping("/downLoadPage")
@@ -265,5 +274,17 @@ public class downLoadDoc {
         mav.setViewName("downloadFileView");
 		return mav;
 
+	}
+	@RequestMapping("/downPaperDesign/{died}")
+	public ModelAndView downPaper(HttpServletRequest request,@PathVariable int died){
+		ModelAndView mav=new ModelAndView();
+		String finalApplyDoc = docDao.getFinalDocDesign(died);
+		String root_path=PathUtils.getRootPath(request)+"/resources/uploadimgs/apply_doc/";
+		File downFile=new File(root_path+finalApplyDoc);
+		
+		mav.addObject("downloadFile", downFile);
+        mav.addObject("downloadFileName", finalApplyDoc);
+        mav.setViewName("downloadFileView");
+		return mav;
 	}
 }

@@ -17,4 +17,7 @@ public interface DocumentDao {
 	public UpLoadDocVoOther getUpLoadDocVoOtherByHashMap(HashMap<String,String> map);
 	public void updateDocumentForApplyOther(HashMap<String,String> map);
 	public int countFinalDoc(HashMap<String,String> map);
+	public String getFinalDocDesign(int died);
+	public String getDocumentName(HashMap<String,String> map);
+	
 }

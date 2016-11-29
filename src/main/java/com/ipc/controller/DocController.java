@@ -54,7 +54,9 @@ public class DocController {
 		File frontFile=new File(root_path+dv.getFront());
 		File baeFile=new File(root_path+dv.getBae());
 		File left_sideFile=new File(root_path+dv.getLeft_side());
+		
 		File right_sideFile=new File(root_path+dv.getRight_side());
+		System.out.println("좌측면도,우측면도 : "+left_sideFile+","+right_sideFile);
 		File planeFile=new File(root_path+dv.getPlane());
 		File insideFile=new File(root_path+dv.getInside());
 		
@@ -93,66 +95,66 @@ public class DocController {
 		try{
 			FileInputStream is = null;
 			
-				
-				System.out.println("파일이름 : "+sasiFile.getName());
-				BufferedImage bi;
-				try{
-					bi=ImageIO.read(sasiFile);
+			
+			System.out.println("파일이름 : "+sasiFile.getName());
+			BufferedImage bi;
+			try{
+				bi=ImageIO.read(sasiFile);
+			}
+			catch(Exception e){
+				Iterator readers = ImageIO.getImageReadersByFormatName("JPEG");
+				ImageReader reader = null;
+				while(readers.hasNext()) {
+				    reader = (ImageReader)readers.next();
+				    if(reader.canReadRaster()) {
+				        break;
+				    }
 				}
-				catch(Exception e){
-					Iterator readers = ImageIO.getImageReadersByFormatName("JPEG");
-					ImageReader reader = null;
-					while(readers.hasNext()) {
-					    reader = (ImageReader)readers.next();
-					    if(reader.canReadRaster()) {
-					        break;
-					    }
-					}
 
-					//Stream the image file (the original CMYK image)
-					ImageInputStream input =   ImageIO.createImageInputStream(sasiFile); 
-					reader.setInput(input); 
+				//Stream the image file (the original CMYK image)
+				ImageInputStream input =   ImageIO.createImageInputStream(sasiFile); 
+				reader.setInput(input); 
 
-					//Read the image raster
-					Raster raster = reader.readRaster(0, null); 
+				//Read the image raster
+				Raster raster = reader.readRaster(0, null); 
 
-					//Create a new RGB image
-					bi = new BufferedImage(raster.getWidth(),raster.getHeight(),BufferedImage.TYPE_4BYTE_ABGR); 
+				//Create a new RGB image
+				bi = new BufferedImage(raster.getWidth(),raster.getHeight(),BufferedImage.TYPE_4BYTE_ABGR); 
 
-					//Fill the new image with the old raster
-					bi.getRaster().setRect(raster);
-				}
-				float width=bi.getWidth();
-				float height=bi.getHeight();
-				
-				float rate = height/width;
-				int realWidth=200;
-				int realHeight=(int) (realWidth*rate);
-				System.out.println("realHeight : "+realHeight);
-				System.out.println("width : "+bi.getWidth()+", height : "+bi.getHeight());
-				is = new FileInputStream(root_path+dv.getSasi());
-			    run.addBreak();
-			    System.out.println("fileName : "+sasiFile.getName());
-			    int pathPoint = sasiFile.getName().trim().lastIndexOf(".");
-			    String filePoint = sasiFile.getName().trim().substring(pathPoint + 1,
-			    		sasiFile.getName().trim().length());
-				String fileType = filePoint.toLowerCase();
-				int picture_type=0;
-				System.out.println("fileType:"+fileType);
-				if(fileType.equals("jpg")){
-					System.out.println("jpg!!");
-					picture_type=XWPFDocument.PICTURE_TYPE_JPEG;
-				}
-				else if(fileType.equals("png")){
-					picture_type=XWPFDocument.PICTURE_TYPE_PNG;
-				}
-				else if(fileType.equals("bmp")){
-					picture_type=XWPFDocument.PICTURE_TYPE_BMP;
-				}
-				else if(fileType.equals("jpeg")){
-					picture_type=XWPFDocument.PICTURE_TYPE_JPEG;
-				}
-				run.addPicture(is, picture_type, root_path+dv.getSasi(),Units.toEMU(realWidth),Units.toEMU(realHeight)); // 200x200 pixels
+				//Fill the new image with the old raster
+				bi.getRaster().setRect(raster);
+			}
+			float width=bi.getWidth();
+			float height=bi.getHeight();
+			
+			float rate = height/width;
+			int realWidth=200;
+			int realHeight=(int) (realWidth*rate);
+			System.out.println("realHeight : "+realHeight);
+			System.out.println("width : "+bi.getWidth()+", height : "+bi.getHeight());
+			is = new FileInputStream(root_path+dv.getSasi());
+			   run.addBreak();
+			   System.out.println("fileName : "+sasiFile.getName());
+			   int pathPoint = sasiFile.getName().trim().lastIndexOf(".");
+			   String filePoint = sasiFile.getName().trim().substring(pathPoint + 1,
+			   		sasiFile.getName().trim().length());
+			String fileType = filePoint.toLowerCase();
+			int picture_type=0;
+			System.out.println("fileType:"+fileType);
+			if(fileType.equals("jpg")){
+				System.out.println("jpg!!");
+				picture_type=XWPFDocument.PICTURE_TYPE_JPEG;
+			}
+			else if(fileType.equals("png")){
+				picture_type=XWPFDocument.PICTURE_TYPE_PNG;
+			}
+			else if(fileType.equals("bmp")){
+				picture_type=XWPFDocument.PICTURE_TYPE_BMP;
+			}
+			else if(fileType.equals("jpeg")){
+				picture_type=XWPFDocument.PICTURE_TYPE_JPEG;
+			}
+			run.addPicture(is, picture_type, root_path+dv.getSasi(),Units.toEMU(realWidth),Units.toEMU(realHeight)); // 200x200 pixels
 			
 			
 			is.close();
@@ -227,6 +229,358 @@ public class DocController {
 				
 				is.close();
 				}catch(Exception e){}
+			
+			run.addBreak();
+			run.setText("배면도");
+			run.addBreak();
+			try{
+				FileInputStream is = null;
+				
+					
+					System.out.println("파일이름 : "+baeFile.getName());
+					BufferedImage bi;
+					try{
+						bi=ImageIO.read(baeFile);
+					}
+					catch(Exception e){
+						Iterator readers = ImageIO.getImageReadersByFormatName("JPEG");
+						ImageReader reader = null;
+						while(readers.hasNext()) {
+						    reader = (ImageReader)readers.next();
+						    if(reader.canReadRaster()) {
+						        break;
+						    }
+						}
+
+						//Stream the image file (the original CMYK image)
+						ImageInputStream input =   ImageIO.createImageInputStream(baeFile); 
+						reader.setInput(input); 
+
+						//Read the image raster
+						Raster raster = reader.readRaster(0, null); 
+
+						//Create a new RGB image
+						bi = new BufferedImage(raster.getWidth(),raster.getHeight(),BufferedImage.TYPE_4BYTE_ABGR); 
+
+						//Fill the new image with the old raster
+						bi.getRaster().setRect(raster);
+					}
+					float width=bi.getWidth();
+					float height=bi.getHeight();
+					
+					float rate = height/width;
+					int realWidth=200;
+					int realHeight=(int) (realWidth*rate);
+					System.out.println("realHeight : "+realHeight);
+					System.out.println("width : "+bi.getWidth()+", height : "+bi.getHeight());
+					is = new FileInputStream(root_path+dv.getFront());
+				    run.addBreak();
+				    System.out.println("fileName : "+baeFile.getName());
+				    int pathPoint = frontFile.getName().trim().lastIndexOf(".");
+				    String filePoint = frontFile.getName().trim().substring(pathPoint + 1,
+				    		frontFile.getName().trim().length());
+					String fileType = filePoint.toLowerCase();
+					int picture_type=0;
+					System.out.println("fileType:"+fileType);
+					if(fileType.equals("jpg")){
+						System.out.println("jpg!!");
+						picture_type=XWPFDocument.PICTURE_TYPE_JPEG;
+					}
+					else if(fileType.equals("png")){
+						picture_type=XWPFDocument.PICTURE_TYPE_PNG;
+					}
+					else if(fileType.equals("bmp")){
+						picture_type=XWPFDocument.PICTURE_TYPE_BMP;
+					}
+					else if(fileType.equals("jpeg")){
+						picture_type=XWPFDocument.PICTURE_TYPE_JPEG;
+					}
+					run.addPicture(is, picture_type, root_path+dv.getBae(),Units.toEMU(realWidth),Units.toEMU(realHeight)); // 200x200 pixels
+				
+				
+				is.close();
+				}catch(Exception e){}
+			run.addBreak();
+			run.setText("좌측면도");
+			run.addBreak();
+			try{
+				FileInputStream is = null;
+				
+					
+					System.out.println("파일이름 : "+left_sideFile.getName());
+					BufferedImage bi;
+					try{
+						bi=ImageIO.read(left_sideFile);
+					}
+					catch(Exception e){
+						Iterator readers = ImageIO.getImageReadersByFormatName("JPEG");
+						ImageReader reader = null;
+						while(readers.hasNext()) {
+						    reader = (ImageReader)readers.next();
+						    if(reader.canReadRaster()) {
+						        break;
+						    }
+						}
+
+						//Stream the image file (the original CMYK image)
+						ImageInputStream input =   ImageIO.createImageInputStream(left_sideFile); 
+						reader.setInput(input); 
+
+						//Read the image raster
+						Raster raster = reader.readRaster(0, null); 
+
+						//Create a new RGB image
+						bi = new BufferedImage(raster.getWidth(),raster.getHeight(),BufferedImage.TYPE_4BYTE_ABGR); 
+
+						//Fill the new image with the old raster
+						bi.getRaster().setRect(raster);
+					}
+					float width=bi.getWidth();
+					float height=bi.getHeight();
+					
+					float rate = height/width;
+					int realWidth=200;
+					int realHeight=(int) (realWidth*rate);
+					System.out.println("realHeight : "+realHeight);
+					System.out.println("width : "+bi.getWidth()+", height : "+bi.getHeight());
+					is = new FileInputStream(root_path+dv.getLeft_side());
+				    run.addBreak();
+				    System.out.println("fileName : "+left_sideFile.getName());
+				    int pathPoint = left_sideFile.getName().trim().lastIndexOf(".");
+				    String filePoint = left_sideFile.getName().trim().substring(pathPoint + 1,
+				    		left_sideFile.getName().trim().length());
+					String fileType = filePoint.toLowerCase();
+					int picture_type=0;
+					System.out.println("fileType:"+fileType);
+					if(fileType.equals("jpg")){
+						System.out.println("jpg!!");
+						picture_type=XWPFDocument.PICTURE_TYPE_JPEG;
+					}
+					else if(fileType.equals("png")){
+						picture_type=XWPFDocument.PICTURE_TYPE_PNG;
+					}
+					else if(fileType.equals("bmp")){
+						picture_type=XWPFDocument.PICTURE_TYPE_BMP;
+					}
+					else if(fileType.equals("jpeg")){
+						picture_type=XWPFDocument.PICTURE_TYPE_JPEG;
+					}
+					run.addPicture(is, picture_type, root_path+dv.getLeft_side(),Units.toEMU(realWidth),Units.toEMU(realHeight)); // 200x200 pixels
+				is.close();
+				}catch(Exception e){}
+			run.addBreak();
+			run.setText("우측면도");
+			run.addBreak();
+			try{
+				FileInputStream is = null;
+				
+					
+					System.out.println("파일이름 : "+right_sideFile.getName());
+					BufferedImage bi;
+					try{
+						bi=ImageIO.read(right_sideFile);
+					}
+					catch(Exception e){
+						Iterator readers = ImageIO.getImageReadersByFormatName("JPEG");
+						ImageReader reader = null;
+						while(readers.hasNext()) {
+						    reader = (ImageReader)readers.next();
+						    if(reader.canReadRaster()) {
+						        break;
+						    }
+						}
+
+						//Stream the image file (the original CMYK image)
+						ImageInputStream input =   ImageIO.createImageInputStream(right_sideFile); 
+						reader.setInput(input); 
+
+						//Read the image raster
+						Raster raster = reader.readRaster(0, null); 
+
+						//Create a new RGB image
+						bi = new BufferedImage(raster.getWidth(),raster.getHeight(),BufferedImage.TYPE_4BYTE_ABGR); 
+
+						//Fill the new image with the old raster
+						bi.getRaster().setRect(raster);
+					}
+					float width=bi.getWidth();
+					float height=bi.getHeight();
+					
+					float rate = height/width;
+					int realWidth=200;
+					int realHeight=(int) (realWidth*rate);
+					System.out.println("realHeight : "+realHeight);
+					System.out.println("width : "+bi.getWidth()+", height : "+bi.getHeight());
+					is = new FileInputStream(root_path+dv.getRight_side());
+				    run.addBreak();
+				    System.out.println("fileName : "+right_sideFile.getName());
+				    int pathPoint = right_sideFile.getName().trim().lastIndexOf(".");
+				    String filePoint = right_sideFile.getName().trim().substring(pathPoint + 1,
+				    		right_sideFile.getName().trim().length());
+					String fileType = filePoint.toLowerCase();
+					int picture_type=0;
+					System.out.println("fileType:"+fileType);
+					if(fileType.equals("jpg")){
+						System.out.println("jpg!!");
+						picture_type=XWPFDocument.PICTURE_TYPE_JPEG;
+					}
+					else if(fileType.equals("png")){
+						picture_type=XWPFDocument.PICTURE_TYPE_PNG;
+					}
+					else if(fileType.equals("bmp")){
+						picture_type=XWPFDocument.PICTURE_TYPE_BMP;
+					}
+					else if(fileType.equals("jpeg")){
+						picture_type=XWPFDocument.PICTURE_TYPE_JPEG;
+					}
+					run.addPicture(is, picture_type, root_path+dv.getRight_side(),Units.toEMU(realWidth),Units.toEMU(realHeight)); // 200x200 pixels
+				
+				
+				is.close();
+				}catch(Exception e){}
+			run.addBreak();
+			run.setText("평면도");
+			run.addBreak();
+			try{
+				FileInputStream is = null;
+				
+					
+					System.out.println("파일이름 : "+planeFile.getName());
+					BufferedImage bi;
+					try{
+						bi=ImageIO.read(planeFile);
+					}
+					catch(Exception e){
+						Iterator readers = ImageIO.getImageReadersByFormatName("JPEG");
+						ImageReader reader = null;
+						while(readers.hasNext()) {
+						    reader = (ImageReader)readers.next();
+						    if(reader.canReadRaster()) {
+						        break;
+						    }
+						}
+
+						//Stream the image file (the original CMYK image)
+						ImageInputStream input =   ImageIO.createImageInputStream(planeFile); 
+						reader.setInput(input); 
+
+						//Read the image raster
+						Raster raster = reader.readRaster(0, null); 
+
+						//Create a new RGB image
+						bi = new BufferedImage(raster.getWidth(),raster.getHeight(),BufferedImage.TYPE_4BYTE_ABGR); 
+
+						//Fill the new image with the old raster
+						bi.getRaster().setRect(raster);
+					}
+					float width=bi.getWidth();
+					float height=bi.getHeight();
+					
+					float rate = height/width;
+					int realWidth=200;
+					int realHeight=(int) (realWidth*rate);
+					System.out.println("realHeight : "+realHeight);
+					System.out.println("width : "+bi.getWidth()+", height : "+bi.getHeight());
+					is = new FileInputStream(root_path+dv.getPlane());
+				    run.addBreak();
+				    System.out.println("fileName : "+planeFile.getName());
+				    int pathPoint = planeFile.getName().trim().lastIndexOf(".");
+				    String filePoint = planeFile.getName().trim().substring(pathPoint + 1,
+				    		frontFile.getName().trim().length());
+					String fileType = filePoint.toLowerCase();
+					int picture_type=0;
+					System.out.println("fileType:"+fileType);
+					if(fileType.equals("jpg")){
+						System.out.println("jpg!!");
+						picture_type=XWPFDocument.PICTURE_TYPE_JPEG;
+					}
+					else if(fileType.equals("png")){
+						picture_type=XWPFDocument.PICTURE_TYPE_PNG;
+					}
+					else if(fileType.equals("bmp")){
+						picture_type=XWPFDocument.PICTURE_TYPE_BMP;
+					}
+					else if(fileType.equals("jpeg")){
+						picture_type=XWPFDocument.PICTURE_TYPE_JPEG;
+					}
+					run.addPicture(is, picture_type, root_path+dv.getPlane(),Units.toEMU(realWidth),Units.toEMU(realHeight)); // 200x200 pixels
+				
+				
+				is.close();
+				}catch(Exception e){}
+			run.addBreak();
+			run.setText("저면도");
+			run.addBreak();
+			try{
+				FileInputStream is = null;
+				
+					
+					System.out.println("파일이름 : "+insideFile.getName());
+					BufferedImage bi;
+					try{
+						bi=ImageIO.read(frontFile);
+					}
+					catch(Exception e){
+						Iterator readers = ImageIO.getImageReadersByFormatName("JPEG");
+						ImageReader reader = null;
+						while(readers.hasNext()) {
+						    reader = (ImageReader)readers.next();
+						    if(reader.canReadRaster()) {
+						        break;
+						    }
+						}
+
+						//Stream the image file (the original CMYK image)
+						ImageInputStream input =   ImageIO.createImageInputStream(insideFile); 
+						reader.setInput(input); 
+
+						//Read the image raster
+						Raster raster = reader.readRaster(0, null); 
+
+						//Create a new RGB image
+						bi = new BufferedImage(raster.getWidth(),raster.getHeight(),BufferedImage.TYPE_4BYTE_ABGR); 
+
+						//Fill the new image with the old raster
+						bi.getRaster().setRect(raster);
+					}
+					float width=bi.getWidth();
+					float height=bi.getHeight();
+					
+					float rate = height/width;
+					int realWidth=200;
+					int realHeight=(int) (realWidth*rate);
+					System.out.println("realHeight : "+realHeight);
+					System.out.println("width : "+bi.getWidth()+", height : "+bi.getHeight());
+					is = new FileInputStream(root_path+dv.getInside());
+				    run.addBreak();
+				    System.out.println("fileName : "+insideFile.getName());
+				    int pathPoint = insideFile.getName().trim().lastIndexOf(".");
+				    String filePoint = insideFile.getName().trim().substring(pathPoint + 1,
+				    		insideFile.getName().trim().length());
+					String fileType = filePoint.toLowerCase();
+					int picture_type=0;
+					System.out.println("fileType:"+fileType);
+					if(fileType.equals("jpg")){
+						System.out.println("jpg!!");
+						picture_type=XWPFDocument.PICTURE_TYPE_JPEG;
+					}
+					else if(fileType.equals("png")){
+						picture_type=XWPFDocument.PICTURE_TYPE_PNG;
+					}
+					else if(fileType.equals("bmp")){
+						picture_type=XWPFDocument.PICTURE_TYPE_BMP;
+					}
+					else if(fileType.equals("jpeg")){
+						picture_type=XWPFDocument.PICTURE_TYPE_JPEG;
+					}
+					run.addPicture(is, picture_type, root_path+dv.getInside(),Units.toEMU(realWidth),Units.toEMU(realHeight)); // 200x200 pixels
+				
+				
+				is.close();
+				}catch(Exception e){}
+			
+			
+			
 			paragraph.setAlignment(ParagraphAlignment.LEFT);
 			
 			String name=ss.getToday(1)+".docx";
