@@ -71,6 +71,83 @@ public class CopyrightController {
 		
 		return "redirect:/";
 	}
+	@RequestMapping(value="/regCopyright_inventor", method=RequestMethod.POST)
+	public String copyRightUpdate_Inventor(HttpServletRequest req, Model model)
+	{
+		//int cid
+		
+		String title	= req.getParameter("re_idea_kind_inventor");
+		if(title.equals(""))title = req.getParameter("idea_kind");
+		else
+		{
+			CopyRightInfoVo civ = new CopyRightInfoVo();
+			civ.setTitle(title);
+			//civ.setCid
+			//copyrightInfoDao.addCopyrightInfo(civ);
+		}
+		
+		String field	= req.getParameter("re_field_selected");
+		if(field.equals("")) field = req.getParameter("field_selected");
+		
+		String type 	= req.getParameter("re_kind");
+		if(type.equals("")) type = req.getParameter("kind");
+		
+		String meaning  = req.getParameter("re_meaning");
+		if(meaning.equals("")) meaning = req.getParameter("meaning");
+		
+		int uid			= Integer.parseInt(req.getParameter("uid"));
+
+		
+		CopyRightVo cv = new CopyRightVo();
+		cv.setTitle(title);
+		cv.setField(field);
+		cv.setType(type);
+		cv.setMeaning(meaning);
+		cv.setUid(uid);
+		
+		//copyrightDao.addCopyright(cv);
+		
+		return "redirect:/";
+	}
+	
+	@RequestMapping(value="/regCopyright_pl", method=RequestMethod.POST)
+	public String copyRightUpdate_pl(HttpServletRequest req, Model model)
+	{
+		//int cid
+		
+		String title	= req.getParameter("re_idea_kind_inventor");
+		if(title.equals(""))title = req.getParameter("idea_kind");
+		else
+		{
+			CopyRightInfoVo civ = new CopyRightInfoVo();
+			civ.setTitle(title);
+			//civ.setCid
+			//copyrightInfoDao.addCopyrightInfo(civ);
+		}
+		
+		String field	= req.getParameter("re_field_selected");
+		if(field.equals("")) field = req.getParameter("field_selected");
+		
+		String type 	= req.getParameter("re_kind");
+		if(type.equals("")) type = req.getParameter("kind");
+		
+		String meaning  = req.getParameter("re_meaning");
+		if(meaning.equals("")) meaning = req.getParameter("meaning");
+		
+		int uid			= Integer.parseInt(req.getParameter("uid"));
+
+		
+		CopyRightVo cv = new CopyRightVo();
+		cv.setTitle(title);
+		cv.setField(field);
+		cv.setType(type);
+		cv.setMeaning(meaning);
+		cv.setUid(uid);
+		
+		//copyrightDao.addCopyright(cv);
+		
+		return "redirect:/";
+	}
 	
 	@RequestMapping("/detail/{cid}")
 	public String detailView(Model model,@PathVariable int cid)

@@ -18,7 +18,7 @@
 		</h1>
 		</article> 
 		<article>
-		<form action="/copyRight/regCopyright" method="POST" enctype="multipart/form-data">
+		<form action="/copyRight/regCopyright_inventor" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
 			<input type="hidden" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}" />				
 <!-- 명칭 -->
@@ -27,9 +27,8 @@
 				<button>작성예시 보기</button>
 				<input type="text" id="idea_kind" name="idea_kind" placeholder="본인이 창작한 저작물의 이름을 정해 주세요 / 물품명 + 사용용도 or 사용용도 + 적용물품"
 					value=${copyrightVo.getTitle() }>
-				<textarea>${copyrightVo.getRe_title() }
-				</textarea>		
-				<textarea></textarea>					
+				<textarea id="re_idea_kind_pl">${copyrightVo.getRe_title() }</textarea>		
+				<textarea id="re_idea_kind_inventor"></textarea>					
 			</div>
 <!-- 분야 -->
 			<div class="txt_box">
@@ -51,16 +50,16 @@
 분야:${copyrightVo.getRe_field()}
 종류:${copyrightVo.getRe_type()}
 					</textarea>			
-
+<!-- 분야 & 종류 수정 -->
 					<span>분야</span> 
 					<select id="re_field_selected" name="re_field_selected">
-						<option>${copyrightVo.getRe_field() }</option>
+						<option>${copyrightVo.getField() }</option>
 						<c:forEach items="${typeList}" var="type">
 						<option>${type.getType()}</option>
 						</c:forEach>
 					</select>
 					<span style="display: inline-block; margin-left: 140px;">종류</span>
-					<input type="text" id="re_kind" name="re_kind" value=${copyrightVo.getRe_type() }>
+					<input type="text" id="re_kind" name="re_kind">
 				</div>
 				<span
 					style="font-size: 0.8rem; color: #45d7c2; display: inline-block; float: left; margin-top: 10px;">
@@ -81,7 +80,7 @@
 				<button>작성예시 보기</button>
 				<textarea id="meaning" name="meaning">${copyrightVo.getMeaning() }</textarea>
 				<textarea>${copyrightVo.getRe_meaning() }</textarea>			
-				<textarea></textarea>		
+				<textarea id="re_meaning"></textarea>		
 			</div>
 <!-- 첨부 -->
 			<div class="txt_box">
@@ -108,7 +107,7 @@
 			</div>
 			<div id="fin">
 				<!-- <button>임시저장</button>	 -->
-				<button id="agree" onclick="submitFunc()">등록하기</button>
+				<button id="agree">등록하기</button>
 			</div>
 		</form>
 		</article>

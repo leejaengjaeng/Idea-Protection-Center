@@ -25,9 +25,9 @@
 			<div class="txt_box">
 				<h2>저작물 명칭</h2>
 				<button>작성예시 보기</button>
-				<input type="text" id="idea_kind" name="idea_kind"
-					placeholder="본인이 창작한 저작물의 이름을 정해 주세요 / 물품명 + 사용용도 or 사용용도 + 적용물품">
-				<textarea></textarea>		
+				<input type="text" id="idea_kind" name="idea_kind" placeholder="본인이 창작한 저작물의 이름을 정해 주세요 / 물품명 + 사용용도 or 사용용도 + 적용물품"
+				value=${copyrightVo.getTitle() }>
+				<textarea>${copyrightVo.getRe_title() }</textarea>		
 				<textarea></textarea>					
 			</div>
 <!-- 분야 -->
@@ -45,9 +45,21 @@
 					</select>
 <!-- 종류 -->
 					<span style="display: inline-block; margin-left: 140px;">종류</span>
-					<input type="text" id="kind" name="kind">
-					<textarea></textarea>			
-					<textarea></textarea>			
+					<input type="text" id="kind" name="kind" value=${copyrightVo.getType() }>
+					<textarea>
+분야:${copyrightVo.getRe_field()}
+종류:${copyrightVo.getRe_type()}
+					</textarea>	
+					
+					<span>분야</span> 
+					<select id="re_field_selected" name="re_field_selected">
+						<option></option>
+						<c:forEach items="${typeList}" var="type">
+						<option>${type.getType()}</option>
+						</c:forEach>
+					</select>
+					<span style="display: inline-block; margin-left: 140px;">종류</span>
+					<input type="text" id="re_kind" name="re_kind">		
 				</div>
 				<span
 					style="font-size: 0.8rem; color: #45d7c2; display: inline-block; float: left; margin-top: 10px;">
@@ -66,10 +78,8 @@
 			<div class="txt_box" style="margin-top: 100px;">
 				<h2>저작물의 의미</h2>
 				<button>작성예시 보기</button>
-				<textarea id="meaning" name="meaning"></textarea>
-				
-					
-				<textarea></textarea>			
+				<textarea id="meaning" name="meaning">${copyrightVo.getMeaning() }</textarea>
+				<textarea>${copyrightVo.getRe_meaning() }</textarea>			
 				<textarea></textarea>		
 			</div>
 <!-- 첨부 -->
