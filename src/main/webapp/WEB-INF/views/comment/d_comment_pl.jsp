@@ -19,9 +19,7 @@
 </head>
 <body>
 	<c:import url="/WEB-INF/views/import/header.jsp" />
-	<c:forEach var="j" begin="1" end="${count}" step="1">
-		<button class="loadBtn" data-num="${j}">${j}차 수정안</button><br/>
-	</c:forEach>
+	
 	<form action="/design/inputCommentDesign" method="POST"
 		enctype="multipart/form-data" onsubmit="return checkDesign();">
 		<input type="hidden" name="${_csrf.parameterName}"
@@ -34,6 +32,15 @@
 			</h1>
 			</article> <article>
 			<div class="txt_box">
+				<div class="dropdown">
+					<span id="drop_sp">디자인권 등록 (초안)</span>
+					<div class="arrow-up ee"></div>					
+						<ul id="IdeaModifyList">
+							<c:forEach var="j" begin="1" end="${count}" step="1">
+								<li class="loadBtn" data-num="${j}">${j}차 수정안</li>
+							</c:forEach>
+						</ul>					
+					</div>
 				<h2>디자인 명칭*</h2>
 				<button>작성예시 보기</button>
 				<textarea class="cmt_de disabled first" id="before_re_title" disabled>${prevDv.getRe_title()}</textarea>
@@ -720,6 +727,17 @@
 	$(function(){
 		$(".txt_box>button").attr("type","button");
 	});
+	   $(".dropdown").click(function(){		
+			if($(this).height() < 100){
+			    $(this).css('max-height', '500px'); //set max height
+			}else{
+			    $(this).css('max-height', '50px'); //delete attribute
+			}
+		});
+
+		$("#IdeaModifyList_top li").click(function(){
+			$("#drop_sp").text($(this).data("val"));
+		});
 	</script>
 </body>
 </html>

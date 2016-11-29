@@ -18,10 +18,12 @@
 		</h1>
 		</article> 
 		<article>
+
 		<form action="/mark/regMarkPl" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
 			<input type="hidden" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}" />
 			<input type="hidden" name="mid" id="mid" value="${mv.getMid()}" />				
+
 <!-- 명칭 -->
 			<div class="txt_box">
 				<h2>사용할 상표(명칭)</h2>

@@ -143,3 +143,4 @@ $('#idea_title').keyup(function(){
 		$(this).css({display:'none'});
 		$(this).prev(ex).removeClass('good');
 	});
+	

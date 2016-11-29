@@ -73,14 +73,23 @@
 				<button>작성예시 보기</button>											
 			</div>
 			<div class="txt_box" style="margin-top:10px;">
+									
+				<div style="width:100%; float:left;">
+					<div class="add_imgs">
+						<img src="/resources/image/noimg_sum.png" id="imgkkk">
+						<input type="file" id="plan_img">
+					</div>
+				</div>				
 				<span style="font-size: 0.8rem; color: rgba(0, 204, 254, 1); display: inline-block; float: left;">
-				만드신 저작물의 첨부파일을 넣어 주세요 10mb이상의 파일은 이후 지정된 전문가의 메일로 제출하여 주세요.
+					만드신 저작물의 첨부파일을 넣어 주세요 10mb이상의 파일은 이후 지정된 전문가의 메일로 제출하여 주세요.
 				</span>
+
 				<br><br>				
 				<div class="add_imgs">
 					<img src="/resources/image/noimg_sum.png" id="imgkkk">
 					<input type="file" id="plan_img" name="logo_file">
 				</div>				
+
 			</div>
 			<div id="fin">
 				<!-- <button>임시저장</button>	 -->
