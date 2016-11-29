@@ -36,7 +36,7 @@
 				<h2>상표 사용처</h2>
 				<button>작성예시 보기</button>
 				<br>		
-				<input type="text">		
+				<input type="text" name="whereuse">		
 				<span
 					style="font-size: 0.8rem; color: rgba(0, 204, 254, 1); display: inline-block; float: left;">
 					본인이 창작한 저작물의 분야를 선택해주세요. </span>
@@ -54,7 +54,7 @@
 			<div class="txt_box" style="margin-top: 100px;">
 				<h2>상표 의미</h2>
 				<button>작성예시 보기</button>
-				<textarea id="meaning" name="meaning"></textarea>
+				<textarea id="meaning" name="mean"></textarea>
 				<span style="font-size: 0.8rem; color: rgba(0, 204, 254, 1);">본인이 창작한 저작의
 					의미를 적어 주시기 바랍니다.</span>
 				<div class="hiding_box">
@@ -79,12 +79,12 @@
 				<br><br>				
 				<div class="add_imgs">
 					<img src="/resources/image/noimg_sum.png" id="imgkkk">
-					<input type="file" id="plan_img">
+					<input type="file" id="plan_img" name="logo_file">
 				</div>				
 			</div>
 			<div id="fin">
 				<!-- <button>임시저장</button>	 -->
-				<button id="agree" onclick="submitFunc()">등록하기</button>
+				<input type="submit" value="등록하기">
 			</div>
 		</form>
 		</article>

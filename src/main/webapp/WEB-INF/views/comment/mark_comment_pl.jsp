@@ -18,73 +18,40 @@
 		</h1>
 		</article> 
 		<article>
-		<%-- <table id="IdeaModifyList">
-					<c:forEach items="${processList}" var="list" varStatus="status">
-						<c:choose>
-							목록이 하나인 경우
-							<c:when test="${status.first and status.last }">
-								<tr class="clickedIdea">
-									<input type="hidden" value="${list.getRid()}" />
-									<td class="title_td">아이디어 등록(초안)</td>
-									<td class="date_td">${list.getRegistration_date()}</td>
-								</tr>
-							</c:when>
-							목록이 하나가 아닌 경우
-							<c:when test="${status.first}">
-								<tr>
-									<input type="hidden" value="${list.getRid()}" />
-									<td class="title_td">아이디어 등록(초안)</td>
-									<td class="date_td">${list.getRegistration_date()}</td>
-								</tr>
-							</c:when>
-							<c:when test="${status.last}">
-								<tr class="clickedIdea">
-									<input type="hidden" value="${list.getRid()}" />
-									<td class="title_td">${status.index}차전문가 검토 및 수정안</td>
-									<td class="date_td">${list.getRegistration_date()}</td>
-								</tr>
-							</c:when>
-							<c:otherwise>
-								<tr>
-									<input type="hidden" value="${list.getRid()}" />
-									<td class="title_td">${status.index}차전문가 검토 및 수정안</td>
-									<td class="date_td">${list.getRegistration_date()}</td>
-								</tr>
-							</c:otherwise>
-						</c:choose>
-					</c:forEach>
-				</table> --%>
-		<form action="/copyRight/regCopyright" method="POST" enctype="multipart/form-data">
-			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
-			<input type="hidden" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}" />				
+		<form action="/mark/regMarkPl" method="POST" enctype="multipart/form-data">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
+			<input type="hidden" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}" />
+			<input type="hidden" name="mid" id="mid" value="${mv.getMid()}" />				
 <!-- 명칭 -->
 			<div class="txt_box">
 				<h2>사용할 상표(명칭)</h2>
 				<button>작성예시 보기</button>
+				<textarea class="disabled first" disabled="disabled" id="before_re_title1">${prev_mv.getRe_title1()}</textarea>
 				<div class="mark_form">
-					<input type="text" class="name_mark" placeholder="1안">
-					<input type="text" class="name_mark" placeholder="2안">
-					<input type="text" class="name_mark" placeholder="3안">
+					<input type="text" class="name_mark disabled" placeholder="1안" disabled="disabled" id="title1" value="${mv.getTitle1()}">
+					<input type="text" class="name_mark disabled" placeholder="2안" disabled="disabled" id="title2" value="${mv.getTitle2()}">
+					<input type="text" class="name_mark disabled" placeholder="3안" disabled="disabled" id="title3" value="${mv.getTitle3()}">
 				</div>	
-				<textarea class="disabled" disabled="disabled"></textarea>
-				<textarea></textarea>			
+				
+				<textarea class="now disabled" name="re_title1" disabled>${mv.getRe_title1()}</textarea>			
 			</div>
 <!-- 사용처 -->
 			<div class="txt_box">
 				<h2>상표 사용처</h2>
 				<button>작성예시 보기</button>
 				<br>		
-				<input type="text">		
-				<textarea class="disabled" disabled="disabled"></textarea>	
-				<textarea></textarea>			
+					
+				<textarea class="disabled first" disabled="disabled" id="before_re_whereuse">${prev_mv.getRe_whereuse()}</textarea><br>
+				<input type="text" class="disabled" disabled="disabled" value="${mv.getWhereuse()}">	
+				<textarea class="now disabled" name="re_whereuse" disabled>${mv.getRe_whereuse()}</textarea>			
 			</div>
 <!-- 의미 -->
 			<div class="txt_box" style="margin-top: 100px;">
 				<h2>상표 의미</h2>
 				<button>작성예시 보기</button>
-				<textarea id="meaning" name="meaning"></textarea>
-				<textarea class="disabled" disabled="disabled">이전내용</textarea>
-				<textarea></textarea>
+				<textarea class="disabled" disabled="disabled" id="before_re_mean">${prev_mv.getRe_mean()}</textarea>
+				<textarea class="disabled" disabled="disabled">${mv.getMean()}</textarea>
+				<textarea name="re_mean" class="now disabled" disabled>${mv.getRe_mean()}</textarea>
 			</div>
 <!-- 첨부 -->
 			<div class="txt_box">
@@ -92,16 +59,15 @@
 				<button>작성예시 보기</button>											
 			</div>
 			<div class="txt_box" style="margin-top:10px;">							
+				<textarea class="logo_cmt disabled first" disabled="disabled" id="before_re_logo">${prev_mv.getRe_logo()}</textarea>
 				<div class="add_imgs">
-					<img src="/resources/image/noimg_sum.png" id="imgkkk">
-					<input type="file" id="plan_img">
+					<img src="${mv.getLogo()}" id="imgkkk">
 				</div>	
-				<textarea class="logo_cmt disabled" disabled="disabled">이전내용</textarea>
-				<textarea></textarea>				
+				<textarea class="now disabled" disabled name="re_logo">${mv.getRe_logo()}</textarea>				
 			</div>
 			<div id="fin">
 				<!-- <button>임시저장</button>	 -->
-				<button id="agree" onclick="submitFunc()">등록하기</button>
+				<input id="subbtn" value="등록하기" type="submit" style="display:none">
 			</div>
 		</form>
 		</article>
@@ -116,6 +82,20 @@
 	}
 
     $(document).ready(function(){
+    	if("${countMark}"=='1'){
+			$('#before_re_title1').css("display","none");
+			$('#before_re_mean').css("display","none");
+			$('#before_re_whereuse').css("display","none");
+			$('#before_re_logo').css("display","none");
+		}
+    	if("${mv.getIscomplete()}"=='1'){
+    		alert("발명가님이 수정중입니다.");
+    	}
+    	else if("${mv.getIscomplete()}"=='0'){
+			$('#subbtn').css("display","inline");
+			$('.now').removeClass("disabled");
+			$('.now').attr("disabled",false);
+    	}
         function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader(); //파일을 읽기 위한 FileReader객체 생성

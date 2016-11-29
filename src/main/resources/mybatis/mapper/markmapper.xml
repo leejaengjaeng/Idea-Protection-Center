@@ -1,5 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ipc.dao.MarkDao">
-	
+	<insert id="insertFirstMark" parameterType="com.ipc.vo.MarkVo"  useGeneratedKeys="true" keyProperty="mid">
+		insert into mark_patent(title1,title2,title3,mean,whereuse,logo,uid,prev_mid,iscomplete) values (#{title1},#{title2},#{title3},#{mean},#{whereuse},#{logo},#{uid},-1,2)
+	</insert>
+	<update id="updateFirstMarkStart_mid" parameterType="Integer">
+		update mark_patent set start_mid=#{mid} where mid=#{mid}
+	</update>
+	<select id="getMarkListAdmin" resultType="com.ipc.vo.MarkAdminVo">
+		select *
+		from (select m.mid,m.start_mid,u.id,u.name,u.email,m.title1,m.iscomplete,u2.name as lawyer_name,m.prev_mid,m.pre_apply_date,m.apply_date
+	  		  from mark_patent as m join user as u on m.uid=u.uid left join user as u2 on m.luid=u2.uid) as f
+		where f.mid IN (select max(ff.mid)
+					    from (select m.mid,m.start_mid,u.id,u.name,u.email,m.title1,m.iscomplete,u2.name as lawyer_name,m.prev_mid
+					   	   	  from mark_patent as m join user as u on m.uid=u.uid left join user as u2 on m.luid=u2.uid)as ff
+					  		  group by ff.start_mid)
+	</select>
+	<select id="getMarkListIn" resultType="com.ipc.vo.MarkAdminVo">
+		select *
+		from (select m.mid,m.start_mid,u.id,u.name,u.email,m.title1,m.iscomplete,u2.name as lawyer_name,m.prev_mid,m.pre_apply_date,m.apply_date
+	  		  from mark_patent as m join user as u on m.uid=u.uid left join user as u2 on m.luid=u2.uid 
+	  		  where u.uid=#{uid}) as f
+		where f.mid IN (select max(ff.mid)
+					    from (select m.mid,m.start_mid,u.id,u.name,u.email,m.title1,m.iscomplete,u2.name as lawyer_name,m.prev_mid
+					   	   	  from mark_patent as m join user as u on m.uid=u.uid left join user as u2 on m.luid=u2.uid)as ff
+					  		  group by ff.start_mid)
+	</select>
+	<select id="getMarkListPl" resultType="com.ipc.vo.MarkAdminVo">
+		select *
+		from (select m.mid,m.start_mid,u.id,u.name,u.email,m.title1,m.iscomplete,u2.name as lawyer_name,m.prev_mid,m.pre_apply_date,m.apply_date
+	  		  from mark_patent as m join user as u on m.uid=u.uid left join user as u2 on m.luid=u2.uid 
+	  		  where m.luid=#{uid}) as f
+		where f.mid IN (select max(ff.mid)
+					    from (select m.mid,m.start_mid,u.id,u.name,u.email,m.title1,m.iscomplete,u2.name as lawyer_name,m.prev_mid
+					   	   	  from mark_patent as m join user as u on m.uid=u.uid left join user as u2 on m.luid=u2.uid)as ff
+					  		  group by ff.start_mid)
+	</select>
+	<update id="updatePatent" parameterType="Hashmap">
+		update mark_patent set luid=#{uid},iscomplete='0' where mid=#{mid}
+	</update>
+	<select id="countMarkByStart_mid" parameterType="Integer" resultType="Integer">
+		select count(mid) from mark_patent where start_mid=#{start_mid}
+	</select>
+	<select id="getStart_midByMid" parameterType="Integer" resultType="Integer">
+		select start_mid from mark_patent where mid=#{mid}
+	</select>
+	<select id="getMarkByMid" parameterType="Integer" resultType="com.ipc.vo.MarkVo">
+		select * from mark_patent where mid=#{mid}
+	</select>
+	<select id="getMarkListByStart_mid" parameterType="Integer" resultType="com.ipc.vo.MarkVo">
+		select * from mark_patent where start_mid=#{start_mid}
+	</select>
+	<update id="saveMarkRegPL" parameterType="com.ipc.vo.MarkVo">
+		update mark_patent set re_title1=#{re_title1},re_whereuse=#{re_whereuse},re_mean=#{re_mean},re_logo=#{re_logo},iscomplete='1' where mid=#{mid}
+	</update>
 </mapper>

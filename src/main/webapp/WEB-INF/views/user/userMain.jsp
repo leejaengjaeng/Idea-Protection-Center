@@ -422,7 +422,8 @@ function downPaper(died){
 		                <div id="cont_header" class="brand">
                 			<h2>상표권 진행내역</h2>
             			</div>
-		                <table style="margin-top:50px;" class="brand"> 
+		                <table style="margin-top:50px;" class="brand">
+		                    
 		                    <tr> 		                        
 		                       
 		                        <th>제목</th>
@@ -432,34 +433,55 @@ function downPaper(died){
 		                        <th>출원일</th>
 		                        <th>비고</th>
 		                    </tr>
-		                   	<c:forEach var="design" items="${trademarkList}" varStatus="status">
-								<tr onclick="location.href='/design/detail/${design.getDeid()}'">
-									<input type="hidden" value="${design.getDeid()}"/>								
-			                        <td><p>${design.getTitle()}</p></td>
-			                        <td><p>${design.getD_condition()}</p></td>
+		                   	<c:forEach var="mark" items="${markList}" varStatus="status">
+								<tr>
+									<input type="hidden" value="${mark.getMid()}"/>								
+			                        <td  onclick="location.href='/mark/detail/${mark.getMid()}'"><p>${mark.getTitle1()}</p></td>
+			                        <c:choose>
+			                        	<c:when test="${mark.getIscomplete() eq 0}">
+			                        		<td><p>변리사 수정중</p></td>		
+			                        	</c:when>
+			                        	<c:when test="${mark.getIscomplete() eq 1}">
+			                        		<td><p>발명가 수정중</p></td>		
+			                        	</c:when>
+			                        	<c:when test="${mark.getIscomplete() eq 2}">
+			                        		<td><p>결제대기중</p></td>
+			                        	</c:when>
+			                        	<c:when test="${mark.getIscomplete() eq 3}">
+			                        		<td><p>서류업로드중</p></td>
+			                        	</c:when>
+			                        	<c:when test="${mark.getIscomplete() eq 4}">
+			                        		<td><p>출원중</p></td>
+			                        	</c:when>
+			                        	<c:when test="${mark.getIscomplete() eq 5}">
+			                        		<td><p>출원완료</p></td>
+			                        	</c:when>
+			                   
+			                        </c:choose>
+			                        
 			                        
 			                       <c:choose>
-			                        	<c:when test="${design.getPatentName() eq null}">
+			                        	<c:when test="${mark.getLawyer_name() eq null}">
 			                        		<td><p>아직 매칭되지 않았습니다.</p></td>
 			                        	</c:when>
 			                        	<c:otherwise>
-			                        		<td><p>${design.getPatentName()}변리사님</p></td>
+			                        		<td><p>${mark.getLawyer_name()}변리사님</p></td>
 			                        	</c:otherwise>
 			                        </c:choose>
-			                        <td><p>${design.getPre_apply_date()}</p></td>
-			                        <td><p>${design.getApply_date()}</p></td>
+			                        <td><p>${mark.getPre_apply_date()}</p></td>
+			                        <td><p>${mark.getApply_date()}</p></td>
 			                        <c:choose>
-				                        <c:when test="${design.getD_condition() eq '출원완료' }">
+				                        <c:when test="${mark.getIscomplete() eq 5}">
 				                        	<c:choose>
 				                	        	<c:when test="${currentUser.getRole()=='ROLE_INVENTOR'}">
-				                    	    		<td><button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;" class="btn_chul" onclick="location.href='/getDoc/${design.getDeid()}'">출원서 다운로드</button></td>
+				                    	    		<td><button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;" class="btn_chul" onclick="location.href='/downPaperDesign/${design.getDeid()}'">출원서 다운로드</button></td>
 				                        		</c:when>
 				                        		<c:otherwise>
 				                        			<td>-</td>
 				                        		</c:otherwise>
 				                        	</c:choose>
 				                        </c:when>
-				                        <c:when test="${design.getD_condition() eq '결제대기중' }">
+				                        <c:when test="${mark.getIscomplete() eq 2}">
 				                        	<c:choose>
 				                	        	<c:when test="${currentUser.getRole()=='ROLE_INVENTOR'}">
 				                    	    		<td><button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;" class="btn_chul">결제하기</button></td>
@@ -469,21 +491,14 @@ function downPaper(died){
 				                        		</c:otherwise>
 				                        	</c:choose>
 				                        </c:when>
-				                        <c:when test="${design.getD_condition() eq '출원완료' }">
-				                        	<c:choose>
-				                	        	<c:when test="${currentUser.getRole()=='ROLE_INVENTOR'}">
-				                    	    		<td><button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;" class="btn_chul" onclick="downPaper('${design.getDeid()}')">출원서받기</button></td>
-				                        		</c:when>
-				                        		<c:otherwise>
-				                        			<td>-</td>
-				                        		</c:otherwise>
-				                        	</c:choose>
-				                        </c:when>
+				                        <c:otherwise>
+			                        		<td>-</td>
+			                        	</c:otherwise>
 			                        </c:choose>
 			                        
 								</tr>
 							</c:forEach>
-		                </table>   		                                           
+		                </table>                                          
                 	</c:when>                	                	                           
                 	<c:otherwise>
                 		<table style="margin-top:50px;" class="patent">
@@ -688,34 +703,55 @@ function downPaper(died){
 		                        <th>출원일</th>
 		                        <th>비고</th>
 		                    </tr>
-		                   	<c:forEach var="design" items="${trademarkList}" varStatus="status">
-								<tr onclick="location.href='/design/detail/${design.getDeid()}'">
-									<input type="hidden" value="${design.getDeid()}"/>								
-			                        <td><p>${design.getTitle()}</p></td>
-			                        <td><p>${design.getD_condition()}</p></td>
+		                   	<c:forEach var="mark" items="${markList}" varStatus="status">
+								<tr>
+									<input type="hidden" value="${mark.getMid()}"/>								
+			                        <td  onclick="location.href='/mark/detail/${mark.getMid()}'"><p>${mark.getTitle1()}</p></td>
+			                        <c:choose>
+			                        	<c:when test="${mark.getIscomplete() eq 0}">
+			                        		<td><p>변리사 수정중</p></td>		
+			                        	</c:when>
+			                        	<c:when test="${mark.getIscomplete() eq 1}">
+			                        		<td><p>발명가 수정중</p></td>		
+			                        	</c:when>
+			                        	<c:when test="${mark.getIscomplete() eq 2}">
+			                        		<td><p>결제대기중</p></td>
+			                        	</c:when>
+			                        	<c:when test="${mark.getIscomplete() eq 3}">
+			                        		<td><p>서류업로드중</p></td>
+			                        	</c:when>
+			                        	<c:when test="${mark.getIscomplete() eq 4}">
+			                        		<td><p>출원중</p></td>
+			                        	</c:when>
+			                        	<c:when test="${mark.getIscomplete() eq 5}">
+			                        		<td><p>출원완료</p></td>
+			                        	</c:when>
+			                   
+			                        </c:choose>
+			                        
 			                        
 			                       <c:choose>
-			                        	<c:when test="${design.getPatentName() eq null}">
+			                        	<c:when test="${mark.getLawyer_name() eq null}">
 			                        		<td><p>아직 매칭되지 않았습니다.</p></td>
 			                        	</c:when>
 			                        	<c:otherwise>
-			                        		<td><p>${design.getPatentName()}변리사님</p></td>
+			                        		<td><p>${mark.getLawyer_name()}변리사님</p></td>
 			                        	</c:otherwise>
 			                        </c:choose>
-			                        <td><p>${design.getPre_apply_date()}</p></td>
-			                        <td><p>${design.getApply_date()}</p></td>
+			                        <td><p>${mark.getPre_apply_date()}</p></td>
+			                        <td><p>${mark.getApply_date()}</p></td>
 			                        <c:choose>
-				                        <c:when test="${design.getD_condition() eq '출원완료' }">
+				                        <c:when test="${mark.getIscomplete() eq 5}">
 				                        	<c:choose>
 				                	        	<c:when test="${currentUser.getRole()=='ROLE_INVENTOR'}">
-				                    	    		<td><button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;" class="btn_chul" onclick="location.href='/getDoc/${design.getDeid()}'">출원서 다운로드</button></td>
+				                    	    		<td><button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;" class="btn_chul" onclick="location.href='/downPaperDesign/${design.getDeid()}'">출원서 다운로드</button></td>
 				                        		</c:when>
 				                        		<c:otherwise>
 				                        			<td>-</td>
 				                        		</c:otherwise>
 				                        	</c:choose>
 				                        </c:when>
-				                        <c:when test="${design.getD_condition() eq '결제대기중' }">
+				                        <c:when test="${mark.getIscomplete() eq 2}">
 				                        	<c:choose>
 				                	        	<c:when test="${currentUser.getRole()=='ROLE_INVENTOR'}">
 				                    	    		<td><button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;" class="btn_chul">결제하기</button></td>
@@ -729,8 +765,9 @@ function downPaper(died){
 			                        		<td>-</td>
 			                        	</c:otherwise>
 			                        </c:choose>
+			                        
 								</tr>
-							</c:forEach>							
+							</c:forEach>										
 		                </table>                  
                 	</c:otherwise>
                 </c:choose>       
