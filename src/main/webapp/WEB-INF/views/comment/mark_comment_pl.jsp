@@ -18,6 +18,42 @@
 		</h1>
 		</article> 
 		<article>
+		<%-- <table id="IdeaModifyList">
+					<c:forEach items="${processList}" var="list" varStatus="status">
+						<c:choose>
+							목록이 하나인 경우
+							<c:when test="${status.first and status.last }">
+								<tr class="clickedIdea">
+									<input type="hidden" value="${list.getRid()}" />
+									<td class="title_td">아이디어 등록(초안)</td>
+									<td class="date_td">${list.getRegistration_date()}</td>
+								</tr>
+							</c:when>
+							목록이 하나가 아닌 경우
+							<c:when test="${status.first}">
+								<tr>
+									<input type="hidden" value="${list.getRid()}" />
+									<td class="title_td">아이디어 등록(초안)</td>
+									<td class="date_td">${list.getRegistration_date()}</td>
+								</tr>
+							</c:when>
+							<c:when test="${status.last}">
+								<tr class="clickedIdea">
+									<input type="hidden" value="${list.getRid()}" />
+									<td class="title_td">${status.index}차전문가 검토 및 수정안</td>
+									<td class="date_td">${list.getRegistration_date()}</td>
+								</tr>
+							</c:when>
+							<c:otherwise>
+								<tr>
+									<input type="hidden" value="${list.getRid()}" />
+									<td class="title_td">${status.index}차전문가 검토 및 수정안</td>
+									<td class="date_td">${list.getRegistration_date()}</td>
+								</tr>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+				</table> --%>
 		<form action="/copyRight/regCopyright" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
 			<input type="hidden" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}" />				
