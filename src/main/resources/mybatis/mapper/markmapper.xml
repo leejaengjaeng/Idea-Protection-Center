@@ -54,4 +54,16 @@
 	<update id="saveMarkRegPL" parameterType="com.ipc.vo.MarkVo">
 		update mark_patent set re_title1=#{re_title1},re_whereuse=#{re_whereuse},re_mean=#{re_mean},re_logo=#{re_logo},iscomplete='1' where mid=#{mid}
 	</update>
+	<insert id="saveMarkRegIn" parameterType="com.ipc.vo.MarkVo">
+		insert into mark_patent(whereuse,mean,logo,title1,title2,title3,start_mid,prev_mid,uid,luid,iscomplete) values (#{whereuse},#{mean},#{logo},#{title1},#{title2},#{title3},#{start_mid},#{prev_mid},#{uid},#{luid},'0')
+	</insert>
+	<select id="getMarkByNum" parameterType="Hashmap" resultType="com.ipc.vo.MarkVo">
+		select * from mark_patent where start_mid=#{start_mid} order by mid asc limit #{num},1
+	</select>
+	<update id="updateIscomplete" parameterType="Hashmap">
+		update mark_patent set iscomplete=#{iscomplete} where mid=#{mid}
+	</update>
+	<update id="updateApplyDate" parameterType="Hashmap">
+		update mark_patent set apply_date=#{apply_date},pre_apply_date=#{pre_apply_date} where mid=#{seq}
+	</update>
 </mapper>

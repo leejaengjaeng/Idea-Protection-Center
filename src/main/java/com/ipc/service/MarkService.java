@@ -17,6 +17,8 @@ public class MarkService {
 		System.out.println("mid : "+mv.getMid());
 		markmapper.saveMarkRegPL(mv);
 	}
-
+	public void saveMarkRegIn(HttpServletRequest request,MarkVo mv){
+		markmapper.saveMarkRegIn(mv);
+	}
 	
 }

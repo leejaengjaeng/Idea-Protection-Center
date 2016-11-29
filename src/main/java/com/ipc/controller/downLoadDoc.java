@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ipc.dao.DesignDao;
 import com.ipc.dao.DocumentDao;
+import com.ipc.dao.MarkDao;
 import com.ipc.dao.RegistrationDao;
 import com.ipc.dao.RegistrationFileDao;
 import com.ipc.dao.UpLoadDocDao;
@@ -27,6 +28,7 @@ import com.ipc.util.CreateFileUtils;
 import com.ipc.util.PathUtils;
 import com.ipc.vo.ApplyDocVo;
 import com.ipc.vo.DesignVo;
+import com.ipc.vo.MarkVo;
 import com.ipc.vo.RegistrationFileVo;
 import com.ipc.vo.RegistrationPatentVo;
 import com.ipc.vo.UpLoadDocVo;
@@ -50,12 +52,17 @@ public class downLoadDoc {
 	DocumentDao docDao;
 	@Autowired
 	DesignDao designDao;
+	@Autowired
+	MarkDao markmapper;
 	
 	@RequestMapping("/downLoadDoc/{apply_kind}")
 	public String downLoadDocOther(Model model,HttpServletRequest request,@PathVariable String apply_kind){
 		int seq=0;
 		if(apply_kind.equals("Design")){
 			seq=(int)session.getAttribute("DesignId");
+		}
+		else if(apply_kind.equals("Mark")){
+			seq=(int)session.getAttribute("MarkId");
 		}
 		System.out.println("apply_kind,seq : "+apply_kind+","+seq);
 		HashMap<String,String> map = new HashMap<String,String>();
@@ -92,6 +99,7 @@ public class downLoadDoc {
 		ModelAndView mav = new ModelAndView();
 		String apply_kind = (String)session.getAttribute("currentApply");
 		String file_name="";
+		String full_path="";
 		HashMap<String,String> map = new HashMap<String,String>();
 		if(apply_kind.equals("Design")){
 			map.put("patent_kind", "Design");
@@ -99,10 +107,16 @@ public class downLoadDoc {
 			
 			DesignVo dv = designDao.getDesignByDeid((int)session.getAttribute("DesignId"));
 			file_name=docController.saveDesignFile(dv, PathUtils.getRootPath(request));
-				
+			full_path=PathUtils.getRootPath(request)+"/resources/uploadimgs/document/"+file_name;
 			
 		}
-		String full_path=PathUtils.getRootPath(request)+"/resources/uploadimgs/document/"+file_name;
+		else if(apply_kind.equals("Mark")){
+			map.put("patent_kind", "Mark");
+			map.put("seq", Integer.toString((int)session.getAttribute("MarkId")));
+			MarkVo mv = markmapper.getMarkByMid((int)session.getAttribute("MarkId"));
+			file_name=docController.saveMarkFile(mv, PathUtils.getRootPath(request));
+			full_path=PathUtils.getRootPath(request)+"/resources/mark/"+file_name;
+		}
 		File file = new File(full_path);
 		mav.addObject("downloadFile", file);
         mav.addObject("downloadFileName", file_name);
@@ -279,6 +293,18 @@ public class downLoadDoc {
 	public ModelAndView downPaper(HttpServletRequest request,@PathVariable int died){
 		ModelAndView mav=new ModelAndView();
 		String finalApplyDoc = docDao.getFinalDocDesign(died);
+		String root_path=PathUtils.getRootPath(request)+"/resources/uploadimgs/apply_doc/";
+		File downFile=new File(root_path+finalApplyDoc);
+		
+		mav.addObject("downloadFile", downFile);
+        mav.addObject("downloadFileName", finalApplyDoc);
+        mav.setViewName("downloadFileView");
+		return mav;
+	}
+	@RequestMapping("/downPaperMark/{mid}")
+	public ModelAndView downPaperMark(HttpServletRequest request,@PathVariable int mid){
+		ModelAndView mav=new ModelAndView();
+		String finalApplyDoc = docDao.getFinalDocMark(mid);
 		String root_path=PathUtils.getRootPath(request)+"/resources/uploadimgs/apply_doc/";
 		File downFile=new File(root_path+finalApplyDoc);
 		

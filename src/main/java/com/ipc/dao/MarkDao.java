@@ -21,4 +21,8 @@ public interface MarkDao {
 	public MarkVo getMarkByMid(int mid);
 	public List<MarkVo> getMarkListByStart_mid(int start_mid);
 	public void saveMarkRegPL(MarkVo mv);
+	public void saveMarkRegIn(MarkVo mv);
+	public MarkVo getMarkByNum(HashMap<String,Integer> map);
+	public void updateIscomplete(HashMap<String,String> map);
+	public void updateApplyDate(HashMap<String,String> map);
 }

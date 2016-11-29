@@ -8,6 +8,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <c:import url="/WEB-INF/views/import/header.jsp" />
 <link href="/resources/common/css/mark.css" rel="stylesheet">
+<meta name="_csrf" content="${_csrf.token}" />
+<meta name="_csrf_header" content="${_csrf.headerName}" />
 <script type="text/javascript"	src="/resources/common/js/util.js"></script>
 </head>
 <body>
@@ -18,9 +20,14 @@
 		</h1>
 		</article> 
 		<article>
+		<c:forEach var="j" begin="1" end="${countMark}" step="1">
+			<button class="loadBtn" data-num="${j}">${j}차 수정안</button>
+		</c:forEach>
 		<form action="/mark/regMarkIn" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
-			<input type="hidden" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}" />				
+			<input type="hidden" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}" />
+			<input type="hidden" name="mid" id="mid" value="${mv.getMid()}" />				
+			
 <!-- 명칭 -->
 			<div class="txt_box">
 				<h2>사용할 상표(명칭)</h2>
@@ -72,7 +79,7 @@
 				<div class="add_imgs" id="logo">
 					
 							<img src="/resources/image/noimg_sum.png" id="imgkkk">	
-					<input type="file" id="plan_img" name="logo" class="disabled now" disabled>
+					<input type="file" id="logo_file" name="logo_file" class="disabled now" disabled>
 				</div>	
 				<span style="font-size: 0.8rem; color: rgba(0, 204, 254, 1); display: inline-block; float: left;">
 				만드신 저작물의 첨부파일을 넣어 주세요 10mb이상의 파일은 이후 지정된 전문가의 메일로 제출하여 주세요.
@@ -80,7 +87,8 @@
 			</div>
 			<div id="fin">
 				<!-- <button>임시저장</button>	 -->
-				<input type="submit" value="등록하기" id="subbtn" style="display:none">
+				<input type="submit" value="등록하기" id="subbtn" style="display:none"/>
+				<button type="button" id="gotoUpLoad" style="display:none">서류 업로드하기</button>
 			</div>
 		</form>
 		</article>
@@ -93,10 +101,11 @@
 		i++;
 		$(".inp_add").append("<input type='file' style='float: left; margin: 10px 0 10px 0; opacity: 1; padding-top: 5px;' id='copy_file"+i+"'>");		
 	}
-
+	 $("#gotoUpLoad").click(function(){
+			location.href="/mark/gotoUpLoad";
+	});
     $(document).ready(function(){
     	
-		
     	if("${mv.getIscomplete()}"=='0'){
     		alert("변리사님이 수정중입니다.");
     		if("${countMark}"==1){
@@ -116,12 +125,110 @@
     			
     		}
     	}
-    	else if("${countMark}"=='1'){
+    	else if("${mv.getIscomplete()}"=='1'){
 			$('#subbtn').css("display","inline");
 			$('.now').removeClass("disabled");
 			$('.now').attr("disabled",false);
     	}
-    	
+    	else if("${mv.getIscomplete()}"=='3'){
+    		alert("하단의 버튼을 클릭해서 서류를 업로드 해주세요");
+			$('#subbtn').css("display","none");
+			$('.now').addClass("disabled");
+			$('.now').attr("disabled",true);
+			$('#gotoUpLoad').css("display","inline");
+    	}
+    	else if("${mv.getIscomplete()}"=='4'){
+    		alert("변리사 님이 출원중입니다.");
+    	}
+    	else if("${mv.getIscomplete()}"=='5'){
+    		alert("출원이 완료되었습니다.");
+    		$('#gotoUpLoad').css("display","inline");
+    	}
+    	$(".loadBtn").click(function(){
+    		
+    		var num=$(this).data("num");
+    		var mid=$("#mid").val();
+    		var csrfToken = $("meta[name='_csrf']").attr("content"); 
+    		var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+    		var csrfHeader = $("meta[name='_csrf_header']").attr("content");  // THIS WAS ADDED
+    		var data = {};
+    		
+    		var headers = {};
+
+    		data[csrfParameter] = csrfToken;
+    		headers[csrfHeader] = csrfToken;
+
+    		 data['num'] = num;
+    		 data['mid'] = mid;
+    		 data['count']="${countMark}";
+    		 $.ajax({
+    		   url : "/mark/changeMark",
+    		   type:"POST",
+    		   headers: headers,
+    		     data : data,
+    		     success:function(retVal)
+    		     {
+    		    	 
+    		     	if(num!="${countMark}"){
+    		     		var cur=retVal.cuVo;
+    		     		var be = retVal.beVo;
+    		     		
+    		     		$("#before_title1").val(be.title1);
+    		     		$("#before_title2").val(be.title2);
+    		     		$("#before_title3").val(be.title3);
+    		     		$("#before_whereuse").val(be.whereuse);
+    		     		$("#before_mean").val(be.mean);
+    		     		$("#before_logo").attr("src",be.logo);
+    		     		$("#before_re_title1").val(be.re_title1);
+    		     		$("#before_re_whereuse").val(be.re_whereuse);
+    		     		$("#before_re_mean").val(be.re_mean);
+    		     		$("#before_re_logo").val(be.re_logo);
+    		     		$("#title1").val(cur.title1);
+    		     		$("#title2").val(cur.title2);
+    		     		$("#title3").val(cur.title3);
+    		     		$("#whereuse").val(cur.whereuse);
+    		     		$("#mean").val(cur.mean);
+    		     		$("#imgkkk").attr("src",cur.logo);
+    		     		$('.now').addClass("disabled");
+    					$('.now').attr("disabled",true);
+    					$('#subbtn').css("display","none");
+
+    		     	}
+    		     	else{
+    		     		var be = retVal.beVo;
+    		     		$("#before_title1").val(be.title1);
+    		     		$("#before_title2").val(be.title2);
+    		     		$("#before_title3").val(be.title3);
+    		     		$("#before_whereuse").val(be.whereuse);
+    		     		$("#before_mean").val(be.mean);
+    		     		$("#before_logo").attr("src",be.logo);
+    		     		$("#before_re_title1").val(be.re_title1);
+    		     		$("#before_re_whereuse").val(be.re_whereuse);
+    		     		$("#before_re_mean").val(be.re_mean);
+    		     		$("#before_re_logo").val(be.re_logo);
+    		     		$("#title1").val("");
+    		     		$("#title2").val("");
+    		     		$("#title3").val("");
+    		     		$("#whereuse").val("");
+    		     		$("#mean").val("");
+    		     		$("#imgkkk").attr("src","/resources/image/noimg_sum.png");
+    					$('#subbtn').css("display","none");
+
+    		     		if("${mv.getIscomplete()}"=='1'){
+    		     			$('.now').removeClass("disabled");
+    						$('.now').attr("disabled",false);
+    						$('#subbtn').css("display","inline");
+
+    		     		}
+    		     	}
+    		     },
+    		     error: function(request,status,error)
+    		   {
+    		       alert('실패하였습니다.')
+    		       console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+    		   }
+    		});
+    		
         function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader(); //파일을 읽기 위한 FileReader객체 생성
@@ -145,6 +252,7 @@
     $(function(){
 		$(".txt_box>button").attr("type","button");
 	});
+    });
 </script>	
 </body>
 </html>

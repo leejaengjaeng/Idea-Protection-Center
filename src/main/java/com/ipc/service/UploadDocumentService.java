@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ipc.dao.DesignDao;
+import com.ipc.dao.MarkDao;
 import com.ipc.dao.RegistrationDao;
 import com.ipc.dao.UpLoadDocDao;
 import com.ipc.util.CreateFileUtils;
@@ -29,6 +30,8 @@ public class UploadDocumentService {
 	RegistrationDao regDao;
 	@Autowired
 	DesignDao designmapper;
+	@Autowired
+	MarkDao markmapper;
 	private FileOutputStream fos;
 	public void saveFile(HashMap<String,List<MultipartFile>> fileList,String root_path,UpLoadDocVo upv,HttpServletRequest request) throws IOException{	
 		System.out.println();
@@ -93,6 +96,11 @@ public class UploadDocumentService {
 			map.put("deid", Integer.toString(upv.getSeq()));
 			map.put("iscomplete", "4");
 			designmapper.changeIsCompleteByHashMap(map);
+		}
+		else if(upv.getPatent_kind()=="Mark"){
+			map.put("mid", Integer.toString(upv.getSeq()));
+			map.put("iscomplete", "4");
+			markmapper.updateIscomplete(map);
 		}
 	}
 }

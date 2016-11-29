@@ -474,7 +474,7 @@ function downPaper(died){
 				                        <c:when test="${mark.getIscomplete() eq 5}">
 				                        	<c:choose>
 				                	        	<c:when test="${currentUser.getRole()=='ROLE_INVENTOR'}">
-				                    	    		<td><button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;" class="btn_chul" onclick="location.href='/downPaperDesign/${design.getDeid()}'">출원서 다운로드</button></td>
+				                    	    		<td><button style="box-shadow:inset 0 -4px rgba(0,0,0,.1); background:#45d4fe;" class="btn_chul" onclick="location.href='/downPaperMark/${mark.getMid()}'">출원서 다운로드</button></td>
 				                        		</c:when>
 				                        		<c:otherwise>
 				                        			<td>-</td>
