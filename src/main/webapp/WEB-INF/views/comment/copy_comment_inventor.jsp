@@ -87,7 +87,7 @@
 			<div class="txt_box">
 				<h2>저작물 첨부</h2>
 				<button>작성예시 보기</button>
-				<input type="file" style="float: left; margin: 10px; opacity: 1; padding-top: 5px;">				
+				<input type="file" style="float: left; margin: 10px; opacity: 1; padding-top: 5px;" name="copyright_imgs">				
 				<div id="add_btn" onclick="addfile2()">추가하기</div>
 				<div class="hiding_box">
 					<div class="hiding_box_header">

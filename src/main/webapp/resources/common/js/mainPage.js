@@ -26,7 +26,7 @@ function changeIsread(mid, divid) {
 			$('#' + divid).append("<img src='/resources/image/msg_read.png'>");
 		},
 		error : function(request, status, error) {
-			alert('실패하였습니다.')
+			alert('실패하였습니다.');
 		}
 	});
 }

@@ -18,7 +18,7 @@
 		</h1>
 		</article> 
 		<article>
-		<form action="/copyRight/regCopyright" method="POST" enctype="multipart/form-data">
+		<form action="/mark/regMark" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
 			<input type="hidden" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}" />				
 <!-- 명칭 -->
@@ -26,9 +26,9 @@
 				<h2>사용할 상표(명칭)</h2>
 				<button>작성예시 보기</button>
 				<div class="mark_form">
-					<input type="text" class="name_mark" placeholder="1안">
-					<input type="text" class="name_mark" placeholder="2안">
-					<input type="text" class="name_mark" placeholder="3안">
+					<input type="text" name="title1" class="name_mark" placeholder="1안">
+					<input type="text" name="title2" class="name_mark" placeholder="2안">
+					<input type="text" name="title3" class="name_mark" placeholder="3안">
 				</div>				
 			</div>
 <!-- 사용처 -->
