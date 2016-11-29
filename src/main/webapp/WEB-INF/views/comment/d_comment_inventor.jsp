@@ -33,6 +33,45 @@
 			</h1>
 			</article> <article>
 			<div class="txt_box">
+			
+				<div class="dropdown">
+					<span id="drop_sp">아이디어 등록 (초안)</span>
+					<div class="arrow-up ee"></div>					
+						<ul id="IdeaModifyList">
+							<c:forEach items="${processList}" var="list" varStatus="status">
+								<c:choose>
+									<c:when test="${status.first and status.last }">
+										<li class ="clickedIdea" data-val="아이디어 등록 (초안) ${list.getRegistration_date()}">
+											<input type="hidden" value="${list.getRid()}"/>
+											아이디어 등록 (초안)
+											${list.getRegistration_date()}
+										</li>
+									</c:when>
+									<c:when test="${status.first }">
+										<li data-val="아이디어 등록 (초안) ${list.getRegistration_date()}">
+											<input type="hidden" value="${list.getRid()}"/>
+											아이디어 등록 (초안)
+											${list.getRegistration_date()}
+										</li>
+									</c:when>
+									<c:when test="${status.last }">
+										<li class="clickedIdea" data-val="${status.index}차 전문가 검토 및 수정안 ${list.getRegistration_date()}">
+											<input type="hidden" value="${list.getRid()}"/>
+											${status.index}차 전문가 검토 및 수정안
+											${list.getRegistration_date()}
+										</li>
+									</c:when>
+									<c:otherwise>
+										<li data-val="${status.index}차 전문가 검토 및 수정안 ${list.getRegistration_date()}">
+											<input type="hidden" value="${list.getRid()}"/>
+											${status.index}차 전문가 검토 및 수정안
+											${list.getRegistration_date()}
+										</li>
+									</c:otherwise>
+					          	</c:choose>
+							</c:forEach>
+						</ul>					
+					</div>
 				<h2>디자인 명칭*</h2>
 				<button>작성예시 보기</button>
 				<input type="text" id="title" name="title"
@@ -503,6 +542,18 @@
 		}
 		$(function(){
 			$(".txt_box>button").attr("type","button");
+		});
+	   $(".dropdown").click(function(){		
+		  
+			if($(this).height() < 100){
+			    $(this).css('max-height', '500px'); //set max height
+			}else{
+			    $(this).css('max-height', '50px'); //delete attribute
+			}
+		});
+
+		$("#IdeaModifyList_top li").click(function(){
+			$("#drop_sp").text($(this).data("val"));
 		});
 	</script>
 </body>
