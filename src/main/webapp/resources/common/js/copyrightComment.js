@@ -53,8 +53,11 @@ var hideReBoxes = function()
 	$('#re_idea_kind_inventor').hide();
 	$('#re_idea_kind').hide();
 	$('#re_field_selected').hide();
- 	$('#re_kind').hide();
+	$('#re_field_txt').hide();
+    $('#re_type_txt').hide();
+    $('#re_kind').hide();
     $('#re_meaning').hide();
+    
 }
 
 var showReBoxes = function()
@@ -64,6 +67,9 @@ var showReBoxes = function()
 	$('#re_field_selected').show();
  	$('#re_kind').show();
     $('#re_meaning').show();
+    $('#re_field_txt').show();
+    $('#re_type_txt').show();
+    
 }
 
 
@@ -94,7 +100,7 @@ var showClickedList = function(cid)
     			$('#comment_fieldAndKind').text("분야:"+vo.re_field+"\n종류:"+vo.re_type);
     			$('#comment_meaning').text(vo.re_meaning);        	
     			
-    			if(retVal.isLast=="true") hideCommentBoxes();		
+    			if(retVal.isLast=="true" && retVal.turn!="inventor") hideCommentBoxes();		
     		}
        	    else if(role == "pl")
        	    {

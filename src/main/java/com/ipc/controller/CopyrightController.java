@@ -105,7 +105,7 @@ public class CopyrightController {
 		civ.setMpcid(copyrightInfoDao.getMpcidByCid(cid).getMpcid());
 		
 		String title	= req.getParameter("re_idea_kind_inventor");
-		if(title==null)	civ.setTitle(cv.getTitle());
+		if(title.equals("")) civ.setTitle(cv.getTitle());
 		else
 		{
 			cv.setTitle(title);
@@ -113,13 +113,13 @@ public class CopyrightController {
 		}
 		
 		String field	= req.getParameter("re_field_selected");
-		if(field!=null) cv.setField(field);
+		if(!field.equals("")) cv.setField(field);
 		
 		String type 	= req.getParameter("re_kind");
-		if(type!=null) cv.setType(type);
+		if(!type.equals("")) cv.setType(type);
 		
 		String meaning  = req.getParameter("re_meaning");
-		if(meaning!=null) cv.setMeaning(meaning);
+		if(!meaning.equals("")) cv.setMeaning(meaning);
 		
 		cv.setCid(0);
 		cv.setPrev_cid(cid);

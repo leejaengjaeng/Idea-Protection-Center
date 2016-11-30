@@ -101,7 +101,7 @@ $(document).ready(function()
 				<h2>저작물 명칭</h2>
 				<button>작성예시 보기</button>
 				<input type="text" id="idea_kind" name="idea_kind" placeholder="본인이 창작한 저작물의 이름을 정해 주세요 / 물품명 + 사용용도 or 사용용도 + 적용물품"
-					value=${copyrightVo.getTitle() }>
+					value="${copyrightVo.getTitle() }">
 				<textarea id="comment_idea_kind"_>${copyrightVo.getRe_title() }</textarea>		
 				<textarea id="re_idea_kind_inventor" name="re_idea_kind_inventor"></textarea>					
 			</div>
@@ -126,14 +126,14 @@ $(document).ready(function()
 종류:${copyrightVo.getRe_type()}
 					</textarea>			<br>
 <!-- 분야 & 종류 수정 -->
-					<span style="display: inline-block; margin-top:20px;">분야</span> 
+					<span id="re_field_txt" style="display: inline-block; margin-top:20px;">분야</span> 
 					<select id="re_field_selected" name="re_field_selected" style="float:none">
 						<option>${copyrightVo.getField() }</option>
 						<c:forEach items="${typeList}" var="type">
 						<option>${type.getType()}</option>
 						</c:forEach>
 					</select>
-					<span style="display: inline-block; margin-left: 140px;" >종류</span>
+					<span id="re_type_txt" style="display: inline-block; margin-left: 140px;" >종류</span>
 					<input type="text" id="re_kind" name="re_kind" style="float:none">
 				</div>
 				<span
@@ -188,30 +188,7 @@ $(document).ready(function()
 		</article>
 		</section>
 	</div>
-<<<<<<< HEAD
-	
-	<c:import url="/WEB-INF/views/import/footer.jsp" />	
-=======
-<c:import url="/WEB-INF/views/import/footer.jsp" />
-<script>
-	$(function(){
-		$(".txt_box>button").attr("type","button");
-	});
-	  $(".dropdown").click(function(){		
-		  
-			if($(this).height() < 100){
-			    $(this).css('max-height', '500px'); //set max height
-			}else{
-			    $(this).css('max-height', '50px'); //delete attribute
-			}
-		});
-
-		$("#IdeaModifyList li").click(function(){
-			$("#drop_sp").text($(this).data("val"));
-		});
-
-</script>
->>>>>>> 7deb6765af080c1944573d4c856f566c5e825f20
+<c:import url="/WEB-INF/views/import/footer.jsp" />	
 </body>
 <script>
 $(function(){
