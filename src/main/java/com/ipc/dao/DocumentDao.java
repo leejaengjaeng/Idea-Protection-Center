@@ -19,5 +19,5 @@ public interface DocumentDao {
 	public int countFinalDoc(HashMap<String,String> map);
 	public String getFinalDocDesign(int died);
 	public String getDocumentName(HashMap<String,String> map);
-	
+	public String getFinalDocMark(int mid);
 }

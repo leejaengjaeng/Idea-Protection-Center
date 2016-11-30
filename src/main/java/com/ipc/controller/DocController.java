@@ -24,6 +24,7 @@ import com.ipc.service.RegistrationService;
 import com.ipc.service.SignUpService;
 import com.ipc.util.PathUtils;
 import com.ipc.vo.DesignVo;
+import com.ipc.vo.MarkVo;
 import com.ipc.vo.RegistrationFileVo;
 import com.ipc.vo.RegistrationPatentVo;
 
@@ -43,6 +44,136 @@ public class DocController {
 	RegistrationFileDao regisFileMapper;
 	@Autowired
 	RegistrationDao regisMapper;
+	
+	public String saveMarkFile(MarkVo mv,String root_path){
+		String dir_path=root_path+"/resources/mark/";
+		RegistrationService ss = new RegistrationService();
+		XWPFDocument document = new XWPFDocument();
+		XWPFParagraph paragraph=document.createParagraph();
+		XWPFRun run = paragraph.createRun();
+		
+		File markFile=new File(root_path+mv.getLogo());
+		run.setText("상표권 제목1");
+		run.addBreak();
+		run.setText(mv.getTitle1());
+		run.addBreak();
+		run.setText("상표권 제목2");
+		run.addBreak();
+		run.setText(mv.getTitle2());
+		run.addBreak();
+		run.setText("상표권 제목3");
+		run.addBreak();
+		run.setText(mv.getTitle3());
+		run.addBreak();
+		run.setText("상표가 적용된 곳");
+		run.addBreak();
+		if(mv.getWhereuse().contains("\n")){
+			String[] stringline = mv.getWhereuse().split("\n");
+			for(int i=0;i<stringline.length;i++){
+				run.setText(stringline[i]);
+				run.addBreak();
+			}
+		}
+		else{
+			run.setText(mv.getWhereuse());
+		}
+		run.addBreak();
+		run.setText("상표의 의미");
+		run.addBreak();
+		if(mv.getMean().contains("\n")){
+			String[] stringline = mv.getMean().split("\n");
+			for(int i=0;i<stringline.length;i++){
+				run.setText(stringline[i]);
+				run.addBreak();
+			}
+		}
+		else{
+			run.setText(mv.getMean());
+		}
+		run.addBreak();
+		run.setText("상표");
+		run.addBreak();
+		try{
+			FileInputStream is = null;
+			System.out.println("파일이름 : "+markFile.getName());
+			BufferedImage bi;
+			try{
+				bi=ImageIO.read(markFile);
+			}
+			catch(Exception e){
+				Iterator readers = ImageIO.getImageReadersByFormatName("JPEG");
+				ImageReader reader = null;
+				while(readers.hasNext()) {
+				    reader = (ImageReader)readers.next();
+				    if(reader.canReadRaster()) {
+				        break;
+				    }
+				}
+
+				//Stream the image file (the original CMYK image)
+				ImageInputStream input =   ImageIO.createImageInputStream(markFile); 
+				reader.setInput(input); 
+
+				//Read the image raster
+				Raster raster = reader.readRaster(0, null); 
+
+				//Create a new RGB image
+				bi = new BufferedImage(raster.getWidth(),raster.getHeight(),BufferedImage.TYPE_4BYTE_ABGR); 
+
+				//Fill the new image with the old raster
+				bi.getRaster().setRect(raster);
+			}
+			float width=bi.getWidth();
+			float height=bi.getHeight();
+			
+			float rate = height/width;
+			int realWidth=200;
+			int realHeight=(int) (realWidth*rate);
+			System.out.println("realHeight : "+realHeight);
+			System.out.println("width : "+bi.getWidth()+", height : "+bi.getHeight());
+			is = new FileInputStream(root_path+mv.getLogo());
+			   run.addBreak();
+			   System.out.println("fileName : "+markFile.getName());
+			   int pathPoint = markFile.getName().trim().lastIndexOf(".");
+			   String filePoint = markFile.getName().trim().substring(pathPoint + 1,
+			   		markFile.getName().trim().length());
+			String fileType = filePoint.toLowerCase();
+			int picture_type=0;
+			System.out.println("fileType:"+fileType);
+			if(fileType.equals("jpg")){
+				System.out.println("jpg!!");
+				picture_type=XWPFDocument.PICTURE_TYPE_JPEG;
+			}
+			else if(fileType.equals("png")){
+				picture_type=XWPFDocument.PICTURE_TYPE_PNG;
+			}
+			else if(fileType.equals("bmp")){
+				picture_type=XWPFDocument.PICTURE_TYPE_BMP;
+			}
+			else if(fileType.equals("jpeg")){
+				picture_type=XWPFDocument.PICTURE_TYPE_JPEG;
+			}
+			run.addPicture(is, picture_type, root_path+mv.getLogo(),Units.toEMU(realWidth),Units.toEMU(realHeight)); // 200x200 pixels
+			
+			
+			is.close();
+			}catch(Exception e){}
+		paragraph.setAlignment(ParagraphAlignment.LEFT);
+		
+		String name=ss.getToday(1)+".docx";
+		
+		String full_path=dir_path+name;
+		try{
+			
+			FileOutputStream output = new FileOutputStream(full_path);
+			System.out.println("full path: "+full_path);
+			document.write(output);
+			output.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	return name;
+	}
 	public String saveDesignFile(DesignVo dv,String root_path){
 		String dir_path=root_path+"/resources/uploadimgs/document/";
 		RegistrationService ss = new RegistrationService();

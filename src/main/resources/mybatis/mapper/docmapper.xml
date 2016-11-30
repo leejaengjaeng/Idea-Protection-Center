@@ -31,4 +31,7 @@
 	<select id="getDocumentName" parameterType="Hashmap" resultType="Integer">
 		select finalApplyDoc from documentforapplyother where patent_kind=#{patent_kind} AND seq=#{seq}
 	</select>
+	<select id="getFinalDocMark" parameterType="Integer" resultType="String">
+		select finalApplyDoc from documentforapplyother where seq=#{mid} AND patent_kind='Mark'
+	</select>
 </mapper>

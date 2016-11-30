@@ -25,6 +25,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.ipc.dao.CopyrightInfoDao;
 import com.ipc.dao.DesignDao;
 import com.ipc.dao.MainPageDao;
+import com.ipc.dao.MarkDao;
 import com.ipc.dao.NoticeDao;
 import com.ipc.dao.RegistrationDao;
 import com.ipc.dao.UserDao;
@@ -34,6 +35,7 @@ import com.ipc.service.SignUpService;
 import com.ipc.vo.CopyRightInfoVo;
 import com.ipc.vo.DesignAdminVo;
 import com.ipc.vo.IndexVo;
+import com.ipc.vo.MarkAdminVo;
 import com.ipc.vo.RegistrationFileVo;
 import com.ipc.vo.RegistrationPatentVo;
 import com.ipc.vo.adminListVo;
@@ -64,6 +66,8 @@ public class MainController {
 	DesignDao designDao;
 	@Autowired
 	CopyrightInfoDao copyrightInfoDao;
+	@Autowired
+	MarkDao markmapper;
 	
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	
@@ -98,6 +102,7 @@ public class MainController {
 				List<mainPageVo> processList;
 				List<DesignAdminVo> designList;
 				List<CopyRightInfoVo> copyrightList;
+				List<MarkAdminVo> markList;
 				int currentUserUid = currentUser.getUid();
 				
 				if(currentUser.getRole().equals(roleInventor))
@@ -105,22 +110,26 @@ public class MainController {
 					processList = mainPageDao.getMainPageList(currentUserUid);	
 					designList=designDao.getDesignListIn(currentUserUid);
 					copyrightList = copyrightInfoDao.getCopyrightListInventer(currentUserUid);
+					markList=markmapper.getMarkListIn(currentUserUid);
 					
 					model.addAttribute("comIdea",regDao.countCompleteIdeaIn(currentUserUid));
 					model.addAttribute("ingIdea",regDao.countIngIdeaIn(currentUserUid));
 					model.addAttribute("MessageList",ms.getMessageList(Integer.toString(currentUser.getUid())));
 					model.addAttribute("isLawyer",0);
+					model.addAttribute("markList", markList);
 				}
 				else if(currentUser.getRole().equals(rolePatientntLawyer))
 				{
 					processList = mainPageDao.getPlMainPageList(currentUserUid);
 					designList=designDao.getDesignListPl(currentUser.getUid());
 					copyrightList = copyrightInfoDao.getCopyrightListPl(currentUserUid);
-				
+					markList=markmapper.getMarkListPl(currentUserUid);
 					model.addAttribute("comIdea",regDao.countCompleteIdeaPl(currentUserUid));
 					model.addAttribute("ingIdea",regDao.countIngIdeaPl(currentUserUid));
 					model.addAttribute("MessageList",ms.getMessageListPL(Integer.toString(currentUser.getUid())));
 					model.addAttribute("isLawyer",1);
+					model.addAttribute("markList", markList);
+
 				}
 				// 발명가나 변리사가 아니면 리다이렉트
 				// If not only Inventor but patientLawyer, Redirecting to root path

@@ -26,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ipc.dao.DesignDao;
 import com.ipc.dao.DocumentDao;
 import com.ipc.dao.MainPageDao;
+import com.ipc.dao.MarkDao;
 import com.ipc.dao.RegistrationDao;
 import com.ipc.service.MessageService;
 import com.ipc.service.RegistrationService;
@@ -56,6 +57,8 @@ public class DocumentUpLoadController {
 	RegistrationService rService;
 	@Autowired
 	DesignDao designmapper;
+	@Autowired
+	MarkDao markmapper;
 	
 	@RequestMapping(value="/inputFile",method=RequestMethod.POST)
 	public String inputFile(HttpServletRequest request) throws IOException{
@@ -127,9 +130,12 @@ public class DocumentUpLoadController {
 			upv.setPatentscode(request.getParameter("patentsClientCode"));
 		}
 		upv.setIs_personal(request.getParameter("is_personal"));
-		
-		upv.setSeq((int)session.getAttribute("DesignId"));
-		
+		if(applyKind.equals("DesignId")){
+			upv.setSeq((int)session.getAttribute("DesignId"));
+		}
+		else if(applyKind.equals("Mark")){
+			upv.setSeq((int)session.getAttribute("MarkId"));
+		}
 		
 		upv.setPatent_kind(applyKind);
 		String root_path=PathUtils.getRootPath(request);
@@ -209,7 +215,9 @@ public class DocumentUpLoadController {
 		if(apply_kind.equals("Design")){
 			seq=(int) session.getAttribute("DesignId");
 		}
-		
+		else if(apply_kind.equals("Mark")){
+			seq=(int) session.getAttribute("MarkId");
+		}
 		HashMap<String,String> map = new HashMap<String,String>();
 		MultipartHttpServletRequest multipartRequest =  (MultipartHttpServletRequest)request;  //�떎以묓뙆�씪 �뾽濡쒕뱶
 		List<MultipartFile> apply_doc = multipartRequest.getFiles("finalApplyDoc");
@@ -228,10 +236,18 @@ public class DocumentUpLoadController {
 		map.put("finalApplyDoc", doc_name);
 		
 		HashMap<String,String> map2 = new HashMap<String,String>();
-		map2.put("iscomplete", "5");
-		map2.put("deid", Integer.toString(seq));
-		
-		designmapper.changeIsCompleteByHashMap(map2);
+		if(apply_kind.equals("Design")){
+			map2.put("iscomplete", "5");
+			map2.put("deid", Integer.toString(seq));
+			
+			designmapper.changeIsCompleteByHashMap(map2);
+		}
+		else if(apply_kind.equals("Mark")){
+			map2.put("iscomplete", "5");
+			map2.put("mid", Integer.toString(seq));
+			
+			markmapper.updateIscomplete(map2);
+		}
 		//docmapper.updateDocumentForApply(map);
 		docmapper.updateDocumentForApplyOther(map);
 				
@@ -250,8 +266,12 @@ public class DocumentUpLoadController {
 		apply_date_map.put("pre_apply_date", pre_apply_date);
 		apply_date_map.put("apply_date",apply_date);
 		apply_date_map.put("seq", Integer.toString(seq));
-		
-		designmapper.updateApplyDate(apply_date_map);
+		if(apply_kind.equals("Design")){
+			designmapper.updateApplyDate(apply_date_map);
+		}
+		else if(apply_kind.equals("Mark")){
+			markmapper.updateApplyDate(apply_date_map);
+		}
 		
 		return "redirect:/";
 	}

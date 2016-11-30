@@ -161,18 +161,6 @@ public class DesignController {
 		System.out.println("cuVo's title : "+cuVo.getTitle());
 		resultMap.put("cuVo", cuVo);
 		
-//		if(num!=Integer.parseInt(request.getParameter("count"))){
-//			parameterMap.put("num",num);
-//		
-//			DesignVo cuVo = designmapper.getDesignByNum(parameterMap);
-//		
-//			resultMap.put("cuVo", cuVo);
-//			System.out.println("cuVo's title : "+cuVo.getTitle());
-//
-//		}
-
-		
-		//System.out.println("title = "+cuVo.getTitle());
 		System.out.println("Ajax request : "+num);
 		
 		
