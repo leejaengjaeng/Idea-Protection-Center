@@ -14,16 +14,23 @@
 <script>
 $(document).ready(function()
 {
-	if()	
-
-	if(${copyrightVo.getFlag()} == 1) disableAllInput();
-	
+	disableAllInput();
+	if("${role}" == "inventor")
+	{
+		if(${copyrightVo.getFlag()} == 0);		  					//개발자 작성 후
+		else if(${copyrightVo.getFlag()} == 1) enableReComment();	//코멘트 달림 
+		else alert("Flag가 뭘까? ->"+${copyrightVo.getFlag()});
+	}
+	else alert('역할이 뭐니'+${role})
 		
+	$('#IdeaModifyList').on('click','li',function()
+	{
+		var cid = $(this).children('input').val();
+		showClickedList(cid)
+	});
 });
 
-$(function(){
-	$(".txt_box>button").attr("type","button");
-});
+
 </script>
 </head>
 <body>	
@@ -93,7 +100,7 @@ $(function(){
 				<br>
 				<div class="field">
 					<span>분야</span> 
-					<select id="field_selected" name="field_selected">
+					<select id="field_selected" name="field_selected" style="float:none;">
 						<option>${copyrightVo.getField() }</option>
 						<c:forEach items="${typeList}" var="type">
 						<option>${type.getType()}</option>
@@ -101,21 +108,21 @@ $(function(){
 					</select>
 <!-- 종류 -->
 					<span style="display: inline-block; margin-left: 140px;">종류</span>
-					<input type="text" id="kind" name="kind" value=${copyrightVo.getType() }>
+					<input type="text" id="kind" name="kind" value=${copyrightVo.getType() } style="float:none;">
 					<textarea id="comment_fieldAndKind">
 분야:${copyrightVo.getRe_field()}
 종류:${copyrightVo.getRe_type()}
-					</textarea>			
+					</textarea>			<br>
 <!-- 분야 & 종류 수정 -->
-					<span>분야</span> 
-					<select id="re_field_selected" name="re_field_selected">
+					<span style="display: inline-block; margin-top:20px;">분야</span> 
+					<select id="re_field_selected" name="re_field_selected" style="float:none">
 						<option>${copyrightVo.getField() }</option>
 						<c:forEach items="${typeList}" var="type">
 						<option>${type.getType()}</option>
 						</c:forEach>
 					</select>
-					<span style="display: inline-block; margin-left: 140px;">종류</span>
-					<input type="text" id="re_kind" name="re_kind">
+					<span style="display: inline-block; margin-left: 140px;" >종류</span>
+					<input type="text" id="re_kind" name="re_kind" style="float:none">
 				</div>
 				<span
 					style="font-size: 0.8rem; color: #45d7c2; display: inline-block; float: left; margin-top: 10px;">
@@ -169,9 +176,8 @@ $(function(){
 		</article>
 		</section>
 	</div>
-	
-	<c:import url="/WEB-INF/views/import/footer.jsp" />
-	<script>
+<c:import url="/WEB-INF/views/import/footer.jsp" />
+<script>
 	$(function(){
 		$(".txt_box>button").attr("type","button");
 	});
@@ -187,6 +193,7 @@ $(function(){
 		$("#IdeaModifyList li").click(function(){
 			$("#drop_sp").text($(this).data("val"));
 		});
-	</script>
+
+</script>
 </body>
 </html>
