@@ -8,7 +8,48 @@
 <link href="/resources/common/css/copyRight.css" rel="stylesheet">
 <link href="/resources/common/css/index.css" rel="stylesheet">
 <link href="/resources/common/css/style.css" rel="stylesheet">
+<script src="/resources/common/js/copyrightComment.js"></script>
 <c:import url="/WEB-INF/views/import/header.jsp" />
+
+<script>
+$(document).ready(function()
+{
+	disableAllInput();
+	if("${role}" == "inventor")
+	{
+		if(${copyrightVo.getFlag()} == 0);		  					//개발자 작성 후
+		else if(${copyrightVo.getFlag()} == 1) enableReComment();	//코멘트 달림 
+		else alert("Flag가 뭘까? ->"+${copyrightVo.getFlag()});
+	}
+	else if("${role}" == "pl")
+	{
+		if(${copyrightVo.getFlag()} == 0) enableReComment(); //개발자 작성 후
+		else if(${copyrightVo.getFlag()} == 1);				 //코멘트 달림 
+		else alert("Flag가 뭘까? ->"+${copyrightVo.getFlag()});
+	}
+	else alert('역할이 뭐니'+${role})
+		
+	$('#IdeaModifyList').on('click','li',function()
+	{
+		var cid = $(this).children('input').val();
+		$("#drop_sp").text($(this).data("val"));
+		showClickedList(cid)
+	});
+});
+
+$(function(){
+	$(".txt_box>button").attr("type","button");
+});
+  
+$(".dropdown").click(function(){		
+	if($(this).height() < 100){
+	    $(this).css('max-height', '500px'); //set max height
+	}else{
+	    $(this).css('max-height', '50px'); //delete attribute
+	}
+});
+
+</script>
 </head>
 <body>	
 	<div class="wrap_comment">
@@ -19,7 +60,6 @@
 		</article> 
 		<article>
 			<div class="dropdown">
-				<span id="drop_sp">저작권  등록 (초안)</span>
 				<div class="arrow-up ee"></div>					
 				<ul id="IdeaModifyList">
 					<c:forEach items="${chasuList}" var="chasu" varStatus="status">
@@ -157,22 +197,8 @@
 	</div>
 	
 	<c:import url="/WEB-INF/views/import/footer.jsp" />
-	<script>
-	$(function(){
-		$(".txt_box>button").attr("type","button");
-	});
-	  $(".dropdown").click(function(){		
-		  
-			if($(this).height() < 100){
-			    $(this).css('max-height', '500px'); //set max height
-			}else{
-			    $(this).css('max-height', '50px'); //delete attribute
-			}
-		});
+<script type="text/javascript">
 
-		$("#IdeaModifyList_top li").click(function(){
-			$("#drop_sp").text($(this).data("val"));
-		});
-	</script>
+</script>
 </body>
 </html>

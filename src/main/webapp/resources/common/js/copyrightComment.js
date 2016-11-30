@@ -74,8 +74,8 @@ var showClickedList = function(cid)
          		   $('#re_idea_kind_inventor').show();
           	       $('#re_field_selected').show();
              	   $('#re_kind').show();
-                    $('#re_meaning').show();
-         	 	   $('#agree').show();
+                   $('#re_meaning').show();
+                   enableReComment();
          	   }
          	   else
          	   {
@@ -105,8 +105,8 @@ var showClickedList = function(cid)
          		   $('#re_idea_kind_inventor').show();
           	       $('#re_field_selected').show();
              	   $('#re_kind').show();
-                    $('#re_meaning').show();
-         	 	   $('#agree').show();
+                   $('#re_meaning').show();
+                   enableReComment();
          	   }
          	   else
          	   {

@@ -21,12 +21,6 @@ $(document).ready(function()
 		else if(${copyrightVo.getFlag()} == 1) enableReComment();	//코멘트 달림 
 		else alert("Flag가 뭘까? ->"+${copyrightVo.getFlag()});
 	}
-	else if("${role}" == "pl")
-	{
-		if(${copyrightVo.getFlag()} == 0) enableReComment(); //개발자 작성 후
-		else if(${copyrightVo.getFlag()} == 1);				 //코멘트 달림 
-		else alert("Flag가 뭘까? ->"+${copyrightVo.getFlag()});
-	}
 	else alert('역할이 뭐니'+${role})
 		
 	$('#IdeaModifyList').on('click','li',function()
@@ -39,6 +33,19 @@ $(document).ready(function()
 $(function(){
 	$(".txt_box>button").attr("type","button");
 });
+  $(".dropdown").click(function(){		
+	  
+		if($(this).height() < 100){
+		    $(this).css('max-height', '500px'); //set max height
+		}else{
+		    $(this).css('max-height', '50px'); //delete attribute
+		}
+	});
+
+	$("#IdeaModifyList li").click(function(){
+		$("#drop_sp").text($(this).data("val"));
+	});
+
 </script>
 </head>
 <body>	
@@ -186,22 +193,5 @@ $(function(){
 	</div>
 	
 	<c:import url="/WEB-INF/views/import/footer.jsp" />
-	<script>
-	$(function(){
-		$(".txt_box>button").attr("type","button");
-	});
-	  $(".dropdown").click(function(){		
-		  
-			if($(this).height() < 100){
-			    $(this).css('max-height', '500px'); //set max height
-			}else{
-			    $(this).css('max-height', '50px'); //delete attribute
-			}
-		});
-
-		$("#IdeaModifyList li").click(function(){
-			$("#drop_sp").text($(this).data("val"));
-		});
-	</script>
 </body>
 </html>
