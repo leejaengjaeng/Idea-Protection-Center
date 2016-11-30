@@ -1,4 +1,50 @@
+var disableAllInput = function()
+{
+	$('#idea_kind').addClass('disabled');
+	$('#idea_kind').attr('disabled',true);
+	$('#comment_idea_kind').addClass('disabled');
+	$('#comment_idea_kind').attr('disabled',true);
+	$('#re_idea_kind_inventor').addClass('disabled');
+	$('#re_idea_kind_inventor').attr('disabled',true);
+   
+	$('#field_selected').addClass('disabled');
+	$('#field_selected').attr('disabled',true);	
+	$('#kind').addClass('disabled');
+	$('#kind').attr('disabled',true);
+	$('#comment_fieldAndKind').addClass('disabled');
+	$('#comment_fieldAndKind').attr('disabled',true);
+	$('#re_field_selected').addClass('disabled');
+	$('#re_field_selected').attr('disabled',true);	
+	$('#re_kind').addClass('disabled');
+	$('#re_kind').attr('disabled',true);
+	
+	$('#meaning').addClass('disabled');
+	$('#meaning').attr('disabled',true);
+	$('#comment_meaning').addClass('disabled');
+	$('#comment_meaning').attr('disabled',true);
+	$('#re_meaning').addClass('disabled');
+	$('#re_meaning').attr('disabled',true);
+	
+    $('#agree').hide();
+}
+var enableReComment = function()
+{
+	$('#re_idea_kind_inventor').removeClass('disabled');
+	$('#re_idea_kind_inventor').attr('disabled',false);
 
+	$('#re_field_selected').removeClass('disabled');
+	$('#re_field_selected').attr('disabled',false);	
+	$('#re_kind').removeClass('disabled');
+	$('#re_kind').attr('disabled',false);
+
+	$('#re_meaning').removeClass('disabled');
+	$('#re_meaning').attr('disabled',false);
+
+    $('#agree').show();
+}
+
+
+/*
 //beforeComment는 항상 disable
 var enableInput = function()
 {
@@ -29,38 +75,6 @@ var enableInput = function()
 
    $('#tmpSave').show();
    $('#agree').show();      
-
-}
-
-var disableInput = function()
-{
-   $('#AfterCommentTypeOfInvent').addClass('disabled');
-   $('#AfterCommentTypeOfInvent').attr('disabled',true);
-   $('#AfterCommentTitle').addClass('disabled');
-   $('#AfterCommentTitle').attr('disabled',true);
-   $('#AfterCommentSummary').addClass('disabled');
-   $('#AfterCommentSummary').attr('disabled',true);
-   $('#AfterCommentWhyInvent').addClass('disabled');
-   $('#AfterCommentWhyInvent').attr('disabled',true);
-   $('#AfterCommentProblem').addClass('disabled');
-   $('#AfterCommentProblem').attr('disabled',true);
-   $('#AfterCommentSolution').addClass('disabled');
-   $('#AfterCommentSolution').attr('disabled',true);
-   $('#AfterCommentEffect').addClass('disabled');
-   $('#AfterCommentEffect').attr('disabled',true);
-   $('#AfterCommentCore_Element').addClass('disabled');
-   $('#AfterCommentCore_Element').attr('disabled',true);
-   $('#AfterCommentFiles').addClass('disabled');
-   $('#AfterCommentFiles').attr('disabled',true);
-   $('#AfterCommentHope_content').addClass('disabled');
-   $('#AfterCommentHope_content').attr('disabled',true);
-   $('#AfterCommentPicture_explain').addClass('disabled');
-   $('#AfterCommentPicture_explain').attr('disabled',true);
-   $('#AfterCommentHope_content').addClass('disabled');
-   $('#AfterCommentHope_content').attr('disabled',true);   
-   $('#tmpSave').hide();
-   $('#agree').hide();    
-   $('#gogogo').hide();
 
 }
 var enableApplyBtn = function()

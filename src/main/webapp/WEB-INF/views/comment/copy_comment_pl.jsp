@@ -19,26 +19,27 @@
 		</article> 
 		<article>
 			<div class="dropdown">
+				<span id="drop_sp">저작권  등록 (초안)</span>
 				<div class="arrow-up ee"></div>					
 				<ul id="IdeaModifyList">
 					<c:forEach items="${chasuList}" var="chasu" varStatus="status">
 							<c:choose>
 								<c:when test="${status.first and status.last }">
-									<li class ="123123123clickedIdea" data-val="아이디어 등록 (초안) ${chasu.getRegistration_date()}">
+									<li class ="clickedIdea" data-val="저작권 등록 (초안) ${chasu.getRegistration_date()}">
 										<input type="hidden" value="${chasu.getCid()}"/>
 										저작권 등록 (초안)
 										${chasu.getRegistration_date()}
 									</li>
 								</c:when>
 								<c:when test="${status.first }">
-									<li data-val="아이디어 등록 (초안) ${chasu.getRegistration_date()}">
+									<li data-val="저작권  등록 (초안) ${chasu.getRegistration_date()}">
 										<input type="hidden" value="${chasu.getCid()}"/>
 										저작권 등록 (초안)
 										${chasu.getRegistration_date()}
 									</li>
 								</c:when>
 								<c:when test="${status.last }">
-									<li class="123123123clickedIdea" data-val="${status.index}차 전문가 검토 및 수정안 ${chasu.getRegistration_date()}">
+									<li class="clickedIdea" data-val="${status.index}차 전문가 검토 및 수정안 ${chasu.getRegistration_date()}">
 										<input type="hidden" value="${chasu.getCid()}"/>
 										${status.index}차 전문가 검토 및 수정안
 										${chasu.getRegistration_date()}
