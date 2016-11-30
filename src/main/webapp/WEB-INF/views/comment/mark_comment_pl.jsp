@@ -20,14 +20,20 @@
 		</h1>
 		</article> 
 		<article>
-		<c:forEach var="j" begin="1" end="${countMark}" step="1">
-			<button class="loadBtn" data-num="${j}">${j}차 수정안</button>
-		</c:forEach>
-		<form action="/mark/regMarkPl" method="POST" enctype="multipart/form-data">
-			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
-			<input type="hidden" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}" />
-			<input type="hidden" name="mid" id="mid" value="${mv.getMid()}" />				
-
+			<div class="txt_box">
+				<div class="dropdown">
+					<span id="drop_sp">디자인권 등록 (초안)</span>
+					<div class="arrow-up ee"></div>					
+					<ul id="IdeaModifyList">
+						<c:forEach var="j" begin="1" end="${count}" step="1">
+							<li class="loadBtn" data-num="${j}">${j}차 수정안</li>
+						</c:forEach>
+					</ul>					
+				</div>		
+			</div>
+		<form action="/copyRight/regCopyright" method="POST" enctype="multipart/form-data">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
+			<input type="hidden" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}" />				
 <!-- 명칭 -->
 			<div class="txt_box">
 				<h2>사용할 상표(명칭)</h2>
@@ -37,8 +43,7 @@
 					<input type="text" class="name_mark disabled" placeholder="1안" disabled="disabled" id="title1" value="${mv.getTitle1()}">
 					<input type="text" class="name_mark disabled" placeholder="2안" disabled="disabled" id="title2" value="${mv.getTitle2()}">
 					<input type="text" class="name_mark disabled" placeholder="3안" disabled="disabled" id="title3" value="${mv.getTitle3()}">
-				</div>	
-				
+				</div>					
 				<textarea class="now disabled" name="re_title1" id="re_title1" disabled>${mv.getRe_title1()}</textarea>			
 			</div>
 <!-- 사용처 -->
@@ -65,18 +70,19 @@
 				<button>작성예시 보기</button>											
 			</div>
 			<div class="txt_box" style="margin-top:10px;">							
-				<textarea class="logo_cmt disabled first" disabled="disabled" id="before_re_logo">${prev_mv.getRe_logo()}</textarea>
+				
 				<div class="add_imgs">
 					<img src="${mv.getLogo()}" id="imgkkk">
 				</div>	
+				<textarea class="logo_cmt disabled first" disabled="disabled" id="before_re_logo">${prev_mv.getRe_logo()}</textarea>
 				<textarea class="now disabled" disabled name="re_logo" id="re_logo">${mv.getRe_logo()}</textarea>				
 			</div>
 			<div id="fin">
 				<!-- <button>임시저장</button>	 -->
-				<input id="subbtn" value="등록하기" type="submit" style="display:none">
+				<input id="subbtn" value="등록하기" type="submit" class="add_btn">
 				<button type="button" id="gotoApply">출원하기</button>
 				<button type="button" id="gotoDownLoad" style="display:none">서류다운받기</button>
-			</div>
+			</div>		
 		</form>
 		</article>
 		</section>
@@ -259,8 +265,22 @@
      });
     $(function(){
 		$(".txt_box>button").attr("type","button");
+	}); 
+    $(".dropdown").click(function(){		
+    
+		if($(this).height() < 100){
+		    $(this).css('max-height', '500px'); //set max height
+		   	alert();
+		}else{
+		    $(this).css('max-height', '50px'); //delete attribute
+		}
+	});
+
+	$("#IdeaModifyList_top li").click(function(){
+		$("#drop_sp").text($(this).data("val"));
+		
 	});
 });
-</script>	
+</script>
 </body>
 </html>

@@ -61,7 +61,7 @@ var submitFunc = function()
 					<select id="field_selected" name="field_selected">
 					<!-- 	<option>-선택-</option> -->
 						<c:forEach items="${typeList}" var="type">
-						<option>${type.getType()}</option>
+							<option>${type.getType()}</option>
 						</c:forEach>
 					</select>
 <!-- 종류 -->

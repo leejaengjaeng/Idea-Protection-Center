@@ -6,8 +6,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <link href="/resources/common/css/copyRight.css" rel="stylesheet">
-<link href="/resources/common/css/index.css" rel="stylesheet">
 <link href="/resources/common/css/style.css" rel="stylesheet">
+<link href="/resources/common/css/copyRight.css" rel="stylesheet">
 <script src="/resources/common/js/copyrightComment.js"></script>
 <c:import url="/WEB-INF/views/import/header.jsp" />
 
@@ -50,19 +50,20 @@ $(function(){
 		</article> 
 		<article>
 			<div class="dropdown">
+				<span id="drop_sp">저작권  등록 (초안)</span>
 				<div class="arrow-up ee"></div>					
 				<ul id="IdeaModifyList">
 					<c:forEach items="${chasuList}" var="chasu" varStatus="status">
 							<c:choose>
 								<c:when test="${status.first and status.last }">
-									<li class ="clickedIdea" data-val="아이디어 등록 (초안) ${chasu.getRegistration_date()}">
+									<li class ="clickedIdea" data-val="저작권 등록 (초안) ${chasu.getRegistration_date()}">
 										<input type="hidden" value="${chasu.getCid()}"/>
 										저작권  등록 (초안)
 										${chasu.getRegistration_date()}
 									</li>
 								</c:when>
 								<c:when test="${status.first }">
-									<li data-val="아이디어 등록 (초안) ${chasu.getRegistration_date()}">
+									<li data-val="저작권 등록 (초안) ${chasu.getRegistration_date()}">
 										<input type="hidden" value="${chasu.getCid()}"/>
 										저작권  등록 (초안)
 										${chasu.getRegistration_date()}
@@ -185,6 +186,22 @@ $(function(){
 	</div>
 	
 	<c:import url="/WEB-INF/views/import/footer.jsp" />
+	<script>
+	$(function(){
+		$(".txt_box>button").attr("type","button");
+	});
+	  $(".dropdown").click(function(){		
+		  
+			if($(this).height() < 100){
+			    $(this).css('max-height', '500px'); //set max height
+			}else{
+			    $(this).css('max-height', '50px'); //delete attribute
+			}
+		});
 
+		$("#IdeaModifyList li").click(function(){
+			$("#drop_sp").text($(this).data("val"));
+		});
+	</script>
 </body>
 </html>

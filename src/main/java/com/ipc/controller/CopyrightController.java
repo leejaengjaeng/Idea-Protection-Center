@@ -61,7 +61,7 @@ public class CopyrightController {
 		MultipartHttpServletRequest multipartRequest =  (MultipartHttpServletRequest)req;  //�떎以묓뙆�씪 �뾽濡쒕뱶
 		List<MultipartFile> files = multipartRequest.getFiles("plane_img");
 		String file_name="mark"+rs.getToday(1);
-		cfu.CreateFile(files.get(0), req, "/resources/uploadimgs/mark/", file_name);
+		//cfu.CreateFile(files.get(0), req, "/resources/uploadimgs/mark/", file_name);
 		
 		String title	= req.getParameter("idea_kind");
 		String field	= req.getParameter("field_selected");

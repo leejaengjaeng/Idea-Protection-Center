@@ -8,8 +8,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <c:import url="/WEB-INF/views/import/header.jsp" />
 <link href="/resources/common/css/mark.css" rel="stylesheet">
-<meta name="_csrf" content="${_csrf.token}" />
-<meta name="_csrf_header" content="${_csrf.headerName}" />
 <script type="text/javascript"	src="/resources/common/js/util.js"></script>
 </head>
 <body>
@@ -20,9 +18,17 @@
 		</h1>
 		</article> 
 		<article>
-		<c:forEach var="j" begin="1" end="${countMark}" step="1">
-			<button class="loadBtn" data-num="${j}">${j}차 수정안</button>
-		</c:forEach>
+			<div class="txt_box">
+				<div class="dropdown">
+					<span id="drop_sp">디자인권 등록 (초안)</span>
+					<div class="arrow-up ee"></div>					
+					<ul id="IdeaModifyList">
+						<c:forEach var="j" begin="1" end="${count}" step="1">
+							<li class="loadBtn" data-num="${j}">${j}차 수정안</li>
+						</c:forEach>
+					</ul>					
+				</div>		
+			</div>
 		<form action="/mark/regMarkIn" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
 			<input type="hidden" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}" />
@@ -33,9 +39,9 @@
 				<h2>사용할 상표(명칭)</h2>
 				<button>작성예시 보기</button>
 				<div class="mark_form">
-					<input type="text" class="name_mark"  id="before_title1"  class="disabled" disabled="disabled" placeholder="1안" value="${mv.getTitle1()}">
-					<input type="text" class="name_mark"  id="before_title2"  class="disabled" disabled="disabled" placeholder="2안" value="${mv.getTitle2()}">
-					<input type="text" class="name_mark"  id="before_title3"  class="disabled" disabled="disabled" placeholder="3안" value="${mv.getTitle3()}">
+					<input type="text" class="name_mark disabled"  id="before_title1" disabled="disabled" placeholder="1안" value="${mv.getTitle1()}">
+					<input type="text" class="name_mark disabled"  id="before_title2" disabled="disabled" placeholder="2안" value="${mv.getTitle2()}">
+					<input type="text" class="name_mark disabled"  id="before_title3" disabled="disabled" placeholder="3안" value="${mv.getTitle3()}">
 				</div>	
 				<textarea class="disabled" disabled="disabled" id="before_re_title1">${mv.getRe_title1()}</textarea>
 				<div class="mark_form">
@@ -75,16 +81,17 @@
 				<div class="add_imgs">
 					<img src="${mv.getLogo()}" id="before_logo">
 				</div>	
-				<textarea class="logo_cmt disabled" disabled="disabled" id="before_re_logo">${mv.getRe_logo()}</textarea>
-				<div class="add_imgs" id="logo">
-					
-							<img src="/resources/image/noimg_sum.png" id="imgkkk">	
-					<input type="file" id="logo_file" name="logo_file" class="disabled now" disabled>
-				</div>	
-				<span style="font-size: 0.8rem; color: rgba(0, 204, 254, 1); display: inline-block; float: left;">
-				만드신 저작물의 첨부파일을 넣어 주세요 10mb이상의 파일은 이후 지정된 전문가의 메일로 제출하여 주세요.
-				</span>			
+				<textarea class="logo_cmt disabled" disabled="disabled" id="before_re_logo">${mv.getRe_logo()}</textarea>						
 			</div>
+			<div class="txt_box" style="margin-top:10px;">
+				<div class="add_imgs" id="logo">					
+					<img src="/resources/image/noimg_sum.png" id="imgkkk">	
+					<input type="file" id="logo_file" name="logo_file" class="disabled now" disabled>
+				</div>				
+			</div>
+			<span style="font-size: 0.8rem; color: rgba(0, 204, 254, 1); display: inline-block; float: left; margin-top:10px;">
+				만드신 저작물의 첨부파일을 넣어 주세요 10mb이상의 파일은 이후 지정된 전문가의 메일로 제출하여 주세요.
+			</span>
 			<div id="fin">
 				<!-- <button>임시저장</button>	 -->
 				<input type="submit" value="등록하기" id="subbtn" style="display:none"/>
@@ -253,6 +260,19 @@
 		$(".txt_box>button").attr("type","button");
 	});
     });
+    
+    $(".dropdown").click(function(){		
+		  
+		if($(this).height() < 100){
+		    $(this).css('max-height', '500px'); //set max height
+		}else{
+		    $(this).css('max-height', '50px'); //delete attribute
+		}
+	});
+
+	$("#IdeaModifyList_top li").click(function(){
+		$("#drop_sp").text($(this).data("val"));
+	});
 </script>	
 </body>
 </html>
