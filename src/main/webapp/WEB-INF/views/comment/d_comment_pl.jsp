@@ -98,66 +98,67 @@
 			<div class="tot">
 				<div class="txt_box" id="exe1">
 					<span>사시도</span>
-					<textarea class="cmt_img disabled first" id="before_re_sasi" disabled>${prevDv.getRe_sasi()}</textarea>
+					
 					<div class="eximg" style="padding: 10px">
 						<div style="background-image: url(${nowDv.getSasi()}); " id="sasi"></div>
 					</div>
 					<!-- <img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다." id="blah1"> -->
-					<textarea class="cmt_img disabled third" name="re_sasi" id="re_sasi" disabled>${nowDv.getRe_sasi()}</textarea>
+					<textarea class="cmt_img disabled first" id="before_re_sasi" disabled>${prevDv.getRe_sasi()}</textarea>
+					<textarea class="disabled third" name="re_sasi" id="re_sasi" disabled>${nowDv.getRe_sasi()}</textarea>
 				</div>
 				<div class="txt_box" id="exe2">
-					<span>정면도</span>
-					<textarea class="cmt_img disabled first" id="before_re_front" disabled>${prevDv.getRe_front()}</textarea>
+					<span>정면도</span>					
 					<div class="eximg">
 						<div style="background-image: url(${nowDv.getFront()});" id="front"></div>
 					</div>
 					<!-- <img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다." id="blah2"> -->
-					<textarea class="cmt_img disabled third" name="re_front" id="re_front" disabled>${nowDv.getRe_front()}</textarea>
+					<textarea class="cmt_img disabled first" id="before_re_front" disabled>${prevDv.getRe_front()}</textarea>
+					<textarea class="disabled third" name="re_front" id="re_front" disabled>${nowDv.getRe_front()}</textarea>
 				</div>
 				<div class="txt_box" id="exe3">
-					<span>배면도</span>
-					<textarea class="cmt_img disabled first" id="before_re_bae" disabled>${prevDv.getRe_bae()}</textarea>
+					<span>배면도</span>					
 					<div class="eximg">
 						<div style="background-image: url(${nowDv.getBae()}); " id="bae"></div>
 					</div>
 					<!-- <img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다." id="blah3"> -->
-					<textarea class="cmt_img disabled third" name="re_bae" id="re_bae" disabled>${nowDv.getRe_bae()}</textarea>
+					<textarea class="cmt_img disabled first" id="before_re_bae" disabled>${prevDv.getRe_bae()}</textarea>
+					<textarea class="disabled third" name="re_bae" id="re_bae" disabled>${nowDv.getRe_bae()}</textarea>
 				</div>
 				<div class="txt_box" id="exe4">
-					<span>좌측면도</span>
-					<textarea class="cmt_img disabled first" id="before_re_leftside" disabled>${prevDv.getRe_leftside()}</textarea>
+					<span>좌측면도</span>					
 					<div class="eximg">
 						<div style="background-image: url(${nowDv.getLeft_side()}); " id="left_side"></div>
 					</div>
 					<!-- <img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다." id="blah4"> -->
-					<textarea class="cmt_img disabled third" name="re_leftside" id="re_leftside" disabled>${nowDv.getRe_leftside()}</textarea>
+					<textarea class="cmt_img disabled first" id="before_re_leftside" disabled>${prevDv.getRe_leftside()}</textarea>
+					<textarea class="disabled third" name="re_leftside" id="re_leftside" disabled>${nowDv.getRe_leftside()}</textarea>
 				</div>
 				<div class="txt_box" id="exe5">
-					<span>우측면도</span>
-					<textarea class="cmt_img disabled first" id="before_re_rightside" disabled>${prevDv.getRe_rightside()}</textarea>
+					<span>우측면도</span>					
 					<div class="eximg">
 						<div style="background-image: url(${nowDv.getRight_side()}); " id="right_side"></div>
 					</div>
 					<!-- <img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다." id="blah5"> -->
-					<textarea class="cmt_img disabled third" name="re_rightside" id="re_rightside" disabled>${nowDv.getRe_rightside()}</textarea>
+					<textarea class="cmt_img disabled first" id="before_re_rightside" disabled>${prevDv.getRe_rightside()}</textarea>
+					<textarea class="disabled third" name="re_rightside" id="re_rightside" disabled>${nowDv.getRe_rightside()}</textarea>
 				</div>
 				<div class="txt_box" id="exe6">
-					<span>평면도</span>
-					<textarea class="cmt_img disabled first" id="before_re_plane" disabled>${prevDv.getRe_plane()}</textarea>
+					<span>평면도</span>					
 					<div class="eximg">
 						<div style="background-image: url(${nowDv.getPlane()}); " id="plane"></div>
 					</div>
 					<!-- <img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다." id="blah6"> -->
-					<textarea class="cmt_img disabled third" name="re_plane" id="re_plane" disabled>${nowDv.getRe_plane()}</textarea>
+					<textarea class="cmt_img disabled first" id="before_re_plane" disabled>${prevDv.getRe_plane()}</textarea>
+					<textarea class="disabled third" name="re_plane" id="re_plane" disabled>${nowDv.getRe_plane()}</textarea>
 				</div>
 				<div class="txt_box" id="exe7">
-					<span>저면도</span>
-					<textarea class="cmt_img disabled first" id="before_re_inside" disabled>${prevDv.getRe_inside()}</textarea>
+					<span>저면도</span>					
 					<div class="eximg">
 						<div style="background-image: url(${nowDv.getInside()}); " id="inside"></div>
 					</div>
 					<!-- <img src="/resources/image/check.png" alt="등록된 디자인 시안이 없습니다." id="blah7"> -->
-					<textarea class="cmt_img disabled third" name="re_inside" id="re_inside" disabled>${nowDv.getRe_inside()}</textarea>
+					<textarea class="cmt_img disabled first" id="before_re_inside" disabled>${prevDv.getRe_inside()}</textarea>
+					<textarea class="disabled third" name="re_inside" id="re_inside" disabled>${nowDv.getRe_inside()}</textarea>
 				</div>
 			</div>
 			

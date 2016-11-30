@@ -37,17 +37,6 @@ $(document).ready(function()
 	});
 });
 
-$(function(){
-	$(".txt_box>button").attr("type","button");
-});
-  
-$(".dropdown").click(function(){		
-	if($(this).height() < 100){
-	    $(this).css('max-height', '500px'); //set max height
-	}else{
-	    $(this).css('max-height', '50px'); //delete attribute
-	}
-});
 
 </script>
 </head>
@@ -104,11 +93,11 @@ $(".dropdown").click(function(){
 <!-- 명칭 -->
 			<div class="txt_box">
 				<h2>저작물 명칭</h2>
-				<button>작성예시 보기</button>
+				<button style="margin-bottom:20px;">작성예시 보기</button>
 				<input type="text" id="idea_kind" name="idea_kind" placeholder="본인이 창작한 저작물의 이름을 정해 주세요 / 물품명 + 사용용도 or 사용용도 + 적용물품"
-				value=${copyrightVo.getTitle() }>
-				이전 답변 <textarea>${beforeCv.getRe_title() }</textarea>		
-				코멘트 <textarea id="re_idea_kind" name="re_idea_kind"></textarea>					
+				value="${copyrightVo.getTitle() }">
+				<textarea placeholder="이전답변">${beforeCv.getRe_title() }</textarea>		
+				 <textarea id="re_idea_kind" name="re_idea_kind" placeholder="코멘트"></textarea>					
 			</div>
 <!-- 분야 -->
 			<div class="txt_box">
@@ -117,7 +106,7 @@ $(".dropdown").click(function(){
 				<br>
 				<div class="field">
 					<span>분야</span> 
-					<select id="field_selected" name="field_selected">
+					<select id="field_selected" name="field_selected" style="float:none;margin-left:20px;">
 					<!-- 	<option>-선택-</option> -->
 						<c:forEach items="${typeList}" var="type">
 						<option>${type.getType()}</option>
@@ -125,14 +114,14 @@ $(".dropdown").click(function(){
 					</select>
 <!-- 종류 -->
 					<span style="display: inline-block; margin-left: 140px;">종류</span>
-					<input type="text" id="kind" name="kind" value=${copyrightVo.getType() }>
+					<input type="text" id="kind" name="kind" value=${copyrightVo.getType() } style="float:none;">
 					<textarea>
 -이전 답변-
 분야:${beforeCv.getRe_field()}
 종류:${beforeCv.getRe_type()}
 					</textarea>	
 					
-					코멘트<br>
+					<br>
 					<span>분야</span> 
 					<select id="re_field_selected" name="re_field_selected">
 						<option></option>
@@ -143,26 +132,17 @@ $(".dropdown").click(function(){
 					<span style="display: inline-block; margin-left: 140px;">종류</span>
 					<input type="text" id="re_kind" name="re_kind">		
 				</div>
-				<span
-					style="font-size: 0.8rem; color: #45d7c2; display: inline-block; float: left; margin-top: 10px;">
-					본인이 창작한 저작물의 분야를 선택해주세요. </span>
-				<div class="hiding_box">
-					<div class="hiding_box_header">
-						<h3>저작물 명칭</h3>
-						<img src="image/close.png" alt="close" class="close_btn">
-					</div>
-					<div class="hiding_box_content">
-						<span><b>예 ) </b> 전자상거래, 플랫폼, 금융, 서비스 화학...</span>
-					</div>
-				</div>
+				<span style="font-size: 0.8rem; color: #45d7c2; display: inline-block; float: left; margin-top: 10px;">
+					본인이 창작한 저작물의 분야를 선택해주세요. 
+				</span>				
 			</div>
 <!-- 의미 -->
 			<div class="txt_box" style="margin-top: 100px;">
 				<h2>저작물의 의미</h2>
 				<button>작성예시 보기</button>
 				<textarea id="meaning" name="meaning">${copyrightVo.getMeaning() }</textarea>
-				이전 답변<textarea>${beforeCv.getRe_meaning() }</textarea>			
-				코멘트 <textarea id="re_meaning" name="re_meaning"></textarea>		
+				<textarea placeholder="이전답변">${beforeCv.getRe_meaning() }</textarea>			
+				<textarea id="re_meaning" name="re_meaning" placeholder="코멘트"></textarea>		
 			</div>
 <!-- 첨부 -->
 			<div class="txt_box">
@@ -198,7 +178,17 @@ $(".dropdown").click(function(){
 	
 	<c:import url="/WEB-INF/views/import/footer.jsp" />
 <script type="text/javascript">
-
+$(function(){
+	$(".txt_box>button").attr("type","button");
+});
+  
+$(".dropdown").click(function(){		
+	if($(this).height() < 100){
+	    $(this).css('max-height', '500px'); //set max height
+	}else{
+	    $(this).css('max-height', '50px'); //delete attribute
+	}
+});
 </script>
 </body>
 </html>

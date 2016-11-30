@@ -79,7 +79,7 @@
 			</div>
 			<div id="fin">
 				<!-- <button>임시저장</button>	 -->
-				<input id="subbtn" value="등록하기" type="submit" class="add_btn">
+				<input id="subbtn" value="등록하기" type="submit" class="add_btn" style="display:none">
 				<button type="button" id="gotoApply">출원하기</button>
 				<button type="button" id="gotoDownLoad" style="display:none">서류다운받기</button>
 			</div>		
