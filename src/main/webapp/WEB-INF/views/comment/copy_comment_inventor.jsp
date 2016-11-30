@@ -41,8 +41,8 @@ $(document).ready(function()
 	});
 	
 	$('#drop_sp').text($('#IdeaModifyList').find('.clickedIdea').text());
-
 });
+
 </script>
 </head>
 <body>	
@@ -112,7 +112,7 @@ $(document).ready(function()
 				<br>
 				<div class="field">
 					<span>분야</span> 
-					<select id="field_selected" name="field_selected">
+					<select id="field_selected" name="field_selected" style="float:none;">
 						<option>${copyrightVo.getField() }</option>
 						<c:forEach items="${typeList}" var="type">
 						<option>${type.getType()}</option>
@@ -120,21 +120,21 @@ $(document).ready(function()
 					</select>
 <!-- 종류 -->
 					<span style="display: inline-block; margin-left: 140px;">종류</span>
-					<input type="text" id="kind" name="kind" value=${copyrightVo.getType() }>
+					<input type="text" id="kind" name="kind" value=${copyrightVo.getType() } style="float:none;">
 					<textarea id="comment_fieldAndKind">
 분야:${copyrightVo.getRe_field()}
 종류:${copyrightVo.getRe_type()}
-					</textarea>			
+					</textarea>			<br>
 <!-- 분야 & 종류 수정 -->
-					<span>분야</span> 
-					<select id="re_field_selected" name="re_field_selected">
+					<span style="display: inline-block; margin-top:20px;">분야</span> 
+					<select id="re_field_selected" name="re_field_selected" style="float:none">
 						<option>${copyrightVo.getField() }</option>
 						<c:forEach items="${typeList}" var="type">
 						<option>${type.getType()}</option>
 						</c:forEach>
 					</select>
-					<span style="display: inline-block; margin-left: 140px;">종류</span>
-					<input type="text" id="re_kind" name="re_kind">
+					<span style="display: inline-block; margin-left: 140px;" >종류</span>
+					<input type="text" id="re_kind" name="re_kind" style="float:none">
 				</div>
 				<span
 					style="font-size: 0.8rem; color: #45d7c2; display: inline-block; float: left; margin-top: 10px;">
@@ -188,8 +188,30 @@ $(document).ready(function()
 		</article>
 		</section>
 	</div>
+<<<<<<< HEAD
 	
 	<c:import url="/WEB-INF/views/import/footer.jsp" />	
+=======
+<c:import url="/WEB-INF/views/import/footer.jsp" />
+<script>
+	$(function(){
+		$(".txt_box>button").attr("type","button");
+	});
+	  $(".dropdown").click(function(){		
+		  
+			if($(this).height() < 100){
+			    $(this).css('max-height', '500px'); //set max height
+			}else{
+			    $(this).css('max-height', '50px'); //delete attribute
+			}
+		});
+
+		$("#IdeaModifyList li").click(function(){
+			$("#drop_sp").text($(this).data("val"));
+		});
+
+</script>
+>>>>>>> 7deb6765af080c1944573d4c856f566c5e825f20
 </body>
 <script>
 $(function(){
