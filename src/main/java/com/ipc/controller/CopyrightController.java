@@ -176,6 +176,7 @@ public class CopyrightController {
 			model.addAttribute("copyrightVo",cv);
 			model.addAttribute("typeList", typeList);
 			model.addAttribute("chasuList", chasuList);
+			model.addAttribute("role", "inventor");
 			
 			return "comment/copy_comment_inventor";
 		}
@@ -190,6 +191,7 @@ public class CopyrightController {
 			
 			model.addAttribute("typeList", typeList);
 			model.addAttribute("chasuList", chasuList);
+			model.addAttribute("role", "pl");
 			
 			return "comment/copy_comment_pl";
 		}

@@ -8,7 +8,23 @@
 <link href="/resources/common/css/copyRight.css" rel="stylesheet">
 <link href="/resources/common/css/index.css" rel="stylesheet">
 <link href="/resources/common/css/style.css" rel="stylesheet">
+<script src="/resources/common/js/copyrightComment.js"></script>
 <c:import url="/WEB-INF/views/import/header.jsp" />
+
+<script>
+$(document).ready(function()
+{
+	if()	
+
+	if(${copyrightVo.getFlag()} == 1) disableAllInput();
+	
+		
+});
+
+$(function(){
+	$(".txt_box>button").attr("type","button");
+});
+</script>
 </head>
 <body>	
 	<div class="wrap_comment">
@@ -66,7 +82,7 @@
 				<button>작성예시 보기</button>
 				<input type="text" id="idea_kind" name="idea_kind" placeholder="본인이 창작한 저작물의 이름을 정해 주세요 / 물품명 + 사용용도 or 사용용도 + 적용물품"
 					value=${copyrightVo.getTitle() }>
-				<textarea>${copyrightVo.getRe_title() }</textarea>		
+				<textarea id="comment_idea_kind"_>${copyrightVo.getRe_title() }</textarea>		
 				<textarea id="re_idea_kind_inventor" name="re_idea_kind_inventor"></textarea>					
 			</div>
 <!-- 분야 -->
@@ -85,7 +101,7 @@
 <!-- 종류 -->
 					<span style="display: inline-block; margin-left: 140px;">종류</span>
 					<input type="text" id="kind" name="kind" value=${copyrightVo.getType() }>
-					<textarea>
+					<textarea id="comment_fieldAndKind">
 분야:${copyrightVo.getRe_field()}
 종류:${copyrightVo.getRe_type()}
 					</textarea>			
@@ -118,7 +134,7 @@
 				<h2>저작물의 의미</h2>
 				<button>작성예시 보기</button>
 				<textarea id="meaning" name="meaning">${copyrightVo.getMeaning() }</textarea>
-				<textarea>${copyrightVo.getRe_meaning() }</textarea>			
+				<textarea id="comment_meaning">${copyrightVo.getRe_meaning() }</textarea>			
 				<textarea id="re_meaning" name="re_meaning"></textarea>		
 			</div>
 <!-- 첨부 -->
@@ -154,10 +170,6 @@
 	</div>
 	
 	<c:import url="/WEB-INF/views/import/footer.jsp" />
-	<script>
-	$(function(){
-		$(".txt_box>button").attr("type","button");
-	});
-	</script>
+
 </body>
 </html>
