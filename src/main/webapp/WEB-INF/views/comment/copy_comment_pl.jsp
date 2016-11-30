@@ -11,45 +11,38 @@
 <script src="/resources/common/js/copyrightComment.js"></script>
 <c:import url="/WEB-INF/views/import/header.jsp" />
 
+
 <script>
 $(document).ready(function()
 {
 	disableAllInput();
-	if("${role}" == "inventor")
+	if("${role}" == "pl")
 	{
-		if(${copyrightVo.getFlag()} == 0);		  					//개발자 작성 후
-		else if(${copyrightVo.getFlag()} == 1) enableReComment();	//코멘트 달림 
-		else alert("Flag가 뭘까? ->"+${copyrightVo.getFlag()});
+		var pageFlag = "${copyrightVo.getFlag()}";
+		
+		if(pageFlag==0)			// 개발자 작성 후 변리사 코멘트 대기
+			enableReComment();	 
+		else if(pageFlag==1)	// 변리사 작성 후 개발자 수정 대기
+			alert('개발자님의 내용 수정을 기다려주세요.');
+		else
+			alert('잘못된 접근 입니다.\n flag:'+${copyrightVo.getFlag()});
 	}
-	else if("${role}" == "pl")
-	{
-		if(${copyrightVo.getFlag()} == 0) enableReComment(); //개발자 작성 후
-		else if(${copyrightVo.getFlag()} == 1);				 //코멘트 달림 
-		else alert("Flag가 뭘까? ->"+${copyrightVo.getFlag()});
-	}
-	else alert('역할이 뭐니'+${role})
+	else
+		alert('잘못된 접근입니다.\n role:'+${role});
 		
 	$('#IdeaModifyList').on('click','li',function()
 	{
 		var cid = $(this).children('input').val();
 		$("#drop_sp").text($(this).data("val"));
+		
 		showClickedList(cid)
 	});
-});
+	
+	$('#drop_sp').text($('#IdeaModifyList').find('.clickedIdea').text());
 
-$(function(){
-	$(".txt_box>button").attr("type","button");
 });
-  
-$(".dropdown").click(function(){		
-	if($(this).height() < 100){
-	    $(this).css('max-height', '500px'); //set max height
-	}else{
-	    $(this).css('max-height', '50px'); //delete attribute
-	}
-});
-
 </script>
+
 </head>
 <body>	
 	<div class="wrap_comment">
@@ -60,6 +53,7 @@ $(".dropdown").click(function(){
 		</article> 
 		<article>
 			<div class="dropdown">
+				<span id="drop_sp">아이디어 등록 (초안)</span>
 				<div class="arrow-up ee"></div>					
 				<ul id="IdeaModifyList">
 					<c:forEach items="${chasuList}" var="chasu" varStatus="status">
@@ -107,7 +101,7 @@ $(".dropdown").click(function(){
 				<button>작성예시 보기</button>
 				<input type="text" id="idea_kind" name="idea_kind" placeholder="본인이 창작한 저작물의 이름을 정해 주세요 / 물품명 + 사용용도 or 사용용도 + 적용물품"
 				value=${copyrightVo.getTitle() }>
-				이전 답변 <textarea>${beforeCv.getRe_title() }</textarea>		
+				이전 답변 <textarea id="comment_idea_kind">${beforeCv.getRe_title() }</textarea>		
 				코멘트 <textarea id="re_idea_kind" name="re_idea_kind"></textarea>					
 			</div>
 <!-- 분야 -->
@@ -126,7 +120,7 @@ $(".dropdown").click(function(){
 <!-- 종류 -->
 					<span style="display: inline-block; margin-left: 140px;">종류</span>
 					<input type="text" id="kind" name="kind" value=${copyrightVo.getType() }>
-					<textarea>
+					<textarea id="comment_fieldAndKind">
 -이전 답변-
 분야:${beforeCv.getRe_field()}
 종류:${beforeCv.getRe_type()}
@@ -161,7 +155,7 @@ $(".dropdown").click(function(){
 				<h2>저작물의 의미</h2>
 				<button>작성예시 보기</button>
 				<textarea id="meaning" name="meaning">${copyrightVo.getMeaning() }</textarea>
-				이전 답변<textarea>${beforeCv.getRe_meaning() }</textarea>			
+				이전 답변<textarea id="comment_meaning">${beforeCv.getRe_meaning() }</textarea>			
 				코멘트 <textarea id="re_meaning" name="re_meaning"></textarea>		
 			</div>
 <!-- 첨부 -->
@@ -197,8 +191,18 @@ $(".dropdown").click(function(){
 	</div>
 	
 	<c:import url="/WEB-INF/views/import/footer.jsp" />
-<script type="text/javascript">
-
-</script>
 </body>
+<script>
+$(function(){
+	$(".txt_box>button").attr("type","button");
+});
+  
+$(".dropdown").click(function(){		
+	if($(this).height() < 100){
+	    $(this).css('max-height', '500px'); //set max height
+	}else{
+	    $(this).css('max-height', '50px'); //delete attribute
+	}
+});
+</script>
 </html>

@@ -17,35 +17,32 @@ $(document).ready(function()
 	disableAllInput();
 	if("${role}" == "inventor")
 	{
-		if(${copyrightVo.getFlag()} == 0);		  					//개발자 작성 후
-		else if(${copyrightVo.getFlag()} == 1) enableReComment();	//코멘트 달림 
-		else alert("Flag가 뭘까? ->"+${copyrightVo.getFlag()});
-	}
-	else alert('역할이 뭐니'+${role})
+		var pageFlag = "${copyrightVo.getFlag()}";
 		
+		if(pageFlag==0)			// 개발자 작성 후 변리사 코멘트 대기
+		{
+			hideCommentBoxes();
+			alert('변리사님의 코멘트를 기다려주세요.');
+		}
+		else if(pageFlag==1)	// 변리사 작성 후 개발자 수정 대기
+			enableReComment();	 
+		else 
+			alert('잘못된 접근 입니다.\n flag:'+${copyrightVo.getFlag()});
+	}
+	else 
+		alert('잘못된 접근 입니다.\n role:'+${copyrightVo.getFlag()});
+
 	$('#IdeaModifyList').on('click','li',function()
 	{
 		var cid = $(this).children('input').val();
+		$("#drop_sp").text($(this).data("val"));
+		
 		showClickedList(cid)
 	});
+	
+	$('#drop_sp').text($('#IdeaModifyList').find('.clickedIdea').text());
+
 });
-
-$(function(){
-	$(".txt_box>button").attr("type","button");
-});
-  $(".dropdown").click(function(){		
-	  
-		if($(this).height() < 100){
-		    $(this).css('max-height', '500px'); //set max height
-		}else{
-		    $(this).css('max-height', '50px'); //delete attribute
-		}
-	});
-
-	$("#IdeaModifyList li").click(function(){
-		$("#drop_sp").text($(this).data("val"));
-	});
-
 </script>
 </head>
 <body>	
@@ -192,6 +189,18 @@ $(function(){
 		</section>
 	</div>
 	
-	<c:import url="/WEB-INF/views/import/footer.jsp" />
+	<c:import url="/WEB-INF/views/import/footer.jsp" />	
 </body>
+<script>
+$(function(){
+	$(".txt_box>button").attr("type","button");
+});
+$(".dropdown").click(function(){
+	if($(this).height() < 100){
+	    $(this).css('max-height', '500px'); //set max height
+	}else{
+	    $(this).css('max-height', '50px'); //delete attribute
+	}
+});
+</script>
 </html>

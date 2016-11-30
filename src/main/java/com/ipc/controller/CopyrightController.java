@@ -105,26 +105,26 @@ public class CopyrightController {
 		civ.setMpcid(copyrightInfoDao.getMpcidByCid(cid).getMpcid());
 		
 		String title	= req.getParameter("re_idea_kind_inventor");
-		if(!title.equals(""))
+		if(title==null)	civ.setTitle(cv.getTitle());
+		else
 		{
 			cv.setTitle(title);
 			civ.setTitle(title);
 		}
 		
 		String field	= req.getParameter("re_field_selected");
-		if(!field.equals("")) cv.setField(field);
+		if(field!=null) cv.setField(field);
 		
 		String type 	= req.getParameter("re_kind");
-		if(!type.equals("")) cv.setType(type);
+		if(type!=null) cv.setType(type);
 		
 		String meaning  = req.getParameter("re_meaning");
-		if(!meaning.equals("")) cv.setMeaning(meaning);
-
+		if(meaning!=null) cv.setMeaning(meaning);
+		
 		cv.setCid(0);
 		cv.setPrev_cid(cid);
 		copyrightDao.addCopyright(cv);
 		
-		System.out.println(cv.getCid());
 		civ.setCid(cv.getCid());
 		copyrightInfoDao.updateInfoByMpcid(civ);
 		
@@ -153,8 +153,8 @@ public class CopyrightController {
 		
 		/*
 		 * Flag
-		 * 0 : 변리사 작성 차례
-		 * 1 : 완료된 row
+		 * 0 : 개발자 작성 후 변리사 코멘트 대기
+		 * 1 : 변리사 작성 후 개발자 수정 대기
 		 */
 		
 		copyrightDao.updateCopyright_pl(cv);
@@ -222,6 +222,8 @@ public class CopyrightController {
 		}
 		else if(userId == plId)
 		{
+			CopyRightVo prevVo = copyrightDao.getOneRowByCid(cv.getPrev_cid());
+			retVal.put("prevVo", prevVo);
 			retVal.put("vo",cv);
 			retVal.put("role", "pl");
 		}
@@ -231,7 +233,11 @@ public class CopyrightController {
 		CopyRightInfoVo isLast = copyrightInfoDao.getMpcidByCid(cid);
 		if(isLast == null) retVal.put("isLast","false");
 		else retVal.put("isLast","true");
-
+		
+		//누구 차례인지 확인
+		if(cv.getFlag()==0) retVal.put("turn", "pl");
+		else retVal.put("turn", "inventor");
+		
 		return retVal;
 	}
 	
