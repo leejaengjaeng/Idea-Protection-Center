@@ -231,7 +231,7 @@
 			</div>
 			<div id="fin">
 				<button>임시저장</button>
-				<input type="submit" value="등록하기">
+				<input type="submit" value="등록하기" class="add_design">
 			</div>
 			</article> </section>
 		</div>

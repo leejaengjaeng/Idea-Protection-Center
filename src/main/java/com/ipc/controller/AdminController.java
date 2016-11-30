@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ipc.dao.DesignDao;
 import com.ipc.dao.MainPageDao;
+import com.ipc.dao.MarkDao;
 import com.ipc.dao.NoticeDao;
 import com.ipc.dao.RegistrationDao;
 import com.ipc.dao.TypeOfInventDao;
@@ -22,6 +23,7 @@ import com.ipc.dao.UserDao;
 import com.ipc.util.ViewUtils;
 import com.ipc.vo.DesignAdminVo;
 import com.ipc.vo.LawyerProfileVo;
+import com.ipc.vo.MarkAdminVo;
 import com.ipc.vo.QnaVo;
 import com.ipc.vo.TypeOfInventVo;
 import com.ipc.vo.adminListVo;
@@ -49,12 +51,22 @@ public class AdminController {
 	MainPageDao mainPageDao;
 	@Autowired
 	DesignDao designmapper;
+	@Autowired
+	MarkDao markmapper;
 	
 	// 아이디어 관리
 	@RequestMapping("/")
 	public String admin2(Model model) {
 		
 		return ideaList(model,1);
+	}
+	@RequestMapping("/mark")
+	public String mark(Model model){
+		List<MarkAdminVo> mav = markmapper.getMarkListAdmin();
+		List<userVo> lawyers = userDao.getLawyerList();
+		model.addAttribute("lawyerList",lawyers);
+		model.addAttribute("markAdminKist", mav);
+		return "admin/admin_mark";
 	}
 	@RequestMapping("/design")
 	public String design(Model model){
@@ -180,6 +192,7 @@ public class AdminController {
 	@ResponseBody
 	public HashMap<String, String> viewLawyer(HttpServletRequest request) {
 		int uid = Integer.parseInt(request.getParameter("uid"));
+		System.out.println("luid : "+uid);
 		LawyerProfileVo lpv = userDao.getLawyerProfile(uid);
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("name", lpv.getName());
@@ -228,6 +241,22 @@ public class AdminController {
 		map.put("uid", uid);
 		
 		designmapper.updatePatent(map);
+		
+		
+		HashMap<String,String> resultMap = new HashMap<String,String>();
+		resultMap.put("lawyerName", userDao.getUserByUid(uid).getName());
+		return resultMap;
+	}
+	@RequestMapping("/assignMark")
+	@ResponseBody
+	public HashMap<String,String> assignMark(HttpServletRequest request){
+		String mid=request.getParameter("mid");
+		String uid = request.getParameter("uid");
+		HashMap<String,String> map = new HashMap<String,String>();
+		map.put("mid", mid);
+		map.put("uid", uid);
+		
+		markmapper.updatePatent(map);
 		
 		
 		HashMap<String,String> resultMap = new HashMap<String,String>();

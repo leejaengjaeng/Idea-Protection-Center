@@ -19,25 +19,55 @@
 		</article> 
 		<article>
 			<div class="dropdown">
-				<span id="drop_sp">저작권 등록 (초안)</span>
 				<div class="arrow-up ee"></div>					
 				<ul id="IdeaModifyList">
-					<c:forEach var="j" begin="1" end="${count}" step="1">
-						<li class="loadBtn" data-num="${j}">${j}차 수정안</li>
+					<c:forEach items="${chasuList}" var="chasu" varStatus="status">
+							<c:choose>
+								<c:when test="${status.first and status.last }">
+									<li class ="123123123clickedIdea" data-val="아이디어 등록 (초안) ${chasu.getRegistration_date()}">
+										<input type="hidden" value="${chasu.getCid()}"/>
+										저작권 등록 (초안)
+										${chasu.getRegistration_date()}
+									</li>
+								</c:when>
+								<c:when test="${status.first }">
+									<li data-val="아이디어 등록 (초안) ${chasu.getRegistration_date()}">
+										<input type="hidden" value="${chasu.getCid()}"/>
+										저작권 등록 (초안)
+										${chasu.getRegistration_date()}
+									</li>
+								</c:when>
+								<c:when test="${status.last }">
+									<li class="123123123clickedIdea" data-val="${status.index}차 전문가 검토 및 수정안 ${chasu.getRegistration_date()}">
+										<input type="hidden" value="${chasu.getCid()}"/>
+										${status.index}차 전문가 검토 및 수정안
+										${chasu.getRegistration_date()}
+									</li>
+								</c:when>
+								<c:otherwise>
+									<li data-val="${status.index}차 전문가 검토 및 수정안 ${chasu.getRegistration_date()}">
+										<input type="hidden" value="${chasu.getCid()}"/>
+										${status.index}차 전문가 검토 및 수정안
+										${chasu.getRegistration_date()}
+									</li>
+								</c:otherwise>
+				         	</c:choose>
 					</c:forEach>
 				</ul>					
 			</div>
-		<form action="/copyRight/regCopyright" method="POST" enctype="multipart/form-data">
+		<form action="/copyRight/regCopyright_pl" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
 			<input type="hidden" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}" />				
+			<input type="hidden" name="cid" id="cid" value="${copyrightVo.getCid()}" />
+			
 <!-- 명칭 -->
 			<div class="txt_box">
 				<h2>저작물 명칭</h2>
 				<button>작성예시 보기</button>
-				<input type="text" id="idea_kind" name="idea_kind"
-					placeholder="본인이 창작한 저작물의 이름을 정해 주세요 / 물품명 + 사용용도 or 사용용도 + 적용물품">
-				<textarea></textarea>		
-				<textarea></textarea>					
+				<input type="text" id="idea_kind" name="idea_kind" placeholder="본인이 창작한 저작물의 이름을 정해 주세요 / 물품명 + 사용용도 or 사용용도 + 적용물품"
+				value=${copyrightVo.getTitle() }>
+				이전 답변 <textarea>${beforeCv.getRe_title() }</textarea>		
+				코멘트 <textarea id="re_idea_kind" name="re_idea_kind"></textarea>					
 			</div>
 <!-- 분야 -->
 			<div class="txt_box">
@@ -54,9 +84,23 @@
 					</select>
 <!-- 종류 -->
 					<span style="display: inline-block; margin-left: 140px;">종류</span>
-					<input type="text" id="kind" name="kind">
-					<textarea></textarea>			
-					<textarea></textarea>			
+					<input type="text" id="kind" name="kind" value=${copyrightVo.getType() }>
+					<textarea>
+-이전 답변-
+분야:${beforeCv.getRe_field()}
+종류:${beforeCv.getRe_type()}
+					</textarea>	
+					
+					코멘트<br>
+					<span>분야</span> 
+					<select id="re_field_selected" name="re_field_selected">
+						<option></option>
+						<c:forEach items="${typeList}" var="type">
+						<option>${type.getType()}</option>
+						</c:forEach>
+					</select>
+					<span style="display: inline-block; margin-left: 140px;">종류</span>
+					<input type="text" id="re_kind" name="re_kind">		
 				</div>
 				<span
 					style="font-size: 0.8rem; color: #45d7c2; display: inline-block; float: left; margin-top: 10px;">
@@ -75,11 +119,9 @@
 			<div class="txt_box" style="margin-top: 100px;">
 				<h2>저작물의 의미</h2>
 				<button>작성예시 보기</button>
-				<textarea id="meaning" name="meaning"></textarea>
-				
-					
-				<textarea></textarea>			
-				<textarea></textarea>		
+				<textarea id="meaning" name="meaning">${copyrightVo.getMeaning() }</textarea>
+				이전 답변<textarea>${beforeCv.getRe_meaning() }</textarea>			
+				코멘트 <textarea id="re_meaning" name="re_meaning"></textarea>		
 			</div>
 <!-- 첨부 -->
 			<div class="txt_box">
