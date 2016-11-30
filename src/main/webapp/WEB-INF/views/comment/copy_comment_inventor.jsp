@@ -14,11 +14,26 @@
 <script>
 $(document).ready(function()
 {
-	if()	
-
-	if(${copyrightVo.getFlag()} == 1) disableAllInput();
-	
+	disableAllInput();
+	if("${role}" == "inventor")
+	{
+		if(${copyrightVo.getFlag()} == 0);		  					//개발자 작성 후
+		else if(${copyrightVo.getFlag()} == 1) enableReComment();	//코멘트 달림 
+		else alert("Flag가 뭘까? ->"+${copyrightVo.getFlag()});
+	}
+	else if("${role}" == "pl")
+	{
+		if(${copyrightVo.getFlag()} == 0) enableReComment(); //개발자 작성 후
+		else if(${copyrightVo.getFlag()} == 1);				 //코멘트 달림 
+		else alert("Flag가 뭘까? ->"+${copyrightVo.getFlag()});
+	}
+	else alert('역할이 뭐니'+${role})
 		
+	$('#IdeaModifyList').on('click','li',function()
+	{
+		var cid = $(this).children('input').val();
+		showClickedList(cid)
+	});
 });
 
 $(function(){

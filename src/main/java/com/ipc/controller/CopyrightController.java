@@ -1,6 +1,8 @@
 package com.ipc.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -199,6 +202,38 @@ public class CopyrightController {
 			return "redirect:/";
 	}
 
+	@RequestMapping("/detail.ajax/{cid}")
+	@ResponseBody
+	public Map detailViewAjax(Model model,@PathVariable int cid)
+	{
+		userVo currentUser = (userVo) session.getAttribute("currentUser");
+		CopyRightVo cv = copyrightDao.getOneRowByCid(cid);
+		if(cv==null || currentUser==null) return null;
+		
+		//접근 경로에 대한 권한 확인
+		int userId 		= currentUser.getUid();
+		int inventorId  = cv.getUid();
+		int plId		= cv.getLid();
+		Map<String,Object> retVal = new HashMap<String,Object>();
+		if(userId == inventorId)
+		{
+			retVal.put("vo",cv);
+			retVal.put("role", "inventor");
+		}
+		else if(userId == plId)
+		{
+			retVal.put("vo",cv);
+			retVal.put("role", "pl");
+		}
+		else return null;
+
+		//마지막 요소인지 확인
+		CopyRightInfoVo isLast = copyrightInfoDao.getMpcidByCid(cid);
+		if(isLast == null) retVal.put("isLast","false");
+		else retVal.put("isLast","true");
+
+		return retVal;
+	}
 	
 	
 }
