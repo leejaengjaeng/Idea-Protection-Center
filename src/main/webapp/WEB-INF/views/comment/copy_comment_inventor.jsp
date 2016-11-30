@@ -17,19 +17,31 @@ $(document).ready(function()
 	disableAllInput();
 	if("${role}" == "inventor")
 	{
-		if(${copyrightVo.getFlag()} == 0);		  					//개발자 작성 후
-		else if(${copyrightVo.getFlag()} == 1) enableReComment();	//코멘트 달림 
-		else alert("Flag가 뭘까? ->"+${copyrightVo.getFlag()});
-	}
-	else alert('역할이 뭐니'+${role})
+		var pageFlag = "${copyrightVo.getFlag()}";
 		
+		if(pageFlag==0)			// 개발자 작성 후 변리사 코멘트 대기
+		{
+			hideCommentBoxes();
+			alert('변리사님의 코멘트를 기다려주세요.');
+		}
+		else if(pageFlag==1)	// 변리사 작성 후 개발자 수정 대기
+			enableReComment();	 
+		else 
+			alert('잘못된 접근 입니다.\n flag:'+${copyrightVo.getFlag()});
+	}
+	else 
+		alert('잘못된 접근 입니다.\n role:'+${copyrightVo.getFlag()});
+
 	$('#IdeaModifyList').on('click','li',function()
 	{
 		var cid = $(this).children('input').val();
+		$("#drop_sp").text($(this).data("val"));
+		
 		showClickedList(cid)
 	});
+	
+	$('#drop_sp').text($('#IdeaModifyList').find('.clickedIdea').text());
 });
-
 
 </script>
 </head>
@@ -89,7 +101,7 @@ $(document).ready(function()
 				<h2>저작물 명칭</h2>
 				<button>작성예시 보기</button>
 				<input type="text" id="idea_kind" name="idea_kind" placeholder="본인이 창작한 저작물의 이름을 정해 주세요 / 물품명 + 사용용도 or 사용용도 + 적용물품"
-					value=${copyrightVo.getTitle() }>
+					value="${copyrightVo.getTitle() }">
 				<textarea id="comment_idea_kind"_>${copyrightVo.getRe_title() }</textarea>		
 				<textarea id="re_idea_kind_inventor" name="re_idea_kind_inventor"></textarea>					
 			</div>
@@ -114,14 +126,14 @@ $(document).ready(function()
 종류:${copyrightVo.getRe_type()}
 					</textarea>			<br>
 <!-- 분야 & 종류 수정 -->
-					<span style="display: inline-block; margin-top:20px;">분야</span> 
+					<span id="re_field_txt" style="display: inline-block; margin-top:20px;">분야</span> 
 					<select id="re_field_selected" name="re_field_selected" style="float:none">
 						<option>${copyrightVo.getField() }</option>
 						<c:forEach items="${typeList}" var="type">
 						<option>${type.getType()}</option>
 						</c:forEach>
 					</select>
-					<span style="display: inline-block; margin-left: 140px;" >종류</span>
+					<span id="re_type_txt" style="display: inline-block; margin-left: 140px;" >종류</span>
 					<input type="text" id="re_kind" name="re_kind" style="float:none">
 				</div>
 				<span
@@ -176,24 +188,18 @@ $(document).ready(function()
 		</article>
 		</section>
 	</div>
-<c:import url="/WEB-INF/views/import/footer.jsp" />
-<script>
-	$(function(){
-		$(".txt_box>button").attr("type","button");
-	});
-	  $(".dropdown").click(function(){		
-		  
-			if($(this).height() < 100){
-			    $(this).css('max-height', '500px'); //set max height
-			}else{
-			    $(this).css('max-height', '50px'); //delete attribute
-			}
-		});
-
-		$("#IdeaModifyList li").click(function(){
-			$("#drop_sp").text($(this).data("val"));
-		});
-
-</script>
+<c:import url="/WEB-INF/views/import/footer.jsp" />	
 </body>
+<script>
+$(function(){
+	$(".txt_box>button").attr("type","button");
+});
+$(".dropdown").click(function(){
+	if($(this).height() < 100){
+	    $(this).css('max-height', '500px'); //set max height
+	}else{
+	    $(this).css('max-height', '50px'); //delete attribute
+	}
+});
+</script>
 </html>

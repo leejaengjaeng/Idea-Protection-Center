@@ -4,8 +4,8 @@ var disableAllInput = function()
 	$('#idea_kind').attr('disabled',true);
 	$('#comment_idea_kind').addClass('disabled');
 	$('#comment_idea_kind').attr('disabled',true);
-	$('#re_idea_kind_inventor').addClass('disabled');
-	$('#re_idea_kind_inventor').attr('disabled',true);
+	$('#re_idea_kind').hide();
+    $('#re_idea_kind_inventor').hide();
    
 	$('#field_selected').addClass('disabled');
 	$('#field_selected').attr('disabled',true);	
@@ -13,35 +13,65 @@ var disableAllInput = function()
 	$('#kind').attr('disabled',true);
 	$('#comment_fieldAndKind').addClass('disabled');
 	$('#comment_fieldAndKind').attr('disabled',true);
-	$('#re_field_selected').addClass('disabled');
-	$('#re_field_selected').attr('disabled',true);	
-	$('#re_kind').addClass('disabled');
-	$('#re_kind').attr('disabled',true);
+	$('#re_field_selected').hide();
+	$('#re_field_selected').hide();	
+	$('#re_kind').hide();
 	
 	$('#meaning').addClass('disabled');
 	$('#meaning').attr('disabled',true);
 	$('#comment_meaning').addClass('disabled');
 	$('#comment_meaning').attr('disabled',true);
-	$('#re_meaning').addClass('disabled');
-	$('#re_meaning').attr('disabled',true);
+	$('#re_meaning').hide();
 	
     $('#agree').hide();
 }
 var enableReComment = function()
 {
-	$('#re_idea_kind_inventor').removeClass('disabled');
-	$('#re_idea_kind_inventor').attr('disabled',false);
-
-	$('#re_field_selected').removeClass('disabled');
-	$('#re_field_selected').attr('disabled',false);	
-	$('#re_kind').removeClass('disabled');
-	$('#re_kind').attr('disabled',false);
-
-	$('#re_meaning').removeClass('disabled');
-	$('#re_meaning').attr('disabled',false);
-
+	$('#re_idea_kind_inventor').show();
+	$('#re_idea_kind').show();
+	$('#re_field_selected').show();
+	$('#re_kind').show();
+	$('#re_meaning').show();
     $('#agree').show();
 }
+
+var hideCommentBoxes = function()
+{
+   $('#comment_idea_kind').hide();
+   $('#comment_fieldAndKind').hide();
+   $('#comment_meaning').hide();
+}
+var showCommentBoxes = function()
+{
+   $('#comment_idea_kind').show();
+   $('#comment_fieldAndKind').show();
+   $('#comment_meaning').show();
+}
+
+var hideReBoxes = function()
+{
+	$('#re_idea_kind_inventor').hide();
+	$('#re_idea_kind').hide();
+	$('#re_field_selected').hide();
+	$('#re_field_txt').hide();
+    $('#re_type_txt').hide();
+    $('#re_kind').hide();
+    $('#re_meaning').hide();
+    
+}
+
+var showReBoxes = function()
+{
+	$('#re_idea_kind_inventor').show();
+	$('#re_idea_kind').show();
+	$('#re_field_selected').show();
+ 	$('#re_kind').show();
+    $('#re_meaning').show();
+    $('#re_field_txt').show();
+    $('#re_type_txt').show();
+    
+}
+
 
 //클릭에 따라 내용 바꿔주기
 var showClickedList = function(cid)
@@ -54,71 +84,43 @@ var showClickedList = function(cid)
     	if(retVal==null) alert('auth Error');
     	else
     	{
-        	var role = retVal.role;
-            if(role == "inventor")
-            {
-         	   var vo = retVal.vo;
-                
-         	   $('#idea_kind').text(vo.title);
-         	   $('#comment_idea_kind').text(vo.re_title);
-         	     	
-         	   $('#field_selected').text(vo.field);
-         	   $('#kind').text(vo.type);
-         	   $('#comment_fieldAndKind').text("분야:"+vo.re_field+"\n종류:"+vo.re_type);
-         	  	
-         	   $('#meaning').text(vo.meaning);
-         	   $('#comment_meaning').text(vo.re_meaning);
-         	  
-         	   if(retVal.isLast=="true")
-         	   {
-         		   $('#re_idea_kind_inventor').show();
-          	       $('#re_field_selected').show();
-             	   $('#re_kind').show();
-                   $('#re_meaning').show();
-                   enableReComment();
-         	   }
-         	   else
-         	   {
-         		   $('#re_idea_kind_inventor').hide();
-     	 	       $('#re_field_selected').hide();
-     	    	   $('#re_kind').hide();
-     	           $('#re_meaning').hide();
-     		 	   $('#agree').hide();
-     		   }
-            }
-            else if(role == "pl")
-            {
-         	   var vo = retVal.vo;
-                
-         	   $('#idea_kind').text(vo.title);
-         	   $('#comment_idea_kind').text(vo.re_title);
-         	     	
-         	   $('#field_selected').text(vo.field);
-         	   $('#kind').text(vo.type);
-         	   $('#comment_fieldAndKind').text("분야:"+vo.re_field+"\n종류:"+vo.re_type);
-         	  	
-         	   $('#meaning').text(vo.meaning);
-         	   $('#comment_meaning').text(vo.re_meaning);
-         	  
-         	   if(retVal.isLast=="true")
-         	   {
-         		   $('#re_idea_kind_inventor').show();
-          	       $('#re_field_selected').show();
-             	   $('#re_kind').show();
-                   $('#re_meaning').show();
-                   enableReComment();
-         	   }
-         	   else
-         	   {
-         		   $('#re_idea_kind_inventor').hide();
-     	 	       $('#re_field_selected').hide();
-     	    	   $('#re_kind').hide();
-     	           $('#re_meaning').hide();
-     		 	   $('#agree').hide();
-     		   }
-            }
-            else
-               alert('role Error');
+    		showReBoxes();
+    		showCommentBoxes();
+    		
+    		var role = retVal.role;
+    		var vo = retVal.vo;
+         	
+    		$('#idea_kind').text(vo.title);
+       	    $('#field_selected').children('option').text(vo.field);
+       	    $('#kind').text(vo.type);
+       	    $('#meaning').text(vo.meaning);
+       	    if(role == "inventor")
+    		{
+    			$('#comment_idea_kind').text(vo.re_title);
+    			$('#comment_fieldAndKind').text("분야:"+vo.re_field+"\n종류:"+vo.re_type);
+    			$('#comment_meaning').text(vo.re_meaning);        	
+    			
+    			if(retVal.isLast=="true" && retVal.turn!="inventor") hideCommentBoxes();		
+    		}
+       	    else if(role == "pl")
+       	    {
+       	    	var prevVo = retVal.prevVo;
+    			$('#comment_idea_kind').text(prevVo.re_title);
+    			$('#comment_fieldAndKind').text("분야 : "+prevVo.re_field+"\n종류 : "+prevVo.re_type);
+    			$('#comment_meaning').text(prevVo.re_meaning);        	
+       	    }
+       	    else alert('role Error \n'+role)
+       	    
+        	if(retVal.isLast=="true" && retVal.turn==role)
+        	{
+        		showReBoxes();
+        		enableReComment();
+         	}
+        	else
+         	{
+        		hideReBoxes();
+   		 	  	$('#agree').hide();
+     		}
     	}
     },
     error: function(request,status,error)
