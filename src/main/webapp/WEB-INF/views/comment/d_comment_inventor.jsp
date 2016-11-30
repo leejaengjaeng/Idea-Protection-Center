@@ -31,25 +31,26 @@
 			<h1>
 				<b style="color: rgba(1, 102, 156, 1);">디자인권</b>출원
 			</h1>
-			</article> <article>
-			<div class="txt_box">			
-				<div class="dropdown">
-					<span id="drop_sp">디자인권 등록 (초안)</span>
-					<div class="arrow-up ee"></div>					
-					<ul id="IdeaModifyList">
-						<c:forEach var="j" begin="1" end="${count}" step="1">
-							<li class="loadBtn" data-num="${j}">${j}차 수정안</li>
-						</c:forEach>
-					</ul>					
+			</article> 
+			<article>
+				<div class="txt_box">			
+					<div class="dropdown">
+						<span id="drop_sp">디자인권 등록 (초안)</span>
+						<div class="arrow-up ee"></div>					
+						<ul id="IdeaModifyList">
+							<c:forEach var="j" begin="1" end="${count}" step="1">
+								<li class="loadBtn" data-num="${j}">${j}차 수정안</li>
+							</c:forEach>
+						</ul>					
+					</div>				
+					<h2>디자인 명칭*</h2>
+					<button>작성예시 보기</button>
+					<input type="text" id="before_title" name="before_title"
+						value="${nowDv.getTitle()}" class="disabled" disabled
+						placeholder="본인이 창작한 저작물의 이름을 정해 주세요 / 물품명 + 사용용도 or 사용용도 + 적용물품">
+					<textarea class="cmt_de disabled" id="before_re_title" disabled>${nowDv.getRe_title()}</textarea>
+					<input type="text" id="title" name="title" class="disabled" disabled>
 				</div>
-				<h2>디자인 명칭*</h2>
-				<button>작성예시 보기</button>
-				<input type="text" id="before_title" name="before_title"
-					value="${nowDv.getTitle()}" class="disabled" disabled
-					placeholder="본인이 창작한 저작물의 이름을 정해 주세요 / 물품명 + 사용용도 or 사용용도 + 적용물품">
-				<textarea class="cmt_de disabled" id="before_re_title" disabled>${nowDv.getRe_title()}</textarea>
-				<input type="text" id="title" name="title" class="disabled" disabled>
-			</div>
 			<div class="txt_box">
 				<h2>디자인이 적용된 곳*</h2>
 				<button>작성예시 보기</button>
