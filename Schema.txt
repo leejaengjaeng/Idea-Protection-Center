@@ -270,3 +270,25 @@ CREATE TABLE `design_patent` (
   `d_condition` text,
   PRIMARY KEY (`deid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+CREATE TABLE `mark_patent` (
+  `mid` INT NOT NULL AUTO_INCREMENT,
+  `whereuse` TEXT NULL,
+  `mean` TEXT NULL,
+  `logo` TEXT NULL,
+  `title1` TEXT NULL,
+  `title2` TEXT NULL,
+  `title3` TEXT NULL,
+  `re_title1` TEXT NULL,
+  `re_title2` TEXT NULL,
+  `re_title3` TEXT NULL,
+  `re_whereuse` TEXT NULL,
+  `re_mean` TEXT NULL,
+  `re_logo` TEXT NULL,
+  `iscomplete` INT NULL,
+  `pre_apple_date` TEXT NULL,
+  `apply_date` TEXT NULL,
+  `start_mid` INT NULL,
+  `uid` INT NULL,
+  `luid` INT NULL,
+  `prev_mid` INT NULL,
+  PRIMARY KEY (`mid`))
