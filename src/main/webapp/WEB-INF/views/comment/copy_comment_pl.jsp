@@ -118,6 +118,18 @@
 	$(function(){
 		$(".txt_box>button").attr("type","button");
 	});
+	  $(".dropdown").click(function(){		
+		  
+			if($(this).height() < 100){
+			    $(this).css('max-height', '500px'); //set max height
+			}else{
+			    $(this).css('max-height', '50px'); //delete attribute
+			}
+		});
+
+		$("#IdeaModifyList_top li").click(function(){
+			$("#drop_sp").text($(this).data("val"));
+		});
 	</script>
 </body>
 </html>

@@ -18,7 +18,15 @@
 		</h1>
 		</article> 
 		<article>
-		
+			<div class="dropdown">
+				<span id="drop_sp">상표권 등록 (초안)</span>
+				<div class="arrow-up ee"></div>					
+				<ul id="IdeaModifyList">
+					<c:forEach var="j" begin="1" end="${count}" step="1">
+						<li class="loadBtn" data-num="${j}">${j}차 수정안</li>
+					</c:forEach>
+				</ul>					
+			</div>
 		<form action="/copyRight/regCopyright" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
 			<input type="hidden" name="uid" id="uid" value="${sessionScope.currentUser.getUid()}" />				
@@ -103,6 +111,18 @@
      });
     $(function(){
 		$(".txt_box>button").attr("type","button");
+	});
+    $(".dropdown").click(function(){		
+		  
+		if($(this).height() < 100){
+		    $(this).css('max-height', '500px'); //set max height
+		}else{
+		    $(this).css('max-height', '50px'); //delete attribute
+		}
+	});
+
+	$("#IdeaModifyList_top li").click(function(){
+		$("#drop_sp").text($(this).data("val"));
 	});
 </script>	
 </body>
