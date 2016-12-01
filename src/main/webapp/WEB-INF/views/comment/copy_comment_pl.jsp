@@ -40,11 +40,7 @@ $(document).ready(function()
 	
 	$('#drop_sp').text($('#IdeaModifyList').find('.clickedIdea').text());
 
-<<<<<<< HEAD
-
-=======
 });
->>>>>>> d1e2ea5ec8121c92470a92da4fd0fa6c59c8429d
 </script>
 
 </head>
@@ -105,13 +101,8 @@ $(document).ready(function()
 				<button style="margin-bottom:20px;">작성예시 보기</button>
 				<input type="text" id="idea_kind" name="idea_kind" placeholder="본인이 창작한 저작물의 이름을 정해 주세요 / 물품명 + 사용용도 or 사용용도 + 적용물품"
 				value="${copyrightVo.getTitle() }">
-<<<<<<< HEAD
-				<textarea placeholder="이전답변">${beforeCv.getRe_title() }</textarea>		
-				 <textarea id="re_idea_kind" name="re_idea_kind" placeholder="코멘트"></textarea>					
-=======
-				이전 답변 <textarea id="comment_idea_kind">${beforeCv.getRe_title() }</textarea>		
-				코멘트 <textarea id="re_idea_kind" name="re_idea_kind"></textarea>					
->>>>>>> d1e2ea5ec8121c92470a92da4fd0fa6c59c8429d
+				<textarea placeholder="이전답변" id="comment_idea_kind">${beforeCv.getRe_title() }</textarea>		
+				<textarea placeholder="코멘트" id="re_idea_kind" name="re_idea_kind"></textarea>					
 			</div>
 <!-- 분야 -->
 			<div class="txt_box">
@@ -128,27 +119,16 @@ $(document).ready(function()
 					</select>
 <!-- 종류 -->
 					<span style="display: inline-block; margin-left: 140px;">종류</span>
-<<<<<<< HEAD
-					<input type="text" id="kind" name="kind" value=${copyrightVo.getType() } style="float:none;">
-					<textarea>
-=======
-					<input type="text" id="kind" name="kind" value="${copyrightVo.getType() }">
+					<input type="text" id="kind" name="kind" value="${copyrightVo.getType() }" style="float:none;">
 					<textarea id="comment_fieldAndKind">
->>>>>>> d1e2ea5ec8121c92470a92da4fd0fa6c59c8429d
 -이전 답변-
 분야:${beforeCv.getRe_field()}
 종류:${beforeCv.getRe_type()}
 					</textarea>	
 					
-<<<<<<< HEAD
-					<br>
-					<span>분야</span> 
-					<select id="re_field_selected" name="re_field_selected">
-=======
 					코멘트<br>
 					<span id="re_field_txt" style="display: inline-block; margin-top:20px;">분야</span> 
 					<select id="re_field_selected" name="re_field_selected" style="float:none">
->>>>>>> d1e2ea5ec8121c92470a92da4fd0fa6c59c8429d
 						<option></option>
 						<c:forEach items="${typeList}" var="type">
 						<option>${type.getType()}</option>
@@ -166,13 +146,9 @@ $(document).ready(function()
 				<h2>저작물의 의미</h2>
 				<button>작성예시 보기</button>
 				<textarea id="meaning" name="meaning">${copyrightVo.getMeaning() }</textarea>
-<<<<<<< HEAD
-				<textarea placeholder="이전답변">${beforeCv.getRe_meaning() }</textarea>			
-				<textarea id="re_meaning" name="re_meaning" placeholder="코멘트"></textarea>		
-=======
-				이전 답변<textarea id="comment_meaning">${beforeCv.getRe_meaning() }</textarea>			
-				코멘트 <textarea id="re_meaning" name="re_meaning"></textarea>		
->>>>>>> d1e2ea5ec8121c92470a92da4fd0fa6c59c8429d
+
+				<textarea placeholder="이전답변" id="comment_meaning">${beforeCv.getRe_meaning() }</textarea>			
+				<textarea placeholder="코멘트" id="re_meaning" name="re_meaning"></textarea>		
 			</div>
 <!-- 첨부 -->
 			<div class="txt_box">
@@ -207,22 +183,6 @@ $(document).ready(function()
 	</div>
 	
 	<c:import url="/WEB-INF/views/import/footer.jsp" />
-<<<<<<< HEAD
-<script type="text/javascript">
-$(function(){
-	$(".txt_box>button").attr("type","button");
-});
-  
-$(".dropdown").click(function(){		
-	if($(this).height() < 100){
-	    $(this).css('max-height', '500px'); //set max height
-	}else{
-	    $(this).css('max-height', '50px'); //delete attribute
-	}
-});
-</script>
-=======
->>>>>>> d1e2ea5ec8121c92470a92da4fd0fa6c59c8429d
 </body>
 <script>
 $(function(){
