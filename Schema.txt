@@ -202,7 +202,6 @@ CREATE TABLE `reg_copyright` (
 CREATE TABLE `main_page_copyright_info` (
   `mpcid` int(11) NOT NULL AUTO_INCREMENT,
   `cid` int(11) NOT NULL,
-  `start_cid` int(11),
   `uid` int(11) DEFAULT NULL,
   `reg_condition` varchar(45) DEFAULT '결제대기중',
   `pre_apply_date` datetime DEFAULT NULL,

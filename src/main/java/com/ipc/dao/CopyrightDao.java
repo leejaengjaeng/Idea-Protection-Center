@@ -15,15 +15,18 @@ import com.ipc.vo.adminNoticeVo;
 
 @Mapper
 public interface CopyrightDao {
+
+	//insert
 	public void addCopyright(CopyRightVo cv);
 	
+	//select
 	public CopyRightVo getStartCidByCid(int cid);
-	
 	public List<CopyRightVo> getAssosiatedList(int start_cid);
-	
 	public CopyRightVo getOneRowByCid(int cid);
 	
+	//update
 	public void	updateCopyright_pl(CopyRightVo cv);
 	public void updateStartCid(CopyRightVo cv);
+	public void setLidtoRow(HashMap map);
 	
 }

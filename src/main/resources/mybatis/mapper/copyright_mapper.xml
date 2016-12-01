@@ -26,5 +26,8 @@
 		UPDATE reg_copyright SET re_title = #{re_title}, re_field = #{re_field}, re_type = #{re_type}, re_meaning = #{re_meaning}, flag=#{flag} where cid = #{cid}
 	</update>
 	
+	<update id="setLidtoRow" parameterType="Hashmap">
+		UPDATE reg_copyright SET lid = #{lid} where cid = #{cid}
+	</update>
 	
 </mapper>

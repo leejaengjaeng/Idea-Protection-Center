@@ -9,17 +9,25 @@
 	<select id="getCopyrightListInventer" parameterType="Integer" resultType="com.ipc.vo.CopyRightInfoVo">
 		select cid,reg_condition,pre_apply_date,apply_date,registration_date,title,inventor_name,pl_name from main_page_copyright_info where uid = #{uid};
 	</select>
-	
 	<select id="getCopyrightListPl" parameterType="Integer" resultType="com.ipc.vo.CopyRightInfoVo">
 		select cid,reg_condition,pre_apply_date,apply_date,registration_date,title,inventor_name,pl_name from main_page_copyright_info where lid = #{uid};
 	</select>
-	
 	<select id="getMpcidByCid" parameterType="Integer" resultType="com.ipc.vo.CopyRightInfoVo">
 		select mpcid from main_page_copyright_info where cid = #{cid};
+	</select>
+	<select id="getCopyrightListAtAdmin" resultType="com.ipc.vo.CopyrightAdminVo">
+		SELECT mp.cid, u.id, mp.inventor_name, mp.pl_name, u.email, mp.title, mp.reg_condition 
+		FROM main_page_copyright_info mp, user u 
+		WHERE mp.uid = u.uid;
 	</select>
 	
 	<update id="updateInfoByMpcid" parameterType="com.ipc.vo.CopyRightInfoVo">
 		update main_page_copyright_info set cid = #{cid}, title = #{title} where mpcid = #{mpcid}
+	</update>
+	<update id="asignPl" parameterType="Hashmap">
+		UPDATE main_page_copyright_info 
+		SET lid = #{lid}, pl_name = #{pl_name}, reg_condition = #{reg_condition}
+		WHERE mpcid = #{mpcid}
 	</update>
 	
 </mapper>

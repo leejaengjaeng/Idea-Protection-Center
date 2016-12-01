@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ipc.dao.CopyrightDao;
+import com.ipc.dao.CopyrightInfoDao;
 import com.ipc.dao.DesignDao;
 import com.ipc.dao.MainPageDao;
 import com.ipc.dao.MarkDao;
@@ -21,6 +23,8 @@ import com.ipc.dao.RegistrationDao;
 import com.ipc.dao.TypeOfInventDao;
 import com.ipc.dao.UserDao;
 import com.ipc.util.ViewUtils;
+import com.ipc.vo.CopyRightInfoVo;
+import com.ipc.vo.CopyrightAdminVo;
 import com.ipc.vo.DesignAdminVo;
 import com.ipc.vo.LawyerProfileVo;
 import com.ipc.vo.MarkAdminVo;
@@ -53,6 +57,11 @@ public class AdminController {
 	DesignDao designmapper;
 	@Autowired
 	MarkDao markmapper;
+	@Autowired
+	CopyrightInfoDao copyrightInfoDao;
+	@Autowired
+	CopyrightDao copyrightDao;
+	
 	
 	// 아이디어 관리
 	@RequestMapping("/")
@@ -76,6 +85,17 @@ public class AdminController {
 		model.addAttribute("designAdminList", designAdminList);
 		return "admin/admin_design";
 	}
+	
+	@RequestMapping("/copyright")
+	public String copyright(Model model)
+	{
+		List<CopyrightAdminVo> copyrightList = copyrightInfoDao.getCopyrightListAtAdmin();
+		List<userVo> lawyers = userDao.getLawyerList();
+		model.addAttribute("copyrightList", copyrightList);
+		model.addAttribute("lawyerList",lawyers);
+		return "admin/admin_copyright";
+	}
+	
 	@RequestMapping("/ideas/{pageNum}")
 	public String ideaList(Model model, @PathVariable int pageNum) {
 		
@@ -261,6 +281,33 @@ public class AdminController {
 		
 		HashMap<String,String> resultMap = new HashMap<String,String>();
 		resultMap.put("lawyerName", userDao.getUserByUid(uid).getName());
+		return resultMap;
+	}
+	//
+	@RequestMapping("/assignCopyright")
+	@ResponseBody
+	public HashMap<String,String> assignCopyright(HttpServletRequest request){
+		int cid = Integer.parseInt(request.getParameter("cid"));
+		int lid = Integer.parseInt(request.getParameter("plId"));
+		
+		CopyRightInfoVo mpcid = copyrightInfoDao.getMpcidByCid(cid);
+		String plName = userDao.getNameByUid(lid);
+		
+		HashMap<String,String> map = new HashMap<String,String>();
+		map.put("mpcid", mpcid.getMpcid()+"");
+		map.put("lid", lid+"");
+		map.put("pl_name",plName);
+		map.put("reg_condition", "변리사 수정중");
+
+		copyrightInfoDao.asignPl(map);
+		map.put("cid", cid+"");
+		copyrightDao.setLidtoRow(map);
+		
+		HashMap<String,String> resultMap = new HashMap<String,String>();
+		resultMap.put("plName", plName);
+		resultMap.put("condition", "변리사 수정중");
+		
+		
 		return resultMap;
 	}
 }
