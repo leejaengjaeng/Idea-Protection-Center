@@ -37,7 +37,7 @@ $(document).ready(function()
 	});
 });
 
-
+});
 </script>
 </head>
 <body>	
@@ -96,8 +96,9 @@ $(document).ready(function()
 				<button style="margin-bottom:20px;">작성예시 보기</button>
 				<input type="text" id="idea_kind" name="idea_kind" placeholder="본인이 창작한 저작물의 이름을 정해 주세요 / 물품명 + 사용용도 or 사용용도 + 적용물품"
 				value="${copyrightVo.getTitle() }">
-				<textarea placeholder="이전답변" disabled="disabled" class="disabled">${beforeCv.getRe_title() }</textarea>		
-				 <textarea id="re_idea_kind" name="re_idea_kind" placeholder="코멘트"></textarea>					
+
+				<textarea placeholder="이전답변" id="comment_idea_kind">${beforeCv.getRe_title() }</textarea>		
+				<textarea placeholder="코멘트" id="re_idea_kind" name="re_idea_kind"></textarea>					
 			</div>
 <!-- 분야 -->
 			<div class="txt_box">
@@ -121,9 +122,15 @@ $(document).ready(function()
 종류:${beforeCv.getRe_type()}
 					</textarea>	
 					
+<<<<<<< HEAD
 					<br>
 					<span>분야</span> 
 					<select id="re_field_selected" name="re_field_selected">
+=======
+					코멘트<br>
+					<span id="re_field_txt" style="display: inline-block; margin-top:20px;">분야</span> 
+					<select id="re_field_selected" name="re_field_selected" style="float:none">
+>>>>>>> 1632d8ab7b034d2388f7b17b483a91a88f362735
 						<option></option>
 						<c:forEach items="${typeList}" var="type">
 						<option>${type.getType()}</option>
@@ -141,8 +148,14 @@ $(document).ready(function()
 				<h2>저작물의 의미</h2>
 				<button>작성예시 보기</button>
 				<textarea id="meaning" name="meaning">${copyrightVo.getMeaning() }</textarea>
+<<<<<<< HEAD
 				<textarea placeholder="이전답변" disabled="disabled" class="disabled"> ${beforeCv.getRe_meaning() }</textarea>			
 				<textarea id="re_meaning" name="re_meaning" placeholder="코멘트"></textarea>		
+=======
+
+				<textarea placeholder="이전답변" id="comment_meaning">${beforeCv.getRe_meaning() }</textarea>			
+				<textarea placeholder="코멘트" id="re_meaning" name="re_meaning"></textarea>		
+>>>>>>> 1632d8ab7b034d2388f7b17b483a91a88f362735
 			</div>
 <!-- 첨부 -->
 			<div class="txt_box">
@@ -177,6 +190,7 @@ $(document).ready(function()
 	</div>
 	
 	<c:import url="/WEB-INF/views/import/footer.jsp" />
+<<<<<<< HEAD
 <script type="text/javascript">
 $(function(){
 	$(".txt_box>button").attr("type","button");
@@ -190,5 +204,7 @@ $(".dropdown").click(function(){
 	}
 });
 </script>
+=======
+>>>>>>> 1632d8ab7b034d2388f7b17b483a91a88f362735
 </body>
 </html>
