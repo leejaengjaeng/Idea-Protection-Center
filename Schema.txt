@@ -1,4 +1,4 @@
-# 1
+﻿# 1
 DROP TABLE document;
 CREATE TABLE `document` (
   `did` int(11) NOT NULL AUTO_INCREMENT,
@@ -20,7 +20,7 @@ CREATE TABLE `main_page_reg_info` (
   `registration_date` datetime DEFAULT NULL,
   `title` varchar(45) DEFAULT NULL,
   `typeOfInvent` varchar(45) DEFAULT NULL,
-  `lid` int(11) DEFAULT NULL,
+  `lid` int(11) DEFAULT NULL,`
   PRIMARY KEY (`mprid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 
@@ -269,8 +269,11 @@ CREATE TABLE `design_patent` (
   `d_condition` text,
   PRIMARY KEY (`deid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+<<<<<<< HEAD
+=======
 
 #18
+>>>>>>> 5527d3197d2fe86fa5a811cccfab3d60d9442465
 CREATE TABLE `mark_patent` (
   `mid` INT NOT NULL AUTO_INCREMENT,
   `whereuse` TEXT NULL,
@@ -293,3 +296,4 @@ CREATE TABLE `mark_patent` (
   `luid` INT NULL,
   `prev_mid` INT NULL,
   PRIMARY KEY (`mid`))
+##
