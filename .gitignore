@@ -12,3 +12,8 @@
 .project
 .gradle/
 .settings/
+
+/src/main/webapp/resources/downContents/
+/src/main/webapp/resources/lawyer_scan/
+/src/main/webapp/resources/mark/
+/src/main/webapp/resources/uploadimgs/
