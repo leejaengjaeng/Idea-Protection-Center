@@ -121,16 +121,8 @@ $(document).ready(function()
 분야:${beforeCv.getRe_field()}
 종류:${beforeCv.getRe_type()}
 					</textarea>	
-					
-<<<<<<< HEAD
-					<br>
-					<span>분야</span> 
-					<select id="re_field_selected" name="re_field_selected">
-=======
-					코멘트<br>
-					<span id="re_field_txt" style="display: inline-block; margin-top:20px;">분야</span> 
+					<br><span id="re_field_txt" style="display: inline-block; margin-top:20px;">분야</span> 
 					<select id="re_field_selected" name="re_field_selected" style="float:none">
->>>>>>> 1632d8ab7b034d2388f7b17b483a91a88f362735
 						<option></option>
 						<c:forEach items="${typeList}" var="type">
 						<option>${type.getType()}</option>
@@ -148,14 +140,10 @@ $(document).ready(function()
 				<h2>저작물의 의미</h2>
 				<button>작성예시 보기</button>
 				<textarea id="meaning" name="meaning">${copyrightVo.getMeaning() }</textarea>
-<<<<<<< HEAD
+
 				<textarea placeholder="이전답변" disabled="disabled" class="disabled"> ${beforeCv.getRe_meaning() }</textarea>			
 				<textarea id="re_meaning" name="re_meaning" placeholder="코멘트"></textarea>		
-=======
 
-				<textarea placeholder="이전답변" id="comment_meaning">${beforeCv.getRe_meaning() }</textarea>			
-				<textarea placeholder="코멘트" id="re_meaning" name="re_meaning"></textarea>		
->>>>>>> 1632d8ab7b034d2388f7b17b483a91a88f362735
 			</div>
 <!-- 첨부 -->
 			<div class="txt_box">
@@ -190,21 +178,19 @@ $(document).ready(function()
 	</div>
 	
 	<c:import url="/WEB-INF/views/import/footer.jsp" />
-<<<<<<< HEAD
+
 <script type="text/javascript">
-$(function(){
-	$(".txt_box>button").attr("type","button");
-});
-  
-$(".dropdown").click(function(){		
-	if($(this).height() < 100){
-	    $(this).css('max-height', '500px'); //set max height
-	}else{
-	    $(this).css('max-height', '50px'); //delete attribute
-	}
-});
+	$(function(){
+		$(".txt_box>button").attr("type","button");
+	});
+	  
+	$(".dropdown").click(function(){		
+		if($(this).height() < 100){
+		    $(this).css('max-height', '500px'); //set max height
+		}else{
+		    $(this).css('max-height', '50px'); //delete attribute
+		}
+	});
 </script>
-=======
->>>>>>> 1632d8ab7b034d2388f7b17b483a91a88f362735
 </body>
 </html>

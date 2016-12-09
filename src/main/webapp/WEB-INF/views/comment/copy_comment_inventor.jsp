@@ -161,7 +161,9 @@ $(document).ready(function()
 			<div class="txt_box">
 				<h2>저작물 첨부</h2>
 				<button>작성예시 보기</button>
-				<input type="file" style="float: left; margin: 10px; opacity: 1; padding-top: 5px;" name="copyright_imgs">				
+				<div class="inp_add">
+					<input type="file" style="float: left; margin: 10px; opacity: 1; padding-top: 5px;" name="copyright_imgs">
+				</div>				
 				<div id="add_btn" onclick="addfile2()">추가하기</div>
 				<div class="hiding_box">
 					<div class="hiding_box_header">
@@ -201,5 +203,13 @@ $(".dropdown").click(function(){
 	    $(this).css('max-height', '50px'); //delete attribute
 	}
 });
+
+
+function addfile2(){
+	var i = 1;
+	i++;
+	$(".inp_add").append("<input type='file' style='float: left; margin: 10px 0 10px 0; opacity: 1; padding-top: 5px;' id='copy_file"+i+"'>");		
+}
+
 </script>
 </html>
